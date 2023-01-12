@@ -1,0 +1,172 @@
+﻿carnx_buy_slave_interaction = {
+	category = interaction_category_prison
+	desc = carnx_buy_slave_interaction_desc
+	interface_priority = 31
+	common_interaction = yes
+	needs_recipient_to_open = yes
+
+	greeting = positive
+	send_name = carnx_buy_slave_interaction
+	
+	ai_min_reply_days = 0
+	ai_max_reply_days = 0
+
+	redirect = {
+		scope:recipient = {
+			if = {
+				limit = { has_trait = slave }
+				save_scope_as = secondary_recipient
+				random_relation = {
+					type = slave_owner
+					save_scope_as = recipient
+				}
+			}
+		}
+	}
+
+	populate_recipient_list = {
+		scope:recipient = {
+			every_relation = {
+				type = slave
+				limit = {
+					carn_slave_can_be_sold_trigger = yes
+				}
+				add_to_list = characters
+			}
+		}
+	}
+
+	is_shown = {
+		NOT = { has_game_rule = carn_slavery_content_disabled }
+		scope:recipient = {
+			is_ruler = yes
+			NOT = { this = scope:actor }
+			any_relation = {
+				type = slave
+				exists = this
+			}
+		}
+		NAND = { # Prevent ai from spamming you with buy slave requests
+			scope:actor = { is_ai = yes }
+			scope:recipient = { is_ai = no }
+		}
+	}
+
+	is_valid_showing_failures_only = {
+		scope:recipient = {
+			carnx_candidate_to_buy_slave_from_trigger = yes
+		}
+		trigger_if = {
+			limit = { exists = scope:secondary_recipient }
+			scope:secondary_recipient = {
+				carn_slave_can_be_sold_trigger = yes
+			}
+		}
+	}
+	
+	on_accept = {
+		scope:actor = { save_scope_as = buyer }
+		scope:secondary_recipient = { save_scope_as = slave }
+		scope:recipient = { save_scope_as = seller }
+		scope:recipient = { save_scope_as = appraiser }
+		carn_buy_slave_effect = { 
+			SLAVE_PRICE = scope:slave.carnx_slave_ask_price_value
+		}
+	}
+
+	auto_accept = no
+
+	ai_accept = {
+		base = 0
+
+		modifier = {
+			add = 50
+			desc = "GOLD_POSITIVE_REASON"
+		}
+
+		# Employed as councillor (-50), court position, knight / commander, or in some other way (-25)
+		carnx_employed_modifier = {
+			RULER = scope:recipient
+			SLAVE = scope:secondary_recipient
+			SCALE = -25
+		}
+
+		# Family and relations (-25 to -100 depending on how close the relation)
+		carnx_family_and_relations_modifier = {
+			RULER = scope:recipient
+			SLAVE = scope:secondary_recipient
+			SCALE = -25
+		}
+
+		# Claims (-50 if useful claims on neighbouring realms)
+		carnx_claims_modifier = {
+			RULER = scope:recipient
+			SLAVE = scope:secondary_recipient
+			SCALE = -50
+		}
+
+		# Attraction (0 to -50 depending on attraction, doubled for lustful, halved for chaste)
+		carnx_attraction_modifier = {
+			RULER = scope:recipient
+			SLAVE = scope:secondary_recipient
+			SCALE = -50
+		}
+
+		# Female (-25 if a visibly fertile female)
+		carnx_female_modifier = {
+			SLAVE = scope:secondary_recipient
+			SCALE = -25
+		}
+
+		# Opinion of buyer (-25 to 25 depending on opinion)
+		opinion_modifier = {
+			trigger = {
+				NOT = { scope:actor = scope:recipient }
+			}
+			who = scope:recipient
+			opinion_target = scope:actor
+			multiplier = 0.25
+			desc = AI_OPINION_REASON
+		}
+
+		# Avoid doing business with rivals or nemesises
+		modifier = {
+			scope:recipient = {
+				has_relation_rival = scope:actor
+			}
+			add = -100
+			desc = "ACTOR_RIVAL_TO_ME_REASON"
+		}
+		modifier = {
+			scope:recipient = {
+				has_relation_nemesis = scope:actor
+			}
+			add = -200
+			desc = "ACTOR_NEMESIS_TO_ME_REASON"
+		}
+		
+		# Intimidated or cowed by buyer who is also a liege or above (10 or 20)
+		modifier = {
+			scope:recipient = {
+				target_is_liege_or_above = scope:actor
+				has_dread_level_towards = {
+					target = scope:actor
+					level = 1
+				}
+			}
+			add = intimidated_external_reason_value
+			desc = INTIMIDATED_REASON
+		}
+		modifier = {
+			scope:recipient = {
+				target_is_liege_or_above = scope:actor
+				has_dread_level_towards = {
+					target = scope:actor
+					level = 2
+				}
+			}
+			add = cowed_external_reason_value
+			desc = COWED_REASON
+		}
+	}
+}

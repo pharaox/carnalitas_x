@@ -1,0 +1,23 @@
+﻿carn_on_slave_enslaved = {
+	effect = {
+		debug_log = "Slave enslaved"
+		debug_log_date = yes
+		debug_log_scopes = yes
+	}
+}
+
+carn_on_slave_freed = {
+	effect = {
+		debug_log = "Slave freed"
+		debug_log_date = yes
+		debug_log_scopes = yes
+	}
+}
+
+carnx_on_slave_bought = {
+	effect = {
+		debug_log = "Slave bought"
+		debug_log_date = yes
+		debug_log_scopes = yes
+	}
+}

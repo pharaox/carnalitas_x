@@ -1,0 +1,949 @@
+﻿# carn_enslave_effect
+# carn_enslave_interaction_effect
+# carn_free_slave_effect
+# carn_free_illegal_slaves_effect
+# carn_free_slave_interaction_effect
+# carn_buy_slave_effect
+# carn_try_create_demand_free_illegal_slaves_important_action_effect
+
+# enslaves SLAVE to OWNER
+# will also incur opinion, tyranny, piety effects if DRAMA is true
+carn_enslave_effect = {
+	$SLAVE$ = { save_temporary_scope_as = new_slave }
+	$OWNER$ = { save_temporary_scope_as = new_owner }
+
+	scope:new_slave = {
+		if = {
+			limit = { is_ruler = yes }
+			every_character_war = {
+				if = {
+					limit = {
+						primary_attacker = scope:new_slave
+					}
+					end_war = invalidated
+				}
+				else_if = {
+					limit = {
+						primary_defender = scope:new_slave
+					}
+					if = {
+						limit = { primary_attacker = scope:new_owner }
+						end_war = attacker
+					}
+					else = {
+						end_war = invalidated
+					}
+				}
+				else = {
+					remove_participant = scope:new_slave
+				}
+			}
+			depose = yes
+		}
+		hidden_effect = {
+			remove_trait = former_slave
+			add_trait = slave
+			add_gold = {
+				# their gold is removed, representing their treasury being lost, and also to prevent abuse
+				value = gold
+				multiply = -1
+			}
+			if = {
+				limit = { is_married = yes }
+				every_spouse = {
+					divorce = scope:new_slave
+				}
+			}
+			if = {
+				limit = { exists = betrothed }
+				break_betrothal = betrothed
+			}
+			every_concubine = {
+				scope:new_slave = { remove_concubine = prev }
+			}
+			every_relation = {
+				type = guardian
+				remove_relation_ward = prev
+			}
+			if = {
+				# By default, randomly generated peasant leaders will disappear if captured in battle
+				limit = {
+					has_character_flag =  peasant_faction_random_peasant
+				}
+				add_character_flag = peasant_revolt_do_not_kill
+			}
+		}
+	}
+
+	scope:new_owner = {
+		set_relation_slave = scope:new_slave
+		if = {
+			limit = {
+				scope:new_slave = { NOT = { is_courtier_of = scope:new_owner } }
+			}
+			hidden_effect = { add_courtier = scope:new_slave }
+		}
+	}
+
+	if = {
+		limit = { $DRAMA$ = yes }
+		
+		scope:new_slave = {
+			# Victim hates slaver
+			add_prestige_level = -1
+			if = {
+				limit = {
+					NOT = { has_trait = contrite }
+				}
+				if = {
+					limit = {
+						scope:new_owner = {
+							has_execute_reason = scope:new_slave
+						}
+					}
+					add_opinion = {
+						target = scope:new_owner
+						modifier = carn_enslaved_me_opinion
+					}
+				}
+				else = {
+					add_opinion = {
+						target = scope:new_owner
+						modifier = carn_enslaved_me_crime_opinion
+					}
+				}
+			}
+			
+			# Victim's family & spouse hates slaver
+			every_close_family_member = {
+				limit = { NOT = { this = scope:new_owner } }
+				add_to_temporary_list = victim_family_list
+			}
+			every_spouse = {
+				limit = {
+					NOR = {
+						this = scope:new_owner
+						is_in_list = victim_family_list
+					}
+				}
+				add_to_temporary_list = victim_family_list
+			}
+			
+			if = {
+				limit = {
+					any_in_list = {
+						list = victim_family_list
+						count > 0
+					}
+				}
+				if = {
+					limit = {
+						scope:new_owner = {
+							has_execute_reason = scope:new_slave
+						}
+					}
+					every_in_list = {
+						list = victim_family_list
+						custom = all_close_family_and_spouses
+						add_opinion = {
+							target = scope:new_owner
+							modifier = carn_enslaved_close_family_opinion
+						}
+					}
+				}
+				else = {
+					every_in_list = {
+						list = victim_family_list
+						custom = all_close_family_and_spouses
+						add_opinion = {
+							target = scope:new_owner
+							modifier = carn_enslaved_close_family_crime_opinion
+						}
+					}
+				}
+			}
+
+			# Victim's dynasty hates new_owner
+			if = {
+				limit = {
+					exists = dynasty
+					exists = scope:new_owner.dynasty
+					NOT = { dynasty = scope:new_owner.dynasty }
+					NOT = {
+						scope:new_owner = {
+							has_execute_reason = scope:new_slave
+						}
+					}
+				}
+				dynasty = {
+					every_dynasty_member = {
+						limit = {
+							NOR = {
+								this = scope:new_slave
+								is_in_list = victim_family_list
+							}
+						}
+						custom = all_dynasty_members
+						add_to_temporary_list = victim_dynasty_list
+						add_opinion = {
+							target = scope:new_owner
+							modifier = carn_enslaved_dynasty_member_opinion
+						}
+					}
+				}
+			}
+			
+			# Victim's friends and lovers
+			every_relation = {
+				type = friend
+				limit = {
+					NOR = {
+						this = scope:new_slave
+						is_in_list = victim_family_list
+						is_in_list = victim_dynasty_list
+					}
+				}
+				add_to_list = victim_close_relations_list
+			}
+			every_relation = {
+				type = lover
+				limit = {
+					NOR = {
+						this = scope:new_slave
+						is_in_list = victim_family_list
+						is_in_list = victim_dynasty_list
+						is_in_list = victim_close_relations_list
+					}
+				}
+				add_to_list = victim_close_relations_list
+			}
+			if = {
+				limit = {
+					any_in_list = {
+						list = victim_close_relations_list
+						always = yes
+					}
+				}
+				every_in_list = {
+					list = victim_close_relations_list
+					custom = all_friends_and_lovers
+					add_opinion = {
+						target = scope:new_owner
+						modifier = carn_enslaved_close_relation_opinion
+					}
+				}
+			}
+		}
+
+		scope:new_owner = {
+			# UI notification for new owner
+			hidden_effect = {
+				send_interface_message = {
+					type = event_generic_neutral
+					title = carn_msg_enslave
+					right_icon = scope:new_slave
+					custom_tooltip = carn_msg_scope_new_slave_becomes_your_slave_desc
+				}
+			}
+
+			# Dread (similar to execution but reduced)
+			if = {
+				limit = {
+					scope:new_slave = {
+						time_in_prison = { years > 15 } # No one even remembers who they are anymore
+					}
+				}
+				# No dread for you
+			}
+			else_if = { # Executing Emperors/HoF is quite dreadful
+				limit = {
+					scope:new_slave = {
+						OR = {
+							highest_held_title_tier >= tier_empire
+							scope:new_owner.faith.religious_head = scope:new_slave # Your head of faith
+						}
+					}
+				}
+				add_dread = enslave_interaction_massive_dread_gain
+			}
+			else_if = {
+				limit = {
+					scope:new_slave = {
+						OR = {
+							highest_held_title_tier >= tier_kingdom
+							tier_or_related_liege_tier_greater_or_equal_trigger = { TIER = tier_empire }
+							is_powerful_vassal_of = scope:new_owner # Is your powerful vassal
+							target_is_vassal_or_below = scope:new_owner # Your liege/s
+							is_close_family_of = scope:new_owner
+						}
+					}
+				}
+				add_dread = enslave_interaction_major_dread_gain
+			}
+			else_if = {
+				limit = {
+					scope:new_slave = {
+						OR = {
+							highest_held_title_tier >= tier_duchy
+							tier_or_related_liege_tier_greater_or_equal_trigger = { TIER = tier_kingdom }
+							AND = { # Is your vassal, and higher than Baron
+								is_vassal_of = scope:new_owner
+								primary_title.tier > tier_barony
+							}
+							AND = { # Peer Vassals
+								exists = primary_title
+								primary_title.tier > tier_barony
+								exists = liege
+								liege = scope:new_owner.liege
+							}
+							has_trait = peasant_leader
+						}
+					}
+				}
+				add_dread = enslave_interaction_medium_dread_gain
+			}
+			else_if = {
+				limit = {
+					scope:new_slave = {
+						OR = {
+							highest_held_title_tier >= tier_county
+							tier_or_related_liege_tier_greater_or_equal_trigger = { TIER = tier_duchy }
+							is_vassal_of = scope:new_owner # Is your Baron vassal
+							is_close_or_extended_family_of = scope:new_owner							
+							
+							scope:new_owner = { # Executing close family of your vassals is dreadful...
+								any_vassal = {
+									is_close_family_of = scope:new_slave
+								}
+							}
+							scope:new_owner = { # Executing close family of your liege/s is the same...
+								any_liege_or_above = {
+									is_close_family_of = scope:new_slave
+								}
+							}
+						}
+					}
+				}
+				add_dread = enslave_interaction_minor_dread_gain
+			}
+
+			# Piety (similar to execution but toned down one level)
+			if = {
+				limit = {
+					OR = {
+						faith = {
+							NOT = { has_doctrine = carn_doctrine_same_slavery_accepted }
+							faith_hostility_level = {
+								target = scope:new_slave.faith
+								value < faith_hostile_level
+							}
+						}
+						faith = {
+							NOT = { has_doctrine = carn_doctrine_other_slavery_accepted }
+							faith_hostility_level = {
+								target = scope:new_slave.faith
+								value >= faith_hostile_level
+							}
+						}
+					}
+				}
+				add_piety = {
+					value = 0
+					if = {
+						limit = { 
+							scope:new_slave = {
+								has_no_particular_noble_roots_trigger = yes
+							}
+						}
+						add = miniscule_piety_loss
+					}
+					else = {
+						add = medium_piety_loss
+					}
+				}
+			}
+
+			# Stress (similar to execution but toned down one level)
+			if = { # Rival
+				limit = { has_relation_rival = scope:new_slave }
+				if = {
+					limit = {
+						NOR = {
+							has_trait = sadistic
+							has_trait = callous
+							has_trait = vengeful
+							has_trait = compassionate
+							has_trait = forgiving
+						}
+					}
+					add_stress = minor_stress_loss
+				}
+				else = {
+					stress_impact = {
+						sadistic = medium_stress_impact_loss
+						callous = minor_stress_impact_loss
+						vengeful = major_stress_impact_loss
+						compassionate = miniscule_stress_impact_gain
+						forgiving = miniscule_stress_impact_gain
+					}
+				}
+			}
+			else_if = { # Different faith and zealous
+				limit = {
+					has_trait = zealous
+					NOT = { scope:new_owner.faith = scope:new_slave.faith }
+				}
+				if = {
+					limit = {
+						NOR = {
+							has_trait = sadistic
+							has_trait = callous
+							has_trait = compassionate
+							has_trait = forgiving
+						}
+					}
+					add_stress = minor_stress_loss
+				}
+				else = {
+					stress_impact = {
+						sadistic = medium_stress_impact_loss
+						callous = minor_stress_impact_loss
+						compassionate = miniscule_stress_impact_gain
+						forgiving = miniscule_stress_impact_gain
+					}
+				}
+			}
+			else_if = { # Execute reason and child / grandchild
+				limit = {
+					has_execute_reason = scope:new_slave
+					NOT = {
+						has_trait = sadistic
+						has_trait = callous
+					}
+					scope:new_slave = {
+						OR = {
+							is_child_of = scope:new_owner
+							is_grandchild_of = scope:new_owner
+							is_great_grandchild_of = scope:new_owner
+						}
+					}
+				}
+				stress_impact = {
+					base = miniscule_stress_impact_gain
+					compassionate = major_stress_impact_gain
+					forgiving = medium_stress_impact_gain
+				}
+			}
+			else_if = { # No execute reason and child / grandchild
+				limit = {
+					NOT = {
+						has_trait = sadistic
+						has_trait = callous
+					}
+					scope:new_slave = {
+						OR = {
+							is_child_of = scope:new_owner
+							is_grandchild_of = scope:new_owner
+							is_great_grandchild_of = scope:new_owner
+						}
+					}
+				}
+				stress_impact = {
+					base = minor_stress_impact_gain
+					compassionate = major_stress_impact_gain
+					forgiving = medium_stress_impact_gain
+				}
+			}
+			else_if = { # Friend or lover
+				limit = {
+					NOT = {
+						has_trait = sadistic
+						has_trait = callous
+					}
+					scope:new_slave = {
+						OR = {
+							has_relation_friend = scope:new_owner
+							has_relation_lover = scope:new_owner
+						}
+					}
+				}
+				stress_impact = {
+					base = minor_stress_impact_gain
+					compassionate = major_stress_impact_gain
+					forgiving = medium_stress_impact_gain
+				}
+			}
+			else_if = { # Execute reason
+				limit = {
+					has_execute_reason = scope:new_slave
+				}
+				stress_impact = {
+					sadistic = minor_stress_impact_loss
+					callous = miniscule_stress_impact_loss
+					compassionate = minor_stress_impact_gain
+					forgiving = miniscule_stress_impact_gain
+				}
+			}
+			else = {
+				stress_impact = {
+					sadistic = minor_stress_impact_loss
+					callous = miniscule_stress_impact_loss
+					compassionate = medium_stress_impact_gain
+					forgiving = minor_stress_impact_gain
+				}
+			}
+			
+			# Tyranny (similar to execution)
+			if = { # Execute reason or at war
+				limit = {
+					OR = {
+						has_execute_reason = scope:new_slave
+						is_at_war_with = scope:new_slave
+					}
+				}
+				custom_tooltip = carn_is_allowed_to_enslave_desc
+			}
+			else_if = {
+				limit = {
+					scope:new_slave = {
+						OR = {
+							is_landed = no
+							NOT = { is_of_major_or_minor_interest_trigger = { CHARACTER = scope:new_owner } }
+						}
+					}
+					scope:new_owner.faith = {
+						faith_hostility_level = {
+							target = scope:new_slave.faith
+							value > faith_astray_level
+						}
+					}
+				}
+				custom_tooltip = carn_is_allowed_to_enslave_hostile_religion_desc
+			}
+			else_if = {
+				limit = {
+					scope:new_slave = { target_is_liege_or_above = prev }
+				}
+				add_tyranny = enslavement_tyranny_gain
+			}
+			else_if = {
+				limit = {
+					scope:new_slave = {
+						NOT = { exists = liege }
+						exists = host
+					}
+					any_pool_guest = { count > 0 }
+				}
+				every_pool_guest = {
+					limit = {
+						NOR = {
+							this = scope:new_slave
+							is_in_list = guest_list
+						}
+					}
+					add_to_temporary_list = guest_list
+				}
+				every_in_list = {
+					list = guest_list
+					custom = all_your_guests
+					add_opinion = {
+						target = prev
+						modifier = carn_enslaved_guest_opinion
+					}
+				}
+			}
+			else = {
+				if = {
+					limit = {
+						scope:new_slave.liege = {
+							NOT = { this = scope:new_slave }
+						}
+					}
+					scope:new_slave.liege = {
+						add_opinion = {
+							target = prev
+							modifier = carn_enslaved_my_countryman_opinion
+						}
+					}
+				}
+			}
+
+			# Consume execute reason
+			if = {
+				limit = {
+					has_execute_reason = scope:new_slave
+				}
+				consume_execute_reasons = scope:new_slave		
+			}
+		}
+	}
+
+	hidden_effect = {
+		scope:new_slave = {
+			if = {
+				limit = { is_imprisoned_by = scope:new_owner }
+				release_from_prison = yes
+			}
+			trigger_event = {
+				on_action = carn_on_slave_enslaved
+			}
+		}
+	}
+}
+
+# frees the scoped character if they are a slave
+# does not have any opinion effects, this is just for unsetting the relation and doing the busywork only.
+carn_free_slave_effect = {
+	every_relation = {
+		type = slave_owner
+		remove_relation_slave = prev
+		hidden_effect = {
+			add_opinion = {
+				target = prev
+				modifier = carn_former_slave_or_slave_owner_opinion
+			}
+			reverse_add_opinion = {
+				target = prev
+				modifier = carn_former_slave_or_slave_owner_opinion
+			}
+		}
+		save_scope_as = former_owner
+	}
+	hidden_effect = {
+		remove_trait = slave
+		add_trait = former_slave
+		trigger_event = {
+			on_action = carn_on_slave_freed
+		}
+	}
+}
+
+# frees all slaves of this character that are unlawfully enslaved under this character's faith
+carn_free_illegal_slaves_effect = {
+	scope:recipient = {
+		if = {
+			limit = { faith = { has_doctrine = carn_doctrine_same_slavery_crime } }
+			every_relation = {
+				type = slave
+				limit = {
+					scope:recipient.faith = {
+						faith_hostility_level = {
+							target = prev.faith
+							value < faith_hostile_level
+						}
+					}
+				}
+				carn_free_slave_effect = yes
+			}
+		}
+		if = {
+			limit = { faith = { has_doctrine = carn_doctrine_other_slavery_crime } }
+			every_relation = {
+				type = slave
+				limit = {
+					scope:recipient.faith = {
+						faith_hostility_level = {
+							target = prev.faith
+							value >= faith_hostile_level
+						}
+					}
+				}
+				carn_free_slave_effect = yes
+			}
+		}
+	}
+}
+
+# carn_free_slave_interaction_effect
+# scopes: slave and owner
+
+carn_free_slave_interaction_effect = {
+	save_scope_value_as = {
+		name = slave_price
+		value = $SLAVE_PRICE$
+	}
+	scope:slave = {
+
+		carn_free_slave_effect = yes
+
+		# Demand Gold
+		if = {
+			limit = {
+				scope:gold = yes
+			}
+			pay_short_term_gold = {
+				gold = scope:slave_price
+				target = scope:owner
+			}
+		}
+
+		# Demand Gold (not enough to pay)
+		if = {
+			limit = {
+				scope:current_gold = yes
+			}
+			pay_short_term_gold = {
+				gold = scope:slave.current_gold_value
+				target = scope:owner
+			}
+		}
+
+		# Demand Conversion
+		if = {
+			limit = {
+				scope:demand_conversion = yes
+			}
+			set_character_faith = scope:actor.faith
+			add_opinion = {
+				modifier = demanded_my_conversion_opinion
+				target = scope:owner
+			}
+		}
+		
+		# Renounce Claims
+		if = {
+			limit = {
+				scope:renounce_claims = yes
+			}
+			add_opinion = {
+				modifier = demanded_claim_renouncement
+				target = scope:owner
+			}
+			scope:slave = {
+				every_claim = {
+					explicit = yes
+					limit = {
+						save_temporary_scope_as = temp_claim
+						OR = {
+							holder = scope:owner
+							AND = {
+								exists = holder
+								NOT = { prev = { target_is_liege_or_above = scope:owner } }
+								holder = { target_is_liege_or_above = scope:owner }
+							}
+							scope:owner = {
+								any_held_title = {
+									is_de_jure_liege_or_above_target = scope:temp_claim
+								}
+							}
+						}
+					}
+					scope:slave = { remove_claim = prev }
+				}
+			}
+		}
+		
+		# Gain Hook
+		if = {
+			limit = {
+				scope:gain_hook = yes
+			}
+			add_opinion = {
+				modifier = demanded_hook
+				target = scope:owner
+			}
+			scope:owner = {
+				add_hook = { #Hook effect must match gain_hook option condition
+					target = scope:slave
+					type = favor_hook
+				}
+			}
+		}
+		
+		# No Demands Added
+		if = {
+			limit = {
+				scope:gold = no
+				scope:current_gold = no
+				scope:demand_conversion = no
+				scope:renounce_claims = no
+				scope:gain_hook = no
+			}
+			scope:slave = {
+				add_opinion = {
+					modifier = carn_freed_me_from_slavery_opinion
+					target = scope:owner
+				}
+			}
+			scope:owner = {
+				add_dread = free_slave_interaction_dread_loss
+				if = {
+					limit = {
+						faith = {
+							NOR = {
+								AND = {
+									faith_hostility_level = {
+										target = scope:slave.faith
+										value < faith_hostile_level
+									}
+									has_doctrine = carn_doctrine_same_slavery_accepted
+								}
+								AND = {
+									faith_hostility_level = {
+										target = scope:slave.faith
+										value >= faith_hostile_level
+									}
+									has_doctrine = carn_doctrine_other_slavery_accepted
+								}
+							}
+						}
+					}
+					add_piety = {
+						value = 0
+						if = {
+							limit = { 
+								scope:new_slave = {
+									has_no_particular_noble_roots_trigger = yes
+								}
+							}
+							add = miniscule_piety_loss
+						}
+						else = {
+							add = medium_piety_loss
+						}
+					}
+				}
+				stress_impact = {
+					compassionate = medium_stress_impact_loss
+					sadistic = medium_stress_impact_gain
+					callous = minor_stress_impact_gain
+				}
+			}
+		}
+	}
+
+	scope:owner = {
+		hidden_effect = {
+			send_interface_message = {
+				type = event_generic_neutral
+				title = carn_msg_slave_freed
+				right_icon = scope:slave
+				custom_tooltip = carn_msg_scope_slave_is_no_longer_your_slave_desc
+			}
+		}
+	}
+}
+
+carn_buy_slave_effect = {
+	save_scope_value_as = {
+		name = slave_price
+		value = $SLAVE_PRICE$
+	}
+	scope:slave = {
+		hidden_effect = {
+			every_relation = {
+				type = slave_owner
+				remove_relation_slave = prev
+				add_opinion = {
+					target = prev
+					modifier = carn_former_slave_or_slave_owner_opinion
+				}
+				reverse_add_opinion = {
+					target = prev
+					modifier = carn_former_slave_or_slave_owner_opinion
+				}
+			}
+			if = {
+				limit = { is_imprisoned_by = scope:seller }
+				release_from_prison = yes
+			}
+		}
+	}
+	scope:buyer = {
+		if = {
+			limit = {
+				gold >= scope:slave_price
+			}
+			pay_short_term_gold = {
+				gold = scope:slave_price
+				target = scope:seller
+			}
+		}
+		else = {
+			custom_tooltip = carn_buyer_not_enough_gold_for_slave_price_tooltip
+			hidden_effect = {
+				pay_short_term_gold = {
+					gold = current_gold_value
+					target = scope:seller
+				}
+			}
+		}
+		set_relation_slave = scope:slave
+		hidden_effect = {
+			if = {
+				limit = {
+					scope:slave = { NOT = { is_courtier_of = scope:buyer } } 
+				}
+				add_courtier = scope:slave
+			}
+			send_interface_message = {
+				type = event_generic_neutral
+				title = carn_msg_enslave
+				right_icon = scope:slave
+				custom_tooltip = carn_msg_scope_slave_becomes_your_slave_desc
+			}
+		}
+	}
+	scope:seller = {
+		hidden_effect = {
+			send_interface_message = {
+				type = event_generic_neutral
+				title = carn_msg_slave_sold
+				right_icon = scope:slave
+				custom_tooltip = carn_msg_scope_slave_is_no_longer_your_slave_desc
+			}
+		}
+	}
+	hidden_effect = {
+		scope:new_slave = {
+			trigger_event = {
+				on_action = carnx_on_slave_bought
+			}
+		}
+	}
+}
+
+carn_try_create_demand_free_illegal_slaves_important_action_effect = {
+	save_temporary_scope_as = potential_recipient
+	if = {
+		limit = {
+			target_is_liege_or_above = root
+			is_ai = yes
+			OR = {
+				AND = {
+					faith = {
+						has_doctrine = carn_doctrine_same_slavery_crime
+					}
+					any_relation = {
+						type = slave
+						scope:potential_recipient.faith = {
+							faith_hostility_level = {
+								target = prev.faith
+								value < faith_hostile_level
+							}
+						}
+					}
+				}
+				AND = {
+					faith = {
+						has_doctrine = carn_doctrine_other_slavery_crime
+					}
+					any_relation = {
+						type = slave
+						scope:potential_recipient.faith = {
+							faith_hostility_level = {
+								target = prev.faith
+								value >= faith_hostile_level
+							}
+						}
+					}
+				}
+			}
+		}
+		try_create_important_action = {
+			important_action_type = action_carn_can_demand_free_illegal_slaves_interaction
+			actor = root
+			recipient = this
+		}
+	}
+}

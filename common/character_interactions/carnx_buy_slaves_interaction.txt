@@ -1,0 +1,69 @@
+﻿carnx_buy_slaves_interaction = {
+	category = interaction_category_prison
+	desc = carnx_buy_slaves_interaction_desc
+	interface_priority = 31
+	common_interaction = yes
+	needs_recipient_to_open = yes
+
+	greeting = positive
+	send_name = carnx_buy_slaves_interaction
+	
+	ai_min_reply_days = 0
+	ai_max_reply_days = 0
+
+	populate_actor_list = {
+		every_ruler = {
+			limit = {
+				in_diplomatic_range = scope:actor
+				NOT = { this = scope:actor }
+			}
+			save_scope_as = seller
+			every_relation = {
+				type = slave
+				limit = {
+					scope:seller = {
+						save_temporary_opinion_value_as = { name = opinion_of_actor target = scope:actor }
+					}
+					carn_slave_can_be_sold_trigger = yes
+					carnx_buy_slave_candidate_trigger = yes
+				}
+				add_to_list = characters
+			}
+		}
+	}
+
+	populate_recipient_list = {
+		scope:secondary_actor = {
+			random_relation = {
+				type = slave_owner
+				add_to_list = characters
+			}
+		}
+	}
+
+	is_shown = {
+		NOT = { has_game_rule = carn_slavery_content_disabled }
+		scope:actor = scope:recipient
+	}
+
+	is_valid_showing_failures_only = {
+		trigger_if = {
+			limit = { exists = scope:secondary_actor }
+			scope:secondary_actor = {
+				carn_slave_can_be_sold_trigger = yes
+			}
+		}
+	}
+
+	on_accept = {
+		scope:actor = { save_scope_as = buyer }
+		scope:secondary_actor = { save_scope_as = slave }
+		scope:secondary_recipient = { save_scope_as = seller }
+		scope:secondary_recipient = { save_scope_as = appraiser }
+		carn_buy_slave_effect = { 
+			SLAVE_PRICE = scope:slave.carnx_slave_ask_price_value
+		}
+	}
+
+	auto_accept = yes
+}

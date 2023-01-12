@@ -1,0 +1,203 @@
+﻿carnx_enslave_interaction = {
+	category = interaction_category_prison
+	desc = carnx_enslave_interaction_desc
+	interface_priority = 100
+	common_interaction = yes
+
+	send_name = carnx_enslave_interaction
+
+	ai_min_reply_days = 0
+	ai_max_reply_days = 0
+	
+	is_shown = {
+		NOT = { has_game_rule = carn_slavery_content_disabled }
+		scope:recipient = {
+			is_imprisoned_by = scope:actor
+			NOR = {
+				has_trait = slave
+				has_character_flag = carn_cannot_be_enslaved
+				has_trait_with_flag = carn_cannot_be_enslaved
+			}
+		}
+		trigger_if = {
+			limit = {
+				scope:recipient = { is_ai = no }
+			}
+			has_game_rule = carn_slavery_content_enabled
+		}
+	}
+
+	is_valid_showing_failures_only = {
+		scope:recipient = { 
+			NOT = { has_strong_hook = scope:actor }
+			custom_description = {
+				text = "currently_being_tortured"
+				NOT = { has_character_flag = is_being_tortured }
+			}
+			custom_description = {
+				text = "carn_slavery_is_illegal"
+				NOT = {
+					scope:actor.faith = {
+						has_doctrine = carn_doctrine_same_slavery_crime
+						faith_hostility_level = {
+							target = scope:recipient.faith
+							value < faith_hostile_level
+						}
+					}
+				}
+				NOT = {
+					scope:actor.faith = {
+						has_doctrine = carn_doctrine_other_slavery_crime
+						faith_hostility_level = {
+							target = scope:recipient.faith
+							value >= faith_hostile_level
+						}
+					}
+				}
+			}
+		}
+	}
+
+	auto_accept = yes
+	
+	on_accept = {
+		if = {
+			limit = {
+				scope:actor = { is_ai = yes }
+				scope:recipient = { is_ai = no }
+			}
+			scope:recipient = { trigger_event = carn_slave.0001 } # Give players a chance to see what's about to happen
+			show_as_tooltip = {
+				carn_enslave_effect = {
+					SLAVE = scope:recipient
+					OWNER = scope:actor
+					DRAMA = yes
+				}
+			}
+		}
+		else = {
+			scope:recipient = { trigger_event = carn_slave.0001 }
+			carn_enslave_effect = {
+				SLAVE = scope:recipient
+				OWNER = scope:actor
+				DRAMA = yes
+			}
+		}
+	}
+	
+	ai_targets = {
+		ai_recipients = prisoners
+	}
+	
+	ai_frequency = 12
+	
+	ai_potential = {
+		is_at_war = no
+	}
+
+	ai_will_do = {
+		base = -25
+
+		# Opinion to prisoner (-25 to 25 depending on opinion)
+		opinion_modifier = {
+			opinion_target = scope:recipient
+			multiplier = -0.25
+		}
+		
+		# Compassion and greed
+		ai_value_modifier = {
+			ai_compassion = -1
+		}
+		ai_value_modifier = {
+			ai_greed = 1
+		}
+
+		# Child (-25 if child)
+		modifier = {
+			scope:recipient = { is_adult = no }
+			add = -25
+		}
+
+		# Slavery shunned by faith (-75)
+		modifier = {
+			OR = {
+				faith = {
+					has_doctrine = carn_doctrine_same_slavery_shunned
+					faith_hostility_level = {
+						target = scope:recipient.faith
+						value < faith_hostile_level
+					}
+				}
+				faith = {
+					has_doctrine = carn_doctrine_other_slavery_shunned
+					faith_hostility_level = {
+						target = scope:recipient.faith
+						value >= faith_hostile_level
+					}
+				}
+			}
+			add = -75
+		}
+
+		# Family and relations (-25 to -100 depending on how close the relation)
+		carnx_family_and_relations_modifier = {
+			RULER = scope:actor
+			SLAVE = scope:recipient
+			SCALE = -25
+		}
+
+		# Lacking councillors, court physician, or knights (5 for each relevant skill above 12)
+		carnx_lacking_councillors_modifier = {
+			RULER = scope:actor
+			SLAVE = scope:recipient
+			SCALE = 5
+		}
+		carnx_lacking_court_physician_modifier = {
+			RULER = scope:actor
+			SLAVE = scope:recipient
+			SCALE = 5
+		}
+		carnx_lacking_knights_modifier = {
+			RULER = scope:actor
+			SLAVE = scope:recipient
+			SCALE = 5
+		}
+
+		# Claims (50 if useful claims on neighbouring realms)
+		carnx_claims_modifier = {
+			RULER = scope:actor
+			SLAVE = scope:recipient
+			SCALE = 50
+		}
+
+		# Attraction (0 to 50 depending on attraction, doubled for lustful, halved for chaste)
+		carnx_attraction_modifier = {
+			RULER = scope:actor
+			SLAVE = scope:recipient
+			SCALE = 50
+		}
+
+		# Female (50 if a visibly fertile female)
+		carnx_female_modifier = {
+			SLAVE = scope:recipient
+			SCALE = 50
+		}
+
+		# Execute reason, rival, cheating spouse (75) or nemesis (150)
+		carnx_execute_reason_modifier = {
+			RULER = scope:actor
+			SLAVE = scope:recipient
+			SCALE = 75
+		}
+
+		# Don't enslave if execute reason and recipient imprisoned for less than 2 years
+		# Prefer executing instead of enslaving if AI is up to it
+		modifier = {
+			carnx_execute_reason_trigger = yes
+			scope:recipient = { 
+				time_in_prison = { years < 2 }
+			}
+			factor = 0
+		}
+	}
+}

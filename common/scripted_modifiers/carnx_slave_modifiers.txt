@@ -1,0 +1,277 @@
+﻿carnx_lacking_councillors_modifier = {
+	compare_modifier = {
+		trigger = {
+			$SLAVE$ = {
+				diplomacy >= decent_skill_rating
+				can_be_chancellor_trigger = { COURT_OWNER = $RULER$ }
+			}
+			$RULER$ = { NOT = { exists = cp:councillor_chancellor } }
+		}
+		target = $SLAVE$
+		value = diplomacy
+		offset = {
+			value = 0
+			subtract = decent_skill_rating
+		}
+		multiplier = $SCALE$
+		desc = "carnx_lacking_chancellor_reason"
+	}
+	compare_modifier = {
+		trigger = {
+			$SLAVE$ = {
+				martial >= decent_skill_rating
+				can_be_marshal_trigger = { COURT_OWNER = $RULER$ }
+			}
+			$RULER$ = { NOT = { exists = cp:councillor_marshal } } 
+		}
+		target = $SLAVE$
+		value = martial
+		offset = {
+			value = 0
+			subtract = decent_skill_rating
+		}
+		multiplier = $SCALE$
+		desc = "carnx_lacking_marshal_reason"
+	}
+	compare_modifier = {
+		trigger = {
+			$SLAVE$ = {
+				stewardship >= decent_skill_rating
+				can_be_steward_trigger = { COURT_OWNER = $RULER$ }
+			}
+			$RULER$ = { NOT = { exists = cp:councillor_steward } } 
+		}
+		target = $SLAVE$
+		value = stewardship
+		offset = {
+			value = 0
+			subtract = decent_skill_rating
+		}
+		multiplier = $SCALE$
+		desc = "carnx_lacking_steward_reason"
+	}
+	compare_modifier = {
+		trigger = {
+			$SLAVE$ = {
+				intrigue >= decent_skill_rating
+				can_be_spymaster_trigger = { COURT_OWNER = $RULER$ }
+			}
+			$RULER$ = { NOT = { exists = cp:councillor_spymaster } } 
+		}
+		target = $SLAVE$
+		value = intrigue
+		offset = {
+			value = 0
+			subtract = decent_skill_rating
+		}
+		multiplier = $SCALE$
+		desc = "carnx_lacking_spymaster_reason"
+	}
+}
+
+carnx_lacking_court_physician_modifier = {
+	compare_modifier = {
+		trigger = {
+			$SLAVE$ = {			
+				learning >= decent_skill_rating
+				can_be_court_physician_of = { EMPLOYER = $RULER$ }
+			}
+			$RULER$ = { court_physician_available_trigger = no } 
+		}
+		target = $SLAVE$
+		value = learning
+		offset = {
+			value = 0
+			subtract = decent_skill_rating
+		}
+		multiplier = $SCALE$
+		desc = "carnx_lacking_court_physician_reason"
+	}
+}
+
+carnx_lacking_knights_modifier = {
+	compare_modifier = {
+		trigger = {
+			$SLAVE$ = {
+				prowess >= decent_skill_rating
+				can_be_knight_trigger = { ARMY_OWNER = $RULER$ }
+			}
+			$RULER$ = {
+				OR = {
+					number_of_knights < max_number_of_knights
+					any_knight = {
+						prowess < decent_skill_rating
+					}
+				}
+			}
+		}
+		target = $SLAVE$
+		value = prowess
+		offset = {
+			value = 0
+			subtract = decent_skill_rating
+		}
+		multiplier = $SCALE$
+		desc = "carnx_lacking_knights_reason"
+	}
+}
+
+carnx_family_and_relations_modifier = {
+	modifier = {
+		$SLAVE$ = {
+			OR = {
+				has_relation_best_friend = $RULER$
+				has_relation_soulmate = $RULER$
+				has_relation_friend = $RULER$
+				has_relation_lover = $RULER$
+				has_secret_relation_lover = $RULER$
+				has_relation_crush = $RULER$
+				is_spouse_of = $RULER$
+				is_close_or_extended_family_of = $RULER$
+				dynasty = $RULER$.dynasty
+			}
+		}
+		add = {
+			value = $SCALE$
+			if = {
+				limit = {
+					$SLAVE$ = {
+						OR = {
+							is_child_of = $RULER$
+							has_relation_best_friend = $RULER$
+							has_relation_soulmate = $RULER$
+						}
+					}
+				}
+				multiply = 4
+			}
+			else_if = {
+				limit = {
+					$SLAVE$ = {
+						OR = {
+							is_close_family_of = $RULER$
+							has_relation_friend = $RULER$
+							has_relation_lover = $RULER$
+							has_secret_relation_lover = $RULER$
+							has_relation_crush = $RULER$
+							is_spouse_of = $RULER$
+						}
+					}
+				}
+				multiply = 3
+			}
+			else_if = {
+				limit = {
+					$SLAVE$ = {
+						is_close_or_extended_family_of = $RULER$
+					}
+				}
+				multiply = 2
+			}
+		}
+		desc = "DEAR_TO_ME_REASON"
+	}
+}
+
+carnx_claims_modifier = {
+	modifier = {
+		$SLAVE$ = {
+			any_claim = {
+				neighboring_useful_courtier_or_guest_claim_trigger = { RULER = $RULER$ }
+			}
+		}
+		add = $SCALE$
+		desc = "carnx_secondary_recepient_claims_reason"
+	}
+}
+
+carnx_attraction_modifier = {
+	modifier = {
+		$RULER$ = { 
+			is_attracted_to_gender_of = $SLAVE$
+		}
+		$SLAVE$.attraction > 0
+		add = {
+			value = $SLAVE$.attraction
+			divide = high_positive_attraction
+			multiply = $SCALE$
+			if = {
+				limit = { $RULER$ = { has_trait = lustful } }
+				multiply = 2
+			}
+			else_if = {
+				limit = { $RULER$ = { has_trait = chaste } }
+				multiply = 0.5
+			}
+		}
+		desc = "carnx_secondary_recepient_attraction_reason"
+	}
+}
+
+carnx_female_modifier = {
+	modifier = {
+		$SLAVE$ = {
+			is_female = yes
+			is_visibly_fertile = yes
+		}
+		add = $SCALE$
+		desc = "carnx_secondary_recepient_female_reason"
+	}
+}
+
+carnx_employed_modifier = {
+	modifier = {
+		$SLAVE$ = {
+			is_councillor_of = $RULER$
+		}
+		add = { value = 2 multiply = $SCALE$ }
+		desc = "carn_secondary_recipient_is_my_councillor_reason"
+	}
+	modifier = {
+		$SLAVE$ = {
+			has_any_court_position = yes
+			any_court_position_employer = { this = $RULER$ }
+		}
+		add = $SCALE$
+		desc = "carnx_secondary_recipient_has_court_position_reason"
+	}
+	modifier = {
+		$SLAVE$ = {
+			OR = {
+				is_knight_of = $RULER$
+				is_commanding_army = yes
+			}
+		}
+		add = $SCALE$
+		desc = "carn_secondary_recipient_is_my_knight_reason"
+	}
+	modifier = {
+		$SLAVE$ = {
+			carnx_courtier_has_important_role_trigger = yes
+		}
+		add = $SCALE$
+		desc = "carnx_secondary_recipient_has_important_role_reason"
+	}
+}
+
+carnx_execute_reason_modifier = {
+	modifier = {
+		OR = {
+			has_execute_reason = $SLAVE$
+			has_relation_rival = $SLAVE$
+			has_relation_nemesis = $SLAVE$
+			$SLAVE$ = {
+				is_spouse_of = $RULER$
+				exposed_cheating_on_spouse_trigger = { SPOUSE = $RULER$ }
+			}
+		}
+		add = {
+			value = $SCALE$
+			if = {
+				limit = { has_relation_nemesis = $SLAVE$ }
+				multiply = 2
+			}
+		}
+		desc = AI_EXECUTE_REASON_MODIFIER
+	}
+}

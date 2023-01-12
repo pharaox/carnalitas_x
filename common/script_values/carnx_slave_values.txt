@@ -1,0 +1,715 @@
+﻿# Slave base price. Based on individual_recruit_guest_interaction_cost.
+carnx_slave_base_price_value = {
+	add = 10
+	# TODO: 0 default price for clans and feudal
+
+	# Claims (100 to 250 depending on the highest claim tier)
+	if = {
+		limit = {
+			any_claim = {
+				courtier_or_guest_claim_trigger = {
+					RULER = scope:appraiser
+				}
+			}
+		}
+		if = {
+			limit = {
+				any_claim = {
+					courtier_or_guest_claim_trigger = {
+						RULER = scope:appraiser
+					}
+					tier = tier_empire
+				}
+			}
+			add = 250
+		}
+		else_if = {
+			limit = {
+				any_claim = {
+					courtier_or_guest_claim_trigger = {
+						RULER = scope:appraiser
+					}
+					tier = tier_kingdom
+				}
+			}
+			add = 200
+		}
+		else_if = {
+			limit = {
+				any_claim = {
+					courtier_or_guest_claim_trigger = {
+						RULER = scope:appraiser
+					}
+					tier = tier_duchy
+				}
+			}
+			add = 150
+		}
+		else_if = {
+			limit = {
+				any_claim = {
+					courtier_or_guest_claim_trigger = {
+						RULER = scope:appraiser
+					}
+					tier = tier_county
+				}
+			}
+			add = 100
+		}
+	}
+
+	# Dynasty (5 for each dynasty prestige level)
+	if = {
+		limit = {
+			exists = dynasty
+		}
+		add = {
+			value = dynasty.dynasty_prestige_level # 0-10
+			multiply = 5 # Max 50, reduced compared to guests (15 -> 5)
+		}
+	}
+
+	# Generic traits (genetic character value multiplied by 5)
+	add = {
+		value = genetic_character_value
+		multiply = 5
+		min = -15
+	}
+
+	# Commander traits (15 for each commander trait)
+	if = {
+		limit = {
+			number_of_commander_traits >= 1
+		}
+		add = {
+			value = number_of_commander_traits
+			multiply = 15
+			min = 0
+		}
+	}
+
+	# Court Physician traits (10 to 20 depending on tier)
+	if = {
+		limit = {
+			OR = {
+				has_trait = physician_3
+				has_trait = mystic_3
+			}
+		}
+		add = 20
+	}
+	else_if = {
+		limit = {
+			OR = {
+				has_trait = lifestyle_herbalist
+				has_trait = physician_2
+				has_trait = mystic_2
+			}
+		}
+		add = 15
+	}
+	else_if = {
+		limit = {
+			OR = {
+				has_trait = physician_1
+				has_trait = mystic_1
+			}
+		}
+		add = 10
+	}
+
+	# TODO: Other traits
+
+	# Skills (5 for each skill point above 12)
+	if = {
+		limit = {
+			diplomacy >= decent_skill_rating
+		}
+		add = {
+			value = diplomacy
+			subtract = decent_skill_rating
+			multiply = 5
+		}
+	}
+	if = {
+		limit = {
+			martial >= decent_skill_rating
+		}
+		add = {
+			value = martial
+			subtract = decent_skill_rating
+			multiply = 5
+		}
+	}
+	if = {
+		limit = {
+			stewardship >= decent_skill_rating
+		}
+		add = {
+			value = stewardship
+			subtract = decent_skill_rating
+			multiply = 5
+		}
+	}
+	if = {
+		limit = {
+			intrigue >= decent_skill_rating
+		}
+		add = {
+			value = intrigue
+			subtract = decent_skill_rating
+			multiply = 5
+		}
+	}
+	if = {
+		limit = {
+			learning >= decent_skill_rating
+		}
+		add = {
+			value = learning
+			subtract = decent_skill_rating
+			multiply = 5
+		}
+	}
+	if = {
+		limit = {
+			prowess >= decent_skill_rating
+		}
+		add = {
+			value = prowess
+			subtract = decent_skill_rating
+			multiply = 5
+		}
+	}
+
+	# Attraction (0 to 20 depending on attraction, doubled for lustful, halved for chaste)
+	if = {
+		limit = {
+			scope:appraiser = {
+				is_attracted_to_gender_of = prev
+			}
+			attraction > 0
+		}
+		add = {
+			value = attraction
+			divide = high_positive_attraction
+			if = {
+				limit = { scope:appraiser = { has_trait = lustful } }
+				multiply = 30
+			}
+			else_if = {
+				limit = { scope:appraiser = { has_trait = chaste } }
+				multiply = 10
+			}
+			else = {
+				multiply = 20
+			}
+		}
+	}
+
+	# Visibly fertile females (20)
+	if = {
+		limit = {
+			is_female = yes
+			is_visibly_fertile = yes
+		}
+		add = 20
+	}
+
+	# TODO: Tribal rulers pay less (multiply by 0.25)
+
+	min = 1
+}
+
+carnx_slave_ask_price_value = {
+	value = carnx_slave_base_price_value
+
+	# Make the ask price higher than the bid price 
+	multiply = 1.2
+
+	# Appraiser personality multiplier (0.8 to 1.2 based on ai_greed)
+	multiply = {
+		value = scope:appraiser.ai_greed
+		multiply = 0.002
+		add = 1
+	}
+}
+
+carnx_slave_bid_price_value = {
+	value = carnx_slave_base_price_value
+
+	# Make the ask price higher than the bid price 
+	multiply = 0.8
+
+	# Appraiser personality multiplier (0.8 to 1.2 based on ai_greed)
+	multiply = {
+		value = scope:appraiser.ai_greed
+		multiply = -0.002
+		add = 1
+	}
+}
+
+carnx_buy_slave_ai_accept_value = {
+	save_temporary_scope_as = slave
+	value = 50
+
+	# Employed as councillor (-50), court position, knight / commander, or in some other way (-25)
+	if = {
+		limit = {
+			scope:slave = {
+				is_councillor_of = scope:seller
+			}
+		}
+		add = -50
+	}
+	if = {
+		limit = {
+			scope:slave = {
+				AND = {
+					has_any_court_position = yes
+					any_court_position_employer = { this = scope:seller }
+				}
+			}
+		}
+		add = -25
+	}
+	if = {
+		limit = {
+			scope:slave = {
+				OR = {
+					is_knight_of = scope:seller
+					is_commanding_army = yes
+				}
+			}
+		}
+		add = -25
+	}
+	if = {
+		limit = {
+			scope:slave = {
+				carnx_courtier_has_important_role_trigger = yes
+			}
+		}
+		add = -25
+	}
+
+	# Family and relations (-25 to -100 depending on how close the relation)
+	if = {
+		limit = {
+			scope:slave = {
+				OR = {
+					is_child_of = scope:seller
+					has_relation_best_friend = scope:seller
+					has_relation_soulmate = scope:seller
+				}
+			}
+		}
+		add = -100
+	}
+	else_if = {
+		limit = {
+			scope:slave = {
+				OR = {
+					is_close_family_of = scope:seller
+					has_relation_friend = scope:seller
+					has_relation_lover = scope:seller
+					has_secret_relation_lover = scope:seller
+					has_relation_crush = scope:seller
+					is_spouse_of = scope:seller
+				}
+			}
+		}
+		add = -75
+	}
+	else_if = {
+		limit = {
+			scope:slave = {
+				is_close_or_extended_family_of = scope:seller
+			}
+		}
+		add = -50
+	}
+	else_if = {
+		limit = {
+			scope:slave = {
+				dynasty = scope:seller.dynasty
+			}
+		}
+		add = -25
+	}
+
+	# Claims (-50 if useful claims on neighbouring realms)
+	if = {
+		limit = {
+			scope:slave = {
+				any_claim = {
+					neighboring_useful_courtier_or_guest_claim_trigger = { RULER = scope:seller }
+				}
+			}
+		}
+		add = -50
+	}
+
+	# Attraction (0 to -50 depending on attraction, doubled for lustful, halved for chaste)
+	if = {
+		limit = {
+			scope:seller = {
+				is_attracted_to_gender_of = scope:slave
+			}
+			scope:slave.attraction > 0
+		}
+		add = {
+			value = scope:slave.attraction
+			divide = high_positive_attraction
+			if = {
+				limit = { scope:seller = { has_trait = lustful } }
+				multiply = -100
+			}
+			else_if = {
+				limit = { scope:seller = { has_trait = chaste } }
+				multiply = -25
+			}
+			else = {
+				multiply = -50
+			}
+		}
+	}
+
+	# Female (-25 if a visibly fertile female)
+	if = {
+		limit = {
+			is_female = yes
+			is_visibly_fertile = yes
+		}
+		add = -25
+	}
+
+	# Opinion of seller (-25 to 25 depending on opinion)
+	add = {
+		value = scope:opinion_of_actor
+		multiply = 0.25
+	}
+
+	# Avoid doing business with rivals or nemesises
+	if = {
+		limit = {
+			scope:seller = { 
+				has_relation_rival = scope:actor
+			}
+		}
+		add = -100
+	}
+	if = {
+		limit = {
+			scope:seller = { 
+				has_relation_nemesis = scope:actor
+			}
+		}
+		add = -200
+	}
+
+	# Intimidated or cowed by seller who is also a liege or above (10 or 20)
+	if = {
+		limit = {
+			scope:seller = { 
+				target_is_liege_or_above = scope:actor
+				has_dread_level_towards = {
+					target = scope:actor
+					level = 1
+				}
+			}
+		}
+		add = intimidated_external_reason_value
+	}
+	if = {
+		limit = {
+			scope:seller = { 
+				target_is_liege_or_above = scope:actor
+				has_dread_level_towards = {
+					target = scope:actor
+					level = 2
+				}
+			}
+		}
+		add = cowed_external_reason_value
+	}
+}
+
+carnx_sell_slave_ai_accept_value = {
+	save_temporary_scope_as = buyer
+	value = -50
+
+	# Avoid spending money if at war
+	if = {
+		limit = {
+			scope:buyer = {
+				is_at_war = yes
+			}
+		}
+		add = -50
+	}
+
+	# Lacking councillors, court physician, or knights (5 for each relevant skill above 12)
+	if = {
+		limit = {
+			scope:slave = {
+				diplomacy >= decent_skill_rating
+				can_be_chancellor_trigger = { COURT_OWNER = scope:buyer }
+			}
+			scope:buyer = {
+				NOT = { exists = cp:councillor_chancellor }
+			}
+		}
+		add = {
+			value = scope:slave.diplomacy
+			subtract = decent_skill_rating
+			multiply = 5
+		}
+	}
+	if = {
+		limit = {
+			scope:slave = {
+				martial >= decent_skill_rating
+				can_be_marshal_trigger = { COURT_OWNER = scope:buyer }
+			}
+			scope:buyer = {
+				NOT = { exists = cp:councillor_marshal }
+			}
+		}
+		add = {
+			value = scope:slave.martial
+			subtract = decent_skill_rating
+			multiply = 5
+		}
+	}
+	if = {
+		limit = {
+			scope:slave = { 
+				stewardship >= decent_skill_rating
+				can_be_steward_trigger = { COURT_OWNER = scope:buyer }
+			}
+			scope:buyer = {
+				NOT = { exists = cp:councillor_steward }
+			}
+		}
+		add = {
+			value = scope:slave.stewardship
+			subtract = decent_skill_rating
+			multiply = 5
+		}
+	}
+	if = {
+		limit = {
+			scope:slave = {
+				intrigue >= decent_skill_rating
+				can_be_spymaster_trigger = { COURT_OWNER = scope:buyer }
+			}
+			scope:buyer = {
+				NOT = { exists = cp:councillor_spymaster }
+			}
+		}
+		add = {
+			value = scope:slave.intrigue
+			subtract = decent_skill_rating
+			multiply = 5
+		}
+	}
+	if = {
+		limit = {
+			scope:slave = { 
+				learning >= decent_skill_rating
+				can_be_court_physician_of = { EMPLOYER = scope:buyer }
+			}
+			scope:buyer = {
+				court_physician_available_trigger = no
+			}
+		}
+		add = {
+			value = scope:slave.learning
+			subtract = decent_skill_rating
+			multiply = 5
+		}
+	}
+	if = {
+		limit = {
+			scope:slave = {
+				prowess >= decent_skill_rating
+				can_be_knight_trigger = { ARMY_OWNER = scope:buyer }
+			}
+			scope:buyer = {
+				OR = {
+					number_of_knights < max_number_of_knights
+					any_knight = {
+						prowess < decent_skill_rating
+					}
+				}
+			}
+		}
+		add = {
+			value = scope:slave.prowess
+			subtract = decent_skill_rating
+			multiply = 5
+		}
+	}
+
+	# Family and relations (20 to 80 depending on how close the relation)
+	if = {
+		limit = {
+			scope:slave = {
+				OR = {
+					is_child_of = scope:buyer
+					has_relation_best_friend = scope:buyer
+					has_relation_soulmate = scope:buyer
+				}
+			}
+		}
+		add = 80
+	}
+	else_if = {
+		limit = {
+			scope:slave = {
+				OR = {
+					is_close_family_of = scope:buyer
+					has_relation_friend = scope:buyer
+					has_relation_lover = scope:buyer
+					has_secret_relation_lover = scope:buyer
+					has_relation_crush = scope:buyer
+					is_spouse_of = scope:buyer
+				}
+			}
+		}
+		add = 60
+	}
+	else_if = {
+		limit = {
+			scope:slave = {
+				is_close_or_extended_family_of = scope:buyer
+			}
+		}
+		add = 40
+	}
+	else_if = {
+		limit = {
+			scope:slave = {
+				dynasty = scope:buyer.dynasty
+			}
+		}
+		add = 20
+	}
+
+	# Claims (50 if useful claims on neighbouring realms)
+	if = {
+		limit = {
+			scope:slave = {
+				any_claim = {
+					neighboring_useful_courtier_or_guest_claim_trigger = { RULER = scope:buyer }
+				}
+			}
+		}
+		add = 50
+	}
+
+	# Attraction (0 to 50 depending on attraction, doubled for lustful, halved for chaste)
+	if = {
+		limit = {
+			scope:buyer = {
+				is_attracted_to_gender_of = scope:slave
+			}
+			scope:slave.attraction > 0
+		}
+		add = {
+			value = scope:slave.attraction
+			divide = high_positive_attraction
+			if = {
+				limit = { scope:buyer = { has_trait = lustful } }
+				multiply = 100
+			}
+			else_if = {
+				limit = { scope:buyer = { has_trait = chaste } }
+				multiply = 25
+			}
+			else = {
+				multiply = 50
+			}
+		}
+	}
+
+	# Female (25 if a visibly fertile female)
+	if = {
+		limit = {
+			is_female = yes
+			is_visibly_fertile = yes
+		}
+		add = 25
+	}
+
+	# Opinion of seller (-25 to 25 depending on opinion)
+	add = {
+		value = scope:opinion_of_actor
+		multiply = 0.25
+	}
+
+	# Avoid doing business with rivals or nemesises
+	if = {
+		limit = {
+			scope:buyer = {
+				has_relation_rival = scope:actor
+			}
+		}
+		add = -100
+	}
+	if = {
+		limit = {
+			scope:buyer = {
+				has_relation_nemesis = scope:actor
+			}
+		}
+		add = -200
+	}
+
+	# Intimidated or cowed by seller who is also a liege or above (10 or 20)
+	if = {
+		limit = {
+			scope:buyer = {
+				target_is_liege_or_above = scope:actor
+				has_dread_level_towards = {
+					target = scope:actor
+					level = 1
+				}
+			}
+		}
+		add = intimidated_external_reason_value
+	}
+	if = {
+		limit = {
+			scope:buyer = {
+				target_is_liege_or_above = scope:actor
+				has_dread_level_towards = {
+					target = scope:actor
+					level = 2
+				}
+			}
+		}
+		add = cowed_external_reason_value
+	}
+}
+
+enslave_interaction_minor_dread_gain = 2
+enslave_interaction_medium_dread_gain = 5
+enslave_interaction_major_dread_gain = 10
+enslave_interaction_massive_dread_gain = 15
+
+free_slave_interaction_dread_loss = 5
+
+enslavement_tyranny_gain = {
+	value = 5
+	if = {
+		limit = {
+			exists = scope:new_slave
+			scope:new_slave = {
+				has_no_real_status_trigger = yes
+			}
+		}
+		add = -3
+	}
+}

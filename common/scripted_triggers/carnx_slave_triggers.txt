@@ -1,0 +1,72 @@
+﻿carnx_candidate_to_buy_slave_from_trigger = {
+	is_ai = yes
+	NOT = { this = scope:actor }
+	highest_held_title_tier >= tier_county
+	in_diplomatic_range = scope:actor
+	NOT = { is_at_war_with = scope:actor }
+	is_imprisoned = no
+}
+
+carnx_buy_slave_candidate_trigger = {
+	scope:seller = {
+		carnx_candidate_to_buy_slave_from_trigger = yes
+	}
+	carnx_buy_slave_ai_accept_value > 0
+}
+
+carnx_sell_slave_candidate_trigger = {
+	carn_candidate_to_sell_slave_to_trigger = yes
+	carnx_sell_slave_ai_accept_value > 0
+}
+
+carnx_courtier_has_important_role_trigger = {
+	save_temporary_scope_as = courtier
+	any_relation = {
+		type = ward
+		OR = {
+			this = scope:courtier.host
+			is_close_family_of = scope:courtier.host
+		}
+	}
+	any_relation = {
+		type = guardian
+		OR = {
+			this = scope:courtier.host
+			is_close_family_of = scope:courtier.host
+		}
+	}
+	any_relation = {
+		type = mentor
+		OR = {
+			this = scope:courtier.host
+			is_close_family_of = scope:courtier.host
+		}
+	}
+	any_relation = {
+		type = student
+		OR = {
+			this = scope:courtier.host
+			is_close_family_of = scope:courtier.host
+		}
+	}
+}
+
+carnx_execute_reason_trigger = {
+	OR = {
+		has_execute_reason = scope:recipient
+		has_relation_rival = scope:recipient # Execute rivals
+		has_relation_nemesis = scope:recipient # Execute rivals
+		scope:recipient = {
+			is_spouse_of = scope:actor
+			exposed_cheating_on_spouse_trigger = { SPOUSE = scope:actor }
+		}
+		any_heir_title = { # Execute rulers you can inherit land from
+			exists = holder
+			holder = scope:recipient
+			place_in_line_of_succession = {
+				target = scope:actor
+				value > 2
+			}
+		}
+	}
+}

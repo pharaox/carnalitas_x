@@ -1,0 +1,476 @@
+﻿carnx_free_slave_interaction = {
+	category = interaction_category_prison
+	desc = carnx_free_slave_interaction_desc
+	interface_priority = 100
+	common_interaction = yes
+
+	send_name = carnx_free_slave_interaction
+	
+	ai_min_reply_days = 0
+	ai_max_reply_days = 0
+
+	notification_text = {
+		first_valid = {
+			triggered_desc = {
+				trigger = {
+					scope:gold = no
+					scope:current_gold = no
+					scope:demand_conversion = no
+					scope:renounce_claims = no
+					scope:gain_hook = no
+				}
+				desc = carn_free_slave_offer
+			}
+			desc = carn_free_slave_offer_conditional
+		}
+	}
+	
+	is_shown = {
+		NOT = { has_game_rule = carn_slavery_content_disabled }
+		scope:actor = {
+			has_relation_slave = scope:recipient
+		}
+		scope:recipient = {
+			NOR = {
+				has_character_flag = carn_slave_cannot_be_freed
+				has_trait_with_flag = carn_slave_cannot_be_freed
+			}
+		}
+	}
+
+	is_valid_showing_failures_only = {
+		scope:recipient = {
+			custom_description = {
+				text = "currently_being_tortured"
+				NOT = { has_character_flag = is_being_tortured }
+			}
+		}
+	}
+	
+	on_accept = {
+		scope:actor = { save_scope_as = owner }
+		scope:actor = { save_scope_as = appraiser }
+		scope:recipient = { save_scope_as = slave }
+		carn_free_slave_interaction_effect = {
+			SLAVE_PRICE = scope:slave.carnx_slave_ask_price_value
+		}
+	}
+
+	# Ask recipient to pay their full ask price
+	send_option = {
+		flag = gold
+		localization = "RANSOM_GOLD_OPTION"
+		is_shown = {
+			trigger_if = {
+				limit = {
+					scope:actor = { 
+						save_temporary_scope_as = appraiser
+					}
+				}
+				scope:recipient = {
+					gold >= carnx_slave_ask_price_value
+					carn_slave_can_be_sold_trigger = yes
+				}
+			}
+		}
+	}
+
+	# Ask recipient to pay what they have
+	send_option = {
+		flag = current_gold
+		localization = "RANSOM_CURRENT_GOLD_OPTION"
+		is_shown = {
+			trigger_if = {
+				limit = {
+					scope:actor = { 
+						save_temporary_scope_as = appraiser
+					}
+				}
+				scope:recipient = {
+					gold < carnx_slave_ask_price_value
+					gold > 0
+					carn_slave_can_be_sold_trigger = yes
+				}
+			}
+		}
+	}
+	
+	# Demand conversion
+	send_option = {
+		flag = demand_conversion
+		localization = "RELEASE_DEMAND_CONVERSION"
+		is_valid = {
+			trigger_if = {
+				limit = {
+					scope:actor = { is_ai = yes }
+				}
+				scope:recipient = {
+					OR = {
+						is_close_or_extended_family_of = scope:actor
+						is_vassal_of = scope:actor
+					}
+				}
+			}
+			NOT = {
+				scope:recipient.faith = scope:actor.faith
+			}
+			# Cannot ask Religious Heads to convert
+			custom_description = {
+				text = cannot_demand_religious_head_conversion
+				subject = scope:actor
+				NOT = {
+					AND = {
+						exists = scope:recipient.faith.religious_head
+						scope:recipient.faith.religious_head = scope:recipient
+					}
+				}
+			}
+		}
+	}
+	
+	# Renounce claims
+	send_option = {
+		flag = renounce_claims
+		localization = RELEASE_RENOUNCE_CLAIMS
+		is_shown = {
+			custom_description = {
+				text = "release_renounce_claims"
+				subject = scope:recipient
+				scope:recipient = {
+					any_claim = {
+						explicit = yes
+						save_temporary_scope_as = temp_claim
+						OR = {
+							holder = scope:actor
+							AND = {
+								NOT = { prev = { target_is_liege_or_above = scope:actor } }
+								trigger_if = {
+									limit = {
+										exists = holder
+									}
+									holder = { target_is_liege_or_above = scope:actor }
+								}
+							}
+							scope:actor = {
+								any_held_title = {
+									is_de_jure_liege_or_above_target = scope:temp_claim
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		current_description = {
+			desc = RELEASE_RENOUNCE_CLAIMS_DESC
+		}
+	}
+	
+	# Gain hook
+	send_option = {
+		flag = gain_hook
+		localization = "RELEASE_GAIN_HOOK"
+		is_valid = {
+			trigger_if = {
+				limit = {
+					scope:actor = { is_ai = yes }
+				}
+				scope:recipient = {
+					OR = {
+						is_vassal_of = scope:actor
+						AND = {
+							exists = liege
+							liege = scope:actor
+						}
+					}
+				}
+			}
+		}
+	}
+	
+	send_options_exclusive = no
+
+	localization_values = {
+		CURRENT_GOLD = scope:recipient.gold
+	}
+
+	auto_accept = {
+		scope:gold = no
+		scope:current_gold = no
+		scope:demand_conversion = no
+		scope:renounce_claims = no
+		scope:gain_hook = no
+	}
+	
+	ai_accept = {
+		base = 0
+
+		modifier = {
+			add = 100
+			desc = "WANTS_FREEDOM_REASON"
+		}
+
+		# Asked for gold
+		modifier = { # Greedy characters can have their greed get the better of them...
+			OR = {
+				scope:gold = yes
+				scope:current_gold = yes
+			}
+			scope:recipient.ai_greed >= medium_positive_ai_value
+			add = { 
+				value = scope:recipient.ai_greed
+				multiply = -0.5 
+			}
+			desc = AI_VALUE_MODIFIER_GREED
+		}
+		modifier = { # Generous characters are more willing to pay
+			OR = {
+				scope:gold = yes
+				scope:current_gold = yes
+			}
+			scope:recipient.ai_greed <= medium_negative_ai_value 
+			add = { 
+				value = scope:recipient.ai_greed
+				multiply = -0.1
+			}
+			desc = AI_VALUE_MODIFIER_GENEROUS
+		}
+
+		# Demanded conversion (-20 to -100 for astray faith, -180 for hostile faith depending on ai_zeal)
+		modifier = {
+			scope:demand_conversion = yes
+			scope:recipient = { ai_zeal <= 20 }
+			add = -20
+			desc = "CONVERSION_NEGATIVE_REASON"
+		}
+		modifier = {
+			scope:demand_conversion = yes
+			scope:recipient = { ai_zeal > 20 }
+			add = {
+				value = ai_zeal
+				if = {
+					limit = {
+						scope:recipient.faith = {
+							faith_hostility_level = {
+								target = scope:actor.faith
+								value = faith_astray_level
+							}
+						}
+					}
+					multiply = -1
+				}
+				else = {
+					multiply = -2
+				}
+			}
+			desc = "CONVERSION_NEGATIVE_REASON"
+		}
+
+		# Demanded renounce claims (-25 to -100 depending on ai_greed)
+		modifier = {
+			scope:renounce_claims = yes
+			ai_greed < 0
+			add = -25
+			desc = "RENOUNCE_CLAIMS_REASON"
+		}
+		modifier = {
+			scope:renounce_claims = yes
+			ai_greed >= 0
+			ai_greed <= 25
+			add = -50
+			desc = "RENOUNCE_CLAIMS_REASON"
+		}
+		modifier = {
+			scope:renounce_claims = yes
+			ai_greed > 25
+			ai_greed <= 50
+			add = -75
+			desc = "RENOUNCE_CLAIMS_REASON"
+		}
+		modifier = {
+			scope:renounce_claims = yes
+			ai_greed > 50
+			add = -100
+			desc = "RENOUNCE_CLAIMS_REASON"
+		}
+
+		# Demanded hook (-50 to -150 depending on ai_vengefulness)
+		modifier = {
+			scope:gain_hook = yes
+			add = {
+				value = -50
+				if = {
+					limit = {
+						scope:recipient.ai_vengefulness > 0
+					}
+					subtract = ai_vengefulness
+				}
+			}
+			desc = "GAIN_HOOK_NEGATIVE_REASON"
+		}
+
+		# Opinion of owner (-25 to 25 depending on opinion)
+		opinion_modifier = {
+			trigger = {
+				NOT = { scope:actor = scope:recipient }
+			}
+			who = scope:recipient
+			opinion_target = scope:actor
+			multiplier = 0.25
+			desc = AI_OPINION_REASON
+		}
+
+		# Avoid doing business with rivals or nemesises
+		modifier = {
+			scope:recipient = {
+				has_relation_rival = scope:actor
+			}
+			add = -100
+			desc = "ACTOR_RIVAL_TO_ME_REASON"
+		}
+		modifier = {
+			scope:recipient = {
+				has_relation_nemesis = scope:actor
+			}
+			add = -200
+			desc = "ACTOR_NEMESIS_TO_ME_REASON"
+		}
+		
+		# Intimidated or cowed by owner (10 or 20)
+		modifier = {
+			scope:recipient = {
+				has_dread_level_towards = {
+					target = scope:actor
+					level = 1
+				}
+			}
+			add = intimidated_external_reason_value
+			desc = INTIMIDATED_REASON
+		}
+		modifier = {
+			scope:recipient = {
+				has_dread_level_towards = {
+					target = scope:actor
+					level = 2
+				}
+			}
+			add = cowed_external_reason_value
+			desc = COWED_REASON
+		}
+	}
+	
+	ai_targets = {
+		ai_recipients = courtiers
+	}
+
+	ai_frequency = 12
+
+	ai_potential = {
+		always = yes
+	}
+
+	ai_will_do = {
+		base = -25
+
+		# Options
+		modifier = {
+			scope:gold = yes
+			add = 50
+		}
+		modifier = {
+			scope:current_gold = yes
+			scope:recipient.gold >= 25
+			add = 25
+		}
+		modifier = {
+			scope:demand_conversion = yes
+			add = 25
+		}
+		modifier = {
+			scope:renounce_claims = yes
+			add = 25
+		}
+
+		# Opinion of slave (-25 to 25 depending on opinion)
+		opinion_modifier = {
+			opinion_target = scope:recipient
+			multiplier = 0.25
+		}
+		
+		# Compassion and greed
+		ai_value_modifier = {
+			ai_compassion = 1
+		}
+		ai_value_modifier = {
+			ai_greed = 1
+		}
+
+		# Child (25 if child)
+		modifier = {
+			scope:recipient = { is_adult = no }
+			add = 25
+		}
+
+		# Slavery shunned by faith (25)
+		modifier = {
+			OR = {
+				faith = {
+					has_doctrine = carn_doctrine_same_slavery_shunned
+					faith_hostility_level = {
+						target = scope:recipient.faith
+						value < faith_hostile_level
+					}
+				}
+				faith = {
+					has_doctrine = carn_doctrine_other_slavery_shunned
+					faith_hostility_level = {
+						target = scope:recipient.faith
+						value >= faith_hostile_level
+					}
+				}
+			}
+			add = 25
+		}
+
+		# Family and relations (25 to 100 depending on how close the relation)
+		carnx_family_and_relations_modifier = {
+			RULER = scope:actor
+			SLAVE = scope:recipient
+			SCALE = 25
+		}
+
+		# Employed as councillor (-50), court position, knight / commander, or in some other way (-25)
+		carnx_employed_modifier = {
+			RULER = scope:actor
+			SLAVE = scope:recipient
+			SCALE = -25
+		}
+
+		# Claims (-50 if useful claims on neighbouring realms)
+		carnx_claims_modifier = {
+			RULER = scope:actor
+			SLAVE = scope:recipient
+			SCALE = -50
+		}
+
+		# Attraction (0 to -50 depending on attraction, doubled for lustful, halved for chaste)
+		carnx_attraction_modifier = {
+			RULER = scope:actor
+			SLAVE = scope:recipient
+			SCALE = -50
+		}
+
+		# Female (-50 if a visibly fertile female)
+		carnx_female_modifier = {
+			SLAVE = scope:recipient
+			SCALE = -50
+		}
+
+		# Execute reason, rival, cheating spouse (-75) or nemesis (-150)
+		carnx_execute_reason_modifier = {
+			RULER = scope:actor
+			SLAVE = scope:recipient
+			SCALE = -75
+		}
+	}
+}
