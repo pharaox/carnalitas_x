@@ -43,11 +43,6 @@ carn_enslave_effect = {
 		hidden_effect = {
 			remove_trait = former_slave
 			add_trait = slave
-			add_gold = {
-				# their gold is removed, representing their treasury being lost, and also to prevent abuse
-				value = gold
-				multiply = -1
-			}
 			if = {
 				limit = { is_married = yes }
 				every_spouse = {
@@ -792,14 +787,14 @@ carn_free_slave_interaction_effect = {
 						value = 0
 						if = {
 							limit = { 
-								scope:new_slave = {
+								scope:slave = {
 									has_no_particular_noble_roots_trigger = yes
 								}
 							}
-							add = miniscule_piety_loss
+							add = miniscule_piety_gain
 						}
 						else = {
-							add = medium_piety_loss
+							add = medium_piety_gain
 						}
 					}
 				}
@@ -895,7 +890,7 @@ carn_buy_slave_effect = {
 		}
 	}
 	hidden_effect = {
-		scope:new_slave = {
+		scope:slave = {
 			trigger_event = {
 				on_action = carnx_on_slave_bought
 			}

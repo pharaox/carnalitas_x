@@ -699,7 +699,7 @@ enslave_interaction_medium_dread_gain = 5
 enslave_interaction_major_dread_gain = 10
 enslave_interaction_massive_dread_gain = 15
 
-free_slave_interaction_dread_loss = 5
+free_slave_interaction_dread_loss = -5
 
 enslavement_tyranny_gain = {
 	value = 5
