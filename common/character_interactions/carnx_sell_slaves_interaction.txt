@@ -5,7 +5,7 @@
 	common_interaction = yes
 	needs_recipient_to_open = no
 
-	greeting = positive	
+	greeting = positive
 	send_name = carnx_sell_slaves_interaction
 
 	ai_min_reply_days = 0
@@ -38,38 +38,28 @@
 	populate_recipient_list = {
 		scope:secondary_actor = { save_scope_as = slave }
 		scope:actor = {
-			every_neighboring_and_across_water_top_liege_realm_owner = {
-				limit = { 
-					save_temporary_opinion_value_as = { name = opinion_of_actor target = scope:actor }
-					carnx_sell_slave_candidate_trigger = yes
-				}
-				add_to_list = characters
+			carnx_get_potential_buyers_or_sellers_effect = { LIST = potential_buyers }
+		}
+		every_in_list = {
+			list = potential_buyers
+			limit = {
+				carn_candidate_to_sell_slave_to_trigger = yes
+				save_temporary_opinion_value_as = { name = opinion_of_actor target = scope:actor }
+				carnx_sell_slave_ai_accept_value > 0
 			}
-			if = {
-				limit = { exists = liege }
-				liege = {
-					every_vassal = {
-						limit = { 
-							save_temporary_opinion_value_as = { name = opinion_of_actor target = scope:actor }
-							carnx_sell_slave_candidate_trigger = yes
-						}
-						add_to_list = characters
-					}
-				}
-			}
-			every_vassal = {
-				limit = { 
-					save_temporary_opinion_value_as = { name = opinion_of_actor target = scope:actor }
-					carnx_sell_slave_candidate_trigger = yes 
-				}
-				add_to_list = characters
-			}
+			add_to_list = characters
 		}
 	}
-	
+
 	is_shown = {
 		NOT = { has_game_rule = carn_slavery_content_disabled }
 		scope:actor = scope:recipient
+		scope:actor = {
+			any_relation = {
+				type = slave
+				exists = this
+			}
+		}
 		trigger_if = {
 			limit = { exists = scope:secondary_actor }
 			scope:actor = {
@@ -89,13 +79,12 @@
 			}
 		}
 	}
-	
+
 	on_accept = {
 		scope:actor = { save_scope_as = seller }
 		scope:secondary_actor = { save_scope_as = slave }
 		scope:secondary_recipient = { save_scope_as = buyer }
-		scope:secondary_recipient = { save_scope_as = appraiser }
-		carn_buy_slave_effect = { 
+		carn_buy_slave_effect = {
 			SLAVE_PRICE = scope:slave.carnx_slave_bid_price_value
 		}
 	}

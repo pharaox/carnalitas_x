@@ -1,0 +1,18 @@
+﻿carnx_get_potential_buyers_or_sellers_effect = {
+	every_neighboring_and_across_water_top_liege_realm_owner = {
+		add_to_list = $LIST$
+	}
+	if = {
+		limit = { exists = top_liege }
+		top_liege = {
+			every_vassal_or_below = {
+				add_to_list = $LIST$
+			}
+		}
+	}
+	else = {
+		every_vassal_or_below = {
+			add_to_list = $LIST$
+		}
+	}
+}

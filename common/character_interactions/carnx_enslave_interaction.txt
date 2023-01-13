@@ -8,7 +8,7 @@
 
 	ai_min_reply_days = 0
 	ai_max_reply_days = 0
-	
+
 	is_shown = {
 		NOT = { has_game_rule = carn_slavery_content_disabled }
 		scope:recipient = {
@@ -28,7 +28,7 @@
 	}
 
 	is_valid_showing_failures_only = {
-		scope:recipient = { 
+		scope:recipient = {
 			NOT = { has_strong_hook = scope:actor }
 			custom_description = {
 				text = "currently_being_tortured"
@@ -59,7 +59,7 @@
 	}
 
 	auto_accept = yes
-	
+
 	on_accept = {
 		if = {
 			limit = {
@@ -84,36 +84,45 @@
 			}
 		}
 	}
-	
+
 	ai_targets = {
 		ai_recipients = prisoners
 	}
-	
+
 	ai_frequency = 12
-	
+
 	ai_potential = {
-		is_at_war = no
+		always = yes
 	}
 
 	ai_will_do = {
-		base = -25
+		base = 25
 
-		# Opinion to prisoner (-25 to 25 depending on opinion)
+		# Opinion of prisoner (-25 to 25 depending on opinion)
 		opinion_modifier = {
 			opinion_target = scope:recipient
 			multiplier = -0.25
 		}
-		
-		# Compassion and greed
+
+		# Compassion (-50 to 50 depending on compassion)
 		ai_value_modifier = {
-			ai_compassion = -1
-		}
-		ai_value_modifier = {
-			ai_greed = 1
+			ai_compassion = -0.5
 		}
 
-		# Child (-25 if child)
+		# Greed (0 to Price depending on greed)
 		modifier = {
+			add = {
+				value = ai_greed
+				multiply = 0.01
+				add = 1
+				multiply = scope:recipient.carnx_slave_base_price_value
+				divide = 2
+			}
+		}
+
+		# Child (-25 if child and compassionate)
+		modifier = {
+			ai_compassion >= low_positive_ai_value
 			scope:recipient = { is_adult = no }
 			add = -25
 		}
@@ -139,48 +148,48 @@
 			add = -75
 		}
 
-		# Family and relations (-25 to -100 depending on how close the relation)
+		# Family and relations (-50 to -200 depending on how close the relation)
 		carnx_family_and_relations_modifier = {
 			RULER = scope:actor
 			SLAVE = scope:recipient
-			SCALE = -25
+			SCALE = -50
 		}
 
-		# Lacking councillors, court physician, or knights (5 for each relevant skill above 12)
+		# Lacking councillors, court physician, or knights (2 for each relevant skill above 12)
 		carnx_lacking_councillors_modifier = {
 			RULER = scope:actor
 			SLAVE = scope:recipient
-			SCALE = 5
+			SCALE = 2
 		}
 		carnx_lacking_court_physician_modifier = {
 			RULER = scope:actor
 			SLAVE = scope:recipient
-			SCALE = 5
+			SCALE = 2
 		}
 		carnx_lacking_knights_modifier = {
 			RULER = scope:actor
 			SLAVE = scope:recipient
-			SCALE = 5
+			SCALE = 2
 		}
 
-		# Claims (50 if useful claims on neighbouring realms)
+		# Claims (25 if useful claims on neighbouring realms)
 		carnx_claims_modifier = {
 			RULER = scope:actor
 			SLAVE = scope:recipient
-			SCALE = 50
+			SCALE = 25
 		}
 
-		# Attraction (0 to 50 depending on attraction, doubled for lustful, halved for chaste)
+		# Attraction (0 to 25 depending on attraction, doubled for lustful, halved for chaste)
 		carnx_attraction_modifier = {
 			RULER = scope:actor
 			SLAVE = scope:recipient
-			SCALE = 50
+			SCALE = 25
 		}
 
-		# Female (50 if a visibly fertile female)
+		# Female (25 if a visibly fertile female)
 		carnx_female_modifier = {
 			SLAVE = scope:recipient
-			SCALE = 50
+			SCALE = 25
 		}
 
 		# Execute reason, rival, cheating spouse (75) or nemesis (150)
@@ -194,7 +203,7 @@
 		# Prefer executing instead of enslaving if AI is up to it
 		modifier = {
 			carnx_execute_reason_trigger = yes
-			scope:recipient = { 
+			scope:recipient = {
 				time_in_prison = { years < 2 }
 			}
 			factor = 0

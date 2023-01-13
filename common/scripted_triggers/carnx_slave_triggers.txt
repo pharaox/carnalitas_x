@@ -7,16 +7,29 @@
 	is_imprisoned = no
 }
 
-carnx_buy_slave_candidate_trigger = {
-	scope:seller = {
-		carnx_candidate_to_buy_slave_from_trigger = yes
+carnx_buy_sell_slave_recipient_trigger = {
+	$RULER$ = {
+		is_ruler = yes
 	}
-	carnx_buy_slave_ai_accept_value > 0
-}
-
-carnx_sell_slave_candidate_trigger = {
-	carn_candidate_to_sell_slave_to_trigger = yes
-	carnx_sell_slave_ai_accept_value > 0
+	OR = {
+		any_neighboring_and_across_water_top_liege_realm_owner = {
+			this = $RULER$
+		}
+		trigger_if = {
+			limit = { exists = top_liege }
+			top_liege = {
+				any_vassal_or_below = {
+					this = $RULER$
+				}
+			}
+		}
+		trigger_if = {
+			limit = { NOT = { exists = top_liege } }
+			any_vassal_or_below = {
+				this = $RULER$
+			}
+		}
+	}
 }
 
 carnx_courtier_has_important_role_trigger = {
@@ -69,4 +82,8 @@ carnx_execute_reason_trigger = {
 			}
 		}
 	}
+}
+
+is_diplomatically_available = {
+	always = yes # TODO
 }

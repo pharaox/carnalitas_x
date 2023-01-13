@@ -1,23 +1,15 @@
 ﻿# Slave base price. Based on individual_recruit_guest_interaction_cost.
 carnx_slave_base_price_value = {
 	add = 10
-	# TODO: 0 default price for clans and feudal
 
 	# Claims (100 to 250 depending on the highest claim tier)
 	if = {
 		limit = {
-			any_claim = {
-				courtier_or_guest_claim_trigger = {
-					RULER = scope:appraiser
-				}
-			}
+			any_claim = {}
 		}
 		if = {
 			limit = {
 				any_claim = {
-					courtier_or_guest_claim_trigger = {
-						RULER = scope:appraiser
-					}
 					tier = tier_empire
 				}
 			}
@@ -26,9 +18,6 @@ carnx_slave_base_price_value = {
 		else_if = {
 			limit = {
 				any_claim = {
-					courtier_or_guest_claim_trigger = {
-						RULER = scope:appraiser
-					}
 					tier = tier_kingdom
 				}
 			}
@@ -37,9 +26,6 @@ carnx_slave_base_price_value = {
 		else_if = {
 			limit = {
 				any_claim = {
-					courtier_or_guest_claim_trigger = {
-						RULER = scope:appraiser
-					}
 					tier = tier_duchy
 				}
 			}
@@ -48,9 +34,6 @@ carnx_slave_base_price_value = {
 		else_if = {
 			limit = {
 				any_claim = {
-					courtier_or_guest_claim_trigger = {
-						RULER = scope:appraiser
-					}
 					tier = tier_county
 				}
 			}
@@ -182,29 +165,12 @@ carnx_slave_base_price_value = {
 		}
 	}
 
-	# Attraction (0 to 20 depending on attraction, doubled for lustful, halved for chaste)
-	if = {
-		limit = {
-			scope:appraiser = {
-				is_attracted_to_gender_of = prev
-			}
-			attraction > 0
-		}
-		add = {
-			value = attraction
-			divide = high_positive_attraction
-			if = {
-				limit = { scope:appraiser = { has_trait = lustful } }
-				multiply = 30
-			}
-			else_if = {
-				limit = { scope:appraiser = { has_trait = chaste } }
-				multiply = 10
-			}
-			else = {
-				multiply = 20
-			}
-		}
+	# Attraction (-10 to 20 depending on attraction)
+	add = {
+		value = attraction
+		divide = high_positive_attraction
+		multiply = 20
+		min = -10
 	}
 
 	# Visibly fertile females (20)
@@ -224,12 +190,12 @@ carnx_slave_base_price_value = {
 carnx_slave_ask_price_value = {
 	value = carnx_slave_base_price_value
 
-	# Make the ask price higher than the bid price 
+	# Make the ask price higher than the bid price
 	multiply = 1.2
 
-	# Appraiser personality multiplier (0.8 to 1.2 based on ai_greed)
+	# Seller personality multiplier (0.9 to 1.2 based on ai_greed)
 	multiply = {
-		value = scope:appraiser.ai_greed
+		value = scope:seller.ai_greed
 		multiply = 0.002
 		add = 1
 	}
@@ -238,12 +204,12 @@ carnx_slave_ask_price_value = {
 carnx_slave_bid_price_value = {
 	value = carnx_slave_base_price_value
 
-	# Make the ask price higher than the bid price 
+	# Make the ask price higher than the bid price
 	multiply = 0.8
 
-	# Appraiser personality multiplier (0.8 to 1.2 based on ai_greed)
+	# Buyer personality multiplier (0.8 to 1.2 based on ai_greed)
 	multiply = {
-		value = scope:appraiser.ai_greed
+		value = scope:buyer.ai_greed
 		multiply = -0.002
 		add = 1
 	}
@@ -378,8 +344,10 @@ carnx_buy_slave_ai_accept_value = {
 	# Female (-25 if a visibly fertile female)
 	if = {
 		limit = {
-			is_female = yes
-			is_visibly_fertile = yes
+			scope:slave = {
+				is_female = yes
+				is_visibly_fertile = yes
+			}
 		}
 		add = -25
 	}
@@ -393,7 +361,7 @@ carnx_buy_slave_ai_accept_value = {
 	# Avoid doing business with rivals or nemesises
 	if = {
 		limit = {
-			scope:seller = { 
+			scope:seller = {
 				has_relation_rival = scope:actor
 			}
 		}
@@ -401,7 +369,7 @@ carnx_buy_slave_ai_accept_value = {
 	}
 	if = {
 		limit = {
-			scope:seller = { 
+			scope:seller = {
 				has_relation_nemesis = scope:actor
 			}
 		}
@@ -411,7 +379,7 @@ carnx_buy_slave_ai_accept_value = {
 	# Intimidated or cowed by seller who is also a liege or above (10 or 20)
 	if = {
 		limit = {
-			scope:seller = { 
+			scope:seller = {
 				target_is_liege_or_above = scope:actor
 				has_dread_level_towards = {
 					target = scope:actor
@@ -423,7 +391,7 @@ carnx_buy_slave_ai_accept_value = {
 	}
 	if = {
 		limit = {
-			scope:seller = { 
+			scope:seller = {
 				target_is_liege_or_above = scope:actor
 				has_dread_level_towards = {
 					target = scope:actor
@@ -432,6 +400,14 @@ carnx_buy_slave_ai_accept_value = {
 			}
 		}
 		add = cowed_external_reason_value
+	}
+
+	# Not enough gold
+	if = {
+		limit = {
+			scope:actor.gold < scope:slave.carnx_slave_ask_price_value
+		}
+		multiply = 0
 	}
 }
 
@@ -484,7 +460,7 @@ carnx_sell_slave_ai_accept_value = {
 	}
 	if = {
 		limit = {
-			scope:slave = { 
+			scope:slave = {
 				stewardship >= decent_skill_rating
 				can_be_steward_trigger = { COURT_OWNER = scope:buyer }
 			}
@@ -516,7 +492,7 @@ carnx_sell_slave_ai_accept_value = {
 	}
 	if = {
 		limit = {
-			scope:slave = { 
+			scope:slave = {
 				learning >= decent_skill_rating
 				can_be_court_physician_of = { EMPLOYER = scope:buyer }
 			}
@@ -637,8 +613,10 @@ carnx_sell_slave_ai_accept_value = {
 	# Female (25 if a visibly fertile female)
 	if = {
 		limit = {
-			is_female = yes
-			is_visibly_fertile = yes
+			scope:slave = {
+				is_female = yes
+				is_visibly_fertile = yes
+			}
 		}
 		add = 25
 	}

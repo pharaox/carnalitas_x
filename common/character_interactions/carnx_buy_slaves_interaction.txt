@@ -7,25 +7,28 @@
 
 	greeting = positive
 	send_name = carnx_buy_slaves_interaction
-	
+
 	ai_min_reply_days = 0
 	ai_max_reply_days = 0
 
 	populate_actor_list = {
-		every_ruler = {
+		scope:actor = {
+			carnx_get_potential_buyers_or_sellers_effect = { LIST = potential_sellers }
+		}
+		every_in_list = {
+			list = potential_sellers
 			limit = {
-				in_diplomatic_range = scope:actor
-				NOT = { this = scope:actor }
+				carnx_candidate_to_buy_slave_from_trigger = yes
 			}
 			save_scope_as = seller
 			every_relation = {
 				type = slave
 				limit = {
+					carn_slave_can_be_sold_trigger = yes
 					scope:seller = {
 						save_temporary_opinion_value_as = { name = opinion_of_actor target = scope:actor }
 					}
-					carn_slave_can_be_sold_trigger = yes
-					carnx_buy_slave_candidate_trigger = yes
+					carnx_buy_slave_ai_accept_value > 0
 				}
 				add_to_list = characters
 			}
@@ -44,6 +47,12 @@
 	is_shown = {
 		NOT = { has_game_rule = carn_slavery_content_disabled }
 		scope:actor = scope:recipient
+		scope:actor = {
+			any_relation = {
+				type = slave
+				exists = this
+			}
+		}
 	}
 
 	is_valid_showing_failures_only = {
@@ -59,8 +68,7 @@
 		scope:actor = { save_scope_as = buyer }
 		scope:secondary_actor = { save_scope_as = slave }
 		scope:secondary_recipient = { save_scope_as = seller }
-		scope:secondary_recipient = { save_scope_as = appraiser }
-		carn_buy_slave_effect = { 
+		carn_buy_slave_effect = {
 			SLAVE_PRICE = scope:slave.carnx_slave_ask_price_value
 		}
 	}

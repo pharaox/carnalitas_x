@@ -5,7 +5,7 @@
 	common_interaction = yes
 
 	send_name = carnx_free_slave_interaction
-	
+
 	ai_min_reply_days = 0
 	ai_max_reply_days = 0
 
@@ -24,7 +24,7 @@
 			desc = carn_free_slave_offer_conditional
 		}
 	}
-	
+
 	is_shown = {
 		NOT = { has_game_rule = carn_slavery_content_disabled }
 		scope:actor = {
@@ -36,6 +36,12 @@
 				has_trait_with_flag = carn_slave_cannot_be_freed
 			}
 		}
+		trigger_if = {
+			limit = {
+				scope:recipient = { is_ai = no }
+			}
+			has_game_rule = carn_slavery_content_enabled
+		}
 	}
 
 	is_valid_showing_failures_only = {
@@ -46,13 +52,12 @@
 			}
 		}
 	}
-	
+
 	on_accept = {
 		scope:actor = { save_scope_as = owner }
-		scope:actor = { save_scope_as = appraiser }
 		scope:recipient = { save_scope_as = slave }
 		carn_free_slave_interaction_effect = {
-			SLAVE_PRICE = scope:slave.carnx_slave_ask_price_value
+			SLAVE_PRICE = scope:slave.carnx_slave_base_price_value
 		}
 	}
 
@@ -61,16 +66,9 @@
 		flag = gold
 		localization = "RANSOM_GOLD_OPTION"
 		is_shown = {
-			trigger_if = {
-				limit = {
-					scope:actor = { 
-						save_temporary_scope_as = appraiser
-					}
-				}
-				scope:recipient = {
-					gold >= carnx_slave_ask_price_value
-					carn_slave_can_be_sold_trigger = yes
-				}
+			scope:recipient = {
+				gold >= carnx_slave_base_price_value
+				carn_slave_can_be_sold_trigger = yes
 			}
 		}
 	}
@@ -80,21 +78,14 @@
 		flag = current_gold
 		localization = "RANSOM_CURRENT_GOLD_OPTION"
 		is_shown = {
-			trigger_if = {
-				limit = {
-					scope:actor = { 
-						save_temporary_scope_as = appraiser
-					}
-				}
-				scope:recipient = {
-					gold < carnx_slave_ask_price_value
-					gold > 0
-					carn_slave_can_be_sold_trigger = yes
-				}
+			scope:recipient = {
+				gold < carnx_slave_base_price_value
+				gold > 0
+				carn_slave_can_be_sold_trigger = yes
 			}
 		}
 	}
-	
+
 	# Demand conversion
 	send_option = {
 		flag = demand_conversion
@@ -127,7 +118,7 @@
 			}
 		}
 	}
-	
+
 	# Renounce claims
 	send_option = {
 		flag = renounce_claims
@@ -165,7 +156,7 @@
 			desc = RELEASE_RENOUNCE_CLAIMS_DESC
 		}
 	}
-	
+
 	# Gain hook
 	send_option = {
 		flag = gain_hook
@@ -187,10 +178,11 @@
 			}
 		}
 	}
-	
+
 	send_options_exclusive = no
 
 	localization_values = {
+		RANSOM_COST = scope:recipient.carnx_slave_base_price_value
 		CURRENT_GOLD = scope:recipient.gold
 	}
 
@@ -201,7 +193,7 @@
 		scope:renounce_claims = no
 		scope:gain_hook = no
 	}
-	
+
 	ai_accept = {
 		base = 0
 
@@ -217,9 +209,9 @@
 				scope:current_gold = yes
 			}
 			scope:recipient.ai_greed >= medium_positive_ai_value
-			add = { 
+			add = {
 				value = scope:recipient.ai_greed
-				multiply = -0.5 
+				multiply = -0.5
 			}
 			desc = AI_VALUE_MODIFIER_GREED
 		}
@@ -228,8 +220,8 @@
 				scope:gold = yes
 				scope:current_gold = yes
 			}
-			scope:recipient.ai_greed <= medium_negative_ai_value 
-			add = { 
+			scope:recipient.ai_greed <= medium_negative_ai_value
+			add = {
 				value = scope:recipient.ai_greed
 				multiply = -0.1
 			}
@@ -335,7 +327,7 @@
 			add = -200
 			desc = "ACTOR_NEMESIS_TO_ME_REASON"
 		}
-		
+
 		# Intimidated or cowed by owner (10 or 20)
 		modifier = {
 			scope:recipient = {
@@ -358,7 +350,7 @@
 			desc = COWED_REASON
 		}
 	}
-	
+
 	ai_targets = {
 		ai_recipients = courtiers
 	}
@@ -396,17 +388,26 @@
 			opinion_target = scope:recipient
 			multiplier = 0.25
 		}
-		
-		# Compassion and greed
+
+		# Compassion (-50 to 50 depending on compassion)
 		ai_value_modifier = {
-			ai_compassion = 1
-		}
-		ai_value_modifier = {
-			ai_greed = 1
+			ai_compassion = 0.5
 		}
 
-		# Child (25 if child)
+		# Greed (0 to -Price depending on greed)
 		modifier = {
+			add = {
+				value = ai_greed
+				multiply = 0.01
+				add = -1
+				multiply = scope:recipient.carnx_slave_base_price_value
+				divide = 2
+			}
+		}
+
+		# Child (25 if child and compassionate)
+		modifier = {
+			ai_compassion >= low_positive_ai_value
 			scope:recipient = { is_adult = no }
 			add = 25
 		}
@@ -432,38 +433,38 @@
 			add = 25
 		}
 
-		# Family and relations (25 to 100 depending on how close the relation)
+		# Family and relations (50 to 200 depending on how close the relation)
 		carnx_family_and_relations_modifier = {
 			RULER = scope:actor
 			SLAVE = scope:recipient
-			SCALE = 25
+			SCALE = 50
 		}
 
-		# Employed as councillor (-50), court position, knight / commander, or in some other way (-25)
+		# Employed as councillor (-24), court position, knight / commander, or in some other way (-12)
 		carnx_employed_modifier = {
+			RULER = scope:actor
+			SLAVE = scope:recipient
+			SCALE = -12
+		}
+
+		# Claims (-25 if useful claims on neighbouring realms)
+		carnx_claims_modifier = {
 			RULER = scope:actor
 			SLAVE = scope:recipient
 			SCALE = -25
 		}
 
-		# Claims (-50 if useful claims on neighbouring realms)
-		carnx_claims_modifier = {
-			RULER = scope:actor
-			SLAVE = scope:recipient
-			SCALE = -50
-		}
-
-		# Attraction (0 to -50 depending on attraction, doubled for lustful, halved for chaste)
+		# Attraction (0 to -25 depending on attraction, doubled for lustful, halved for chaste)
 		carnx_attraction_modifier = {
 			RULER = scope:actor
 			SLAVE = scope:recipient
-			SCALE = -50
+			SCALE = -25
 		}
 
-		# Female (-50 if a visibly fertile female)
+		# Female (-25 if a visibly fertile female)
 		carnx_female_modifier = {
 			SLAVE = scope:recipient
-			SCALE = -50
+			SCALE = -25
 		}
 
 		# Execute reason, rival, cheating spouse (-75) or nemesis (-150)
