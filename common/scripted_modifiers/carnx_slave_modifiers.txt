@@ -22,7 +22,7 @@
 				martial >= decent_skill_rating
 				can_be_marshal_trigger = { COURT_OWNER = $RULER$ }
 			}
-			$RULER$ = { NOT = { exists = cp:councillor_marshal } } 
+			$RULER$ = { NOT = { exists = cp:councillor_marshal } }
 		}
 		target = $SLAVE$
 		value = martial
@@ -39,7 +39,7 @@
 				stewardship >= decent_skill_rating
 				can_be_steward_trigger = { COURT_OWNER = $RULER$ }
 			}
-			$RULER$ = { NOT = { exists = cp:councillor_steward } } 
+			$RULER$ = { NOT = { exists = cp:councillor_steward } }
 		}
 		target = $SLAVE$
 		value = stewardship
@@ -56,7 +56,7 @@
 				intrigue >= decent_skill_rating
 				can_be_spymaster_trigger = { COURT_OWNER = $RULER$ }
 			}
-			$RULER$ = { NOT = { exists = cp:councillor_spymaster } } 
+			$RULER$ = { NOT = { exists = cp:councillor_spymaster } }
 		}
 		target = $SLAVE$
 		value = intrigue
@@ -72,11 +72,11 @@
 carnx_lacking_court_physician_modifier = {
 	compare_modifier = {
 		trigger = {
-			$SLAVE$ = {			
+			$SLAVE$ = {
 				learning >= decent_skill_rating
 				can_be_court_physician_of = { EMPLOYER = $RULER$ }
 			}
-			$RULER$ = { court_physician_available_trigger = no } 
+			$RULER$ = { court_physician_available_trigger = no }
 		}
 		target = $SLAVE$
 		value = learning
@@ -187,7 +187,7 @@ carnx_claims_modifier = {
 
 carnx_attraction_modifier = {
 	modifier = {
-		$RULER$ = { 
+		$RULER$ = {
 			is_attracted_to_gender_of = $SLAVE$
 		}
 		$SLAVE$.attraction > 0
@@ -247,7 +247,7 @@ carnx_employed_modifier = {
 	}
 	modifier = {
 		$SLAVE$ = {
-			carnx_courtier_has_important_role_trigger = yes
+			carnx_has_important_role_trigger = { RULER = $RULER$ }
 		}
 		add = $SCALE$
 		desc = "carnx_secondary_recipient_has_important_role_reason"

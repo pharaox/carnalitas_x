@@ -21,3 +21,31 @@ carnx_on_slave_bought = {
 		debug_log_scopes = yes
 	}
 }
+
+carnx_on_slave_seized = {
+	effect = {
+		debug_log = "Slave seized"
+		debug_log_date = yes
+		debug_log_scopes = yes
+	}
+}
+
+on_leave_court = {
+	effect = {
+		if = {
+			limit = {
+				has_trait = slave
+				scope:old_employer = {
+					is_ruler = yes
+					has_relation_slave = prev
+				}
+			}
+			scope:old_employer = {
+				add_courtier = prev
+			}
+			debug_log = "Slave left court (and was brought back)"
+			debug_log_date = yes
+			debug_log_scopes = yes
+		}
+	}
+}

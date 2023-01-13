@@ -253,7 +253,7 @@ carnx_buy_slave_ai_accept_value = {
 	if = {
 		limit = {
 			scope:slave = {
-				carnx_courtier_has_important_role_trigger = yes
+				carnx_has_important_role_trigger = { RULER = scope:seller }
 			}
 		}
 		add = -25

@@ -31,16 +31,15 @@
 			has_relation_slave = scope:recipient
 		}
 		scope:recipient = {
+			has_trait = slave
+			any_relation = {
+				type = slave_owner
+				exists = this
+			}
 			NOR = {
 				has_character_flag = carn_slave_cannot_be_freed
 				has_trait_with_flag = carn_slave_cannot_be_freed
 			}
-		}
-		trigger_if = {
-			limit = {
-				scope:recipient = { is_ai = no }
-			}
-			has_game_rule = carn_slavery_content_enabled
 		}
 	}
 
@@ -355,14 +354,14 @@
 		ai_recipients = courtiers
 	}
 
-	ai_frequency = 12
+	ai_frequency = 24
 
 	ai_potential = {
-		always = yes
+		is_at_war = no
 	}
 
 	ai_will_do = {
-		base = -25
+		base = 0
 
 		# Options
 		modifier = {
@@ -385,6 +384,9 @@
 
 		# Opinion of slave (-25 to 25 depending on opinion)
 		opinion_modifier = {
+			trigger = {
+				NOT = { scope:actor = scope:recipient }
+			}
 			opinion_target = scope:recipient
 			multiplier = 0.25
 		}

@@ -1,10 +1,10 @@
-﻿carnx_enslave_interaction = {
+﻿carnx_seize_slave_interaction = {
 	category = interaction_category_prison
-	desc = carnx_enslave_interaction_desc
+	desc = carnx_seize_slave_interaction_desc
 	interface_priority = 100
 	common_interaction = yes
 
-	send_name = carnx_enslave_interaction
+	send_name = carnx_seize_slave_interaction
 
 	ai_min_reply_days = 0
 	ai_max_reply_days = 0
@@ -16,14 +16,10 @@
 		}
 		scope:recipient = {
 			is_imprisoned_by = scope:actor
-			NOR = {
-				has_trait = slave
-				any_relation = {
-					type = slave_owner
-					exists = this
-				}
-				has_character_flag = carn_cannot_be_enslaved
-				has_trait_with_flag = carn_cannot_be_enslaved
+			has_trait = slave
+			any_relation = {
+				type = slave_owner
+				exists = this
 			}
 		}
 	}
@@ -35,45 +31,60 @@
 				text = "currently_being_tortured"
 				NOT = { has_character_flag = is_being_tortured }
 			}
-			custom_description = {
-				text = "carn_slavery_is_illegal"
-				NOT = {
-					scope:actor.faith = {
-						has_doctrine = carn_doctrine_same_slavery_crime
-						faith_hostility_level = {
-							target = scope:recipient.faith
-							value < faith_hostile_level
-						}
-					}
-				}
-				NOT = {
-					scope:actor.faith = {
-						has_doctrine = carn_doctrine_other_slavery_crime
-						faith_hostility_level = {
-							target = scope:recipient.faith
-							value >= faith_hostile_level
-						}
-					}
-				}
-			}
 		}
 	}
 
 	auto_accept = yes
 
 	on_accept = {
-		if = {
-			limit = {
-				scope:actor = { is_ai = yes }
-				scope:recipient = { is_ai = no }
+		scope:recipient = {
+			every_relation = {
+				type = slave_owner
+				hidden_effect = {
+					remove_relation_slave = prev
+					add_opinion = {
+						target = prev
+						modifier = carn_former_slave_or_slave_owner_opinion
+					}
+					reverse_add_opinion = {
+						target = prev
+						modifier = carn_former_slave_or_slave_owner_opinion
+					}
+				}
+				add_opinion = {
+					target = scope:actor
+					modifier = carn_stole_my_slave_opinion
+				}
 			}
-			scope:recipient = { trigger_event = carn_slave.0001 } # Give players a chance to see what's about to happen
+			set_relation_slave_owner = scope:actor
 		}
-		else = {
-			carn_enslave_effect = {
-				SLAVE = scope:recipient
-				OWNER = scope:actor
-				DRAMA = yes
+		scope:actor = {
+			hidden_effect = {
+				send_interface_message = {
+					type = event_generic_neutral
+					title = carn_msg_enslave
+					right_icon = scope:recipient
+					custom_tooltip = carn_msg_scope_recipient_becomes_your_slave_desc
+				}
+			}
+		}
+		hidden_effect = {
+			scope:actor = {
+				if = {
+					limit = {
+						scope:recipient = { NOT = { is_courtier_of = scope:actor } }
+					}
+					add_courtier = scope:recipient
+				}
+			}
+			scope:recipient = {
+				if = {
+					limit = { is_imprisoned_by = scope:actor }
+					release_from_prison = yes
+				}
+				trigger_event = {
+					on_action = carnx_on_slave_seized
+				}
 			}
 		}
 	}
@@ -89,20 +100,27 @@
 	}
 
 	ai_will_do = {
-		base = 0
+		base = 25
 
-		# Opinion of prisoner (-25 to 25 depending on opinion)
+		# Opinion of prisoner's owner (-25 to 25 depending on opinion)
 		opinion_modifier = {
 			trigger = {
-				NOT = { scope:actor = scope:recipient }
+				scope:recipient = {
+					any_relation = {
+						type = slave_owner
+						save_temporary_scope_as = owner
+					}
+				}
+				exists = scope:owner
+				NOT = { scope:actor = scope:owner }
 			}
-			opinion_target = scope:recipient
+			opinion_target = scope:owner
 			multiplier = -0.25
 		}
 
-		# Compassion (-50 to 50 depending on compassion)
+		# Honor (-50 to 50 depending on honor)
 		ai_value_modifier = {
-			ai_compassion = -0.5
+			ai_honor = -0.5
 		}
 
 		# Greed (0 to Price depending on greed)
@@ -114,13 +132,6 @@
 				multiply = scope:recipient.carnx_slave_base_price_value
 				divide = 2
 			}
-		}
-
-		# Child (-25 if child and compassionate)
-		modifier = {
-			ai_compassion >= low_positive_ai_value
-			scope:recipient = { is_adult = no }
-			add = -25
 		}
 
 		# Slavery shunned by faith (-75)
@@ -144,11 +155,12 @@
 			add = -75
 		}
 
-		# Family and relations (-50 to -200 depending on how close the relation)
+		# Family and relations (50 to 200 depending on how close the relation)
+		# Want to seize close relations in order to free them
 		carnx_family_and_relations_modifier = {
 			RULER = scope:actor
 			SLAVE = scope:recipient
-			SCALE = -50
+			SCALE = 50
 		}
 
 		# Lacking councillors, court physician, or knights (2 for each relevant skill above 12)
@@ -195,8 +207,8 @@
 			SCALE = 75
 		}
 
-		# Don't enslave if execute reason and recipient imprisoned for less than 2 years
-		# Prefer executing instead of enslaving if AI is up to it
+		# Don't seize if execute reason and recipient imprisoned for less than 2 years
+		# Prefer executing instead of seizing if AI is up to it
 		modifier = {
 			carnx_execute_reason_trigger = yes
 			scope:recipient = {

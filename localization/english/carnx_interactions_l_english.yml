@@ -23,7 +23,10 @@
  carnx_free_slave_interaction: "Free Slave"
  carnx_free_slave_interaction_desc: "Free [recipient.GetShortUINameNoTooltip] from [slavery|E]"
 
- carnx_secondary_recipient_has_court_position_reason: "[secondary_recipient.GetShortUIName|U] holds a [court position|E]: $VALUE|=+0$"
+ carnx_seize_slave_interaction: "Seize Slave"
+ carnx_seize_slave_interaction_desc: "Take [recipient.GetShortUINameNoTooltip] as your own [slave|E]"
+
+ carnx_secondary_recipient_has_court_position_reason: "[secondary_recipient.GetShortUIName|U] holds a [court|E] position: $VALUE|=+0$"
  carnx_secondary_recipient_has_important_role_reason: "[secondary_recipient.GetShortUIName|U] has is an educator or being educated: $VALUE|=+0$"
  carnx_secondary_recepient_claims_reason: "[secondary_recipient.GetShortUIName|U] has claims that are useful to [recipient.GetShortUIName|U]: $VALUE|=+0$"
  carnx_secondary_recepient_attraction_reason: "[secondary_recipient.GetShortUIName|U] is attractive to [recipient.GetShortUIName|U]: $VALUE|=+0$"

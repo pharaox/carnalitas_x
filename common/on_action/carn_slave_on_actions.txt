@@ -1,0 +1,144 @@
+﻿# on_set_relation_slave
+# on_remove_relation_slave
+# on_death_relation_slave (fired for the slaveowner when they die)
+# on_set_relation_slave_owner
+# on_remove_relation_slave_owner
+# on_death_relation_slave_owner (fired for the slave when they die)
+# carn_on_slave_enslaved
+# carn_on_slave_freed
+
+on_set_relation_slave = {
+	effect = {
+		if = {
+			limit = {
+				NOT = {
+					has_hook_of_type = {
+						type = carn_slave_hook
+						target = scope:target
+					}
+				}
+			}
+			add_hook_no_toast = {
+				type = carn_slave_hook
+				target = scope:target
+			}
+		}
+	}
+}
+
+on_remove_relation_slave = {
+	effect = {
+		if = {
+			limit = {
+				has_hook_of_type = {
+					type = carn_slave_hook
+					target = scope:target
+				}
+			}
+			remove_hook = {
+				type = carn_slave_hook
+				target = scope:target
+			}
+		}
+	}
+}
+
+on_death_relation_slave = { # fired for the slaveowner when they die
+	effect = {
+		# inheritance of slaves
+		remove_relation_slave = scope:target
+		reverse_add_opinion = {
+			target = scope:target
+			modifier = carn_former_slave_or_slave_owner_opinion
+		}
+		if = {
+			limit = { exists = primary_heir }
+			primary_heir = {
+				set_relation_slave = scope:target
+			}
+		}
+		else = {
+			scope:target = {
+				carn_free_slave_effect = yes
+			}
+		}
+	}
+}
+
+on_set_relation_slave_owner = {
+	effect = {
+		scope:target = {
+			if = {
+				limit = {
+					NOT = {
+						has_hook_of_type = {
+							type = carn_slave_hook
+							target = root
+						}
+					}
+				}
+				add_hook_no_toast = {
+					type = carn_slave_hook
+					target = root
+				}
+			}
+		}
+	}
+}
+
+on_remove_relation_slave_owner = {
+	effect = {
+		scope:target = {
+			if = {
+				limit = {
+					has_hook_of_type = {
+						type = carn_slave_hook
+						target = root
+					}
+				}
+				remove_hook = {
+					type = carn_slave_hook
+					target = root
+				}
+			}
+		}
+	}
+}
+
+on_death_relation_slave_owner = { # fired for the slave when they die
+	effect = {
+		remove_relation_slave_owner = scope:target
+		reverse_add_opinion = {
+			target = scope:target
+			modifier = carn_former_slave_or_slave_owner_opinion
+		}
+	}
+}
+
+# not used in Carnalitas, exposed for mods
+# ROOT is the slave
+# scope:new_owner is the new owner
+carn_on_slave_enslaved = {
+}
+
+# not used in Carnalitas, exposed for mods
+# ROOT is the slave
+# scope:former_owner is the former owner
+carn_on_slave_freed = {
+}
+
+######################################################################
+# vanilla on_actions
+######################################################################
+
+on_birth_child = {
+	events = {
+		carn_slave.0003 # Slave newborns get their owner relation
+	}
+}
+
+on_title_gain = {
+	events = {
+		carn_slave.0002 # Slaves are freed when they gain land for any reason
+	}
+}

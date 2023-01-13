@@ -32,34 +32,33 @@ carnx_buy_sell_slave_recipient_trigger = {
 	}
 }
 
-carnx_courtier_has_important_role_trigger = {
-	save_temporary_scope_as = courtier
+carnx_has_important_role_trigger = {
 	any_relation = {
 		type = ward
 		OR = {
-			this = scope:courtier.host
-			is_close_family_of = scope:courtier.host
+			this = $RULER$
+			is_close_family_of = $RULER$
 		}
 	}
 	any_relation = {
 		type = guardian
 		OR = {
-			this = scope:courtier.host
-			is_close_family_of = scope:courtier.host
+			this = $RULER$
+			is_close_family_of = $RULER$
 		}
 	}
 	any_relation = {
 		type = mentor
 		OR = {
-			this = scope:courtier.host
-			is_close_family_of = scope:courtier.host
+			this = $RULER$
+			is_close_family_of = $RULER$
 		}
 	}
 	any_relation = {
 		type = student
 		OR = {
-			this = scope:courtier.host
-			is_close_family_of = scope:courtier.host
+			this = $RULER$
+			is_close_family_of = $RULER$
 		}
 	}
 }
