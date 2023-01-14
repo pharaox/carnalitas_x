@@ -1,0 +1,4 @@
+﻿carnx_marked_for_enslavement_modifier = {
+	icon = learning_negative
+	health = -0.1
+}

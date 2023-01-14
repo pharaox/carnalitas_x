@@ -1,5 +1,11 @@
 ﻿carn_on_slave_enslaved = {
 	effect = {
+		create_character_memory = {
+			type = carnx_enslaved_memory
+			participants = {
+				enslaver = scope:new_owner
+			}
+		}
 		debug_log = "Slave enslaved"
 		debug_log_date = yes
 		debug_log_scopes = yes
@@ -8,6 +14,12 @@
 
 carn_on_slave_freed = {
 	effect = {
+		create_character_memory = {
+			type = carnx_freed_memory
+			participants = {
+				emancipator = scope:former_owner
+			}
+		}
 		debug_log = "Slave freed"
 		debug_log_date = yes
 		debug_log_scopes = yes
@@ -16,6 +28,12 @@ carn_on_slave_freed = {
 
 carnx_on_slave_bought = {
 	effect = {
+		create_character_memory = {
+			type = carnx_bought_memory
+			participants = {
+				buyer = scope:buyer
+			}
+		}
 		debug_log = "Slave bought"
 		debug_log_date = yes
 		debug_log_scopes = yes
@@ -24,6 +42,12 @@ carnx_on_slave_bought = {
 
 carnx_on_slave_seized = {
 	effect = {
+		create_character_memory = {
+			type = carnx_seized_memory
+			participants = {
+				seizer = scope:actor
+			}
+		}
 		debug_log = "Slave seized"
 		debug_log_date = yes
 		debug_log_scopes = yes
@@ -33,19 +57,32 @@ carnx_on_slave_seized = {
 on_leave_court = {
 	effect = {
 		if = {
-			limit = {
-				has_trait = slave
-				scope:old_employer = {
-					is_ruler = yes
-					has_relation_slave = prev
+			limit = { has_trait = slave }
+			every_relation = {
+				type = slave_owner
+				save_scope_as = owner
+			}
+			if = {
+				limit = {
+					exists = scope:owner
+					scope:owner = { is_ruler = yes }
+				}
+				if = {
+					limit = { NOT = { is_courtier_of = scope:owner } }
+					scope:owner = {
+						add_courtier = prev
+					}
+					debug_log = "Slave left court (and was brought back)"
+					debug_log_date = yes
+					debug_log_scopes = yes
 				}
 			}
-			scope:old_employer = {
-				add_courtier = prev
+			else = {
+				carn_free_slave_effect = yes
+				debug_log = "Slave left court (and was freed)"
+				debug_log_date = yes
+				debug_log_scopes = yes
 			}
-			debug_log = "Slave left court (and was brought back)"
-			debug_log_date = yes
-			debug_log_scopes = yes
 		}
 	}
 }

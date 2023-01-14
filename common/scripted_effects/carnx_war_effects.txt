@@ -1,0 +1,94 @@
+﻿carnx_capture_potential_slaves_effect = {
+	save_temporary_scope_as = loser
+	every_courtier_or_guest = {
+		add_to_list = potential_captives_list
+	}
+	random_in_list = {	# Always try to grab a first person.
+		list = potential_captives_list
+		limit = {
+			NOT = { is_in_list = definite_captives_list }
+		}
+		weight = {
+			base = 1
+			carnx_capture_chance_modifier = { RULER = scope:loser }
+		}
+		add_to_list = definite_captives_list
+		save_temporary_scope_as = captive
+		$WINNER$ = {
+			imprison = {
+				target = scope:captive
+				type = dungeon
+			}
+		}
+	}
+	random_in_list = {	# Always try to grab a second person.
+		list = potential_captives_list
+		limit = {
+			NOT = { is_in_list = definite_captives_list }
+		}
+		weight = {
+			base = 1
+			carnx_capture_chance_modifier = { RULER = scope:loser }
+		}
+		add_to_list = definite_captives_list
+		save_temporary_scope_as = captive
+		$WINNER$ = {
+			imprison = {
+				target = scope:captive
+				type = dungeon
+			}
+		}
+	}
+	if = {	# If at least duchy-tier, try to grab a third person.
+		limit = { primary_title.tier >= tier_duchy }
+		random_in_list = {
+			list = potential_captives_list
+			limit = {
+				NOT = { is_in_list = definite_captives_list }
+			}
+			weight = {
+				base = 1
+				carnx_capture_chance_modifier = { RULER = scope:loser }
+			}
+			add_to_list = definite_captives_list
+			save_temporary_scope_as = captive
+			$WINNER$ = {
+				imprison = {
+					target = scope:captive
+					type = dungeon
+				}
+			}
+		}
+	}
+	if = {	# If at least kingdom-tier, try to grab a fourth person.
+		limit = { primary_title.tier >= tier_kingdom }
+		random_in_list = {
+			list = potential_captives_list
+			limit = {
+				NOT = { is_in_list = definite_captives_list }
+			}
+			weight = {
+				base = 1
+				carnx_capture_chance_modifier = { RULER = scope:loser }
+			}
+			add_to_list = definite_captives_list
+			save_temporary_scope_as = captive
+			$WINNER$ = {
+				imprison = {
+					target = scope:captive
+					type = dungeon
+				}
+			}
+		}
+	}
+	every_in_list = {
+		list = definite_captives_list
+		add_character_modifier = {
+			modifier = carnx_marked_for_enslavement_modifier
+			years = 2
+		}
+		debug_log = "Character marked for enslavement"
+		debug_log_date = yes
+		debug_log_scopes = yes
+	}
+}

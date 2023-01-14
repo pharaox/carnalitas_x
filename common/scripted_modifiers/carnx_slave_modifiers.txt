@@ -275,3 +275,55 @@ carnx_execute_reason_modifier = {
 		desc = AI_EXECUTE_REASON_MODIFIER
 	}
 }
+
+carnx_capture_chance_modifier = {
+	modifier = {
+		add = 40
+		NOT = {
+			any_claim = {
+				useful_courtier_or_guest_claim_trigger = { RULER = $RULER$ }
+			}
+		}
+	}
+	modifier = {
+		add = 10
+		NAND = {
+			can_be_chancellor_trigger = { COURT_OWNER = $RULER$ }
+			diplomacy >= high_skill_rating
+		}
+	}
+	modifier = {
+		add = 10
+		NAND = {
+			can_be_marshal_trigger = { COURT_OWNER = $RULER$ }
+			martial >= high_skill_rating
+		}
+	}
+	modifier = {
+		add = 10
+		NAND = {
+			can_be_steward_trigger = { COURT_OWNER = $RULER$ }
+			stewardship >= high_skill_rating
+		}
+	}
+	modifier = {
+		add = 10
+		NAND = {
+			can_be_spymaster_trigger = { COURT_OWNER = $RULER$ }
+			intrigue >= high_skill_rating
+		}
+	}
+	modifier = {
+		add = 10
+		NOT = { learning >= high_skill_rating }
+	}
+	modifier = {
+		add = 10
+		NOT = {	prowess >= high_skill_rating }
+	}
+	modifier = {
+		add = 40
+		is_female = yes
+		is_visibly_fertile = yes
+	}
+}

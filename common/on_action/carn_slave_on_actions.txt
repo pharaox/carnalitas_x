@@ -55,6 +55,10 @@ on_death_relation_slave = { # fired for the slaveowner when they die
 			limit = { exists = primary_heir }
 			primary_heir = {
 				set_relation_slave = scope:target
+				if = {
+					limit = { NOT = { scope:target = { is_courtier_of = prev } } }
+					add_courtier = scope:target
+				}
 			}
 		}
 		else = {

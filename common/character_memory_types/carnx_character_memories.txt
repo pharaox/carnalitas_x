@@ -1,0 +1,111 @@
+﻿carnx_enslaved_memory = {
+	categories = { negative prison }
+	icon = "prison.dds"
+	description = {
+		random_valid = {
+			desc = carnx_enslaved_desc_1
+		}
+	}
+
+	second_perspective_description = {
+		random_valid = {
+			desc = carnx_enslaved_desc_second_perspective_1
+		}
+	}
+
+	third_perspective_description = {
+		random_valid = {
+			desc = carnx_enslaved_desc_third_perspective_1
+		}
+	}
+
+	participants = { enslaver }
+
+	duration = {
+		years = memory_default_duration
+	}
+}
+
+carnx_freed_memory = {
+	categories = { poistive prison }
+	icon = "prison.dds"
+	description = {
+		random_valid = {
+			desc = carnx_freed_desc_1
+		}
+	}
+
+	second_perspective_description = {
+		random_valid = {
+			desc = carnx_freed_desc_second_perspective_1
+		}
+	}
+
+	third_perspective_description = {
+		random_valid = {
+			desc = carnx_freed_desc_third_perspective_1
+		}
+	}
+
+	participants = { emancipator }
+
+	duration = {
+		years = memory_default_duration
+	}
+}
+
+carnx_bought_memory = {
+	categories = { prison }
+	icon = "prison.dds"
+	description = {
+		random_valid = {
+			desc = carnx_bought_desc_1
+		}
+	}
+
+	second_perspective_description = {
+		random_valid = {
+			desc = carnx_bought_desc_second_perspective_1
+		}
+	}
+
+	third_perspective_description = {
+		random_valid = {
+			desc = carnx_bought_desc_third_perspective_1
+		}
+	}
+
+	participants = { buyer }
+
+	duration = {
+		years = memory_default_duration
+	}
+}
+
+carnx_seized_memory = {
+	categories = { prison }
+	icon = "prison.dds"
+	description = {
+		random_valid = {
+			desc = carnx_seized_desc_1
+		}
+	}
+
+	second_perspective_description = {
+		random_valid = {
+			desc = carnx_seized_desc_second_perspective_1
+		}
+	}
+
+	third_perspective_description = {
+		random_valid = {
+			desc = carnx_seized_desc_third_perspective_1
+		}
+	}
+
+	participants = { seizer }
+
+	duration = {
+		years = memory_default_duration
+	}
+}

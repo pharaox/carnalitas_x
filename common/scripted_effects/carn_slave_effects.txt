@@ -9,8 +9,8 @@
 # enslaves SLAVE to OWNER
 # will also incur opinion, tyranny, piety effects if DRAMA is true
 carn_enslave_effect = {
-	$SLAVE$ = { save_temporary_scope_as = new_slave }
-	$OWNER$ = { save_temporary_scope_as = new_owner }
+	$SLAVE$ = { save_scope_as = new_slave }
+	$OWNER$ = { save_scope_as = new_owner }
 
 	scope:new_slave = {
 		if = {
@@ -82,7 +82,7 @@ carn_enslave_effect = {
 
 	if = {
 		limit = { $DRAMA$ = yes }
-		
+
 		scope:new_slave = {
 			# Victim hates slaver
 			add_prestige_level = -1
@@ -108,7 +108,7 @@ carn_enslave_effect = {
 					}
 				}
 			}
-			
+
 			# Victim's family & spouse hates slaver
 			every_close_family_member = {
 				limit = { NOT = { this = scope:new_owner } }
@@ -123,7 +123,7 @@ carn_enslave_effect = {
 				}
 				add_to_temporary_list = victim_family_list
 			}
-			
+
 			if = {
 				limit = {
 					any_in_list = {
@@ -187,7 +187,7 @@ carn_enslave_effect = {
 					}
 				}
 			}
-			
+
 			# Victim's friends and lovers
 			every_relation = {
 				type = friend
@@ -304,8 +304,8 @@ carn_enslave_effect = {
 							highest_held_title_tier >= tier_county
 							tier_or_related_liege_tier_greater_or_equal_trigger = { TIER = tier_duchy }
 							is_vassal_of = scope:new_owner # Is your Baron vassal
-							is_close_or_extended_family_of = scope:new_owner							
-							
+							is_close_or_extended_family_of = scope:new_owner
+
 							scope:new_owner = { # Executing close family of your vassals is dreadful...
 								any_vassal = {
 									is_close_family_of = scope:new_slave
@@ -345,7 +345,7 @@ carn_enslave_effect = {
 				add_piety = {
 					value = 0
 					if = {
-						limit = { 
+						limit = {
 							scope:new_slave = {
 								has_no_particular_noble_roots_trigger = yes
 							}
@@ -487,7 +487,7 @@ carn_enslave_effect = {
 					forgiving = minor_stress_impact_gain
 				}
 			}
-			
+
 			# Tyranny (similar to execution)
 			if = { # Execute reason or at war
 				limit = {
@@ -568,7 +568,7 @@ carn_enslave_effect = {
 				limit = {
 					has_execute_reason = scope:new_slave
 				}
-				consume_execute_reasons = scope:new_slave		
+				consume_execute_reasons = scope:new_slave
 			}
 		}
 	}
@@ -578,6 +578,10 @@ carn_enslave_effect = {
 			if = {
 				limit = { is_imprisoned_by = scope:new_owner }
 				release_from_prison = yes
+			}
+			if = {
+				limit = { has_character_modifier = carnx_marked_for_enslavement_modifier }
+				remove_character_modifier = carnx_marked_for_enslavement_modifier
 			}
 			trigger_event = {
 				on_action = carn_on_slave_enslaved
@@ -607,6 +611,10 @@ carn_free_slave_effect = {
 	hidden_effect = {
 		remove_trait = slave
 		add_trait = former_slave
+		if = {
+			limit = { has_character_modifier = carnx_marked_for_enslavement_modifier }
+			remove_character_modifier = carnx_marked_for_enslavement_modifier
+		}
 		trigger_event = {
 			on_action = carn_on_slave_freed
 		}
@@ -694,7 +702,7 @@ carn_free_slave_interaction_effect = {
 				target = scope:owner
 			}
 		}
-		
+
 		# Renounce Claims
 		if = {
 			limit = {
@@ -727,7 +735,7 @@ carn_free_slave_interaction_effect = {
 				}
 			}
 		}
-		
+
 		# Gain Hook
 		if = {
 			limit = {
@@ -744,7 +752,7 @@ carn_free_slave_interaction_effect = {
 				}
 			}
 		}
-		
+
 		# No Demands Added
 		if = {
 			limit = {
@@ -786,7 +794,7 @@ carn_free_slave_interaction_effect = {
 					add_piety = {
 						value = 0
 						if = {
-							limit = { 
+							limit = {
 								scope:slave = {
 									has_no_particular_noble_roots_trigger = yes
 								}
@@ -867,7 +875,7 @@ carn_buy_slave_effect = {
 		hidden_effect = {
 			if = {
 				limit = {
-					scope:slave = { NOT = { is_courtier_of = scope:buyer } } 
+					scope:slave = { NOT = { is_courtier_of = scope:buyer } }
 				}
 				add_courtier = scope:slave
 			}

@@ -354,14 +354,14 @@
 		ai_recipients = courtiers
 	}
 
-	ai_frequency = 24
+	ai_frequency = 12
 
 	ai_potential = {
-		is_at_war = no
+		always = yes
 	}
 
 	ai_will_do = {
-		base = 0
+		base = 10
 
 		# Options
 		modifier = {

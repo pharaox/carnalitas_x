@@ -82,14 +82,14 @@
 		ai_recipients = prisoners
 	}
 
-	ai_frequency = 24
+	ai_frequency = 12
 
 	ai_potential = {
 		is_at_war = no
 	}
 
 	ai_will_do = {
-		base = 0
+		base = -10
 
 		# Opinion of prisoner (-25 to 25 depending on opinion)
 		opinion_modifier = {
@@ -121,6 +121,14 @@
 			ai_compassion >= low_positive_ai_value
 			scope:recipient = { is_adult = no }
 			add = -25
+		}
+
+		# Marked for enslavement (50)
+		modifier = {
+			scope:recipient = {
+				has_character_modifier = carnx_marked_for_enslavement_modifier
+			}
+			add = 50
 		}
 
 		# Slavery shunned by faith (-75)
