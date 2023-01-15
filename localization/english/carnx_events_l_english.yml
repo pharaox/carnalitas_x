@@ -1,0 +1,6 @@
+﻿l_english:
+ carnx_slave.0001.t:0 "Buy Slaves"
+ carnx_slave.0001.desc:0 "Slave traders have arrived from foreign lands, bringing some slaves for sale. Let's look at their wares."
+ carnx_slave.0001.a:0 "[valuable_option.GetFirstNameNoTooltip] looks great."
+ carnx_slave.0001.b:0 "[common_option.GetFirstNameNoTooltip] seems ok."
+ carnx_slave.0001.c:0 "Both of them fail to impress me."

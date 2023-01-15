@@ -189,7 +189,7 @@
 	ai_frequency = 24
 
 	ai_potential = {
-		gold >= 50
+		short_term_gold >= medium_gold_value
 	}
 
 	ai_will_do = {

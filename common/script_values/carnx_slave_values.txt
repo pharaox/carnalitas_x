@@ -215,7 +215,7 @@ carnx_slave_bid_price_value = {
 	}
 }
 
-carnx_buy_slave_ai_accept_value = {
+carnx_buy_slave_ai_accept_value_no_actor = {
 	save_temporary_scope_as = slave
 	value = 50
 
@@ -351,8 +351,13 @@ carnx_buy_slave_ai_accept_value = {
 		}
 		add = -25
 	}
+}
 
-	# Opinion of seller (-25 to 25 depending on opinion)
+carnx_buy_slave_ai_accept_value = {
+	value = carnx_buy_slave_ai_accept_value_no_actor
+	save_temporary_scope_as = slave
+
+	# Opinion of actor (-25 to 25 depending on opinion)
 	add = {
 		value = scope:opinion_of_actor
 		multiply = 0.25
@@ -376,7 +381,7 @@ carnx_buy_slave_ai_accept_value = {
 		add = -200
 	}
 
-	# Intimidated or cowed by seller who is also a liege or above (10 or 20)
+	# Intimidated or cowed by actor who is also a liege or above (10 or 20)
 	if = {
 		limit = {
 			scope:seller = {
@@ -411,7 +416,7 @@ carnx_buy_slave_ai_accept_value = {
 	}
 }
 
-carnx_sell_slave_ai_accept_value = {
+carnx_sell_slave_ai_accept_value_no_actor = {
 	save_temporary_scope_as = buyer
 	value = -50
 
@@ -620,8 +625,12 @@ carnx_sell_slave_ai_accept_value = {
 		}
 		add = 25
 	}
+}
 
-	# Opinion of seller (-25 to 25 depending on opinion)
+carnx_sell_slave_ai_accept_value = {
+	value = carnx_sell_slave_ai_accept_value_no_actor
+
+	# Opinion of actor (-25 to 25 depending on opinion)
 	add = {
 		value = scope:opinion_of_actor
 		multiply = 0.25
@@ -645,7 +654,7 @@ carnx_sell_slave_ai_accept_value = {
 		add = -200
 	}
 
-	# Intimidated or cowed by seller who is also a liege or above (10 or 20)
+	# Intimidated or cowed by actor who is also a liege or above (10 or 20)
 	if = {
 		limit = {
 			scope:buyer = {
@@ -669,6 +678,13 @@ carnx_sell_slave_ai_accept_value = {
 			}
 		}
 		add = cowed_external_reason_value
+	}
+
+	if = {
+		limit = {
+			scope:buyer.short_term_gold < medium_gold_value
+		}
+		multiply = 0
 	}
 }
 

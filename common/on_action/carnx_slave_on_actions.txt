@@ -72,17 +72,19 @@ on_leave_court = {
 					scope:owner = {
 						add_courtier = prev
 					}
-					debug_log = "Slave left court (and was brought back)"
-					debug_log_date = yes
-					debug_log_scopes = yes
 				}
 			}
 			else = {
 				carn_free_slave_effect = yes
-				debug_log = "Slave left court (and was freed)"
-				debug_log_date = yes
-				debug_log_scopes = yes
 			}
 		}
+	}
+}
+
+# Called from code once every five years for "playable" (count+) characters.
+# Root is the character
+five_year_playable_pulse = {
+	events = {
+		carnx_slave.0001
 	}
 }

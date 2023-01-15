@@ -173,6 +173,11 @@
 			add = cowed_external_reason_value
 			desc = COWED_REASON
 		}
+
+		modifier = {
+			scope:recipient.short_term_gold < medium_gold_value
+			factor = 0
+		}
 	}
 
 	ai_targets = {
