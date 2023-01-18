@@ -1,0 +1,26 @@
+﻿# Base ai_will_do values for slavery related interactions
+carnx_enslave_ai_will_do_base = -10		# slightly reluctant to enslave
+carnx_free_slave_ai_will_do_base = 10	# slightly willing to free
+carnx_seize_slave_ai_will_do_base = 25	# quite willing to seize
+
+# Multiplier for the opinion modifier affecting ai willingness to buy and sell slaves
+carnx_buy_sell_slave_opinion_multiplier = 0.12
+
+# Enslave interaction dread gain
+carnx_enslave_minor_dread_gain = 2
+carnx_enslave_medium_dread_gain = 5
+carnx_enslave_major_dread_gain = 10
+carnx_enslave_massive_dread_gain = 15
+
+# Free slave interaction dread loss
+carnx_free_slave_dread_loss = -5
+
+# Enslave interaction tyranny gain (halved for character of no particular importance)
+carnx_enslave_basic_tyranny_gain = 10
+
+# Slave price multipliers for the player to limit exploits
+carnx_slave_ask_price_player_multiplier = 1.2
+carnx_slave_bid_price_player_multiplier = 0.8
+
+# Female chance when creating slave characters
+carnx_create_character_female_chance = 100

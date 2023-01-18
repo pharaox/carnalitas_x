@@ -126,7 +126,7 @@
 			}
 			who = scope:recipient
 			opinion_target = scope:actor
-			multiplier = 0.12
+			multiplier = carnx_buy_sell_slave_opinion_multiplier
 			desc = AI_OPINION_REASON
 		}
 
@@ -228,7 +228,7 @@
 			}
 			who = scope:actor
 			opinion_target = scope:recipient
-			multiplier = 0.12
+			multiplier = carnx_buy_sell_slave_opinion_multiplier
 		}
 
 		# Avoid doing business with rivals or nemesises

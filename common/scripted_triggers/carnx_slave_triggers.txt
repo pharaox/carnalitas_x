@@ -83,6 +83,11 @@ carnx_execute_reason_trigger = {
 	}
 }
 
+# Enable nudity in slavery related events
+carnx_enable_nudity = {
+	always = yes
+}
+
 is_diplomatically_available = {
 	always = yes # TODO
 }

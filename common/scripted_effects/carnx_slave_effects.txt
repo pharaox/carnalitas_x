@@ -251,7 +251,7 @@ carn_enslave_effect = {
 						}
 					}
 				}
-				add_dread = enslave_interaction_massive_dread_gain
+				add_dread = carnx_enslave_massive_dread_gain
 			}
 			else_if = {
 				limit = {
@@ -265,7 +265,7 @@ carn_enslave_effect = {
 						}
 					}
 				}
-				add_dread = enslave_interaction_major_dread_gain
+				add_dread = carnx_enslave_major_dread_gain
 			}
 			else_if = {
 				limit = {
@@ -287,7 +287,7 @@ carn_enslave_effect = {
 						}
 					}
 				}
-				add_dread = enslave_interaction_medium_dread_gain
+				add_dread = carnx_enslave_medium_dread_gain
 			}
 			else_if = {
 				limit = {
@@ -311,7 +311,7 @@ carn_enslave_effect = {
 						}
 					}
 				}
-				add_dread = enslave_interaction_minor_dread_gain
+				add_dread = carnx_enslave_minor_dread_gain
 			}
 
 			# Piety (similar to execution but toned down one level)
@@ -511,7 +511,7 @@ carn_enslave_effect = {
 				limit = {
 					scope:new_slave = { target_is_liege_or_above = prev }
 				}
-				add_tyranny = enslavement_tyranny_gain
+				add_tyranny = carnx_enslave_tyranny_gain
 			}
 			else_if = {
 				limit = {
@@ -724,7 +724,7 @@ carn_free_slave_interaction_effect = {
 				}
 			}
 			scope:owner = {
-				add_dread = free_slave_interaction_dread_loss
+				add_dread = carnx_free_slave_dread_loss
 				if = {
 					limit = {
 						faith = {

@@ -89,7 +89,10 @@
 	}
 
 	ai_will_do = {
-		base = -10
+		base = 0
+		modifier = {
+			add = carnx_enslave_ai_will_do_base
+		}
 
 		# Opinion of prisoner (-25 to 25 depending on opinion)
 		opinion_modifier = {

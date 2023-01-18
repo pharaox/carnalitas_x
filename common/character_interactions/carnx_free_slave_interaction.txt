@@ -361,7 +361,10 @@
 	}
 
 	ai_will_do = {
-		base = 10
+		base = 0
+		modifier = {
+			add = carnx_free_slave_ai_will_do_base
+		}
 
 		# Options
 		modifier = {

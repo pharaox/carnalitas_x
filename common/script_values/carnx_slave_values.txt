@@ -190,10 +190,13 @@ carnx_slave_base_price_value = {
 carnx_slave_ask_price_value = {
 	value = carnx_slave_base_price_value
 
-	# Make the ask price higher than the bid price
-	multiply = 1.2
+	# Make it higher for the player
+	if = {
+		limit = { scope:actor = { is_ai = no } }
+		multiply = carnx_slave_ask_price_player_multiplier
+	}
 
-	# Seller personality multiplier (0.9 to 1.2 based on ai_greed)
+	# Seller personality multiplier (0.8 to 1.2 based on ai_greed)
 	multiply = {
 		value = scope:seller.ai_greed
 		multiply = 0.002
@@ -204,8 +207,11 @@ carnx_slave_ask_price_value = {
 carnx_slave_bid_price_value = {
 	value = carnx_slave_base_price_value
 
-	# Make the ask price higher than the bid price
-	multiply = 0.8
+	# Make it lower for the player
+	if = {
+		limit = { scope:actor = { is_ai = no } }
+		multiply = carnx_slave_bid_price_player_multiplier
+	}
 
 	# Buyer personality multiplier (0.8 to 1.2 based on ai_greed)
 	multiply = {
@@ -215,7 +221,7 @@ carnx_slave_bid_price_value = {
 	}
 }
 
-carnx_buy_slave_ai_accept_value_no_actor = {
+carnx_buy_slave_ai_accept_no_actor_value = {
 	save_temporary_scope_as = slave
 	value = 50
 
@@ -354,13 +360,13 @@ carnx_buy_slave_ai_accept_value_no_actor = {
 }
 
 carnx_buy_slave_ai_accept_value = {
-	value = carnx_buy_slave_ai_accept_value_no_actor
+	value = carnx_buy_slave_ai_accept_no_actor_value
 	save_temporary_scope_as = slave
 
 	# Opinion of actor (-12 to 12 depending on opinion)
 	add = {
 		value = scope:opinion_of_actor
-		multiply = 0.12
+		multiply = carnx_buy_sell_slave_opinion_multiplier
 	}
 
 	# Avoid doing business with rivals or nemesises
@@ -390,7 +396,7 @@ carnx_buy_slave_ai_accept_value = {
 	}
 }
 
-carnx_sell_slave_ai_accept_value_no_actor = {
+carnx_sell_slave_ai_accept_no_actor_value = {
 	save_temporary_scope_as = buyer
 	value = -50
 
@@ -602,12 +608,12 @@ carnx_sell_slave_ai_accept_value_no_actor = {
 }
 
 carnx_sell_slave_ai_accept_value = {
-	value = carnx_sell_slave_ai_accept_value_no_actor
+	value = carnx_sell_slave_ai_accept_no_actor_value
 
 	# Opinion of actor (-12 to 12 depending on opinion)
 	add = {
 		value = scope:opinion_of_actor
-		multiply = 0.12
+		multiply = carnx_buy_sell_slave_opinion_multiplier
 	}
 
 	# Avoid doing business with rivals or nemesises
@@ -636,15 +642,8 @@ carnx_sell_slave_ai_accept_value = {
 	}
 }
 
-enslave_interaction_minor_dread_gain = 2
-enslave_interaction_medium_dread_gain = 5
-enslave_interaction_major_dread_gain = 10
-enslave_interaction_massive_dread_gain = 15
-
-free_slave_interaction_dread_loss = -5
-
-enslavement_tyranny_gain = {
-	value = 10
+carnx_enslave_tyranny_gain = {
+	value = carnx_enslave_basic_tyranny_gain
 	if = {
 		limit = {
 			exists = scope:new_slave
@@ -652,6 +651,6 @@ enslavement_tyranny_gain = {
 				has_no_real_status_trigger = yes
 			}
 		}
-		add = -5
+		divide = 2
 	}
 }

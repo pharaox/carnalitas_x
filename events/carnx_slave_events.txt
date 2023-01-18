@@ -34,7 +34,7 @@ carnx_slave.0001 = {
 			create_character = {
 				location = root.capital_province
 				template_character = scope:foreign_ruler
-				gender_female_chance = 100
+				gender_female_chance = carnx_create_character_female_chance
 				age = { 16 40 }
 				dynasty = none
 				random_traits = yes
@@ -105,14 +105,17 @@ carnx_slave.0001 = {
 			if = {
 				limit = { exists = scope:valuable_option }
 				scope:valuable_option = {
-					add_character_flag = is_naked
+					if = {
+						limit = { carnx_enable_nudity = yes }
+						add_character_flag = is_naked
+					}
 					save_scope_value_as = {
 						name = valuable_option_price
 						value = {
 							value = carnx_slave_base_price_value
 							if = {
 								limit = { is_ai = no }
-								multiply = 1.2
+								multiply = carnx_slave_ask_price_player_multiplier
 							}
 						}
 					}
@@ -121,8 +124,11 @@ carnx_slave.0001 = {
 				save_scope_value_as = {
 					name = valuable_option_ai_accept_value
 					value = {
-						value = carnx_sell_slave_ai_accept_value_no_actor
-						add = 12
+						value = carnx_sell_slave_ai_accept_no_actor_value
+						add = {
+							value = 100 # Assume max opinion to make it more likely
+							multiply = carnx_buy_sell_slave_opinion_multiplier
+						}
 						min = 0
 					}
 				}
@@ -132,7 +138,7 @@ carnx_slave.0001 = {
 			create_character = {
 				location = root.capital_province
 				template_character = scope:foreign_ruler
-				gender_female_chance = 100
+				gender_female_chance = carnx_create_character_female_chance
 				age = { 16 40 }
 				dynasty = none
 				random_traits = yes
@@ -142,14 +148,17 @@ carnx_slave.0001 = {
 			if = {
 				limit = { exists = scope:common_option }
 				scope:common_option = {
-					add_character_flag = is_naked
+					if = {
+						limit = { carnx_enable_nudity = yes }
+						add_character_flag = is_naked
+					}
 					save_scope_value_as = {
 						name = common_option_price
 						value = {
 							value = carnx_slave_base_price_value
 							if = {
 								limit = { is_ai = no }
-								multiply = 1.2
+								multiply = carnx_slave_ask_price_player_multiplier
 							}
 						}
 					}
@@ -158,8 +167,11 @@ carnx_slave.0001 = {
 				save_scope_value_as = {
 					name = common_option_ai_accept_value
 					value = {
-						value = carnx_sell_slave_ai_accept_value_no_actor
-						add = 12
+						value = carnx_sell_slave_ai_accept_no_actor_value
+						add = {
+							value = 100 # Assume max opinion to make it more likely
+							multiply = carnx_buy_sell_slave_opinion_multiplier
+						}
 						min = 0
 					}
 				}
@@ -174,14 +186,17 @@ carnx_slave.0001 = {
 		trigger = {
 			exists = scope:valuable_option
 			short_term_gold >= scope:valuable_option_price
-			is_landed = yes #extra check to make sure they haven't lost their status
+			is_landed = yes # Extra check to make sure they haven't lost their status
 		}
 		show_as_unavailable = { always = yes }
 
 		remove_short_term_gold = scope:valuable_option_price
 
 		hidden_effect = {
-			scope:valuable_option = { remove_character_flag = is_naked }
+			if = {
+				limit = { carnx_enable_nudity = yes }
+				scope:valuable_option = { remove_character_flag = is_naked }
+			}
 			scope:common_option = { silent_disappearance_effect = yes }
 			debug_log = "Buy Slaves valuable option chosen"
 		}
@@ -212,14 +227,17 @@ carnx_slave.0001 = {
 		trigger = {
 			exists = scope:common_option
 			short_term_gold >= scope:common_option_price
-			is_landed = yes #extra check to make sure they haven't lost their status
+			is_landed = yes # Extra check to make sure they haven't lost their status
 		}
 		show_as_unavailable = { always = yes }
 
 		remove_short_term_gold = scope:common_option_price
 
 		hidden_effect = {
-			scope:common_option = { remove_character_flag = is_naked }
+			if = {
+				limit = { carnx_enable_nudity = yes }
+				scope:common_option = { remove_character_flag = is_naked }
+			}
 			scope:valuable_option = { silent_disappearance_effect = yes }
 			debug_log = "Buy Slaves common option chosen"
 		}
