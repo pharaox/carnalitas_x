@@ -357,10 +357,10 @@ carnx_buy_slave_ai_accept_value = {
 	value = carnx_buy_slave_ai_accept_value_no_actor
 	save_temporary_scope_as = slave
 
-	# Opinion of actor (-25 to 25 depending on opinion)
+	# Opinion of actor (-12 to 12 depending on opinion)
 	add = {
 		value = scope:opinion_of_actor
-		multiply = 0.25
+		multiply = 0.12
 	}
 
 	# Avoid doing business with rivals or nemesises
@@ -379,32 +379,6 @@ carnx_buy_slave_ai_accept_value = {
 			}
 		}
 		add = -200
-	}
-
-	# Intimidated or cowed by actor who is also a liege or above (10 or 20)
-	if = {
-		limit = {
-			scope:seller = {
-				target_is_liege_or_above = scope:actor
-				has_dread_level_towards = {
-					target = scope:actor
-					level = 1
-				}
-			}
-		}
-		add = intimidated_external_reason_value
-	}
-	if = {
-		limit = {
-			scope:seller = {
-				target_is_liege_or_above = scope:actor
-				has_dread_level_towards = {
-					target = scope:actor
-					level = 2
-				}
-			}
-		}
-		add = cowed_external_reason_value
 	}
 
 	# Not enough gold
@@ -630,10 +604,10 @@ carnx_sell_slave_ai_accept_value_no_actor = {
 carnx_sell_slave_ai_accept_value = {
 	value = carnx_sell_slave_ai_accept_value_no_actor
 
-	# Opinion of actor (-25 to 25 depending on opinion)
+	# Opinion of actor (-12 to 12 depending on opinion)
 	add = {
 		value = scope:opinion_of_actor
-		multiply = 0.25
+		multiply = 0.12
 	}
 
 	# Avoid doing business with rivals or nemesises
@@ -654,32 +628,6 @@ carnx_sell_slave_ai_accept_value = {
 		add = -200
 	}
 
-	# Intimidated or cowed by actor who is also a liege or above (10 or 20)
-	if = {
-		limit = {
-			scope:buyer = {
-				target_is_liege_or_above = scope:actor
-				has_dread_level_towards = {
-					target = scope:actor
-					level = 1
-				}
-			}
-		}
-		add = intimidated_external_reason_value
-	}
-	if = {
-		limit = {
-			scope:buyer = {
-				target_is_liege_or_above = scope:actor
-				has_dread_level_towards = {
-					target = scope:actor
-					level = 2
-				}
-			}
-		}
-		add = cowed_external_reason_value
-	}
-
 	if = {
 		limit = {
 			scope:buyer.short_term_gold < medium_gold_value
@@ -696,7 +644,7 @@ enslave_interaction_massive_dread_gain = 15
 free_slave_interaction_dread_loss = -5
 
 enslavement_tyranny_gain = {
-	value = 5
+	value = 10
 	if = {
 		limit = {
 			exists = scope:new_slave
@@ -704,6 +652,6 @@ enslavement_tyranny_gain = {
 				has_no_real_status_trigger = yes
 			}
 		}
-		add = -3
+		add = -5
 	}
 }

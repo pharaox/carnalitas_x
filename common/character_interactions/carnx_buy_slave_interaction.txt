@@ -119,14 +119,14 @@
 			SCALE = -25
 		}
 
-		# Opinion of buyer (-25 to 25 depending on opinion)
+		# Opinion of buyer (-12 to 12 depending on opinion)
 		opinion_modifier = {
 			trigger = {
 				NOT = { scope:actor = scope:recipient }
 			}
 			who = scope:recipient
 			opinion_target = scope:actor
-			multiplier = 0.25
+			multiplier = 0.12
 			desc = AI_OPINION_REASON
 		}
 
@@ -144,30 +144,6 @@
 			}
 			add = -200
 			desc = "ACTOR_NEMESIS_TO_ME_REASON"
-		}
-
-		# Intimidated or cowed by buyer who is also a liege or above (10 or 20)
-		modifier = {
-			scope:recipient = {
-				target_is_liege_or_above = scope:actor
-				has_dread_level_towards = {
-					target = scope:actor
-					level = 1
-				}
-			}
-			add = intimidated_external_reason_value
-			desc = INTIMIDATED_REASON
-		}
-		modifier = {
-			scope:recipient = {
-				target_is_liege_or_above = scope:actor
-				has_dread_level_towards = {
-					target = scope:actor
-					level = 2
-				}
-			}
-			add = cowed_external_reason_value
-			desc = COWED_REASON
 		}
 
 		# Not enough gold
@@ -245,14 +221,14 @@
 			SCALE = 25
 		}
 
-		# Opinion of seller (-25 to 25 depending on opinion)
+		# Opinion of seller (-12 to 12 depending on opinion)
 		opinion_modifier = {
 			trigger = {
 				NOT = { scope:actor = scope:recipient }
 			}
 			who = scope:actor
 			opinion_target = scope:recipient
-			multiplier = 0.25
+			multiplier = 0.12
 		}
 
 		# Avoid doing business with rivals or nemesises
