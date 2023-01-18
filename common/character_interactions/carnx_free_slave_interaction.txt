@@ -1,10 +1,10 @@
-﻿carnx_free_slave_interaction = {
+﻿carn_free_slave_interaction = {
 	category = interaction_category_prison
-	desc = carnx_free_slave_interaction_desc
+	desc = carn_free_slave_interaction_desc
 	interface_priority = 100
 	common_interaction = yes
 
-	send_name = carnx_free_slave_interaction
+	send_name = carn_free_slave_interaction
 
 	ai_min_reply_days = 0
 	ai_max_reply_days = 0

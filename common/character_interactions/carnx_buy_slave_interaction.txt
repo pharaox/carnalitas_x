@@ -1,12 +1,12 @@
-﻿carnx_buy_slave_interaction = {
+﻿carn_buy_slave_directly_interaction = {
 	category = interaction_category_prison
-	desc = carnx_buy_slave_interaction_desc
+	desc = carn_buy_slave_directly_interaction_desc
 	interface_priority = 31
 	common_interaction = yes
 	needs_recipient_to_open = yes
 
 	greeting = positive
-	send_name = carnx_buy_slave_interaction
+	send_name = carn_buy_slave_directly_interaction
 
 	ai_min_reply_days = 0
 	ai_max_reply_days = 0

@@ -1,30 +1,27 @@
 ﻿l_english:
- carnx_buy_slave_interaction: "Buy Slave"
- carnx_buy_slave_interaction_desc: "Buy a [slave|E] for [gold|E]"
- recipient_secondary_carnx_buy_slave_interaction: "Slave"
+ # carn_buy_slave_directly_interaction (original)
 
- carnx_sell_slave_interaction: "Sell Slave"
- carnx_sell_slave_interaction_desc: "Sell a [slave|E] for [gold|E]"
- recipient_secondary_carnx_sell_slave_interaction: "Slave"
+ # carn_sell_slave_interaction (some original, some overriden)
+ carn_sell_slave_interaction_desc: "Sell a [slave|E] for [gold|E]"
+ recipient_secondary_carn_sell_slave_interaction: "Slave"
 
- carnx_buy_slaves_interaction: "Buy Slave"
- carnx_buy_slaves_interaction_desc: "Buy a [slave|E] for [gold|E]"
+ # carnx_buy_slaves_interaction (new)
+ carnx_buy_slaves_interaction: "Buy Slaves"
+ carnx_buy_slaves_interaction_desc: "Buy [slaves|E] from rulers that are willing to sell them"
  actor_secondary_carnx_buy_slaves_interaction: "Slave"
  recipient_secondary_carnx_buy_slaves_interaction: "Seller"
 
- carnx_sell_slaves_interaction: "Sell Slave"
- carnx_sell_slaves_interaction_desc: "Sell a [slave|E] for [gold|E]"
+ # carnx_sell_slaves_interaction (new)
+ carnx_sell_slaves_interaction: "Sell Slaves"
+ carnx_sell_slaves_interaction_desc: "Sell [slaves|E] to rulers that are willing to buy them"
  actor_secondary_carnx_sell_slaves_interaction: "Slave"
  recipient_secondary_carnx_sell_slaves_interaction: "Buyer"
 
- carnx_enslave_interaction: "Enslave"
- carnx_enslave_interaction_desc: "Turn [recipient.GetShortUINameNoTooltip] into your [slave|E]"
+ # carn_enslave_interaction (original)
 
- carnx_free_slave_interaction: "Free Slave"
- carnx_free_slave_interaction_desc: "Free [recipient.GetShortUINameNoTooltip] from [slavery|E]"
+ # carn_free_slave_interaction (original)
 
- carnx_seize_slave_interaction: "Seize Slave"
- carnx_seize_slave_interaction_desc: "Take [recipient.GetShortUINameNoTooltip] as your own [slave|E]"
+ # carn_seize_slave_interaction (original)
 
  carnx_secondary_recipient_has_court_position_reason: "[secondary_recipient.GetShortUIName|U] holds a [court|E] position: $VALUE|=+0$"
  carnx_secondary_recipient_has_important_role_reason: "[secondary_recipient.GetShortUIName|U] has is an educator or being educated: $VALUE|=+0$"
