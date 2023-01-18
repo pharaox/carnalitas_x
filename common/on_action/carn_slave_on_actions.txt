@@ -52,7 +52,10 @@ on_death_relation_slave = { # fired for the slaveowner when they die
 			modifier = carn_former_slave_or_slave_owner_opinion
 		}
 		if = {
-			limit = { exists = primary_heir }
+			limit = {
+				exists = primary_heir
+				primary_heir = { is_ruler = yes }
+			}
 			primary_heir = {
 				set_relation_slave = scope:target
 				if = {
