@@ -600,6 +600,12 @@ carn_free_slave_effect = {
 		}
 		save_scope_as = former_owner
 	}
+	# To prevent errors in carn_on_slave_freed, check if scope:former_owner exists
+	# and if not, set it to the slave
+	if = {
+		limit = { NOT = { exists = scope:former_owner } }
+		save_scope_as = former_owner
+	}
 	hidden_effect = {
 		remove_trait = slave
 		add_trait = former_slave
