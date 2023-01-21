@@ -417,28 +417,18 @@
 			add = 25
 		}
 
-		# Slavery shunned by faith (25)
+		# Slavery crime (1000) or shunned by faith (25)
 		modifier = {
-			OR = {
-				faith = {
-					has_doctrine = carn_doctrine_same_slavery_shunned
-					faith_hostility_level = {
-						target = scope:recipient.faith
-						value < faith_hostile_level
-					}
-				}
-				faith = {
-					has_doctrine = carn_doctrine_other_slavery_shunned
-					faith_hostility_level = {
-						target = scope:recipient.faith
-						value >= faith_hostile_level
-					}
-				}
-			}
+			carnx_is_slavery_crime_trigger = { CHARACTER = scope:recipient }
+			add = 1000
+		}
+		modifier = {
+			carnx_is_slavery_shunned_trigger = { CHARACTER = scope:recipient }
 			add = 25
 		}
 
 		# Family and relations (50 to 200 depending on how close the relation)
+		# Eager to free family and relations
 		carnx_family_and_relations_modifier = {
 			RULER = scope:actor
 			SLAVE = scope:recipient

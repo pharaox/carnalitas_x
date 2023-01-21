@@ -63,21 +63,87 @@ carnx_has_important_role_trigger = {
 	}
 }
 
-carnx_execute_reason_trigger = {
+# Does the scoped character have a valid reason to execute $CHARACTER$.
+# In addition to having an explicit execute reason, this also includes
+# $CHARACTER$ being a rival / nemesis, a cheating spouse, or a ruler you can inherit land from.
+carnx_has_execute_reason_trigger = {
 	OR = {
-		has_execute_reason = scope:recipient
-		has_relation_rival = scope:recipient # Execute rivals
-		has_relation_nemesis = scope:recipient # Execute rivals
-		scope:recipient = {
-			is_spouse_of = scope:actor
-			exposed_cheating_on_spouse_trigger = { SPOUSE = scope:actor }
+		has_execute_reason = $CHARACTER$
+		has_relation_rival = $CHARACTER$ # Execute rivals
+		has_relation_nemesis = $CHARACTER$ # Execute rivals
+		$CHARACTER$ = {
+			is_spouse_of = prev
+			exposed_cheating_on_spouse_trigger = { SPOUSE = prev }
 		}
 		any_heir_title = { # Execute rulers you can inherit land from
 			exists = holder
-			holder = scope:recipient
+			holder = $CHARACTER$
 			place_in_line_of_succession = {
-				target = scope:actor
+				target = prev
 				value > 2
+			}
+		}
+	}
+}
+
+# Is the scoped character a family or a positive relation of $CHARACTER$.
+carnx_is_family_or_positive_relation_trigger = {
+	OR = {
+		has_relation_best_friend = $CHARACTER$
+		has_relation_soulmate = $CHARACTER$
+		has_relation_friend = $CHARACTER$
+		has_relation_lover = $CHARACTER$
+		has_secret_relation_lover = $CHARACTER$
+		has_relation_crush = $CHARACTER$
+		is_spouse_of = $CHARACTER$
+		is_close_or_extended_family_of = $CHARACTER$
+		dynasty = $CHARACTER$.dynasty
+	}
+	NOR = {
+		has_relation_rival = $CHARACTER$
+		has_relation_nemesis = $CHARACTER$
+	}
+	reverse_opinion = {
+		target = $CHARACTER$
+		value >= 0
+	}
+}
+
+# Is owning slaves of $CHARACTER$'s faith shunned according to the scoped character's faith.
+carnx_is_slavery_shunned_trigger = {
+	OR = {
+		faith = {
+			has_doctrine = carn_doctrine_same_slavery_shunned
+			faith_hostility_level = {
+				target = $CHARACTER$.faith
+				value < faith_hostile_level
+			}
+		}
+		faith = {
+			has_doctrine = carn_doctrine_other_slavery_shunned
+			faith_hostility_level = {
+				target = $CHARACTER$.faith
+				value >= faith_hostile_level
+			}
+		}
+	}
+}
+
+# Is owning slaves of $CHARACTER$'s faith a crime according to the scoped character's faith.
+carnx_is_slavery_crime_trigger = {
+	OR = {
+		faith = {
+			has_doctrine = carn_doctrine_same_slavery_crime
+			faith_hostility_level = {
+				target = $CHARACTER$.faith
+				value < faith_hostile_level
+			}
+		}
+		faith = {
+			has_doctrine = carn_doctrine_other_slavery_crime
+			faith_hostility_level = {
+				target = $CHARACTER$.faith
+				value >= faith_hostile_level
 			}
 		}
 	}

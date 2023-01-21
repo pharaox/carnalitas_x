@@ -5,7 +5,7 @@ carnx_slave_base_price_value = {
 	# Claims (100 to 250 depending on the highest claim tier)
 	if = {
 		limit = {
-			any_claim = {}
+			any_claim = { always = yes }
 		}
 		if = {
 			limit = {
@@ -225,6 +225,30 @@ carnx_buy_slave_ai_accept_no_actor_value = {
 	save_temporary_scope_as = slave
 	value = 50
 
+	# Slavery crime (100) or shunned by faith (0)
+	if = {
+		limit = {
+			scope:seller = {
+				carnx_is_slavery_crime_trigger = { CHARACTER = scope:slave }
+			}
+			scope:slave = {
+				NOT = { carnx_is_family_or_positive_relation_trigger = { CHARACTER = scope:seller } }
+			}
+		}
+		add = 100
+	}
+	if = {
+		limit = {
+			scope:seller = {
+				carnx_is_slavery_shunned_trigger = { CHARACTER = scope:slave }
+			}
+			scope:slave = {
+				NOT = { carnx_is_family_or_positive_relation_trigger = { CHARACTER = scope:seller } }
+			}
+		}
+		add = 0
+	}
+
 	# Employed as councillor (-50), court position, knight / commander, or in some other way (-25)
 	if = {
 		limit = {
@@ -266,48 +290,47 @@ carnx_buy_slave_ai_accept_no_actor_value = {
 	}
 
 	# Family and relations (-25 to -100 depending on how close the relation)
+	# Reluctant to sell family and relations, wants to free them instead
 	if = {
-		limit = {
-			scope:slave = {
-				OR = {
-					is_child_of = scope:seller
-					has_relation_best_friend = scope:seller
-					has_relation_soulmate = scope:seller
+		limit = { carnx_is_family_or_positive_relation_trigger = { CHARACTER = scope:seller } }
+		add = {
+			value = -25
+			if = {
+				limit = {
+					scope:slave = {
+						OR = {
+							is_child_of = scope:seller
+							has_relation_best_friend = scope:seller
+							has_relation_soulmate = scope:seller
+						}
+					}
 				}
+				multiply = 4
 			}
-		}
-		add = -100
-	}
-	else_if = {
-		limit = {
-			scope:slave = {
-				OR = {
-					is_close_family_of = scope:seller
-					has_relation_friend = scope:seller
-					has_relation_lover = scope:seller
-					has_secret_relation_lover = scope:seller
-					has_relation_crush = scope:seller
-					is_spouse_of = scope:seller
+			else_if = {
+				limit = {
+					scope:slave = {
+						OR = {
+							is_close_family_of = scope:seller
+							has_relation_friend = scope:seller
+							has_relation_lover = scope:seller
+							has_secret_relation_lover = scope:seller
+							has_relation_crush = scope:seller
+							is_spouse_of = scope:seller
+						}
+					}
 				}
+				multiply = 3
+			}
+			else_if = {
+				limit = {
+					scope:slave = {
+						is_close_or_extended_family_of = scope:seller
+					}
+				}
+				multiply = 2
 			}
 		}
-		add = -75
-	}
-	else_if = {
-		limit = {
-			scope:slave = {
-				is_close_or_extended_family_of = scope:seller
-			}
-		}
-		add = -50
-	}
-	else_if = {
-		limit = {
-			scope:slave = {
-				dynasty = scope:seller.dynasty
-			}
-		}
-		add = -25
 	}
 
 	# Claims (-50 if useful claims on neighbouring realms)
@@ -410,6 +433,24 @@ carnx_sell_slave_ai_accept_no_actor_value = {
 		add = -50
 	}
 
+	# Slavery crime (-100) or shunned by faith (-50)
+	if = {
+		limit = {
+			scope:buyer = {
+				carnx_is_slavery_crime_trigger = { CHARACTER = scope:slave }
+			}
+		}
+		add = -1000
+	}
+	if = {
+		limit = {
+			scope:buyer = {
+				carnx_is_slavery_shunned_trigger = { CHARACTER = scope:slave }
+			}
+		}
+		add = -50
+	}
+
 	# Lacking councillors, court physician, or knights (5 for each relevant skill above 12)
 	if = {
 		limit = {
@@ -418,7 +459,10 @@ carnx_sell_slave_ai_accept_no_actor_value = {
 				can_be_chancellor_trigger = { COURT_OWNER = scope:buyer }
 			}
 			scope:buyer = {
-				NOT = { exists = cp:councillor_chancellor }
+				OR = {
+					NOT = { exists = cp:councillor_chancellor }
+					cp:councillor_chancellor = { diplomacy < decent_skill_rating }
+				}
 			}
 		}
 		add = {
@@ -434,7 +478,10 @@ carnx_sell_slave_ai_accept_no_actor_value = {
 				can_be_marshal_trigger = { COURT_OWNER = scope:buyer }
 			}
 			scope:buyer = {
-				NOT = { exists = cp:councillor_marshal }
+				OR = {
+					NOT = { exists = cp:councillor_marshal }
+					cp:councillor_marshal = { martial < decent_skill_rating }
+				}
 			}
 		}
 		add = {
@@ -450,7 +497,10 @@ carnx_sell_slave_ai_accept_no_actor_value = {
 				can_be_steward_trigger = { COURT_OWNER = scope:buyer }
 			}
 			scope:buyer = {
-				NOT = { exists = cp:councillor_steward }
+				OR = {
+					NOT = { exists = cp:councillor_steward }
+					cp:councillor_steward = { stewardship < decent_skill_rating }
+				}
 			}
 		}
 		add = {
@@ -466,7 +516,10 @@ carnx_sell_slave_ai_accept_no_actor_value = {
 				can_be_spymaster_trigger = { COURT_OWNER = scope:buyer }
 			}
 			scope:buyer = {
-				NOT = { exists = cp:councillor_spymaster }
+				OR = {
+					NOT = { exists = cp:councillor_spymaster }
+					cp:councillor_spymaster = { intrigue < decent_skill_rating }
+				}
 			}
 		}
 		add = {
@@ -513,49 +566,48 @@ carnx_sell_slave_ai_accept_no_actor_value = {
 		}
 	}
 
-	# Family and relations (20 to 80 depending on how close the relation)
+	# Family and relations (-25 to -100 depending on how close the relation)
+	# Reluctant to buy family and relations, wants to ransom them instead
 	if = {
-		limit = {
-			scope:slave = {
-				OR = {
-					is_child_of = scope:buyer
-					has_relation_best_friend = scope:buyer
-					has_relation_soulmate = scope:buyer
+		limit = { carnx_is_family_or_positive_relation_trigger = { CHARACTER = scope:buyer } }
+		add = {
+			value = -25
+			if = {
+				limit = {
+					scope:slave = {
+						OR = {
+							is_child_of = scope:buyer
+							has_relation_best_friend = scope:buyer
+							has_relation_soulmate = scope:buyer
+						}
+					}
 				}
+				multiply = 4
 			}
-		}
-		add = 80
-	}
-	else_if = {
-		limit = {
-			scope:slave = {
-				OR = {
-					is_close_family_of = scope:buyer
-					has_relation_friend = scope:buyer
-					has_relation_lover = scope:buyer
-					has_secret_relation_lover = scope:buyer
-					has_relation_crush = scope:buyer
-					is_spouse_of = scope:buyer
+			else_if = {
+				limit = {
+					scope:slave = {
+						OR = {
+							is_close_family_of = scope:buyer
+							has_relation_friend = scope:buyer
+							has_relation_lover = scope:buyer
+							has_secret_relation_lover = scope:buyer
+							has_relation_crush = scope:buyer
+							is_spouse_of = scope:buyer
+						}
+					}
 				}
+				multiply = 3
+			}
+			else_if = {
+				limit = {
+					scope:slave = {
+						is_close_or_extended_family_of = scope:buyer
+					}
+				}
+				multiply = 2
 			}
 		}
-		add = 60
-	}
-	else_if = {
-		limit = {
-			scope:slave = {
-				is_close_or_extended_family_of = scope:buyer
-			}
-		}
-		add = 40
-	}
-	else_if = {
-		limit = {
-			scope:slave = {
-				dynasty = scope:buyer.dynasty
-			}
-		}
-		add = 20
 	}
 
 	# Claims (50 if useful claims on neighbouring realms)

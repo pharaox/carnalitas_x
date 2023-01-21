@@ -37,23 +37,8 @@
 			}
 			custom_description = {
 				text = "carn_slavery_is_illegal"
-				NOT = {
-					scope:actor.faith = {
-						has_doctrine = carn_doctrine_same_slavery_crime
-						faith_hostility_level = {
-							target = scope:recipient.faith
-							value < faith_hostile_level
-						}
-					}
-				}
-				NOT = {
-					scope:actor.faith = {
-						has_doctrine = carn_doctrine_other_slavery_crime
-						faith_hostility_level = {
-							target = scope:recipient.faith
-							value >= faith_hostile_level
-						}
-					}
+				scope:actor = {
+					NOT = { carnx_is_slavery_crime_trigger = { CHARACTER = scope:recipient } }
 				}
 			}
 		}
@@ -134,28 +119,14 @@
 			add = 50
 		}
 
-		# Slavery shunned by faith (-75)
+		# Slavery shunned by faith (-50)
 		modifier = {
-			OR = {
-				faith = {
-					has_doctrine = carn_doctrine_same_slavery_shunned
-					faith_hostility_level = {
-						target = scope:recipient.faith
-						value < faith_hostile_level
-					}
-				}
-				faith = {
-					has_doctrine = carn_doctrine_other_slavery_shunned
-					faith_hostility_level = {
-						target = scope:recipient.faith
-						value >= faith_hostile_level
-					}
-				}
-			}
-			add = -75
+			carnx_is_slavery_shunned_trigger = { CHARACTER = scope:recipient }
+			add = -50
 		}
 
 		# Family and relations (-50 to -200 depending on how close the relation)
+		# Reluctant to enslave family and relations
 		carnx_family_and_relations_modifier = {
 			RULER = scope:actor
 			SLAVE = scope:recipient
@@ -209,7 +180,7 @@
 		# Don't enslave if execute reason and recipient imprisoned for less than 2 years
 		# Prefer executing instead of enslaving if AI is up to it
 		modifier = {
-			carnx_execute_reason_trigger = yes
+			carnx_has_execute_reason_trigger = { CHARACTER = scope:recipient }
 			scope:recipient = {
 				time_in_prison = { years < 2 }
 			}

@@ -30,7 +30,15 @@
 					}
 					carnx_buy_slave_ai_accept_value > 0
 				}
-				add_to_list = characters
+				save_scope_as = slave
+				if = {
+					limit = {
+						scope:actor = {
+							NOT = { carnx_is_slavery_crime_trigger = { CHARACTER = scope:slave } }
+						}
+					}
+					add_to_list = characters
+				}
 			}
 		}
 	}
@@ -54,6 +62,9 @@
 			limit = { exists = scope:secondary_actor }
 			scope:secondary_actor = {
 				carn_slave_can_be_sold_trigger = yes
+			}
+			scope:actor = {
+				NOT = { carnx_is_slavery_crime_trigger = { CHARACTER = scope:secondary_actor } }
 			}
 		}
 	}

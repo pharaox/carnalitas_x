@@ -2,7 +2,7 @@
  # carn_buy_slave_directly_interaction (original)
 
  # carn_sell_slave_interaction (some original, some overriden)
- carn_sell_slave_interaction_desc: "Sell a [slave|E] for [gold|E]"
+ carnx_sell_slave_interaction_desc: "Sell a [slave|E] for [gold|E]"
  recipient_secondary_carn_sell_slave_interaction: "Slave"
 
  # carnx_buy_slaves_interaction (new)

@@ -5,7 +5,12 @@
 				diplomacy >= decent_skill_rating
 				can_be_chancellor_trigger = { COURT_OWNER = $RULER$ }
 			}
-			$RULER$ = { NOT = { exists = cp:councillor_chancellor } }
+			$RULER$ = {
+				OR = {
+					NOT = { exists = cp:councillor_chancellor }
+					cp:councillor_chancellor = { diplomacy < decent_skill_rating }
+				}
+			}
 		}
 		target = $SLAVE$
 		value = diplomacy
@@ -22,7 +27,12 @@
 				martial >= decent_skill_rating
 				can_be_marshal_trigger = { COURT_OWNER = $RULER$ }
 			}
-			$RULER$ = { NOT = { exists = cp:councillor_marshal } }
+			$RULER$ = {
+				OR = {
+					NOT = { exists = cp:councillor_marshal }
+					cp:councillor_marshal = { martial < decent_skill_rating }
+				}
+			}
 		}
 		target = $SLAVE$
 		value = martial
@@ -39,7 +49,12 @@
 				stewardship >= decent_skill_rating
 				can_be_steward_trigger = { COURT_OWNER = $RULER$ }
 			}
-			$RULER$ = { NOT = { exists = cp:councillor_steward } }
+			$RULER$ = {
+				OR = {
+					NOT = { exists = cp:councillor_steward }
+					cp:councillor_steward = { stewardship < decent_skill_rating }
+				}
+			}
 		}
 		target = $SLAVE$
 		value = stewardship
@@ -56,7 +71,12 @@
 				intrigue >= decent_skill_rating
 				can_be_spymaster_trigger = { COURT_OWNER = $RULER$ }
 			}
-			$RULER$ = { NOT = { exists = cp:councillor_spymaster } }
+			$RULER$ = {
+				OR = {
+					NOT = { exists = cp:councillor_spymaster }
+					cp:councillor_spymaster = { intrigue < decent_skill_rating }
+				}
+			}
 		}
 		target = $SLAVE$
 		value = intrigue
@@ -119,17 +139,7 @@ carnx_lacking_knights_modifier = {
 carnx_family_and_relations_modifier = {
 	modifier = {
 		$SLAVE$ = {
-			OR = {
-				has_relation_best_friend = $RULER$
-				has_relation_soulmate = $RULER$
-				has_relation_friend = $RULER$
-				has_relation_lover = $RULER$
-				has_secret_relation_lover = $RULER$
-				has_relation_crush = $RULER$
-				is_spouse_of = $RULER$
-				is_close_or_extended_family_of = $RULER$
-				dynasty = $RULER$.dynasty
-			}
+			carnx_is_family_or_positive_relation_trigger = { CHARACTER = $RULER$ }
 		}
 		add = {
 			value = $SCALE$

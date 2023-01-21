@@ -31,7 +31,15 @@
 				limit = {
 					carn_slave_can_be_sold_trigger = yes
 				}
-				add_to_list = characters
+				save_scope_as = slave
+				if = {
+					limit = {
+						scope:actor = {
+							NOT = { carnx_is_slavery_crime_trigger = { CHARACTER = scope:slave } }
+						}
+					}
+					add_to_list = characters
+				}
 			}
 		}
 	}
@@ -62,6 +70,12 @@
 			limit = { exists = scope:secondary_recipient }
 			scope:secondary_recipient = {
 				carn_slave_can_be_sold_trigger = yes
+				custom_description = {
+					text = "carn_slavery_is_illegal"
+					scope:actor = {
+						NOT = { carnx_is_slavery_crime_trigger = { CHARACTER = scope:secondary_recipient } }
+					}
+				}
 			}
 		}
 	}
@@ -85,6 +99,24 @@
 			desc = "GOLD_POSITIVE_REASON"
 		}
 
+		# Slavery crime (100) or shunned by faith (0)
+		modifier = {
+			carnx_is_slavery_crime_trigger = { CHARACTER = scope:secondary_recipient }
+			scope:secondary_recipient = {
+				NOT = { carnx_is_family_or_positive_relation_trigger = { CHARACTER = scope:recipient } }
+			}
+			add = 100
+			desc = carn_enslave_crime_in_recipient_faith
+		}
+		modifier = {
+			carnx_is_slavery_shunned_trigger = { CHARACTER = scope:secondary_recipient }
+			scope:secondary_recipient = {
+				NOT = { carnx_is_family_or_positive_relation_trigger = { CHARACTER = scope:recipient } }
+			}
+			add = 0
+			desc = carn_enslave_shunned_in_recipient_faith
+		}
+
 		# Employed as councillor (-50), court position, knight / commander, or in some other way (-25)
 		carnx_employed_modifier = {
 			RULER = scope:recipient
@@ -93,6 +125,7 @@
 		}
 
 		# Family and relations (-25 to -100 depending on how close the relation)
+		# Reluctant to sell family and relations, wants to free them instead
 		carnx_family_and_relations_modifier = {
 			RULER = scope:recipient
 			SLAVE = scope:secondary_recipient
@@ -177,6 +210,12 @@
 			add = -50
 		}
 
+		# Slavery shunned by faith (-50)
+		modifier = {
+			carnx_is_slavery_shunned_trigger = { CHARACTER = scope:secondary_recipient }
+			add = -50
+		}
+
 		# Lacking councillors, court physician, or knights (5 for each relevant skill above 12)
 		carnx_lacking_councillors_modifier = {
 			RULER = scope:actor
@@ -194,11 +233,12 @@
 			SCALE = 5
 		}
 
-		# Family and relations (20 to 80 depending on how close the relation)
+		# Family and relations (-25 to -100 depending on how close the relation)
+		# Reluctant to buy family and relations, wants to ransom them instead
 		carnx_family_and_relations_modifier = {
 			RULER = scope:actor
 			SLAVE = scope:secondary_recipient
-			SCALE = 20
+			SCALE = -25
 		}
 
 		# Claims (50 if useful claims on neighbouring realms)
