@@ -142,6 +142,7 @@
 				add = 1
 				multiply = scope:recipient.carnx_slave_base_price_value
 				divide = 2
+				max = 100
 			}
 		}
 

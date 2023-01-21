@@ -36,20 +36,12 @@
 				type = slave_owner
 				exists = this
 			}
-			NOR = {
-				has_character_flag = carn_slave_cannot_be_freed
-				has_trait_with_flag = carn_slave_cannot_be_freed
-			}
+			carnx_slave_can_be_freed_trigger = yes
 		}
 	}
 
 	is_valid_showing_failures_only = {
-		scope:recipient = {
-			custom_description = {
-				text = "currently_being_tortured"
-				NOT = { has_character_flag = is_being_tortured }
-			}
-		}
+		always = yes
 	}
 
 	on_accept = {
@@ -60,7 +52,7 @@
 		}
 	}
 
-	# Ask recipient to pay their full ask price
+	# Ask recipient to pay the full price
 	send_option = {
 		flag = gold
 		localization = "RANSOM_GOLD_OPTION"
@@ -201,32 +193,6 @@
 			desc = "WANTS_FREEDOM_REASON"
 		}
 
-		# Asked for gold
-		modifier = { # Greedy characters can have their greed get the better of them...
-			OR = {
-				scope:gold = yes
-				scope:current_gold = yes
-			}
-			scope:recipient.ai_greed >= medium_positive_ai_value
-			add = {
-				value = scope:recipient.ai_greed
-				multiply = -0.5
-			}
-			desc = AI_VALUE_MODIFIER_GREED
-		}
-		modifier = { # Generous characters are more willing to pay
-			OR = {
-				scope:gold = yes
-				scope:current_gold = yes
-			}
-			scope:recipient.ai_greed <= medium_negative_ai_value
-			add = {
-				value = scope:recipient.ai_greed
-				multiply = -0.1
-			}
-			desc = AI_VALUE_MODIFIER_GENEROUS
-		}
-
 		# Demanded conversion (-20 to -100 for astray faith, -180 for hostile faith depending on ai_zeal)
 		modifier = {
 			scope:demand_conversion = yes
@@ -300,34 +266,7 @@
 			desc = "GAIN_HOOK_NEGATIVE_REASON"
 		}
 
-		# Opinion of owner (-25 to 25 depending on opinion)
-		opinion_modifier = {
-			trigger = {
-				NOT = { scope:actor = scope:recipient }
-			}
-			who = scope:recipient
-			opinion_target = scope:actor
-			multiplier = 0.25
-			desc = AI_OPINION_REASON
-		}
-
-		# Avoid doing business with rivals or nemesises
-		modifier = {
-			scope:recipient = {
-				has_relation_rival = scope:actor
-			}
-			add = -100
-			desc = "ACTOR_RIVAL_TO_ME_REASON"
-		}
-		modifier = {
-			scope:recipient = {
-				has_relation_nemesis = scope:actor
-			}
-			add = -200
-			desc = "ACTOR_NEMESIS_TO_ME_REASON"
-		}
-
-		# Intimidated or cowed by owner (10 or 20)
+		# Intimidated or cowed by actor (10 or 20)
 		modifier = {
 			scope:recipient = {
 				has_dread_level_towards = {
@@ -354,7 +293,7 @@
 		ai_recipients = courtiers
 	}
 
-	ai_frequency = 12
+	ai_frequency = 24
 
 	ai_potential = {
 		always = yes
@@ -399,14 +338,13 @@
 			ai_compassion = 0.5
 		}
 
-		# Greed (0 to -Price depending on greed)
+		# Greed (0 to -50 depending on greed)
 		modifier = {
 			add = {
 				value = ai_greed
-				multiply = 0.01
+				multiply = -0.01
 				add = -1
-				multiply = scope:recipient.carnx_slave_base_price_value
-				divide = 2
+				multiply = 25
 			}
 		}
 
@@ -417,10 +355,10 @@
 			add = 25
 		}
 
-		# Slavery crime (1000) or shunned by faith (25)
+		# Slavery crime (50) or shunned by faith (25)
 		modifier = {
 			carnx_is_slavery_crime_trigger = { CHARACTER = scope:recipient }
-			add = 1000
+			add = 50
 		}
 		modifier = {
 			carnx_is_slavery_shunned_trigger = { CHARACTER = scope:recipient }

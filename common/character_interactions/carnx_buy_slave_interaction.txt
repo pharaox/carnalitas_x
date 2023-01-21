@@ -99,24 +99,6 @@
 			desc = "GOLD_POSITIVE_REASON"
 		}
 
-		# Slavery crime (100) or shunned by faith (0)
-		modifier = {
-			carnx_is_slavery_crime_trigger = { CHARACTER = scope:secondary_recipient }
-			scope:secondary_recipient = {
-				NOT = { carnx_is_family_or_positive_relation_trigger = { CHARACTER = scope:recipient } }
-			}
-			add = 100
-			desc = carn_enslave_crime_in_recipient_faith
-		}
-		modifier = {
-			carnx_is_slavery_shunned_trigger = { CHARACTER = scope:secondary_recipient }
-			scope:secondary_recipient = {
-				NOT = { carnx_is_family_or_positive_relation_trigger = { CHARACTER = scope:recipient } }
-			}
-			add = 0
-			desc = carn_enslave_shunned_in_recipient_faith
-		}
-
 		# Employed as councillor (-50), court position, knight / commander, or in some other way (-25)
 		carnx_employed_modifier = {
 			RULER = scope:recipient

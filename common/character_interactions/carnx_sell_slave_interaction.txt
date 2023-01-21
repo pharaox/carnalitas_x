@@ -45,12 +45,6 @@
 		scope:recipient = {
 			carn_candidate_to_sell_slave_to_trigger = yes
 		}
-		trigger_if = {
-			limit = { exists = scope:secondary_recipient }
-			scope:secondary_recipient = {
-				carn_slave_can_be_sold_trigger = yes
-			}
-		}
 	}
 
 	on_accept = {
@@ -183,25 +177,9 @@
 	ai_will_do = {
 		base = 50
 
-		# Slavery crime (100) or shunned by faith (0)
-		modifier = {
-			carnx_is_slavery_crime_trigger = { CHARACTER = scope:secondary_recipient }
-			scope:secondary_recipient = {
-				NOT = { carnx_is_family_or_positive_relation_trigger = { CHARACTER = scope:recipient } }
-			}
-			add = 100
-		}
-		modifier = {
-			carnx_is_slavery_shunned_trigger = { CHARACTER = scope:secondary_recipient }
-			scope:secondary_recipient = {
-				NOT = { carnx_is_family_or_positive_relation_trigger = { CHARACTER = scope:recipient } }
-			}
-			add = 0
-		}
-
 		# Employed as councillor (-50), court position, knight / commander, or in some other way (-25)
 		carnx_employed_modifier = {
-			RULER = scope:recipient
+			RULER = scope:actor
 			SLAVE = scope:secondary_recipient
 			SCALE = -25
 		}
@@ -209,21 +187,21 @@
 		# Family and relations (-25 to -100 depending on how close the relation)
 		# Reluctant to sell family and relations, wants to free them instead
 		carnx_family_and_relations_modifier = {
-			RULER = scope:recipient
+			RULER = scope:actor
 			SLAVE = scope:secondary_recipient
 			SCALE = -25
 		}
 
 		# Claims (-50 if useful claims on neighbouring realms)
 		carnx_claims_modifier = {
-			RULER = scope:recipient
+			RULER = scope:actor
 			SLAVE = scope:secondary_recipient
 			SCALE = -50
 		}
 
 		# Attraction (0 to -50 depending on attraction, doubled for lustful, halved for chaste)
 		carnx_attraction_modifier = {
-			RULER = scope:recipient
+			RULER = scope:actor
 			SLAVE = scope:secondary_recipient
 			SCALE = -50
 		}

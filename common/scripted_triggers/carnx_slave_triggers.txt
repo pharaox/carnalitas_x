@@ -2,9 +2,21 @@
 	is_ai = yes
 	NOT = { this = scope:actor }
 	highest_held_title_tier >= tier_county
+	is_diplomatically_available = yes
 	in_diplomatic_range = scope:actor
 	NOT = { is_at_war_with = scope:actor }
 	is_imprisoned = no
+}
+
+carnx_slave_can_be_freed_trigger = {
+	NOR = {
+		has_character_flag = carn_slave_cannot_be_freed
+		has_trait_with_flag = carn_slave_cannot_be_freed
+	}
+	trigger_if = {
+		limit = { exists = imprisoner }
+		has_relation_slave_owner = imprisoner
+	}
 }
 
 carnx_buy_sell_slave_recipient_trigger = {

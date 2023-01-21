@@ -225,30 +225,6 @@ carnx_buy_slave_ai_accept_no_actor_value = {
 	save_temporary_scope_as = slave
 	value = 50
 
-	# Slavery crime (100) or shunned by faith (0)
-	if = {
-		limit = {
-			scope:seller = {
-				carnx_is_slavery_crime_trigger = { CHARACTER = scope:slave }
-			}
-			scope:slave = {
-				NOT = { carnx_is_family_or_positive_relation_trigger = { CHARACTER = scope:seller } }
-			}
-		}
-		add = 100
-	}
-	if = {
-		limit = {
-			scope:seller = {
-				carnx_is_slavery_shunned_trigger = { CHARACTER = scope:slave }
-			}
-			scope:slave = {
-				NOT = { carnx_is_family_or_positive_relation_trigger = { CHARACTER = scope:seller } }
-			}
-		}
-		add = 0
-	}
-
 	# Employed as councillor (-50), court position, knight / commander, or in some other way (-25)
 	if = {
 		limit = {
