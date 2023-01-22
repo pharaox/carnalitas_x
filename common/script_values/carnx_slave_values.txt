@@ -268,7 +268,11 @@ carnx_buy_slave_ai_accept_no_actor_value = {
 	# Family and relations (-25 to -100 depending on how close the relation)
 	# Reluctant to sell family and relations, wants to free them instead
 	if = {
-		limit = { carnx_is_family_or_positive_relation_trigger = { CHARACTER = scope:seller } }
+		limit = {
+			scope:slave = {
+				carnx_is_family_or_positive_relation_trigger = { CHARACTER = scope:seller }
+			}
+		}
 		add = {
 			value = -25
 			if = {
@@ -545,7 +549,11 @@ carnx_sell_slave_ai_accept_no_actor_value = {
 	# Family and relations (-25 to -100 depending on how close the relation)
 	# Reluctant to buy family and relations, wants to ransom them instead
 	if = {
-		limit = { carnx_is_family_or_positive_relation_trigger = { CHARACTER = scope:buyer } }
+		limit = {
+			scope:slave = {
+				carnx_is_family_or_positive_relation_trigger = { CHARACTER = scope:buyer }
+			}
+		}
 		add = {
 			value = -25
 			if = {
@@ -609,16 +617,14 @@ carnx_sell_slave_ai_accept_no_actor_value = {
 		add = {
 			value = scope:slave.attraction
 			divide = high_positive_attraction
+			multiply = 50
 			if = {
 				limit = { scope:buyer = { has_trait = lustful } }
-				multiply = 100
+				multiply = 2
 			}
 			else_if = {
 				limit = { scope:buyer = { has_trait = chaste } }
-				multiply = 25
-			}
-			else = {
-				multiply = 50
+				multiply = 0.5
 			}
 		}
 	}
