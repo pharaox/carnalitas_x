@@ -395,8 +395,6 @@
 		# Don't give away slaves for free
 		modifier = {
 			NOR = {
-				scope:extortionate_gold = yes
-				scope:extortionate_current_gold = yes
 				scope:gold = yes
 				scope:current_gold = yes
 				scope:favor = yes
