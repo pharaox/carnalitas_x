@@ -8,9 +8,6 @@
 	greeting = positive
 	send_name = carnx_sell_slaves_interaction
 
-	ai_min_reply_days = 0
-	ai_max_reply_days = 0
-
 	redirect = {
 		if = {
 			limit = { NOT = { scope:actor = scope:recipient } }

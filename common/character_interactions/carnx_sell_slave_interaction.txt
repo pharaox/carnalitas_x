@@ -8,9 +8,6 @@
 	greeting = positive
 	send_name = carn_sell_slave_interaction
 
-	ai_min_reply_days = 0
-	ai_max_reply_days = 0
-
 	populate_recipient_list = {
 		scope:actor = {
 			every_relation = {

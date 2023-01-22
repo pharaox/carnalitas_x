@@ -229,7 +229,7 @@ carn_enslave_effect = {
 					type = event_generic_neutral
 					title = carn_msg_enslave
 					right_icon = scope:new_slave
-					custom_tooltip = carn_msg_scope_new_slave_becomes_your_slave_desc
+					custom_tooltip = carnx_msg_enslaved_slave_desc
 				}
 			}
 
@@ -777,7 +777,7 @@ carn_free_slave_interaction_effect = {
 				type = event_generic_neutral
 				title = carn_msg_slave_freed
 				right_icon = scope:slave
-				custom_tooltip = carn_msg_scope_slave_is_no_longer_your_slave_desc
+				custom_tooltip = carnx_msg_freed_slave_desc
 			}
 		}
 	}
@@ -863,6 +863,16 @@ carnx_ransom_slave_interaction_effect = {
 				}
 			}
 		}
+
+		hidden_effect = {
+			send_interface_message = {
+				type = event_generic_neutral
+				title = carnx_msg_slave_ransomed
+				left_icon = scope:slave
+				right_icon = scope:owner
+				custom_tooltip = carnx_msg_ransomed_slave_from_owner_desc
+			}
+		}
 	}
 
 	scope:owner = {
@@ -870,8 +880,8 @@ carnx_ransom_slave_interaction_effect = {
 			send_interface_message = {
 				type = event_generic_neutral
 				title = carnx_msg_slave_ransomed
-				right_icon = scope:payer
 				left_icon = scope:slave
+				right_icon = scope:payer
 				custom_tooltip = carnx_msg_slave_ransomed_by_payer_desc
 			}
 		}
@@ -934,9 +944,10 @@ carn_buy_slave_effect = {
 			}
 			send_interface_message = {
 				type = event_generic_neutral
-				title = carn_msg_enslave
-				right_icon = scope:slave
-				custom_tooltip = carn_msg_scope_slave_becomes_your_slave_desc
+				title = carnx_msg_slave_bought
+				left_icon = scope:slave
+				right_icon = scope:seller
+				custom_tooltip = carnx_msg_bought_slave_from_seller_desc
 			}
 		}
 	}
@@ -944,9 +955,10 @@ carn_buy_slave_effect = {
 		hidden_effect = {
 			send_interface_message = {
 				type = event_generic_neutral
-				title = carn_msg_slave_sold
-				right_icon = scope:slave
-				custom_tooltip = carn_msg_scope_slave_is_no_longer_your_slave_desc
+				title = carnx_msg_slave_sold
+				left_icon = scope:slave
+				right_icon = scope:buyer
+				custom_tooltip = carnx_msg_sold_slave_to_buyer_desc
 			}
 		}
 	}

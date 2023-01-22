@@ -8,9 +8,6 @@
 	greeting = positive
 	send_name = carnx_buy_slaves_interaction
 
-	ai_min_reply_days = 0
-	ai_max_reply_days = 0
-
 	populate_actor_list = {
 		scope:actor = {
 			carnx_get_potential_buyers_or_sellers_effect = { LIST = potential_sellers }
