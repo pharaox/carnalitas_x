@@ -676,6 +676,60 @@ carnx_sell_slave_ai_accept_value = {
 	}
 }
 
+carnx_slave_ransom_cost_value = {
+	value = 0
+
+	# TODO Use define:NImprisonment|RANSOM_COST_BY_TIER if possible
+	scope:recipient = {
+		if = {
+			limit = { highest_held_title_tier = tier_empire }
+			add = 500
+		}
+		else_if = {
+			limit = { highest_held_title_tier = tier_kingdom }
+			add = 200
+		}
+		else_if = {
+			limit = { highest_held_title_tier = tier_duchy }
+			add = 100
+		}
+		else_if = {
+			limit = { highest_held_title_tier = tier_county }
+			add = 50
+		}
+		else_if = {
+			limit = { highest_held_title_tier = tier_barony }
+			add = 30
+		}
+		else = {
+			add = 20
+		}
+	}
+
+	if = {
+		limit = { is_primary_heir_of = scope:recipient }
+		multiply = define:NImprisonment|RANSOM_MULTIPLIER_PRIMARY_HEIR
+	}
+	else_if = {
+		limit = { is_spouse_of = scope:recipient }
+		multiply = define:NImprisonment|RANSOM_MULTIPLIER_SPOUSE
+	}
+	else_if = {
+		limit = { is_close_family_of = scope:recipient }
+		multiply = define:NImprisonment|RANSOM_MULTIPLIER_CLOSE_FAMILY
+	}
+	else = {
+		multiply = define:NImprisonment|RANSOM_MULTIPLIER_OTHER
+	}
+
+	min = define:NImprisonment|RANSOM_MIN_COST
+
+	# Round up to the closest number divisible by RANSOM_ROUNDED_TO
+	divide = define:NImprisonment|RANSOM_ROUNDED_TO
+	ceiling = yes
+	multiply = define:NImprisonment|RANSOM_ROUNDED_TO
+}
+
 carnx_enslave_tyranny_gain = {
 	value = carnx_enslave_basic_tyranny_gain
 	if = {

@@ -8,6 +8,15 @@
 	is_imprisoned = no
 }
 
+carnx_candidate_to_ransom_slave_trigger = {
+	NOT = { this = scope:actor }
+	highest_held_title_tier >= tier_county
+	is_diplomatically_available = yes
+	in_diplomatic_range = scope:actor
+	NOT = { is_at_war_with = scope:actor }
+	is_imprisoned = no
+}
+
 carnx_slave_can_be_freed_trigger = {
 	NOR = {
 		has_character_flag = carn_slave_cannot_be_freed
@@ -115,10 +124,6 @@ carnx_is_family_or_positive_relation_trigger = {
 		has_relation_rival = $CHARACTER$
 		has_relation_nemesis = $CHARACTER$
 	}
-	reverse_opinion = {
-		target = $CHARACTER$
-		value >= 0
-	}
 }
 
 # Is owning slaves of $CHARACTER$'s faith shunned according to the scoped character's faith.
@@ -167,5 +172,5 @@ carnx_enable_nudity = {
 }
 
 is_diplomatically_available = {
-	always = yes # TODO
+	is_busy_in_events_localised = yes
 }

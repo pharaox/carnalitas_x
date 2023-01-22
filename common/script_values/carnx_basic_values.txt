@@ -2,6 +2,7 @@
 carnx_enslave_ai_will_do_base = -10		# slightly reluctant to enslave
 carnx_free_slave_ai_will_do_base = 10	# slightly willing to free
 carnx_seize_slave_ai_will_do_base = 25	# quite willing to seize
+carnx_ransom_slave_ai_will_do_base = 0
 
 # Multiplier for the opinion modifier affecting ai willingness to buy and sell slaves
 carnx_buy_sell_slave_opinion_multiplier = 0.12

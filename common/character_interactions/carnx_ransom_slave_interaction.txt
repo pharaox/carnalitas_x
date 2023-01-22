@@ -1,0 +1,417 @@
+﻿carnx_ransom_slave_interaction = {
+	category = interaction_category_prison
+	desc = carnx_ransom_slave_interaction_desc
+	interface_priority = 50
+	common_interaction = yes
+	#special_interaction = ransom_interaction
+	needs_recipient_to_open = yes
+
+	send_name = carnx_ransom_slave_interaction
+
+	notification_text = OFFER_RANSOM_PROPOSAL
+
+	populate_recipient_list = {
+		scope:actor = {
+			every_relation = {
+				type = slave
+				limit = {
+					carnx_slave_can_be_freed_trigger = yes
+					carnx_is_family_or_positive_relation_trigger = { CHARACTER = scope:recipient }
+				}
+				add_to_list = characters
+			}
+		}
+	}
+
+	is_shown = {
+		NOT = { has_game_rule = carn_slavery_content_disabled }
+		NOT = { scope:actor = scope:recipient }
+		scope:recipient = {
+			is_ruler = yes
+		}
+		scope:actor = {
+			any_relation = {
+				type = slave
+				carnx_slave_can_be_freed_trigger = yes
+				carnx_is_family_or_positive_relation_trigger = { CHARACTER = scope:recipient }
+			}
+		}
+	}
+
+	is_valid_showing_failures_only = {
+		scope:recipient = {
+			carnx_candidate_to_ransom_slave_trigger = yes
+		}
+	}
+
+	on_accept = {
+		scope:actor = { save_scope_as = owner }
+		scope:secondary_recipient = { save_scope_as = slave }
+		scope:recipient = { save_scope_as = payer }
+		carnx_ransom_slave_interaction_effect = yes
+	}
+
+	on_decline = {
+		# If a player declines this ransom offer, wait 10 years before sending another one
+		if = {
+			limit = { scope:recipient = { is_ai = no } }
+			scope:secondary_recipient = {
+				add_character_flag = {
+					flag = character_ransom_refused_by_player
+					years = 10
+				}
+			}
+		}
+
+		# Trigger notification event
+		scope:actor = {
+			trigger_event = char_interaction.0131
+		}
+	}
+
+	# Ask recipient to pay the full price
+	send_option = {
+		flag = gold
+		localization = "RANSOM_GOLD_OPTION"
+		is_shown = {
+			exists = scope:secondary_recipient
+			trigger_if = {
+				limit = { exists = scope:secondary_recipient }
+				scope:recipient = {
+					gold >= scope:secondary_recipient.carnx_slave_ransom_cost_value
+				}
+			}
+		}
+		starts_enabled = { always = yes }
+	}
+
+	# Ask recipient to pay what they have
+	send_option = {
+		flag = current_gold
+		localization = "RANSOM_CURRENT_GOLD_OPTION"
+		is_shown = {
+			exists = scope:secondary_recipient
+			trigger_if = {
+				limit = { exists = scope:secondary_recipient }
+				scope:recipient = {
+					gold < scope:secondary_recipient.carnx_slave_ransom_cost_value
+					gold > 0
+				}
+			}
+		}
+	}
+
+	# Ask recipient for a favor
+	send_option = {
+		flag = favor
+		localization = "RANSOM_FAVOR_OPTION"
+		is_shown = {
+			exists = scope:secondary_recipient
+		}
+		is_valid = {
+			scope:actor = {
+				can_add_hook = {
+					target = scope:recipient
+					type = favor_hook
+				}
+			}
+		}
+	}
+
+	send_options_exclusive = yes
+
+	localization_values = {
+		RANSOM_COST = scope:secondary_recipient.carnx_slave_ransom_cost_value
+		CURRENT_GOLD = scope:recipient.gold
+	}
+
+	auto_accept = no
+
+	ai_accept = {
+		base = 0
+
+		# Asked for gold (-25, modified by greed)
+		modifier = {
+			OR = {
+				scope:gold = yes
+				scope:current_gold = yes
+			}
+			add = -25
+			desc = "GOLD_NEGATIVE_REASON"
+		}
+		modifier = { # Greedy characters can have their greed get the better of them...
+			OR = {
+				scope:gold = yes
+				scope:current_gold = yes
+			}
+			scope:recipient.ai_greed >= medium_positive_ai_value
+			add = {
+				value = scope:recipient.ai_greed
+				multiply = -0.5
+			}
+			desc = AI_VALUE_MODIFIER_GREED
+		}
+		modifier = { # Generous characters are more willing to pay
+			OR = {
+				scope:gold = yes
+				scope:current_gold = yes
+			}
+			scope:recipient.ai_greed <= medium_negative_ai_value
+			add = {
+				value = scope:recipient.ai_greed
+				multiply = -0.1
+			}
+			desc = AI_VALUE_MODIFIER_GENEROUS
+		}
+
+		# Asked for a favor (-50)
+		modifier = {
+			scope:favor = yes
+			add = -50
+			desc = "GAIN_HOOK_NEGATIVE_REASON"
+		}
+
+		# Family and relations (12 to 48 depending on how close the relation)
+		# Soulmates / best friends / children get an aditional boon (100)
+		# These modifiers approximately match the ones in ransom_interaction
+		carnx_family_and_relations_modifier = {
+			RULER = scope:recipient
+			SLAVE = scope:secondary_recipient
+			SCALE = 12
+		}
+		modifier = { # Massive acceptance boon for Soulmates and Best Friends
+			scope:recipient = {
+				OR = {
+					is_parent_of = scope:secondary_recipient
+					has_relation_best_friend = scope:secondary_recipient
+					has_relation_soulmate = scope:secondary_recipient
+				}
+			}
+			add = 100
+			desc = "DEAR_TO_ME_REASON"
+		}
+
+		# Opinion of slave (-25 to 25 depending on opinion)
+		opinion_modifier = {
+			trigger = {
+				NOT = { scope:recipient = scope:secondary_recipient }
+			}
+			opinion_target = scope:secondary_recipient
+			multiplier = 0.25
+			desc = AI_OPINION_REASON
+		}
+
+		# Avoid ransoming rivals or nemesises
+		modifier = {
+			scope:recipient = {
+				has_relation_rival = scope:secondary_recipient
+			}
+			add = -100
+			desc = "RIVAL_TO_ME_REASON"
+		}
+		modifier = {
+			scope:recipient = {
+				has_relation_nemesis = scope:secondary_recipient
+			}
+			add = -200
+			desc = "NEMESIS_TO_ME_REASON"
+		}
+
+		# Avoid doing business with rivals or nemesises
+		modifier = {
+			scope:recipient = {
+				has_relation_rival = scope:actor
+			}
+			add = -100
+			desc = "ACTOR_RIVAL_TO_ME_REASON"
+		}
+		modifier = {
+			scope:recipient = {
+				has_relation_nemesis = scope:actor
+			}
+			add = -200
+			desc = "ACTOR_NEMESIS_TO_ME_REASON"
+		}
+
+		# Intimidated or cowed by actor (10 or 20)
+		modifier = {
+			scope:recipient = {
+				target_is_liege_or_above = scope:actor
+				has_dread_level_towards = {
+					target = scope:actor
+					level = 1
+				}
+			}
+			add = intimidated_external_reason_value
+			desc = INTIMIDATED_REASON
+		}
+		modifier = {
+			scope:recipient = {
+				target_is_liege_or_above = scope:actor
+				has_dread_level_towards = {
+					target = scope:actor
+					level = 2
+				}
+			}
+			add = cowed_external_reason_value
+			desc = COWED_REASON
+		}
+	}
+
+	ai_targets = {
+		ai_recipients = realm_characters
+		ai_recipients = neighboring_rulers
+	}
+
+	ai_frequency = 12
+
+	ai_potential = {
+		always = yes
+	}
+
+	ai_will_do = {
+		base = 0
+		modifier = {
+			add = carnx_ransom_slave_ai_will_do_base
+		}
+
+		# Options
+		modifier = {
+			scope:gold = yes
+			add = 50
+		}
+		modifier = {
+			scope:current_gold = yes
+			scope:recipient.gold >= 25
+			add = 25
+		}
+		modifier = {
+			scope:favor = yes
+			add = 50
+			scope:recipient = {
+				OR = {
+					is_vassal_of = scope:actor
+					AND = {
+						exists = liege
+						liege = scope:actor
+					}
+				}
+			}
+		}
+
+		# Opinion of slave (-25 to 25 depending on opinion)
+		opinion_modifier = {
+			trigger = {
+				NOT = { scope:actor = scope:secondary_recipient }
+			}
+			opinion_target = scope:secondary_recipient
+			multiplier = 0.25
+		}
+
+		# Compassion (-50 to 50 depending on compassion)
+		ai_value_modifier = {
+			ai_compassion = 0.5
+		}
+
+		# Greed (0 to -50 depending on greed)
+		modifier = {
+			add = {
+				value = ai_greed
+				multiply = -0.01
+				add = -1
+				multiply = 25
+			}
+		}
+
+		# Child (25 if child and compassionate)
+		modifier = {
+			ai_compassion >= low_positive_ai_value
+			scope:secondary_recipient = { is_adult = no }
+			add = 25
+		}
+
+		# Slavery crime (50) or shunned by faith (25)
+		modifier = {
+			carnx_is_slavery_crime_trigger = { CHARACTER = scope:secondary_recipient }
+			add = 50
+		}
+		modifier = {
+			carnx_is_slavery_shunned_trigger = { CHARACTER = scope:secondary_recipient }
+			add = 25
+		}
+
+		# Family and relations (-25 to -100 depending on how close the relation)
+		# Reluctant to ransom family and relations, prefers to free them instead
+		carnx_family_and_relations_modifier = {
+			RULER = scope:actor
+			SLAVE = scope:secondary_recipient
+			SCALE = -25
+		}
+
+		# Employed as councillor (-24), court position, knight / commander, or in some other way (-12)
+		carnx_employed_modifier = {
+			RULER = scope:actor
+			SLAVE = scope:secondary_recipient
+			SCALE = -12
+		}
+
+		# Claims (-25 if useful claims on neighbouring realms)
+		carnx_claims_modifier = {
+			RULER = scope:actor
+			SLAVE = scope:secondary_recipient
+			SCALE = -25
+		}
+
+		# Attraction (0 to -25 depending on attraction, doubled for lustful, halved for chaste)
+		carnx_attraction_modifier = {
+			RULER = scope:actor
+			SLAVE = scope:secondary_recipient
+			SCALE = -25
+		}
+
+		# Female (-25 if a visibly fertile female)
+		carnx_female_modifier = {
+			SLAVE = scope:secondary_recipient
+			SCALE = -25
+		}
+
+		# Execute reason, rival, cheating spouse (-75) or nemesis (-150)
+		carnx_execute_reason_modifier = {
+			RULER = scope:actor
+			SLAVE = scope:secondary_recipient
+			SCALE = -75
+		}
+
+		# Avoid doing business with rivals or nemesises
+		modifier = {
+			has_relation_rival = scope:recipient
+			add = -100
+		}
+		modifier = {
+			has_relation_nemesis = scope:recipient
+			add = -200
+		}
+
+		# Don't give away slaves for free
+		modifier = {
+			NOR = {
+				scope:extortionate_gold = yes
+				scope:extortionate_current_gold = yes
+				scope:gold = yes
+				scope:current_gold = yes
+				scope:favor = yes
+			}
+			factor = 0
+		}
+
+		# Don't annoy players
+		modifier = {
+			scope:recipient = { is_ai = no }
+			OR = {
+				scope:recipient = { is_at_war = yes }
+				scope:secondary_recipient = { has_character_flag = character_ransom_refused_by_player }
+			}
+			factor = 0
+		}
+	}
+}

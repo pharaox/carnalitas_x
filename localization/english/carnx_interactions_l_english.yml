@@ -23,6 +23,11 @@
 
  # carn_seize_slave_interaction (original)
 
+ # carnx_ransom_slave_interaction
+ carnx_ransom_slave_interaction: "Ransom Slave"
+ carnx_ransom_slave_interaction_desc: "Ransom a [slave|E] by a relative"
+ recipient_secondary_carnx_ransom_slave_interaction: "Slave"
+
  carnx_secondary_recipient_has_court_position_reason: "[secondary_recipient.GetShortUIName|U] holds a [court|E] position: $VALUE|=+0$"
  carnx_secondary_recipient_has_important_role_reason: "[secondary_recipient.GetShortUIName|U] has is an educator or being educated: $VALUE|=+0$"
  carnx_secondary_recepient_claims_reason: "[secondary_recipient.GetShortUIName|U] has claims that are useful to [recipient.GetShortUIName|U]: $VALUE|=+0$"
@@ -35,3 +40,6 @@
  carnx_lacking_court_physician_reason: "[recipient.GetShortUIName|U] is lacking a court physician: $VALUE|=+0$"
  carnx_lacking_knights_reason: "[recipient.GetShortUIName|U] is lacking knights: $VALUE|=+0$"
  carnx_not_enough_gold_reason: "[actor.GetShortUIName|U] can't afford the price: $VALUE|=+0$"
+
+ carnx_msg_slave_ransomed: "Slave Ransomed"
+ carnx_msg_slave_ransomed_by_payer_desc: "[slave.GetTitledFirstName] has been ransomed by [payer.GetTitledFirstName]"
