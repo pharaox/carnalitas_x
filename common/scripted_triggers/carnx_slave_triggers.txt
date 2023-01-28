@@ -148,18 +148,19 @@ carnx_is_slavery_shunned_trigger = {
 
 # Is owning slaves of $CHARACTER$'s faith a crime according to the scoped character's faith.
 carnx_is_slavery_crime_trigger = {
+	$CHARACTER$ = { save_temporary_scope_as = other }
 	OR = {
 		faith = {
 			has_doctrine = carn_doctrine_same_slavery_crime
 			faith_hostility_level = {
-				target = $CHARACTER$.faith
+				target = scope:other.faith
 				value < faith_hostile_level
 			}
 		}
 		faith = {
 			has_doctrine = carn_doctrine_other_slavery_crime
 			faith_hostility_level = {
-				target = $CHARACTER$.faith
+				target = scope:other.faith
 				value >= faith_hostile_level
 			}
 		}

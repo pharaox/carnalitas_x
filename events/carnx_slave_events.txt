@@ -6,17 +6,28 @@ carnx_slave.0001 = {
 	title = carnx_slave.0001.t
 	desc = carnx_slave.0001.desc
 
-	theme = stewardship
+	theme = dungeon
 	left_portrait = {
 		character = scope:valuable_option
-		animation = sadness
+		animation = shame
 	}
 	right_portrait = {
 		character = scope:common_option
 		animation = sadness
 	}
 
-	trigger = { exists = capital_province }
+	trigger = {
+		exists = capital_province
+		any_independent_ruler = {
+			NOR = {
+				faith = root.faith
+				culture = root.culture
+			}
+			root = {
+				NOT = { carnx_is_slavery_crime_trigger = { CHARACTER = prev } }
+			}
+		}
+	}
 
 	immediate = {
 		hidden_effect = {
@@ -26,80 +37,98 @@ carnx_slave.0001 = {
 						faith = root.faith
 						culture = root.culture
 					}
+					root = {
+						NOT = { carnx_is_slavery_crime_trigger = { CHARACTER = prev } }
+					}
 				}
 				save_scope_as = foreign_ruler
 			}
 
-			# Valuable option
-			create_character = {
-				location = root.capital_province
-				template_character = scope:foreign_ruler
-				gender_female_chance = carnx_create_character_female_chance
-				age = { 16 40 }
-				dynasty = none
-				random_traits = yes
-				random_traits_list = {
-					count = 1
-					beauty_good_1 = { weight = { base = 40 } }
-					beauty_good_2 = { weight = { base = 20 } }
-					beauty_good_3 = { weight = { base = 10 } }
-					intellect_good_1 = { weight = { base = 40 } }
-					intellect_good_2 = { weight = { base = 20 } }
-					intellect_good_3 = { weight = { base = 10 } }
-					physique_good_1 = { weight = { base = 40 } }
-					physique_good_2 = { weight = { base = 20 } }
-					physique_good_3 = { weight = { base = 10 } }
+			if = {
+				limit = { exists = scope:foreign_ruler }
 
-					fecund = { weight = { base = 20 } }
+				# Valuable option
+				create_character = {
+					location = root.capital_province
+					template_character = scope:foreign_ruler
+					gender_female_chance = carnx_create_character_female_chance
+					age = { 16 40 }
+					dynasty = none
+					random_traits = yes
+					random_traits_list = {
+						count = 1
+						beauty_good_1 = { weight = { base = 40 } }
+						beauty_good_2 = { weight = { base = 20 } }
+						beauty_good_3 = { weight = { base = 10 } }
+						intellect_good_1 = { weight = { base = 40 } }
+						intellect_good_2 = { weight = { base = 20 } }
+						intellect_good_3 = { weight = { base = 10 } }
+						physique_good_1 = { weight = { base = 40 } }
+						physique_good_2 = { weight = { base = 20 } }
+						physique_good_3 = { weight = { base = 10 } }
 
-					physician_1 = { weight = { base = 20 } }
-					physician_2 = { weight = { base = 10 } }
-					physician_3 = { weight = { base = 5 } }
-					mystic_1 = { weight = { base = 20 } }
-					mystic_2 = { weight = { base = 10 } }
-					mystic_3 = { weight = { base = 5 } }
-					lifestyle_herbalist = { weight = { base = 10 } }
+						fecund = { weight = { base = 20 } }
 
-					flexible_leader = { weight = { base = 10 } }
-					forder = { weight = { base = 10 } }
-					holy_warrior = { weight = { base = 10 } }
-					logistician = { weight = { base = 10 } }
-					organizer = { weight = { base = 10 } }
-					open_terrain_expert = { weight = { base = 10 } }
-					rough_terrain_expert = { weight = { base = 10 } }
-					unyielding_defender = { weight = { base = 10 } }
+						physician_1 = { weight = { base = 20 } }
+						physician_2 = { weight = { base = 10 } }
+						physician_3 = { weight = { base = 5 } }
+						mystic_1 = { weight = { base = 20 } }
+						mystic_2 = { weight = { base = 10 } }
+						mystic_3 = { weight = { base = 5 } }
+						lifestyle_herbalist = { weight = { base = 10 } }
+
+						flexible_leader = { weight = { base = 10 } }
+						forder = { weight = { base = 10 } }
+						holy_warrior = { weight = { base = 10 } }
+						logistician = { weight = { base = 10 } }
+						organizer = { weight = { base = 10 } }
+						open_terrain_expert = { weight = { base = 10 } }
+						rough_terrain_expert = { weight = { base = 10 } }
+						unyielding_defender = { weight = { base = 10 } }
+					}
+					random_traits_list = {
+						count = 1
+						brave = {}
+						gregarious = {}
+						compassionate = {}
+					}
+					martial = {
+						min_template_low_skill
+						max_template_decent_skill
+					}
+					stewardship = {
+						min_template_low_skill
+						max_template_decent_skill
+					}
+					diplomacy = {
+						min_template_low_skill
+						max_template_decent_skill
+					}
+					intrigue = {
+						min_template_low_skill
+						max_template_decent_skill
+					}
+					learning = {
+						min_template_low_skill
+						max_template_decent_skill
+					}
+					prowess = {
+						min_template_low_skill
+						max_template_decent_skill
+					}
+					save_scope_as = valuable_option
 				}
-				random_traits_list = {
-					count = 1
-					brave = {}
-					gregarious = {}
-					compassionate = {}
+
+				# Common option
+				create_character = {
+					location = root.capital_province
+					template_character = scope:foreign_ruler
+					gender_female_chance = carnx_create_character_female_chance
+					age = { 16 40 }
+					dynasty = none
+					random_traits = yes
+					save_scope_as = common_option
 				}
-				martial = {
-					min_template_low_skill
-					max_template_decent_skill
-				}
-				stewardship = {
-					min_template_low_skill
-					max_template_decent_skill
-				}
-				diplomacy = {
-					min_template_low_skill
-					max_template_decent_skill
-				}
-				intrigue = {
-					min_template_low_skill
-					max_template_decent_skill
-				}
-				learning = {
-					min_template_low_skill
-					max_template_decent_skill
-				}
-				prowess = {
-					min_template_low_skill
-					max_template_decent_skill
-				}
-				save_scope_as = valuable_option
 			}
 
 			if = {
@@ -114,7 +143,7 @@ carnx_slave.0001 = {
 						value = {
 							value = carnx_slave_base_price_value
 							if = {
-								limit = { is_ai = no }
+								limit = { root = { is_ai = no } }
 								multiply = carnx_slave_ask_price_player_multiplier
 							}
 						}
@@ -134,17 +163,6 @@ carnx_slave.0001 = {
 				}
 			}
 
-			# Common option
-			create_character = {
-				location = root.capital_province
-				template_character = scope:foreign_ruler
-				gender_female_chance = carnx_create_character_female_chance
-				age = { 16 40 }
-				dynasty = none
-				random_traits = yes
-				save_scope_as = common_option
-			}
-
 			if = {
 				limit = { exists = scope:common_option }
 				scope:common_option = {
@@ -157,7 +175,7 @@ carnx_slave.0001 = {
 						value = {
 							value = carnx_slave_base_price_value
 							if = {
-								limit = { is_ai = no }
+								limit = { root = { is_ai = no } }
 								multiply = carnx_slave_ask_price_player_multiplier
 							}
 						}
@@ -188,7 +206,7 @@ carnx_slave.0001 = {
 			short_term_gold >= scope:valuable_option_price
 			is_landed = yes # Extra check to make sure they haven't lost their status
 		}
-		show_as_unavailable = { always = yes }
+		show_as_unavailable = { exists = scope:valuable_option }
 
 		remove_short_term_gold = scope:valuable_option_price
 
@@ -197,7 +215,10 @@ carnx_slave.0001 = {
 				limit = { carnx_enable_nudity = yes }
 				scope:valuable_option = { remove_character_flag = is_naked }
 			}
-			scope:common_option = { silent_disappearance_effect = yes }
+			if = {
+				limit = { exists = scope:common_option }
+				scope:common_option = { silent_disappearance_effect = yes }
+			}
 			debug_log = "Buy Slaves valuable option chosen"
 		}
 
@@ -229,7 +250,7 @@ carnx_slave.0001 = {
 			short_term_gold >= scope:common_option_price
 			is_landed = yes # Extra check to make sure they haven't lost their status
 		}
-		show_as_unavailable = { always = yes }
+		show_as_unavailable = { exists = scope:common_option }
 
 		remove_short_term_gold = scope:common_option_price
 
@@ -238,7 +259,10 @@ carnx_slave.0001 = {
 				limit = { carnx_enable_nudity = yes }
 				scope:common_option = { remove_character_flag = is_naked }
 			}
-			scope:valuable_option = { silent_disappearance_effect = yes }
+			if = {
+				limit = { exists = scope:valuable_option }
+				scope:valuable_option = { silent_disappearance_effect = yes }
+			}
 			debug_log = "Buy Slaves common option chosen"
 		}
 
@@ -266,8 +290,14 @@ carnx_slave.0001 = {
 		name = carnx_slave.0001.c
 
 		hidden_effect = {
-			scope:valuable_option = { silent_disappearance_effect = yes }
-			scope:common_option = { silent_disappearance_effect = yes }
+			if = {
+				limit = { exists = scope:valuable_option }
+				scope:valuable_option = { silent_disappearance_effect = yes }
+			}
+			if = {
+				limit = { exists = scope:common_option }
+				scope:common_option = { silent_disappearance_effect = yes }
+			}
 		}
 
 		ai_chance = {
