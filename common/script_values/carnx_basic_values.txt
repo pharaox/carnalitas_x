@@ -24,4 +24,4 @@ carnx_slave_ask_price_player_multiplier = 1.2
 carnx_slave_bid_price_player_multiplier = 0.8
 
 # Female chance when creating slave characters
-carnx_create_character_female_chance = 100
+carnx_create_character_female_chance = 75

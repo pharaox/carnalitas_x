@@ -167,11 +167,6 @@ carnx_is_slavery_crime_trigger = {
 	}
 }
 
-# Enable nudity in slavery related events
-carnx_enable_nudity = {
-	always = yes
-}
-
 is_diplomatically_available = {
 	is_busy_in_events_localised = yes
 }
