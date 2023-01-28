@@ -619,30 +619,38 @@ carn_free_slave_effect = {
 	}
 }
 
-# Frees scope:slave from slavery, also incurs opinion, dread, piety, and stress
-# effects. Pays carnx_slave_ransom_cost_value to scope:owner if scope:gold is yes. Overridden from Carnalitas.
+# Frees scope:slave from slavery, also incurs opinion, dread, piety, and stress effects.
+# Pays ransom cost to scope:owner if scope:gold or scope:current_gold is yes.
+# Overridden from Carnalitas.
 carn_free_slave_interaction_effect = {
+	if = {
+		limit = { scope:gold = yes }
+		save_scope_value_as = {
+			name = ransom_cost
+			value = scope:slave.carnx_slave_ransom_cost_value
+		}
+	}
+	else_if = {
+		limit = { scope:current_gold = yes }
+		save_scope_value_as = {
+			name = ransom_cost
+			value = scope:slave.current_gold_value
+		}
+	}
+
 	scope:slave = {
 		carn_free_slave_effect = yes
 
-		# Pay full price
+		# Pay agreed ransom cost
 		if = {
 			limit = {
-				scope:gold = yes
+				OR = {
+					scope:gold = yes
+					scope:current_gold = yes
+				}
 			}
 			pay_short_term_gold = {
-				gold = scope:slave.carnx_slave_ransom_cost_value
-				target = scope:owner
-			}
-		}
-
-		# Pay current gold
-		if = {
-			limit = {
-				scope:current_gold = yes
-			}
-			pay_short_term_gold = {
-				gold = scope:slave.current_gold_value
+				gold = scope:ransom_cost
 				target = scope:owner
 			}
 		}
@@ -784,8 +792,23 @@ carn_free_slave_interaction_effect = {
 }
 
 # Ransoms scope:slave from slavery by scope:payer, also incurs opinion effects.
-# Pays carnx_slave_ransom_cost_value to scope:owner if scope:gold is yes.
+# Pays ransom cost to scope:owner if scope:gold or scope:current_gold is yes.
 carnx_ransom_slave_interaction_effect = {
+	if = {
+		limit = { scope:gold = yes }
+		save_scope_value_as = {
+			name = ransom_cost
+			value = scope:slave.carnx_slave_ransom_cost_value
+		}
+	}
+	else_if = {
+		limit = { scope:current_gold = yes }
+		save_scope_value_as = {
+			name = ransom_cost
+			value = scope:payer.current_gold_value
+		}
+	}
+
 	scope:slave = {
 		carn_free_slave_effect = yes
 
@@ -825,24 +848,16 @@ carnx_ransom_slave_interaction_effect = {
 	}
 
 	scope:payer = {
-		# Pay full price
+		# Pay agreed ransom cost
 		if = {
 			limit = {
-				scope:gold = yes
+				OR = {
+					scope:gold = yes
+					scope:current_gold = yes
+				}
 			}
 			pay_short_term_gold = {
-				gold = scope:slave.carnx_slave_ransom_cost_value
-				target = scope:owner
-			}
-		}
-
-		# Pay current gold
-		if = {
-			limit = {
-				scope:current_gold = yes
-			}
-			pay_short_term_gold = {
-				gold = scope:payer.current_gold_value
+				gold = scope:ransom_cost
 				target = scope:owner
 			}
 		}
