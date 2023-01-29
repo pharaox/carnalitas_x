@@ -1,5 +1,7 @@
 # Carnalitas Slavery Reimagined
 
+A comprehensive rework of the Carnalitas slavery system aiming at improved balance and better integration with other aspects of the game.
+
 ## Overview
 
 [Carnalitas](https://www.loverslab.com/files/file/14207-carnalitas-unified-sex-mod-framework-for-ck3/) added a much-needed slavery system to CK3. While this is great in itself and many aspects of the original system are also very well thought of, I find other aspects rather lacking, perhaps due to Carnalitas ambition to be a "unified sex mod framework" rather than a well-balanced mod in its own right.
@@ -16,7 +18,7 @@ Some of the aspects I find problematic are the following:
 
 This mod attempts to address the above shortcomings. It does this by reworking some of the slave interactions and introducing a few new ones. It aims to be compatible with other Carnalitas features and with other mods based on Carnalitas.
 
-The reimagined slavery system introduced by this mod tries to better integrate slavery into the existing aspects of the game, make interacting with slaves and other rulers more interesting and rewarding, achieve a better game balance, and maintain a reasonable challenge for the human player.
+The reimagined slavery system introduced by this mod aims to better integrate slavery with other aspects of the game, make interacting with slaves and other rulers more interesting and rewarding, achieve a better game balance, and maintain a reasonable challenge for the human player.
 
 ## Features
 
