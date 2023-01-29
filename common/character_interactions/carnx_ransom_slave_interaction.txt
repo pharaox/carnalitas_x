@@ -1,4 +1,6 @@
-﻿carnx_ransom_slave_interaction = {
+﻿# Ransom one of your slaves with another ruler that is their relative or relation for either gold or a favor.
+# Scopes: actor is the slave owner, recipient is the payer, seconary_recipient is the slave.
+carnx_ransom_slave_interaction = {
 	category = interaction_category_prison
 	desc = carnx_ransom_slave_interaction_desc
 	interface_priority = 50

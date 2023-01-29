@@ -1,4 +1,7 @@
-﻿carn_free_slave_interaction = {
+﻿# Free one of your slaves, potentially asking for gold, conversion, renouncing of claims, or a hook.
+# Scopes: actor is the slave owner, recipient is the slave.
+# Overridden from Carnalitas.
+carn_free_slave_interaction = {
 	category = interaction_category_prison
 	desc = carn_free_slave_interaction_desc
 	interface_priority = 100

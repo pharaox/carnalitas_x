@@ -1,4 +1,7 @@
-﻿carn_buy_slave_directly_interaction = {
+﻿# Buy a slave from another ruler.
+# Scopes: actor is the buyer, recipient is the slave owner (seller), seconary_recipient is the slave.
+# Overridden from Carnalitas.
+carn_buy_slave_directly_interaction = {
 	category = interaction_category_prison
 	desc = carn_buy_slave_directly_interaction_desc
 	interface_priority = 31

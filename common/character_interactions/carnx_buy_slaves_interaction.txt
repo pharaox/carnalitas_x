@@ -1,4 +1,7 @@
-﻿carnx_buy_slaves_interaction = {
+﻿# Buy slaves from other rulers that are willing to sell them to you.
+# Scopes: actor / recipient is the buyer, secondary_recipient is the slave owner (seller), seconary_actor is the slave.
+# Human player only.
+carnx_buy_slaves_interaction = {
 	category = interaction_category_prison
 	desc = carnx_buy_slaves_interaction_desc
 	interface_priority = 31

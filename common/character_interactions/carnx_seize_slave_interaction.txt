@@ -1,4 +1,7 @@
-﻿carn_seize_slave_interaction = {
+﻿# Seize somebody else's slave that is your prisoner.
+# Scopes: actor is the new owner (imprisoner), recipient is the slave.
+# Overridden from Carnalitas.
+carn_seize_slave_interaction = {
 	category = interaction_category_prison
 	desc = carn_seize_slave_interaction_desc
 	interface_priority = 100

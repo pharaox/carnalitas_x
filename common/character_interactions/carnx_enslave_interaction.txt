@@ -1,4 +1,7 @@
-﻿carn_enslave_interaction = {
+﻿# Enslave one of your prisoners.
+# Scopes: actor is the new owner (imprisoner), recipient is the slave.
+# Overridden from Carnalitas.
+carn_enslave_interaction = {
 	category = interaction_category_prison
 	desc = carn_enslave_interaction_desc
 	interface_priority = 100

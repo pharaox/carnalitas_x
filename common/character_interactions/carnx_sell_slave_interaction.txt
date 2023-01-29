@@ -1,4 +1,7 @@
-﻿carn_sell_slave_interaction = {
+﻿# Sell one of your slaves to another ruler.
+# Scopes: actor is the slave owner (seller), recipient is the buyer, seconary_recipient is the slave.
+# Overridden from Carnalitas.
+carn_sell_slave_interaction = {
 	category = interaction_category_prison
 	desc = carnx_sell_slave_interaction_desc
 	interface_priority = 31
