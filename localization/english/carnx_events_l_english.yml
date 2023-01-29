@@ -1,5 +1,5 @@
 ﻿l_english:
- carnx_slave.0001.t:0 "Buy Slaves"
+ carnx_slave.0001.t:0 "Buy Foreign Slaves"
  carnx_slave.0001.desc:0 "Slave traders have arrived from foreign lands, bringing some slaves for sale. Should I buy one of them?"
  carnx_slave.0001.a:0 "[valuable_option.GetFirstNameNoTooltip] looks quite valuable."
  carnx_slave.0001.b:0 "[common_option.GetFirstNameNoTooltip] seems like a better bargain."
