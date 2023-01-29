@@ -26,7 +26,7 @@ As in Carnalitas, slaves can be bought or sold via the *Buy Slave* and *Sell Sla
 
 #### Slave Prices
 
-In this mod, slaves are bought and sold at prices that better reflect their actual value. Most of the factors inflencing the base price of a slave are the same as those influencing the cost of recruiting a guest, with similar impact:
+In this mod, slaves are bought and sold at prices that better reflect their actual value. Most of the factors influencing the base price of a slave are the same as those influencing the cost of recruiting a guest, with similar impact:
 
 * base (10)
 * claims (100 to 250)
@@ -41,7 +41,7 @@ Some factors are unique:
 * attraction (-10 to 20)
 * visibly fertile female (20)
 
-Slave prices thus can range from almost nothing to rather exorbitant sums, and unlike Carnalitas prices they much better correpond to other existing aspects of the game.
+Slave prices thus can range from almost nothing to rather exorbitant sums, and unlike Carnalitas prices they much better correspond to other existing aspects of the game.
 
 Actual buy and sell transactions are settled at the *bid price* (buyer's price) if the initiating party is the seller, and the *ask price* (seller's price), if the initiating party is the buyer.These prices are calculated by multiplying the base price by a factor ranging from 0.8 to 1.2, depending on AI greed.
 
@@ -52,7 +52,7 @@ These prices are also multiplied by an additional factor of 0.8 (for the bid pri
 When buying slaves, the AI acceptance is influenced by a comprehensive estimation of the slave's usefulness based on factors such as:
 
 * Is the buyer lacking councillors, court physician, or knights, and how well would the slave perform the corresponding role.
-* Does the slave have any useful claims on neighbouring realms.
+* Does the slave have any useful claims on neighboring realms.
 * Is the buyer attracted to the sex of the slave, and if yes the slave's attraction.
 * Is the slave a visibly fertile female.
 
@@ -73,7 +73,7 @@ While it is possible to initiate buying or selling of slaves by right-clicking o
 
 As in Carnalitas, prisoners can be enslaved via the *Enslave* interaction. If the prisoner is already someone else's slave, he or she can be "seized" via the *Seize Slave* interaction.
 
-Unlike Carnalitas, a person can only be enslaved if he or she is a prisoner. The *Enslave* interaction is not available on free courtiers. Since a prisoner doesn't really have a choice, both *Enslave* and *Seize Slave* interactrions are accepted automatically.
+Unlike Carnalitas, a person can only be enslaved if he or she is a prisoner. The *Enslave* interaction is not available on free courtiers. Since a prisoner doesn't really have a choice, both *Enslave* and *Seize Slave* interactions are accepted automatically.
 
 When deciding to initiate enslaving or seizing of slaves, the AI is driven by considerations similar to the ones listed under [AI Willingness to Buy or Sell](#ai-willingness-to-buy-or-sell). In addition, factors such as AI compassion, greed, and their opinion of the prisoner also play a role. Unlike Carnalitas, the AI would rather not enslave a prisoner if he or she should rather be executed (execution reason, rival / nemesis, unfaithful spouse, etc.), unless the prisoner survived for more than 2 years.
 
@@ -83,11 +83,11 @@ As in Carnalitas, slaves can be freed by their owners via the *Free Slave* inter
 
 When deciding to initiate freeing or ransoming of slaves, the AI is driven by considerations similar to the ones listed under [Enslaving and Seizing Prisoners](#enslaving-and-seizing-prisoners), but working in the opposite direction.
 
-Note that the cost of freeing or ransoming a slave is not their slave price, but their usual [ransom cost](https://ck3.paradoxwikis.com/Court#Ransom_cost). If you enslaved a prisoner instead of ransoming, you won't be able to sell the slave back to a relative at their slave price (relatives get additional maluses to their willingness to buy), but you would still be able to ransom - potentially for less money, since the slave is no longer a spouse or an heir.
+Note that the cost of freeing or ransoming a slave is not their slave price, but their usual [ransom cost](https://ck3.paradoxwikis.com/Court#Ransom_cost). If you enslaved a prisoner instead of ransoming, you won't be able to sell the slave back to a relative at their slave price (relatives get additional negative modifiers to their willingness to buy), but you would still be able to ransom - potentially for less money, since the slave is no longer a spouse or an heir.
 
 ### Impact of Slavery Doctrines
 
-Carnalitas introduces the *Slavery Crime* and *Slavery Shunned* religious doctrines that determine whether owning slaves of certain faiths is considered a crime, shunned, or accepted, depending on the faith's hostility level. However, in Carnalitas these doctrines are not followed consistently when determining if someone can be enslaved, bought, or seized, the AI acceptance of slave interactions, or the AI decisions to initiate them. This mod attempts to correct this by reexamining the impact of slavery doctrines on all slave interactons:
+Carnalitas introduces the *Slavery Crime* and *Slavery Shunned* religious doctrines that determine whether owning slaves of certain faiths is considered a crime, shunned, or accepted, depending on the faith's hostility level. However, in Carnalitas these doctrines are not followed consistently when determining if someone can be enslaved, bought, or seized, the AI acceptance of slave interactions, or the AI decisions to initiate them. This mod attempts to correct this by reexamining the impact of slavery doctrines on all slave interactions:
 
 * If owning slaves of a certain faith is a crime, for adherents of this faith:
   - It is not possible to enslave, seize, or buy them for the human player. The AI will not initiate such interactions at all.
@@ -131,17 +131,17 @@ The sections below list the changes made to existing Carnalitas objects in somew
 
 This mod replaces the following Carnalitas interactions, modifying them as described above:
 
-* **Buy Slave** (`carn_buy_slave_directly_interaction`): Buy a slave from another ruler. If accepted, the slave is bought at the seller's price (`carnx_slave_ask_price_value`).
-* **Sell Slave** (`carn_sell_slave_interaction`): Sell one of your slaves to another ruler. If accepted, the slave is sold at the buyers's price (`carnx_slave_bid_price_value`).
-* **Enslave** (`carn_enslave_interaction`): Enslave one of your prisoners.
-* **Free Slave** (`carn_free_slave_interaction`): Free one of your slaves, potentially asking for gold, conversion, renouncing of claims, or a favor. If asked for gold and accepted, the slave pays their ransom cost (`carnx_slave_ransom_cost_value`).
-* **Seize Slave** (`carn_seize_slave_interaction`): Seize somebody else's slave that is your prisoner.
+* *Buy Slave* (`carn_buy_slave_directly_interaction`): Buy a slave from another ruler. If accepted, the slave is bought at the seller's price (`carnx_slave_ask_price_value`).
+* *Sell Slave* (`carn_sell_slave_interaction`): Sell one of your slaves to another ruler. If accepted, the slave is sold at the buyers's price (`carnx_slave_bid_price_value`).
+* *Enslave* (`carn_enslave_interaction`): Enslave one of your prisoners.
+* *Free Slave* (`carn_free_slave_interaction`): Free one of your slaves, potentially asking for gold, conversion, renouncing of claims, or a favor. If asked for gold and accepted, the slave pays their ransom cost (`carnx_slave_ransom_cost_value`).
+* *Seize Slave* (`carn_seize_slave_interaction`): Seize somebody else's slave that is your prisoner.
 
 This mod introduces the following new interactions:
 
-* **Buy Slaves** (`carnx_buy_slaves_interaction`): Buy slaves from other rulers that are willing to sell them to you. This is a convenience interaction for the human player to quickly find all slaves they could buy and the prices at which they could be bought. Slaves are bought at the seller's price (`carnx_slave_ask_price_value`).
-* **Sell Slaves** (`carnx_sell_slaves_interaction`): Sell some of your slaves to other rulers willing to buy them from you. This is a convenience interaction for the human player to quickly find all potential buyers for their slaves and the prices at which they could be sold. Slaves are sold at the buyers's price (`carnx_slave_bid_price_value`)
-* **Ransom Slave** (`carnx_ransom_slave_interaction`): Ransom one of your slaves with another ruler that is their relative or relation for either gold or a favor. If asked for gold and accepted, the payer pays the slave's ransom cost (`carnx_slave_ransom_cost_value`).
+* *Buy Slaves* (`carnx_buy_slaves_interaction`): Buy slaves from other rulers that are willing to sell them to you. This is a convenience interaction for the human player to quickly find all slaves they could buy and the prices at which they could be bought. Slaves are bought at the seller's price (`carnx_slave_ask_price_value`).
+* *Sell Slaves* (`carnx_sell_slaves_interaction`): Sell some of your slaves to other rulers willing to buy them from you. This is a convenience interaction for the human player to quickly find all potential buyers for their slaves and the prices at which they could be sold. Slaves are sold at the buyers's price (`carnx_slave_bid_price_value`)
+* *Ransom Slave* (`carnx_ransom_slave_interaction`): Ransom one of your slaves with another ruler that is their relative or relation for either gold or a favor. If asked for gold and accepted, the payer pays the slave's ransom cost (`carnx_slave_ransom_cost_value`).
 
 ### On Action
 
