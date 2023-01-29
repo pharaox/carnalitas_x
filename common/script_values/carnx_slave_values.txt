@@ -52,7 +52,7 @@ carnx_slave_base_price_value = {
 		}
 	}
 
-	# Generic traits (genetic character value multiplied by 5)
+	# Genetic traits (genetic character value multiplied by 5)
 	add = {
 		value = genetic_character_value
 		multiply = 5
