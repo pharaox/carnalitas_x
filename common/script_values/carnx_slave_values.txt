@@ -184,6 +184,9 @@ carnx_slave_base_price_value = {
 
 	# TODO: Tribal rulers pay less (multiply by 0.25)
 
+	# Apply a correction factor to get the final price
+	multiply = carnx_slave_base_price_multiplier
+
 	min = 1
 }
 
