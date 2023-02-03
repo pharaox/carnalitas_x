@@ -1,6 +1,6 @@
 ﻿namespace = carnx_slave
 
-# Buy slaves from slave traders
+# Buy Foreign Slaves
 carnx_slave.0001 = {
 	type = character_event
 	title = carnx_slave.0001.t
@@ -17,6 +17,7 @@ carnx_slave.0001 = {
 	}
 
 	trigger = {
+		NOT = { has_game_rule = carn_slavery_content_disabled }
 		exists = capital_province
 		any_independent_ruler = {
 			NOR = {
