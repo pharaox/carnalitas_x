@@ -1,3 +1,18 @@
+# Version 0.2.0
+
+## Interactions
+
+* Multiplied the slave base price (`carnx_slave_base_price_value`) by a correction multiplier, currently 0.75.
+
+## Bug Fixes
+
+* Ensured *Buy Foreign Slaves* event (`carnx_slave.0001`) is not fired if slavery is disabled.
+
+## Miscellaneous
+
+* Verified compatibility with *Carnalitas Slavery Expansion*.
+* Updated `README.md` with additional information regarding compatibility with other mods and Carnalitas game rules.
+
 # Version 0.1.0
 
 ## Interactions
