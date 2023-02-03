@@ -4,16 +4,16 @@ A comprehensive rework of the Carnalitas slavery system aiming at improved balan
 
 ## Overview
 
-[Carnalitas](https://www.loverslab.com/files/file/14207-carnalitas-unified-sex-mod-framework-for-ck3/) added a much-needed slavery system to CK3. While this is great in itself and many aspects of the original system are also very well thought of, I find other aspects rather lacking, perhaps due to Carnalitas ambition to be a "unified sex mod framework" rather than a well-balanced mod in its own right.
+[Carnalitas](https://www.loverslab.com/files/file/14207-carnalitas-unified-sex-mod-framework-for-ck3/) added a much-needed slavery system to CK3. While this is great in itself and many aspects of the original system are also very well thought of, there are some aspects that could be improved, perhaps due to Carnalitas ambition to be a "unified sex mod framework" rather than a well-balanced mod in its own right.
 
-Some of the aspects I find problematic are the following:
+Some of the aspects I personally find problematic are the following:
 
-* The slave prices don't correspond well to other aspects of the game. The prices for slaves with claims are rather insane. Without claims, they are much too cheap, so a human player could buy a useful slave for a small fraction of the cost of recruiting a guest with the same qualities. Some of the factors that should influence the slave price (e.g. their attraction) are not taken into account at all.
+* The slave prices don't correspond well to other aspects of the game. The prices for slaves with claims are way too high. Without claims, they are way too low, so a human player could buy a useful slave for a small fraction of the cost of recruiting a guest with the same qualities. Some of the factors that should influence the slave price (e.g. their attraction) are not taken into account at all.
 * Most of the slave interactions are accepted or initiated by the AI for the wrong reasons. For example, the factors behind the AI decision to enslave are basically copied from the *Execute* interaction. However, enslaving is not the same as executing and should be influenced by quite different factors. The situation is quite similar for other interactions, e.g. *Buy Slave*, *Sell Slave*, etc.
 * The AI will never perform some of the interactions, e.g. it will try to buy slaves from other rules, but never sell their own slaves to them.
 * It's not exactly easy for the human player to find rulers that are willing to buy one of your slaves, or sell some of their slaves to you. Indeed this doesn't matter much, since in Carnalitas such requests almost always are accepted, and always at the same price.
-* I don't really appreciate the idea of being able to "convince" someone to become your slave (*Enslave* being possible on free courtiers). Enslaving someone is a rather brutal act that should only be possible if he or she is fully at your mercy (your prisoner).
-* Once a prisoner is converted to a slave, it's no longer possible to ransom him or her. True, you can instead sell them to e.g. their mother, and the mother will happily become their new owner, but I find this rather disconcerting.
+* I don't get the idea of being able to "convince" someone to become your slave (*Enslave* being possible on free courtiers). Enslaving someone is a rather brutal act that should only be possible if that person is fully at your mercy (your prisoner).
+* Once a prisoner is converted to a slave, it's no longer possible to ransom him or her. You can instead sell them to e.g. their mother, and the mother will happily become their new owner.
 * Although there are religious doctrines that should govern whether owning slaves of certain faiths is considered a crime, shunned, or accepted, they are not followed consistently when determining if someone can be enslaved, bought, or seized.
 
 This mod attempts to address the above shortcomings. It does this by reworking some of the slave interactions and introducing a few new ones. It aims to be compatible with other Carnalitas features and with other mods based on Carnalitas.
@@ -43,11 +43,11 @@ Some factors are unique:
 * attraction (-10 to 20)
 * visibly fertile female (20)
 
-Slave prices thus can range from almost nothing to rather exorbitant sums, and unlike Carnalitas prices they much better correspond to other existing aspects of the game.
+At the very end, a correction multiplier is applied to calculate the final base price, currently 0.75 (correcting down). This multiplier is intended to prevent the human player from making too much money from selling slaves, and may be adjusted in future versions.
 
 Actual buy and sell transactions are settled at the *bid price* (buyer's price) if the initiating party is the seller, and the *ask price* (seller's price), if the initiating party is the buyer.These prices are calculated by multiplying the base price by a factor ranging from 0.8 to 1.2, depending on AI greed.
 
-These prices are also multiplied by an additional factor of 0.8 (for the bid price) or 1.2 (for the ask price) if the initiating party is the human player. Since the human player is always the initiating party when buying or selling slaves, the conditions are always unfavorable. This is to prevent exploits, and to make it a bit more challenging for the human player to use the slavery system to their own advantage.
+These prices are also multiplied by an additional factor of 0.8 (for the bid price) or 1.2 (for the ask price) if the initiating party is the human player. Since the human player is always the initiating party when buying or selling slaves, they always buy at higher and sell at lower prices. This is to prevent exploits, and to make it a bit more challenging for the human player to use the slavery system to their own advantage.
 
 #### AI Willingness to Buy or Sell
 
@@ -68,16 +68,16 @@ All in all, AI is in general quite reluctant to buy slaves that are useless, or 
 
 While it is possible to initiate buying or selling of slaves by right-clicking on a ruler, it may be quite hard to find rulers that are willing to buy one of your slaves, or sell some of their slaves to you. Furthermore, the price you get with each ruler may be different. To make it more convenient for the human player, this mod introduces the following 2 new interactions:
 
-* *Buy Slaves*: Buy a slave by choosing from the list of all slaves that other rulers are willing to sell to you.
-* *Sell Slaves* Sell one of your slaves by choosing from the list of all other rulers that are willing to buy that slave from you. If there are no potential buyers for a slave, the list will be empty.
+* *Buy Slaves*: Buy a slave by choosing from the list of all slaves that other rulers are willing to sell to you. If there are no such slaves, the list will be empty.
+* *Sell Slaves*: Sell one of your slaves by choosing from the list of all other rulers that are willing to buy that slave from you. If there are no potential buyers for a slave, the list will be empty.
 
 ### Enslaving and Seizing Prisoners
 
-As in Carnalitas, prisoners can be enslaved via the *Enslave* interaction. If the prisoner is already someone else's slave, he or she can be "seized" via the *Seize Slave* interaction.
+As in Carnalitas, prisoners can be enslaved via the *Enslave* interaction. Prisoners that are already someone else's slaves can be "seized" instead via the *Seize Slave* interaction.
 
 Unlike Carnalitas, a person can only be enslaved if he or she is a prisoner. The *Enslave* interaction is not available on free courtiers. Since a prisoner doesn't really have a choice, both *Enslave* and *Seize Slave* interactions are accepted automatically.
 
-When deciding to initiate enslaving or seizing of slaves, the AI is driven by considerations similar to the ones listed under [AI Willingness to Buy or Sell](#ai-willingness-to-buy-or-sell). In addition, factors such as AI compassion, greed, and their opinion of the prisoner also play a role. Unlike Carnalitas, the AI would rather not enslave a prisoner if he or she should rather be executed (execution reason, rival / nemesis, unfaithful spouse, etc.), unless the prisoner survived for more than 2 years.
+When deciding to initiate enslaving or seizing of slaves, the AI is driven by considerations similar to the ones listed under [AI Willingness to Buy or Sell](#ai-willingness-to-buy-or-sell). In addition, factors such as AI compassion, greed, and their opinion of the prisoner also play a role. Unlike Carnalitas, the AI would not enslave a prisoner that should rather be executed (execution reason, rival / nemesis, unfaithful spouse, etc.), unless the prisoner survived for more than 2 years.
 
 ### Freeing and Ransoming Slaves
 
@@ -89,7 +89,7 @@ Note that the cost of freeing or ransoming a slave is not their slave price, but
 
 ### Impact of Slavery Doctrines
 
-Carnalitas introduces the *Slavery Crime* and *Slavery Shunned* religious doctrines that determine whether owning slaves of certain faiths is considered a crime, shunned, or accepted, depending on the faith's hostility level. However, in Carnalitas these doctrines are not followed consistently when determining if someone can be enslaved, bought, or seized, the AI acceptance of slave interactions, or the AI decisions to initiate them. This mod attempts to correct this by reexamining the impact of slavery doctrines on all slave interactions:
+Carnalitas introduces the *Slavery Crime* and *Slavery Shunned* religious doctrines that determine whether owning slaves of certain faiths is considered a crime, shunned, or accepted, depending on the faith's hostility level. However, in Carnalitas these doctrines are not followed consistently when determining if someone can be enslaved, bought, or seized, the AI acceptance of slave interactions, or the AI decisions to initiate them. This mod attempts to correct this by rebalancing the impact of slavery doctrines on all slave interactions:
 
 * If owning slaves of a certain faith is a crime, for adherents of this faith:
   - It is not possible to enslave, seize, or buy them for the human player. The AI will not initiate such interactions at all.
@@ -117,42 +117,54 @@ Being enslaved, freed, bought, or seized is certainly a significant lifetime eve
 The following bugs present in Carnalitas have been fixed in this mod:
 
 * If a slave owner dies and their heir doesn't inherit their court (e.g. because they have their own court), slaves don't just wander off similarly to other courtiers, but are instead added to the court of their new owner.
-* If a slave owner stops being a ruler, their slaves are freed automatically. Non-rules owning slaves is problematic because they are not under AI control and their slaves can never be freed, ransomed, or traded.
+* If a slave owner stops being a ruler, their slaves are freed automatically. Non-rulers owning slaves is problematic because they are not under AI control and their slaves can never be freed, ransomed, or traded.
 
 ## Compatibility
 
-This mod requires [Carnalitas](https://www.loverslab.com/files/file/14207-carnalitas-unified-sex-mod-framework-for-ck3/) as a prerequisite (obviously). While it modifies the slavery system in a substantial way, it doesn't touch other Carnalitas features and should be compatible with all of them. It is also compatible with other popular mods based on Carnalitas that don't modify the slavery system, such as [CBO](https://www.loverslab.com/files/file/16683-character-body-overhaul/), [CBO Carnal Court](https://www.loverslab.com/files/file/21059-cbo-carnal-court/), [Physical Attributes](https://www.loverslab.com/files/file/16927-physical-attributes/), etc. It is not compatible with mods that modify the slavery system, such as [Carnalitas Slavery Expansion](https://www.loverslab.com/files/file/21651-carnalitas-slavery-expansion/).
+This mod requires [Carnalitas](https://www.loverslab.com/files/file/14207-carnalitas-unified-sex-mod-framework-for-ck3/) as a prerequisite (obviously). While it modifies the slavery system in a substantial way, it doesn't touch other Carnalitas features and should be compatible with all of them.
 
-This mod is **NOT** compatible with the *Slavery System: Consensual Only* Carnalitas game rule (`carn_slavery_content_consensual_only`).
+### Compatibility with Mods Based on Carnalitas
+
+This mod should be compatible with all mods based on Carnalitas that don't modify the slavery system. Compatibility with the following mods has been explicitly verified, but most others should work as well:
+
+* [CBO](https://www.loverslab.com/files/file/16683-character-body-overhaul/)
+* [CBO Carnal Court](https://www.loverslab.com/files/file/21059-cbo-carnal-court/)
+* [Physical Attributes](https://www.loverslab.com/files/file/16927-physical-attributes/)
+
+This mod may not be compatible with all other mods that modify the slavery system. However, it should still be compatible with mods that don't change the original Carnalitas slave interactions, modifiers, or effects. Compatibility with the following mods has been explicitly verified:
+
+* [Carnalitas Slavery Expansion](https://www.loverslab.com/files/file/21651-carnalitas-slavery-expansion/).
+
+### Compatibility with Carnalitas Slavery System Rules
+
+This mod is fully compatible with the *Slavery System: Disabled* and *Slavery System: Enabled* Carnalitas game rules. If the slavery system is disabled, all interactions and events introduced or modified by this mod will be disabled too, and vice versa.
+
+This mod is not compatible with the *Slavery System: Consensual Only* Carnalitas game rule. If this option is chosen, the effect will be exactly the same as with *Slavery System: Enabled*.
 
 ## Changes to Carnalitas
 
-The sections below list the changes made to existing Carnalitas objects in somewhat more detail.
+The sections below list the changes made to existing Carnalitas objects in somewhat more detail for easier checking of compatibility with other mods.
 
-### Interactions
+### Interactions (`character_interactions`)
 
-This mod replaces the following Carnalitas interactions, modifying them as described above:
+* *Buy Slave* (`carn_buy_slave_directly_interaction`): Modified as described above. If accepted, the slave is bought at the seller's price (`carnx_slave_ask_price_value`), not `carn_slave_price_value`.
+* *Sell Slave* (`carn_sell_slave_interaction`): Modified as described above. If accepted, the slave is sold at the buyers's price (`carnx_slave_bid_price_value`), not `carn_slave_price_value`.
+* *Enslave* (`carn_enslave_interaction`): Modified as described above.
+* *Free Slave* (`carn_free_slave_interaction`): Modified as described above.
+* *Seize Slave* (`carn_seize_slave_interaction`): Modified as described above. Added triggering of the `carnx_on_slave_seized` on-action.
 
-* *Buy Slave* (`carn_buy_slave_directly_interaction`): Buy a slave from another ruler. If accepted, the slave is bought at the seller's price (`carnx_slave_ask_price_value`).
-* *Sell Slave* (`carn_sell_slave_interaction`): Sell one of your slaves to another ruler. If accepted, the slave is sold at the buyers's price (`carnx_slave_bid_price_value`).
-* *Enslave* (`carn_enslave_interaction`): Enslave one of your prisoners.
-* *Free Slave* (`carn_free_slave_interaction`): Free one of your slaves, potentially asking for gold, conversion, renouncing of claims, or a favor. If asked for gold and accepted, the slave pays their ransom cost (`carnx_slave_ransom_cost_value`).
-* *Seize Slave* (`carn_seize_slave_interaction`): Seize somebody else's slave that is your prisoner.
+### Effects (`scripted_effects`)
 
-This mod introduces the following new interactions:
+* `carn_enslave_effect`: Rebalanced (mainly slightly lowered) dread, tyranny, piety, and stress effects that were originally copied from the *Execute* interaction. Removed the removal of the slave's gold (it didn't work anyway and was reported in `errors.log`). Changed some tooltips.
+* `carn_free_slave_effect`: Added a safety check to prevent errors in `carn_on_slave_freed`.
+* `carn_free_slave_interaction_effect`: Rebalanced dread and piety effects. If asked for gold, the slave pays their ransom cost (`carnx_slave_ransom_cost_value`) instead of `carn_slave_price_value`.
+* `carn_buy_slave_effect`: Changed interface messages and tooltips. Added triggering of the `carnx_on_slave_bought` on-action.
 
-* *Buy Slaves* (`carnx_buy_slaves_interaction`): Buy slaves from other rulers that are willing to sell them to you. This is a convenience interaction for the human player to quickly find all slaves they could buy and the prices at which they could be bought. Slaves are bought at the seller's price (`carnx_slave_ask_price_value`).
-* *Sell Slaves* (`carnx_sell_slaves_interaction`): Sell some of your slaves to other rulers willing to buy them from you. This is a convenience interaction for the human player to quickly find all potential buyers for their slaves and the prices at which they could be sold. Slaves are sold at the buyers's price (`carnx_slave_bid_price_value`)
-* *Ransom Slave* (`carnx_ransom_slave_interaction`): Ransom one of your slaves with another ruler that is their relative or relation for either gold or a favor. If asked for gold and accepted, the payer pays the slave's ransom cost (`carnx_slave_ransom_cost_value`).
+### On Action (`on_action`)
 
-### On Action
+* `on_death_relation_slave`: Fixed some of the bugs mentioned in [Bug Fixes](#bug-fixes)
 
-TODO
+### Other
 
-### Effects
-
-TODO
-
-### Triggers
-
-TODO
+* The value `carn_slave_price_value` is no longer used by any interactions or effects. It has been replaced by other values, mainly `carnx_slave_bid_price_value` and `carnx_slave_ask_price_value`.
+* The character and trait flags `carn_wants_to_be_a_slave` and the opinion modifier `carn_wants_to_be_your_slave_opinion` are no longer used by any interactions. They are intended to work with the `carn_slavery_content_consensual_only` game rule that is not supported.
