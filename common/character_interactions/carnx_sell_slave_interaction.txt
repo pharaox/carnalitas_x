@@ -156,11 +156,6 @@ carn_sell_slave_interaction = {
 			add = -200
 			desc = "ACTOR_NEMESIS_TO_ME_REASON"
 		}
-
-		modifier = {
-			scope:recipient.short_term_gold < medium_gold_value
-			factor = 0
-		}
 	}
 
 	ai_targets = {
@@ -236,7 +231,16 @@ carn_sell_slave_interaction = {
 		modifier = {
 			scope:recipient = {
 				save_temporary_scope_as = buyer
-				gold < scope:secondary_recipient.carnx_slave_bid_price_value
+				OR = {
+					AND = {
+						is_ai = yes
+						short_term_gold < scope:secondary_recipient.carnx_slave_ask_price_value
+					}
+					AND = {
+						is_ai = no
+						gold < scope:secondary_recipient.carnx_slave_ask_price_value
+					}
+				}
 			}
 			factor = 0
 		}

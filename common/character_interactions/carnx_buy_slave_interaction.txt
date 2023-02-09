@@ -165,7 +165,18 @@ carn_buy_slave_directly_interaction = {
 		modifier = {
 			scope:recipient = {
 				save_temporary_scope_as = seller
-				scope:actor.gold < scope:secondary_recipient.carnx_slave_ask_price_value
+				scope:actor = {
+					OR = {
+						AND = {
+							is_ai = yes
+							short_term_gold < scope:secondary_recipient.carnx_slave_ask_price_value
+						}
+						AND = {
+							is_ai = no
+							gold < scope:secondary_recipient.carnx_slave_ask_price_value
+						}
+					}
+				}
 			}
 			factor = 0
 			desc = "carnx_not_enough_gold_reason"
@@ -180,7 +191,7 @@ carn_buy_slave_directly_interaction = {
 	ai_frequency = 24
 
 	ai_potential = {
-		short_term_gold >= medium_gold_value
+		short_term_gold >= major_gold_value
 	}
 
 	ai_will_do = {

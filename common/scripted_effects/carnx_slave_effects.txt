@@ -910,6 +910,43 @@ carn_buy_slave_effect = {
 		name = slave_price
 		value = $SLAVE_PRICE$
 	}
+
+	scope:buyer = {
+		hidden_effect = {
+			send_interface_message = {
+				type = event_generic_neutral
+				title = carnx_msg_slave_bought
+				left_icon = scope:slave
+				right_icon = scope:seller
+
+				show_as_tooltip = {
+					carnx_buy_slave_actual_effect = yes
+				}
+			}
+		}
+	}
+
+	scope:seller = {
+		send_interface_message = {
+			type = event_generic_neutral
+			title = carnx_msg_slave_sold
+			left_icon = scope:slave
+			right_icon = scope:buyer
+
+			carnx_buy_slave_actual_effect = yes
+		}
+	}
+
+	hidden_effect = {
+		scope:slave = {
+			trigger_event = {
+				on_action = carnx_on_slave_bought
+			}
+		}
+	}
+}
+
+carnx_buy_slave_actual_effect = {
 	scope:slave = {
 		hidden_effect = {
 			every_relation = {
@@ -930,10 +967,11 @@ carn_buy_slave_effect = {
 			}
 		}
 	}
+
 	scope:buyer = {
 		if = {
 			limit = {
-				gold >= scope:slave_price
+				short_term_gold >= scope:slave_price
 			}
 			pay_short_term_gold = {
 				gold = scope:slave_price
@@ -941,10 +979,10 @@ carn_buy_slave_effect = {
 			}
 		}
 		else = {
-			custom_tooltip = carn_buyer_not_enough_gold_for_slave_price_tooltip
+			custom_tooltip = carnx_buyer_not_enough_gold_for_slave_price_tooltip
 			hidden_effect = {
 				pay_short_term_gold = {
-					gold = current_gold_value
+					gold = short_term_gold
 					target = scope:seller
 				}
 			}
@@ -956,31 +994,6 @@ carn_buy_slave_effect = {
 					scope:slave = { NOT = { is_courtier_of = scope:buyer } }
 				}
 				add_courtier = scope:slave
-			}
-			send_interface_message = {
-				type = event_generic_neutral
-				title = carnx_msg_slave_bought
-				left_icon = scope:slave
-				right_icon = scope:seller
-				custom_tooltip = carnx_msg_bought_slave_from_seller_desc
-			}
-		}
-	}
-	scope:seller = {
-		hidden_effect = {
-			send_interface_message = {
-				type = event_generic_neutral
-				title = carnx_msg_slave_sold
-				left_icon = scope:slave
-				right_icon = scope:buyer
-				custom_tooltip = carnx_msg_sold_slave_to_buyer_desc
-			}
-		}
-	}
-	hidden_effect = {
-		scope:slave = {
-			trigger_event = {
-				on_action = carnx_on_slave_bought
 			}
 		}
 	}

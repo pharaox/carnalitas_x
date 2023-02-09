@@ -29,7 +29,7 @@
  recipient_secondary_carnx_ransom_slave_interaction: "Slave"
 
  carnx_secondary_recipient_has_court_position_reason: "[secondary_recipient.GetShortUIName|U] holds a [court|E] position: $VALUE|=+0$"
- carnx_secondary_recipient_has_important_role_reason: "[secondary_recipient.GetShortUIName|U] has is an educator or being educated: $VALUE|=+0$"
+ carnx_secondary_recipient_has_important_role_reason: "[secondary_recipient.GetShortUIName|U] is an educator or being educated: $VALUE|=+0$"
  carnx_secondary_recepient_claims_reason: "[secondary_recipient.GetShortUIName|U] has claims that are useful to [recipient.GetShortUIName|U]: $VALUE|=+0$"
  carnx_secondary_recepient_attraction_reason: "[secondary_recipient.GetShortUIName|U] is attractive to [recipient.GetShortUIName|U]: $VALUE|=+0$"
  carnx_secondary_recepient_female_reason: "[secondary_recipient.GetShortUIName|U] is a visibly fertile female: $VALUE|=+0$"
@@ -40,6 +40,8 @@
  carnx_lacking_court_physician_reason: "[recipient.GetShortUIName|U] is lacking a court physician: $VALUE|=+0$"
  carnx_lacking_knights_reason: "[recipient.GetShortUIName|U] is lacking knights: $VALUE|=+0$"
  carnx_not_enough_gold_reason: "[actor.GetShortUIName|U] can't afford the price: $VALUE|=+0$"
+
+ carnx_buyer_not_enough_gold_for_slave_price_tooltip: "Pays #high [gold_i][SCOPE.ScriptValue('carn_scope_buyer_current_gold_value')|0]#! to [seller.GetShortUINameNoTooltip] #weak (full price of [gold_i][SCOPE.ScriptValue('carn_scope_slave_price_value')|0] exceeds short term budget)#!"
 
  carnx_msg_slave_bought: "Slave Bought"
  carnx_msg_slave_sold: "Slave Sold"

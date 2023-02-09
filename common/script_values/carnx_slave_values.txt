@@ -745,3 +745,7 @@ carnx_enslave_tyranny_gain = {
 		divide = 2
 	}
 }
+
+carn_scope_buyer_current_gold_value = {
+	value = scope:buyer.short_term_gold
+}
