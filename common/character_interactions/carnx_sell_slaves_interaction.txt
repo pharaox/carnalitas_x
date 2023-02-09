@@ -24,13 +24,16 @@ carnx_sell_slaves_interaction = {
 	}
 
 	populate_actor_list = {
-		scope:actor = {
-			every_relation = {
-				type = slave
-				limit = {
-					carn_slave_can_be_sold_trigger = yes
+		if = {
+			limit = { NOT = { exists = scope:secondary_recipient } }
+			scope:actor = {
+				every_relation = {
+					type = slave
+					limit = {
+						carn_slave_can_be_sold_trigger = yes
+					}
+					add_to_list = characters
 				}
-				add_to_list = characters
 			}
 		}
 	}
@@ -81,11 +84,19 @@ carnx_sell_slaves_interaction = {
 	}
 
 	on_accept = {
-		scope:actor = { save_scope_as = seller }
-		scope:secondary_actor = { save_scope_as = slave }
-		scope:secondary_recipient = { save_scope_as = buyer }
-		carn_buy_slave_effect = {
-			SLAVE_PRICE = scope:slave.carnx_slave_bid_price_value
+		show_as_tooltip = {
+			scope:actor = { save_scope_as = seller }
+			scope:secondary_actor = { save_scope_as = slave }
+			scope:secondary_recipient = { save_scope_as = buyer }
+			carn_buy_slave_effect = {
+				SLAVE_PRICE = scope:slave.carnx_slave_bid_price_value
+			}
+		}
+		open_interaction_window = {
+			interaction = carn_sell_slave_interaction
+			actor = scope:actor
+			recipient = scope:secondary_recipient
+			secondary_recipient = scope:secondary_actor
 		}
 	}
 

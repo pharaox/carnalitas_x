@@ -12,32 +12,35 @@ carnx_buy_slaves_interaction = {
 	send_name = carnx_buy_slaves_interaction
 
 	populate_actor_list = {
-		scope:actor = {
-			carnx_get_potential_buyers_or_sellers_effect = { LIST = potential_sellers }
-		}
-		every_in_list = {
-			list = potential_sellers
-			limit = {
-				carnx_candidate_to_buy_slave_from_trigger = yes
+		if = {
+			limit = { NOT = { exists = scope:secondary_recipient } }
+			scope:actor = {
+				carnx_get_potential_buyers_or_sellers_effect = { LIST = potential_sellers }
 			}
-			save_scope_as = seller
-			every_relation = {
-				type = slave
+			every_in_list = {
+				list = potential_sellers
 				limit = {
-					carn_slave_can_be_sold_trigger = yes
-					scope:seller = {
-						save_temporary_opinion_value_as = { name = opinion_of_actor target = scope:actor }
-					}
-					carnx_buy_slave_ai_accept_value > 0
+					carnx_candidate_to_buy_slave_from_trigger = yes
 				}
-				save_scope_as = slave
-				if = {
+				save_scope_as = seller
+				every_relation = {
+					type = slave
 					limit = {
-						scope:actor = {
-							NOT = { carnx_is_slavery_crime_trigger = { CHARACTER = scope:slave } }
+						carn_slave_can_be_sold_trigger = yes
+						scope:seller = {
+							save_temporary_opinion_value_as = { name = opinion_of_actor target = scope:actor }
 						}
+						carnx_buy_slave_ai_accept_value > 0
 					}
-					add_to_list = characters
+					save_scope_as = slave
+					if = {
+						limit = {
+							scope:actor = {
+								NOT = { carnx_is_slavery_crime_trigger = { CHARACTER = scope:slave } }
+							}
+						}
+						add_to_list = characters
+					}
 				}
 			}
 		}
@@ -70,12 +73,21 @@ carnx_buy_slaves_interaction = {
 	}
 
 	on_accept = {
-		scope:actor = { save_scope_as = buyer }
-		scope:secondary_actor = { save_scope_as = slave }
-		scope:secondary_recipient = { save_scope_as = seller }
-		carn_buy_slave_effect = {
-			SLAVE_PRICE = scope:slave.carnx_slave_ask_price_value
+		show_as_tooltip = {
+			scope:actor = { save_scope_as = buyer }
+			scope:secondary_actor = { save_scope_as = slave }
+			scope:secondary_recipient = { save_scope_as = seller }
+			carn_buy_slave_effect = {
+				SLAVE_PRICE = scope:slave.carnx_slave_ask_price_value
+			}
 		}
+		open_interaction_window = {
+			interaction = carn_buy_slave_directly_interaction
+			actor = scope:actor
+			recipient = scope:secondary_recipient
+			secondary_recipient = scope:secondary_actor
+		}
+
 	}
 
 	auto_accept = yes
