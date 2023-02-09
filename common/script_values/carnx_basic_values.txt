@@ -8,7 +8,7 @@ carnx_ransom_slave_ai_will_do_base = 0
 carnx_buy_sell_slave_opinion_multiplier = 0.12
 
 # Multiplier for the slave base price
-carnx_slave_base_price_multiplier = 0.75
+carnx_slave_base_price_multiplier = 0.5
 
 # Enslave interaction dread gain
 carnx_enslave_minor_dread_gain = 2
