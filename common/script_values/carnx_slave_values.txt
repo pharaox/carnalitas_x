@@ -396,7 +396,18 @@ carnx_buy_slave_ai_accept_value = {
 	# Not enough gold
 	if = {
 		limit = {
-			scope:actor.gold < scope:slave.carnx_slave_ask_price_value
+			scope:actor = {
+				OR = {
+					AND = {
+						is_ai = yes
+						short_term_gold < scope:slave.carnx_slave_ask_price_value
+					}
+					AND = {
+						is_ai = no
+						gold < scope:slave.carnx_slave_ask_price_value
+					}
+				}
+			}
 		}
 		multiply = 0
 	}
@@ -669,13 +680,6 @@ carnx_sell_slave_ai_accept_value = {
 			}
 		}
 		add = -200
-	}
-
-	if = {
-		limit = {
-			scope:buyer.short_term_gold < medium_gold_value
-		}
-		multiply = 0
 	}
 }
 
