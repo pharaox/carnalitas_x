@@ -45,8 +45,21 @@ carn_enslave_effect = {
 				limit = { exists = betrothed }
 				break_betrothal = betrothed
 			}
-			every_concubine = {
-				scope:new_slave = { remove_concubine = prev }
+			if = {
+				limit = {
+					number_of_concubines > 0
+				}
+				every_concubine = {
+					scope:new_slave = {
+						remove_concubine = prev
+					}
+				}
+			}
+			if = {
+				limit = { is_concubine = yes }
+				this.concubinist = {
+					remove_concubine = scope:new_slave
+				}
 			}
 			every_relation = {
 				type = guardian
@@ -904,7 +917,8 @@ carnx_ransom_slave_interaction_effect = {
 }
 
 # Transfers the ownership of scope:slave from scope:seller to scope:buyer
-# and pays SLAVE_PRICE to scope:seller. Overridden from Carnalitas.
+# and pays SLAVE_PRICE to scope:seller. Sends interface messages.
+# Overridden from Carnalitas.
 carn_buy_slave_effect = {
 	save_scope_value_as = {
 		name = slave_price
@@ -936,19 +950,14 @@ carn_buy_slave_effect = {
 			carnx_buy_slave_actual_effect = yes
 		}
 	}
-
-	hidden_effect = {
-		scope:slave = {
-			trigger_event = {
-				on_action = carnx_on_slave_bought
-			}
-		}
-	}
 }
 
+# Transfers the ownership of scope:slave from scope:seller to scope:buyer
+# and pays SLAVE_PRICE to scope:seller.
 carnx_buy_slave_actual_effect = {
 	scope:slave = {
 		hidden_effect = {
+			# Remove former owner
 			every_relation = {
 				type = slave_owner
 				remove_relation_slave = prev
@@ -961,14 +970,22 @@ carnx_buy_slave_actual_effect = {
 					modifier = carn_former_slave_or_slave_owner_opinion
 				}
 			}
+
+			# Release from prison
 			if = {
 				limit = { is_imprisoned_by = scope:seller }
 				release_from_prison = yes
+			}
+
+			# Trigger event
+			trigger_event = {
+				on_action = carnx_on_slave_bought
 			}
 		}
 	}
 
 	scope:buyer = {
+		# Pay price to seller
 		if = {
 			limit = {
 				short_term_gold >= scope:slave_price
@@ -987,14 +1004,86 @@ carnx_buy_slave_actual_effect = {
 				}
 			}
 		}
+
+		# Set buyer as new owner
 		set_relation_slave = scope:slave
+
 		hidden_effect = {
+			# Add slave to new owner's court
 			if = {
 				limit = {
 					scope:slave = { NOT = { is_courtier_of = scope:buyer } }
 				}
 				add_courtier = scope:slave
 			}
+		}
+	}
+}
+
+# Seizes scope:slave by scope:new_owner, also incurs opinion effects.
+carnx_seize_slave_effect = {
+	scope:slave = {
+		hidden_effect = {
+			# Remove former owner
+			every_relation = {
+				type = slave_owner
+				remove_relation_slave = prev
+				add_opinion = {
+					target = prev
+					modifier = carn_former_slave_or_slave_owner_opinion
+				}
+				reverse_add_opinion = {
+					target = prev
+					modifier = carn_former_slave_or_slave_owner_opinion
+				}
+				save_scope_as = former_owner
+			}
+
+			# Release from prison
+			if = {
+				limit = { is_imprisoned_by = scope:new_owner }
+				release_from_prison = yes
+			}
+
+			# Trigger event
+			trigger_event = {
+				on_action = carnx_on_slave_seized
+			}
+		}
+	}
+
+	scope:new_owner = {
+		# Set new owner
+		set_relation_slave = scope:slave
+
+		# Add opinion from former owner
+		reverse_add_opinion = {
+			target = scope:former_owner
+			modifier = carn_stole_my_slave_opinion
+		}
+
+		hidden_effect = {
+			# Add slave to new owner's court
+			if = {
+				limit = {
+					scope:slave = { NOT = { is_courtier_of = scope:new_owner } }
+				}
+				add_courtier = scope:slave
+			}
+		}
+	}
+}
+
+# Seizes scope:slave by scope:new_owner, also incurs opinion effects.
+# Sends interface messages.
+carnx_seize_slave_interaction_effect = {
+	scope:new_owner = {
+		send_interface_message = {
+			type = event_generic_neutral
+			title = carn_msg_enslave
+			right_icon = scope:slave
+
+			carnx_seize_slave_effect = yes
 		}
 	}
 }

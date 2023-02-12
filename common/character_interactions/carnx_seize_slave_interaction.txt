@@ -44,60 +44,9 @@ carn_seize_slave_interaction = {
 	auto_accept = yes
 
 	on_accept = {
-		scope:recipient = {
-			every_relation = {
-				type = slave_owner
-				hidden_effect = {
-					remove_relation_slave = prev
-					add_opinion = {
-						target = prev
-						modifier = carn_former_slave_or_slave_owner_opinion
-					}
-					reverse_add_opinion = {
-						target = prev
-						modifier = carn_former_slave_or_slave_owner_opinion
-					}
-				}
-				add_opinion = {
-					target = scope:actor
-					modifier = carn_stole_my_slave_opinion
-				}
-			}
-			set_relation_slave_owner = scope:actor
-		}
-		scope:actor = {
-			hidden_effect = {
-				send_interface_message = {
-					type = event_generic_neutral
-					title = carn_msg_enslave
-					right_icon = scope:recipient
-					custom_tooltip = carnx_msg_seized_slave_desc
-				}
-			}
-		}
-		hidden_effect = {
-			scope:actor = {
-				if = {
-					limit = {
-						scope:recipient = { NOT = { is_courtier_of = scope:actor } }
-					}
-					add_courtier = scope:recipient
-				}
-			}
-			scope:recipient = {
-				if = {
-					limit = { is_imprisoned_by = scope:actor }
-					release_from_prison = yes
-				}
-				if = {
-					limit = { has_character_modifier = carnx_marked_for_enslavement_modifier }
-					remove_character_modifier = carnx_marked_for_enslavement_modifier
-				}
-				trigger_event = {
-					on_action = carnx_on_slave_seized
-				}
-			}
-		}
+		scope:actor = { save_scope_as = new_owner }
+		scope:recipient = { save_scope_as = slave }
+		carnx_seize_slave_interaction_effect = yes
 	}
 
 	ai_targets = {
