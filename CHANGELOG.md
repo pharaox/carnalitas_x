@@ -2,10 +2,10 @@
 
 ## Interactions
 
-* Reduced the correction multiplier of the slave base price from 0.75 to 0.5, making slaves cheaper across the board.
 * Changed *Buy Slaves* and *Sell Slaves* to redirect to *Buy Slave* and *Sell Slave* for the actual trade in order to show the AI acceptance reasons and prevent exploits.
 * Changed *Sell Slaves* to show only slaves that can actually be sold to somebody.
 * Improved `carn_buy_slave_effect` to show the slave price and other relevant information properly in messages.
+* Enabled the use of hooks in *Buy Slave* and *Sell Slave* interactions.
 * Ensured the AI pays no more than their `short_term_gold` for slaves and changed the corresponding descriptions accordingly.
 * Added "age considerations" modifier to all slave interactions. The AI is now more willing to buy / acquire and less willing to sell / release slaves if they are between 6 and 50 years of age, and vice versa if they are not. The modifier peaks between 16 and 30 years of age with a peak value of 10. It is only applied if the slave is considered "useful" to the AI.
 * Added "price considerations" modifier to *Buy Slave* and *Sell Slave* interactions. When buying, the AI is now more willing to buy slaves that are cheap (price < `minor_gold_value`) and less willing to buy slaves that are expensive (price > `major_gold_value`), and vice versa when selling. The value of the modifier is 10, so it only makes any difference if the AI willingness is on the border. It does not enable selling useless slaves to the AI just because they are cheap, or buying very useful ones just because they are expensive.
@@ -16,6 +16,8 @@
   - Lacking a good court chaplain (based on learning).
   - Lacking a good court physician or antiquarian (based on aptitude; court physician was there also before but it was broken).
   - Could use a good commander (based on martial and commander traits).
+* Buffed AI unwillingness to sell / release court positions.
+* Reduced the correction multiplier of the slave base price from 0.75 to 0.5, making slaves cheaper across the board.
 * Changed some factors affecting the slave base price:
   - Nerfed claims to 100 for any type of claim (before it scaled from 100 to 250).
   - Rebalanced court physician traits to match aptitude, added an antiquarian trait.
@@ -24,7 +26,8 @@
   - Nerfed "visibly fertile female" from 20 to 15.
   - Added age (up to 10, similar to above).
 * Buffed dread impact on *Ransom Slave* AI willingness for vassals and below. They will now practically always accept if intimidated or cowed.
-* Buffed AI unwillingness to sell / release court positions.
+* Buffed AI base willingness to offer *Ransom Slave* to other rulers.
+* Ensured the AI replies immediately to *Buy Slave* and *Sell Slave* offers.
 
 ## Bug Fixes
 
@@ -33,8 +36,14 @@
 
 ## Miscellaneous
 
-* Extracted commonly checked conditions into reusable triggers in `carnx_slave_triggers.txt`.
-* Extracted positive and negative "impact values" as constants in `carnx_basic_values.txt`
+* If a character loses their last title, their slaves are no longer freed, instead they are seized by the new title holder.
+* Enabled imprisoning slaves w/o tyranny (vanilla change).
+
+## Housekeeping
+
+* Extracted commonly checked conditions as scripted triggers triggers in `carnx_slave_triggers.txt`.
+* Extracted positive and negative "impact values" as script values in `carnx_basic_values.txt`.
+* Extracted *Seize Slave* effects as scripted effects in `carnx_slave_effects.txt`.
 
 # Version 0.2.0
 
