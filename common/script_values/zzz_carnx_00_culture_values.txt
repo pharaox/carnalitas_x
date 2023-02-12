@@ -1,6 +1,8 @@
-﻿court_position_aptitude_family_business_value = {
+﻿# Overridden from vanilla.
+court_position_aptitude_family_business_value = {
 	if = {
 		limit = {
+			# CarnalitasX: Check if liege exists to prevent errors
 			exists = liege
 			culture = liege.culture
 			culture = { has_cultural_parameter = close_family_better_court_positions }

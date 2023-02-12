@@ -1,4 +1,4 @@
-﻿# Ask a courtier to convert to the liege's faith. Overridden from the base game.
+﻿# Ask a courtier to convert to the liege's faith. Overridden from vanilla.
 ask_for_conversion_courtier_interaction = {
 	category = interaction_category_religion
 	icon = religious

@@ -1,0 +1,65 @@
+﻿# Add tyranny if you don't have a justifiable reason. Overridden from vanilla.
+imprison_tyranny_effect = {
+
+	# Normalize scopes for tooltip loc, because there is no god nor consistency
+	if = {
+		limit = {
+			exists = scope:imprisoner
+			NOT = { exists = scope:actor }
+		}
+		scope:imprisoner = { save_scope_as = actor }
+	}
+	if = {
+		limit = {
+			exists = scope:actor
+			NOT = { exists = scope:imprisoner }
+		}
+		scope:actor = { save_scope_as = imprisoner }
+	}
+	if = {
+		limit = {
+			exists = scope:imprisonment_target
+			NOT = { exists = scope:recipient }
+		}
+		scope:imprisonment_target = { save_scope_as = recipient }
+	}
+	if = {
+		limit = {
+			exists = scope:recipient
+			NOT = { exists = scope:imprisonment_target }
+		}
+		scope:recipient = { save_scope_as = imprisonment_target }
+	}
+
+	# Determine if tyrannical or not
+	# Got good reason
+	if = {
+		limit = {
+			scope:actor = { has_imprisonment_reason = scope:recipient }
+		}
+		custom_tooltip = IS_ALLOWED_TO_IMPRISON_DESC
+	}
+
+	# CarnalitasX: Allowed to imprison your own slaves without tyranny
+	else_if = {
+		limit = {
+			scope:actor = { has_relation_slave = scope:recipient }
+		}
+		custom_tooltip = carnx_is_allowed_to_imprison_slave_desc
+	}
+
+	# Is at war or edge-case pondering general imprisonment
+	else_if = {
+		limit = {
+			OR = {
+				NOT = { exists = scope:recipient }
+				scope:actor = { is_at_war_with = scope:recipient }
+			}
+		}
+		custom_tooltip = IS_ALLOWED_TO_IMPRISON_NO_RECIPIENT_DESC
+	}
+
+	else = {
+		add_tyranny = imprisonment_tyranny_gain
+	}
+}
