@@ -50,7 +50,29 @@ carn_sell_slave_interaction = {
 		}
 	}
 
+	# Use hook
+	send_option = {
+		is_valid = {
+			exists = scope:recipient
+			scope:actor = {
+				has_usable_hook = scope:recipient
+			}
+		}
+		flag = hook
+		localization = SCHEME_HOOK
+	}
+	should_use_extra_icon = {
+		scope:actor = { has_usable_hook = scope:recipient }
+	}
+	extra_icon = "gfx/interface/icons/character_interactions/hook_icon.dds"
+
+	send_options_exclusive = no
+
 	on_accept = {
+		if = {
+			limit = { scope:hook = yes }
+			scope:actor = { use_hook = scope:recipient }
+		}
 		scope:actor = { save_scope_as = seller }
 		scope:secondary_recipient = { save_scope_as = slave }
 		scope:recipient = { save_scope_as = buyer }
@@ -59,7 +81,15 @@ carn_sell_slave_interaction = {
 		}
 	}
 
-	auto_accept = no
+	auto_accept = {
+		custom_description = {
+			text = "spending_hook"
+			subject = scope:actor
+			object = scope:recipient
+			scope:hook = yes
+			scope:actor = { has_strong_hook = scope:recipient }
+		}
+	}
 
 	ai_accept = {
 		base = 0
@@ -67,6 +97,12 @@ carn_sell_slave_interaction = {
 		modifier = {
 			add = -50
 			desc = "GOLD_NEGATIVE_REASON"
+		}
+
+		modifier = {
+			scope:hook = yes
+			add = 50
+			desc = SCHEME_WEAK_HOOK_USED
 		}
 
 		# Avoid spending money if at war (-50)
