@@ -55,20 +55,18 @@ carn_free_slave_interaction = {
 
 	# Ask recipient to pay the full price
 	send_option = {
-		flag = gold
-		localization = "RANSOM_GOLD_OPTION"
 		is_shown = {
 			scope:recipient = {
 				gold >= carnx_slave_ransom_cost_value
 				carn_slave_can_be_sold_trigger = yes
 			}
 		}
+		flag = gold
+		localization = "RANSOM_GOLD_OPTION"
 	}
 
 	# Ask recipient to pay what they have
 	send_option = {
-		flag = current_gold
-		localization = "RANSOM_CURRENT_GOLD_OPTION"
 		is_shown = {
 			scope:recipient = {
 				gold < carnx_slave_ransom_cost_value
@@ -76,12 +74,12 @@ carn_free_slave_interaction = {
 				carn_slave_can_be_sold_trigger = yes
 			}
 		}
+		flag = current_gold
+		localization = "RANSOM_CURRENT_GOLD_OPTION"
 	}
 
 	# Demand conversion
 	send_option = {
-		flag = demand_conversion
-		localization = "RELEASE_DEMAND_CONVERSION"
 		is_valid = {
 			trigger_if = {
 				limit = {
@@ -109,12 +107,12 @@ carn_free_slave_interaction = {
 				}
 			}
 		}
+		flag = demand_conversion
+		localization = "RELEASE_DEMAND_CONVERSION"
 	}
 
 	# Renounce claims
 	send_option = {
-		flag = renounce_claims
-		localization = RELEASE_RENOUNCE_CLAIMS
 		is_shown = {
 			custom_description = {
 				text = "release_renounce_claims"
@@ -147,12 +145,12 @@ carn_free_slave_interaction = {
 		current_description = {
 			desc = RELEASE_RENOUNCE_CLAIMS_DESC
 		}
+		flag = renounce_claims
+		localization = RELEASE_RENOUNCE_CLAIMS
 	}
 
 	# Gain hook
 	send_option = {
-		flag = gain_hook
-		localization = "RELEASE_GAIN_HOOK"
 		is_valid = {
 			trigger_if = {
 				limit = {
@@ -169,6 +167,8 @@ carn_free_slave_interaction = {
 				}
 			}
 		}
+		flag = gain_hook
+		localization = "RELEASE_GAIN_HOOK"
 	}
 
 	send_options_exclusive = no
@@ -267,7 +267,7 @@ carn_free_slave_interaction = {
 			desc = "GAIN_HOOK_NEGATIVE_REASON"
 		}
 
-		# Intimidated or cowed by actor (10 or 20)
+		# Intimidated or cowed by actor (25 or 50)
 		modifier = {
 			scope:recipient = {
 				target_is_liege_or_above = scope:actor
@@ -276,7 +276,7 @@ carn_free_slave_interaction = {
 					level = 1
 				}
 			}
-			add = intimidated_external_reason_value
+			add = intimidated_halved_reason_value
 			desc = INTIMIDATED_REASON
 		}
 		modifier = {
@@ -287,7 +287,7 @@ carn_free_slave_interaction = {
 					level = 2
 				}
 			}
-			add = cowed_external_reason_value
+			add = cowed_halved_reason_value
 			desc = COWED_REASON
 		}
 	}
@@ -376,31 +376,38 @@ carn_free_slave_interaction = {
 			SCALE = 50
 		}
 
-		# Employed as councillor (-24), court position, knight / commander, or in some other way (-12)
+		# Employed as councillor (NIV doubled), court position, knight / commander, or in some other way (NIV)
 		carnx_employed_modifier = {
 			RULER = scope:actor
 			SLAVE = scope:recipient
-			SCALE = -12
+			SCALE = carnx_ai_negative_employed_impact_halved_value
 		}
 
-		# Claims (-25 if useful claims on neighbouring realms)
+		# Claims (NIV if useful claims on neighbouring realms)
 		carnx_claims_modifier = {
 			RULER = scope:actor
 			SLAVE = scope:recipient
-			SCALE = -25
+			SCALE = carnx_ai_negative_claims_impact_halved_value
 		}
 
-		# Attraction (0 to -25 depending on attraction, doubled for lustful, halved for chaste)
+		# Attraction (0 to NIV depending on attraction, doubled for lustful, halved for chaste)
 		carnx_attraction_modifier = {
 			RULER = scope:actor
 			SLAVE = scope:recipient
-			SCALE = -25
+			SCALE = carnx_ai_negative_attraction_impact_halved_value
 		}
 
-		# Female (-25 if a visibly fertile female)
+		# Female (NIV if a visibly fertile female)
 		carnx_female_modifier = {
 			SLAVE = scope:recipient
-			SCALE = -25
+			SCALE = carnx_ai_negative_female_impact_halved_value
+		}
+
+		# Age (up to NIV depending on age, only if useful)
+		carnx_age_modifier = {
+			RULER = scope:actor
+			SLAVE = scope:recipient
+			SCALE = carnx_ai_negative_age_impact_halved_value
 		}
 
 		# Execute reason, rival, cheating spouse (-75) or nemesis (-150)

@@ -167,6 +167,175 @@ carnx_is_slavery_crime_trigger = {
 	}
 }
 
+carnx_is_useful_slave_to_future_owner_trigger = {
+	OR = {
+		carnx_can_serve_as_chancellor_trigger = { RULER = $RULER$ }
+		carnx_can_serve_as_marshal_trigger = { RULER = $RULER$ }
+		carnx_can_serve_as_steward_trigger = { RULER = $RULER$ }
+		carnx_can_serve_as_spymaster_trigger = { RULER = $RULER$ }
+		carnx_can_serve_as_court_chaplain_trigger = { RULER = $RULER$ }
+		carnx_can_serve_as_knight_trigger = { RULER = $RULER$ }
+		carnx_can_serve_as_commander_trigger = { RULER = $RULER$ }
+		carnx_can_serve_as_court_physician_trigger = { RULER = $RULER$ }
+		carnx_can_serve_as_antiquarian_trigger = { RULER = $RULER$ }
+		carnx_has_useful_claims_trigger = { RULER = $RULER$ }
+		carnx_is_attractive_to_character_trigger = { CHARACTER = $RULER$ }
+		carnx_is_visibly_fertile_female_trigger = yes
+	}
+}
+
+carnx_is_useful_slave_to_current_owner_trigger = {
+	OR = {
+		is_councillor_of = $RULER$
+		AND = {
+			has_any_court_position = yes
+			any_court_position_employer = { this = $RULER$ }
+		}
+		is_knight_of = $RULER$
+		is_commanding_army = yes
+		carnx_has_important_role_trigger = { RULER = $RULER$ }
+		carnx_has_useful_claims_trigger = { RULER = $RULER$ }
+		carnx_is_attractive_to_character_trigger = { CHARACTER = $RULER$ }
+		carnx_is_visibly_fertile_female_trigger = yes
+	}
+}
+
+carnx_can_serve_as_chancellor_trigger = {
+	diplomacy > decent_skill_rating
+	can_be_chancellor_trigger = { COURT_OWNER = $RULER$ }
+	$RULER$ = {
+		OR = {
+			NOT = { exists = cp:councillor_chancellor }
+			cp:councillor_chancellor = { diplomacy <= decent_skill_rating }
+		}
+	}
+}
+
+carnx_can_serve_as_marshal_trigger = {
+	martial > decent_skill_rating
+	can_be_marshal_trigger = { COURT_OWNER = $RULER$ }
+	$RULER$ = {
+		OR = {
+			NOT = { exists = cp:councillor_marshal }
+			cp:councillor_marshal = { martial <= decent_skill_rating }
+		}
+	}
+}
+
+carnx_can_serve_as_steward_trigger = {
+	stewardship > decent_skill_rating
+	can_be_steward_trigger = { COURT_OWNER = $RULER$ }
+	$RULER$ = {
+		OR = {
+			NOT = { exists = cp:councillor_steward }
+			cp:councillor_steward = { stewardship <= decent_skill_rating }
+		}
+	}
+}
+
+carnx_can_serve_as_spymaster_trigger = {
+	intrigue > decent_skill_rating
+	can_be_spymaster_trigger = { COURT_OWNER = $RULER$ }
+	$RULER$ = {
+		OR = {
+			NOT = { exists = cp:councillor_spymaster }
+			cp:councillor_spymaster = { intrigue <= decent_skill_rating }
+		}
+	}
+}
+
+carnx_can_serve_as_court_chaplain_trigger = {
+	learning > decent_skill_rating
+	can_be_court_chaplain_trigger = { COURT_OWNER = $RULER$ }
+	$RULER$ = {
+		OR = {
+			NOT = { exists = cp:councillor_court_chaplain }
+			cp:councillor_court_chaplain = { learning <= decent_skill_rating }
+		}
+	}
+}
+
+carnx_can_serve_as_knight_trigger = {
+	prowess > decent_skill_rating
+	can_be_knight_trigger = { ARMY_OWNER = $RULER$ }
+	$RULER$ = {
+		OR = {
+			number_of_knights < max_number_of_knights
+			any_knight = {
+				prowess <= decent_skill_rating
+			}
+		}
+	}
+}
+
+carnx_can_serve_as_commander_trigger = {
+	martial >= decent_skill_rating
+	can_be_commander_basic_trigger = { ARMY_OWNER = $RULER$ }
+	number_of_commander_traits >= 1
+	$RULER$ = {
+		NOR = {
+			any_vassal = {
+				martial >= decent_skill_rating
+				can_be_commander_basic_trigger = { ARMY_OWNER = $RULER$ }
+				number_of_commander_traits >= 1
+			}
+			any_courtier = {
+				martial >= decent_skill_rating
+				can_be_commander_basic_trigger = { ARMY_OWNER = $RULER$ }
+				number_of_commander_traits >= 1
+			}
+		}
+	}
+}
+
+carnx_can_serve_as_court_physician_trigger = {
+	aptitude:court_physician_court_position > poor_effectiveness
+	can_be_employed_as = court_physician_court_position
+	$RULER$ = {
+		can_employ_court_position_type = court_physician_court_position
+		OR = {
+			NOT = { employs_court_position = court_physician_court_position }
+			any_court_position_holder = {
+				type = court_physician_court_position
+				this.aptitude:court_physician_court_position <= poor_effectiveness
+			}
+		}
+	}
+}
+
+carnx_can_serve_as_antiquarian_trigger = {
+	aptitude:antiquarian_court_position > poor_effectiveness
+	can_be_employed_as = antiquarian_court_position
+	$RULER$ = {
+		can_employ_court_position_type = antiquarian_court_position
+		OR = {
+			NOT = { employs_court_position = antiquarian_court_position }
+			any_court_position_holder = {
+				type = antiquarian_court_position
+				this.aptitude:antiquarian_court_position <= poor_effectiveness
+			}
+		}
+	}
+}
+
+carnx_has_useful_claims_trigger = {
+	any_claim = {
+		neighboring_useful_courtier_or_guest_claim_trigger = { RULER = $RULER$ }
+	}
+}
+
+carnx_is_attractive_to_character_trigger = {
+	$CHARACTER$ = {
+		is_attracted_to_gender_of = prev
+	}
+	attraction > 0
+}
+
+carnx_is_visibly_fertile_female_trigger = {
+	is_female = yes
+	is_visibly_fertile = yes
+}
+
 is_diplomatically_available = {
 	is_busy_in_events_localised = yes
 }

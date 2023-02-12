@@ -1,54 +1,24 @@
 ﻿# Slave base price. Based on individual_recruit_guest_interaction_cost.
 carnx_slave_base_price_value = {
+	# Base (reduced compared to guests 20 -> 10)
 	add = 10
 
-	# Claims (100 to 250 depending on the highest claim tier)
+	# Claims (100 if any claims, reduced compared to guests)
 	if = {
 		limit = {
 			any_claim = { always = yes }
 		}
-		if = {
-			limit = {
-				any_claim = {
-					tier = tier_empire
-				}
-			}
-			add = 250
-		}
-		else_if = {
-			limit = {
-				any_claim = {
-					tier = tier_kingdom
-				}
-			}
-			add = 200
-		}
-		else_if = {
-			limit = {
-				any_claim = {
-					tier = tier_duchy
-				}
-			}
-			add = 150
-		}
-		else_if = {
-			limit = {
-				any_claim = {
-					tier = tier_county
-				}
-			}
-			add = 100
-		}
+		add = 100
 	}
 
-	# Dynasty (5 for each dynasty prestige level)
+	# Dynasty (5 for each dynasty prestige level, reduced compared to guests 15 -> 5)
 	if = {
 		limit = {
 			exists = dynasty
 		}
 		add = {
 			value = dynasty.dynasty_prestige_level # 0-10
-			multiply = 5 # Max 50, reduced compared to guests (15 -> 5)
+			multiply = 5 # Max 50
 		}
 	}
 
@@ -71,12 +41,12 @@ carnx_slave_base_price_value = {
 		}
 	}
 
-	# Court Physician traits (10 to 20 depending on tier)
+	# Court Physician and Antiquarian traits (10 to 20 depending on tier)
 	if = {
 		limit = {
 			OR = {
 				has_trait = physician_3
-				has_trait = mystic_3
+				has_completed_inspiration = yes
 			}
 		}
 		add = 20
@@ -84,9 +54,8 @@ carnx_slave_base_price_value = {
 	else_if = {
 		limit = {
 			OR = {
-				has_trait = lifestyle_herbalist
 				has_trait = physician_2
-				has_trait = mystic_2
+				has_trait = mystic_3
 			}
 		}
 		add = 15
@@ -95,13 +64,13 @@ carnx_slave_base_price_value = {
 		limit = {
 			OR = {
 				has_trait = physician_1
-				has_trait = mystic_1
+				has_trait = mystic_2
+				has_trait = lifestyle_herbalist
+				has_trait = administrator
 			}
 		}
 		add = 10
 	}
-
-	# TODO: Other traits
 
 	# Skills (5 for each skill point above 12)
 	if = {
@@ -161,28 +130,46 @@ carnx_slave_base_price_value = {
 		add = {
 			value = prowess
 			subtract = decent_skill_rating
-			multiply = 5
+			multiply = 2 # Reduced compared to guests
 		}
 	}
 
-	# Attraction (-10 to 20 depending on attraction)
+	# Attraction (-30 to 30 depending on attraction, new compared to guests)
 	add = {
 		value = attraction
 		divide = high_positive_attraction
-		multiply = 20
-		min = -10
+		multiply = 30
 	}
 
-	# Visibly fertile females (20)
+	# Female (15 if a visibly fertile female, new compared to guests)
 	if = {
 		limit = {
 			is_female = yes
 			is_visibly_fertile = yes
 		}
-		add = 20
+		add = 15
 	}
 
-	# TODO: Tribal rulers pay less (multiply by 0.25)
+	# Age (up to 10 depending on age, new compared to guests)
+	add = {
+		value = 10
+		if = {
+			limit = { age < 16 }
+			subtract = {
+				value = 16
+				subtract = age
+			}
+		}
+		else_if = {
+			limit = { age > 30 }
+			subtract = {
+				value = age
+				subtract = 30
+				multiply = 0.5
+				floor = yes
+			}
+		}
+	}
 
 	# Apply a correction factor to get the final price
 	multiply = carnx_slave_base_price_multiplier
@@ -195,15 +182,21 @@ carnx_slave_ask_price_value = {
 
 	# Make it higher for the player
 	if = {
-		limit = { scope:actor = { is_ai = no } }
+		limit = {
+			exists = scope:actor
+			scope:actor = { is_ai = no }
+		}
 		multiply = carnx_slave_ask_price_player_multiplier
 	}
 
 	# Seller personality multiplier (0.8 to 1.2 based on ai_greed)
-	multiply = {
-		value = scope:seller.ai_greed
-		multiply = 0.002
-		add = 1
+	if = {
+		limit = { exists = scope:seller }
+		multiply = {
+			value = scope:seller.ai_greed
+			multiply = 0.002
+			add = 1
+		}
 	}
 }
 
@@ -212,15 +205,21 @@ carnx_slave_bid_price_value = {
 
 	# Make it lower for the player
 	if = {
-		limit = { scope:actor = { is_ai = no } }
+		limit = {
+			exists = scope:actor
+			scope:actor = { is_ai = no }
+		}
 		multiply = carnx_slave_bid_price_player_multiplier
 	}
 
 	# Buyer personality multiplier (0.8 to 1.2 based on ai_greed)
-	multiply = {
-		value = scope:buyer.ai_greed
-		multiply = -0.002
-		add = 1
+	if = {
+		limit = { exists = scope:buyer }
+		multiply = {
+			value = scope:buyer.ai_greed
+			multiply = -0.002
+			add = 1
+		}
 	}
 }
 
@@ -228,14 +227,14 @@ carnx_buy_slave_ai_accept_no_actor_value = {
 	save_temporary_scope_as = slave
 	value = 50
 
-	# Employed as councillor (-50), court position, knight / commander, or in some other way (-25)
+	# Employed as councillor (NIV doubled), court position, knight / commander, or in some other way (NIV)
 	if = {
 		limit = {
 			scope:slave = {
 				is_councillor_of = scope:seller
 			}
 		}
-		add = -50
+		add = { value = carnx_ai_negative_employed_impact_value multiply = 2 }
 	}
 	if = {
 		limit = {
@@ -246,7 +245,7 @@ carnx_buy_slave_ai_accept_no_actor_value = {
 				}
 			}
 		}
-		add = -25
+		add = { value = carnx_ai_negative_employed_impact_value multiply = 2 }
 	}
 	if = {
 		limit = {
@@ -257,7 +256,7 @@ carnx_buy_slave_ai_accept_no_actor_value = {
 				}
 			}
 		}
-		add = -25
+		add = carnx_ai_negative_employed_impact_value
 	}
 	if = {
 		limit = {
@@ -265,7 +264,7 @@ carnx_buy_slave_ai_accept_no_actor_value = {
 				carnx_has_important_role_trigger = { RULER = scope:seller }
 			}
 		}
-		add = -25
+		add = carnx_ai_negative_employed_impact_value
 	}
 
 	# Family and relations (-25 to -100 depending on how close the relation)
@@ -316,52 +315,93 @@ carnx_buy_slave_ai_accept_no_actor_value = {
 		}
 	}
 
-	# Claims (-50 if useful claims on neighbouring realms)
+	# Claims (NIV if useful claims on neighbouring realms)
 	if = {
 		limit = {
 			scope:slave = {
-				any_claim = {
-					neighboring_useful_courtier_or_guest_claim_trigger = { RULER = scope:seller }
-				}
+				carnx_has_useful_claims_trigger = { RULER = scope:seller }
 			}
 		}
-		add = -50
+		add = carnx_ai_negative_claims_impact_value
 	}
 
-	# Attraction (0 to -50 depending on attraction, doubled for lustful, halved for chaste)
+	# Attraction (0 to NIV depending on attraction, doubled for lustful, halved for chaste)
 	if = {
 		limit = {
-			scope:seller = {
-				is_attracted_to_gender_of = scope:slave
+			scope:slave = {
+				carnx_is_attractive_to_character_trigger = { CHARACTER = scope:seller }
 			}
-			scope:slave.attraction > 0
 		}
 		add = {
 			value = scope:slave.attraction
 			divide = high_positive_attraction
+			multiply = carnx_ai_negative_attraction_impact_value
 			if = {
 				limit = { scope:seller = { has_trait = lustful } }
-				multiply = -100
+				multiply = 2
 			}
 			else_if = {
 				limit = { scope:seller = { has_trait = chaste } }
-				multiply = -25
+				multiply = 0.5
 			}
-			else = {
-				multiply = -50
+			floor = yes
+		}
+	}
+
+	# Female (NIV if a visibly fertile female)
+	if = {
+		limit = {
+			scope:slave = {
+				carnx_is_visibly_fertile_female_trigger = yes
+			}
+		}
+		add = carnx_ai_negative_female_impact_value
+	}
+
+	# Age (up to NIV depending on age, only if useful)
+	if = {
+		limit = {
+			scope:slave = {
+				carnx_is_useful_slave_to_current_owner_trigger = { RULER = scope:seller }
+			}
+		}
+		add = {
+			value = carnx_ai_negative_age_impact_value
+			if = {
+				limit = { scope:slave.age < 16 }
+				subtract = {
+					value = 16
+					subtract = scope:slave.age
+					multiply = carnx_ai_negative_age_impact_value
+					divide = 10
+					floor = yes
+				}
+			}
+			else_if = {
+				limit = { scope:slave.age > 30 }
+				subtract = {
+					value = scope:slave.age
+					subtract = 30
+					multiply = carnx_ai_negative_age_impact_value
+					divide = 20
+					floor = yes
+				}
 			}
 		}
 	}
 
-	# Female (-25 if a visibly fertile female)
+	# Price (NIV if price < minor_gold_value, PIV if price > major_gold_value)
 	if = {
 		limit = {
-			scope:slave = {
-				is_female = yes
-				is_visibly_fertile = yes
-			}
+			scope:slave.carnx_slave_ask_price_value < scope:seller.minor_gold_value
 		}
-		add = -25
+		add = carnx_ai_negative_price_impact_value
+	}
+	else_if = {
+		limit = {
+			scope:slave.carnx_slave_ask_price_value > scope:seller.major_gold_value
+		}
+		add = carnx_ai_positive_price_impact_value
 	}
 }
 
@@ -369,10 +409,11 @@ carnx_buy_slave_ai_accept_value = {
 	value = carnx_buy_slave_ai_accept_no_actor_value
 	save_temporary_scope_as = slave
 
-	# Opinion of actor (-12 to 12 depending on opinion)
+	# Opinion of actor
 	add = {
 		value = scope:opinion_of_actor
-		multiply = carnx_buy_sell_slave_opinion_multiplier
+		multiply = carnx_buy_sell_slave_ai_opinion_multiplier
+		floor = yes
 	}
 
 	# Avoid doing business with rivals or nemesises
@@ -397,15 +438,12 @@ carnx_buy_slave_ai_accept_value = {
 	if = {
 		limit = {
 			scope:actor = {
-				OR = {
-					AND = {
-						is_ai = yes
-						short_term_gold < scope:slave.carnx_slave_ask_price_value
-					}
-					AND = {
-						is_ai = no
-						gold < scope:slave.carnx_slave_ask_price_value
-					}
+				trigger_if = {
+					limit = { is_ai = yes }
+					short_term_gold < scope:slave.carnx_slave_ask_price_value
+				}
+				trigger_else = {
+					gold < scope:slave.carnx_slave_ask_price_value
 				}
 			}
 		}
@@ -427,7 +465,7 @@ carnx_sell_slave_ai_accept_no_actor_value = {
 		add = -50
 	}
 
-	# Slavery crime (-100) or shunned by faith (-50)
+	# Slavery crime (-1000) or shunned by faith (-50)
 	if = {
 		limit = {
 			scope:buyer = {
@@ -445,118 +483,112 @@ carnx_sell_slave_ai_accept_no_actor_value = {
 		add = -50
 	}
 
-	# Lacking councillors, court physician, or knights (5 for each relevant skill above 12)
+	# Lacking councillors, court positions, knights, or commanders (PIV for each skill, aptitude, or trait above cutoff)
 	if = {
 		limit = {
 			scope:slave = {
-				diplomacy >= decent_skill_rating
-				can_be_chancellor_trigger = { COURT_OWNER = scope:buyer }
-			}
-			scope:buyer = {
-				OR = {
-					NOT = { exists = cp:councillor_chancellor }
-					cp:councillor_chancellor = { diplomacy < decent_skill_rating }
-				}
+				carnx_can_serve_as_chancellor_trigger = { RULER = scope:buyer }
 			}
 		}
 		add = {
 			value = scope:slave.diplomacy
 			subtract = decent_skill_rating
-			multiply = 5
+			multiply = carnx_ai_positive_skill_impact_value
 		}
 	}
 	if = {
 		limit = {
 			scope:slave = {
-				martial >= decent_skill_rating
-				can_be_marshal_trigger = { COURT_OWNER = scope:buyer }
-			}
-			scope:buyer = {
-				OR = {
-					NOT = { exists = cp:councillor_marshal }
-					cp:councillor_marshal = { martial < decent_skill_rating }
-				}
+				carnx_can_serve_as_marshal_trigger = { RULER = scope:buyer }
 			}
 		}
 		add = {
 			value = scope:slave.martial
 			subtract = decent_skill_rating
-			multiply = 5
+			multiply = carnx_ai_positive_skill_impact_value
 		}
 	}
 	if = {
 		limit = {
 			scope:slave = {
-				stewardship >= decent_skill_rating
-				can_be_steward_trigger = { COURT_OWNER = scope:buyer }
-			}
-			scope:buyer = {
-				OR = {
-					NOT = { exists = cp:councillor_steward }
-					cp:councillor_steward = { stewardship < decent_skill_rating }
-				}
+				carnx_can_serve_as_steward_trigger = { RULER = scope:buyer }
 			}
 		}
 		add = {
 			value = scope:slave.stewardship
 			subtract = decent_skill_rating
-			multiply = 5
+			multiply = carnx_ai_positive_skill_impact_value
 		}
 	}
 	if = {
 		limit = {
 			scope:slave = {
-				intrigue >= decent_skill_rating
-				can_be_spymaster_trigger = { COURT_OWNER = scope:buyer }
-			}
-			scope:buyer = {
-				OR = {
-					NOT = { exists = cp:councillor_spymaster }
-					cp:councillor_spymaster = { intrigue < decent_skill_rating }
-				}
+				carnx_can_serve_as_spymaster_trigger = { RULER = scope:buyer }
 			}
 		}
 		add = {
 			value = scope:slave.intrigue
 			subtract = decent_skill_rating
-			multiply = 5
+			multiply = carnx_ai_positive_skill_impact_value
 		}
 	}
 	if = {
 		limit = {
 			scope:slave = {
-				learning >= decent_skill_rating
-				can_be_court_physician_of = { EMPLOYER = scope:buyer }
-			}
-			scope:buyer = {
-				court_physician_available_trigger = no
+				carnx_can_serve_as_court_chaplain_trigger = { RULER = scope:buyer }
 			}
 		}
 		add = {
 			value = scope:slave.learning
 			subtract = decent_skill_rating
-			multiply = 5
+			multiply = carnx_ai_positive_skill_impact_value
 		}
 	}
 	if = {
 		limit = {
 			scope:slave = {
-				prowess >= decent_skill_rating
-				can_be_knight_trigger = { ARMY_OWNER = scope:buyer }
+				carnx_can_serve_as_court_physician_trigger = { RULER = scope:buyer }
 			}
-			scope:buyer = {
-				OR = {
-					number_of_knights < max_number_of_knights
-					any_knight = {
-						prowess < decent_skill_rating
-					}
-				}
+		}
+		add = {
+			value = scope:slave.aptitude:court_physician_court_position
+			subtract = poor_effectiveness
+			multiply = carnx_ai_positive_aptitude_impact_value
+		}
+	}
+	if = {
+		limit = {
+			scope:slave = {
+				carnx_can_serve_as_antiquarian_trigger = { RULER = scope:buyer }
+			}
+		}
+		add = {
+			value = scope:slave.aptitude:antiquarian_court_position
+			subtract = poor_effectiveness
+			multiply = carnx_ai_positive_aptitude_impact_value
+		}
+	}
+	if = {
+		limit = {
+			scope:slave = {
+				carnx_can_serve_as_knight_trigger = { RULER = scope:buyer }
 			}
 		}
 		add = {
 			value = scope:slave.prowess
 			subtract = decent_skill_rating
-			multiply = 5
+			multiply = carnx_ai_positive_prowess_impact_value
+		}
+	}
+	if = {
+		limit = {
+			scope:slave = {
+				carnx_can_serve_as_commander_trigger = { RULER = scope:buyer }
+			}
+		}
+		add = {
+			value = scope:slave.carnx_commander_skill_value
+			multiply = carnx_ai_positive_cs_impact_value
 		}
 	}
 
@@ -608,30 +640,27 @@ carnx_sell_slave_ai_accept_no_actor_value = {
 		}
 	}
 
-	# Claims (50 if useful claims on neighbouring realms)
+	# Claims (PIV if useful claims on neighbouring realms)
 	if = {
 		limit = {
 			scope:slave = {
-				any_claim = {
-					neighboring_useful_courtier_or_guest_claim_trigger = { RULER = scope:buyer }
-				}
+				carnx_has_useful_claims_trigger = { RULER = scope:buyer }
 			}
 		}
-		add = 50
+		add = carnx_ai_positive_claims_impact_value
 	}
 
-	# Attraction (0 to 50 depending on attraction, doubled for lustful, halved for chaste)
+	# Attraction (0 to PIV depending on attraction, doubled for lustful, halved for chaste)
 	if = {
 		limit = {
-			scope:buyer = {
-				is_attracted_to_gender_of = scope:slave
+			scope:slave = {
+				carnx_is_attractive_to_character_trigger = { CHARACTER = scope:buyer }
 			}
-			scope:slave.attraction > 0
 		}
 		add = {
 			value = scope:slave.attraction
 			divide = high_positive_attraction
-			multiply = 50
+			multiply = carnx_ai_positive_attraction_impact_value
 			if = {
 				limit = { scope:buyer = { has_trait = lustful } }
 				multiply = 2
@@ -640,28 +669,75 @@ carnx_sell_slave_ai_accept_no_actor_value = {
 				limit = { scope:buyer = { has_trait = chaste } }
 				multiply = 0.5
 			}
+			floor = yes
 		}
 	}
 
-	# Female (25 if a visibly fertile female)
+	# Female (PIV if a visibly fertile female)
 	if = {
 		limit = {
 			scope:slave = {
-				is_female = yes
-				is_visibly_fertile = yes
+				carnx_is_visibly_fertile_female_trigger = yes
 			}
 		}
-		add = 25
+		add = carnx_ai_positive_female_impact_value
+	}
+
+	# Age (up to PIV depending on age, only if useful)
+	if = {
+		limit = {
+			scope:slave = {
+				carnx_is_useful_slave_to_future_owner_trigger = { RULER = scope:buyer }
+			}
+		}
+		add = {
+			value = carnx_ai_positive_age_impact_value
+			if = {
+				limit = { scope:slave.age < 16 }
+				subtract = {
+					value = 16
+					subtract = scope:slave.age
+					multiply = carnx_ai_positive_age_impact_value
+					divide = 10
+					floor = yes
+				}
+			}
+			else_if = {
+				limit = { scope:slave.age > 30 }
+				subtract = {
+					value = scope:slave.age
+					subtract = 30
+					multiply = carnx_ai_positive_age_impact_value
+					divide = 20
+					floor = yes
+				}
+			}
+		}
+	}
+
+	# Price (PIV if price < minor_gold_value, NIV if price > major_gold_value)
+	if = {
+		limit = {
+			scope:slave.carnx_slave_bid_price_value < scope:buyer.minor_gold_value
+		}
+		add = carnx_ai_positive_price_impact_value
+	}
+	else_if = {
+		limit = {
+			scope:slave.carnx_slave_bid_price_value > scope:buyer.major_gold_value
+		}
+		add = carnx_ai_negative_price_impact_value
 	}
 }
 
 carnx_sell_slave_ai_accept_value = {
 	value = carnx_sell_slave_ai_accept_no_actor_value
 
-	# Opinion of actor (-12 to 12 depending on opinion)
+	# Opinion of actor
 	add = {
 		value = scope:opinion_of_actor
-		multiply = carnx_buy_sell_slave_opinion_multiplier
+		multiply = carnx_buy_sell_slave_ai_opinion_multiplier
+		floor = yes
 	}
 
 	# Avoid doing business with rivals or nemesises
@@ -680,6 +756,15 @@ carnx_sell_slave_ai_accept_value = {
 			}
 		}
 		add = -200
+	}
+}
+
+carnx_commander_skill_value = {
+	value = martial
+	subtract = decent_skill_rating
+	add = {
+		value = number_of_commander_traits
+		multiply = 3
 	}
 }
 
@@ -752,4 +837,12 @@ carnx_enslave_tyranny_gain = {
 
 carn_scope_buyer_current_gold_value = {
 	value = scope:buyer.short_term_gold
+}
+
+carnx_scope_secondary_recipient_slave_ransom_cost_value = {
+	value = 0
+	if = {
+		limit = { exists = scope:secondary_recipient }
+		add = scope:secondary_recipient.carnx_slave_ransom_cost_value
+	}
 }

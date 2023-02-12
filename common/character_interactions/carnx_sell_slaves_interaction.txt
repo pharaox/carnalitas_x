@@ -27,10 +27,18 @@ carnx_sell_slaves_interaction = {
 		if = {
 			limit = { NOT = { exists = scope:secondary_recipient } }
 			scope:actor = {
+				carnx_get_potential_buyers_or_sellers_effect = { LIST = potential_buyers }
 				every_relation = {
 					type = slave
 					limit = {
 						carn_slave_can_be_sold_trigger = yes
+						save_temporary_scope_as = slave
+						any_in_list = {
+							list = potential_buyers
+							carn_candidate_to_sell_slave_to_trigger = yes
+							save_temporary_opinion_value_as = { name = opinion_of_actor target = scope:actor }
+							carnx_sell_slave_ai_accept_value > 0
+						}
 					}
 					add_to_list = characters
 				}

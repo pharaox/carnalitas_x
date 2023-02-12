@@ -96,15 +96,13 @@ carn_enslave_interaction = {
 			ai_compassion = -0.5
 		}
 
-		# Greed (0 to Price depending on greed)
+		# Greed (0 to 50 depending on greed)
 		modifier = {
 			add = {
 				value = ai_greed
 				multiply = 0.01
 				add = 1
-				multiply = scope:recipient.carnx_slave_base_price_value
-				divide = 2
-				max = 100
+				multiply = 25
 			}
 		}
 
@@ -137,41 +135,53 @@ carn_enslave_interaction = {
 			SCALE = -50
 		}
 
-		# Lacking councillors, court physician, or knights (2 for each relevant skill above 12)
+		# Lacking councillors, court positions, knights, or commanders (PIV for each skill, aptitude, or trait above cutoff)
 		carnx_lacking_councillors_modifier = {
 			RULER = scope:actor
 			SLAVE = scope:recipient
-			SCALE = 2
+			SCALE = carnx_ai_positive_skill_impact_halved_value
 		}
-		carnx_lacking_court_physician_modifier = {
+		carnx_lacking_court_positions_modifier = {
 			RULER = scope:actor
 			SLAVE = scope:recipient
-			SCALE = 2
+			SCALE = carnx_ai_positive_aptitude_impact_halved_value
 		}
 		carnx_lacking_knights_modifier = {
 			RULER = scope:actor
 			SLAVE = scope:recipient
-			SCALE = 2
+			SCALE = carnx_ai_positive_prowess_impact_halved_value
+		}
+		carnx_lacking_commanders_modifier = {
+			RULER = scope:actor
+			SLAVE = scope:recipient
+			SCALE = carnx_ai_positive_cs_impact_halved_value
 		}
 
-		# Claims (25 if useful claims on neighbouring realms)
+		# Claims (PIV if useful claims on neighbouring realms)
 		carnx_claims_modifier = {
 			RULER = scope:actor
 			SLAVE = scope:recipient
-			SCALE = 25
+			SCALE = carnx_ai_positive_claims_impact_halved_value
 		}
 
-		# Attraction (0 to 25 depending on attraction, doubled for lustful, halved for chaste)
+		# Attraction (0 to PIV depending on attraction, doubled for lustful, halved for chaste)
 		carnx_attraction_modifier = {
 			RULER = scope:actor
 			SLAVE = scope:recipient
-			SCALE = 25
+			SCALE = carnx_ai_positive_attraction_impact_halved_value
 		}
 
-		# Female (25 if a visibly fertile female)
+		# Female (PIV if a visibly fertile female)
 		carnx_female_modifier = {
 			SLAVE = scope:recipient
-			SCALE = 25
+			SCALE = carnx_ai_positive_female_impact_halved_value
+		}
+
+		# Age (up to PIV depending on age, only if useful)
+		carnx_age_modifier = {
+			RULER = scope:actor
+			SLAVE = scope:recipient
+			SCALE = carnx_ai_positive_age_impact_halved_value
 		}
 
 		# Execute reason, rival, cheating spouse (75) or nemesis (150)

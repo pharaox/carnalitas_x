@@ -73,10 +73,10 @@ carnx_slave.0001 = {
 						physician_1 = { weight = { base = 20 } }
 						physician_2 = { weight = { base = 10 } }
 						physician_3 = { weight = { base = 5 } }
-						mystic_1 = { weight = { base = 20 } }
-						mystic_2 = { weight = { base = 10 } }
-						mystic_3 = { weight = { base = 5 } }
-						lifestyle_herbalist = { weight = { base = 10 } }
+						mystic_2 = { weight = { base = 20 } }
+						mystic_3 = { weight = { base = 10 } }
+						lifestyle_herbalist = { weight = { base = 20 } }
+						administrator = { weight = { base = 20 } }
 
 						flexible_leader = { weight = { base = 10 } }
 						forder = { weight = { base = 10 } }
@@ -157,7 +157,7 @@ carnx_slave.0001 = {
 						value = carnx_sell_slave_ai_accept_no_actor_value
 						add = {
 							value = 100 # Assume max opinion to make it more likely
-							multiply = carnx_buy_sell_slave_opinion_multiplier
+							multiply = carnx_buy_sell_slave_ai_opinion_multiplier
 						}
 						min = 0
 					}
@@ -189,7 +189,7 @@ carnx_slave.0001 = {
 						value = carnx_sell_slave_ai_accept_no_actor_value
 						add = {
 							value = 100 # Assume max opinion to make it more likely
-							multiply = carnx_buy_sell_slave_opinion_multiplier
+							multiply = carnx_buy_sell_slave_ai_opinion_multiplier
 						}
 						min = 0
 					}

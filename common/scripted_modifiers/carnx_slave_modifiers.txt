@@ -2,14 +2,7 @@
 	compare_modifier = {
 		trigger = {
 			$SLAVE$ = {
-				diplomacy >= decent_skill_rating
-				can_be_chancellor_trigger = { COURT_OWNER = $RULER$ }
-			}
-			$RULER$ = {
-				OR = {
-					NOT = { exists = cp:councillor_chancellor }
-					cp:councillor_chancellor = { diplomacy < decent_skill_rating }
-				}
+				carnx_can_serve_as_chancellor_trigger = { RULER = $RULER$ }
 			}
 		}
 		target = $SLAVE$
@@ -24,14 +17,7 @@
 	compare_modifier = {
 		trigger = {
 			$SLAVE$ = {
-				martial >= decent_skill_rating
-				can_be_marshal_trigger = { COURT_OWNER = $RULER$ }
-			}
-			$RULER$ = {
-				OR = {
-					NOT = { exists = cp:councillor_marshal }
-					cp:councillor_marshal = { martial < decent_skill_rating }
-				}
+				carnx_can_serve_as_marshal_trigger = { RULER = $RULER$ }
 			}
 		}
 		target = $SLAVE$
@@ -46,14 +32,7 @@
 	compare_modifier = {
 		trigger = {
 			$SLAVE$ = {
-				stewardship >= decent_skill_rating
-				can_be_steward_trigger = { COURT_OWNER = $RULER$ }
-			}
-			$RULER$ = {
-				OR = {
-					NOT = { exists = cp:councillor_steward }
-					cp:councillor_steward = { stewardship < decent_skill_rating }
-				}
+				carnx_can_serve_as_steward_trigger = { RULER = $RULER$ }
 			}
 		}
 		target = $SLAVE$
@@ -68,14 +47,7 @@
 	compare_modifier = {
 		trigger = {
 			$SLAVE$ = {
-				intrigue >= decent_skill_rating
-				can_be_spymaster_trigger = { COURT_OWNER = $RULER$ }
-			}
-			$RULER$ = {
-				OR = {
-					NOT = { exists = cp:councillor_spymaster }
-					cp:councillor_spymaster = { intrigue < decent_skill_rating }
-				}
+				carnx_can_serve_as_spymaster_trigger = { RULER = $RULER$ }
 			}
 		}
 		target = $SLAVE$
@@ -87,16 +59,11 @@
 		multiplier = $SCALE$
 		desc = "carnx_lacking_spymaster_reason"
 	}
-}
-
-carnx_lacking_court_physician_modifier = {
 	compare_modifier = {
 		trigger = {
 			$SLAVE$ = {
-				learning >= decent_skill_rating
-				can_be_court_physician_of = { EMPLOYER = $RULER$ }
+				carnx_can_serve_as_court_chaplain_trigger = { RULER = $RULER$ }
 			}
-			$RULER$ = { court_physician_available_trigger = no }
 		}
 		target = $SLAVE$
 		value = learning
@@ -105,7 +72,40 @@ carnx_lacking_court_physician_modifier = {
 			subtract = decent_skill_rating
 		}
 		multiplier = $SCALE$
+		desc = "carnx_lacking_court_chaplain_reason"
+	}
+}
+
+carnx_lacking_court_positions_modifier = {
+	compare_modifier = {
+		trigger = {
+			$SLAVE$ = {
+				carnx_can_serve_as_court_physician_trigger = { RULER = $RULER$ }
+			}
+		}
+		target = $SLAVE$
+		value = aptitude:court_physician_court_position
+		offset = {
+			value = 0
+			subtract = poor_effectiveness
+		}
+		multiplier = $SCALE$
 		desc = "carnx_lacking_court_physician_reason"
+	}
+	compare_modifier = {
+		trigger = {
+			$SLAVE$ = {
+				carnx_can_serve_as_antiquarian_trigger = { RULER = $RULER$ }
+			}
+		}
+		target = $SLAVE$
+		value = aptitude:antiquarian_court_position
+		offset = {
+			value = 0
+			subtract = poor_effectiveness
+		}
+		multiplier = $SCALE$
+		desc = "carnx_lacking_antiquarian_reason"
 	}
 }
 
@@ -113,16 +113,7 @@ carnx_lacking_knights_modifier = {
 	compare_modifier = {
 		trigger = {
 			$SLAVE$ = {
-				prowess >= decent_skill_rating
-				can_be_knight_trigger = { ARMY_OWNER = $RULER$ }
-			}
-			$RULER$ = {
-				OR = {
-					number_of_knights < max_number_of_knights
-					any_knight = {
-						prowess < decent_skill_rating
-					}
-				}
+				carnx_can_serve_as_knight_trigger = { RULER = $RULER$ }
 			}
 		}
 		target = $SLAVE$
@@ -133,6 +124,20 @@ carnx_lacking_knights_modifier = {
 		}
 		multiplier = $SCALE$
 		desc = "carnx_lacking_knights_reason"
+	}
+}
+
+carnx_lacking_commanders_modifier = {
+	compare_modifier = {
+		trigger = {
+			$SLAVE$ = {
+				carnx_can_serve_as_commander_trigger = { RULER = $RULER$ }
+			}
+		}
+		target = $SLAVE$
+		value = carnx_commander_skill_value
+		multiplier = $SCALE$
+		desc = "carnx_lacking_commanders_reason"
 	}
 }
 
@@ -186,21 +191,18 @@ carnx_family_and_relations_modifier = {
 carnx_claims_modifier = {
 	modifier = {
 		$SLAVE$ = {
-			any_claim = {
-				neighboring_useful_courtier_or_guest_claim_trigger = { RULER = $RULER$ }
-			}
+			carnx_has_useful_claims_trigger = { RULER = $RULER$ }
 		}
 		add = $SCALE$
-		desc = "carnx_secondary_recepient_claims_reason"
+		desc = "carnx_secondary_recipient_claims_reason"
 	}
 }
 
 carnx_attraction_modifier = {
 	modifier = {
-		$RULER$ = {
-			is_attracted_to_gender_of = $SLAVE$
+		$SLAVE$ = {
+			carnx_is_attractive_to_character_trigger = { CHARACTER = $RULER$ }
 		}
-		$SLAVE$.attraction > 0
 		add = {
 			value = $SLAVE$.attraction
 			divide = high_positive_attraction
@@ -213,19 +215,87 @@ carnx_attraction_modifier = {
 				limit = { $RULER$ = { has_trait = chaste } }
 				multiply = 0.5
 			}
+			floor = yes
 		}
-		desc = "carnx_secondary_recepient_attraction_reason"
+		desc = "carnx_secondary_recipient_attraction_reason"
 	}
 }
 
 carnx_female_modifier = {
 	modifier = {
 		$SLAVE$ = {
-			is_female = yes
-			is_visibly_fertile = yes
+			carnx_is_visibly_fertile_female_trigger = yes
 		}
 		add = $SCALE$
-		desc = "carnx_secondary_recepient_female_reason"
+		desc = "carnx_secondary_recipient_female_reason"
+	}
+}
+
+carnx_age_modifier = {
+	modifier = {
+		$SLAVE$ = {
+			trigger_if = {
+				limit = { $SCALE$ > 0 }
+				carnx_is_useful_slave_to_future_owner_trigger = { RULER = $RULER$ }
+			}
+			trigger_else = {
+				carnx_is_useful_slave_to_current_owner_trigger = { RULER = $RULER$ }
+			}
+		}
+		add = {
+			value = $SCALE$
+			if = {
+				limit = { $SLAVE$.age < 16 }
+				subtract = {
+					value = 16
+					subtract = $SLAVE$.age
+					multiply = $SCALE$
+					divide = 10
+					floor = yes
+				}
+			}
+			else_if = {
+				limit = { $SLAVE$.age > 30 }
+				subtract = {
+					value = $SLAVE$.age
+					subtract = 30
+					multiply = $SCALE$
+					divide = 20
+					floor = yes
+				}
+			}
+		}
+		desc = "carnx_secondary_recipient_age_reason"
+	}
+}
+
+carnx_ask_price_modifier = {
+	modifier = {
+		$RULER1$ = { save_temporary_scope_as = seller }
+		$SLAVE$.carnx_slave_ask_price_value < $RULER2$.minor_gold_value
+		add = $SCALE$
+		desc = "carnx_secondary_recipient_cheap_reason"
+	}
+	modifier = {
+		$RULER1$ = { save_temporary_scope_as = seller }
+		$SLAVE$.carnx_slave_ask_price_value > $RULER2$.major_gold_value
+		add = { value = $SCALE$ multiply = -1 }
+		desc = "carnx_secondary_recipient_expensive_reason"
+	}
+}
+
+carnx_bid_price_modifier = {
+	modifier = {
+		$RULER1$ = { save_temporary_scope_as = buyer }
+		$SLAVE$.carnx_slave_bid_price_value < $RULER2$.minor_gold_value
+		add = $SCALE$
+		desc = "carnx_secondary_recipient_cheap_reason"
+	}
+	modifier = {
+		$RULER1$ = { save_temporary_scope_as = buyer }
+		$SLAVE$.carnx_slave_bid_price_value > $RULER2$.major_gold_value
+		add = { value = $SCALE$ multiply = -1 }
+		desc = "carnx_secondary_recipient_expensive_reason"
 	}
 }
 
@@ -234,7 +304,7 @@ carnx_employed_modifier = {
 		$SLAVE$ = {
 			is_councillor_of = $RULER$
 		}
-		add = { value = 2 multiply = $SCALE$ }
+		add = { value = $SCALE$ multiply = 2 }
 		desc = "carn_secondary_recipient_is_my_councillor_reason"
 	}
 	modifier = {
@@ -242,7 +312,7 @@ carnx_employed_modifier = {
 			has_any_court_position = yes
 			any_court_position_employer = { this = $RULER$ }
 		}
-		add = $SCALE$
+		add = { value = $SCALE$ multiply = 2 }
 		desc = "carnx_secondary_recipient_has_court_position_reason"
 	}
 	modifier = {

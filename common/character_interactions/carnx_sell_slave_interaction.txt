@@ -85,21 +85,26 @@ carn_sell_slave_interaction = {
 			desc = carn_enslave_shunned_in_recipient_faith
 		}
 
-		# Lacking councillors, court physician, or knights (5 for each relevant skill above 12)
+		# Lacking councillors, court positions, knights, or commanders (PIV for each skill, aptitude, or trait above cutoff)
 		carnx_lacking_councillors_modifier = {
 			RULER = scope:recipient
 			SLAVE = scope:secondary_recipient
-			SCALE = 5
+			SCALE = carnx_ai_positive_skill_impact_value
 		}
-		carnx_lacking_court_physician_modifier = {
+		carnx_lacking_court_positions_modifier = {
 			RULER = scope:recipient
 			SLAVE = scope:secondary_recipient
-			SCALE = 5
+			SCALE = carnx_ai_positive_aptitude_impact_value
 		}
 		carnx_lacking_knights_modifier = {
 			RULER = scope:recipient
 			SLAVE = scope:secondary_recipient
-			SCALE = 5
+			SCALE = carnx_ai_positive_prowess_impact_value
+		}
+		carnx_lacking_commanders_modifier = {
+			RULER = scope:recipient
+			SLAVE = scope:secondary_recipient
+			SCALE = carnx_ai_positive_cs_impact_value
 		}
 
 		# Family and relations (-25 to -100 depending on how close the relation)
@@ -110,34 +115,49 @@ carn_sell_slave_interaction = {
 			SCALE = -25
 		}
 
-		# Claims (50 if useful claims on neighbouring realms)
+		# Claims (PIV if useful claims on neighbouring realms)
 		carnx_claims_modifier = {
 			RULER = scope:recipient
 			SLAVE = scope:secondary_recipient
-			SCALE = 50
+			SCALE = carnx_ai_positive_claims_impact_value
 		}
 
-		# Attraction (0 to 50 depending on attraction, doubled for lustful, halved for chaste)
+		# Attraction (0 to PIV depending on attraction, doubled for lustful, halved for chaste)
 		carnx_attraction_modifier = {
 			RULER = scope:recipient
 			SLAVE = scope:secondary_recipient
-			SCALE = 50
+			SCALE = carnx_ai_positive_attraction_impact_value
 		}
 
-		# Female (25 if a visibly fertile female)
+		# Female (PIV if a visibly fertile female)
 		carnx_female_modifier = {
 			SLAVE = scope:secondary_recipient
-			SCALE = 25
+			SCALE = carnx_ai_positive_female_impact_value
 		}
 
-		# Opinion of seller (-12 to 12 depending on opinion)
+		# Age (up to PIV depending on age, only if useful)
+		carnx_age_modifier = {
+			RULER = scope:recipient
+			SLAVE = scope:secondary_recipient
+			SCALE = carnx_ai_positive_age_impact_value
+		}
+
+		# Price (PIV if price < minor_gold_value, NIV if price > major_gold_value)
+		carnx_bid_price_modifier = {
+			RULER1 = scope:recipient
+			RULER2 = scope:recipient
+			SLAVE = scope:secondary_recipient
+			SCALE = carnx_ai_positive_price_impact_value
+		}
+
+		# Opinion of seller
 		opinion_modifier = {
 			trigger = {
 				NOT = { scope:actor = scope:recipient }
 			}
 			who = scope:recipient
 			opinion_target = scope:actor
-			multiplier = carnx_buy_sell_slave_opinion_multiplier
+			multiplier = carnx_buy_sell_slave_ai_opinion_multiplier
 			desc = AI_OPINION_REASON
 		}
 
@@ -172,11 +192,11 @@ carn_sell_slave_interaction = {
 	ai_will_do = {
 		base = 50
 
-		# Employed as councillor (-50), court position, knight / commander, or in some other way (-25)
+		# Employed as councillor (NIV doubled), court position, knight / commander, or in some other way (NIV)
 		carnx_employed_modifier = {
 			RULER = scope:actor
 			SLAVE = scope:secondary_recipient
-			SCALE = -25
+			SCALE = carnx_ai_negative_employed_impact_value
 		}
 
 		# Family and relations (-25 to -100 depending on how close the relation)
@@ -187,34 +207,49 @@ carn_sell_slave_interaction = {
 			SCALE = -25
 		}
 
-		# Claims (-50 if useful claims on neighbouring realms)
+		# Claims (NIV if useful claims on neighbouring realms)
 		carnx_claims_modifier = {
 			RULER = scope:actor
 			SLAVE = scope:secondary_recipient
-			SCALE = -50
+			SCALE = carnx_ai_negative_claims_impact_value
 		}
 
-		# Attraction (0 to -50 depending on attraction, doubled for lustful, halved for chaste)
+		# Attraction (0 to NIV depending on attraction, doubled for lustful, halved for chaste)
 		carnx_attraction_modifier = {
 			RULER = scope:actor
 			SLAVE = scope:secondary_recipient
-			SCALE = -50
+			SCALE = carnx_ai_negative_attraction_impact_value
 		}
 
-		# Female (-25 if a visibly fertile female)
+		# Female (NIV if a visibly fertile female)
 		carnx_female_modifier = {
 			SLAVE = scope:secondary_recipient
-			SCALE = -25
+			SCALE = carnx_ai_negative_female_impact_value
 		}
 
-		# Opinion of buyer (-12 to 12 depending on opinion)
+		# Age (up to NIV depending on age, only if useful)
+		carnx_age_modifier = {
+			RULER = scope:actor
+			SLAVE = scope:secondary_recipient
+			SCALE = carnx_ai_negative_age_impact_value
+		}
+
+		# Price (NIV if price < minor_gold_value, PIV if price > major_gold_value)
+		carnx_bid_price_modifier = {
+			RULER1 = scope:recipient
+			RULER2 = scope:actor
+			SLAVE = scope:secondary_recipient
+			SCALE = carnx_ai_negative_price_impact_value
+		}
+
+		# Opinion of buyer
 		opinion_modifier = {
 			trigger = {
 				NOT = { scope:actor = scope:recipient }
 			}
 			who = scope:actor
 			opinion_target = scope:recipient
-			multiplier = carnx_buy_sell_slave_opinion_multiplier
+			multiplier = carnx_buy_sell_slave_ai_opinion_multiplier
 		}
 
 		# Avoid doing business with rivals or nemesises
@@ -231,15 +266,12 @@ carn_sell_slave_interaction = {
 		modifier = {
 			scope:recipient = {
 				save_temporary_scope_as = buyer
-				OR = {
-					AND = {
-						is_ai = yes
-						short_term_gold < scope:secondary_recipient.carnx_slave_ask_price_value
-					}
-					AND = {
-						is_ai = no
-						gold < scope:secondary_recipient.carnx_slave_ask_price_value
-					}
+				trigger_if = {
+					limit = { is_ai = yes }
+					short_term_gold < scope:secondary_recipient.carnx_slave_bid_price_value
+				}
+				trigger_else = {
+					gold < scope:secondary_recipient.carnx_slave_bid_price_value
 				}
 			}
 			factor = 0

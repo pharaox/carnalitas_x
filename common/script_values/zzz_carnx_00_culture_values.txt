@@ -1,0 +1,14 @@
+﻿court_position_aptitude_family_business_value = {
+	if = {
+		limit = {
+			exists = liege
+			culture = liege.culture
+			culture = { has_cultural_parameter = close_family_better_court_positions }
+			is_close_family_of = liege
+		}
+		add = {
+			value = 20
+			desc = tradition_family_entrepreneurship_name
+		}
+	}
+}

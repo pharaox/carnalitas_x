@@ -5,7 +5,6 @@ carnx_ransom_slave_interaction = {
 	desc = carnx_ransom_slave_interaction_desc
 	interface_priority = 50
 	common_interaction = yes
-	#special_interaction = ransom_interaction
 	needs_recipient_to_open = yes
 
 	send_name = carnx_ransom_slave_interaction
@@ -73,42 +72,33 @@ carnx_ransom_slave_interaction = {
 
 	# Ask recipient to pay the full price
 	send_option = {
-		flag = gold
-		localization = "RANSOM_GOLD_OPTION"
 		is_shown = {
 			exists = scope:secondary_recipient
-			trigger_if = {
-				limit = { exists = scope:secondary_recipient }
-				scope:recipient = {
-					gold >= scope:secondary_recipient.carnx_slave_ransom_cost_value
-				}
+			scope:recipient = {
+				gold >= scope:secondary_recipient.carnx_slave_ransom_cost_value
 			}
 		}
-		starts_enabled = { always = yes }
+		flag = gold
+		localization = "RANSOM_GOLD_OPTION"
 	}
 
 	# Ask recipient to pay what they have
 	send_option = {
-		flag = current_gold
-		localization = "RANSOM_CURRENT_GOLD_OPTION"
 		is_shown = {
 			exists = scope:secondary_recipient
-			trigger_if = {
-				limit = { exists = scope:secondary_recipient }
-				scope:recipient = {
-					gold < scope:secondary_recipient.carnx_slave_ransom_cost_value
-					gold > 0
-				}
+			scope:recipient = {
+				gold < scope:secondary_recipient.carnx_slave_ransom_cost_value
+				gold > 0
 			}
 		}
+		flag = current_gold
+		localization = "RANSOM_CURRENT_GOLD_OPTION"
 	}
 
 	# Ask recipient for a favor
 	send_option = {
-		flag = favor
-		localization = "RANSOM_FAVOR_OPTION"
 		is_shown = {
-			exists = scope:secondary_recipient
+			always = yes
 		}
 		is_valid = {
 			scope:actor = {
@@ -118,12 +108,15 @@ carnx_ransom_slave_interaction = {
 				}
 			}
 		}
+		flag = favor
+		localization = "RANSOM_FAVOR_OPTION"
+		starts_enabled = { always = yes }
 	}
 
 	send_options_exclusive = yes
 
 	localization_values = {
-		RANSOM_COST = scope:secondary_recipient.carnx_slave_ransom_cost_value
+		RANSOM_COST = carnx_scope_secondary_recipient_slave_ransom_cost_value
 		CURRENT_GOLD = scope:recipient.gold
 	}
 
@@ -235,7 +228,7 @@ carnx_ransom_slave_interaction = {
 			desc = "ACTOR_NEMESIS_TO_ME_REASON"
 		}
 
-		# Intimidated or cowed by actor (10 or 20)
+		# Intimidated or cowed by actor (25 or 50)
 		modifier = {
 			scope:recipient = {
 				target_is_liege_or_above = scope:actor
@@ -244,7 +237,7 @@ carnx_ransom_slave_interaction = {
 					level = 1
 				}
 			}
-			add = intimidated_external_reason_value
+			add = intimidated_halved_reason_value
 			desc = INTIMIDATED_REASON
 		}
 		modifier = {
@@ -255,7 +248,7 @@ carnx_ransom_slave_interaction = {
 					level = 2
 				}
 			}
-			add = cowed_external_reason_value
+			add = cowed_halved_reason_value
 			desc = COWED_REASON
 		}
 	}
@@ -284,7 +277,7 @@ carnx_ransom_slave_interaction = {
 		}
 		modifier = {
 			scope:current_gold = yes
-			scope:recipient.gold >= 25
+			scope:recipient.gold >= 10
 			add = 25
 		}
 		modifier = {
@@ -350,31 +343,38 @@ carnx_ransom_slave_interaction = {
 			SCALE = -25
 		}
 
-		# Employed as councillor (-24), court position, knight / commander, or in some other way (-12)
+		# Employed as councillor (NIV doubled), court position, knight / commander, or in some other way (NIV)
 		carnx_employed_modifier = {
 			RULER = scope:actor
 			SLAVE = scope:secondary_recipient
-			SCALE = -12
+			SCALE = carnx_ai_negative_employed_impact_halved_value
 		}
 
-		# Claims (-25 if useful claims on neighbouring realms)
+		# Claims (NIV if useful claims on neighbouring realms)
 		carnx_claims_modifier = {
 			RULER = scope:actor
 			SLAVE = scope:secondary_recipient
-			SCALE = -25
+			SCALE = carnx_ai_negative_claims_impact_halved_value
 		}
 
-		# Attraction (0 to -25 depending on attraction, doubled for lustful, halved for chaste)
+		# Attraction (0 to NIV depending on attraction, doubled for lustful, halved for chaste)
 		carnx_attraction_modifier = {
 			RULER = scope:actor
 			SLAVE = scope:secondary_recipient
-			SCALE = -25
+			SCALE = carnx_ai_negative_attraction_impact_halved_value
 		}
 
-		# Female (-25 if a visibly fertile female)
+		# Female (NIV if a visibly fertile female)
 		carnx_female_modifier = {
 			SLAVE = scope:secondary_recipient
-			SCALE = -25
+			SCALE = carnx_ai_negative_female_impact_halved_value
+		}
+
+		# Age (up to NIV depending on age, only if useful)
+		carnx_age_modifier = {
+			RULER = scope:actor
+			SLAVE = scope:secondary_recipient
+			SCALE = carnx_ai_negative_age_impact_halved_value
 		}
 
 		# Execute reason, rival, cheating spouse (-75) or nemesis (-150)
