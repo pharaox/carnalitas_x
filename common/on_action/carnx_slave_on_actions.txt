@@ -6,7 +6,7 @@
 				enslaver = scope:new_owner
 			}
 		}
-		debug_log = "Slave enslaved"
+		debug_log = "carn_on_slave_enslaved: Slave enslaved"
 		debug_log_date = yes
 		debug_log_scopes = yes
 	}
@@ -20,7 +20,7 @@ carn_on_slave_freed = {
 				emancipator = scope:former_owner
 			}
 		}
-		debug_log = "Slave freed"
+		debug_log = "carn_on_slave_freed: Slave freed"
 		debug_log_date = yes
 		debug_log_scopes = yes
 	}
@@ -34,7 +34,7 @@ carnx_on_slave_bought = {
 				buyer = scope:buyer
 			}
 		}
-		debug_log = "Slave bought"
+		debug_log = "carnx_on_slave_bought: Slave bought"
 		debug_log_date = yes
 		debug_log_scopes = yes
 	}
@@ -45,16 +45,24 @@ carnx_on_slave_seized = {
 		create_character_memory = {
 			type = carnx_seized_memory
 			participants = {
-				seizer = scope:actor
+				seizer = scope:new_owner
 			}
 		}
-		debug_log = "Slave seized"
+		debug_log = "carnx_on_slave_seized: Slave seized"
 		debug_log_date = yes
 		debug_log_scopes = yes
 	}
 }
 
+# Fires when a character leaves a court. Not fired when leaving due to death or similar
+# Will still fire even if on_join_court is firing (fires just before it)
+# Root is the character
+# scope:old_employer is their old employer
 on_leave_court = {
+	on_actions = { carnx_on_leave_court }
+}
+
+carnx_on_leave_court = {
 	effect = {
 		if = {
 			limit = { has_trait = slave }
@@ -69,13 +77,52 @@ on_leave_court = {
 				}
 				if = {
 					limit = { NOT = { is_courtier_of = scope:owner } }
+					debug_log = "carnx_on_leave_court: Moving slave to owner's court"
 					scope:owner = {
 						add_courtier = prev
 					}
 				}
 			}
 			else = {
+				debug_log = "carnx_on_leave_court: Freeing slave"
 				carn_free_slave_effect = yes
+			}
+		}
+	}
+}
+
+# A title is lost by a character
+# root = the old holder
+# scope:title = the title that changes hands
+# scope:new_holder = new holder.
+on_title_lost = {
+	on_actions = { carnx_on_title_lost }
+}
+
+carnx_on_title_lost = {
+	effect = {
+		# If a character becomes unlanded the new holder seizes their slaves
+		if = {
+			limit = {
+				is_landed = no
+				any_relation = {
+					type = slave
+					exists = this
+				}
+			}
+			every_relation = {
+				type = slave
+				if = {
+					limit = { exists = scope:new_holder }
+					scope:new_holder = { save_scope_as = new_owner }
+					this = { save_scope_as = slave }
+					debug_log = "carnx_on_title_lost: Seizing slave by the new title holder"
+					carnx_seize_slave_effect = yes
+				}
+				else = {
+					debug_log = "carnx_on_title_lost: Freeing slave"
+					carn_free_slave_effect = yes
+				}
 			}
 		}
 	}
