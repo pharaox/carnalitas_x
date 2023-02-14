@@ -269,6 +269,19 @@ carnx_age_modifier = {
 	}
 }
 
+carnx_base_price_modifier = {
+	modifier = {
+		$SLAVE$.carnx_slave_base_price_value < $RULER$.minor_gold_value
+		add = $SCALE$
+		desc = "carnx_secondary_recipient_cheap_reason"
+	}
+	modifier = {
+		$SLAVE$.carnx_slave_base_price_value > $RULER$.major_gold_value
+		add = { value = $SCALE$ multiply = -1 }
+		desc = "carnx_secondary_recipient_expensive_reason"
+	}
+}
+
 carnx_ask_price_modifier = {
 	modifier = {
 		$RULER1$ = { save_temporary_scope_as = seller }

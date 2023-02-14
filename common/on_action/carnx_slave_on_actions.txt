@@ -54,6 +54,20 @@ carnx_on_slave_seized = {
 	}
 }
 
+carnx_on_slave_gifted = {
+	effect = {
+		create_character_memory = {
+			type = carnx_gifted_memory
+			participants = {
+				new_owner = scope:new_owner
+			}
+		}
+		debug_log = "carnx_on_slave_gifted: Slave gifted"
+		debug_log_date = yes
+		debug_log_scopes = yes
+	}
+}
+
 # Fires when a character leaves a court. Not fired when leaving due to death or similar
 # Will still fire even if on_join_court is firing (fires just before it)
 # Root is the character

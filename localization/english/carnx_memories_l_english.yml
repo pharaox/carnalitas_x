@@ -15,7 +15,12 @@
  carnx_seized_desc_second_perspective_1:0 "you were seized by [seizer.GetTitledFirstName]"
  carnx_seized_desc_third_perspective_1:0 "[owner.GetName] was seized by [seizer.GetTitledFirstName]"
 
+ carnx_gifted_desc_1:0 "I was gifted to [new_owner.GetTitledFirstName]"
+ carnx_gifted_desc_second_perspective_1:0 "you were gifted to [new_owner.GetTitledFirstName]"
+ carnx_gifted_desc_third_perspective_1:0 "[owner.GetName] was gifted to [new_owner.GetTitledFirstName]"
+
  carnx_enslaved_memory:0 "enslaved"
  carnx_freed_memory:0 "freed"
  carnx_bought_memory:0 "bought"
  carnx_seized_memory:0 "seized"
+ carnx_gifted_memory:0 "gifted"

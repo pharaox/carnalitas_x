@@ -1088,6 +1088,102 @@ carnx_seize_slave_interaction_effect = {
 	}
 }
 
+# Gifts scope:slave by scope:former_owner to scope:new_owner, also incurs opinion and stress effects.
+carnx_gift_slave_effect = {
+	scope:slave = {
+		hidden_effect = {
+			# Remove former owner
+			every_relation = {
+				type = slave_owner
+				remove_relation_slave = prev
+				add_opinion = {
+					target = prev
+					modifier = carn_former_slave_or_slave_owner_opinion
+				}
+				reverse_add_opinion = {
+					target = prev
+					modifier = carn_former_slave_or_slave_owner_opinion
+				}
+			}
+
+			# Release from prison
+			if = {
+				limit = { is_imprisoned_by = scope:former_owner }
+				release_from_prison = yes
+			}
+
+			# Trigger event
+			trigger_event = {
+				on_action = carnx_on_slave_gifted
+			}
+		}
+	}
+
+	scope:former_owner = {
+		stress_impact = {
+			greedy = medium_stress_impact_gain
+			generous = medium_stress_impact_loss
+		}
+	}
+
+	scope:new_owner = {
+		# Set new owner
+		set_relation_slave = scope:slave
+
+		# Add opinion to former owner
+		add_opinion = {
+			target = scope:former_owner
+			modifier = gift_opinion
+			opinion = scope:gift_slave_opinion
+		}
+
+		hidden_effect = {
+			# Add slave to new owner's court
+			if = {
+				limit = {
+					scope:slave = { NOT = { is_courtier_of = scope:new_owner } }
+				}
+				add_courtier = scope:slave
+			}
+		}
+	}
+}
+
+# Gifts scope:slave by scope:former_owner to scope:new_owner, also incurs opinion and stress effects.
+# Sends interface messages.
+carnx_gift_slave_interaction_effect = {
+	save_scope_value_as = {
+		name = gift_slave_opinion
+		value = $OPINION$
+	}
+
+	scope:new_owner = {
+		hidden_effect = {
+			send_interface_message = {
+				type = event_generic_neutral
+				title = carnx_msg_slave_gifted
+				left_icon = scope:slave
+				right_icon = scope:former_owner
+
+				show_as_tooltip = {
+					carnx_gift_slave_effect = yes
+				}
+			}
+		}
+	}
+
+	scope:former_owner = {
+		send_interface_message = {
+			type = event_generic_neutral
+			title = carnx_msg_slave_gifted
+			left_icon = scope:slave
+			right_icon = scope:new_owner
+
+			carnx_gift_slave_effect = yes
+		}
+	}
+}
+
 carnx_get_potential_buyers_or_sellers_effect = {
 	every_neighboring_and_across_water_top_liege_realm_owner = {
 		add_to_list = $LIST$
