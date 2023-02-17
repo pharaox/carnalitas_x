@@ -96,7 +96,7 @@ carn_sell_slave_interaction = {
 
 		modifier = {
 			add = -50
-			desc = "GOLD_NEGATIVE_REASON"
+			desc = carnx_reluctant_to_spend_gold_reason
 		}
 
 		modifier = {

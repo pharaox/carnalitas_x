@@ -1,9 +1,6 @@
-﻿# Enslaves SLAVE to OWNER, also incurs opinion, dread, tyranny, piety, and stress
-# effects if DRAMA is true. Overridden from Carnalitas.
-carn_enslave_effect = {
-	$SLAVE$ = { save_scope_as = new_slave }
-	$OWNER$ = { save_scope_as = new_owner }
-
+﻿# Enslaves scope:new_slave to scope:new_owner, also incurs opinion, dread, tyranny, piety, and stress
+# effects if DRAMA is true.
+carnx_enslave_effect = {
 	scope:new_slave = {
 		if = {
 			limit = { is_ruler = yes }
@@ -236,16 +233,6 @@ carn_enslave_effect = {
 		}
 
 		scope:new_owner = {
-			# UI notification for new owner
-			hidden_effect = {
-				send_interface_message = {
-					type = event_generic_neutral
-					title = carn_msg_enslave
-					right_icon = scope:new_slave
-					custom_tooltip = carnx_msg_enslaved_slave_desc
-				}
-			}
-
 			# Dread (similar to execution but reduced)
 			if = {
 				limit = {
@@ -580,17 +567,39 @@ carn_enslave_effect = {
 
 	hidden_effect = {
 		scope:new_slave = {
+			# Release from prison
 			if = {
 				limit = { is_imprisoned_by = scope:new_owner }
 				release_from_prison = yes
 			}
+
+			# Remove modifiers
 			if = {
 				limit = { has_character_modifier = carnx_marked_for_enslavement_modifier }
 				remove_character_modifier = carnx_marked_for_enslavement_modifier
 			}
+
+			# Trigger event
 			trigger_event = {
 				on_action = carn_on_slave_enslaved
 			}
+		}
+	}
+}
+
+# Enslaves SLAVE to OWNER, also incurs opinion, dread, tyranny, piety, and stress
+# effects if DRAMA is true. Sends interface messages. Overridden from Carnalitas.
+carn_enslave_effect = {
+	$SLAVE$ = { save_scope_as = new_slave }
+	$OWNER$ = { save_scope_as = new_owner }
+
+	scope:new_owner = {
+		send_interface_message = {
+			type = event_generic_neutral
+			title = carn_msg_enslave
+			right_icon = scope:new_slave
+
+			carnx_enslave_effect = { DRAMA = $DRAMA$ }
 		}
 	}
 }
@@ -599,6 +608,7 @@ carn_enslave_effect = {
 # Does not have any additional effects. Overriden from Carnalitas.
 carn_free_slave_effect = {
 	every_relation = {
+		# Remove former owner
 		type = slave_owner
 		remove_relation_slave = prev
 		hidden_effect = {
@@ -613,44 +623,43 @@ carn_free_slave_effect = {
 		}
 		save_scope_as = former_owner
 	}
+
 	# To prevent errors in carn_on_slave_freed, check if scope:former_owner exists
 	# and if not, set it to the slave
 	if = {
 		limit = { NOT = { exists = scope:former_owner } }
 		save_scope_as = former_owner
 	}
+
 	hidden_effect = {
+		# Add / remove traits
 		remove_trait = slave
 		add_trait = former_slave
+
+		# Remove modifiers
 		if = {
 			limit = { has_character_modifier = carnx_marked_for_enslavement_modifier }
 			remove_character_modifier = carnx_marked_for_enslavement_modifier
 		}
-		trigger_event = {
-			on_action = carn_on_slave_freed
+
+		# Trigger event
+		if = {
+			limit = { exists = scope:payer }
+			trigger_event = {
+				on_action = carnx_on_slave_ransomed
+			}
+		}
+		else = {
+			trigger_event = {
+				on_action = carn_on_slave_freed
+			}
 		}
 	}
 }
 
 # Frees scope:slave from slavery, also incurs opinion, dread, piety, and stress effects.
 # Pays ransom cost to scope:owner if scope:gold or scope:current_gold is yes.
-# Overridden from Carnalitas.
-carn_free_slave_interaction_effect = {
-	if = {
-		limit = { scope:gold = yes }
-		save_scope_value_as = {
-			name = ransom_cost
-			value = scope:slave.carnx_slave_ransom_cost_value
-		}
-	}
-	else_if = {
-		limit = { scope:current_gold = yes }
-		save_scope_value_as = {
-			name = ransom_cost
-			value = scope:slave.current_gold_value
-		}
-	}
-
+carnx_free_slave_actual_effect = {
 	scope:slave = {
 		carn_free_slave_effect = yes
 
@@ -673,7 +682,11 @@ carn_free_slave_interaction_effect = {
 			limit = {
 				scope:demand_conversion = yes
 			}
+
+			# Set faith
 			set_character_faith = scope:owner.faith
+
+			# Add opinion to owner
 			add_opinion = {
 				modifier = demanded_my_conversion_opinion
 				target = scope:owner
@@ -685,47 +698,34 @@ carn_free_slave_interaction_effect = {
 			limit = {
 				scope:renounce_claims = yes
 			}
+
+			# Add opinion to owner
 			add_opinion = {
 				modifier = demanded_claim_renouncement
 				target = scope:owner
 			}
-			scope:slave = {
-				every_claim = {
-					explicit = yes
-					limit = {
-						save_temporary_scope_as = temp_claim
-						OR = {
-							holder = scope:owner
-							AND = {
-								exists = holder
-								NOT = { prev = { target_is_liege_or_above = scope:owner } }
-								holder = { target_is_liege_or_above = scope:owner }
-							}
-							scope:owner = {
-								any_held_title = {
-									is_de_jure_liege_or_above_target = scope:temp_claim
-								}
+
+			# Remove claims
+			every_claim = {
+				explicit = yes
+				limit = {
+					save_temporary_scope_as = temp_claim
+					OR = {
+						holder = scope:owner
+						AND = {
+							exists = holder
+							NOT = { prev = { target_is_liege_or_above = scope:owner } }
+							holder = { target_is_liege_or_above = scope:owner }
+						}
+						scope:owner = {
+							any_held_title = {
+								is_de_jure_liege_or_above_target = scope:temp_claim
 							}
 						}
 					}
-					scope:slave = { remove_claim = prev }
 				}
-			}
-		}
-
-		# Add hook to owner
-		if = {
-			limit = {
-				scope:gain_hook = yes
-			}
-			add_opinion = {
-				modifier = demanded_hook
-				target = scope:owner
-			}
-			scope:owner = {
-				add_hook = { # Hook effect must match gain_hook option condition
-					target = scope:slave
-					type = favor_hook
+				scope:slave = {
+					remove_claim = prev
 				}
 			}
 		}
@@ -739,74 +739,100 @@ carn_free_slave_interaction_effect = {
 				scope:renounce_claims = no
 				scope:gain_hook = no
 			}
-			scope:slave = {
-				add_opinion = {
-					modifier = carn_freed_me_from_slavery_opinion
-					target = scope:owner
-				}
-			}
-			scope:owner = {
-				add_dread = carnx_free_slave_dread_loss
-				if = {
-					limit = {
-						faith = {
-							NOR = {
-								AND = {
-									faith_hostility_level = {
-										target = scope:slave.faith
-										value < faith_hostile_level
-									}
-									has_doctrine = carn_doctrine_same_slavery_accepted
-								}
-								AND = {
-									faith_hostility_level = {
-										target = scope:slave.faith
-										value >= faith_hostile_level
-									}
-									has_doctrine = carn_doctrine_other_slavery_accepted
-								}
-							}
-						}
-					}
-					add_piety = {
-						value = 0
-						if = {
-							limit = {
-								scope:slave = {
-									has_no_particular_noble_roots_trigger = yes
-								}
-							}
-							add = miniscule_piety_gain
-						}
-						else = {
-							add = medium_piety_gain
-						}
-					}
-				}
-				stress_impact = {
-					compassionate = medium_stress_impact_loss
-					sadistic = medium_stress_impact_gain
-					callous = minor_stress_impact_gain
-				}
+
+			# Add opinion to owner
+			add_opinion = {
+				modifier = carn_freed_me_from_slavery_opinion
+				target = scope:owner
 			}
 		}
 	}
 
 	scope:owner = {
-		hidden_effect = {
-			send_interface_message = {
-				type = event_generic_neutral
-				title = carn_msg_slave_freed
-				right_icon = scope:slave
-				custom_tooltip = carnx_msg_freed_slave_desc
+		# Add hook to owner
+		if = {
+			limit = {
+				scope:gain_hook = yes
+			}
+
+			# Add opinion from slave
+			reverse_add_opinion = {
+				target = scope:slave
+				modifier = demanded_hook
+			}
+
+			# Add hook to owner
+			add_hook = { # Hook effect must match gain_hook option condition
+				target = scope:slave
+				type = favor_hook
+			}
+		}
+
+		# No demands
+		if = {
+			limit = {
+				scope:gold = no
+				scope:current_gold = no
+				scope:demand_conversion = no
+				scope:renounce_claims = no
+				scope:gain_hook = no
+			}
+
+			# Remove dread
+			add_dread = carnx_free_slave_dread_loss
+
+			# Add piety
+			if = {
+				limit = {
+					faith = {
+						NOR = {
+							AND = {
+								faith_hostility_level = {
+									target = scope:slave.faith
+									value < faith_hostile_level
+								}
+								has_doctrine = carn_doctrine_same_slavery_accepted
+							}
+							AND = {
+								faith_hostility_level = {
+									target = scope:slave.faith
+									value >= faith_hostile_level
+								}
+								has_doctrine = carn_doctrine_other_slavery_accepted
+							}
+						}
+					}
+				}
+				add_piety = {
+					value = 0
+					if = {
+						limit = {
+							scope:slave = {
+								has_no_particular_noble_roots_trigger = yes
+							}
+						}
+						add = miniscule_piety_gain
+					}
+					else = {
+						add = medium_piety_gain
+					}
+				}
+			}
+
+			# Add / remove stress
+			stress_impact = {
+				compassionate = medium_stress_impact_loss
+				sadistic = medium_stress_impact_gain
+				callous = minor_stress_impact_gain
 			}
 		}
 	}
 }
 
-# Ransoms scope:slave from slavery by scope:payer, also incurs opinion effects.
+# Frees scope:slave from slavery, also incurs opinion, dread, piety, and stress effects.
 # Pays ransom cost to scope:owner if scope:gold or scope:current_gold is yes.
-carnx_ransom_slave_interaction_effect = {
+# Sends interface messages. Overridden from Carnalitas.
+carn_free_slave_interaction_effect = {
 	if = {
 		limit = { scope:gold = yes }
 		save_scope_value_as = {
@@ -818,30 +844,37 @@ carnx_ransom_slave_interaction_effect = {
 		limit = { scope:current_gold = yes }
 		save_scope_value_as = {
 			name = ransom_cost
-			value = scope:payer.current_gold_value
+			value = scope:slave.current_gold_value
 		}
 	}
 
+	scope:owner = {
+		send_interface_message = {
+			type = event_generic_neutral
+			title = carn_msg_slave_freed
+			right_icon = scope:slave
+
+			carnx_free_slave_actual_effect = yes
+		}
+	}
+}
+
+# Ransoms scope:slave from slavery by scope:payer, also incurs opinion effects.
+# Pays ransom cost to scope:owner if scope:gold or scope:current_gold is yes.
+carnx_ransom_slave_actual_effect = {
 	scope:slave = {
 		carn_free_slave_effect = yes
 
-		# Move slave to the payer court
+		# Release from prison
 		if = {
-			limit = {
-				scope:payer = { is_ruler = yes }
-			}
-			scope:payer = {
-				add_courtier = prev
-			}
+			limit = { is_imprisoned_by = scope:owner }
+			release_from_prison = yes
 		}
 
 		# Add opinion of payer
 		if = { # Only visible if a player is involved
 			limit = {
-				OR = {
-					scope:slave = { is_ai = no }
-					scope:payer = { is_ai = no }
-				}
+				scope:payer = { is_ai = no }
 			}
 			add_opinion = {
 				modifier = ransomed_from_prison
@@ -875,86 +908,84 @@ carnx_ransom_slave_interaction_effect = {
 			}
 		}
 
+		hidden_effect = {
+			# Add slave to payer's court
+			if = {
+				limit = {
+					scope:slave = { NOT = { is_courtier_of = scope:payer } }
+				}
+				add_courtier = scope:slave
+			}
+		}
+	}
+
+	scope:owner = {
 		# Add hook to owner
 		if = {
 			limit = {
 				scope:favor = yes
 			}
-			add_opinion = {
+			reverse_add_opinion = {
 				modifier = demanded_hook
-				target = scope:owner
+				target = scope:payer
 			}
-			scope:owner = {
-				add_hook = { # Hook effect must match gain_hook option condition
-					target = scope:payer
-					type = favor_hook
-				}
+			add_hook = { # Hook effect must match gain_hook option condition
+				target = scope:payer
+				type = favor_hook
 			}
 		}
+	}
+}
 
+# Ransoms scope:slave from slavery by scope:payer, also incurs opinion effects.
+# Pays ransom cost to scope:owner if scope:gold or scope:current_gold is yes.
+# Sends interface messages.
+carnx_ransom_slave_interaction_effect = {
+	if = {
+		limit = { scope:gold = yes }
+		save_scope_value_as = {
+			name = ransom_cost
+			value = scope:slave.carnx_slave_ransom_cost_value
+		}
+	}
+	else_if = {
+		limit = { scope:current_gold = yes }
+		save_scope_value_as = {
+			name = ransom_cost
+			value = scope:payer.current_gold_value
+		}
+	}
+
+	scope:payer = {
 		hidden_effect = {
 			send_interface_message = {
 				type = event_generic_neutral
 				title = carnx_msg_slave_ransomed
 				left_icon = scope:slave
 				right_icon = scope:owner
-				custom_tooltip = carnx_msg_ransomed_slave_from_owner_desc
-			}
-		}
-	}
-
-	scope:owner = {
-		hidden_effect = {
-			send_interface_message = {
-				type = event_generic_neutral
-				title = carnx_msg_slave_ransomed
-				left_icon = scope:slave
-				right_icon = scope:payer
-				custom_tooltip = carnx_msg_slave_ransomed_by_payer_desc
-			}
-		}
-	}
-}
-
-# Transfers the ownership of scope:slave from scope:seller to scope:buyer
-# and pays SLAVE_PRICE to scope:seller. Sends interface messages.
-# Overridden from Carnalitas.
-carn_buy_slave_effect = {
-	save_scope_value_as = {
-		name = slave_price
-		value = $SLAVE_PRICE$
-	}
-
-	scope:buyer = {
-		hidden_effect = {
-			send_interface_message = {
-				type = event_generic_neutral
-				title = carnx_msg_slave_bought
-				left_icon = scope:slave
-				right_icon = scope:seller
 
 				show_as_tooltip = {
-					carnx_buy_slave_actual_effect = yes
+					carnx_ransom_slave_actual_effect = yes
 				}
 			}
 		}
 	}
 
-	scope:seller = {
+	scope:owner = {
 		send_interface_message = {
 			type = event_generic_neutral
-			title = carnx_msg_slave_sold
+			title = carnx_msg_slave_ransomed
 			left_icon = scope:slave
-			right_icon = scope:buyer
+			right_icon = scope:payer
 
-			carnx_buy_slave_actual_effect = yes
+			carnx_ransom_slave_actual_effect = yes
 		}
 	}
 }
 
 # Transfers the ownership of scope:slave from scope:seller to scope:buyer
-# and pays SLAVE_PRICE to scope:seller.
-carnx_buy_slave_actual_effect = {
+# and pays scope:slave_price to scope:seller.
+carnx_buy_slave_effect = {
 	scope:slave = {
 		hidden_effect = {
 			# Remove former owner
@@ -975,11 +1006,6 @@ carnx_buy_slave_actual_effect = {
 			if = {
 				limit = { is_imprisoned_by = scope:seller }
 				release_from_prison = yes
-			}
-
-			# Trigger event
-			trigger_event = {
-				on_action = carnx_on_slave_bought
 			}
 		}
 	}
@@ -1018,6 +1044,51 @@ carnx_buy_slave_actual_effect = {
 			}
 		}
 	}
+
+	scope:slave = {
+		hidden_effect = {
+			# Trigger event
+			trigger_event = {
+				on_action = carnx_on_slave_bought
+			}
+		}
+	}
+}
+
+# Transfers the ownership of scope:slave from scope:seller to scope:buyer
+# and pays SLAVE_PRICE to scope:seller. Sends interface messages.
+# Overridden from Carnalitas.
+carn_buy_slave_effect = {
+	save_scope_value_as = {
+		name = slave_price
+		value = $SLAVE_PRICE$
+	}
+
+	scope:buyer = {
+		hidden_effect = {
+			send_interface_message = {
+				type = event_generic_neutral
+				title = carnx_msg_slave_bought
+				left_icon = scope:slave
+				right_icon = scope:seller
+
+				show_as_tooltip = {
+					carnx_buy_slave_effect = yes
+				}
+			}
+		}
+	}
+
+	scope:seller = {
+		send_interface_message = {
+			type = event_generic_neutral
+			title = carnx_msg_slave_sold
+			left_icon = scope:slave
+			right_icon = scope:buyer
+
+			carnx_buy_slave_effect = yes
+		}
+	}
 }
 
 # Seizes scope:slave by scope:new_owner, also incurs opinion effects.
@@ -1044,11 +1115,6 @@ carnx_seize_slave_effect = {
 				limit = { is_imprisoned_by = scope:new_owner }
 				release_from_prison = yes
 			}
-
-			# Trigger event
-			trigger_event = {
-				on_action = carnx_on_slave_seized
-			}
 		}
 	}
 
@@ -1069,6 +1135,15 @@ carnx_seize_slave_effect = {
 					scope:slave = { NOT = { is_courtier_of = scope:new_owner } }
 				}
 				add_courtier = scope:slave
+			}
+		}
+	}
+
+	scope:slave = {
+		hidden_effect = {
+			# Trigger event
+			trigger_event = {
+				on_action = carnx_on_slave_seized
 			}
 		}
 	}
@@ -1111,15 +1186,11 @@ carnx_gift_slave_effect = {
 				limit = { is_imprisoned_by = scope:former_owner }
 				release_from_prison = yes
 			}
-
-			# Trigger event
-			trigger_event = {
-				on_action = carnx_on_slave_gifted
-			}
 		}
 	}
 
 	scope:former_owner = {
+		# Add / remove stress
 		stress_impact = {
 			greedy = medium_stress_impact_gain
 			generous = medium_stress_impact_loss
@@ -1144,6 +1215,15 @@ carnx_gift_slave_effect = {
 					scope:slave = { NOT = { is_courtier_of = scope:new_owner } }
 				}
 				add_courtier = scope:slave
+			}
+		}
+	}
+
+	scope:slave = {
+		hidden_effect = {
+			# Trigger event
+			trigger_event = {
+				on_action = carnx_on_slave_gifted
 			}
 		}
 	}

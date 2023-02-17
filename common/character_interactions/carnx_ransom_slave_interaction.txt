@@ -132,7 +132,7 @@ carnx_ransom_slave_interaction = {
 				scope:current_gold = yes
 			}
 			add = -25
-			desc = "GOLD_NEGATIVE_REASON"
+			desc = carnx_reluctant_to_spend_gold_reason
 		}
 		modifier = { # Greedy characters can have their greed get the better of them...
 			OR = {
