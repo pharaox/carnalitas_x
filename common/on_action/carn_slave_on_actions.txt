@@ -66,6 +66,7 @@ on_death_relation_slave = { # fired for the slaveowner when they die
 		}
 		else = {
 			scope:target = {
+				debug_log = "on_death_relation_slave: Freeing slave"
 				carn_free_slave_effect = yes
 			}
 		}

@@ -110,6 +110,34 @@ carnx_seized_memory = {
 	}
 }
 
+carnx_ransomed_memory = {
+	categories = { prison }
+	icon = "prison.dds"
+	description = {
+		random_valid = {
+			desc = carnx_ransomed_desc_1
+		}
+	}
+
+	second_perspective_description = {
+		random_valid = {
+			desc = carnx_ransomed_desc_second_perspective_1
+		}
+	}
+
+	third_perspective_description = {
+		random_valid = {
+			desc = carnx_ransomed_desc_third_perspective_1
+		}
+	}
+
+	participants = { ransomer }
+
+	duration = {
+		years = memory_default_duration
+	}
+}
+
 carnx_gifted_memory = {
 	categories = { prison }
 	icon = "prison.dds"

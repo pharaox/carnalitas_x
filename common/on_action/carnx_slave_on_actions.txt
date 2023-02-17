@@ -54,6 +54,20 @@ carnx_on_slave_seized = {
 	}
 }
 
+carnx_on_slave_ransomed = {
+	effect = {
+		create_character_memory = {
+			type = carnx_ransomed_memory
+			participants = {
+				ransomer = scope:payer
+			}
+		}
+		debug_log = "carnx_on_slave_ransomed: Slave ransomed"
+		debug_log_date = yes
+		debug_log_scopes = yes
+	}
+}
+
 carnx_on_slave_gifted = {
 	effect = {
 		create_character_memory = {

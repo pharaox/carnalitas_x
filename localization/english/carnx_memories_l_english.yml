@@ -3,9 +3,9 @@
  carnx_enslaved_desc_second_perspective_1:0 "you were enslaved by [enslaver.GetTitledFirstName]"
  carnx_enslaved_desc_third_perspective_1:0 "[owner.GetName] was enslaved by [enslaver.GetTitledFirstName]"
 
- carnx_freed_desc_1:0 "I was freed by [emancipator.GetTitledFirstName]"
- carnx_freed_desc_second_perspective_1:0 "you were freed by [emancipator.GetTitledFirstName]"
- carnx_freed_desc_third_perspective_1:0 "[owner.GetName] was freed by [emancipator.GetTitledFirstName]"
+ carnx_freed_desc_1:0 "I was freed from slavery by [emancipator.GetTitledFirstName]"
+ carnx_freed_desc_second_perspective_1:0 "you were freed from slavery by [emancipator.GetTitledFirstName]"
+ carnx_freed_desc_third_perspective_1:0 "[owner.GetName] was freed from slavery by [emancipator.GetTitledFirstName]"
 
  carnx_bought_desc_1:0 "I was bought by [buyer.GetTitledFirstName]"
  carnx_bought_desc_second_perspective_1:0 "you were bought by [buyer.GetTitledFirstName]"
@@ -15,6 +15,10 @@
  carnx_seized_desc_second_perspective_1:0 "you were seized by [seizer.GetTitledFirstName]"
  carnx_seized_desc_third_perspective_1:0 "[owner.GetName] was seized by [seizer.GetTitledFirstName]"
 
+ carnx_ransomed_desc_1:0 "I was ransomed from slavery by [ransomer.GetTitledFirstName]"
+ carnx_ransomed_desc_second_perspective_1:0 "you were ransomed from slavery by [ransomer.GetTitledFirstName]"
+ carnx_ransomed_desc_third_perspective_1:0 "[owner.GetName] was ransomed from slavery by [ransomer.GetTitledFirstName]"
+
  carnx_gifted_desc_1:0 "I was gifted to [new_owner.GetTitledFirstName]"
  carnx_gifted_desc_second_perspective_1:0 "you were gifted to [new_owner.GetTitledFirstName]"
  carnx_gifted_desc_third_perspective_1:0 "[owner.GetName] was gifted to [new_owner.GetTitledFirstName]"
@@ -23,4 +27,5 @@
  carnx_freed_memory:0 "freed"
  carnx_bought_memory:0 "bought"
  carnx_seized_memory:0 "seized"
+ carnx_ransomed_memory:0 "ransomed"
  carnx_gifted_memory:0 "gifted"
