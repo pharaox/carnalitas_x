@@ -37,6 +37,7 @@
 ### Slave Prices
 
 * Reduced the correction multiplier of the slave base price from 0.75 to 0.6, making slaves cheaper across the board.
+* Adjusted slave prices down for tribal rulers (as everything is cheaper for them).
 * Changed some factors affecting the slave base price:
   - Nerfed claims to 100 for any type of claim (before it scaled from 100 to 250).
   - Rebalanced court physician traits to match aptitude, added an antiquarian trait.

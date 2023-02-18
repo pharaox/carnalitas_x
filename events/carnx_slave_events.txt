@@ -147,6 +147,7 @@ carnx_slave.0001 = {
 								limit = { root = { is_ai = no } }
 								multiply = carnx_slave_ask_price_player_multiplier
 							}
+							multiply = carnx_slave_price_tribal_multiplier
 						}
 					}
 					save_scope_as = slave
@@ -179,6 +180,7 @@ carnx_slave.0001 = {
 								limit = { root = { is_ai = no } }
 								multiply = carnx_slave_ask_price_player_multiplier
 							}
+							multiply = carnx_slave_price_tribal_multiplier
 						}
 					}
 					save_scope_as = slave
