@@ -7,7 +7,7 @@ carnx_gift_slave_ai_will_do_base = 25   # quite willing to gift
 
 # AI impact values (base is -50 / 50)
 carnx_ai_positive_skill_impact_value = 5
-carnx_ai_positive_prowess_impact_value = 2
+carnx_ai_positive_prowess_impact_value = 3
 carnx_ai_positive_aptitude_impact_value = 25
 carnx_ai_positive_cs_impact_value = 2
 carnx_ai_negative_employed_impact_value = -25
@@ -17,8 +17,8 @@ carnx_ai_positive_attraction_impact_value = 30
 carnx_ai_negative_attraction_impact_value = -30
 carnx_ai_positive_female_impact_value = 15
 carnx_ai_negative_female_impact_value = -15
-carnx_ai_positive_age_impact_value = 10
-carnx_ai_negative_age_impact_value = -10
+carnx_ai_positive_age_impact_value = 15
+carnx_ai_negative_age_impact_value = -15
 carnx_ai_positive_price_impact_value = 10
 carnx_ai_negative_price_impact_value = -10
 
@@ -34,19 +34,19 @@ carnx_ai_positive_attraction_impact_halved_value = 15
 carnx_ai_negative_attraction_impact_halved_value = -15
 carnx_ai_positive_female_impact_halved_value = 7
 carnx_ai_negative_female_impact_halved_value = -7
-carnx_ai_positive_age_impact_halved_value = 5
-carnx_ai_negative_age_impact_halved_value = -5
+carnx_ai_positive_age_impact_halved_value = 7
+carnx_ai_negative_age_impact_halved_value = -7
 carnx_ai_positive_price_impact_halved_value = 5
 carnx_ai_negative_price_impact_halved_value = -5
 
 # Multiplier for the opinion modifier affecting ai willingness to buy and sell slaves
-carnx_buy_sell_slave_ai_opinion_multiplier = 0.1
+carnx_buy_sell_slave_ai_opinion_multiplier = 0.12
 
 # Multiplier for the slave base price
-carnx_slave_base_price_multiplier = 0.5
+carnx_slave_base_price_multiplier = 0.6
 
 # Multiplier for the opinion gain from gifting a slave
-carnx_gift_slave_opinion_multiplier = 1.5
+carnx_gift_slave_opinion_multiplier = 1.2
 
 # Enslave interaction dread gain
 carnx_enslave_minor_dread_gain = 2

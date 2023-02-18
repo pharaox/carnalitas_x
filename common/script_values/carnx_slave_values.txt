@@ -130,7 +130,7 @@ carnx_slave_base_price_value = {
 		add = {
 			value = prowess
 			subtract = decent_skill_rating
-			multiply = 2 # Reduced compared to guests
+			multiply = 3 # Reduced compared to guests
 		}
 	}
 
@@ -150,9 +150,9 @@ carnx_slave_base_price_value = {
 		add = 15
 	}
 
-	# Age (up to 10 depending on age, new compared to guests)
+	# Age (up to 15 depending on age, new compared to guests)
 	add = {
-		value = 10
+		value = 15
 		if = {
 			limit = { age < 16 }
 			subtract = {
@@ -174,6 +174,7 @@ carnx_slave_base_price_value = {
 	# Apply a correction factor to get the final price
 	multiply = carnx_slave_base_price_multiplier
 
+	floor = yes
 	min = 1
 }
 
@@ -198,6 +199,9 @@ carnx_slave_ask_price_value = {
 			add = 1
 		}
 	}
+
+	floor = yes
+	min = 1
 }
 
 carnx_slave_bid_price_value = {
@@ -221,6 +225,9 @@ carnx_slave_bid_price_value = {
 			add = 1
 		}
 	}
+
+	floor = yes
+	min = 1
 }
 
 # Opinion gain from gifting a slave. Calculated by multiplying the slave base price (carnx_slave_base_price_value)
@@ -232,6 +239,7 @@ carnx_gift_slave_opinion = {
 	divide = gift_value
 	multiply = carnx_gift_slave_opinion_multiplier
 	floor = yes
+	min = 1
 }
 
 carnx_buy_slave_ai_accept_no_actor_value = {
