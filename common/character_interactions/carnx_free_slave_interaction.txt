@@ -308,6 +308,14 @@ carn_free_slave_interaction = {
 			add = carnx_free_slave_ai_will_do_base
 		}
 
+		# Slave recently bought
+		modifier = {
+			scope:recipient = {
+				has_character_flag = carnx_slave_recently_bought
+			}
+			add = -100
+		}
+
 		# Options
 		modifier = {
 			scope:gold = yes

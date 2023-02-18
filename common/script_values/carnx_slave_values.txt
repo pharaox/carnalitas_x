@@ -246,6 +246,16 @@ carnx_buy_slave_ai_accept_no_actor_value = {
 	save_temporary_scope_as = slave
 	value = 50
 
+	# Slave recently bought
+	if = {
+		limit = {
+			scope:slave = {
+				has_character_flag = carnx_slave_recently_bought
+			}
+		}
+		add = -100
+	}
+
 	# Employed as councillor (NIV doubled), court position, knight / commander, or in some other way (NIV)
 	if = {
 		limit = {

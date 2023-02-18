@@ -278,6 +278,14 @@ carnx_gift_slave_interaction = {
 			add = carnx_gift_slave_ai_will_do_base
 		}
 
+		# Slave recently bought
+		modifier = {
+			scope:secondary_recipient = {
+				has_character_flag = carnx_slave_recently_bought
+			}
+			add = -100
+		}
+
 		# Greed (0 to -50 depending on greed)
 		modifier = {
 			add = {
@@ -385,40 +393,40 @@ carnx_gift_slave_interaction = {
 
 		# Do not send double-gifts
 		modifier = {
-			factor = 0
 			scope:recipient = {
 				has_opinion_modifier = {
 					target = scope:actor
 					modifier = gift_opinion
 				}
 			}
+			factor = 0
 		}
 
 		# Basic filtering
 		modifier = {
-			factor = 0
 			scope:recipient = {
 				NOT = { carnx_gift_slave_recipient_trigger = yes }
 			}
+			factor = 0
 		}
 
 		# Don't gift anything to rivals / nemesises
 		modifier = {
-			factor = 0
 			scope:recipient = {
 				OR = {
 					has_relation_rival = scope:actor
 					has_relation_nemesis = scope:actor
 				}
 			}
+			factor = 0
 		}
 
 		# More likely to gift the human player
 		modifier = {
-			factor = 2
 			scope:recipient = {
 				is_ai = no
 			}
+			factor = 2
 		}
 	}
 }

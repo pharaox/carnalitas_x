@@ -229,6 +229,13 @@ carnx_slave.0001 = {
 			DRAMA = no
 		}
 
+		scope:valuable_option = {
+			add_character_flag = {
+				flag = carnx_slave_recently_bought
+				years = 2
+			}
+		}
+
 		ai_chance = {
 			base = 0
 			modifier = {
@@ -271,6 +278,13 @@ carnx_slave.0001 = {
 			SLAVE = scope:common_option
 			OWNER = root
 			DRAMA = no
+		}
+
+		scope:common_option = {
+			add_character_flag = {
+				flag = carnx_slave_recently_bought
+				years = 2
+			}
 		}
 
 		ai_chance = {

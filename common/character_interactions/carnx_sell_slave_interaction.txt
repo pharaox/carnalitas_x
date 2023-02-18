@@ -231,6 +231,14 @@ carn_sell_slave_interaction = {
 	ai_will_do = {
 		base = 50
 
+		# Slave recently bought
+		modifier = {
+			scope:secondary_recipient = {
+				has_character_flag = carnx_slave_recently_bought
+			}
+			add = -100
+		}
+
 		# Employed as councillor (NIV doubled), court position, knight / commander, or in some other way (NIV)
 		carnx_employed_modifier = {
 			RULER = scope:actor

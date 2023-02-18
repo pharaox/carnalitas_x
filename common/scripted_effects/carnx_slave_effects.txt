@@ -573,7 +573,7 @@ carnx_enslave_effect = {
 				release_from_prison = yes
 			}
 
-			# Remove modifiers
+			# Add / remove modifiers and flags
 			if = {
 				limit = { has_character_modifier = carnx_marked_for_enslavement_modifier }
 				remove_character_modifier = carnx_marked_for_enslavement_modifier
@@ -636,10 +636,14 @@ carn_free_slave_effect = {
 		remove_trait = slave
 		add_trait = former_slave
 
-		# Remove modifiers
+		# Add / remove modifiers and flags
 		if = {
 			limit = { has_character_modifier = carnx_marked_for_enslavement_modifier }
 			remove_character_modifier = carnx_marked_for_enslavement_modifier
+		}
+		if = {
+			limit = { has_character_flag = carnx_slave_recently_bought }
+			remove_character_flag = carnx_slave_recently_bought
 		}
 
 		# Trigger event
@@ -1047,6 +1051,16 @@ carnx_buy_slave_effect = {
 
 	scope:slave = {
 		hidden_effect = {
+			# Add / remove modifiers and flags
+			if = {
+				limit = { has_character_flag = carnx_slave_recently_bought }
+				remove_character_flag = carnx_slave_recently_bought
+			}
+			add_character_flag = {
+				flag = carnx_slave_recently_bought
+				years = 2
+			}
+
 			# Trigger event
 			trigger_event = {
 				on_action = carnx_on_slave_bought
@@ -1141,6 +1155,16 @@ carnx_seize_slave_effect = {
 
 	scope:slave = {
 		hidden_effect = {
+			# Add / remove modifiers and flags
+			if = {
+				limit = { has_character_modifier = carnx_marked_for_enslavement_modifier }
+				remove_character_modifier = carnx_marked_for_enslavement_modifier
+			}
+			if = {
+				limit = { has_character_flag = carnx_slave_recently_bought }
+				remove_character_flag = carnx_slave_recently_bought
+			}
+
 			# Trigger event
 			trigger_event = {
 				on_action = carnx_on_slave_seized
@@ -1221,6 +1245,12 @@ carnx_gift_slave_effect = {
 
 	scope:slave = {
 		hidden_effect = {
+			# Add / remove modifiers and flags
+			if = {
+				limit = { has_character_flag = carnx_slave_recently_bought }
+				remove_character_flag = carnx_slave_recently_bought
+			}
+
 			# Trigger event
 			trigger_event = {
 				on_action = carnx_on_slave_gifted

@@ -138,6 +138,15 @@ carn_buy_slave_directly_interaction = {
 			desc = SCHEME_WEAK_HOOK_USED
 		}
 
+		# Slave recently bought
+		modifier = {
+			scope:secondary_recipient = {
+				has_character_flag = carnx_slave_recently_bought
+			}
+			add = -100
+			desc = "carnx_slave_recently_bought_reason"
+		}
+
 		# Employed as councillor (NIV doubled), court position, knight / commander, or in some other way (NIV)
 		carnx_employed_modifier = {
 			RULER = scope:recipient
