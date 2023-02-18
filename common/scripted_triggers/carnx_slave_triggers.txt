@@ -1,29 +1,29 @@
-﻿carnx_candidate_to_buy_slave_from_trigger = {
-	is_ai = yes
+﻿carnx_candidate_to_interact_with_trigger = {
 	NOT = { this = scope:actor }
 	highest_held_title_tier >= tier_county
 	is_diplomatically_available = yes
 	in_diplomatic_range = scope:actor
 	NOT = { is_at_war_with = scope:actor }
 	is_imprisoned = no
+}
+
+carnx_candidate_to_sell_slave_to_trigger = {
+	carnx_candidate_to_interact_with_trigger = yes
+	is_ai = yes
+	short_term_gold > 1
+}
+
+carnx_candidate_to_buy_slave_from_trigger = {
+	carnx_candidate_to_interact_with_trigger = yes
+	is_ai = yes
 }
 
 carnx_candidate_to_gift_slave_to_trigger = {
-	NOT = { this = scope:actor }
-	highest_held_title_tier >= tier_county
-	is_diplomatically_available = yes
-	in_diplomatic_range = scope:actor
-	NOT = { is_at_war_with = scope:actor }
-	is_imprisoned = no
+	carnx_candidate_to_interact_with_trigger = yes
 }
 
 carnx_candidate_to_ransom_slave_trigger = {
-	NOT = { this = scope:actor }
-	highest_held_title_tier >= tier_county
-	is_diplomatically_available = yes
-	in_diplomatic_range = scope:actor
-	NOT = { is_at_war_with = scope:actor }
-	is_imprisoned = no
+	carnx_candidate_to_interact_with_trigger = yes
 }
 
 carnx_slave_can_be_freed_trigger = {

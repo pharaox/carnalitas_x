@@ -35,7 +35,7 @@ carnx_sell_slaves_interaction = {
 						save_temporary_scope_as = slave
 						any_in_list = {
 							list = potential_buyers
-							carn_candidate_to_sell_slave_to_trigger = yes
+							carnx_candidate_to_sell_slave_to_trigger = yes
 							save_temporary_opinion_value_as = { name = opinion_of_actor target = scope:actor }
 							carnx_sell_slave_ai_accept_value > 0
 						}
@@ -54,7 +54,7 @@ carnx_sell_slaves_interaction = {
 		every_in_list = {
 			list = potential_buyers
 			limit = {
-				carn_candidate_to_sell_slave_to_trigger = yes
+				carnx_candidate_to_sell_slave_to_trigger = yes
 				save_temporary_opinion_value_as = { name = opinion_of_actor target = scope:actor }
 				carnx_sell_slave_ai_accept_value > 0
 			}
