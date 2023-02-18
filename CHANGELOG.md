@@ -2,37 +2,54 @@
 
 ## Interactions
 
-* Changed *Buy Slaves* and *Sell Slaves* to redirect to *Buy Slave* and *Sell Slave* for the actual trade in order to show the AI acceptance reasons and prevent exploits.
-* Changed *Sell Slaves* to show only slaves that can actually be sold to somebody.
-* Improved `carn_buy_slave_effect` to show the slave price and other relevant information properly in messages.
-* Enabled the use of hooks in *Buy Slave* and *Sell Slave* interactions.
-* Ensured the AI pays no more than their `short_term_gold` for slaves and changed the corresponding descriptions accordingly.
-* Added "age considerations" modifier to all slave interactions. The AI is now more willing to buy / acquire and less willing to sell / release slaves if they are between 6 and 50 years of age, and vice versa if they are not. The modifier peaks between 16 and 30 years of age with a peak value of 10. It is only applied if the slave is considered "useful" to the AI.
-* Added "price considerations" modifier to *Buy Slave* and *Sell Slave* interactions. When buying, the AI is now more willing to buy slaves that are cheap (price < `minor_gold_value`) and less willing to buy slaves that are expensive (price > `major_gold_value`), and vice versa when selling. The value of the modifier is 10, so it only makes any difference if the AI willingness is on the border. It does not enable selling useless slaves to the AI just because they are cheap, or buying very useful ones just because they are expensive.
-* Nerfed the "visibly fertile female" modifier to slave interactions (from 25 to 15).
-* Nerfed the attraction modifier to slave interactions (from 50 to 30 for max attraction).
-* Nerfed the opinion of actor modifier to *Buy Slave* and *Sell Slave* interactions (from 12 to 10 for max opinion).
+### General
+
+* Improved all interaction effects to show more relevant information in interface messages.
+* Added "age considerations" AI modifier to all slave interactions. The AI is now more willing to buy / acquire and less willing to sell / release slaves if they are between 6 and 50 years of age, and vice versa if they are not. The modifier peaks between 16 and 30 years of age. It is only applied if the slave is considered "useful" to the AI.
 * Added additional reasons to the AI to consider slaves as useful when buying / acquiring:
   - Lacking a good court chaplain (based on learning).
   - Lacking a good court physician or antiquarian (based on aptitude; court physician was there also before but it was broken).
   - Could use a good commander (based on martial and commander traits).
-* Buffed AI unwillingness to sell / release court positions.
-* Reduced the correction multiplier of the slave base price from 0.75 to 0.5, making slaves cheaper across the board.
+* Nerfed the "visibly fertile female" AI modifier to slave interactions.
+* Nerfed the attraction AI modifier to slave interactions.
+* Buffed the AI unwillingness to sell / release court positions.
+
+### Gifting Slaves
+
+* Added new *Gift Slave* interaction (`carnx_gift_slave_interaction`). Gift a slave to another ruler for an opinion gain. The opinion gain is proportional to the slave base price and to the "gift opinion / gift value" ratio of the *Send Gift* vanilla interaction. AI rulers are much more likely to accept slaves as gifts than to buy them.
+
+### Buying ans Selling Slaves
+
+* Changed *Buy Slaves* and *Sell Slaves* to redirect to *Buy Slave* and *Sell Slave* for the actual trade in order to show the AI acceptance reasons and prevent exploits.
+* Changed *Sell Slaves* to show only slaves that can actually be sold to somebody.
+* Ensured the AI replies immediately to *Buy Slave* and *Sell Slave* offers.
+* Enabled the use of hooks in *Buy Slave* and *Sell Slave* interactions.
+* Added "price considerations" AI modifier to *Buy Slave* and *Sell Slave* interactions. When buying, the AI is now more willing to buy slaves that are cheap (price < `minor_gold_value`) and less willing to buy slaves that are expensive (price > `major_gold_value`), and vice versa when selling.
+* Ensured the AI pays no more than their `short_term_gold` for slaves and changed the corresponding descriptions accordingly.
+* Changed the description of the AI base reluctance to spend money modifier from "cannot afford the gold" to "is reluctant to spend gold".
+
+### Ransoming Slaves
+
+* Buffed dread impact on *Ransom Slave* AI willingness for vassals and below. They will now practically always accept if intimidated or cowed.
+* Buffed the AI base willingness to offer *Ransom Slave* to other rulers.
+* Added "ransomed" memory as a different memory from "freed".
+
+### Slave Prices
+
+* Reduced the correction multiplier of the slave base price from 0.75 to 0.6, making slaves cheaper across the board.
 * Changed some factors affecting the slave base price:
   - Nerfed claims to 100 for any type of claim (before it scaled from 100 to 250).
   - Rebalanced court physician traits to match aptitude, added an antiquarian trait.
-  - Nerfed prowess from 5 to 2 per point.
+  - Nerfed prowess from 5 to 3 per point.
   - Buffed attraction (from 20 to 30 for max attraction).
   - Nerfed "visibly fertile female" from 20 to 15.
-  - Added age (up to 10, similar to above).
-* Buffed dread impact on *Ransom Slave* AI willingness for vassals and below. They will now practically always accept if intimidated or cowed.
-* Buffed AI base willingness to offer *Ransom Slave* to other rulers.
-* Ensured the AI replies immediately to *Buy Slave* and *Sell Slave* offers.
+  - Added age (up to 12, similar to the AI modifier described above).
 
 ## Bug Fixes
 
 * Fixed *Buy Slaves* and *Sell Slaves* allowing to select a slave after a buyer or a seller has been selected.
 * Fixed *Ransom Slave* not selecting a default option and allowing to be sent without an option selected.
+* Fixed concubines not being "divorced" when enslaved (Carnalitas bug).
 
 ## Miscellaneous
 
@@ -44,6 +61,7 @@
 * Extracted commonly checked conditions as scripted triggers triggers in `carnx_slave_triggers.txt`.
 * Extracted positive and negative "impact values" as script values in `carnx_basic_values.txt`.
 * Extracted *Seize Slave* effects as scripted effects in `carnx_slave_effects.txt`.
+* Refactored all effects into "interaction" and "actual" effects.
 
 # Version 0.2.0
 

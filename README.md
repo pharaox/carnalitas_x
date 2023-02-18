@@ -16,9 +16,7 @@ Some of the aspects I personally find problematic are the following:
 * Once a prisoner is converted to a slave, it's no longer possible to ransom him or her. You can instead sell them to e.g. their mother, and the mother will happily become their new owner.
 * Although there are religious doctrines that should govern whether owning slaves of certain faiths is considered a crime, shunned, or accepted, they are not followed consistently when determining if someone can be enslaved, bought, or seized.
 
-This mod attempts to address the above shortcomings. It does this by reworking some of the slave interactions and introducing a few new ones. It aims to be compatible with other Carnalitas features and with other mods based on Carnalitas.
-
-The reimagined slavery system introduced by this mod aims to better integrate slavery with other aspects of the game, make interacting with slaves and other rulers more interesting and rewarding, achieve a better game balance, and maintain a reasonable challenge for the human player.
+This mod attempts to address the above shortcomings. The reimagined slavery system introduced by this mod aims to better integrate slavery with other aspects of the game, make interacting with slaves and other rulers more interesting and rewarding, achieve a better game balance, and maintain a reasonable challenge for the human player. It does this by reworking some of the slave interactions and introducing a few new ones. It also aims to be compatible with other Carnalitas features and with other mods based on Carnalitas.
 
 ## Features
 
@@ -28,10 +26,10 @@ As in Carnalitas, slaves can be bought or sold via the *Buy Slave* and *Sell Sla
 
 #### Slave Prices
 
-In this mod, slaves are bought and sold at prices that better reflect their actual value. Most of the factors influencing the base price of a slave are the same as those influencing the cost of recruiting a guest, with similar impact:
+In this mod, slaves are bought and sold at prices that better correspond to the cost of recruiting guests. Most of the factors influencing the base price of a slave are the same as those influencing the cost of recruiting a guest, with similar impact:
 
 * base (10)
-* claims (100 to 250)
+* claims (100)
 * dynasty prestige level (5 per level)
 * genetic traits (5 per level of good trait, -5 per level of bad trait)
 * commander traits (15 per trait)
@@ -40,29 +38,30 @@ In this mod, slaves are bought and sold at prices that better reflect their actu
 
 Some factors are unique:
 
-* attraction (-10 to 20)
-* visibly fertile female (20)
+* attraction (-30 to 30)
+* visibly fertile female (15)
+* age (15 for ages between 16 and 30, less or even negative otherwise)
 
-At the very end, a correction multiplier is applied to calculate the final base price, currently 0.75 (correcting down). This multiplier is intended to prevent the human player from making too much money from selling slaves, and may be adjusted in future versions.
+At the very end, a correction multiplier is applied to calculate the final base price, currently 0.6 (correcting down). This multiplier is intended to prevent the human player from making too much money from selling slaves, and may be adjusted in future versions.
 
-Actual buy and sell transactions are settled at the *bid price* (buyer's price) if the initiating party is the seller, and the *ask price* (seller's price), if the initiating party is the buyer.These prices are calculated by multiplying the base price by a factor ranging from 0.8 to 1.2, depending on AI greed.
-
-These prices are also multiplied by an additional factor of 0.8 (for the bid price) or 1.2 (for the ask price) if the initiating party is the human player. Since the human player is always the initiating party when buying or selling slaves, they always buy at higher and sell at lower prices. This is to prevent exploits, and to make it a bit more challenging for the human player to use the slavery system to their own advantage.
+Actual buy and sell transactions are settled at the *bid price* (buyer's price) if the initiating party is the seller, and the *ask price* (seller's price), if the initiating party is the buyer.These prices are calculated by multiplying the base price by a factor ranging from 0.8 to 1.2, depending on AI greed. These prices are also multiplied by an additional factor of 0.8 (for the bid price) or 1.2 (for the ask price) if the initiating party is the human player. Since the human player is always the initiating party when buying or selling slaves, they always buy at higher and sell at lower prices. This is to prevent exploits, and to make it a bit more challenging for the human player to use the slavery system to their own advantage.
 
 #### AI Willingness to Buy or Sell
 
 When buying slaves, the AI acceptance is influenced by a comprehensive estimation of the slave's usefulness based on factors such as:
 
-* Is the buyer lacking councillors, court physician, or knights, and how well would the slave perform the corresponding role.
+* Is the buyer lacking good councillors, court positions (currently only court physician or antiquarian), knights, or commanders, and how well would the slave perform the corresponding role.
 * Does the slave have any useful claims on neighboring realms.
 * Is the buyer attracted to the sex of the slave, and if yes the slave's attraction.
 * Is the slave a visibly fertile female.
+* The age of the slave, peaks between 16 and 30 years of age (only applies to slaves that are considered useful for some of the above reasons).
+* The slave price.
 
-When selling, the AI acceptance is influenced by similar factors, but working in the opposite direction. Factors such as the AI's opinion of the other party play a minor role, and dread plays no role at all. In addition, the AI will only buy if their "short term gold" exceeds a certain threshold, and will only sell if the other party has enough gold to pay the agreed price.
+When selling, the AI acceptance is influenced by similar factors, but working in the opposite direction. Factors such as the AI's opinion of the other party play a minor role, and dread plays no role at all. In addition, the AI will never offer to pay more than their "short term gold" (the portion of the AI's budget that can be used for short term purchases), and will only sell if the other party offers enough gold to pay the full price.
 
 When deciding to initiate buying or selling of slaves, the AI is driven by much the same considerations. Unlike Carnalitas, AI rulers will attempt to both buy and sell slaves from / to other AI rulers (never the human player).
 
-All in all, AI is in general quite reluctant to buy slaves that are useless, or sell slaves that are useful to them. As a human player, you may find it impossible to find buyers for your slaves unless they have some of the useful qualities listed above. So instead of enslaving just about everybody you come across, you may want to consider whether you would be able to sell them first.
+All in all, the AI is in general quite reluctant to buy slaves that are useless, or sell slaves that are useful to them. As a human player, you may find it impossible to find buyers for your slaves unless they have some of the useful qualities listed above. Still, for slaves that nobody wants to buy, there are plenty of other options what to do with them. You could also spend a hook if you have one on a ruler and really want to buy or sell a slave.
 
 #### Convenience Interactions for the Human Player
 
@@ -87,6 +86,10 @@ When deciding to initiate freeing or ransoming of slaves, the AI is driven by co
 
 Note that the cost of freeing or ransoming a slave is not their slave price, but their usual [ransom cost](https://ck3.paradoxwikis.com/Court#Ransom_cost). If you enslaved a prisoner instead of ransoming, you won't be able to sell the slave back to a relative at their slave price (relatives get additional negative modifiers to their willingness to buy), but you would still be able to ransom - potentially for less money, since the slave is no longer a spouse or an heir.
 
+### Gifting Slaves
+
+In this mod, a slave can also be gifted to another ruler for an opinion gain via the new *Gift Slave* interaction. The opinion gain is proportional to the slave base price and to the "gift opinion / gift value" ratio of the *Send Gift* vanilla interaction. AI rulers are much more likely to accept slaves as gifts than to buy them.
+
 ### Impact of Slavery Doctrines
 
 Carnalitas introduces the *Slavery Crime* and *Slavery Shunned* religious doctrines that determine whether owning slaves of certain faiths is considered a crime, shunned, or accepted, depending on the faith's hostility level. However, in Carnalitas these doctrines are not followed consistently when determining if someone can be enslaved, bought, or seized, the AI acceptance of slave interactions, or the AI decisions to initiate them. This mod attempts to correct this by rebalancing the impact of slavery doctrines on all slave interactions:
@@ -110,14 +113,20 @@ Besides adding flavor, the above event serves the purpose of "seeding" the game 
 
 ### Slave Memories
 
-Being enslaved, freed, bought, or seized is certainly a significant lifetime event from the slave's perspective. This mod adds character memories for all these events in the slave's memory book.
+Being enslaved, freed, bought, ransomed, seized, or gifted is certainly a significant lifetime event from the slave's perspective. This mod adds character memories for all these events in the slave's memory book.
 
 ### Bug Fixes
 
 The following bugs present in Carnalitas have been fixed in this mod:
 
 * If a slave owner dies and their heir doesn't inherit their court (e.g. because they have their own court), slaves don't just wander off similarly to other courtiers, but are instead added to the court of their new owner.
-* If a slave owner stops being a ruler, their slaves are freed automatically. Non-rulers owning slaves is problematic because they are not under AI control and their slaves can never be freed, ransomed, or traded.
+* If a slave owner stops being a ruler, their slaves are seized by the new title holder of their last title. Non-rulers owning slaves is problematic because they are not under AI control and their slaves can never be freed, ransomed, or traded.
+* Enslaved concubines are properly "divorced".
+
+## Vanilla Changes
+
+* Slaves can be imprisoned without incurring tyranny (and dread). Prisoner interactions on the imprisoned slave are not affected by their slave status.
+* Slaves are less likely to be converted to their owner's faith compared to other courtiers. This is mostly to prevent too many slaves to be freed too quickly as a result of the rebalanced impact of slavery doctrines.
 
 ## Compatibility
 
