@@ -1,0 +1,32 @@
+﻿carnx_allowed_to_marry_trigger = {
+	save_temporary_scope_as = allowed_to_marry
+	allowed_to_marry_character_gender_trigger = { CHARACTER = $CHARACTER$ }
+	faith = {
+		faith_allows_marriage_consanguinity_trigger = {
+			CHARACTER_1 = scope:allowed_to_marry
+			CHARACTER_2 = $CHARACTER$
+		}
+	}
+}
+
+carnx_faith_has_slavery_accepted_doctrine_trigger = {
+	OR = {
+		faith = { has_doctrine = carn_doctrine_same_slavery_accepted }
+		faith = { has_doctrine = carn_doctrine_other_slavery_accepted }
+	}
+}
+
+carnx_faith_or_culture_allows_polygamy_or_concubines_trigger = {
+	OR = {
+		faith = { has_doctrine = doctrine_polygamy }
+		faith = { has_doctrine = doctrine_concubines }
+		culture = { has_cultural_tradition = tradition_polygamous }
+		culture = { has_cultural_tradition = tradition_concubines }
+	}
+}
+
+carnx_slave_concubine_court_position_enabled_trigger = {
+	carnx_faith_has_slavery_accepted_doctrine_trigger = yes
+	carnx_faith_or_culture_allows_polygamy_or_concubines_trigger = yes
+	NOT = { is_wrong_gender_in_faith_trigger = { FAITH = faith } }
+}

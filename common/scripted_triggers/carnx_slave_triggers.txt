@@ -295,6 +295,7 @@ carnx_is_useful_slave_to_future_owner_trigger = {
 		carnx_can_serve_as_commander_trigger = { RULER = $RULER$ }
 		carnx_can_serve_as_court_physician_trigger = { RULER = $RULER$ }
 		carnx_can_serve_as_antiquarian_trigger = { RULER = $RULER$ }
+		carnx_can_serve_as_slave_concubine_trigger = { RULER = $RULER$ }
 		carnx_has_useful_claims_trigger = { RULER = $RULER$ }
 		carnx_is_attractive_to_character_trigger = { CHARACTER = $RULER$ }
 		carnx_is_visibly_fertile_female_trigger = yes
@@ -432,6 +433,26 @@ carnx_can_serve_as_antiquarian_trigger = {
 				this.aptitude:antiquarian_court_position <= poor_effectiveness
 			}
 		}
+	}
+}
+
+carnx_can_serve_as_slave_concubine_trigger = {
+	save_temporary_scope_as = can_serve_as_slave_concubine
+	aptitude:carnx_slave_concubine_court_position > poor_effectiveness
+	can_be_employed_as = carnx_slave_concubine_court_position
+	$RULER$ = {
+		can_employ_court_position_type = carnx_slave_concubine_court_position
+		OR = {
+			any_court_position_holder = {
+				type = carnx_slave_concubine_court_position
+				count < $RULER$.carnx_number_of_desired_slave_concubines
+			}
+			any_court_position_holder = {
+				type = carnx_slave_concubine_court_position
+				this.aptitude:carnx_slave_concubine_court_position <= poor_effectiveness
+			}
+		}
+		carnx_allowed_to_marry_trigger = { CHARACTER = scope:can_serve_as_slave_concubine }
 	}
 }
 

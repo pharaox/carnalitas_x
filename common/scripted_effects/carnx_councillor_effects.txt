@@ -1,0 +1,75 @@
+﻿got_council_position_effect = {
+
+	#If there is a fired opinion remove it
+	if = {
+		limit = {
+			has_opinion_modifier = {
+				modifier = fired_from_council_opinion
+				target = liege
+			}
+		}
+		remove_opinion = {
+			modifier = fired_from_council_opinion
+			target = liege
+		}
+	}
+
+	if = {
+		has_trait = slave
+		if = {
+			limit = { has_council_position = councillor_chancellor }
+			debug_log = "Chancellor council position received"
+		}
+		else_if = {
+			limit = { has_council_position = councillor_steward }
+			debug_log = "Steward council position received"
+		}
+		else_if = {
+			limit = { has_council_position = councillor_marshal }
+			debug_log = "Marshal council position received"
+		}
+		else_if = {
+			limit = { has_council_position = councillor_spymaster }
+			debug_log = "Spymaster council position received"
+		}
+		else_if = {
+			limit = { has_council_position = councillor_court_chaplain }
+			debug_log = "Court Chaplain council position received"
+		}
+		debug_log_date = yes
+		debug_log_scopes = yes
+	}
+}
+
+fired_from_council_position_effect = {
+	add_opinion = {
+		modifier = fired_from_council_opinion
+		target = liege
+	}
+
+	if = {
+		has_trait = slave
+		if = {
+			limit = { has_council_position = councillor_chancellor }
+			debug_log = "Chancellor council position revoked"
+		}
+		else_if = {
+			limit = { has_council_position = councillor_steward }
+			debug_log = "Steward council position revoked"
+		}
+		else_if = {
+			limit = { has_council_position = councillor_marshal }
+			debug_log = "Marshal council position revoked"
+		}
+		else_if = {
+			limit = { has_council_position = councillor_spymaster }
+			debug_log = "Spymaster council position revoked"
+		}
+		else_if = {
+			limit = { has_council_position = councillor_court_chaplain }
+			debug_log = "Court Chaplain council position revoked"
+		}
+		debug_log_date = yes
+		debug_log_scopes = yes
+	}
+}

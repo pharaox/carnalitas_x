@@ -1,0 +1,249 @@
+﻿carnx_slave_concubine_court_position = {
+	skill = diplomacy
+	max_available_positions = 5
+	category = court_position_category_common
+	minimum_rank = county
+
+	opinion = {
+		value = regular_court_position_opinion
+	}
+
+	# Breakpoints to increase aptitude level by 1.
+	aptitude_level_breakpoints = { 20 40 60 80 }
+
+	# Scripted value to determine how well a character performs in this position.
+	aptitude = {
+		value = 1
+		add = {
+			value = diplomacy
+			multiply = 2
+			max = 40
+			desc = court_position_skill_diplomacy
+		}
+		if = {
+			add = {
+				value = attraction
+				multiply = 1.5
+				max = 50
+				desc = carnx_court_position_skill_attraction
+			}
+		}
+		if = {
+			limit = {
+				has_trait = beauty_good_3
+			}
+			add = {
+				value = 30
+				desc = carnx_court_position_beauty_good_3_trait
+			}
+		}
+		else_if = {
+			limit = {
+				has_trait = beauty_good_2
+			}
+			add = {
+				value = 15
+				desc = carnx_court_position_beauty_good_2_trait
+			}
+		}
+		else_if = {
+			limit = {
+				has_trait = beauty_good_1
+			}
+			add = {
+				value = 5
+				desc = carnx_court_position_beauty_good_1_trait
+			}
+		}
+		add = court_position_aptitude_family_business_value
+		add = court_position_aptitude_high_penalty_value
+	}
+
+	# Is this position even visible for usage? Root scope is the liege character.
+	is_shown = {
+		NOT = { has_game_rule = carn_slavery_content_disabled }
+		carnx_slave_concubine_court_position_enabled_trigger = yes
+	}
+
+	# Is this a valid position for this character to employ? Root scope is the liege character.
+	valid_position = {
+		carnx_slave_concubine_court_position_enabled_trigger = yes
+		is_adult = yes
+		OR = {
+			allowed_concubines = yes
+			can_marry_common_trigger = yes
+		}
+	}
+
+	# Is this character even shown for the position? Root scope is the liege character.
+	is_shown_character = {
+		scope:employee = {
+			has_trait = slave
+			any_relation = {
+				type = slave_owner
+				this = scope:liege
+			}
+		}
+	}
+
+	# Is this a valid character for the position?
+	valid_character = {
+		scope:employee = {
+			is_imprisoned = no
+			diplomacy >= low_skill_rating
+			attraction > 0
+			is_adult = yes
+			is_visibly_fertile = yes
+		}
+		scope:liege = {
+			carnx_allowed_to_marry_trigger = { CHARACTER = scope:employee }
+		}
+	}
+
+	# How much it costs to revoke this position.
+	revoke_cost = {
+		prestige =  {
+			value = minor_court_position_prestige_revoke_cost
+
+			# Set to 0 with Dynasty Perk Inner Circle
+			if = {
+				limit = {
+					exists = dynasty
+					dynasty = { has_dynasty_perk = fp2_coterie_legacy_1 }
+					employs_court_position = carnx_slave_concubine_court_position
+					any_court_position_holder = {
+				        type = carnx_slave_concubine_court_position
+						exists = dynasty
+						house = prev.house
+					}
+				}
+				multiply = 0
+			}
+		}
+	}
+
+	# How much it costs monthly to maintain this poisition.
+	salary = {
+		round = no
+		gold = {
+			value = carnx_court_position_slave_concubine_salary
+
+			# Set to 0 with Dynasty Perk Inner Circle
+			if = {
+				limit = {
+					scope:liege = {
+						exists = dynasty
+						dynasty = { has_dynasty_perk = fp2_coterie_legacy_1 }
+						employs_court_position = carnx_slave_concubine_court_position
+						any_court_position_holder = {
+					        type = carnx_slave_concubine_court_position
+							exists = dynasty
+							house = prev.house
+						}
+					}
+				}
+				multiply = {
+					value = 0.0
+					desc = inner_circle_salary_mod
+					format = "BASE_VALUE_FORMAT_DECIMALS_MINUS_POSITIVE"
+				}
+			}
+		}
+	}
+
+	# Scaling modifiers gained by the employer of the court position as the employee's aptitude level increases.
+	scaling_employer_modifiers = {
+		aptitude_level_1 = {
+			monthly_court_grandeur_change_mult = 0.05
+		}
+		aptitude_level_2 = {
+			monthly_court_grandeur_change_mult = 0.05
+			monthly_prestige = 0.025
+		}
+		aptitude_level_3 = {
+			monthly_court_grandeur_change_mult = 0.10
+			monthly_prestige = 0.05
+		}
+		aptitude_level_4 = {
+			monthly_court_grandeur_change_mult = 0.10
+			monthly_prestige = 0.075
+		}
+		aptitude_level_5 = {
+			monthly_court_grandeur_change_mult = 0.15
+			monthly_prestige = 0.1
+		}
+	}
+
+	# Modifiers gained by the holder of the court position.
+	modifier = {
+		monthly_prestige = minor_court_position_prestige_salary
+	}
+
+	# Effects that happen when the position is appointed, revoked or invalidated.
+	on_court_position_received = {
+		carnx_slave_concubine_title_received_effect = yes
+	}
+	on_court_position_revoked = {
+		carnx_court_physician_title_revoked_effect = yes
+	}
+	on_court_position_invalidated = {
+		carnx_court_physician_title_invalidated_effect = yes
+	}
+
+	# Scripted value to determine whether an AI will hire a position or not.
+	candidate_score = {
+		value = 50
+		add = scope:base_value
+		add = court_position_candidate_score_base_value
+		add = court_position_candidate_aptitude_value
+		scope:liege = {
+			# More likely if higher rank
+			if = {
+				limit = {
+					highest_held_title_tier >= tier_duchy
+				}
+				add = 50
+			}
+			if = {
+				limit = {
+					highest_held_title_tier >= tier_kingdom
+				}
+				add = 50
+			}
+
+			# More likely if attracted, less likely if not
+			if = {
+				limit = {
+					is_attracted_to_gender_of = scope:employee
+				}
+				add = 50
+
+				# More likely if lustful, less likely if chaste
+				if = {
+					limit = {
+						has_trait = lustful
+					}
+					add = 50
+				}
+				else_if = {
+					limit = {
+						has_trait = chaste
+					}
+					add = -50
+				}
+			}
+			else = {
+				add = -50
+			}
+
+			# Less likely to hire an additional one if you're already employing one
+			if = {
+				limit = {
+					employs_court_position = carnx_slave_concubine_court_position
+				}
+				add = -50
+			}
+		}
+		add = court_position_debt_considerations_value
+	}
+}

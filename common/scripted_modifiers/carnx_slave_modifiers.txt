@@ -107,6 +107,21 @@ carnx_lacking_court_positions_modifier = {
 		multiplier = $SCALE$
 		desc = "carnx_lacking_antiquarian_reason"
 	}
+	compare_modifier = {
+		trigger = {
+			$SLAVE$ = {
+				carnx_can_serve_as_slave_concubine_trigger = { RULER = $RULER$ }
+			}
+		}
+		target = $SLAVE$
+		value = aptitude:carnx_slave_concubine_court_position
+		offset = {
+			value = 0
+			subtract = poor_effectiveness
+		}
+		multiplier = $SCALE$
+		desc = "carnx_lacking_slave_concubine_reason"
+	}
 }
 
 carnx_lacking_knights_modifier = {
@@ -202,6 +217,7 @@ carnx_attraction_modifier = {
 	modifier = {
 		$SLAVE$ = {
 			carnx_is_attractive_to_character_trigger = { CHARACTER = $RULER$ }
+			NOT = { carnx_can_serve_as_slave_concubine_trigger = { RULER = $RULER$ } }
 		}
 		add = {
 			value = $SLAVE$.attraction

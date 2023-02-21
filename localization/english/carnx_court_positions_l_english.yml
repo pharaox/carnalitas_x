@@ -1,0 +1,10 @@
+﻿l_english:
+ carnx_slave_salary_mod:0 "[slave|E]"
+
+ carnx_court_position_skill_attraction:0 "[attraction|E]"
+ carnx_court_position_beauty_good_3_trait:0 "[GetTrait('beauty_good_3').GetName( ROOT.Char )]"
+ carnx_court_position_beauty_good_2_trait:0 "[GetTrait('beauty_good_2').GetName( ROOT.Char )]"
+ carnx_court_position_beauty_good_1_trait:0 "[GetTrait('beauty_good_1').GetName( ROOT.Char )]"
+
+ carnx_slave_concubine_court_position:0 "Slave Concubine"
+ carnx_slave_concubine_court_position_desc:0 "The $carnx_slave_concubine_court_position$ is a lower-rank concubine that is also your slave."
