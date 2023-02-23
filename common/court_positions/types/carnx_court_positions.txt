@@ -78,10 +78,15 @@
 	# Is this character even shown for the position? Root scope is the liege character.
 	is_shown_character = {
 		scope:employee = {
-			has_trait = slave
-			any_relation = {
-				type = slave_owner
-				this = scope:liege
+			OR = {
+				AND = {
+					has_trait = slave
+					has_relation_slave_owner = scope:liege
+				}
+				AND = {
+					has_trait = former_slave
+					is_courtier_of = scope:liege
+				}
 			}
 		}
 	}
