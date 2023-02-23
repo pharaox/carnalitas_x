@@ -30,10 +30,7 @@ carnx_gift_slave_interaction = {
 		NOT = { has_game_rule = carn_slavery_content_disabled }
 		NOT = { scope:actor = scope:recipient }
 		scope:actor = {
-			any_relation = {
-				type = slave
-				exists = this
-			}
+			carnx_is_slave_owner_trigger = yes
 		}
 	}
 

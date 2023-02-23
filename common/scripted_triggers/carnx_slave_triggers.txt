@@ -474,6 +474,21 @@ carnx_is_visibly_fertile_female_trigger = {
 	is_visibly_fertile = yes
 }
 
+carnx_is_slave_trigger = {
+	has_trait = slave
+	any_relation = {
+		type = slave_owner
+		exists = this
+	}
+}
+
+carnx_is_slave_owner_trigger = {
+	any_relation = {
+		type = slave
+		exists = this
+	}
+}
+
 is_diplomatically_available = {
 	is_busy_in_events_localised = yes
 }

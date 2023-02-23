@@ -54,10 +54,7 @@ carn_buy_slave_directly_interaction = {
 			carnx_buy_sell_slave_recipient_trigger = { RULER = scope:recipient }
 		}
 		scope:recipient = {
-			any_relation = {
-				type = slave
-				exists = this
-			}
+			carnx_is_slave_owner_trigger = yes
 		}
 		NAND = { # Prevent ai from spamming you with buy slave requests
 			scope:actor = { is_ai = yes }

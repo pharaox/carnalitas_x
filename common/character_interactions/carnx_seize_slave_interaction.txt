@@ -19,11 +19,7 @@ carn_seize_slave_interaction = {
 		}
 		scope:recipient = {
 			is_imprisoned_by = scope:actor
-			has_trait = slave
-			any_relation = {
-				type = slave_owner
-				exists = this
-			}
+			carnx_is_slave_trigger = yes
 		}
 	}
 

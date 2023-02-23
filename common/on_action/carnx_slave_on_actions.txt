@@ -133,10 +133,7 @@ carnx_on_title_lost = {
 		if = {
 			limit = {
 				is_landed = no
-				any_relation = {
-					type = slave
-					exists = this
-				}
+				carnx_is_slave_owner_trigger = yes
 			}
 			every_relation = {
 				type = slave

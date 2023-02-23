@@ -34,11 +34,7 @@ carn_free_slave_interaction = {
 			has_relation_slave = scope:recipient
 		}
 		scope:recipient = {
-			has_trait = slave
-			any_relation = {
-				type = slave_owner
-				exists = this
-			}
+			carnx_is_slave_trigger = yes
 			carnx_slave_can_be_freed_trigger = yes
 		}
 	}
