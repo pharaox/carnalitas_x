@@ -1,19 +1,19 @@
 ﻿# VANILLA COURT POSITIONS
 
 # court_physician_court_position - Yes*
-# cultural_emissary_court_position - Yes
+# cultural_emissary_court_position - No
 # keeper_of_swans_court_position - No [country-specific (England)] [vassal]
 # chief_qadi_court_position - No [religious]
-# garuda_court_position - No* [culture-specific (Kannada)] [multiple]
+# garuda_court_position - No [culture-specific (Kannada)] [multiple]
 # court_gardener_court_position - Yes* [culture-specific (Persian)]
-# lady_in_waiting_court_position - No* [multiple]
+# lady_in_waiting_court_position - No [multiple]
 # antiquarian_court_position - Yes*
 # court_tutor_court_position - Yes*
 # food_taster_court_position - Yes*
 # master_of_horse_court_position - No [vassal]
 # master_of_hunt_court_position - No [vassal]
 # royal_architect_court_position - No [vassal]
-# high_almoner_court_position - No* [religious]
+# high_almoner_court_position - No [religious]
 # seneschal_court_position - Yes*
 # cupbearer_court_position - Yes*
 # chief_eunuch_court_position - Yes* [culture-specific (Han, Hindustani, Tangut, Greek)]
@@ -23,7 +23,7 @@
 # bodyguard_court_position - Yes* [multiple]
 # champion_court_position - Yes*
 # executioner_court_position - Yes*
-# court_artificer_court_position - Yes [multiple]
+# court_artificer_court_position - No [multiple]
 
 # CarnalitasX Court Positions
 
@@ -34,8 +34,8 @@
 
 # COURT PHYSICIAN
 
-court_physician_title_accepted_effect = {
-	basic_gained_court_position_effect = yes
+carnx_court_physician_title_accepted_effect = {
+	court_physician_title_accepted_effect = yes
 	if = {
 		limit = {
 			scope:employee = { has_trait = slave }
@@ -46,8 +46,8 @@ court_physician_title_accepted_effect = {
 	}
 }
 
-court_physician_title_revoked_effect = {
-	basic_revoked_court_position_effect = yes
+carnx_court_physician_title_revoked_effect = {
+	court_physician_title_revoked_effect = yes
 	if = {
 		limit = {
 			scope:employee = { has_trait = slave }
@@ -58,8 +58,8 @@ court_physician_title_revoked_effect = {
 	}
 }
 
-court_physician_title_invalidated_effect = {
-	basic_invalidated_court_position_effect = yes
+carnx_court_physician_title_invalidated_effect = {
+	court_physician_title_invalidated_effect = yes
 	if = {
 		limit = {
 			scope:employee = { has_trait = slave }
@@ -72,8 +72,8 @@ court_physician_title_invalidated_effect = {
 
 # ANTIQUARIAN
 
-antiquarian_title_accepted_effect = {
-	basic_gained_court_position_effect = yes
+carnx_antiquarian_title_accepted_effect = {
+	antiquarian_title_accepted_effect = yes
 	if = {
 		limit = {
 			scope:employee = { has_trait = slave }
@@ -84,8 +84,8 @@ antiquarian_title_accepted_effect = {
 	}
 }
 
-antiquarian_title_revoked_effect = {
-	basic_revoked_court_position_effect = yes
+carnx_antiquarian_title_revoked_effect = {
+	antiquarian_title_revoked_effect = yes
 	if = {
 		limit = {
 			scope:employee = { has_trait = slave }
@@ -96,8 +96,8 @@ antiquarian_title_revoked_effect = {
 	}
 }
 
-antiquarian_title_invalidated_effect = {
-	basic_invalidated_court_position_effect = yes
+carnx_antiquarian_title_invalidated_effect = {
+	antiquarian_title_invalidated_effect = yes
 	if = {
 		limit = {
 			scope:employee = { has_trait = slave }
@@ -110,8 +110,8 @@ antiquarian_title_invalidated_effect = {
 
 # COURT EUNUCH
 
-chief_eunuch_title_accepted_effect = {
-	basic_gained_court_position_effect = yes
+carnx_chief_eunuch_title_accepted_effect = {
+	chief_eunuch_title_accepted_effect = yes
 	if = {
 		limit = {
 			scope:employee = { has_trait = slave }
@@ -122,8 +122,8 @@ chief_eunuch_title_accepted_effect = {
 	}
 }
 
-chief_eunuch_title_revoked_effect = {
-	basic_revoked_court_position_effect = yes
+carnx_chief_eunuch_title_revoked_effect = {
+	chief_eunuch_title_revoked_effect = yes
 	if = {
 		limit = {
 			scope:employee = { has_trait = slave }
@@ -134,8 +134,8 @@ chief_eunuch_title_revoked_effect = {
 	}
 }
 
-chief_eunuch_title_invalidated_effect = {
-	basic_invalidated_court_position_effect = yes
+carnx_chief_eunuch_title_invalidated_effect = {
+	chief_eunuch_title_invalidated_effect = yes
 	if = {
 		limit = {
 			scope:employee = { has_trait = slave }
@@ -148,7 +148,8 @@ chief_eunuch_title_invalidated_effect = {
 
 # COURT JESTER
 
-court_jester_title_accepted_effect = {
+carnx_court_jester_title_accepted_effect = {
+	court_jester_title_accepted_effect = yes
 	if = {
 		limit = {
 			scope:employee = { has_trait = slave }
@@ -159,22 +160,8 @@ court_jester_title_accepted_effect = {
 	}
 }
 
-court_jester_title_revoked_effect = {
-	scope:employee = {
-		if = { #Only lowborn/unlanded are insulted if it's revoked
-			limit = {
-				NOR = {
-					is_lowborn = no
-					is_landed = yes
-				}
-			}
-			add_opinion = {
-				modifier = insult_opinion
-				target = liege
-				opinion = 15
-			}
-		}
-	}
+carnx_court_jester_title_revoked_effect = {
+	court_jester_title_revoked_effect = yes
 	if = {
 		limit = {
 			scope:employee = { has_trait = slave }
@@ -185,8 +172,8 @@ court_jester_title_revoked_effect = {
 	}
 }
 
-court_jester_title_invalidated_effect = {
-	basic_invalidated_court_position_effect = yes
+carnx_court_jester_title_invalidated_effect = {
+	court_jester_title_invalidated_effect = yes
 	if = {
 		limit = {
 			scope:employee = { has_trait = slave }
@@ -197,48 +184,10 @@ court_jester_title_invalidated_effect = {
 	}
 }
 
-# HIGH ALMONER
-
-high_almoner_title_accepted_effect = {
-	basic_gained_court_position_effect = yes
-	if = {
-		limit = {
-			scope:employee = { has_trait = slave }
-		}
-		debug_log = "High Almoner court position received"
-		debug_log_date = yes
-		debug_log_scopes = yes
-	}
-}
-
-high_almoner_title_revoked_effect = {
-	basic_revoked_court_position_effect = yes
-	if = {
-		limit = {
-			scope:employee = { has_trait = slave }
-		}
-		debug_log = "High Almoner court position revoked"
-		debug_log_date = yes
-		debug_log_scopes = yes
-	}
-}
-
-high_almoner_title_invalidated_effect = {
-	basic_invalidated_court_position_effect = yes
-	if = {
-		limit = {
-			scope:employee = { has_trait = slave }
-		}
-		debug_log = "High Almoner court position invalidated"
-		debug_log_date = yes
-		debug_log_scopes = yes
-	}
-}
-
 # CUPBEARER
 
-cupbearer_title_accepted_effect = {
-	basic_gained_court_position_effect = yes
+carnx_cupbearer_title_accepted_effect = {
+	cupbearer_title_accepted_effect = yes
 	if = {
 		limit = {
 			scope:employee = { has_trait = slave }
@@ -249,8 +198,8 @@ cupbearer_title_accepted_effect = {
 	}
 }
 
-cupbearer_title_revoked_effect = {
-	basic_revoked_court_position_effect = yes
+carnx_cupbearer_title_revoked_effect = {
+	cupbearer_title_revoked_effect = yes
 	if = {
 		limit = {
 			scope:employee = { has_trait = slave }
@@ -261,8 +210,8 @@ cupbearer_title_revoked_effect = {
 	}
 }
 
-cupbearer_title_invalidated_effect = {
-	basic_invalidated_court_position_effect = yes
+carnx_cupbearer_title_invalidated_effect = {
+	cupbearer_title_invalidated_effect = yes
 	if = {
 		limit = {
 			scope:employee = { has_trait = slave }
@@ -275,8 +224,8 @@ cupbearer_title_invalidated_effect = {
 
 # SENESCHAL
 
-seneschal_title_accepted_effect = {
-	basic_gained_court_position_effect = yes
+carnx_seneschal_title_accepted_effect = {
+	seneschal_title_accepted_effect = yes
 	if = {
 		limit = {
 			scope:employee = { has_trait = slave }
@@ -287,8 +236,8 @@ seneschal_title_accepted_effect = {
 	}
 }
 
-seneschal_title_revoked_effect = {
-	basic_revoked_court_position_effect = yes
+carnx_seneschal_title_revoked_effect = {
+	seneschal_title_revoked_effect = yes
 	if = {
 		limit = {
 			scope:employee = { has_trait = slave }
@@ -299,8 +248,8 @@ seneschal_title_revoked_effect = {
 	}
 }
 
-seneschal_title_invalidated_effect = {
-	basic_invalidated_court_position_effect = yes
+carnx_seneschal_title_invalidated_effect = {
+	seneschal_title_invalidated_effect = yes
 	if = {
 		limit = {
 			scope:employee = { has_trait = slave }
@@ -313,8 +262,8 @@ seneschal_title_invalidated_effect = {
 
 # COURT TUTOR
 
-court_tutor_title_accepted_effect = {
-	basic_gained_court_position_effect = yes
+carnx_court_tutor_title_accepted_effect = {
+	court_tutor_title_accepted_effect = yes
 	if = {
 		limit = {
 			scope:employee = { has_trait = slave }
@@ -325,8 +274,8 @@ court_tutor_title_accepted_effect = {
 	}
 }
 
-court_tutor_title_revoked_effect = {
-	basic_revoked_court_position_effect = yes
+carnx_court_tutor_title_revoked_effect = {
+	court_tutor_title_revoked_effect = yes
 	if = {
 		limit = {
 			scope:employee = { has_trait = slave }
@@ -337,8 +286,8 @@ court_tutor_title_revoked_effect = {
 	}
 }
 
-court_tutor_title_invalidated_effect = {
-	basic_invalidated_court_position_effect = yes
+carnx_court_tutor_title_invalidated_effect = {
+	court_tutor_title_invalidated_effect = yes
 	if = {
 		limit = {
 			scope:employee = { has_trait = slave }
@@ -351,8 +300,8 @@ court_tutor_title_invalidated_effect = {
 
 # COURT POET
 
-court_poet_title_accepted_effect = {
-	basic_gained_court_position_effect = yes
+carnx_court_poet_title_accepted_effect = {
+	court_poet_title_accepted_effect = yes
 	if = {
 		limit = {
 			scope:employee = { has_trait = slave }
@@ -363,7 +312,7 @@ court_poet_title_accepted_effect = {
 	}
 }
 
-court_poet_title_revoked_effect = {
+carnx_court_poet_title_revoked_effect = {
 	basic_revoked_court_position_effect = yes
 	if = {
 		limit = {
@@ -375,8 +324,8 @@ court_poet_title_revoked_effect = {
 	}
 }
 
-court_poet_title_invalidated_effect = {
-	basic_invalidated_court_position_effect = yes
+carnx_court_poet_title_invalidated_effect = {
+	court_poet_title_invalidated_effect = yes
 	if = {
 		limit = {
 			scope:employee = { has_trait = slave }
@@ -385,12 +334,12 @@ court_poet_title_invalidated_effect = {
 		debug_log_date = yes
 		debug_log_scopes = yes
 	}
-s}
+}
 
 # BODYGUARD
 
-bodyguard_title_accepted_effect = {
-	basic_gained_court_position_effect = yes
+carnx_bodyguard_title_accepted_effect = {
+	bodyguard_title_accepted_effect = yes
 	if = {
 		limit = {
 			scope:employee = { has_trait = slave }
@@ -401,8 +350,8 @@ bodyguard_title_accepted_effect = {
 	}
 }
 
-bodyguard_title_revoked_effect = {
-	basic_revoked_court_position_effect = yes
+carnx_bodyguard_title_revoked_effect = {
+	bodyguard_title_revoked_effect = yes
 	if = {
 		limit = {
 			scope:employee = { has_trait = slave }
@@ -413,8 +362,8 @@ bodyguard_title_revoked_effect = {
 	}
 }
 
-bodyguard_title_invalidated_effect = {
-	basic_invalidated_court_position_effect = yes
+carnx_bodyguard_title_invalidated_effect = {
+	bodyguard_title_invalidated_effect = yes
 	if = {
 		limit = {
 			scope:employee = { has_trait = slave }
@@ -427,8 +376,8 @@ bodyguard_title_invalidated_effect = {
 
 # CHAMPION
 
-champion_title_accepted_effect = {
-	basic_gained_court_position_effect = yes
+carnx_champion_title_accepted_effect = {
+	champion_title_accepted_effect = yes
 	if = {
 		limit = {
 			scope:employee = { has_trait = slave }
@@ -439,8 +388,8 @@ champion_title_accepted_effect = {
 	}
 }
 
-champion_title_revoked_effect = {
-	basic_revoked_court_position_effect = yes
+carnx_champion_title_revoked_effect = {
+	champion_title_revoked_effect = yes
 	if = {
 		limit = {
 			scope:employee = { has_trait = slave }
@@ -451,8 +400,8 @@ champion_title_revoked_effect = {
 	}
 }
 
-champion_title_invalidated_effect = {
-	basic_invalidated_court_position_effect = yes
+carnx_champion_title_invalidated_effect = {
+	champion_title_invalidated_effect = yes
 	if = {
 		limit = {
 			scope:employee = { has_trait = slave }
@@ -465,8 +414,8 @@ champion_title_invalidated_effect = {
 
 # COURT MUSICIAN
 
-court_musician_title_accepted_effect = {
-	basic_gained_court_position_effect = yes
+carnx_court_musician_title_accepted_effect = {
+	court_musician_title_accepted_effect = yes
 	if = {
 		limit = {
 			scope:employee = { has_trait = slave }
@@ -477,8 +426,8 @@ court_musician_title_accepted_effect = {
 	}
 }
 
-court_musician_title_revoked_effect = {
-	basic_revoked_court_position_effect = yes
+carnx_court_musician_title_revoked_effect = {
+	court_musician_title_revoked_effect = yes
 	if = {
 		limit = {
 			scope:employee = { has_trait = slave }
@@ -489,8 +438,8 @@ court_musician_title_revoked_effect = {
 	}
 }
 
-court_musician_title_invalidated_effect = {
-	basic_invalidated_court_position_effect = yes
+carnx_court_musician_title_invalidated_effect = {
+	court_musician_title_invalidated_effect = yes
 	if = {
 		limit = {
 			scope:employee = { has_trait = slave }
@@ -503,8 +452,8 @@ court_musician_title_invalidated_effect = {
 
 # FOOD TASTER
 
-food_taster_title_accepted_effect = {
-	basic_gained_court_position_effect = yes
+carnx_food_taster_title_accepted_effect = {
+	food_taster_title_accepted_effect = yes
 	if = {
 		limit = {
 			scope:employee = { has_trait = slave }
@@ -515,8 +464,8 @@ food_taster_title_accepted_effect = {
 	}
 }
 
-food_taster_title_revoked_effect = {
-	basic_revoked_court_position_effect = yes
+carnx_food_taster_title_revoked_effect = {
+	food_taster_title_revoked_effect = yes
 	if = {
 		limit = {
 			scope:employee = { has_trait = slave }
@@ -527,8 +476,8 @@ food_taster_title_revoked_effect = {
 	}
 }
 
-food_taster_title_invalidated_effect = {
-	basic_invalidated_court_position_effect = yes
+carnx_food_taster_title_invalidated_effect = {
+	food_taster_title_invalidated_effect = yes
 	if = {
 		limit = {
 			scope:employee = { has_trait = slave }
@@ -539,57 +488,10 @@ food_taster_title_invalidated_effect = {
 	}
 }
 
-# LADY-IN-WAITING
-
-lady_in_waiting_title_accepted_effect = {
-	basic_gained_court_position_effect = yes
-	if = {
-		limit = {
-			scope:employee = { has_trait = slave }
-		}
-		debug_log = "Lady-in-waiting court position received"
-		debug_log_date = yes
-		debug_log_scopes = yes
-	}
-}
-
-lady_in_waiting_title_revoked_effect = {
-	basic_revoked_court_position_effect = yes
-	if = {
-		limit = {
-			scope:employee = { has_trait = slave }
-		}
-		debug_log = "Lady-in-waiting court position revoked"
-		debug_log_date = yes
-		debug_log_scopes = yes
-	}
-}
-
-lady_in_waiting_title_invalidated_effect = {
-	basic_invalidated_court_position_effect = yes
-	if = {
-		limit = {
-			scope:employee = { has_trait = slave }
-		}
-		debug_log = "Lady-in-waiting court position invalidated"
-		debug_log_date = yes
-		debug_log_scopes = yes
-	}
-}
-
 # EXECUTIONER
 
-executioner_title_accepted_effect = {
-	scope:liege = {
-		consume_imprisonment_reasons = scope:employee
-	}
-	scope:employee = {
-		if = {
-			limit = { is_imprisoned = yes }
-			release_from_prison = yes
-		}
-	}
-	basic_gained_court_position_effect = yes
+carnx_executioner_title_accepted_effect = {
+	executioner_title_accepted_effect = yes
 	if = {
 		limit = {
 			scope:employee = { has_trait = slave }
@@ -600,8 +502,8 @@ executioner_title_accepted_effect = {
 	}
 }
 
-executioner_title_revoked_effect = {
-	basic_revoked_court_position_effect = yes
+carnx_executioner_title_revoked_effect = {
+	executioner_title_revoked_effect = yes
 	if = {
 		limit = {
 			scope:employee = { has_trait = slave }
@@ -612,8 +514,8 @@ executioner_title_revoked_effect = {
 	}
 }
 
-executioner_title_invalidated_effect = {
-	basic_invalidated_court_position_effect = yes
+carnx_executioner_title_invalidated_effect = {
+	executioner_title_invalidated_effect = yes
 	if = {
 		limit = {
 			scope:employee = { has_trait = slave }
@@ -624,48 +526,10 @@ executioner_title_invalidated_effect = {
 	}
 }
 
-# GARUDA
-
-garuda_title_accepted_effect = {
-	basic_gained_court_position_effect = yes
-	if = {
-		limit = {
-			scope:employee = { has_trait = slave }
-		}
-		debug_log = "Garuda court position received"
-		debug_log_date = yes
-		debug_log_scopes = yes
-	}
-}
-
-garuda_title_revoked_effect = {
-	basic_revoked_court_position_effect = yes
-	if = {
-		limit = {
-			scope:employee = { has_trait = slave }
-		}
-		debug_log = "Garuda court position revoked"
-		debug_log_date = yes
-		debug_log_scopes = yes
-	}
-}
-
-garuda_title_invalidated_effect = {
-	basic_invalidated_court_position_effect = yes
-	if = {
-		limit = {
-			scope:employee = { has_trait = slave }
-		}
-		debug_log = "Garuda court position invalidated"
-		debug_log_date = yes
-		debug_log_scopes = yes
-	}
-}
-
 # COURT GARDENER
 
-court_gardener_title_accepted_effect = {
-	basic_gained_court_position_effect = yes
+carnx_court_gardener_title_accepted_effect = {
+	court_gardener_title_accepted_effect = yes
 	if = {
 		limit = {
 			scope:employee = { has_trait = slave }
@@ -676,8 +540,8 @@ court_gardener_title_accepted_effect = {
 	}
 }
 
-court_gardener_title_revoked_effect = {
-	basic_revoked_court_position_effect = yes
+carnx_court_gardener_title_revoked_effect = {
+	court_gardener_title_revoked_effect = yes
 	if = {
 		limit = {
 			scope:employee = { has_trait = slave }
@@ -688,8 +552,8 @@ court_gardener_title_revoked_effect = {
 	}
 }
 
-court_gardener_title_invalidated_effect = {
-	basic_invalidated_court_position_effect = yes
+carnx_court_gardener_title_invalidated_effect = {
+	court_gardener_title_invalidated_effect = yes
 	if = {
 		limit = {
 			scope:employee = { has_trait = slave }
