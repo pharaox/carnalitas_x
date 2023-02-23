@@ -172,7 +172,7 @@ court_physician_court_position = {
 
 	salary = {
 		gold = {
-			value = court_position_physician_salary
+			value = carnx_court_position_court_physician_salary
 			# Set to 0 with Dynasty Perk Inner Circle
 			if = {
 				limit = {
@@ -360,7 +360,7 @@ cultural_emissary_court_position = {
 	valid_character = {
 		scope:employee = {
 			diplomacy >= 8
-			NOT = { has_trait = slave }
+			NOT = { carnx_is_slave_trigger = yes }
 		}
 	}
 
@@ -542,6 +542,7 @@ keeper_of_swans_court_position = {
 				is_vassal_of = scope:liege
 				is_courtier_of = scope:liege
 			}
+			NOT = { carnx_is_slave_trigger = yes }
 		}
 	}
 
@@ -732,7 +733,7 @@ chief_qadi_court_position = {
 	is_shown_character = {
 		scope:employee = {
 			is_imprisoned = no
-			NOT = { has_trait = slave }
+			NOT = { carnx_is_slave_trigger = yes }
 		}
 	}
 
@@ -931,7 +932,7 @@ garuda_court_position = {
 	is_shown_character = {
 		scope:employee = {
 			is_imprisoned = no
-			NOT = { has_trait = slave }
+			NOT = { carnx_is_slave_trigger = yes }
 		}
 	}
 
@@ -1159,7 +1160,7 @@ court_gardener_court_position = {
 	salary = {
 		round = no
 		gold = {
-			value = medium_court_position_salary
+			value = carnx_court_position_court_gardener_salary
 			# Set to 0 with Dynasty Perk Inner Circle
 			if = {
 				limit = {
@@ -1297,7 +1298,7 @@ lady_in_waiting_court_position = {
 				limit = { NOT = { has_court_position = lady_in_waiting_court_position } }
 				court_position_does_not_already_have_a_job_trigger = yes # This positions is considered a job, and cannot be held at the same tims as another similar position
 			}
-			NOT = { has_trait = slave }
+			NOT = { carnx_is_slave_trigger = yes }
 		}
 	}
 
@@ -1546,7 +1547,7 @@ antiquarian_court_position = {
 	salary = {
 		round = no
 		gold = {
-			value = court_position_antiquarian_salary
+			value = carnx_court_position_antiquarian_salary
 			# Set to 0 with Dynasty Perk Inner Circle
 			if = {
 				limit = {
@@ -1813,7 +1814,7 @@ court_tutor_court_position = {
 	salary = {
 		round = no
 		gold = {
-			value = medium_court_position_salary
+			value = carnx_court_position_court_tutor_salary
 			# Set to 0 with Dynasty Perk Inner Circle
 			if = {
 				limit = {
@@ -2032,7 +2033,7 @@ food_taster_court_position = {
 	salary = {
 		round = no
 		gold = {
-			value = minor_court_position_salary
+			value = carnx_court_position_food_taster_salary
 			# Set to 0 with Dynasty Perk Inner Circle
 			if = {
 				limit = {
@@ -2163,6 +2164,7 @@ master_of_horse_court_position = {
 				is_vassal_of = scope:liege
 				is_courtier_of = scope:liege
 			}
+			NOT = { carnx_is_slave_trigger = yes }
 		}
 	}
 
@@ -2361,6 +2363,7 @@ master_of_hunt_court_position = {
 				is_vassal_of = scope:liege
 				is_courtier_of = scope:liege
 			}
+			NOT = { carnx_is_slave_trigger = yes }
 		}
 	}
 
@@ -2535,6 +2538,7 @@ royal_architect_court_position = {
 				is_vassal_of = scope:liege
 				is_courtier_of = scope:liege
 			}
+			NOT = { carnx_is_slave_trigger = yes }
 		}
 	}
 
@@ -2738,7 +2742,7 @@ high_almoner_court_position = {
 		scope:employee = {
 			is_courtier_of = scope:liege
 			is_imprisoned = no
-			NOT = { has_trait = slave }
+			NOT = { carnx_is_slave_trigger = yes }
 		}
 	}
 
@@ -2938,7 +2942,7 @@ seneschal_court_position = {
 	salary = {
 		round = no
 		gold = {
-			value = medium_court_position_salary
+			value = carnx_court_position_seneschal_salary
 			# Set to 0 with Dynasty Perk Inner Circle
 			if = {
 				limit = {
@@ -3130,7 +3134,7 @@ cupbearer_court_position = {
 	salary = {
 		round = no
 		gold = {
-			value = minor_court_position_salary
+			value = carnx_court_position_cupbearer_salary
 			# Set to 0 with Dynasty Perk Inner Circle
 			if = {
 				limit = {
@@ -3307,7 +3311,7 @@ chief_eunuch_court_position = {
 	salary = {
 		round = no
 		gold = {
-			value = minor_court_position_salary
+			value = carnx_court_position_chief_eunuch_salary
 			# Set to 0 with Dynasty Perk Inner Circle
 			if = {
 				limit = {
@@ -3508,7 +3512,7 @@ court_jester_court_position = {
 	salary = {
 		round = no
 		gold = {
-			value = minor_court_position_salary
+			value = carnx_court_position_court_jester_salary
 			# Set to 0 with Dynasty Perk Inner Circle
 			if = {
 				limit = {
@@ -3718,7 +3722,7 @@ court_poet_court_position = {
 	salary = {
 		round = no
 		gold = {
-			value = minor_court_position_salary
+			value = carnx_court_position_court_poet_salary
 			# Set to 0 with Dynasty Perk Inner Circle
 			if = {
 				limit = {
@@ -3933,7 +3937,7 @@ court_musician_court_position = {
 	salary = {
 		round = no
 		gold = {
-			value = minor_court_position_salary
+			value = carnx_court_position_court_musician_salary
 			# Set to 0 with Dynasty Perk Inner Circle
 			if = {
 				limit = {
@@ -4163,7 +4167,7 @@ bodyguard_court_position = {
 	salary = {
 		round = no
 		gold = {
-			value = medium_court_position_salary
+			value = carnx_court_position_bodyguard_salary
 			# Set to 0 with Dynasty Perk Inner Circle
 			if = {
 				limit = {
@@ -4408,7 +4412,7 @@ champion_court_position = {
 	salary = {
 		round = no
 		gold = {
-			value = minor_court_position_salary
+			value = carnx_court_position_champion_salary
 			# Set to 0 with Dynasty Perk Inner Circle
 			if = {
 				limit = {
@@ -4624,7 +4628,7 @@ executioner_court_position = {
 	salary = {
 		round = no
 		gold = {
-			value = minor_court_position_salary
+			value = carnx_court_position_executioner_salary
 			# Set to 0 with Dynasty Perk Inner Circle
 			if = {
 				limit = {
@@ -4809,7 +4813,7 @@ court_artificer_court_position = {
 				limit = { NOT = { has_court_position = court_artificer_court_position } }
 				court_position_does_not_already_have_a_job_trigger = yes # This positions is considered a job, and cannot be held at the same tims as another similar position
 			}
-			NOT = { has_trait = slave }
+			NOT = { carnx_is_slave_trigger = yes }
 		}
 	}
 

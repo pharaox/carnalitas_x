@@ -348,7 +348,7 @@ councillor_court_chaplain = {
 	valid_character = {
 		exists = root.liege_or_court_owner
 		can_be_court_chaplain_trigger = { COURT_OWNER = root.liege_or_court_owner }
-		NOT = { has_trait = slave }
+		NOT = { carnx_is_slave_trigger = yes }
 	}
 
 	on_get_position = {

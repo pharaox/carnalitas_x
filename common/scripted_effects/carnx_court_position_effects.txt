@@ -2,20 +2,20 @@
 
 # court_physician_court_position - Yes*
 # cultural_emissary_court_position - No
-# keeper_of_swans_court_position - No [country-specific (England)] [vassal]
-# chief_qadi_court_position - No [religious]
+# keeper_of_swans_court_position - No [country-specific (England)] [vassal] [ceremonial]
+# chief_qadi_court_position - No [religious] [ceremonial]
 # garuda_court_position - No [culture-specific (Kannada)] [multiple]
 # court_gardener_court_position - Yes* [culture-specific (Persian)]
 # lady_in_waiting_court_position - No [multiple]
 # antiquarian_court_position - Yes*
 # court_tutor_court_position - Yes*
 # food_taster_court_position - Yes*
-# master_of_horse_court_position - No [vassal]
-# master_of_hunt_court_position - No [vassal]
+# master_of_horse_court_position - No [vassal] [ceremonial]
+# master_of_hunt_court_position - No [vassal] [ceremonial]
 # royal_architect_court_position - No [vassal]
-# high_almoner_court_position - No [religious]
+# high_almoner_court_position - No [religious] [ceremonial]
 # seneschal_court_position - Yes*
-# cupbearer_court_position - Yes*
+# cupbearer_court_position - Yes* [ceremonial]
 # chief_eunuch_court_position - Yes* [culture-specific (Han, Hindustani, Tangut, Greek)]
 # court_jester_court_position - Yes*
 # court_poet_court_position - Yes*
@@ -23,7 +23,7 @@
 # bodyguard_court_position - Yes* [multiple]
 # champion_court_position - Yes*
 # executioner_court_position - Yes*
-# court_artificer_court_position - No [multiple]
+# court_artificer_court_position - No [multiple] [ceremonial]
 
 # CarnalitasX Court Positions
 

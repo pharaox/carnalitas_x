@@ -489,6 +489,15 @@ carnx_is_slave_owner_trigger = {
 	}
 }
 
+carnx_employs_slave_as_court_position_trigger = {
+	employs_court_position = $TYPE$
+	any_court_position_holder = {
+		type = $TYPE$
+		has_trait = slave
+		has_relation_slave_owner = prev
+	}
+}
+
 is_diplomatically_available = {
 	is_busy_in_events_localised = yes
 }

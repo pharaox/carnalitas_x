@@ -1,117 +1,217 @@
-﻿# Overridden from vanilla
-court_position_physician_salary = {
-	add = {
-		value = 0.1
-		desc = COURT_POSITION_SALARY_BREAKDOWN_BASE
-		format = "BASE_VALUE_FORMAT_DECIMALS"
-	}
+﻿carnx_court_position_court_physician_salary = {
+	value = court_position_physician_salary
 	if = {
-		limit = { exists = scope:liege }
-		if = {
-			limit = {
-				scope:liege.culture = {
-					has_cultural_era_or_later = culture_era_late_medieval
-				}
-			}
-			multiply =  {
-				value =  1.75
-				desc = culture_era_late_medieval_salary_mod
-				format = "BASE_VALUE_FORMAT_DECIMALS_PLUS_NEGATIVE"
+		limit = {
+			scope:liege = {
+				carnx_employs_slave_as_court_position_trigger = { TYPE = court_physician_court_position }
 			}
 		}
-		else_if = {
-			limit = {
-				scope:liege.culture = {
-					has_cultural_era_or_later = culture_era_high_medieval
-				}
-			}
-			multiply = {
-				value = 1.5
-				desc = culture_era_high_medieval_salary_mod
-				format = "BASE_VALUE_FORMAT_DECIMALS_PLUS_NEGATIVE"
-			}
-		}
-		else_if = {
-			limit = {
-				scope:liege.culture = {
-					has_cultural_era_or_later = culture_era_early_medieval
-				}
-			}
-			multiply = {
-				value = 1.25
-				desc = culture_era_early_medieval_salary_mod
-				format = "BASE_VALUE_FORMAT_DECIMALS_PLUS_NEGATIVE"
-			}
-		}
-		if = {
-			limit = {
-				scope:liege = {
-					highest_held_title_tier >= tier_empire
-				}
-			}
-			multiply = {
-				value = 1.25
-				desc = empire_salary_mod
-				format = "BASE_VALUE_FORMAT_DECIMALS_PLUS_NEGATIVE"
-			}
-		}
-		if = {
-			limit = {
-				scope:liege = {
-					has_government = tribal_government
-				}
-			}
-			multiply = {
-				value = 0.25
-				desc = tribal_salary_mod
-				format = "BASE_VALUE_FORMAT_DECIMALS_MINUS_POSITIVE"
-			}
-		}
-		if = {
-			limit = {
-				scope:liege.culture = {
-					has_cultural_parameter = cheaper_court_positions
-				}
-			}
-			multiply = {
-				value = 0.8
-				desc = esteemed_hospitality_salary_mod
-				format = "BASE_VALUE_FORMAT_DECIMALS_MINUS_POSITIVE"
-			}
-		}
-		if = {
-			limit = {
-				scope:liege = {
-					any_court_position_holder = {
-						type = court_physician_court_position
-						has_trait = slave
-					}
-				}
-			}
-			multiply = {
-				value = carnx_court_position_slave_salary_multiplier
-				desc = carnx_slave_salary_mod
-				format = "BASE_VALUE_FORMAT_DECIMALS_MINUS_POSITIVE"
-			}
+		multiply = {
+			value = carnx_court_position_slave_salary_multiplier
+			desc = carnx_slave_salary_mod
+			format = "BASE_VALUE_FORMAT_DECIMALS_MINUS_POSITIVE"
 		}
 	}
 }
 
-# Overridden from vanilla
-court_position_antiquarian_salary = {
-	add = {
-		value = 0.15
-		desc = COURT_POSITION_SALARY_BREAKDOWN_BASE
-		format = "BASE_VALUE_FORMAT_DECIMALS"
-	}
-	multiply = carnx_court_position_salary_multiplier
+carnx_court_position_court_gardener_salary = {
+	value = medium_court_position_salary
 	if = {
 		limit = {
 			scope:liege = {
-				any_court_position_holder = {
-					type = antiquarian_court_position
-					has_trait = slave
-				}
+				carnx_employs_slave_as_court_position_trigger = { TYPE = court_gardener_court_position }
+			}
+		}
+		multiply = {
+			value = carnx_court_position_slave_salary_multiplier
+			desc = carnx_slave_salary_mod
+			format = "BASE_VALUE_FORMAT_DECIMALS_MINUS_POSITIVE"
+		}
+	}
+}
+
+carnx_court_position_antiquarian_salary = {
+	value = court_position_antiquarian_salary
+	if = {
+		limit = {
+			scope:liege = {
+				carnx_employs_slave_as_court_position_trigger = { TYPE = antiquarian_court_position }
+			}
+		}
+		multiply = {
+			value = carnx_court_position_slave_salary_multiplier
+			desc = carnx_slave_salary_mod
+			format = "BASE_VALUE_FORMAT_DECIMALS_MINUS_POSITIVE"
+		}
+	}
+}
+
+carnx_court_position_court_tutor_salary = {
+	value = medium_court_position_salary
+	if = {
+		limit = {
+			scope:liege = {
+				carnx_employs_slave_as_court_position_trigger = { TYPE = court_tutor_court_position }
+			}
+		}
+		multiply = {
+			value = carnx_court_position_slave_salary_multiplier
+			desc = carnx_slave_salary_mod
+			format = "BASE_VALUE_FORMAT_DECIMALS_MINUS_POSITIVE"
+		}
+	}
+}
+
+carnx_court_position_food_taster_salary = {
+	value = minor_court_position_salary
+	if = {
+		limit = {
+			scope:liege = {
+				carnx_employs_slave_as_court_position_trigger = { TYPE = food_taster_court_position }
+			}
+		}
+		multiply = {
+			value = carnx_court_position_slave_salary_multiplier
+			desc = carnx_slave_salary_mod
+			format = "BASE_VALUE_FORMAT_DECIMALS_MINUS_POSITIVE"
+		}
+	}
+}
+
+carnx_court_position_seneschal_salary = {
+	value = medium_court_position_salary
+	if = {
+		limit = {
+			scope:liege = {
+				carnx_employs_slave_as_court_position_trigger = { TYPE = seneschal_court_position }
+			}
+		}
+		multiply = {
+			value = carnx_court_position_slave_salary_multiplier
+			desc = carnx_slave_salary_mod
+			format = "BASE_VALUE_FORMAT_DECIMALS_MINUS_POSITIVE"
+		}
+	}
+}
+
+carnx_court_position_cupbearer_salary = {
+	value = minor_court_position_salary
+	if = {
+		limit = {
+			scope:liege = {
+				carnx_employs_slave_as_court_position_trigger = { TYPE = cupbearer_court_position }
+			}
+		}
+		multiply = {
+			value = carnx_court_position_slave_salary_multiplier
+			desc = carnx_slave_salary_mod
+			format = "BASE_VALUE_FORMAT_DECIMALS_MINUS_POSITIVE"
+		}
+	}
+}
+
+carnx_court_position_chief_eunuch_salary = {
+	value = minor_court_position_salary
+	if = {
+		limit = {
+			scope:liege = {
+				carnx_employs_slave_as_court_position_trigger = { TYPE = chief_eunuch_court_position }
+			}
+		}
+		multiply = {
+			value = carnx_court_position_slave_salary_multiplier
+			desc = carnx_slave_salary_mod
+			format = "BASE_VALUE_FORMAT_DECIMALS_MINUS_POSITIVE"
+		}
+	}
+}
+
+carnx_court_position_court_jester_salary = {
+	value = minor_court_position_salary
+	if = {
+		limit = {
+			scope:liege = {
+				carnx_employs_slave_as_court_position_trigger = { TYPE = court_jester_court_position }
+			}
+		}
+		multiply = {
+			value = carnx_court_position_slave_salary_multiplier
+			desc = carnx_slave_salary_mod
+			format = "BASE_VALUE_FORMAT_DECIMALS_MINUS_POSITIVE"
+		}
+	}
+}
+
+carnx_court_position_court_poet_salary = {
+	value = minor_court_position_salary
+	if = {
+		limit = {
+			scope:liege = {
+				carnx_employs_slave_as_court_position_trigger = { TYPE = court_poet_court_position }
+			}
+		}
+		multiply = {
+			value = carnx_court_position_slave_salary_multiplier
+			desc = carnx_slave_salary_mod
+			format = "BASE_VALUE_FORMAT_DECIMALS_MINUS_POSITIVE"
+		}
+	}
+}
+
+carnx_court_position_court_musician_salary = {
+	value = minor_court_position_salary
+	if = {
+		limit = {
+			scope:liege = {
+				carnx_employs_slave_as_court_position_trigger = { TYPE = court_musician_court_position }
+			}
+		}
+		multiply = {
+			value = carnx_court_position_slave_salary_multiplier
+			desc = carnx_slave_salary_mod
+			format = "BASE_VALUE_FORMAT_DECIMALS_MINUS_POSITIVE"
+		}
+	}
+}
+
+carnx_court_position_bodyguard_salary = {
+	value = medium_court_position_salary
+	if = {
+		limit = {
+			scope:liege = {
+				carnx_employs_slave_as_court_position_trigger = { TYPE = bodyguard_court_position }
+			}
+		}
+		multiply = {
+			value = carnx_court_position_slave_salary_multiplier
+			desc = carnx_slave_salary_mod
+			format = "BASE_VALUE_FORMAT_DECIMALS_MINUS_POSITIVE"
+		}
+	}
+}
+
+carnx_court_position_champion_salary = {
+	value = minor_court_position_salary
+	if = {
+		limit = {
+			scope:liege = {
+				carnx_employs_slave_as_court_position_trigger = { TYPE = champion_court_position }
+			}
+		}
+		multiply = {
+			value = carnx_court_position_slave_salary_multiplier
+			desc = carnx_slave_salary_mod
+			format = "BASE_VALUE_FORMAT_DECIMALS_MINUS_POSITIVE"
+		}
+	}
+}
+
+carnx_court_position_executioner_salary = {
+	value = minor_court_position_salary
+	if = {
+		limit = {
+			scope:liege = {
+				carnx_employs_slave_as_court_position_trigger = { TYPE = executioner_court_position }
 			}
 		}
 		multiply = {
@@ -128,10 +228,10 @@ carnx_court_position_slave_concubine_salary = {
 		desc = COURT_POSITION_SALARY_BREAKDOWN_BASE
 		format = "BASE_VALUE_FORMAT_DECIMALS"
 	}
-	multiply = carnx_court_position_salary_multiplier
+	multiply = carnx_court_position_salary_liege_multiplier
 }
 
-carnx_court_position_salary_multiplier = {
+carnx_court_position_salary_liege_multiplier = {
 	value = 1
 	if = {
 		limit = {
