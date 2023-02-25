@@ -1,10 +1,11 @@
-﻿carnx_doctrine_slavery_tenets = {
-	group = "slavery_tenets"
-	number_of_picks = 1
+﻿carnx_doctrine_slave_employment = {
+	group = "special"
 
-	carnx_tenet_slave_employment = {
-		icon = core_tenet_pursuit_of_power
+	is_available_on_create = {
+		always = yes
+	}
 
+	carnx_special_doctrine_slave_employment = {
 		piety_cost = {
 			if = {
 				limit = {
@@ -21,7 +22,7 @@
 
 			# Multiplier for keeping same tenet
 			if = {
-				limit = { has_doctrine = carnx_tenet_slave_employment }
+				limit = { has_doctrine = carnx_special_doctrine_slave_employment }
 				multiply = faith_unchanged_doctrine_cost_mult
 			}
 		}
@@ -31,12 +32,13 @@
 		}
 
 		can_pick = {
-			# Incompatibe with carnx_tenet_slave_emancipation
+			# TODO Incompatibe with carnx_special_doctrine_slave_emancipation
 			always = yes
 		}
 
 		parameters = {
 			carnx_slave_employment_active = yes
+			carnx_employed_slaves_more_loyal_active = yes
 		}
 	}
 }
