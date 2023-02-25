@@ -355,34 +355,65 @@ carnx_court_position_salary_liege_multiplier = {
 	}
 }
 
+carnx_court_position_candidate_slave_value = {
+	if = {
+		limit = {
+			scope:employee = {
+				carnx_is_slave_trigger = yes
+			}
+		}
+		add = 50
+		if = {
+			limit = {
+				scope:liege.faith = {
+					has_doctrine_parameter = carnx_slave_employment_active
+				}
+			}
+			add = 50
+		}
+	}
+}
+
+carnx_number_of_desired_bodyguards = {
+	value = 1
+	if = {
+		limit = { has_trait = paranoid }
+		add = 1
+	}
+}
+
+carnx_number_of_desired_champions = {
+	value = 0.5
+	if = {
+		limit = {
+			NOT = { can_be_combatant_based_on_gender_trigger = { ARMY_OWNER = this } }
+		}
+		add = 1
+	}
+	if = {
+		limit = { prowess >= high_skill_rating }
+		add = -0.5
+	}
+	floor = yes
+}
+
 carnx_number_of_desired_slave_concubines = {
 	value = 3
-
 	if = {
-		limit = {
-			highest_held_title_tier >= tier_duchy
-		}
+		limit = { highest_held_title_tier >= tier_duchy }
 		add = 1
 	}
 	if = {
-		limit = {
-			highest_held_title_tier >= tier_kingdom
-		}
+		limit = { highest_held_title_tier >= tier_kingdom }
 		add = 1
 	}
-
 	if = {
-		limit = {
-			has_trait = lustful
-		}
+		limit = { has_trait = lustful }
 		add = 1
 	}
 	else_if = {
-		limit = {
-			has_trait = chaste
-		}
+		limit = { has_trait = chaste }
 		add = -1
 	}
-
 	max = 5
 }

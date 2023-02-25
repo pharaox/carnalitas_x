@@ -67,5 +67,25 @@ carnx_slave_bid_price_player_multiplier = 0.8
 # Multiplier for the court position salary if held by a slave
 carnx_court_position_slave_salary_multiplier = 0.25
 
+# Skill threshold
+carnx_default_skill_threshold = decent_skill_rating
+
+# Aptitude thresholds
+carnx_court_physician_aptitude_threshold = poor_effectiveness
+carnx_antiquarian_aptitude_threshold = poor_effectiveness
+carnx_court_gardener_aptitude_threshold = poor_effectiveness
+carnx_court_tutor_aptitude_threshold = average_effectiveness
+carnx_food_taster_aptitude_threshold = average_effectiveness
+carnx_seneschal_aptitude_threshold = average_effectiveness
+carnx_cupbearer_aptitude_threshold = average_effectiveness
+carnx_chief_eunuch_aptitude_threshold = average_effectiveness
+carnx_court_jester_aptitude_threshold = poor_effectiveness
+carnx_court_poet_aptitude_threshold = average_effectiveness
+carnx_court_musician_aptitude_threshold = poor_effectiveness
+carnx_bodyguard_aptitude_threshold = average_effectiveness
+carnx_champion_aptitude_threshold = average_effectiveness
+carnx_executioner_aptitude_threshold = average_effectiveness
+carnx_slave_concubine_aptitude_threshold = poor_effectiveness
+
 # Female chance when creating slave characters
 carnx_create_character_female_chance = 75

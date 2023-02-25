@@ -1,4 +1,145 @@
-﻿carnx_allowed_to_marry_trigger = {
+﻿# Council Positions
+
+carnx_can_be_chancellor_trigger = {
+	can_be_chancellor_trigger = { COURT_OWNER = $COURT_OWNER$ }
+	OR = {
+		NOT = { carnx_is_slave_trigger = yes }
+		$COURT_OWNER$ = {
+			faith = { has_doctrine_parameter = carnx_slave_employment_active }
+		}
+	}
+}
+
+carnx_can_be_marshal_trigger = {
+	can_be_marshal_trigger = { COURT_OWNER = $COURT_OWNER$ }
+	OR = {
+		NOT = { carnx_is_slave_trigger = yes }
+		$COURT_OWNER$ = {
+			faith = { has_doctrine_parameter = carnx_slave_employment_active }
+		}
+	}
+}
+
+carnx_can_be_steward_trigger = {
+	can_be_steward_trigger = { COURT_OWNER = $COURT_OWNER$ }
+	OR = {
+		NOT = { carnx_is_slave_trigger = yes }
+		$COURT_OWNER$ = {
+			faith = { has_doctrine_parameter = carnx_slave_employment_active }
+		}
+	}
+}
+
+carnx_can_be_spymaster_trigger = {
+	can_be_spymaster_trigger = { COURT_OWNER = $COURT_OWNER$ }
+}
+
+carnx_can_be_court_chaplain_trigger = {
+	can_be_court_chaplain_trigger = { COURT_OWNER = $COURT_OWNER$ }
+	NOT = { carnx_is_slave_trigger = yes }
+}
+
+# Vanilla Court Positions
+
+carnx_can_be_court_physician_trigger = {
+	exists = $LIEGE$
+}
+
+carnx_can_be_antiquarian_trigger = {
+	NOT = { is_spouse_of = $LIEGE$ }
+}
+
+carnx_can_be_court_gardener_trigger = {
+	exists = $LIEGE$
+}
+
+carnx_can_be_court_tutor_trigger = {
+	NOT = { is_spouse_of = $LIEGE$ }
+}
+
+carnx_can_be_food_taster_trigger = {
+	NOT = { is_spouse_of = $LIEGE$ }
+}
+
+carnx_can_be_seneschal_trigger = {
+	NOT = { is_spouse_of = $LIEGE$ }
+}
+
+carnx_can_be_cupbearer_trigger = {
+	NOT = { is_spouse_of = $LIEGE$ }
+	OR = {
+		NOT = { carnx_is_slave_trigger = yes }
+		$LIEGE$ = {
+			faith = { has_doctrine_parameter = carnx_slave_employment_active }
+		}
+	}
+}
+
+carnx_can_be_chief_eunuch_trigger = {
+	exists = $LIEGE$
+	has_trait = eunuch
+}
+
+carnx_can_be_court_jester_trigger = {
+	exists = $LIEGE$
+}
+
+carnx_can_be_court_poet_trigger = {
+	NOT = { is_spouse_of = $LIEGE$ }
+	has_trait = poet
+}
+
+carnx_can_be_court_musician_trigger = {
+	NOT = { is_spouse_of = $LIEGE$ }
+}
+
+carnx_can_be_bodyguard_trigger = {
+	NOT = { is_spouse_of = $LIEGE$ }
+	can_be_combatant_based_on_gender_trigger = { ARMY_OWNER = $LIEGE$ }
+}
+
+carnx_can_be_champion_trigger = {
+	can_be_combatant_based_on_gender_trigger = { ARMY_OWNER = $LIEGE$ }
+}
+
+carnx_can_be_executioner_trigger = {
+	NOT = { is_spouse_of = $LIEGE$ }
+	is_ruler = no
+	OR = {
+		$LIEGE$ = { has_imprisonment_reason = prev }
+		$LIEGE$ = { has_strong_hook = prev }
+	}
+}
+
+# CarnalitasX Court Positions
+
+carnx_can_be_slave_concubine_trigger = {
+	diplomacy >= low_skill_rating
+	attraction > 0
+	is_adult = yes
+	is_visibly_fertile = yes
+	save_temporary_scope_as = can_be_slave_concubine
+	$LIEGE$ = {
+		carnx_allowed_to_marry_trigger = { CHARACTER = scope:can_be_slave_concubine }
+	}
+}
+
+carnx_slave_concubine_court_position_enabled_trigger = {
+	OR = {
+		faith = { has_doctrine = carn_doctrine_same_slavery_accepted }
+		faith = { has_doctrine = carn_doctrine_other_slavery_accepted }
+		faith = { has_doctrine_parameter = carnx_slave_employment_active }
+	}
+	OR = {
+		faith = { has_doctrine = doctrine_polygamy }
+		faith = { has_doctrine = doctrine_concubines }
+		culture = { has_cultural_tradition = tradition_polygamous }
+		culture = { has_cultural_tradition = tradition_concubines }
+	}
+	NOT = { is_wrong_gender_in_faith_trigger = { FAITH = faith } }
+}
+
+carnx_allowed_to_marry_trigger = {
 	save_temporary_scope_as = allowed_to_marry
 	allowed_to_marry_character_gender_trigger = { CHARACTER = $CHARACTER$ }
 	faith = {
@@ -7,26 +148,4 @@
 			CHARACTER_2 = $CHARACTER$
 		}
 	}
-}
-
-carnx_faith_has_slavery_accepted_doctrine_trigger = {
-	OR = {
-		faith = { has_doctrine = carn_doctrine_same_slavery_accepted }
-		faith = { has_doctrine = carn_doctrine_other_slavery_accepted }
-	}
-}
-
-carnx_faith_or_culture_allows_polygamy_or_concubines_trigger = {
-	OR = {
-		faith = { has_doctrine = doctrine_polygamy }
-		faith = { has_doctrine = doctrine_concubines }
-		culture = { has_cultural_tradition = tradition_polygamous }
-		culture = { has_cultural_tradition = tradition_concubines }
-	}
-}
-
-carnx_slave_concubine_court_position_enabled_trigger = {
-	carnx_faith_has_slavery_accepted_doctrine_trigger = yes
-	carnx_faith_or_culture_allows_polygamy_or_concubines_trigger = yes
-	NOT = { is_wrong_gender_in_faith_trigger = { FAITH = faith } }
 }

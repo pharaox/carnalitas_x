@@ -290,12 +290,23 @@ carnx_is_useful_slave_to_future_owner_trigger = {
 		carnx_can_serve_as_marshal_trigger = { RULER = $RULER$ }
 		carnx_can_serve_as_steward_trigger = { RULER = $RULER$ }
 		carnx_can_serve_as_spymaster_trigger = { RULER = $RULER$ }
-		carnx_can_serve_as_court_chaplain_trigger = { RULER = $RULER$ }
-		carnx_can_serve_as_knight_trigger = { RULER = $RULER$ }
-		carnx_can_serve_as_commander_trigger = { RULER = $RULER$ }
 		carnx_can_serve_as_court_physician_trigger = { RULER = $RULER$ }
 		carnx_can_serve_as_antiquarian_trigger = { RULER = $RULER$ }
+		carnx_can_serve_as_court_gardener_trigger = { RULER = $RULER$ }
+		carnx_can_serve_as_court_tutor_trigger = { RULER = $RULER$ }
+		carnx_can_serve_as_food_taster_trigger = { RULER = $RULER$ }
+		carnx_can_serve_as_seneschal_trigger = { RULER = $RULER$ }
+		carnx_can_serve_as_cupbearer_trigger = { RULER = $RULER$ }
+		carnx_can_serve_as_chief_eunuch_trigger = { RULER = $RULER$ }
+		carnx_can_serve_as_court_jester_trigger = { RULER = $RULER$ }
+		carnx_can_serve_as_court_poet_trigger = { RULER = $RULER$ }
+		carnx_can_serve_as_court_musician_trigger = { RULER = $RULER$ }
+		carnx_can_serve_as_bodyguard_trigger = { RULER = $RULER$ }
+		carnx_can_serve_as_champion_trigger = { RULER = $RULER$ }
+		carnx_can_serve_as_executioner_trigger = { RULER = $RULER$ }
 		carnx_can_serve_as_slave_concubine_trigger = { RULER = $RULER$ }
+		carnx_can_serve_as_knight_trigger = { RULER = $RULER$ }
+		carnx_can_serve_as_commander_trigger = { RULER = $RULER$ }
 		carnx_has_useful_claims_trigger = { RULER = $RULER$ }
 		carnx_is_attractive_to_character_trigger = { CHARACTER = $RULER$ }
 		carnx_is_visibly_fertile_female_trigger = yes
@@ -319,87 +330,91 @@ carnx_is_useful_slave_to_current_owner_trigger = {
 }
 
 carnx_can_serve_as_chancellor_trigger = {
-	diplomacy > decent_skill_rating
-	can_be_chancellor_trigger = { COURT_OWNER = $RULER$ }
-	$RULER$ = {
-		OR = {
-			NOT = { exists = cp:councillor_chancellor }
-			cp:councillor_chancellor = { diplomacy <= decent_skill_rating }
-		}
+	carnx_can_serve_as_councillor_trigger = {
+		TYPE = councillor_chancellor
+		NAME = chancellor
+		LIEGE = $RULER$
+		SKILL = diplomacy
 	}
 }
 
 carnx_can_serve_as_marshal_trigger = {
-	martial > decent_skill_rating
-	can_be_marshal_trigger = { COURT_OWNER = $RULER$ }
-	$RULER$ = {
-		OR = {
-			NOT = { exists = cp:councillor_marshal }
-			cp:councillor_marshal = { martial <= decent_skill_rating }
-		}
+	carnx_can_serve_as_councillor_trigger = {
+		TYPE = councillor_marshal
+		NAME = marshal
+		LIEGE = $RULER$
+		SKILL = martial
 	}
 }
 
 carnx_can_serve_as_steward_trigger = {
-	stewardship > decent_skill_rating
-	can_be_steward_trigger = { COURT_OWNER = $RULER$ }
-	$RULER$ = {
-		OR = {
-			NOT = { exists = cp:councillor_steward }
-			cp:councillor_steward = { stewardship <= decent_skill_rating }
-		}
+	carnx_can_serve_as_councillor_trigger = {
+		TYPE = councillor_steward
+		NAME = steward
+		LIEGE = $RULER$
+		SKILL = stewardship
 	}
 }
 
 carnx_can_serve_as_spymaster_trigger = {
-	intrigue > decent_skill_rating
-	can_be_spymaster_trigger = { COURT_OWNER = $RULER$ }
-	$RULER$ = {
-		OR = {
-			NOT = { exists = cp:councillor_spymaster }
-			cp:councillor_spymaster = { intrigue <= decent_skill_rating }
-		}
+	carnx_can_serve_as_councillor_trigger = {
+		TYPE = councillor_spymaster
+		NAME = spymaster
+		LIEGE = $RULER$
+		SKILL = intrigue
 	}
 }
 
-carnx_can_serve_as_court_chaplain_trigger = {
-	learning > decent_skill_rating
-	can_be_court_chaplain_trigger = { COURT_OWNER = $RULER$ }
-	$RULER$ = {
+carnx_can_serve_as_councillor_trigger = {
+	carnx_can_be_$NAME$_trigger = { COURT_OWNER = $LIEGE$ }
+	$SKILL$ > carnx_default_skill_threshold
+	$LIEGE$ = {
 		OR = {
-			NOT = { exists = cp:councillor_court_chaplain }
-			cp:councillor_court_chaplain = { learning <= decent_skill_rating }
+			NOT = { exists = cp:$TYPE$ }
+			cp:$TYPE$ = { $SKILL$ <= carnx_default_skill_threshold }
+		}
+		NOR = {
+			any_vassal = {
+				carnx_can_be_$NAME$_trigger = { COURT_OWNER = $LIEGE$ }
+				court_position_does_not_already_have_a_job_trigger = yes
+				$SKILL$ > carnx_default_skill_threshold
+			}
+			any_courtier = {
+				carnx_can_be_$NAME$_trigger = { COURT_OWNER = $LIEGE$ }
+				court_position_does_not_already_have_a_job_trigger = yes
+				$SKILL$ > carnx_default_skill_threshold
+			}
 		}
 	}
 }
 
 carnx_can_serve_as_knight_trigger = {
-	prowess > decent_skill_rating
 	can_be_knight_trigger = { ARMY_OWNER = $RULER$ }
+	prowess > carnx_default_skill_threshold
 	$RULER$ = {
 		OR = {
 			number_of_knights < max_number_of_knights
 			any_knight = {
-				prowess <= decent_skill_rating
+				prowess <= carnx_default_skill_threshold
 			}
 		}
 	}
 }
 
 carnx_can_serve_as_commander_trigger = {
-	martial >= decent_skill_rating
 	can_be_commander_basic_trigger = { ARMY_OWNER = $RULER$ }
+	martial >= carnx_default_skill_threshold
 	number_of_commander_traits >= 1
 	$RULER$ = {
 		NOR = {
 			any_vassal = {
-				martial >= decent_skill_rating
 				can_be_commander_basic_trigger = { ARMY_OWNER = $RULER$ }
+				martial >= carnx_default_skill_threshold
 				number_of_commander_traits >= 1
 			}
 			any_courtier = {
-				martial >= decent_skill_rating
 				can_be_commander_basic_trigger = { ARMY_OWNER = $RULER$ }
+				martial >= carnx_default_skill_threshold
 				number_of_commander_traits >= 1
 			}
 		}
@@ -407,52 +422,191 @@ carnx_can_serve_as_commander_trigger = {
 }
 
 carnx_can_serve_as_court_physician_trigger = {
-	aptitude:court_physician_court_position > poor_effectiveness
-	can_be_employed_as = court_physician_court_position
-	$RULER$ = {
-		can_employ_court_position_type = court_physician_court_position
-		OR = {
-			NOT = { employs_court_position = court_physician_court_position }
-			any_court_position_holder = {
-				type = court_physician_court_position
-				this.aptitude:court_physician_court_position <= poor_effectiveness
-			}
-		}
+	carnx_can_serve_as_court_position_trigger = {
+		TYPE = court_physician_court_position
+		NAME = court_physician
+		LIEGE = $RULER$
 	}
 }
 
 carnx_can_serve_as_antiquarian_trigger = {
-	aptitude:antiquarian_court_position > poor_effectiveness
-	can_be_employed_as = antiquarian_court_position
-	$RULER$ = {
-		can_employ_court_position_type = antiquarian_court_position
+	carnx_can_serve_as_court_position_trigger = {
+		TYPE = antiquarian_court_position
+		NAME = antiquarian
+		LIEGE = $RULER$
+	}
+}
+
+carnx_can_serve_as_court_gardener_trigger = {
+	carnx_can_serve_as_court_position_trigger = {
+		TYPE = court_gardener_court_position
+		NAME = court_gardener
+		LIEGE = $RULER$
+	}
+}
+
+carnx_can_serve_as_court_tutor_trigger = {
+	carnx_can_serve_as_court_position_trigger = {
+		TYPE = court_tutor_court_position
+		NAME = court_tutor
+		LIEGE = $RULER$
+	}
+}
+
+carnx_can_serve_as_food_taster_trigger = {
+	carnx_can_serve_as_court_position_trigger = {
+		TYPE = food_taster_court_position
+		NAME = food_taster
+		LIEGE = $RULER$
+	}
+}
+
+carnx_can_serve_as_seneschal_trigger = {
+	carnx_can_serve_as_court_position_trigger = {
+		TYPE = seneschal_court_position
+		NAME = seneschal
+		LIEGE = $RULER$
+	}
+}
+
+carnx_can_serve_as_cupbearer_trigger = {
+	carnx_can_serve_as_court_position_trigger = {
+		TYPE = cupbearer_court_position
+		NAME = cupbearer
+		LIEGE = $RULER$
+	}
+}
+
+carnx_can_serve_as_chief_eunuch_trigger = {
+	carnx_can_serve_as_court_position_trigger = {
+		TYPE = chief_eunuch_court_position
+		NAME = chief_eunuch
+		LIEGE = $RULER$
+	}
+}
+
+carnx_can_serve_as_court_jester_trigger = {
+	carnx_can_serve_as_court_position_trigger = {
+		TYPE = court_jester_court_position
+		NAME = court_jester
+		LIEGE = $RULER$
+	}
+}
+
+carnx_can_serve_as_court_poet_trigger = {
+	carnx_can_serve_as_court_position_trigger = {
+		TYPE = court_poet_court_position
+		NAME = court_poet
+		LIEGE = $RULER$
+	}
+}
+
+carnx_can_serve_as_court_musician_trigger = {
+	carnx_can_serve_as_court_position_trigger = {
+		TYPE = court_musician_court_position
+		NAME = court_musician
+		LIEGE = $RULER$
+	}
+}
+
+carnx_can_serve_as_bodyguard_trigger = {
+	carnx_can_serve_as_multi_court_position_trigger = {
+		TYPE = bodyguard_court_position
+		NAME = bodyguard
+		LIEGE = $RULER$
+		DESIRED_COUNT = $RULER$.carnx_number_of_desired_bodyguards
+	}
+}
+
+carnx_can_serve_as_champion_trigger = {
+	carnx_can_serve_as_multi_court_position_trigger = {
+		TYPE = champion_court_position
+		NAME = champion
+		LIEGE = $RULER$
+		DESIRED_COUNT = $RULER$.carnx_number_of_desired_champions
+	}
+}
+
+carnx_can_serve_as_executioner_trigger = {
+	carnx_can_serve_as_court_position_trigger = {
+		TYPE = executioner_court_position
+		NAME = executioner
+		LIEGE = $RULER$
+	}
+}
+
+carnx_can_serve_as_slave_concubine_trigger = {
+	carnx_can_serve_as_multi_court_position_trigger = {
+		TYPE = carnx_slave_concubine_court_position
+		NAME = slave_concubine
+		LIEGE = $RULER$
+		DESIRED_COUNT = $RULER$.carnx_number_of_desired_slave_concubines
+	}
+}
+
+carnx_can_serve_as_court_position_trigger = {
+	carnx_can_be_$NAME$_trigger = { LIEGE = $LIEGE$ }
+	aptitude:$TYPE$ > carnx_$NAME$_aptitude_threshold
+	$LIEGE$ = {
 		OR = {
-			NOT = { employs_court_position = antiquarian_court_position }
-			any_court_position_holder = {
-				type = antiquarian_court_position
-				this.aptitude:antiquarian_court_position <= poor_effectiveness
+			AND = {
+				can_employ_court_position_type = $TYPE$
+				NOT = { employs_court_position = $TYPE$ }
+			}
+			AND = {
+				employs_court_position = $TYPE$
+				any_court_position_holder = {
+					type = $TYPE$
+					aptitude:$TYPE$ <= carnx_$NAME$_aptitude_threshold
+				}
+			}
+		}
+		NOR = {
+			any_vassal = {
+				can_be_employed_as = $TYPE$
+				aptitude:$TYPE$ > carnx_$NAME$_aptitude_threshold
+			}
+			any_courtier = {
+				can_be_employed_as = $TYPE$
+				aptitude:$TYPE$ > carnx_$NAME$_aptitude_threshold
 			}
 		}
 	}
 }
 
-carnx_can_serve_as_slave_concubine_trigger = {
-	save_temporary_scope_as = can_serve_as_slave_concubine
-	aptitude:carnx_slave_concubine_court_position > poor_effectiveness
-	can_be_employed_as = carnx_slave_concubine_court_position
-	$RULER$ = {
-		can_employ_court_position_type = carnx_slave_concubine_court_position
+carnx_can_serve_as_multi_court_position_trigger = {
+	carnx_can_be_$NAME$_trigger = { LIEGE = $LIEGE$ }
+	aptitude:$TYPE$ > carnx_$NAME$_aptitude_threshold
+	$LIEGE$ = {
 		OR = {
-			any_court_position_holder = {
-				type = carnx_slave_concubine_court_position
-				count < $RULER$.carnx_number_of_desired_slave_concubines
+			AND = {
+				can_employ_court_position_type = $TYPE$
+				NOT = { employs_court_position = $TYPE$ }
 			}
-			any_court_position_holder = {
-				type = carnx_slave_concubine_court_position
-				this.aptitude:carnx_slave_concubine_court_position <= poor_effectiveness
+			AND = {
+				employs_court_position = $TYPE$
+				OR = {
+					any_court_position_holder = {
+						type = $TYPE$
+						count < $DESIRED_COUNT$
+					}
+					any_court_position_holder = {
+						type = $TYPE$
+						aptitude:$TYPE$ <= carnx_$NAME$_aptitude_threshold
+					}
+				}
 			}
 		}
-		carnx_allowed_to_marry_trigger = { CHARACTER = scope:can_serve_as_slave_concubine }
+		NOR = {
+			any_vassal = {
+				can_be_employed_as = $TYPE$
+				aptitude:$TYPE$ > carnx_$NAME$_aptitude_threshold
+			}
+			any_courtier = {
+				can_be_employed_as = $TYPE$
+				aptitude:$TYPE$ > carnx_$NAME$_aptitude_threshold
+			}
+		}
 	}
 }
 

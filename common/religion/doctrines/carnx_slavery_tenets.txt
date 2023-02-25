@@ -1,0 +1,42 @@
+﻿carnx_doctrine_slavery_tenets = {
+	group = "slavery_tenets"
+	number_of_picks = 1
+
+	carnx_tenet_slave_employment = {
+		icon = core_tenet_pursuit_of_power
+
+		piety_cost = {
+			if = {
+				limit = {
+					OR = {
+						has_doctrine = abrahamic_hostility_doctrine
+						has_doctrine = pagan_hostility_doctrine
+					}
+				}
+				value = faith_tenet_cost_low
+			}
+			else = {
+				value = faith_tenet_cost_mid
+			}
+
+			# Multiplier for keeping same tenet
+			if = {
+				limit = { has_doctrine = carnx_tenet_slave_employment }
+				multiply = faith_unchanged_doctrine_cost_mult
+			}
+		}
+
+		is_shown = {
+			always = yes
+		}
+
+		can_pick = {
+			# Incompatibe with carnx_tenet_slave_emancipation
+			always = yes
+		}
+
+		parameters = {
+			carnx_slave_employment_active = yes
+		}
+	}
+}

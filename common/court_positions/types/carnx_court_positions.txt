@@ -88,20 +88,14 @@
 					is_courtier_of = scope:liege
 				}
 			}
+			is_imprisoned = no
 		}
 	}
 
 	# Is this a valid character for the position?
 	valid_character = {
 		scope:employee = {
-			is_imprisoned = no
-			diplomacy >= low_skill_rating
-			attraction > 0
-			is_adult = yes
-			is_visibly_fertile = yes
-		}
-		scope:liege = {
-			carnx_allowed_to_marry_trigger = { CHARACTER = scope:employee }
+			carnx_can_be_slave_concubine_trigger = { LIEGE = scope:liege }
 		}
 	}
 
@@ -189,10 +183,10 @@
 		carnx_slave_concubine_title_received_effect = yes
 	}
 	on_court_position_revoked = {
-		carnx_court_physician_title_revoked_effect = yes
+		carnx_slave_concubine_title_revoked_effect = yes
 	}
 	on_court_position_invalidated = {
-		carnx_court_physician_title_invalidated_effect = yes
+		carnx_slave_concubine_title_invalidated_effect = yes
 	}
 
 	# Scripted value to determine whether an AI will hire a position or not.

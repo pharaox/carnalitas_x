@@ -1,0 +1,7 @@
+﻿l_english:
+ carnx_doctrine_slavery_tenets_name: "Slavery Tenets"
+
+ carnx_tenet_slave_employment_name: "Slave Employment"
+ carnx_tenet_slave_employment_desc: "We entrust even our highest offices to slaves since they are more loyal than our other subjects."
+
+ doctrine_parameter_carnx_slave_employment_active: "Can appoint [slaves|E] in most councillor and court positions"
