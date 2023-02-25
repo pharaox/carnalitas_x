@@ -33,7 +33,7 @@ court_physician_court_position = {
 	category = court_position_category_common
 
 	opinion = {
-		value = regular_court_position_opinion
+		value = carnx_regular_court_position_opinion
 	}
 
 	# How high the aptitude has to be to reach the 5 different modifier levels
@@ -1063,7 +1063,7 @@ court_gardener_court_position = {
 	minimum_rank = county
 
 	opinion = {
-		value = regular_court_position_opinion
+		value = carnx_regular_court_position_opinion
 	}
 
 	aptitude_level_breakpoints = { 20 40 60 80 }
@@ -1449,7 +1449,7 @@ antiquarian_court_position = {
 	category = court_position_category_common
 
 	opinion = {
-		value = regular_court_position_opinion
+		value = carnx_regular_court_position_opinion
 	}
 
 	# How high the aptitude has to be to reach the 5 different modifier levels
@@ -1655,7 +1655,7 @@ court_tutor_court_position = {
 	category = court_position_category_common
 
 	opinion = {
-		value = regular_court_position_opinion
+		value = carnx_regular_court_position_opinion
 	}
 
 	# How high the aptitude has to be to reach the 5 different modifier levels
@@ -1923,7 +1923,7 @@ food_taster_court_position = {
 	minimum_rank = kingdom # Should only be available for kings and emperors
 
 	opinion = {
-		value = regular_court_position_opinion
+		value = carnx_regular_court_position_opinion
 	}
 
 	# How high the aptitude has to be to reach the 5 different modifier levels
@@ -2865,7 +2865,7 @@ seneschal_court_position = {
 	category = court_position_category_common
 
 	opinion = {
-		value = regular_court_position_opinion
+		value = carnx_regular_court_position_opinion
 	}
 
 	# How high the aptitude has to be to reach the 5 different modifier levels
@@ -3047,7 +3047,7 @@ cupbearer_court_position = {
 	minimum_rank = kingdom # Should only be available for kings and emperors
 
 	opinion = {
-		value = ceremonial_court_position_opinion
+		value = carnx_ceremonial_court_position_opinion
 	}
 
 	# How high the aptitude has to be to reach the 5 different modifier levels
@@ -3225,7 +3225,7 @@ chief_eunuch_court_position = {
 	minimum_rank = kingdom # Should only be available for kings and emperors
 
 	opinion = {
-		value = regular_court_position_opinion
+		value = carnx_regular_court_position_opinion
 	}
 
 	# How high the aptitude has to be to reach the 5 different modifier levels
@@ -3413,7 +3413,7 @@ court_jester_court_position = {
 	minimum_rank = duchy
 
 	opinion = {
-		value = court_jester_position_opinion
+		value = carnx_court_jester_position_opinion
 	}
 
 	# How high the aptitude has to be to reach the 5 different modifier levels
@@ -3643,7 +3643,7 @@ court_poet_court_position = {
 	minimum_rank = kingdom # Should only be available for kings and emperors
 
 	opinion = {
-		value = regular_court_position_opinion
+		value = carnx_regular_court_position_opinion
 	}
 
 	# How high the aptitude has to be to reach the 5 different modifier levels
@@ -3848,7 +3848,7 @@ court_musician_court_position = {
 	minimum_rank = kingdom # Should only be available for kings and emperors
 
 	opinion = {
-		value = regular_court_position_opinion
+		value = carnx_regular_court_position_opinion
 	}
 
 	# How high the aptitude has to be to reach the 5 different modifier levels
@@ -4046,7 +4046,7 @@ bodyguard_court_position = {
 	category = court_position_category_common
 
 	opinion = {
-		value = regular_court_position_opinion
+		value = carnx_regular_court_position_opinion
 	}
 
 	# How high the aptitude has to be to reach the 5 different modifier levels
@@ -4261,7 +4261,7 @@ champion_court_position = {
 	category = court_position_category_common
 
 	opinion = {
-		value = regular_court_position_opinion
+		value = carnx_regular_court_position_opinion
 	}
 
 	# How high the aptitude has to be to reach the 5 different modifier levels
@@ -4532,7 +4532,7 @@ executioner_court_position = {
 	minimum_rank = kingdom # Should only be available for kings and emperors
 
 	opinion = {
-		value = regular_court_position_opinion
+		value = carnx_regular_court_position_opinion
 	}
 
 	# How high the aptitude has to be to reach the 5 different modifier levels

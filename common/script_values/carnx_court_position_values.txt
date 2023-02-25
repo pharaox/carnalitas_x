@@ -224,7 +224,7 @@ carnx_court_position_executioner_salary = {
 
 carnx_court_position_slave_concubine_salary = {
 	add = {
-		value = 0.02
+		value = 0.025
 		desc = COURT_POSITION_SALARY_BREAKDOWN_BASE
 		format = "BASE_VALUE_FORMAT_DECIMALS"
 	}
@@ -351,6 +351,41 @@ carnx_court_position_salary_liege_multiplier = {
 			value = 0.8
 			desc = esteemed_hospitality_salary_mod
 			format = "BASE_VALUE_FORMAT_DECIMALS_MINUS_POSITIVE"
+		}
+	}
+}
+
+carnx_regular_court_position_opinion = {
+	value = regular_court_position_opinion
+	multiply = carnx_court_position_opinion_slave_multiplier
+}
+
+carnx_ceremonial_court_position_opinion = {
+	value = ceremonial_court_position_opinion
+	multiply = carnx_court_position_opinion_slave_multiplier
+}
+
+carnx_court_jester_position_opinion = {
+	value = court_jester_position_opinion
+	multiply = carnx_court_position_opinion_slave_multiplier
+}
+
+carnx_court_position_opinion_slave_multiplier = {
+	value = 1
+	if = {
+		limit = {
+			scope:employee = {
+				carnx_is_slave_trigger = yes
+			}
+		}
+		multiply = 3
+		if = {
+			limit = {
+				scope:liege.faith = {
+					has_doctrine_parameter = carnx_employed_slaves_more_loyal_active
+				}
+			}
+			multiply = 2
 		}
 	}
 }

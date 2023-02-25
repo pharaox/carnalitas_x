@@ -1,5 +1,6 @@
 ﻿carnx_got_chancellor_council_position_effect = {
 	got_council_position_effect = yes
+	carnx_got_council_position_opinion_effect = yes
 	if = {
 		limit = { has_trait = slave }
 		debug_log = "Chancellor council position received"
@@ -10,6 +11,7 @@
 
 carnx_fired_from_chancellor_council_position_effect = {
 	fired_from_council_position_effect = yes
+	carnx_fired_from_council_position_opinion_effect = yes
 	if = {
 		limit = { has_trait = slave }
 		debug_log = "Chancellor council position revoked"
@@ -20,6 +22,7 @@ carnx_fired_from_chancellor_council_position_effect = {
 
 carnx_got_steward_council_position_effect = {
 	got_council_position_effect = yes
+	carnx_got_council_position_opinion_effect = yes
 	if = {
 		limit = { has_trait = slave }
 		debug_log = "Steward council position received"
@@ -30,6 +33,7 @@ carnx_got_steward_council_position_effect = {
 
 carnx_fired_from_steward_council_position_effect = {
 	fired_from_council_position_effect = yes
+	carnx_fired_from_council_position_opinion_effect = yes
 	if = {
 		limit = { has_trait = slave }
 		debug_log = "Steward council position revoked"
@@ -40,6 +44,7 @@ carnx_fired_from_steward_council_position_effect = {
 
 carnx_got_marshal_council_position_effect = {
 	got_council_position_effect = yes
+	carnx_got_council_position_opinion_effect = yes
 	if = {
 		limit = { has_trait = slave }
 		debug_log = "Marshal council position received"
@@ -50,6 +55,7 @@ carnx_got_marshal_council_position_effect = {
 
 carnx_fired_from_marshal_council_position_effect = {
 	fired_from_council_position_effect = yes
+	carnx_fired_from_council_position_opinion_effect = yes
 	if = {
 		limit = { has_trait = slave }
 		debug_log = "Marshal council position revoked"
@@ -60,6 +66,7 @@ carnx_fired_from_marshal_council_position_effect = {
 
 carnx_got_spymaster_council_position_effect = {
 	got_council_position_effect = yes
+	carnx_got_council_position_opinion_effect = yes
 	if = {
 		limit = { has_trait = slave }
 		debug_log = "Spymaster council position received"
@@ -70,10 +77,36 @@ carnx_got_spymaster_council_position_effect = {
 
 carnx_fired_from_spymaster_council_position_effect = {
 	fired_from_council_position_effect = yes
+	carnx_fired_from_council_position_opinion_effect = yes
 	if = {
 		limit = { has_trait = slave }
 		debug_log = "Spymaster council position revoked"
 		debug_log_date = yes
 		debug_log_scopes = yes
+	}
+}
+
+carnx_got_council_position_opinion_effect = {
+	if = {
+		limit = { has_trait = slave }
+		add_opinion = {
+			modifier = carnx_on_the_council_slave_opinion
+			target = liege
+		}
+	}
+}
+
+carnx_fired_from_council_position_opinion_effect = {
+	if = {
+		limit = {
+			has_opinion_modifier = {
+				modifier = carnx_on_the_council_slave_opinion
+				target = liege
+			}
+		}
+		remove_opinion = {
+			modifier = carnx_on_the_council_slave_opinion
+			target = liege
+		}
 	}
 }

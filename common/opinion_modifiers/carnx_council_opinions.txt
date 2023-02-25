@@ -1,0 +1,4 @@
+﻿carnx_on_the_council_slave_opinion = {
+	opinion = 30
+	decaying = no
+}
