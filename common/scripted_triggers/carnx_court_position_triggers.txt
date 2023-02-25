@@ -126,11 +126,6 @@ carnx_can_be_slave_concubine_trigger = {
 
 carnx_slave_concubine_court_position_enabled_trigger = {
 	OR = {
-		faith = { has_doctrine = carn_doctrine_same_slavery_accepted }
-		faith = { has_doctrine = carn_doctrine_other_slavery_accepted }
-		faith = { has_doctrine_parameter = carnx_slave_employment_active }
-	}
-	OR = {
 		faith = { has_doctrine = doctrine_polygamy }
 		faith = { has_doctrine = doctrine_concubines }
 		culture = { has_cultural_tradition = tradition_polygamous }

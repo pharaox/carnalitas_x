@@ -5,7 +5,7 @@
 	minimum_rank = county
 
 	opinion = {
-		value = regular_court_position_opinion
+		value = carnx_regular_court_position_opinion
 	}
 
 	# Breakpoints to increase aptitude level by 1.
@@ -16,14 +16,14 @@
 		value = 1
 		add = {
 			value = diplomacy
-			multiply = 2
-			max = 40
+			multiply = 1.75
+			max = 50
 			desc = court_position_skill_diplomacy
 		}
 		if = {
 			add = {
 				value = attraction
-				multiply = 1.5
+				multiply = 1.75
 				max = 50
 				desc = carnx_court_position_skill_attraction
 			}
@@ -153,23 +153,23 @@
 	# Scaling modifiers gained by the employer of the court position as the employee's aptitude level increases.
 	scaling_employer_modifiers = {
 		aptitude_level_1 = {
-			monthly_court_grandeur_change_mult = 0.05
+			monthly_court_grandeur_change_mult = 0.02
 		}
 		aptitude_level_2 = {
-			monthly_court_grandeur_change_mult = 0.05
-			monthly_prestige = 0.025
+			monthly_court_grandeur_change_mult = 0.04
+			monthly_prestige = 0.5
 		}
 		aptitude_level_3 = {
-			monthly_court_grandeur_change_mult = 0.10
-			monthly_prestige = 0.05
+			monthly_court_grandeur_change_mult = 0.06
+			monthly_prestige = 0.1
 		}
 		aptitude_level_4 = {
-			monthly_court_grandeur_change_mult = 0.10
-			monthly_prestige = 0.075
+			monthly_court_grandeur_change_mult = 0.08
+			monthly_prestige = 0.15
 		}
 		aptitude_level_5 = {
-			monthly_court_grandeur_change_mult = 0.15
-			monthly_prestige = 0.1
+			monthly_court_grandeur_change_mult = 0.10
+			monthly_prestige = 0.2
 		}
 	}
 
