@@ -16,14 +16,14 @@
 		value = 1
 		add = {
 			value = diplomacy
-			multiply = 1.75
+			multiply = 2
 			max = 50
 			desc = court_position_skill_diplomacy
 		}
 		if = {
 			add = {
 				value = attraction
-				multiply = 1.75
+				multiply = 2
 				max = 50
 				desc = carnx_court_position_skill_attraction
 			}
