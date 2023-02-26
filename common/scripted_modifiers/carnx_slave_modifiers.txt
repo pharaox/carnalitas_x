@@ -153,6 +153,13 @@ carnx_lacking_court_positions_modifier = {
 		SLAVE = $SLAVE$
 		SCALE = $SCALE$
 	}
+	carnx_lacking_court_position_modifier = {
+		TYPE = carnx_slave_captain_court_position
+		NAME = slave_captain
+		RULER = $RULER$
+		SLAVE = $SLAVE$
+		SCALE = $SCALE$
+	}
 }
 
 carnx_lacking_court_position_modifier = {

@@ -305,6 +305,7 @@ carnx_is_useful_slave_to_future_owner_trigger = {
 		carnx_can_serve_as_champion_trigger = { RULER = $RULER$ }
 		carnx_can_serve_as_executioner_trigger = { RULER = $RULER$ }
 		carnx_can_serve_as_slave_concubine_trigger = { RULER = $RULER$ }
+		carnx_can_serve_as_slave_captain_trigger = { RULER = $RULER$ }
 		carnx_can_serve_as_knight_trigger = { RULER = $RULER$ }
 		carnx_can_serve_as_commander_trigger = { RULER = $RULER$ }
 		carnx_has_useful_claims_trigger = { RULER = $RULER$ }
@@ -541,6 +542,15 @@ carnx_can_serve_as_slave_concubine_trigger = {
 		NAME = slave_concubine
 		LIEGE = $RULER$
 		DESIRED_COUNT = $RULER$.carnx_number_of_desired_slave_concubines
+	}
+}
+
+carnx_can_serve_as_slave_captain_trigger = {
+	carnx_can_serve_as_multi_court_position_trigger = {
+		TYPE = carnx_slave_captain_court_position
+		NAME = slave_captain
+		LIEGE = $RULER$
+		DESIRED_COUNT = $RULER$.carnx_number_of_desired_slave_captains
 	}
 }
 

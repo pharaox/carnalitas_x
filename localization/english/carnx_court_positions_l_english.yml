@@ -8,3 +8,6 @@
 
  carnx_slave_concubine_court_position:0 "Slave Concubine"
  carnx_slave_concubine_court_position_desc:0 "The $carnx_slave_concubine_court_position$ is a lower-rank concubine that is also a slave or former slave."
+
+ carnx_slave_captain_court_position:0 "Mameluke Captain"
+ carnx_slave_captain_court_position_desc:0 "The $carnx_slave_captain_court_position$ is a high-ranking soldier that is also a slave or former slave."

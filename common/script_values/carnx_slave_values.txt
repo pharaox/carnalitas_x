@@ -818,6 +818,18 @@ carnx_sell_slave_ai_accept_no_actor_value = {
 	if = {
 		limit = {
 			scope:slave = {
+				carnx_can_serve_as_slave_captain_trigger = { RULER = scope:buyer }
+			}
+		}
+		add = {
+			value = scope:slave.aptitude:carnx_slave_captain_court_position
+			subtract = carnx_slave_captain_aptitude_threshold
+			multiply = carnx_ai_positive_aptitude_impact_value
+		}
+	}
+	if = {
+		limit = {
+			scope:slave = {
 				carnx_can_serve_as_knight_trigger = { RULER = scope:buyer }
 			}
 		}

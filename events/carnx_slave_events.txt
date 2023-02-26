@@ -227,7 +227,7 @@ carnx_slave.0001 = {
 							culture = scope:foreign_ruler.culture
 							faith = scope:foreign_ruler.faith
 							prowess = { min_template_average_skill max_template_decent_skill }
-							gender_female_chance = root_faith_dominant_gender_adjusted_female_chance
+							gender_female_chance = root_soldier_female_chance
 							save_scope_as = valuable_option
 						}
 					}
@@ -256,6 +256,21 @@ carnx_slave.0001 = {
 							#name = "Concubine"
 							location = root.capital_province
 							template = carnx_concubine_character_template
+							culture = scope:foreign_ruler.culture
+							faith = scope:foreign_ruler.faith
+							save_scope_as = valuable_option
+						}
+					}
+					5 = {
+						modifier = {
+							root = { carnx_slave_captain_court_position_enabled_trigger = yes }
+							add = 5
+						}
+						# Captain: Slave Captain
+						create_character = {
+							name = "Captain"
+							location = root.capital_province
+							template = carnx_soldier_character_template
 							culture = scope:foreign_ruler.culture
 							faith = scope:foreign_ruler.faith
 							save_scope_as = valuable_option

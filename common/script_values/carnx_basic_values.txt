@@ -86,6 +86,7 @@ carnx_bodyguard_aptitude_threshold = average_effectiveness
 carnx_champion_aptitude_threshold = average_effectiveness
 carnx_executioner_aptitude_threshold = average_effectiveness
 carnx_slave_concubine_aptitude_threshold = poor_effectiveness
+carnx_slave_captain_aptitude_threshold = poor_effectiveness
 
 # Female chance when creating slave characters
 carnx_create_character_female_chance = 75

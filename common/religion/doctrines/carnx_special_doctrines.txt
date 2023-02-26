@@ -39,6 +39,7 @@
 		parameters = {
 			carnx_slave_employment_active = yes
 			carnx_employed_slaves_more_loyal_active = yes
+			carnx_slave_soldiers_active = yes
 		}
 	}
 }

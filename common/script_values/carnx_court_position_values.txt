@@ -231,6 +231,15 @@ carnx_court_position_slave_concubine_salary = {
 	multiply = carnx_court_position_salary_liege_multiplier
 }
 
+carnx_court_position_slave_captain_salary = {
+	add = {
+		value = 0.1
+		desc = COURT_POSITION_SALARY_BREAKDOWN_BASE
+		format = "BASE_VALUE_FORMAT_DECIMALS"
+	}
+	multiply = carnx_court_position_salary_liege_multiplier
+}
+
 carnx_court_position_salary_liege_multiplier = {
 	value = 1
 	if = {
@@ -381,8 +390,11 @@ carnx_court_position_opinion_slave_multiplier = {
 		multiply = 3
 		if = {
 			limit = {
-				scope:liege.faith = {
-					has_doctrine_parameter = carnx_employed_slaves_more_loyal_active
+				scope:liege = {
+					OR = {
+						faith = { has_doctrine_parameter = carnx_employed_slaves_more_loyal_active }
+						has_government = clan_government
+					}
 				}
 			}
 			multiply = 2
@@ -400,8 +412,11 @@ carnx_court_position_candidate_slave_value = {
 		add = 50
 		if = {
 			limit = {
-				scope:liege.faith = {
-					has_doctrine_parameter = carnx_slave_employment_active
+				scope:liege = {
+					OR = {
+						faith = { has_doctrine_parameter = carnx_slave_employment_active }
+						has_government = clan_government
+					}
 				}
 			}
 			add = 50
@@ -451,4 +466,16 @@ carnx_number_of_desired_slave_concubines = {
 		add = -1
 	}
 	max = 5
+}
+
+carnx_number_of_desired_slave_captains = {
+	value = 1
+	if = {
+		limit = { highest_held_title_tier >= tier_duchy }
+		add = 1
+	}
+	if = {
+		limit = { highest_held_title_tier >= tier_kingdom }
+		add = 1
+	}
 }

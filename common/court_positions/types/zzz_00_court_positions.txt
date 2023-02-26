@@ -3114,8 +3114,11 @@ cupbearer_court_position = {
 			}
 			OR = {
 				NOT = { carnx_is_slave_trigger = yes }
-				scope:liege.faith = {
-					has_doctrine_parameter = carnx_slave_employment_active
+				scope:liege = {
+					OR = {
+						faith = { has_doctrine_parameter = carnx_slave_employment_active }
+						has_government = clan_government
+					}
 				}
 			}
 		}

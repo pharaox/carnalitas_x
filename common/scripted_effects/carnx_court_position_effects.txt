@@ -28,8 +28,6 @@
 # CarnalitasX Court Positions
 
 # carnx_slave_concubine_court_position
-# carnx_slave_administrator_court_position
-# carnx_slave_eunuch_court_position
 # carnx_slave_captain_court_position
 
 # COURT PHYSICIAN
@@ -583,6 +581,29 @@ carnx_slave_concubine_title_revoked_effect = {
 carnx_slave_concubine_title_invalidated_effect = {
 	basic_invalidated_court_position_effect = yes
 	debug_log = "Slave Concubine court position invalidated"
+	debug_log_date = yes
+	debug_log_scopes = yes
+}
+
+# SLAVE CAPTAIN
+
+carnx_slave_captain_title_received_effect = {
+	basic_gained_court_position_effect = yes
+	debug_log = "Slave Captain court position received"
+	debug_log_date = yes
+	debug_log_scopes = yes
+}
+
+carnx_slave_captain_title_revoked_effect = {
+	basic_revoked_court_position_effect = yes
+	debug_log = "Slave Captain court position revoked"
+	debug_log_date = yes
+	debug_log_scopes = yes
+}
+
+carnx_slave_captain_title_invalidated_effect = {
+	basic_invalidated_court_position_effect = yes
+	debug_log = "Slave Captain court position invalidated"
 	debug_log_date = yes
 	debug_log_scopes = yes
 }

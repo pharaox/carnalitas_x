@@ -5,7 +5,10 @@ carnx_can_be_chancellor_trigger = {
 	OR = {
 		NOT = { carnx_is_slave_trigger = yes }
 		$COURT_OWNER$ = {
-			faith = { has_doctrine_parameter = carnx_slave_employment_active }
+			OR = {
+				faith = { has_doctrine_parameter = carnx_slave_employment_active }
+				has_government = clan_government
+			}
 		}
 	}
 }
@@ -15,7 +18,10 @@ carnx_can_be_marshal_trigger = {
 	OR = {
 		NOT = { carnx_is_slave_trigger = yes }
 		$COURT_OWNER$ = {
-			faith = { has_doctrine_parameter = carnx_slave_employment_active }
+			OR = {
+				faith = { has_doctrine_parameter = carnx_slave_employment_active }
+				has_government = clan_government
+			}
 		}
 	}
 }
@@ -25,7 +31,10 @@ carnx_can_be_steward_trigger = {
 	OR = {
 		NOT = { carnx_is_slave_trigger = yes }
 		$COURT_OWNER$ = {
-			faith = { has_doctrine_parameter = carnx_slave_employment_active }
+			OR = {
+				faith = { has_doctrine_parameter = carnx_slave_employment_active }
+				has_government = clan_government
+			}
 		}
 	}
 }
@@ -70,7 +79,10 @@ carnx_can_be_cupbearer_trigger = {
 	OR = {
 		NOT = { carnx_is_slave_trigger = yes }
 		$LIEGE$ = {
-			faith = { has_doctrine_parameter = carnx_slave_employment_active }
+			OR = {
+				faith = { has_doctrine_parameter = carnx_slave_employment_active }
+				has_government = clan_government
+			}
 		}
 	}
 }
@@ -124,6 +136,14 @@ carnx_can_be_slave_concubine_trigger = {
 	}
 }
 
+carnx_can_be_slave_captain_trigger = {
+	is_knight = yes
+	can_be_combatant_based_on_gender_trigger = { ARMY_OWNER = $LIEGE$ }
+	martial >= low_skill_rating
+	prowess >= low_skill_rating
+	number_of_commander_traits >= 1
+}
+
 carnx_slave_concubine_court_position_enabled_trigger = {
 	OR = {
 		faith = { has_doctrine = doctrine_polygamy }
@@ -132,6 +152,13 @@ carnx_slave_concubine_court_position_enabled_trigger = {
 		culture = { has_cultural_tradition = tradition_concubines }
 	}
 	NOT = { is_wrong_gender_in_faith_trigger = { FAITH = faith } }
+}
+
+carnx_slave_captain_court_position_enabled_trigger = {
+	OR = {
+		faith = { has_doctrine_parameter = carnx_slave_soldiers_active }
+		has_government = clan_government
+	}
 }
 
 carnx_allowed_to_marry_trigger = {
