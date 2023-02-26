@@ -34,12 +34,45 @@ carnx_slave.0001 = {
 		hidden_effect = {
 			random_independent_ruler = {
 				limit = {
+					is_landed = yes
 					NOR = {
 						faith = root.faith
 						culture = root.culture
 					}
 					root = {
 						NOT = { carnx_is_slavery_crime_trigger = { CHARACTER = prev } }
+					}
+				}
+				weight = {
+					# Nearby rulers more likely
+					base = 1
+					modifier = {
+						capital_province = { squared_distance = { target = root.capital_province value <= squared_distance_small } }
+						factor = 2
+					}
+					modifier = {
+						capital_province = { squared_distance = { target = root.capital_province value <= squared_distance_medium } }
+						factor = 2
+					}
+					modifier = {
+						capital_province = { squared_distance = { target = root.capital_province value <= squared_distance_large } }
+						factor = 2
+					}
+					modifier = {
+						capital_province = { squared_distance = { target = root.capital_province value <= squared_distance_huge } }
+						factor = 2
+					}
+					modifier = {
+						capital_province = { squared_distance = { target = root.capital_province value <= squared_distance_almost_massive } }
+						factor = 2
+					}
+					modifier = {
+						capital_province = { squared_distance = { target = root.capital_province value <= squared_distance_massive } }
+						factor = 2
+					}
+					modifier = {
+						capital_province = { squared_distance = { target = root.capital_province value <= squared_distance_monstrous } }
+						factor = 2
 					}
 				}
 				save_scope_as = foreign_ruler
@@ -49,75 +82,185 @@ carnx_slave.0001 = {
 				limit = { exists = scope:foreign_ruler }
 
 				# Valuable option
-				create_character = {
-					location = root.capital_province
-					template_character = scope:foreign_ruler
-					gender_female_chance = carnx_create_character_female_chance
-					age = { 16 40 }
-					dynasty = none
-					random_traits = yes
-					random_traits_list = {
-						count = 1
-						beauty_good_1 = { weight = { base = 40 } }
-						beauty_good_2 = { weight = { base = 20 } }
-						beauty_good_3 = { weight = { base = 10 } }
-						intellect_good_1 = { weight = { base = 40 } }
-						intellect_good_2 = { weight = { base = 20 } }
-						intellect_good_3 = { weight = { base = 10 } }
-						physique_good_1 = { weight = { base = 40 } }
-						physique_good_2 = { weight = { base = 20 } }
-						physique_good_3 = { weight = { base = 10 } }
-
-						fecund = { weight = { base = 20 } }
-
-						physician_1 = { weight = { base = 20 } }
-						physician_2 = { weight = { base = 10 } }
-						physician_3 = { weight = { base = 5 } }
-						mystic_2 = { weight = { base = 20 } }
-						mystic_3 = { weight = { base = 10 } }
-						lifestyle_herbalist = { weight = { base = 20 } }
-						administrator = { weight = { base = 20 } }
-
-						flexible_leader = { weight = { base = 10 } }
-						forder = { weight = { base = 10 } }
-						holy_warrior = { weight = { base = 10 } }
-						logistician = { weight = { base = 10 } }
-						organizer = { weight = { base = 10 } }
-						open_terrain_expert = { weight = { base = 10 } }
-						rough_terrain_expert = { weight = { base = 10 } }
-						unyielding_defender = { weight = { base = 10 } }
+				random_list = {
+					10 = {
+						# Diplomacy: Chancellor, Cupbearer, Court Jester, Court Poet, Court Musician
+						create_character = {
+							#name = "Diplomacy"
+							location = root.capital_province
+							template = pool_repopulate_diplomacy
+							culture = scope:foreign_ruler.culture
+							faith = scope:foreign_ruler.faith
+							diplomacy = { min_template_average_skill max_template_decent_skill }
+							random_traits_list = {
+								count = { 0 1 }
+								# Cupbearer
+								honest = {}
+								trusting = {}
+								# Court Jester, Court Poet, Court Musician
+								gregarious = {}
+								stubborn = {}
+								shrewd = {}
+								poet = {}
+								athletic = {}
+							}
+							gender_female_chance = carnx_root_faith_dominant_gender_adjusted_female_chance
+							save_scope_as = valuable_option
+						}
 					}
-					random_traits_list = {
-						count = 1
-						brave = {}
-						gregarious = {}
-						compassionate = {}
+					10 = {
+						# Martial: Marhsal, Commanders
+						create_character = {
+							#name = "Martial"
+							location = root.capital_province
+							template = pool_repopulate_martial
+							culture = scope:foreign_ruler.culture
+							faith = scope:foreign_ruler.faith
+							martial = { min_template_average_skill max_template_decent_skill }
+							random_traits_list = {
+								count = { 0 1 }
+								# Commander traits
+								aggressive_attacker = {}
+								flexible_leader = {}
+								forder = {}
+								holy_warrior = {}
+								logistician = {}
+								military_engineer = {}
+								organizer = {}
+								reaver = {}
+								unyielding_defender = {}
+								cautious_leader = {}
+								reckless = {}
+								open_terrain_expert = {}
+							}
+							gender_female_chance = root_faith_dominant_gender_adjusted_female_chance
+							save_scope_as = valuable_option
+						}
 					}
-					martial = {
-						min_template_low_skill
-						max_template_decent_skill
+					10 = {
+						# Stewardship: Steward, Court Gardener, Seneschal
+						create_character = {
+							#name = "Stewardship"
+							location = root.capital_province
+							template = pool_repopulate_stewardship
+							culture = scope:foreign_ruler.culture
+							faith = scope:foreign_ruler.faith
+							stewardship = { min_template_average_skill max_template_decent_skill }
+							random_traits_list = {
+								count = { 0 1 }
+								# Court Gardener
+								lifestyle_gardener = {}
+								lifestyle_herbalist = {}
+								patient = {}
+								architect = {}
+								# Seneschal
+								administrator = {}
+								overseer = {}
+							}
+							gender_female_chance = carnx_root_faith_dominant_gender_adjusted_female_chance
+							save_scope_as = valuable_option
+						}
 					}
-					stewardship = {
-						min_template_low_skill
-						max_template_decent_skill
+					10 = {
+						# Intrigue: Spymaster, Food Taster, Executioner
+						create_character = {
+							#name = "Intrigue"
+							location = root.capital_province
+							template = pool_repopulate_intrigue
+							culture = scope:foreign_ruler.culture
+							faith = scope:foreign_ruler.faith
+							intrigue = { min_template_average_skill max_template_decent_skill }
+							random_traits_list = {
+								count = { 0 1 }
+								# Food Taster
+								gluttonous = {}
+								comfort_eater = {}
+								lifestyle_herbalist = {}
+								# Executioner
+								torturer = {}
+								sadistic = {}
+							}
+							gender_female_chance = carnx_create_character_female_chance
+							save_scope_as = valuable_option
+						}
 					}
-					diplomacy = {
-						min_template_low_skill
-						max_template_decent_skill
+					10 = {
+						# Learning: Court Physician, Antiquarian, Court Tutor, Court Poet (secondary)
+						create_character = {
+							#name = "Learning"
+							location = root.capital_province
+							template = pool_repopulate_learning
+							culture = scope:foreign_ruler.culture
+							faith = scope:foreign_ruler.faith
+							learning = { min_template_average_skill max_template_decent_skill }
+							random_traits_list = {
+								count = { 0 1 }
+								# Court Physician
+								physician_1 = {}
+								physician_2 = {}
+								physician_3 = {}
+								mystic_1 = {}
+								mystic_2 = {}
+								mystic_3 = {}
+								lifestyle_herbalist = {}
+								# Antiquarian
+								shy = {}
+								administrator = {}
+								# Court Tutor
+								patient = {}
+								intellect_good_1 = {}
+								intellect_good_2 = {}
+								shrewd = {}
+								# Court Poet
+								gregarious = {}
+							}
+							gender_female_chance = carnx_create_character_female_chance
+							save_scope_as = valuable_option
+						}
 					}
-					intrigue = {
-						min_template_low_skill
-						max_template_decent_skill
+					10 = {
+						# Prowess: Knights, Bodyguard, Champion
+						create_character = {
+							#name = "Prowess"
+							location = root.capital_province
+							template = pool_repopulate_prowess
+							culture = scope:foreign_ruler.culture
+							faith = scope:foreign_ruler.faith
+							prowess = { min_template_average_skill max_template_decent_skill }
+							gender_female_chance = root_faith_dominant_gender_adjusted_female_chance
+							save_scope_as = valuable_option
+						}
 					}
-					learning = {
-						min_template_low_skill
-						max_template_decent_skill
+					5 = {
+						modifier = {
+							root.culture = { has_cultural_parameter = can_appoint_chief_eunuch }
+							add = 5
+						}
+						# Eunuch: Chief Eunuch
+						create_character = {
+							#name = "Eunuch"
+							location = root.capital_province
+							template = carnx_eunuch_character_template
+							culture = scope:foreign_ruler.culture
+							faith = scope:foreign_ruler.faith
+							save_scope_as = valuable_option
+						}
 					}
-					prowess = {
-						min_template_low_skill
-						max_template_decent_skill
+					10 = {
+						modifier = {
+							root = { carnx_slave_concubine_court_position_enabled_trigger = yes }
+							add = 20
+						}
+						# Concubine: Slave Concubine
+						create_character = {
+							#name = "Concubine"
+							location = root.capital_province
+							template = carnx_concubine_character_template
+							culture = scope:foreign_ruler.culture
+							faith = scope:foreign_ruler.faith
+							save_scope_as = valuable_option
+						}
 					}
-					save_scope_as = valuable_option
 				}
 
 				# Common option
@@ -146,6 +289,9 @@ carnx_slave.0001 = {
 							if = {
 								limit = { root = { is_ai = no } }
 								multiply = carnx_slave_ask_price_player_multiplier
+							}
+							else = {
+								multiply = carnx_slave_bid_price_player_multiplier
 							}
 							multiply = carnx_slave_price_tribal_multiplier
 						}
@@ -179,6 +325,9 @@ carnx_slave.0001 = {
 							if = {
 								limit = { root = { is_ai = no } }
 								multiply = carnx_slave_ask_price_player_multiplier
+							}
+							else = {
+								multiply = carnx_slave_bid_price_player_multiplier
 							}
 							multiply = carnx_slave_price_tribal_multiplier
 						}

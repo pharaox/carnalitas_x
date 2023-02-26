@@ -1,0 +1,161 @@
+﻿carnx_concubine_character_template = {
+	gender_female_chance = root.marriage_gender_adjusted_female_chance
+	age = { 16 26 }
+	random_traits = yes
+	culture = root.culture
+	faith = root.faith
+	diplomacy = { min_template_average_skill max_template_decent_skill }
+	random_traits_list = {
+		education_diplomacy_1 = { weight = { base = 35 } }
+		education_diplomacy_2 = { weight = { base = 35 } }
+		education_diplomacy_3 = { weight = { base = 20 } }
+		education_diplomacy_4 = { weight = { base = 10 } }
+		education_stewardship_1 = { weight = { base = 20 } }
+		education_stewardship_2 = { weight = { base = 20 } }
+		education_stewardship_3 = { weight = { base = 10 } }
+		education_stewardship_4 = { weight = { base = 5 } }
+		education_intrigue_1 = { weight = { base = 20 } }
+		education_intrigue_2 = { weight = { base = 20 } }
+		education_intrigue_3 = { weight = { base = 10 } }
+		education_intrigue_4 = { weight = { base = 5 } }
+		education_learning_1 = { weight = { base = 20 } }
+		education_learning_2 = { weight = { base = 20 } }
+		education_learning_3 = { weight = { base = 10 } }
+		education_learning_4 = { weight = { base = 5 } }
+	}
+	random_traits_list = {
+		count = 1
+		# Diplomacy
+		intellect_good_1 = { weight = { base = 10 } }
+		intellect_good_2 = { weight = { base = 5 } }
+		intellect_good_3 = { weight = { base = 2 } }
+		diligent = { weight = { base = 10 } }
+		fickle = { weight = { base = 10 } }
+		forgiving = { weight = { base = 10 } }
+		generous = { weight = { base = 10 } }
+		gregarious = { weight = { base = 10 } }
+		honest = { weight = { base = 10 } }
+		trusting = { weight = { base = 10 } }
+		shrewd = { weight = { base = 5 } }
+		diplomat = { weight = { base = 5 } }
+		august = { weight = { base = 5 } }
+		reveler_1 = { weight = { base = 5 } }
+		poet = { weight = { base = 5 } }
+	}
+	random_traits_list = {
+		count = { 0 1 }
+		# Attraction
+		brave = { weight = { base = 10 } }
+		gregarious = { weight = { base = 10 } }
+		compassionate = { weight = { base = 10 } }
+		beauty_good_1 = { weight = { base = 20 } } # Buffed
+		beauty_good_2 = { weight = { base = 10 } } # Buffed
+		beauty_good_3 = { weight = { base = 5 } } # Buffed
+		physique_good_1 = { weight = { base = 10 } }
+		physique_good_2 = { weight = { base = 5 } }
+		physique_good_3 = { weight = { base = 2 } }
+		gallant = { weight = { base = 5 } }
+		seducer = { weight = { base = 10 } } # Buffed
+	}
+	dynasty = none
+	after_creation = {
+		random = {
+			chance = 1
+
+			add_trait = poet
+
+			modifier = {
+				add = 10
+				culture = { has_cultural_parameter = poet_trait_more_common }
+			}
+			modifier = {
+				add = 5
+				OR = {
+					culture = { has_cultural_pillar = heritage_north_germanic }
+					religion = religion:germanic_religion
+				}
+			}
+		}
+		set_interesting_traits_and_modifiers_effect = yes
+	}
+}
+
+carnx_eunuch_character_template = {
+	gender = male
+	age = { 16 26 }
+	random_traits = yes
+	culture = root.culture
+	faith = root.faith
+	diplomacy = { min_template_average_skill max_template_decent_skill }
+	intrigue = { min_template_average_skill max_template_decent_skill }
+	random_traits_list = {
+		education_diplomacy_1 = { weight = { base = 35 } }
+		education_diplomacy_2 = { weight = { base = 35 } }
+		education_diplomacy_3 = { weight = { base = 20 } }
+		education_diplomacy_4 = { weight = { base = 10 } }
+		education_intrigue_1 = { weight = { base = 35 } }
+		education_intrigue_2 = { weight = { base = 35 } }
+		education_intrigue_3 = { weight = { base = 20 } }
+		education_intrigue_4 = { weight = { base = 10 } }
+	}
+	random_traits_list = {
+		count = 1
+		# Diplomacy
+		intellect_good_1 = { weight = { base = 20 } } # Buffed
+		intellect_good_2 = { weight = { base = 10 } } # Buffed
+		intellect_good_3 = { weight = { base = 5 } } # Buffed
+		beauty_good_1 = { weight = { base = 10 } }
+		beauty_good_2 = { weight = { base = 5 } }
+		beauty_good_3 = { weight = { base = 2 } }
+		diligent = { weight = { base = 10 } }
+		fickle = { weight = { base = 10 } }
+		forgiving = { weight = { base = 10 } }
+		generous = { weight = { base = 10 } }
+		gregarious = { weight = { base = 10 } }
+		honest = { weight = { base = 10 } }
+		trusting = { weight = { base = 10 } }
+		shrewd = { weight = { base = 5 } }
+		diplomat = { weight = { base = 10 } } # Buffed
+		august = { weight = { base = 5 } }
+		reveler_1 = { weight = { base = 5 } }
+		poet = { weight = { base = 5 } }
+	}
+	random_traits_list = {
+		count = 1
+		# Intrigue
+		craven = { weight = { base = 10 } }
+		# lustful = { weight = { base = 10 } } # Not applicable to eunuchs
+		vengeful = { weight = { base = 10 } }
+		deceitful = { weight = { base = 10 } }
+		arbitrary = { weight = { base = 10 } }
+		paranoid = { weight = { base = 10 } }
+		cynical = { weight = { base = 10 } }
+		callous = { weight = { base = 10 } }
+		sadistic = { weight = { base = 10 } }
+		schemer = { weight = { base = 10 } } # Buffed
+		# seducer = { weight = { base = 5 } } # Not applicable to eunuchs
+		lifestyle_herbalist = { weight = { base = 5 } }
+	}
+	trait = eunuch
+	dynasty = none
+	after_creation = {
+		random = {
+			chance = 1
+
+			add_trait = poet
+
+			modifier = {
+				add = 15
+				culture = { has_cultural_parameter = poet_trait_more_common }
+			}
+			modifier = {
+				add = 10
+				OR = {
+					culture = { has_cultural_pillar = heritage_north_germanic }
+					religion = religion:germanic_religion
+				}
+			}
+		}
+		set_interesting_traits_and_modifiers_effect = yes
+	}
+}
