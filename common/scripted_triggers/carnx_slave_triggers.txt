@@ -620,6 +620,44 @@ carnx_can_serve_as_multi_court_position_trigger = {
 	}
 }
 
+carnx_has_max_councillor_skill_difference_trigger = {
+	$SLAVE$ = {
+		trigger_if = {
+			limit = {
+				NOT = { exists = scope:max_councillor_skill_difference }
+			}
+			$RULER$ = {
+				save_temporary_scope_as = liege
+			}
+			save_temporary_scope_value_as = {
+				name = max_councillor_skill_difference
+				value = carnx_max_councillor_skill_difference_value
+			}
+		}
+		scope:max_councillor_skill_difference > 0
+		carnx_$NAME$_skill_difference_value = scope:max_councillor_skill_difference
+	}
+}
+
+carnx_has_max_aptitude_difference_trigger = {
+	$SLAVE$ = {
+		trigger_if = {
+			limit = {
+				NOT = { exists = scope:max_aptitude_difference }
+			}
+			$RULER$ = {
+				save_temporary_scope_as = liege
+			}
+			save_temporary_scope_value_as = {
+				name = max_aptitude_difference
+				value = carnx_max_aptitude_difference_value
+			}
+		}
+		scope:max_aptitude_difference > 0
+		carnx_$NAME$_aptitude_difference_value = scope:max_aptitude_difference
+	}
+}
+
 carnx_has_useful_claims_trigger = {
 	any_claim = {
 		neighboring_useful_courtier_or_guest_claim_trigger = { RULER = $RULER$ }

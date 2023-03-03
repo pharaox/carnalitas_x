@@ -479,3 +479,291 @@ carnx_number_of_desired_slave_captains = {
 		add = 1
 	}
 }
+
+carnx_chancellor_skill_difference_value = {
+	value = 0
+	if = {
+		limit = {
+			carnx_can_serve_as_chancellor_trigger = { RULER = scope:liege }
+		}
+		value = diplomacy
+		subtract = carnx_default_skill_threshold
+	}
+}
+
+carnx_marshal_skill_difference_value = {
+	value = 0
+	if = {
+		limit = {
+			carnx_can_serve_as_marshal_trigger = { RULER = scope:liege }
+		}
+		value = martial
+		subtract = carnx_default_skill_threshold
+	}
+}
+
+carnx_steward_skill_difference_value = {
+	value = 0
+	if = {
+		limit = {
+			carnx_can_serve_as_steward_trigger = { RULER = scope:liege }
+		}
+		value = stewardship
+		subtract = carnx_default_skill_threshold
+	}
+}
+
+carnx_spymaster_skill_difference_value = {
+	value = 0
+	if = {
+		limit = {
+			carnx_can_serve_as_spymaster_trigger = { RULER = scope:liege }
+		}
+		value = intrigue
+		subtract = carnx_default_skill_threshold
+	}
+}
+
+carnx_max_councillor_skill_difference_value = {
+	value = 0
+	min = {
+		value = carnx_chancellor_skill_difference_value
+		min = {
+			value = carnx_marshal_skill_difference_value
+			min = {
+				value = carnx_steward_skill_difference_value
+				min = {
+					value = carnx_spymaster_skill_difference_value
+				}
+			}
+		}
+	}
+}
+
+carnx_court_physician_aptitude_difference_value = {
+	value = 0
+	if = {
+		limit = {
+			carnx_can_serve_as_court_physician_trigger = { RULER = scope:liege }
+		}
+		value = aptitude:court_physician_court_position
+		subtract = carnx_court_physician_aptitude_threshold
+	}
+}
+
+carnx_antiquarian_aptitude_difference_value = {
+	value = 0
+	if = {
+		limit = {
+			carnx_can_serve_as_antiquarian_trigger = { RULER = scope:liege }
+		}
+		value = aptitude:antiquarian_court_position
+		subtract = carnx_antiquarian_aptitude_threshold
+	}
+}
+
+carnx_court_gardener_aptitude_difference_value = {
+	value = 0
+	if = {
+		limit = {
+			carnx_can_serve_as_court_gardener_trigger = { RULER = scope:liege }
+		}
+		value = aptitude:court_gardener_court_position
+		subtract = carnx_court_gardener_aptitude_threshold
+	}
+}
+
+carnx_court_tutor_aptitude_difference_value = {
+	value = 0
+	if = {
+		limit = {
+			carnx_can_serve_as_court_tutor_trigger = { RULER = scope:liege }
+		}
+		value = aptitude:court_tutor_court_position
+		subtract = carnx_court_tutor_aptitude_threshold
+	}
+}
+
+carnx_food_taster_aptitude_difference_value = {
+	value = 0
+	if = {
+		limit = {
+			carnx_can_serve_as_food_taster_trigger = { RULER = scope:liege }
+		}
+		value = aptitude:food_taster_court_position
+		subtract = carnx_food_taster_aptitude_threshold
+	}
+}
+
+carnx_seneschal_aptitude_difference_value = {
+	value = 0
+	if = {
+		limit = {
+			carnx_can_serve_as_seneschal_trigger = { RULER = scope:liege }
+		}
+		value = aptitude:seneschal_court_position
+		subtract = carnx_seneschal_aptitude_threshold
+	}
+}
+
+carnx_cupbearer_aptitude_difference_value = {
+	value = 0
+	if = {
+		limit = {
+			carnx_can_serve_as_cupbearer_trigger = { RULER = scope:liege }
+		}
+		value = aptitude:cupbearer_court_position
+		subtract = carnx_cupbearer_aptitude_threshold
+	}
+}
+
+carnx_chief_eunuch_aptitude_difference_value = {
+	value = 0
+	if = {
+		limit = {
+			carnx_can_serve_as_chief_eunuch_trigger = { RULER = scope:liege }
+		}
+		value = aptitude:chief_eunuch_court_position
+		subtract = carnx_chief_eunuch_aptitude_threshold
+	}
+}
+
+carnx_court_jester_aptitude_difference_value = {
+	value = 0
+	if = {
+		limit = {
+			carnx_can_serve_as_court_jester_trigger = { RULER = scope:liege }
+		}
+		value = aptitude:court_jester_court_position
+		subtract = carnx_court_jester_aptitude_threshold
+	}
+}
+
+carnx_court_poet_aptitude_difference_value = {
+	value = 0
+	if = {
+		limit = {
+			carnx_can_serve_as_court_poet_trigger = { RULER = scope:liege }
+		}
+		value = aptitude:court_poet_court_position
+		subtract = carnx_court_poet_aptitude_threshold
+	}
+}
+
+carnx_court_musician_aptitude_difference_value = {
+	value = 0
+	if = {
+		limit = {
+			carnx_can_serve_as_court_musician_trigger = { RULER = scope:liege }
+		}
+		value = aptitude:court_musician_court_position
+		subtract = carnx_court_musician_aptitude_threshold
+	}
+}
+
+carnx_bodyguard_aptitude_difference_value = {
+	value = 0
+	if = {
+		limit = {
+			carnx_can_serve_as_bodyguard_trigger = { RULER = scope:liege }
+		}
+		value = aptitude:bodyguard_court_position
+		subtract = carnx_bodyguard_aptitude_threshold
+	}
+}
+
+carnx_champion_aptitude_difference_value = {
+	value = 0
+	if = {
+		limit = {
+			carnx_can_serve_as_champion_trigger = { RULER = scope:liege }
+		}
+		value = aptitude:champion_court_position
+		subtract = carnx_champion_aptitude_threshold
+	}
+}
+
+carnx_executioner_aptitude_difference_value = {
+	value = 0
+	if = {
+		limit = {
+			carnx_can_serve_as_executioner_trigger = { RULER = scope:liege }
+		}
+		value = aptitude:executioner_court_position
+		subtract = carnx_executioner_aptitude_threshold
+	}
+}
+
+carnx_slave_concubine_aptitude_difference_value = {
+	value = 0
+	if = {
+		limit = {
+			carnx_can_serve_as_slave_concubine_trigger = { RULER = scope:liege }
+		}
+		value = aptitude:carnx_slave_concubine_court_position
+		subtract = carnx_slave_concubine_aptitude_threshold
+	}
+}
+
+carnx_slave_captain_aptitude_difference_value = {
+	value = 0
+	if = {
+		limit = {
+			carnx_can_serve_as_slave_captain_trigger = { RULER = scope:liege }
+		}
+		value = aptitude:carnx_slave_captain_court_position
+		subtract = carnx_slave_captain_aptitude_threshold
+	}
+}
+
+carnx_max_aptitude_difference_value = {
+	value = 0
+	min = {
+		value = carnx_court_physician_aptitude_difference_value
+		min = {
+			value = carnx_antiquarian_aptitude_difference_value
+			min = {
+				value = carnx_court_gardener_aptitude_difference_value
+				min = {
+					value = carnx_court_tutor_aptitude_difference_value
+					min = {
+						value = carnx_food_taster_aptitude_difference_value
+						min = {
+							value = carnx_seneschal_aptitude_difference_value
+							min = {
+								value = carnx_cupbearer_aptitude_difference_value
+								min = {
+									value = carnx_chief_eunuch_aptitude_difference_value
+									min = {
+										value = carnx_court_jester_aptitude_difference_value
+										min = {
+											value = carnx_court_poet_aptitude_difference_value
+											min = {
+												value = carnx_court_musician_aptitude_difference_value
+												min = {
+													value = carnx_bodyguard_aptitude_difference_value
+													min = {
+														value = carnx_champion_aptitude_difference_value
+														min = {
+															value = carnx_executioner_aptitude_difference_value
+															min = {
+																value = carnx_slave_concubine_aptitude_difference_value
+																min = {
+																	value = carnx_slave_captain_aptitude_difference_value
+																}
+															}
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
