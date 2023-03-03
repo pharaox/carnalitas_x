@@ -409,7 +409,7 @@ carnx_court_position_candidate_slave_value = {
 				carnx_is_slave_trigger = yes
 			}
 		}
-		add = 50
+		add = 25
 		if = {
 			limit = {
 				scope:liege = {
@@ -419,7 +419,7 @@ carnx_court_position_candidate_slave_value = {
 					}
 				}
 			}
-			add = 50
+			add = 25
 		}
 	}
 }

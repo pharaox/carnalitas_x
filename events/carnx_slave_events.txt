@@ -264,11 +264,11 @@ carnx_slave.0001 = {
 					5 = {
 						modifier = {
 							root = { carnx_slave_captain_court_position_enabled_trigger = yes }
-							add = 5
+							add = 10
 						}
 						# Captain: Slave Captain
 						create_character = {
-							name = "Captain"
+							#name = "Captain"
 							location = root.capital_province
 							template = carnx_soldier_character_template
 							culture = scope:foreign_ruler.culture
@@ -309,6 +309,8 @@ carnx_slave.0001 = {
 								multiply = carnx_slave_bid_price_player_multiplier
 							}
 							multiply = carnx_slave_price_tribal_multiplier
+							floor = yes
+							min = 1
 						}
 					}
 					save_scope_as = slave
@@ -345,6 +347,8 @@ carnx_slave.0001 = {
 								multiply = carnx_slave_bid_price_player_multiplier
 							}
 							multiply = carnx_slave_price_tribal_multiplier
+							floor = yes
+							min = 1
 						}
 					}
 					save_scope_as = slave

@@ -3,7 +3,7 @@ carnx_slave_base_price_value = {
 	# Base (reduced compared to guests 20 -> 10)
 	add = 10
 
-	# Claims (100 if any claims, reduced compared to guests)
+	# Claims (50 if any claims, reduced compared to guests)
 	if = {
 		limit = {
 			any_claim = { always = yes }
