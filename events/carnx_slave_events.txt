@@ -292,7 +292,11 @@ carnx_slave.0001 = {
 		}
 
 		ai_chance = {
-			factor = 1
+			base = 0
+			modifier = {
+				always = yes
+				add = carnx_slave_0001_none_option_ai_chance
+			}
 		}
 	}
 }
