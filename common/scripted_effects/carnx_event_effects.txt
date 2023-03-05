@@ -188,7 +188,7 @@ carnx_slave_0001_create_captain_character_effect = {
 	}
 }
 
-carnx_slave_0001_create_character = {
+carnx_slave_0001_create_character_effect = {
 	random_list = {
 		10 = {
 			# Diplomacy: Chancellor, Cupbearer, Court Jester, Court Poet, Court Musician
