@@ -87,8 +87,6 @@
 			modifier = carnx_marked_for_enslavement_modifier
 			years = 2
 		}
-		debug_log = "Character marked for enslavement"
-		debug_log_date = yes
-		debug_log_scopes = yes
+		carnx_debug_log_effect = { MSG = carnx_debug_msg_char_marked_for_enslavement }
 	}
 }

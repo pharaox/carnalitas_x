@@ -38,9 +38,7 @@ carnx_court_physician_title_accepted_effect = {
 		limit = {
 			scope:employee = { has_trait = slave }
 		}
-		debug_log = "Court Physician court position received"
-		debug_log_date = yes
-		debug_log_scopes = yes
+		carnx_debug_log_effect = { MSG = carnx_debug_msg_court_physician_received }
 	}
 }
 
@@ -50,9 +48,7 @@ carnx_court_physician_title_revoked_effect = {
 		limit = {
 			scope:employee = { has_trait = slave }
 		}
-		debug_log = "Court Physician court position revoked"
-		debug_log_date = yes
-		debug_log_scopes = yes
+		carnx_debug_log_effect = { MSG = carnx_debug_msg_court_physician_revoked }
 	}
 }
 
@@ -62,9 +58,7 @@ carnx_court_physician_title_invalidated_effect = {
 		limit = {
 			scope:employee = { has_trait = slave }
 		}
-		debug_log = "Court Physician court position invalidated"
-		debug_log_date = yes
-		debug_log_scopes = yes
+		carnx_debug_log_effect = { MSG = carnx_debug_msg_court_physician_invalidated }
 	}
 }
 
@@ -76,9 +70,7 @@ carnx_antiquarian_title_accepted_effect = {
 		limit = {
 			scope:employee = { has_trait = slave }
 		}
-		debug_log = "Antiquarian court position received"
-		debug_log_date = yes
-		debug_log_scopes = yes
+		carnx_debug_log_effect = { MSG = carnx_debug_msg_antiquarian_received }
 	}
 }
 
@@ -88,9 +80,7 @@ carnx_antiquarian_title_revoked_effect = {
 		limit = {
 			scope:employee = { has_trait = slave }
 		}
-		debug_log = "Antiquarian court position revoked"
-		debug_log_date = yes
-		debug_log_scopes = yes
+		carnx_debug_log_effect = { MSG = carnx_debug_msg_antiquarian_revoked }
 	}
 }
 
@@ -100,9 +90,7 @@ carnx_antiquarian_title_invalidated_effect = {
 		limit = {
 			scope:employee = { has_trait = slave }
 		}
-		debug_log = "Antiquarian court position invalidated"
-		debug_log_date = yes
-		debug_log_scopes = yes
+		carnx_debug_log_effect = { MSG = carnx_debug_msg_antiquarian_invalidated }
 	}
 }
 
@@ -114,9 +102,7 @@ carnx_court_gardener_title_accepted_effect = {
 		limit = {
 			scope:employee = { has_trait = slave }
 		}
-		debug_log = "Court Garedner court position received"
-		debug_log_date = yes
-		debug_log_scopes = yes
+		carnx_debug_log_effect = { MSG = carnx_debug_msg_court_gardener_received }
 	}
 }
 
@@ -126,9 +112,7 @@ carnx_court_gardener_title_revoked_effect = {
 		limit = {
 			scope:employee = { has_trait = slave }
 		}
-		debug_log = "Court Garedner court position revoked"
-		debug_log_date = yes
-		debug_log_scopes = yes
+		carnx_debug_log_effect = { MSG = carnx_debug_msg_court_gardener_revoked }
 	}
 }
 
@@ -138,9 +122,7 @@ carnx_court_gardener_title_invalidated_effect = {
 		limit = {
 			scope:employee = { has_trait = slave }
 		}
-		debug_log = "Court Garedner court position invalidated"
-		debug_log_date = yes
-		debug_log_scopes = yes
+		carnx_debug_log_effect = { MSG = carnx_debug_msg_court_gardener_invalidated }
 	}
 }
 
@@ -152,9 +134,7 @@ carnx_court_tutor_title_accepted_effect = {
 		limit = {
 			scope:employee = { has_trait = slave }
 		}
-		debug_log = "Court Tutor court position received"
-		debug_log_date = yes
-		debug_log_scopes = yes
+		carnx_debug_log_effect = { MSG = carnx_debug_msg_court_tutor_received }
 	}
 }
 
@@ -164,9 +144,7 @@ carnx_court_tutor_title_revoked_effect = {
 		limit = {
 			scope:employee = { has_trait = slave }
 		}
-		debug_log = "Court Tutor court position revoked"
-		debug_log_date = yes
-		debug_log_scopes = yes
+		carnx_debug_log_effect = { MSG = carnx_debug_msg_court_tutor_revoked }
 	}
 }
 
@@ -176,9 +154,7 @@ carnx_court_tutor_title_invalidated_effect = {
 		limit = {
 			scope:employee = { has_trait = slave }
 		}
-		debug_log = "Court Tutor court position invalidated"
-		debug_log_date = yes
-		debug_log_scopes = yes
+		carnx_debug_log_effect = { MSG = carnx_debug_msg_court_tutor_invalidated }
 	}
 }
 
@@ -190,9 +166,7 @@ carnx_food_taster_title_accepted_effect = {
 		limit = {
 			scope:employee = { has_trait = slave }
 		}
-		debug_log = "Food Taster court position received"
-		debug_log_date = yes
-		debug_log_scopes = yes
+		carnx_debug_log_effect = { MSG = carnx_debug_msg_food_taster_received }
 	}
 }
 
@@ -202,9 +176,7 @@ carnx_food_taster_title_revoked_effect = {
 		limit = {
 			scope:employee = { has_trait = slave }
 		}
-		debug_log = "Food Taster court position revoked"
-		debug_log_date = yes
-		debug_log_scopes = yes
+		carnx_debug_log_effect = { MSG = carnx_debug_msg_food_taster_revoked }
 	}
 }
 
@@ -214,9 +186,7 @@ carnx_food_taster_title_invalidated_effect = {
 		limit = {
 			scope:employee = { has_trait = slave }
 		}
-		debug_log = "Food Taster court position invalidated"
-		debug_log_date = yes
-		debug_log_scopes = yes
+		carnx_debug_log_effect = { MSG = carnx_debug_msg_food_taster_invalidated }
 	}
 }
 
@@ -228,9 +198,7 @@ carnx_seneschal_title_accepted_effect = {
 		limit = {
 			scope:employee = { has_trait = slave }
 		}
-		debug_log = "Seneschal court position received"
-		debug_log_date = yes
-		debug_log_scopes = yes
+		carnx_debug_log_effect = { MSG = carnx_debug_msg_seneschal_received }
 	}
 }
 
@@ -240,9 +208,7 @@ carnx_seneschal_title_revoked_effect = {
 		limit = {
 			scope:employee = { has_trait = slave }
 		}
-		debug_log = "Seneschal court position revoked"
-		debug_log_date = yes
-		debug_log_scopes = yes
+		carnx_debug_log_effect = { MSG = carnx_debug_msg_seneschal_revoked }
 	}
 }
 
@@ -252,9 +218,7 @@ carnx_seneschal_title_invalidated_effect = {
 		limit = {
 			scope:employee = { has_trait = slave }
 		}
-		debug_log = "Seneschal court position invalidated"
-		debug_log_date = yes
-		debug_log_scopes = yes
+		carnx_debug_log_effect = { MSG = carnx_debug_msg_seneschal_invalidated }
 	}
 }
 
@@ -266,9 +230,7 @@ carnx_cupbearer_title_accepted_effect = {
 		limit = {
 			scope:employee = { has_trait = slave }
 		}
-		debug_log = "Cupbearer court position received"
-		debug_log_date = yes
-		debug_log_scopes = yes
+		carnx_debug_log_effect = { MSG = carnx_debug_msg_cupbearer_received }
 	}
 }
 
@@ -278,9 +240,7 @@ carnx_cupbearer_title_revoked_effect = {
 		limit = {
 			scope:employee = { has_trait = slave }
 		}
-		debug_log = "Cupbearer court position revoked"
-		debug_log_date = yes
-		debug_log_scopes = yes
+		carnx_debug_log_effect = { MSG = carnx_debug_msg_cupbearer_revoked }
 	}
 }
 
@@ -290,9 +250,7 @@ carnx_cupbearer_title_invalidated_effect = {
 		limit = {
 			scope:employee = { has_trait = slave }
 		}
-		debug_log = "Cupbearer court position invalidated"
-		debug_log_date = yes
-		debug_log_scopes = yes
+		carnx_debug_log_effect = { MSG = carnx_debug_msg_cupbearer_invalidated }
 	}
 }
 
@@ -304,9 +262,7 @@ carnx_chief_eunuch_title_accepted_effect = {
 		limit = {
 			scope:employee = { has_trait = slave }
 		}
-		debug_log = "Chief Eunuch court position received"
-		debug_log_date = yes
-		debug_log_scopes = yes
+		carnx_debug_log_effect = { MSG = carnx_debug_msg_chief_eunuch_received }
 	}
 }
 
@@ -316,9 +272,7 @@ carnx_chief_eunuch_title_revoked_effect = {
 		limit = {
 			scope:employee = { has_trait = slave }
 		}
-		debug_log = "Chief Eunuch court position revoked"
-		debug_log_date = yes
-		debug_log_scopes = yes
+		carnx_debug_log_effect = { MSG = carnx_debug_msg_chief_eunuch_revoked }
 	}
 }
 
@@ -328,9 +282,7 @@ carnx_chief_eunuch_title_invalidated_effect = {
 		limit = {
 			scope:employee = { has_trait = slave }
 		}
-		debug_log = "Chief Eunuch court position invalidated"
-		debug_log_date = yes
-		debug_log_scopes = yes
+		carnx_debug_log_effect = { MSG = carnx_debug_msg_chief_eunuch_invalidated }
 	}
 }
 
@@ -342,9 +294,7 @@ carnx_court_jester_title_accepted_effect = {
 		limit = {
 			scope:employee = { has_trait = slave }
 		}
-		debug_log = "Court Jester court position received"
-		debug_log_date = yes
-		debug_log_scopes = yes
+		carnx_debug_log_effect = { MSG = carnx_debug_msg_court_jester_received }
 	}
 }
 
@@ -354,9 +304,7 @@ carnx_court_jester_title_revoked_effect = {
 		limit = {
 			scope:employee = { has_trait = slave }
 		}
-		debug_log = "Court Jester court position revoked"
-		debug_log_date = yes
-		debug_log_scopes = yes
+		carnx_debug_log_effect = { MSG = carnx_debug_msg_court_jester_revoked }
 	}
 }
 
@@ -366,9 +314,7 @@ carnx_court_jester_title_invalidated_effect = {
 		limit = {
 			scope:employee = { has_trait = slave }
 		}
-		debug_log = "Court Jester court position invalidated"
-		debug_log_date = yes
-		debug_log_scopes = yes
+		carnx_debug_log_effect = { MSG = carnx_debug_msg_court_jester_invalidated }
 	}
 }
 
@@ -380,9 +326,7 @@ carnx_court_poet_title_accepted_effect = {
 		limit = {
 			scope:employee = { has_trait = slave }
 		}
-		debug_log = "Court Poet court position received"
-		debug_log_date = yes
-		debug_log_scopes = yes
+		carnx_debug_log_effect = { MSG = carnx_debug_msg_court_poet_received }
 	}
 }
 
@@ -392,9 +336,7 @@ carnx_court_poet_title_revoked_effect = {
 		limit = {
 			scope:employee = { has_trait = slave }
 		}
-		debug_log = "Court Poet court position revoked"
-		debug_log_date = yes
-		debug_log_scopes = yes
+		carnx_debug_log_effect = { MSG = carnx_debug_msg_court_poet_revoked }
 	}
 }
 
@@ -404,9 +346,7 @@ carnx_court_poet_title_invalidated_effect = {
 		limit = {
 			scope:employee = { has_trait = slave }
 		}
-		debug_log = "Court Poet court position invalidated"
-		debug_log_date = yes
-		debug_log_scopes = yes
+		carnx_debug_log_effect = { MSG = carnx_debug_msg_court_poet_invalidated }
 	}
 }
 
@@ -418,9 +358,7 @@ carnx_court_musician_title_accepted_effect = {
 		limit = {
 			scope:employee = { has_trait = slave }
 		}
-		debug_log = "Court Musician court position received"
-		debug_log_date = yes
-		debug_log_scopes = yes
+		carnx_debug_log_effect = { MSG = carnx_debug_msg_court_musician_received }
 	}
 }
 
@@ -430,9 +368,7 @@ carnx_court_musician_title_revoked_effect = {
 		limit = {
 			scope:employee = { has_trait = slave }
 		}
-		debug_log = "Court Musician court position revoked"
-		debug_log_date = yes
-		debug_log_scopes = yes
+		carnx_debug_log_effect = { MSG = carnx_debug_msg_court_musician_revoked }
 	}
 }
 
@@ -442,9 +378,7 @@ carnx_court_musician_title_invalidated_effect = {
 		limit = {
 			scope:employee = { has_trait = slave }
 		}
-		debug_log = "Court Musician court position invalidated"
-		debug_log_date = yes
-		debug_log_scopes = yes
+		carnx_debug_log_effect = { MSG = carnx_debug_msg_court_musician_invalidated }
 	}
 }
 
@@ -456,9 +390,7 @@ carnx_bodyguard_title_accepted_effect = {
 		limit = {
 			scope:employee = { has_trait = slave }
 		}
-		debug_log = "Bodyguard court position received"
-		debug_log_date = yes
-		debug_log_scopes = yes
+		carnx_debug_log_effect = { MSG = carnx_debug_msg_bodyguard_received }
 	}
 }
 
@@ -468,9 +400,7 @@ carnx_bodyguard_title_revoked_effect = {
 		limit = {
 			scope:employee = { has_trait = slave }
 		}
-		debug_log = "Bodyguard court position revoked"
-		debug_log_date = yes
-		debug_log_scopes = yes
+		carnx_debug_log_effect = { MSG = carnx_debug_msg_bodyguard_revoked }
 	}
 }
 
@@ -480,9 +410,7 @@ carnx_bodyguard_title_invalidated_effect = {
 		limit = {
 			scope:employee = { has_trait = slave }
 		}
-		debug_log = "Bodyguard court position invalidated"
-		debug_log_date = yes
-		debug_log_scopes = yes
+		carnx_debug_log_effect = { MSG = carnx_debug_msg_bodyguard_invalidated }
 	}
 }
 
@@ -494,9 +422,7 @@ carnx_champion_title_accepted_effect = {
 		limit = {
 			scope:employee = { has_trait = slave }
 		}
-		debug_log = "Champion court position received"
-		debug_log_date = yes
-		debug_log_scopes = yes
+		carnx_debug_log_effect = { MSG = carnx_debug_msg_champion_received }
 	}
 }
 
@@ -506,9 +432,7 @@ carnx_champion_title_revoked_effect = {
 		limit = {
 			scope:employee = { has_trait = slave }
 		}
-		debug_log = "Champion court position revoked"
-		debug_log_date = yes
-		debug_log_scopes = yes
+		carnx_debug_log_effect = { MSG = carnx_debug_msg_champion_revoked }
 	}
 }
 
@@ -518,9 +442,7 @@ carnx_champion_title_invalidated_effect = {
 		limit = {
 			scope:employee = { has_trait = slave }
 		}
-		debug_log = "Champion court position invalidated"
-		debug_log_date = yes
-		debug_log_scopes = yes
+		carnx_debug_log_effect = { MSG = carnx_debug_msg_champion_invalidated }
 	}
 }
 
@@ -532,9 +454,7 @@ carnx_executioner_title_accepted_effect = {
 		limit = {
 			scope:employee = { has_trait = slave }
 		}
-		debug_log = "Executioner court position received"
-		debug_log_date = yes
-		debug_log_scopes = yes
+		carnx_debug_log_effect = { MSG = carnx_debug_msg_executioner_received }
 	}
 }
 
@@ -544,9 +464,7 @@ carnx_executioner_title_revoked_effect = {
 		limit = {
 			scope:employee = { has_trait = slave }
 		}
-		debug_log = "Executioner court position revoked"
-		debug_log_date = yes
-		debug_log_scopes = yes
+		carnx_debug_log_effect = { MSG = carnx_debug_msg_executioner_revoked }
 	}
 }
 
@@ -556,9 +474,7 @@ carnx_executioner_title_invalidated_effect = {
 		limit = {
 			scope:employee = { has_trait = slave }
 		}
-		debug_log = "Executioner court position invalidated"
-		debug_log_date = yes
-		debug_log_scopes = yes
+		carnx_debug_log_effect = { MSG = carnx_debug_msg_executioner_invalidated }
 	}
 }
 
@@ -566,44 +482,32 @@ carnx_executioner_title_invalidated_effect = {
 
 carnx_slave_concubine_title_received_effect = {
 	basic_gained_court_position_effect = yes
-	debug_log = "Slave Concubine court position received"
-	debug_log_date = yes
-	debug_log_scopes = yes
+	carnx_debug_log_effect = { MSG = carnx_debug_msg_slave_concubine_received }
 }
 
 carnx_slave_concubine_title_revoked_effect = {
 	basic_revoked_court_position_effect = yes
-	debug_log = "Slave Concubine court position revoked"
-	debug_log_date = yes
-	debug_log_scopes = yes
+	carnx_debug_log_effect = { MSG = carnx_debug_msg_slave_concubine_revoked }
 }
 
 carnx_slave_concubine_title_invalidated_effect = {
 	basic_invalidated_court_position_effect = yes
-	debug_log = "Slave Concubine court position invalidated"
-	debug_log_date = yes
-	debug_log_scopes = yes
+	carnx_debug_log_effect = { MSG = carnx_debug_msg_slave_concubine_invalidated }
 }
 
 # SLAVE CAPTAIN
 
 carnx_slave_captain_title_received_effect = {
 	basic_gained_court_position_effect = yes
-	debug_log = "Slave Captain court position received"
-	debug_log_date = yes
-	debug_log_scopes = yes
+	carnx_debug_log_effect = { MSG = carnx_debug_msg_slave_captain_received }
 }
 
 carnx_slave_captain_title_revoked_effect = {
 	basic_revoked_court_position_effect = yes
-	debug_log = "Slave Captain court position revoked"
-	debug_log_date = yes
-	debug_log_scopes = yes
+	carnx_debug_log_effect = { MSG = carnx_debug_msg_slave_captain_revoked }
 }
 
 carnx_slave_captain_title_invalidated_effect = {
 	basic_invalidated_court_position_effect = yes
-	debug_log = "Slave Captain court position invalidated"
-	debug_log_date = yes
-	debug_log_scopes = yes
+	carnx_debug_log_effect = { MSG = carnx_debug_msg_slave_captain_invalidated }
 }

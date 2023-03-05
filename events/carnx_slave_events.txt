@@ -196,7 +196,7 @@ carnx_slave.0001 = {
 				limit = { exists = scope:common_option }
 				scope:common_option = { silent_disappearance_effect = yes }
 			}
-			debug_log = "Buy Slaves valuable option chosen"
+			carnx_debug_log_no_details_effect = { MSG = carnx_debug_msg_slave_0001_valuable_option_chosen }
 		}
 
 		carn_enslave_effect = {
@@ -247,7 +247,7 @@ carnx_slave.0001 = {
 				limit = { exists = scope:valuable_option }
 				scope:valuable_option = { silent_disappearance_effect = yes }
 			}
-			debug_log = "Buy Slaves common option chosen"
+			carnx_debug_log_no_details_effect = { MSG = carnx_debug_msg_slave_0001_common_option_chosen }
 		}
 
 		carn_enslave_effect = {

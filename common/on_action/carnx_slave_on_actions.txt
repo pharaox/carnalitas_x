@@ -6,9 +6,7 @@
 				enslaver = scope:new_owner
 			}
 		}
-		debug_log = "carn_on_slave_enslaved: Slave enslaved"
-		debug_log_date = yes
-		debug_log_scopes = yes
+		carnx_debug_log_effect = { MSG = carnx_debug_msg_slave_enslaved }
 	}
 }
 
@@ -20,9 +18,7 @@ carn_on_slave_freed = {
 				emancipator = scope:former_owner
 			}
 		}
-		debug_log = "carn_on_slave_freed: Slave freed"
-		debug_log_date = yes
-		debug_log_scopes = yes
+		carnx_debug_log_effect = { MSG = carnx_debug_msg_slave_freed }
 	}
 }
 
@@ -34,9 +30,7 @@ carnx_on_slave_bought = {
 				buyer = scope:buyer
 			}
 		}
-		debug_log = "carnx_on_slave_bought: Slave bought"
-		debug_log_date = yes
-		debug_log_scopes = yes
+		carnx_debug_log_effect = { MSG = carnx_debug_msg_slave_bought }
 	}
 }
 
@@ -48,9 +42,7 @@ carnx_on_slave_seized = {
 				seizer = scope:new_owner
 			}
 		}
-		debug_log = "carnx_on_slave_seized: Slave seized"
-		debug_log_date = yes
-		debug_log_scopes = yes
+		carnx_debug_log_effect = { MSG = carnx_debug_msg_slave_seized }
 	}
 }
 
@@ -62,9 +54,7 @@ carnx_on_slave_ransomed = {
 				ransomer = scope:payer
 			}
 		}
-		debug_log = "carnx_on_slave_ransomed: Slave ransomed"
-		debug_log_date = yes
-		debug_log_scopes = yes
+		carnx_debug_log_effect = { MSG = carnx_debug_msg_slave_ransomed }
 	}
 }
 
@@ -76,9 +66,7 @@ carnx_on_slave_gifted = {
 				new_owner = scope:new_owner
 			}
 		}
-		debug_log = "carnx_on_slave_gifted: Slave gifted"
-		debug_log_date = yes
-		debug_log_scopes = yes
+		carnx_debug_log_effect = { MSG = carnx_debug_msg_slave_gifted }
 	}
 }
 
@@ -105,14 +93,14 @@ carnx_on_leave_court = {
 				}
 				if = {
 					limit = { NOT = { is_courtier_of = scope:owner } }
-					debug_log = "carnx_on_leave_court: Moving slave to owner's court"
+					carnx_debug_log_no_details_effect = { MSG = carnx_debug_msg_moving_slave }
 					scope:owner = {
 						add_courtier = prev
 					}
 				}
 			}
 			else = {
-				debug_log = "carnx_on_leave_court: Freeing slave"
+				carnx_debug_log_no_details_effect = { MSG = carnx_debug_msg_freeing_slave }
 				carn_free_slave_effect = yes
 			}
 		}
@@ -141,11 +129,11 @@ carnx_on_title_lost = {
 					limit = { exists = scope:new_holder }
 					scope:new_holder = { save_scope_as = new_owner }
 					this = { save_scope_as = slave }
-					debug_log = "carnx_on_title_lost: Seizing slave by the new title holder"
+					carnx_debug_log_no_details_effect = { MSG = carnx_debug_msg_seizing_slave }
 					carnx_seize_slave_effect = yes
 				}
 				else = {
-					debug_log = "carnx_on_title_lost: Freeing slave"
+					carnx_debug_log_no_details_effect = { MSG = carnx_debug_msg_freeing_slave }
 					carn_free_slave_effect = yes
 				}
 			}
@@ -165,9 +153,7 @@ carnx_on_imprison = {
 			limit = {
 				NOT = { has_trait = slave }
 			}
-			debug_log = "Non-slave character imprisoned"
-			debug_log_date = yes
-			debug_log_scopes = yes
+			carnx_debug_log_effect = { MSG = carnx_debug_msg_non_slave_imprisoned }
 		}
 	}
 }
@@ -184,9 +170,7 @@ carnx_on_release_from_prison = {
 			limit = {
 				NOT = { has_trait = slave }
 			}
-			debug_log = "Non-slave character released from prison"
-			debug_log_date = yes
-			debug_log_scopes = yes
+			carnx_debug_log_effect = { MSG = carnx_debug_msg_non_slave_released_from_prison }
 		}
 	}
 }
