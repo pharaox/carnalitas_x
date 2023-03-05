@@ -5,3 +5,4 @@
 
  doctrine_parameter_carnx_slave_employment_active: "Can appoint [slaves|E] to most [council|E] and [court_positions|E]"
  doctrine_parameter_carnx_employed_slaves_more_loyal_active: "[slaves|E] appointed to [court_positions|E] have their [opinion|E] for being employed doubled"
+ doctrine_parameter_carnx_slave_soldiers_active: "Can appoint the $carnx_slave_captain_court_position$ [court_position|E]"

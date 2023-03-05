@@ -7,18 +7,7 @@
 
 	carnx_special_doctrine_slave_employment = {
 		piety_cost = {
-			if = {
-				limit = {
-					OR = {
-						has_doctrine = abrahamic_hostility_doctrine
-						has_doctrine = pagan_hostility_doctrine
-					}
-				}
-				value = faith_tenet_cost_low
-			}
-			else = {
-				value = faith_tenet_cost_mid
-			}
+			value = faith_tenet_cost_mid
 
 			# Multiplier for keeping same tenet
 			if = {
