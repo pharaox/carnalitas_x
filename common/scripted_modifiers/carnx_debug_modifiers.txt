@@ -1,0 +1,19 @@
+﻿carnx_debug1_modifier = {
+	modifier = {
+		trigger_if = {
+			$SLAVE$ = {
+				save_temporary_scope_as = slave
+			}
+		}
+		add = $RULER$.carnx_sell_slave_ai_accept_no_actor_value
+		desc = "carnx_debug1_reason"
+	}
+}
+
+carnx_debug2_modifier = {
+	modifier = {
+		exists = $RULER$
+		add = $SLAVE$.carnx_max_aptitude_difference_value
+		desc = "carnx_debug2_reason"
+	}
+}
