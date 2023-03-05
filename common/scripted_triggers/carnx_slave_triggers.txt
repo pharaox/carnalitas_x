@@ -286,10 +286,31 @@ carnx_is_slavery_crime_trigger = {
 
 carnx_is_useful_slave_to_future_owner_trigger = {
 	OR = {
+		carnx_can_serve_as_any_councillor_trigger = { RULER = $RULER$ }
+		carnx_can_serve_as_any_court_position_trigger = { RULER = $RULER$ }
+		carnx_can_serve_as_knight_trigger = { RULER = $RULER$ }
+		carnx_can_serve_as_commander_trigger = { RULER = $RULER$ }
+		carnx_has_useful_claims_trigger = { RULER = $RULER$ }
+		carnx_is_attractive_to_character_trigger = { CHARACTER = $RULER$ }
+		carnx_is_visibly_fertile_female_trigger = yes
+	}
+}
+
+carnx_vanilla_can_serve_as_any_councillor_trigger = {
+	OR = {
 		carnx_can_serve_as_chancellor_trigger = { RULER = $RULER$ }
 		carnx_can_serve_as_marshal_trigger = { RULER = $RULER$ }
 		carnx_can_serve_as_steward_trigger = { RULER = $RULER$ }
 		carnx_can_serve_as_spymaster_trigger = { RULER = $RULER$ }
+	}
+}
+
+carnx_can_serve_as_any_councillor_trigger = {
+	carnx_vanilla_can_serve_as_any_councillor_trigger = { RULER = $RULER$ }
+}
+
+carnx_vanilla_can_serve_as_any_court_position_trigger = {
+	OR = {
 		carnx_can_serve_as_court_physician_trigger = { RULER = $RULER$ }
 		carnx_can_serve_as_antiquarian_trigger = { RULER = $RULER$ }
 		carnx_can_serve_as_court_gardener_trigger = { RULER = $RULER$ }
@@ -306,12 +327,11 @@ carnx_is_useful_slave_to_future_owner_trigger = {
 		carnx_can_serve_as_executioner_trigger = { RULER = $RULER$ }
 		carnx_can_serve_as_slave_concubine_trigger = { RULER = $RULER$ }
 		carnx_can_serve_as_slave_captain_trigger = { RULER = $RULER$ }
-		carnx_can_serve_as_knight_trigger = { RULER = $RULER$ }
-		carnx_can_serve_as_commander_trigger = { RULER = $RULER$ }
-		carnx_has_useful_claims_trigger = { RULER = $RULER$ }
-		carnx_is_attractive_to_character_trigger = { CHARACTER = $RULER$ }
-		carnx_is_visibly_fertile_female_trigger = yes
 	}
+}
+
+carnx_can_serve_as_any_court_position_trigger = {
+	carnx_vanilla_can_serve_as_any_court_position_trigger = { RULER = $RULER$ }
 }
 
 carnx_is_useful_slave_to_current_owner_trigger = {
@@ -697,6 +717,29 @@ carnx_employs_slave_as_court_position_trigger = {
 		type = $TYPE$
 		has_trait = slave
 		has_relation_slave_owner = prev
+	}
+}
+
+carnx_is_slave_employment_enabled_trigger = {
+	OR = {
+		faith = { has_doctrine_parameter = carnx_slave_employment_active }
+		has_government = clan_government
+		has_government = tribal_government
+	}
+}
+
+carnx_is_employed_slaves_more_loyal_enabled_trigger = {
+	OR = {
+		faith = { has_doctrine_parameter = carnx_employed_slaves_more_loyal_active }
+		has_government = clan_government
+		has_government = tribal_government
+	}
+}
+
+carnx_is_slave_soldiers_enabled_trigger = {
+	OR = {
+		faith = { has_doctrine_parameter = carnx_slave_soldiers_active }
+		has_government = clan_government
 	}
 }
 

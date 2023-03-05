@@ -5,10 +5,7 @@ carnx_can_be_chancellor_trigger = {
 	OR = {
 		NOT = { carnx_is_slave_trigger = yes }
 		$COURT_OWNER$ = {
-			OR = {
-				faith = { has_doctrine_parameter = carnx_slave_employment_active }
-				has_government = clan_government
-			}
+			carnx_is_slave_employment_enabled_trigger = yes
 		}
 	}
 }
@@ -18,10 +15,7 @@ carnx_can_be_marshal_trigger = {
 	OR = {
 		NOT = { carnx_is_slave_trigger = yes }
 		$COURT_OWNER$ = {
-			OR = {
-				faith = { has_doctrine_parameter = carnx_slave_employment_active }
-				has_government = clan_government
-			}
+			carnx_is_slave_employment_enabled_trigger = yes
 		}
 	}
 }
@@ -31,10 +25,7 @@ carnx_can_be_steward_trigger = {
 	OR = {
 		NOT = { carnx_is_slave_trigger = yes }
 		$COURT_OWNER$ = {
-			OR = {
-				faith = { has_doctrine_parameter = carnx_slave_employment_active }
-				has_government = clan_government
-			}
+			carnx_is_slave_employment_enabled_trigger = yes
 		}
 	}
 }
@@ -79,10 +70,7 @@ carnx_can_be_cupbearer_trigger = {
 	OR = {
 		NOT = { carnx_is_slave_trigger = yes }
 		$LIEGE$ = {
-			OR = {
-				faith = { has_doctrine_parameter = carnx_slave_employment_active }
-				has_government = clan_government
-			}
+			carnx_is_slave_employment_enabled_trigger = yes
 		}
 	}
 }
@@ -155,10 +143,7 @@ carnx_slave_concubine_court_position_enabled_trigger = {
 }
 
 carnx_slave_captain_court_position_enabled_trigger = {
-	OR = {
-		faith = { has_doctrine_parameter = carnx_slave_soldiers_active }
-		has_government = clan_government
-	}
+	carnx_is_slave_soldiers_enabled_trigger = yes
 }
 
 carnx_allowed_to_marry_trigger = {

@@ -1,0 +1,242 @@
+﻿carnx_slave_0001_create_diplomacy_character_effect = {
+	create_character = {
+		#name = "Diplomacy"
+		location = root.capital_province
+		template = pool_repopulate_diplomacy
+		culture = scope:foreign_ruler.culture
+		faith = scope:foreign_ruler.faith
+		diplomacy = { min_template_average_skill max_template_decent_skill }
+		random_traits_list = {
+			count = { 0 1 }
+			# Cupbearer
+			honest = {}
+			trusting = {}
+			# Court Jester, Court Poet, Court Musician
+			gregarious = {}
+			stubborn = {}
+			shrewd = {}
+			poet = {}
+			athletic = {}
+		}
+		gender_female_chance = carnx_root_faith_dominant_gender_adjusted_female_chance
+		dynasty = none
+		save_scope_as = valuable_option
+	}
+}
+
+carnx_slave_0001_create_martial_character_effect = {
+	create_character = {
+		#name = "Martial"
+		location = root.capital_province
+		template = pool_repopulate_martial
+		culture = scope:foreign_ruler.culture
+		faith = scope:foreign_ruler.faith
+		martial = { min_template_average_skill max_template_decent_skill }
+		random_traits_list = {
+			count = { 0 1 }
+			# Commander traits
+			aggressive_attacker = {}
+			flexible_leader = {}
+			forder = {}
+			holy_warrior = {}
+			logistician = {}
+			military_engineer = {}
+			organizer = {}
+			reaver = {}
+			unyielding_defender = {}
+			cautious_leader = {}
+			reckless = {}
+			open_terrain_expert = {}
+		}
+		gender_female_chance = root_faith_dominant_gender_adjusted_female_chance
+		dynasty = none
+		save_scope_as = valuable_option
+	}
+}
+
+carnx_slave_0001_create_stewardship_character_effect = {
+	create_character = {
+		#name = "Stewardship"
+		location = root.capital_province
+		template = pool_repopulate_stewardship
+		culture = scope:foreign_ruler.culture
+		faith = scope:foreign_ruler.faith
+		stewardship = { min_template_average_skill max_template_decent_skill }
+		random_traits_list = {
+			count = { 0 1 }
+			# Court Gardener
+			lifestyle_gardener = {}
+			lifestyle_herbalist = {}
+			patient = {}
+			architect = {}
+			# Seneschal
+			administrator = {}
+			overseer = {}
+		}
+		gender_female_chance = carnx_root_faith_dominant_gender_adjusted_female_chance
+		dynasty = none
+		save_scope_as = valuable_option
+	}
+}
+
+carnx_slave_0001_create_intrigue_character_effect = {
+	create_character = {
+		#name = "Intrigue"
+		location = root.capital_province
+		template = pool_repopulate_intrigue
+		culture = scope:foreign_ruler.culture
+		faith = scope:foreign_ruler.faith
+		intrigue = { min_template_average_skill max_template_decent_skill }
+		random_traits_list = {
+			count = { 0 1 }
+			# Food Taster
+			gluttonous = {}
+			comfort_eater = {}
+			lifestyle_herbalist = {}
+			# Executioner
+			torturer = {}
+			sadistic = {}
+		}
+		gender_female_chance = carnx_create_character_female_chance
+		dynasty = none
+		save_scope_as = valuable_option
+	}
+}
+
+carnx_slave_0001_create_learning_character_effect = {
+	create_character = {
+		#name = "Learning"
+		location = root.capital_province
+		template = pool_repopulate_learning
+		culture = scope:foreign_ruler.culture
+		faith = scope:foreign_ruler.faith
+		learning = { min_template_average_skill max_template_decent_skill }
+		random_traits_list = {
+			count = { 0 1 }
+			# Court Physician
+			physician_1 = {}
+			physician_2 = {}
+			physician_3 = {}
+			mystic_1 = {}
+			mystic_2 = {}
+			mystic_3 = {}
+			lifestyle_herbalist = {}
+			# Antiquarian
+			shy = {}
+			administrator = {}
+			# Court Tutor
+			patient = {}
+			intellect_good_1 = {}
+			intellect_good_2 = {}
+			shrewd = {}
+			# Court Poet
+			gregarious = {}
+		}
+		gender_female_chance = carnx_create_character_female_chance
+		dynasty = none
+		save_scope_as = valuable_option
+	}
+}
+
+carnx_slave_0001_create_prowess_character_effect = {
+	create_character = {
+		#name = "Prowess"
+		location = root.capital_province
+		template = pool_repopulate_prowess
+		culture = scope:foreign_ruler.culture
+		faith = scope:foreign_ruler.faith
+		prowess = { min_template_average_skill max_template_decent_skill }
+		gender_female_chance = root_soldier_female_chance
+		dynasty = none
+		save_scope_as = valuable_option
+	}
+}
+
+carnx_slave_0001_create_eunuch_character_effect = {
+	create_character = {
+		#name = "Eunuch"
+		location = root.capital_province
+		template = carnx_eunuch_character_template
+		culture = scope:foreign_ruler.culture
+		faith = scope:foreign_ruler.faith
+		dynasty = none
+		save_scope_as = valuable_option
+	}
+}
+
+carnx_slave_0001_create_concubine_character_effect = {
+	create_character = {
+		#name = "Concubine"
+		location = root.capital_province
+		template = carnx_concubine_character_template
+		culture = scope:foreign_ruler.culture
+		faith = scope:foreign_ruler.faith
+		dynasty = none
+		save_scope_as = valuable_option
+	}
+}
+
+carnx_slave_0001_create_captain_character_effect = {
+	create_character = {
+		#name = "Captain"
+		location = root.capital_province
+		template = carnx_soldier_character_template
+		culture = scope:foreign_ruler.culture
+		faith = scope:foreign_ruler.faith
+		dynasty = none
+		save_scope_as = valuable_option
+	}
+}
+
+carnx_slave_0001_create_character = {
+	random_list = {
+		10 = {
+			# Diplomacy: Chancellor, Cupbearer, Court Jester, Court Poet, Court Musician
+			carnx_slave_0001_create_diplomacy_character_effect = yes
+		}
+		10 = {
+			# Martial: Marhsal, Commanders
+			carnx_slave_0001_create_martial_character_effect = yes
+		}
+		10 = {
+			# Stewardship: Steward, Court Gardener, Seneschal
+			carnx_slave_0001_create_stewardship_character_effect = yes
+		}
+		10 = {
+			# Intrigue: Spymaster, Food Taster, Executioner
+			carnx_slave_0001_create_intrigue_character_effect = yes
+		}
+		10 = {
+			# Learning: Court Physician, Antiquarian, Court Tutor, Court Poet (secondary)
+			carnx_slave_0001_create_learning_character_effect = yes
+		}
+		10 = {
+			# Prowess: Knights, Bodyguard, Champion
+			carnx_slave_0001_create_prowess_character_effect = yes
+		}
+		5 = {
+			# Eunuch: Chief Eunuch
+			modifier = {
+				root.culture = { has_cultural_parameter = can_appoint_chief_eunuch }
+				add = 5
+			}
+			carnx_slave_0001_create_eunuch_character_effect = yes
+		}
+		10 = {
+			# Concubine: Slave Concubine
+			modifier = {
+				root = { carnx_slave_concubine_court_position_enabled_trigger = yes }
+				add = 20
+			}
+			carnx_slave_0001_create_concubine_character_effect = yes
+		}
+		5 = {
+			# Captain: Slave Captain
+			modifier = {
+				root = { carnx_slave_captain_court_position_enabled_trigger = yes }
+				add = 10
+			}
+			carnx_slave_0001_create_captain_character_effect = yes
+		}
+	}
+}

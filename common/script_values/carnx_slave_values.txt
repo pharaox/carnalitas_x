@@ -24,7 +24,7 @@ carnx_slave_base_price_value = {
 
 	# Genetic traits (genetic character value multiplied by 5)
 	add = {
-		value = genetic_character_value
+		value = carnx_genetic_character_value
 		multiply = 5
 		min = -15
 	}
@@ -37,48 +37,13 @@ carnx_slave_base_price_value = {
 		add = {
 			value = number_of_commander_traits
 			multiply = 15
-			min = 0
 		}
 	}
 
-	# Court Position traits (10 to 20 depending on tier)
-	if = {
-		limit = {
-			OR = {
-				has_trait = physician_3 # Court Physician
-				has_trait = eunuch # Chief Eunuch
-				has_trait = poet # Court Poet
-				has_completed_inspiration = yes # Antiquarian
-			}
-		}
-		add = 20
-	}
-	else_if = {
-		limit = {
-			OR = {
-				has_trait = physician_2 # Court Physician
-				has_trait = mystic_3 # Court Physician
-				has_trait = shrewd # Court Tutor
-				has_trait = lifestyle_gardener # Court Gardener
-				has_trait = administrator # Seneschal
-				has_trait = overseer # Seneschal
-				has_trait = blademaster_3 # Bodyguard, Champion
-			}
-		}
-		add = 15
-	}
-	else_if = {
-		limit = {
-			OR = {
-				has_trait = physician_1 # Court Physician
-				has_trait = mystic_2 # Court Physician
-				has_trait = lifestyle_herbalist # Court Physician
-				has_trait = athletic # Court Jester
-				has_trait = comfort_eater # Food Taster
-				has_trait = blademaster_2 # Bodyguard, Champion
-			}
-		}
-		add = 10
+	# Court Position traits (court position traits character value multiplied by 5)
+	add = {
+		value = carnx_court_position_traits_character_value
+		multiply = 5
 	}
 
 	# Skills (5 for each skill point above 12)

@@ -391,10 +391,7 @@ carnx_court_position_opinion_slave_multiplier = {
 		if = {
 			limit = {
 				scope:liege = {
-					OR = {
-						faith = { has_doctrine_parameter = carnx_employed_slaves_more_loyal_active }
-						has_government = clan_government
-					}
+					carnx_is_employed_slaves_more_loyal_enabled_trigger = yes
 				}
 			}
 			multiply = 2
@@ -413,10 +410,7 @@ carnx_court_position_candidate_slave_value = {
 		if = {
 			limit = {
 				scope:liege = {
-					OR = {
-						faith = { has_doctrine_parameter = carnx_slave_employment_active }
-						has_government = clan_government
-					}
+					carnx_is_employed_slaves_more_loyal_enabled_trigger = yes
 				}
 			}
 			add = 25
@@ -716,7 +710,7 @@ carnx_slave_captain_aptitude_difference_value = {
 	}
 }
 
-carnx_max_aptitude_difference_value = {
+carnx_vanilla_max_aptitude_difference_value = {
 	value = 0
 	min = {
 		value = carnx_court_physician_aptitude_difference_value
@@ -766,4 +760,73 @@ carnx_max_aptitude_difference_value = {
 			}
 		}
 	}
+}
+
+carnx_max_aptitude_difference_value = {
+	value = carnx_vanilla_max_aptitude_difference_value
+}
+
+carnx_genetic_character_value = {
+	value = genetic_character_value
+}
+
+carnx_vanilla_court_position_traits_character_value = {
+	value = 0
+	if = {
+		limit = { # 50 (or prerequisite)
+			OR = {
+				has_trait = eunuch # Chief Eunuch
+				has_trait = poet # Court Poet
+			}
+		}
+		add = 5
+	}
+	else_if = {
+		limit = { # 40
+			OR = {
+				has_trait = physician_3 # Court Physician
+			}
+		}
+		add = 4
+	}
+	else_if = {
+		limit = { # 30
+			OR = {
+				has_trait = blademaster_3 # Bodyguard, Champion
+				has_completed_inspiration = yes # Antiquarian
+			}
+		}
+		add = 3
+	}
+	else_if = { # 15-20
+		limit = {
+			OR = {
+				has_trait = physician_2 # Court Physician
+				has_trait = mystic_3 # Court Physician
+				has_trait = shrewd # Court Jester, Court Tutor
+				has_trait = lifestyle_gardener # Court Gardener
+				has_trait = administrator # Seneschal
+				has_trait = overseer # Seneschal
+				has_trait = shieldmaiden # Champion
+				has_trait = blademaster_2 # Bodyguard, Champion
+				has_trait = lifestyle_herbalist # Food Taster, Court Physician
+				has_trait = comfort_eater # Food Taster
+			}
+		}
+		add = 2
+	}
+	else_if = { # 10
+		limit = {
+			OR = {
+				has_trait = physician_1 # Court Physician
+				has_trait = mystic_2 # Court Physician
+				has_trait = athletic # Court Jester
+			}
+		}
+		add = 1
+	}
+}
+
+carnx_court_position_traits_character_value = {
+	value = carnx_vanilla_court_position_traits_character_value
 }
