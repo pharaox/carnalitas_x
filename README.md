@@ -4,19 +4,30 @@ A comprehensive rework of the Carnalitas slavery system aiming at improved balan
 
 ## Overview
 
-[Carnalitas](https://www.loverslab.com/files/file/14207-carnalitas-unified-sex-mod-framework-for-ck3/) added a much-needed slavery system to CK3. While this is great in itself and many aspects of the original system are also very well thought of, there are some aspects that could be improved, perhaps due to Carnalitas ambition to be a "unified sex mod framework" rather than a well-balanced mod in its own right.
+[Carnalitas](https://www.loverslab.com/files/file/14207-carnalitas-unified-sex-mod-framework-for-ck3/) added a much-needed slavery system to CK3. While this is great in itself and the basics of the original system are solid, there are certain things that could be improved, perhaps due to Carnalitas ambition to be a "unified sex mod framework" rather than a well-balanced mod in its own right.
 
-Some of the aspects I personally find problematic are the following:
+In particular:
 
-* The slave prices don't correspond well to other aspects of the game. The prices for slaves with claims are way too high. Without claims, they are way too low, so a human player could buy a useful slave for a small fraction of the cost of recruiting a guest with the same qualities. Some of the factors that should influence the slave price (e.g. their attraction) are not taken into account at all.
-* Most of the slave interactions are accepted or initiated by the AI for the wrong reasons. For example, the factors behind the AI decision to enslave are basically copied from the *Execute* interaction. However, enslaving is not the same as executing and should be influenced by quite different factors. The situation is quite similar for other interactions, e.g. *Buy Slave*, *Sell Slave*, etc.
-* The AI will never perform some of the interactions, e.g. it will try to buy slaves from other rules, but never sell their own slaves to them.
-* It's not exactly easy for the human player to find rulers that are willing to buy one of your slaves, or sell some of their slaves to you. Indeed this doesn't matter much, since in Carnalitas such requests almost always are accepted, and always at the same price.
-* I don't get the idea of being able to "convince" someone to become your slave (*Enslave* being possible on free courtiers). Enslaving someone is a rather brutal act that should only be possible if that person is fully at your mercy (your prisoner).
-* Once a prisoner is converted to a slave, it's no longer possible to ransom him or her. You can instead sell them to e.g. their mother, and the mother will happily become their new owner.
-* Although there are religious doctrines that should govern whether owning slaves of certain faiths is considered a crime, shunned, or accepted, they are not followed consistently when determining if someone can be enslaved, bought, or seized.
+* Slave prices don't correspond well to other aspects of the game, they are way to high with claims and way to low otherwise.
+* The reasons behind the AI accepting or initiating slave interactions are not convincing, and the AI never initiates some of them.
+* It's not exactly easy for the human player to find rulers willing to buy or sell slaves, and there are rather few slaves owned by the AI to begin with.
+* *Enslave* is possible on free courtiers, which doesn't make much sense.
+* Once a prisoner is converted to a slave, it's no longer possible to ransom him or her.
+* Although there are religious doctrines that should govern whether owning slaves of certain faiths is considered a crime, shunned, or accepted, they are not followed consistently when determining if someone can be enslaved, freed, bought, or seized.
 
-This mod attempts to address the above shortcomings. The reimagined slavery system introduced by this mod aims to better integrate slavery with other aspects of the game, make interacting with slaves and other rulers more interesting and rewarding, achieve a better game balance, and maintain a reasonable challenge for the human player. It does this by reworking some of the slave interactions and introducing a few new ones. It also aims to be compatible with other Carnalitas features and with other mods based on Carnalitas.
+In a nutshell, what you can do as a human player is easily enslave a lot of people, sell any you don't need to the AI, buy any you may fancy from the AI, while the AI mostly passively obliges. With mods such as [Carnalitas Slavery Expansion](https://www.loverslab.com/files/file/21651-carnalitas-slavery-expansion/) you can also assign them "professions" for additional benefits. However, these are also human-only, the AI never assigns them. All of this kills the realism and immersion, and makes the game both a lot easier and less interesting than it could be.
+
+This mod introduces a redesigned slavery system, one aiming to better integrate slavery with other aspects of the game, make interacting with slaves and other rulers more interesting and rewarding, achieve a better game balance, and maintain a reasonable challenge for the human player. It does this by reworking most of the slave interactions, introducing some new ones, making slaves more desirable for council and court positions, adding slave-related events, and rebalancing or fixing many of the original effects and outcomes, while still maintaining compatibility with other Carnalitas features, other mods based on Carnalitas, and total conversion mods.
+
+With this mod:
+
+* The AI competes actively in obtaining the best slaves, taking into account factors such as skills, aptitudes, claims, attraction, age, price, current jobs and more when buying, selling, enslaving or freeing.
+* Slaves can be ransomed or gifted.
+* They can also be assigned to (some, but not all) council and court positions for additional benefits, and the AI is fully capable of doing this as well.
+* There are new court positions that are reserved for slaves, such as *Slave Concubine* or *Mameluke Captain*, available depending on religion, culture, and government form.
+* There are also events that spawn additional slaves into the world, fit for specific occupations.
+
+All of this contributes to a system in which slaves are genuinely useful to their owners, there is an actual demand for them conditioned by religion and culture, and this demand is satisfied by active enslaving, slave trade, and slave-related events. It feels a lot more realistic and (hopefully) more interesting than before, no matter if you play the most implacable enslaver, the greatest slave liberator, or something else entirely.
 
 ## Features
 
@@ -26,23 +37,7 @@ As in Carnalitas, slaves can be bought or sold via the *Buy Slave* and *Sell Sla
 
 #### Slave Prices
 
-In this mod, slaves are bought and sold at prices that better correspond to the cost of recruiting guests. Most of the factors influencing the base price of a slave are the same as those influencing the cost of recruiting a guest, with similar impact:
-
-* base (10)
-* claims (100)
-* dynasty prestige level (5 per level)
-* genetic traits (5 per level of good trait, -5 per level of bad trait)
-* commander traits (15 per trait)
-* court physician traits (10 to 20)
-* skills (5 per skill point above 12)
-
-Some factors are unique:
-
-* attraction (-30 to 30)
-* visibly fertile female (15)
-* age (15 for ages between 16 and 30, less or even negative otherwise)
-
-At the very end, a correction multiplier is applied to calculate the final base price, currently 0.6 (correcting down). This multiplier is intended to prevent the human player from making too much money from selling slaves, and may be adjusted in future versions.
+In this mod, slaves are bought and sold at prices that better correspond to the cost of recruiting guests. Most of the factors influencing the base price of a slave are the same as those influencing the cost of recruiting a guest, with similar impact, such as base, claims, dynasty prestige level, genetic, commander, and other traits, and skills. There are also some unique factors, such as attraction, visibly fertile female, and age. At the very end, a correction multiplier is applied to calculate the final base price, intended to prevent the human player from making too much money from selling slaves.
 
 Actual buy and sell transactions are settled at the *bid price* (buyer's price) if the initiating party is the seller, and the *ask price* (seller's price), if the initiating party is the buyer.These prices are calculated by multiplying the base price by a factor ranging from 0.8 to 1.2, depending on AI greed. These prices are also multiplied by an additional factor of 0.8 (for the bid price) or 1.2 (for the ask price) if the initiating party is the human player. Since the human player is always the initiating party when buying or selling slaves, they always buy at higher and sell at lower prices. This is to prevent exploits, and to make it a bit more challenging for the human player to use the slavery system to their own advantage.
 
@@ -50,7 +45,7 @@ Actual buy and sell transactions are settled at the *bid price* (buyer's price) 
 
 When buying slaves, the AI acceptance is influenced by a comprehensive estimation of the slave's usefulness based on factors such as:
 
-* Is the buyer lacking good councillors, court positions (currently only court physician or antiquarian), knights, or commanders, and how well would the slave perform the corresponding role.
+* Is the slave better than other options available to the buyer as a councillor, court position (any of 14 existing and 2 new specific to slaves), knight, or commander, and how much better exactly.
 * Does the slave have any useful claims on neighboring realms.
 * Is the buyer attracted to the sex of the slave, and if yes the slave's attraction.
 * Is the slave a visibly fertile female.
@@ -103,13 +98,38 @@ Carnalitas introduces the *Slavery Crime* and *Slavery Shunned* religious doctri
   - The AI will be quite unwilling to accept sell interactions for them.
   - The AI will be somewhat more willing to free or ransom them.
 
+### Council and Court Positions
+
+Starting with version 0.4.0, this mod integrates the slavery system also with council and court positions. The overall idea is somewhat similar to the "slave professions" in the Slavery Expansion mod, but using court positions has a number of advantages - they are much more sophisticated, the AI can take full advantage of them, they can be restricted by religion, culture, and government type, etc.
+
+### New Slave Court Positions
+
+This mod introduces 2 new court positions that are reserved for slaves or former slaves conferring somewhat lesser but still tangible advantages:
+
+* *Slave Concubine*: diplomacy / attraction, restricted to polygamous religions and cultures, gives court grandeur and prestige (5 positions)
+* *Mameluke Captain*: martial / prowess, restricted to clan governments, gives court grandeur and knights effectiveness (3 positions)
+
+More slave court positions will be added in future versions.
+
+### Changes to Existing Council and Court Positions
+
+This mod divides the existing council and court positions into such that are available to slaves (always or only for certain government forms), and such that are not available to slaves at all.
+
+The following 14 court positions are available to slaves: *Court Physician*, *Antiquarian*, *Court Gardener*, *Court Tutor*, *Food Taster*, *Seneschal*, *Cupbearer*, *Chief Eunuch*, *Court Jester*, *Court Poet*, *Court Musician*, *Bodyguard*, *Personal Champion*, and *Executioner*. The rest of the court positions are not available to slaves, because they are considered either ceremonial (reserved for vassals to make them happy) or religious, or are subject to certain game limitations.
+
+The following 4 council positions are available to slaves: *Chancellor*, *Steward*, *Marshal*, and *Spymaster*. The *Court Chaplain* council position is not available to slaves, since it is considered religious. Note that *Chancellor*, *Steward*, and *Marshal* are only available to slaves if your government is clan or tribal, mostly to reflect the fact that historically such important roles were held by slaves only if they were considered more loyal than other available options, which was mostly the case in certain Muslim and tribal societies.
+
+Once a slave is assigned to a court position, he or she is paid a reduced salary (25%) and has an increased opinion gain (3x) compared to other courtiers. AI rulers are therefore more likely to appoint slaves to court positions.
+
+When evaluating slaves for buying, selling, enslaving, etc., the AI considers their fitness for all these positions. Slaves that are evaluated as useful usually end up actually being used (employed in a council or court position) by the AI.
+
 ### Slavery Events
 
 For the moment, there is just one additional slavery event introduced by this mod.
 
-* *Buy Foreign Slaves*: Slave traders bring two slaves for sale and you can buy one of them. The slaves are of faith and culture that is different from yours, and never of faith that falls under the *Slavery Crime* doctrine. One of the slaves has skills / traits that make him or her more valuable, for the other one they are generated completely at random.
+* *Buy Foreign Slaves*: Slave traders bring two slaves for sale and you can buy one of them. The slaves are of faith and culture that is different from yours, and never of faith that falls under the *Slavery Crime* doctrine. One of the slaves has skills / traits that make him or her a better fit for a particular occupation, for the other one they are generated completely at random.
 
-Besides adding flavor, the above event serves the purpose of "seeding" the game with more slaves that would normally exist if the only way to create them was to enslave prisoners. It will fire approximately every 5 years for every ruler of rank count and above. The AI will mostly not buy, unless it considers one of the slaves really useful according to the factors described in [AI Willingness to Buy or Sell](#ai-willingness-to-buy-or-sell).
+Besides adding flavor, the above event serves the purpose of spawning more slaves that would normally exist if the only way to create them was to enslave prisoners. It will fire approximately every 5 years for every ruler of rank count and above. The AI will mostly not buy, unless it considers one of the slaves really useful according to the factors described in [AI Willingness to Buy or Sell](#ai-willingness-to-buy-or-sell).
 
 ### Slave Memories
 
@@ -149,6 +169,10 @@ This mod may not be compatible with all other mods that modify the slavery syste
 This mod is fully compatible with the *Slavery System: Disabled* and *Slavery System: Enabled* Carnalitas game rules. If the slavery system is disabled, all interactions and events introduced or modified by this mod will be disabled too, and vice versa.
 
 This mod is not compatible with the *Slavery System: Consensual Only* Carnalitas game rule. If this option is chosen, the effect will be exactly the same as with *Slavery System: Enabled*.
+
+### Compatibility with Total Conversion Mods
+
+TODO
 
 ## Changes to Carnalitas
 
