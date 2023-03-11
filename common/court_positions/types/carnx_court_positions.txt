@@ -267,7 +267,7 @@ carnx_slave_captain_court_position = {
 			value = martial
 			multiply = 2
 			max = 50
-			desc = court_position_skill_diplomacy
+			desc = court_position_skill_martial
 		}
 		add = {
 			value = prowess
