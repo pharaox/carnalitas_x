@@ -7,6 +7,7 @@ build: clean
 	rsync -r --exclude=".*" --exclude=tmp --exclude=Makefile . tmp/$(NAME)
 	cp descriptor.mod tmp/$(NAME).mod
 	echo "path=\"mod/$(NAME)\"" >> tmp/$(NAME).mod
+	pandoc README.md -t html5 -o tmp/$(NAME)-$(VERSION).pdf
 	cd tmp && zip -r $(NAME)-$(VERSION).zip . && cd ..
 
 .PHONY: clean

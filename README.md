@@ -13,21 +13,24 @@ In particular:
 * It's not exactly easy for the human player to find rulers willing to buy or sell slaves, and there are rather few slaves owned by the AI to begin with.
 * *Enslave* is possible on free courtiers, which doesn't make much sense.
 * Once a prisoner is converted to a slave, it's no longer possible to ransom him or her.
-* Although there are religious doctrines that should govern whether owning slaves of certain faiths is considered a crime, shunned, or accepted, they are not followed consistently when determining if someone can be enslaved, freed, bought, or seized.
+* Religious doctrines that govern whether owning slaves of certain faiths is considered a crime, shunned, or accepted, are not followed consistently when determining if someone should be enslaved, freed, bought, or seized.
 
-In a nutshell, what you can do as a human player is easily enslave a lot of people, sell any you don't need to the AI, buy any you may fancy from the AI, while the AI mostly passively obliges. With mods such as [Carnalitas Slavery Expansion](https://www.loverslab.com/files/file/21651-carnalitas-slavery-expansion/) you can also assign them "professions" for additional benefits. However, these are also human-only, the AI never assigns them. All of this kills the realism and immersion, and makes the game both a lot easier and less interesting than it could be.
+In a nutshell, what you can do as a human player is easily enslave a lot of people, sell any you don't need to the AI, and buy any you may fancy from the AI, while the AI mostly passively obliges. With mods such as [Carnalitas Slavery Expansion](https://www.loverslab.com/files/file/21651-carnalitas-slavery-expansion/) you can also assign them "professions" for additional benefits. However, these are also human-only, the AI never assigns them. All of this undermines the realism and immersion, and makes the game both a lot easier and less interesting than it could be.
 
 This mod introduces a redesigned slavery system, one aiming to better integrate slavery with other aspects of the game, make interacting with slaves and other rulers more interesting and rewarding, achieve a better game balance, and maintain a reasonable challenge for the human player. It does this by reworking most of the slave interactions, introducing some new ones, making slaves more desirable for council and court positions, adding slave-related events, and rebalancing or fixing many of the original effects and outcomes, while still maintaining compatibility with other Carnalitas features, other mods based on Carnalitas, and total conversion mods.
 
 With this mod:
 
 * The AI competes actively in obtaining the best slaves, taking into account factors such as skills, aptitudes, claims, attraction, age, price, current jobs and more when buying, selling, enslaving or freeing.
-* Slaves can be ransomed or gifted.
-* They can also be assigned to (some, but not all) council and court positions for additional benefits, and the AI is fully capable of doing this as well.
-* There are new court positions that are reserved for slaves, such as *Slave Concubine* or *Mameluke Captain*, available depending on religion, culture, and government form.
-* There are also events that spawn additional slaves into the world, fit for specific occupations.
+* Slave prices better reflect the actual usefulness of slaves.
+* It's much easier to find rulers willing to buy or sell slaves via special convenience interactions.
+* Slavery doctrines have a significant and consistent impact that better reflects their original meaning.
+* Slaves can be also ransomed or gifted.
+* Slaves can be assigned to (some, but not all) council and court positions for additional benefits, and the AI is fully capable of doing this as well.
+* There are new court positions reserved for slaves or former slaves, such as *Slave Concubine* or *Mameluke Captain*, available depending on religion, culture, and government form.
+* Additional slaves fit for specific occupations are spawned into the world via events.
 
-All of this contributes to a system in which slaves are genuinely useful to their owners, there is an actual demand for them conditioned by religion and culture, and this demand is satisfied by active enslaving, slave trade, and slave-related events. It feels a lot more realistic and (hopefully) more interesting than before, no matter if you play the most implacable enslaver, the greatest slave liberator, or something else entirely.
+All taken together, slaves are now genuinely useful to their owners, there is an actual demand for them conditioned by religion and culture, and this demand is satisfied by active enslaving, slave trade, and slave-related events. As a human player, you can still use the system to your advantage, but it's more challenging and hopefully more interesting to do this.
 
 ## Features
 
@@ -113,11 +116,11 @@ More slave court positions will be added in future versions.
 
 ### Changes to Existing Council and Court Positions
 
-This mod divides the existing council and court positions into such that are available to slaves (always or only for certain government forms), and such that are not available to slaves at all.
+This mod divides the existing council and court positions into ones that are available to slaves (always or only for certain government forms), and ones that are not available to slaves at all.
 
 The following 14 court positions are available to slaves: *Court Physician*, *Antiquarian*, *Court Gardener*, *Court Tutor*, *Food Taster*, *Seneschal*, *Cupbearer*, *Chief Eunuch*, *Court Jester*, *Court Poet*, *Court Musician*, *Bodyguard*, *Personal Champion*, and *Executioner*. The rest of the court positions are not available to slaves, because they are considered either ceremonial (reserved for vassals to make them happy) or religious, or are subject to certain game limitations.
 
-The following 4 council positions are available to slaves: *Chancellor*, *Steward*, *Marshal*, and *Spymaster*. The *Court Chaplain* council position is not available to slaves, since it is considered religious. Note that *Chancellor*, *Steward*, and *Marshal* are only available to slaves if your government is clan or tribal, mostly to reflect the fact that historically such important roles were held by slaves only if they were considered more loyal than other available options, which was mostly the case in certain Muslim and tribal societies.
+The following 4 council positions are available to slaves: *Chancellor*, *Steward*, *Marshal*, and *Spymaster*. The *Court Chaplain* council position is not available to slaves, since it is considered religious. Note that *Chancellor*, *Steward*, and *Marshal* are only available to slaves if your government is clan or tribal, to reflect the fact that historically such important roles were held by slaves only if they were considered more loyal than other available options, which was the case in certain Muslim and tribal societies.
 
 Once a slave is assigned to a court position, he or she is paid a reduced salary (25%) and has an increased opinion gain (3x) compared to other courtiers. AI rulers are therefore more likely to appoint slaves to court positions.
 
@@ -172,7 +175,9 @@ This mod is not compatible with the *Slavery System: Consensual Only* Carnalitas
 
 ### Compatibility with Total Conversion Mods
 
-TODO
+Due to the changes mentioned in [Changes to Existing Council and Court Positions](#changes-to-existing-council-and-court-positions), this mod may overwrite changes to council and court positions by total conversion mods. For best experience, such mods now require compatibility patches.
+
+Compatibility patches for [Elder Kings 2](https://steamcommunity.com/sharedfiles/filedetails/?id=2887120253) and [Tales of Ireland](https://steamcommunity.com/sharedfiles/filedetails/?id=2453915294) are provided as separate downloads. I haven't checked compatibility with other total conversion mods, if you notice any issues please let me know.
 
 ## Changes to Carnalitas
 
