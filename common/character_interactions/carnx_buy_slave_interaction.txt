@@ -260,10 +260,10 @@ carn_buy_slave_directly_interaction = {
 			add = -50
 		}
 
-		# Slavery shunned by faith (-50)
+		# Slavery shunned by faith
 		modifier = {
 			carnx_is_slavery_shunned_trigger = { CHARACTER = scope:secondary_recipient }
-			add = -50
+			add = carnx_ai_negative_shunned_impact_value
 		}
 
 		# Lacking councillors, court positions, knights, or commanders (PIV for each skill, aptitude, or trait above cutoff)

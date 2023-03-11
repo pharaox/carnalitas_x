@@ -333,14 +333,14 @@ carnx_ransom_slave_interaction = {
 			add = 25
 		}
 
-		# Slavery crime (50) or shunned by faith (25)
+		# Slavery crime or shunned by faith
 		modifier = {
 			carnx_is_slavery_crime_trigger = { CHARACTER = scope:secondary_recipient }
-			add = 50
+			add = carnx_ai_positive_crime_impact_reduced_value
 		}
 		modifier = {
 			carnx_is_slavery_shunned_trigger = { CHARACTER = scope:secondary_recipient }
-			add = 25
+			add = carnx_ai_positive_shunned_impact_reduced_value
 		}
 
 		# Family and relations (-50 to -200 depending on how close the relation)

@@ -39,6 +39,18 @@ carnx_ai_negative_age_impact_halved_value = -6
 carnx_ai_positive_price_impact_halved_value = 5
 carnx_ai_negative_price_impact_halved_value = -5
 
+# AI impact of religius doctrines values
+carnx_ai_positive_crime_impact_value = 1000
+carnx_ai_negative_crime_impact_value = -1000
+carnx_ai_positive_shunned_impact_value = 50
+carnx_ai_negative_shunned_impact_value = -50
+
+# AI impact of religious doctrines reduced values
+carnx_ai_positive_crime_impact_reduced_value = 50
+carnx_ai_negative_crime_impact_reduced_value = -50
+carnx_ai_positive_shunned_impact_reduced_value = 25
+carnx_ai_negative_shunned_impact_reduced_value = -25
+
 # Multiplier for the opinion modifier affecting ai willingness to buy and sell slaves
 carnx_buy_sell_slave_ai_opinion_multiplier = 0.12
 

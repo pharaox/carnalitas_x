@@ -100,10 +100,10 @@ carn_seize_slave_interaction = {
 			add = 50
 		}
 
-		# Slavery shunned by faith (-50)
+		# Slavery shunned by faith
 		modifier = {
 			carnx_is_slavery_shunned_trigger = { CHARACTER = scope:recipient }
-			add = -50
+			add = carnx_ai_negative_shunned_impact_value
 		}
 
 		# Family and relations (-50 to -200 depending on how close the relation)

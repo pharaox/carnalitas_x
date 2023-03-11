@@ -540,7 +540,7 @@ carnx_sell_slave_ai_accept_no_actor_value = {
 				carnx_is_slavery_crime_trigger = { CHARACTER = scope:slave }
 			}
 		}
-		add = -1000
+		add = carnx_ai_negative_crime_impact_value
 	}
 	if = {
 		limit = {
@@ -548,7 +548,7 @@ carnx_sell_slave_ai_accept_no_actor_value = {
 				carnx_is_slavery_shunned_trigger = { CHARACTER = scope:slave }
 			}
 		}
-		add = -50
+		add = carnx_ai_negative_shunned_impact_value
 	}
 
 	# Lacking councillors or court positions (PIV for max skill or aptitude above cutoff)

@@ -112,15 +112,15 @@ carnx_gift_slave_interaction = {
 			desc = carnx_slave_reason
 		}
 
-		# Slavery crime (-1000) or shunned by faith (-50)
+		# Slavery crime or shunned by faith
 		modifier = {
 			carnx_is_slavery_crime_trigger = { CHARACTER = scope:secondary_recipient }
-			add = -1000
+			add = carnx_ai_negative_crime_impact_value
 			desc = carn_enslave_crime_in_recipient_faith
 		}
 		modifier = {
 			carnx_is_slavery_shunned_trigger = { CHARACTER = scope:secondary_recipient }
-			add = -50
+			add = carnx_ai_negative_shunned_impact_value
 			desc = carn_enslave_shunned_in_recipient_faith
 		}
 
@@ -293,14 +293,14 @@ carnx_gift_slave_interaction = {
 			}
 		}
 
-		# Slavery crime (50) or shunned by faith (25)
+		# Slavery crime or shunned by faith
 		modifier = {
 			carnx_is_slavery_crime_trigger = { CHARACTER = scope:secondary_recipient }
-			add = 50
+			add = carnx_ai_positive_crime_impact_reduced_value
 		}
 		modifier = {
 			carnx_is_slavery_shunned_trigger = { CHARACTER = scope:secondary_recipient }
-			add = 25
+			add = carnx_ai_positive_shunned_impact_reduced_value
 		}
 
 		# Family and relations (-50 to -200 depending on how close the relation)
