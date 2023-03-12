@@ -1,3 +1,14 @@
+# Version 0.5.0
+
+## Miscellaneous
+
+* Characters that can be enslaved and have a base price higher than a threshold are now captured instead of killed during raids and sieges.
+* Characters captured during a raid have 50% chance of getting the "marked for enslavement" modifier, which makes enslavement by the AI more likely.
+
+## Bug Fixes
+
+* Traits and perks of the army commander are now properly checked when determining the chance to capture prisoners during a raid (vanilla bug)
+
 # Version 0.4.0
 
 ## Court Positions
