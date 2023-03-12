@@ -1,4 +1,53 @@
-﻿# Add tyranny if you don't have a justifiable reason. Overridden from vanilla.
+﻿# A lite version of imprison_character_effect without opinion penalties or other consequences (as they were captured in war, not at your command)
+# Overridden from vanilla.
+prisoner_of_war_capture_effect = {
+	$TARGET$ = { save_temporary_scope_as = new_target }
+	$IMPRISONER$ = { save_temporary_scope_as = imprisoner }
+
+	if = {
+		limit = {
+			scope:new_target = {
+				exists = liege
+				OR = {
+					is_landed = yes
+					is_close_or_extended_family_of = liege
+					is_spouse_of = liege
+				}
+			}
+		}
+
+		scope:imprisoner = {
+			imprison = {
+				target = scope:new_target
+				type = house_arrest
+			}
+		}
+	}
+	else = {
+		scope:imprisoner = {
+			imprison = {
+				target = scope:new_target
+				type = dungeon
+			}
+		}
+	}
+
+	# CarnalitasX: Mark character for enslavement
+	hidden_effect = {
+		scope:new_target = {
+			random = {
+				chance = carnx_mark_for_enslavement_chance
+				add_character_modifier = {
+					modifier = carnx_marked_for_enslavement_modifier
+					years = 2
+				}
+				carnx_debug_log_effect = { MSG = carnx_debug_msg_char_marked_for_enslavement }
+			}
+		}
+	}
+}
+
+# Add tyranny if you don't have a justifiable reason. Overridden from vanilla.
 imprison_tyranny_effect = {
 
 	# Normalize scopes for tooltip loc, because there is no god nor consistency

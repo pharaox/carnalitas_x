@@ -1,0 +1,25 @@
+﻿# Determines if a character should be captured rather than killed during a raid or a siege.
+# Overridden from vanilla.
+desirable_for_capture_trigger = {
+	OR = {
+		is_landed = yes
+		any_parent = { always = yes }
+		any_spouse = { is_landed = yes }
+		any_close_family_member = { is_landed = yes }
+		diplomacy >= very_high_skill_rating
+		martial >= very_high_skill_rating
+		stewardship >= very_high_skill_rating
+		intrigue >= very_high_skill_rating
+		learning >= very_high_skill_rating
+		has_trait = lifestyle_physician
+		has_trait = lifestyle_mystic
+
+		# CarnalitasX: Add slave base price condition
+		AND = {
+			scope:occupant = {
+				NOT = { carnx_is_slavery_crime_trigger = { CHARACTER = prev } }
+			}
+			carnx_slave_base_price_value >= carnx_desirable_for_capture_slave_price_threshold
+		}
+	}
+}

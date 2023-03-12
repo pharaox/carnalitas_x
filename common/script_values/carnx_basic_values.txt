@@ -100,6 +100,14 @@ carnx_executioner_aptitude_threshold = average_effectiveness
 carnx_slave_concubine_aptitude_threshold = poor_effectiveness
 carnx_slave_captain_aptitude_threshold = average_effectiveness
 
+# Capture and enslavement chances
+carnx_base_raid_capture_chance = 20
+carnx_base_raid_mark_for_enslavement_chance = 50
+carnx_base_siege_mark_for_enslavement_chance = 0
+
+# Slave price thresholds
+carnx_desirable_for_capture_slave_price_threshold = 15
+
 # Female chance when creating slave characters
 carnx_create_character_female_chance = 75
 

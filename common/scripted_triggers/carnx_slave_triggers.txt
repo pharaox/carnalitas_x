@@ -743,6 +743,14 @@ carnx_is_slave_soldiers_enabled_trigger = {
 	}
 }
 
+carnx_is_landed_or_family_trigger = {
+	OR = {
+		is_landed = yes
+		any_spouse = { is_landed = yes }
+		any_close_family_member = { is_landed = yes }
+	}
+}
+
 is_diplomatically_available = {
 	is_busy_in_events_localised = yes
 }

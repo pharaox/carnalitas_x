@@ -1,0 +1,26 @@
+﻿# Base chance to capture a character during a raid.
+# Overridden from vanilla.
+raid_base_capture_chance = {
+	# CarnalitasX: Use a script value for easier tweaking
+	value = carnx_base_raid_capture_chance
+
+	# CarnalitasX: Fix army commander scope
+	if = {
+		limit = { exists = root.army_commander }
+		root.army_commander = {
+			# Trait: Viking
+			if = {
+				limit = { has_trait = viking }
+				add = 5
+			}
+			# Dynasty Perk: Practiced Kidnappers
+			if = {
+				limit = {
+					exists = dynasty
+					dynasty = { has_dynasty_perk = fp1_pillage_legacy_3 }
+				}
+				add = 20
+			}
+		}
+	}
+}

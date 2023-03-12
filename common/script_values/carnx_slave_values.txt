@@ -839,6 +839,21 @@ carnx_root_faith_dominant_gender_adjusted_female_chance = {
 	max = 100
 }
 
+carnx_mark_for_enslavement_chance = {
+	if = {
+		# Don't mark for enslavement landed characters or their family
+		limit = { carnx_is_landed_or_family_trigger = yes }
+		value = 0
+	}
+	else_if = {
+		limit = { exists = scope:raider }
+		value = carnx_base_raid_mark_for_enslavement_chance
+	}
+	else = {
+		value = carnx_base_siege_mark_for_enslavement_chance
+	}
+}
+
 carn_scope_buyer_current_gold_value = {
 	value = scope:buyer.short_term_gold
 }
