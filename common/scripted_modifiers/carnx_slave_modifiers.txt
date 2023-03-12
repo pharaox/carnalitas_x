@@ -385,22 +385,28 @@ carnx_age_modifier = {
 		add = {
 			value = $SCALE$
 			if = {
-				limit = { $SLAVE$.age < 16 }
+				limit = { $SLAVE$.carnx_age_value < carnx_prime_age_min_value }
 				subtract = {
-					value = 16
-					subtract = $SLAVE$.age
+					value = carnx_prime_age_min_value
+					subtract = $SLAVE$.carnx_age_value
+					divide = {
+						value = carnx_prime_age_min_value
+						subtract = carnx_young_zero_age_value
+					}
 					multiply = $SCALE$
-					divide = 10
 					floor = yes
 				}
 			}
 			else_if = {
-				limit = { $SLAVE$.age > 30 }
+				limit = { $SLAVE$.carnx_age_value > carnx_prime_age_max_value }
 				subtract = {
-					value = $SLAVE$.age
-					subtract = 30
+					value = $SLAVE$.carnx_age_value
+					subtract = carnx_prime_age_max_value
+					divide = {
+						value = carnx_old_zero_age_value
+						subtract = carnx_prime_age_max_value
+					}
 					multiply = $SCALE$
-					divide = 20
 					floor = yes
 				}
 			}

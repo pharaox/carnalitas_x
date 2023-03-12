@@ -108,6 +108,12 @@ carnx_base_siege_mark_for_enslavement_chance = 0
 # Slave price thresholds
 carnx_desirable_for_capture_slave_price_threshold = 15
 
+# Age min and max values
+carnx_prime_age_min_value = 16
+carnx_prime_age_max_value = 30
+carnx_young_zero_age_value = 0
+carnx_old_zero_age_value = 60
+
 # Female chance when creating slave characters
 carnx_create_character_female_chance = 75
 

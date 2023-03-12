@@ -128,21 +128,30 @@ carnx_slave_base_price_value = {
 	add = {
 		value = 12
 		if = {
-			limit = { age < 16 }
+			limit = { carnx_age_value < carnx_prime_age_min_value }
 			subtract = {
-				value = 16
-				subtract = age
+				value = carnx_prime_age_min_value
+				subtract = carnx_age_value
+				divide = {
+					value = carnx_prime_age_min_value
+					subtract = carnx_young_zero_age_value
+				}
+				multiply = 12
 			}
 		}
 		else_if = {
-			limit = { age > 30 }
+			limit = { carnx_age_value > carnx_prime_age_max_value }
 			subtract = {
-				value = age
-				subtract = 30
-				multiply = 0.5
-				floor = yes
+				value = carnx_age_value
+				subtract = carnx_prime_age_max_value
+				divide = {
+					value = carnx_old_zero_age_value
+					subtract = carnx_prime_age_max_value
+				}
+				multiply = 12
 			}
 		}
+		min = 0
 	}
 
 	# Apply a correction factor to get the final price
@@ -436,22 +445,28 @@ carnx_buy_slave_ai_accept_no_actor_value = {
 		add = {
 			value = carnx_ai_negative_age_impact_value
 			if = {
-				limit = { scope:slave.age < 16 }
+				limit = { scope:slave.carnx_age_value < carnx_prime_age_min_value }
 				subtract = {
-					value = 16
-					subtract = scope:slave.age
+					value = carnx_prime_age_min_value
+					subtract = scope:slave.carnx_age_value
+					divide = {
+						value = carnx_prime_age_min_value
+						subtract = carnx_young_zero_age_value
+					}
 					multiply = carnx_ai_negative_age_impact_value
-					divide = 10
 					floor = yes
 				}
 			}
 			else_if = {
-				limit = { scope:slave.age > 30 }
+				limit = { scope:slave.carnx_age_value > carnx_prime_age_max_value }
 				subtract = {
-					value = scope:slave.age
-					subtract = 30
+					value = scope:slave.carnx_age_value
+					subtract = carnx_prime_age_max_value
+					divide = {
+						value = carnx_old_zero_age_value
+						subtract = carnx_prime_age_max_value
+					}
 					multiply = carnx_ai_negative_age_impact_value
-					divide = 20
 					floor = yes
 				}
 			}
@@ -689,22 +704,28 @@ carnx_sell_slave_ai_accept_no_actor_value = {
 		add = {
 			value = carnx_ai_positive_age_impact_value
 			if = {
-				limit = { scope:slave.age < 16 }
+				limit = { scope:slave.carnx_age_value < carnx_prime_age_min_value }
 				subtract = {
-					value = 16
-					subtract = scope:slave.age
+					value = carnx_prime_age_min_value
+					subtract = scope:slave.carnx_age_value
+					divide = {
+						value = carnx_prime_age_min_value
+						subtract = carnx_young_zero_age_value
+					}
 					multiply = carnx_ai_positive_age_impact_value
-					divide = 10
 					floor = yes
 				}
 			}
 			else_if = {
-				limit = { scope:slave.age > 30 }
+				limit = { scope:slave.carnx_age_value > carnx_prime_age_max_value }
 				subtract = {
-					value = scope:slave.age
-					subtract = 30
+					value = scope:slave.carnx_age_value
+					subtract = carnx_prime_age_max_value
+					divide = {
+						value = carnx_old_zero_age_value
+						subtract = carnx_prime_age_max_value
+					}
 					multiply = carnx_ai_positive_age_impact_value
-					divide = 20
 					floor = yes
 				}
 			}
@@ -852,6 +873,10 @@ carnx_mark_for_enslavement_chance = {
 	else = {
 		value = carnx_base_siege_mark_for_enslavement_chance
 	}
+}
+
+carnx_age_value = {
+	value = age
 }
 
 carn_scope_buyer_current_gold_value = {

@@ -7,7 +7,12 @@
 
 ## Bug Fixes
 
-* Traits and perks of the army commander are now properly checked when determining the chance to capture prisoners during a raid (vanilla bug)
+* Traits and perks of the army commander are now properly checked when determining the chance to capture prisoners during a raid (vanilla bug).
+* Fixed impact of age on slave prices and interactions.
+
+## Housekeeping
+
+* Extracted values related to age for easier overriding by compatibility submods.
 
 # Version 0.4.0
 
