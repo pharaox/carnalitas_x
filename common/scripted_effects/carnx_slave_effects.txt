@@ -1294,21 +1294,12 @@ carnx_gift_slave_interaction_effect = {
 	}
 }
 
-carnx_get_potential_buyers_or_sellers_effect = {
-	every_neighboring_and_across_water_top_liege_realm_owner = {
+carnx_get_valid_buyers_or_sellers_effect = {
+	save_temporary_scope_as = owner
+	every_ruler = {
+		limit = {
+			carnx_valid_buyer_or_seller_trigger = { OWNER = scope:owner }
+		}
 		add_to_list = $LIST$
-	}
-	if = {
-		limit = { exists = top_liege }
-		top_liege = {
-			every_vassal_or_below = {
-				add_to_list = $LIST$
-			}
-		}
-	}
-	else = {
-		every_vassal_or_below = {
-			add_to_list = $LIST$
-		}
 	}
 }

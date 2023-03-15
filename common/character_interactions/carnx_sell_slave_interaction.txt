@@ -14,6 +14,40 @@ carn_sell_slave_interaction = {
 	ai_min_reply_days = 0
 	ai_max_reply_days = 0
 
+	redirect = {
+		# If the recipient is a slave of scope:actor that they are likely to sell,
+		# redirect to a random ruler within trading range who is likely to buy the slave
+		scope:recipient = {
+			if = {
+				limit = {
+					has_trait = slave
+					has_relation_slave_owner = scope:actor
+					carn_slave_can_be_sold_trigger = yes
+					scope:actor = {
+						is_ai = yes
+						carnx_is_likely_to_sell_slave_trigger = { SLAVE = scope:recipient }
+					}
+				}
+				save_scope_as = secondary_recipient
+				random_ruler = {
+					limit = {
+						is_ai = yes
+						carnx_candidate_to_sell_slave_to_trigger = yes
+						is_landed = yes
+						capital_province = {
+							squared_distance = {
+								target = scope:actor.capital_province
+								value <= scope:actor.carnx_slave_trading_range_value
+							}
+						}
+						carnx_is_likely_to_buy_slave_trigger = { SLAVE = scope:secondary_recipient }
+					}
+					save_scope_as = recipient
+				}
+			}
+		}
+	}
+
 	populate_recipient_list = {
 		scope:actor = {
 			every_relation = {
@@ -29,8 +63,13 @@ carn_sell_slave_interaction = {
 	is_shown = {
 		NOT = { has_game_rule = carn_slavery_content_disabled }
 		NOT = { scope:actor = scope:recipient }
-		scope:actor = {
-			carnx_buy_sell_slave_recipient_trigger = { RULER = scope:recipient }
+		trigger_if = {
+			limit = {
+				scope:actor = { is_ai = no }
+			}
+			scope:recipient = {
+				carnx_valid_buyer_or_seller_trigger = { OWNER = scope:actor }
+			}
 		}
 		scope:actor = {
 			carnx_is_slave_owner_trigger = yes
@@ -44,6 +83,12 @@ carn_sell_slave_interaction = {
 	is_valid_showing_failures_only = {
 		scope:recipient = {
 			carnx_candidate_to_sell_slave_to_trigger = yes
+		}
+		trigger_if = {
+			limit = { exists = scope:secondary_recipient }
+			scope:secondary_recipient = {
+				carn_slave_can_be_sold_trigger = yes
+			}
 		}
 	}
 
@@ -215,8 +260,11 @@ carn_sell_slave_interaction = {
 	}
 
 	ai_targets = {
-		ai_recipients = realm_characters
+		ai_recipients = liege
+		ai_recipients = vassals
+		ai_recipients = peer_vassals
 		ai_recipients = neighboring_rulers
+		ai_recipients = scripted_relations
 	}
 
 	ai_frequency = 24

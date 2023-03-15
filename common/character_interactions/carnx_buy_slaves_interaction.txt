@@ -15,7 +15,7 @@ carnx_buy_slaves_interaction = {
 		if = {
 			limit = { NOT = { exists = scope:secondary_recipient } }
 			scope:actor = {
-				carnx_get_potential_buyers_or_sellers_effect = { LIST = potential_sellers }
+				carnx_get_valid_buyers_or_sellers_effect = { LIST = potential_sellers }
 			}
 			every_in_list = {
 				list = potential_sellers

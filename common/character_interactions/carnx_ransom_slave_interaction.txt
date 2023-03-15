@@ -11,6 +11,36 @@ carnx_ransom_slave_interaction = {
 
 	notification_text = OFFER_RANSOM_PROPOSAL
 
+	redirect = {
+		# If the recipient is a slave of scope:actor that they are likely to free,
+		# redirect to a random ruler who is a family or relation of the slave and is likely to ransom them
+		scope:recipient = {
+			if = {
+				limit = {
+					has_trait = slave
+					has_relation_slave_owner = scope:actor
+					carnx_slave_can_be_freed_trigger = yes
+					scope:actor = {
+						is_ai = yes
+						carnx_is_likely_to_free_slave_trigger = { SLAVE = scope:recipient }
+					}
+				}
+				save_scope_as = secondary_recipient
+				random_ruler = {
+					limit = {
+						save_temporary_scope_as = ruler
+						carnx_candidate_to_ransom_slave_trigger = yes
+						scope:secondary_recipient = {
+							carnx_is_family_or_positive_relation_trigger = { CHARACTER = scope:ruler }
+						}
+						carnx_is_likely_to_ransom_slave_trigger = { SLAVE = scope:secondary_recipient }
+					}
+					save_scope_as = recipient
+				}
+			}
+		}
+	}
+
 	populate_recipient_list = {
 		scope:actor = {
 			every_relation = {
@@ -42,6 +72,12 @@ carnx_ransom_slave_interaction = {
 	is_valid_showing_failures_only = {
 		scope:recipient = {
 			carnx_candidate_to_ransom_slave_trigger = yes
+		}
+		trigger_if = {
+			limit = { exists = scope:secondary_recipient }
+			scope:secondary_recipient = {
+				carnx_slave_can_be_freed_trigger = yes
+			}
 		}
 	}
 
@@ -254,11 +290,14 @@ carnx_ransom_slave_interaction = {
 	}
 
 	ai_targets = {
-		ai_recipients = realm_characters
+		ai_recipients = liege
+		ai_recipients = vassals
+		ai_recipients = peer_vassals
 		ai_recipients = neighboring_rulers
+		ai_recipients = scripted_relations
 	}
 
-	ai_frequency = 12
+	ai_frequency = 24
 
 	ai_potential = {
 		always = yes

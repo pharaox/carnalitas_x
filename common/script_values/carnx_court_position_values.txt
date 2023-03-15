@@ -766,6 +766,27 @@ carnx_max_aptitude_difference_value = {
 	value = carnx_vanilla_max_aptitude_difference_value
 }
 
+carnx_knight_skill_difference_value = {
+	value = 0
+	if = {
+		limit = {
+			carnx_can_serve_as_knight_trigger = { RULER = scope:liege }
+		}
+		value = prowess
+		subtract = carnx_default_skill_threshold
+	}
+}
+
+carnx_commander_skill_difference_value = {
+	value = 0
+	if = {
+		limit = {
+			carnx_can_serve_as_commander_trigger = { RULER = scope:liege }
+		}
+		value = carnx_commander_skill_value
+	}
+}
+
 carnx_genetic_character_value = {
 	value = genetic_character_value
 }

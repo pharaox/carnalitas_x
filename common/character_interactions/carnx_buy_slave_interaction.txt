@@ -25,6 +25,9 @@ carn_buy_slave_directly_interaction = {
 				}
 			}
 		}
+
+		# TODO If the recipient is the ruler themselves
+		# redirect to a random ruler within trading range who is likely to sell a slave
 	}
 
 	populate_recipient_list = {
@@ -50,8 +53,13 @@ carn_buy_slave_directly_interaction = {
 	is_shown = {
 		NOT = { has_game_rule = carn_slavery_content_disabled }
 		NOT = { scope:actor = scope:recipient }
-		scope:actor = {
-			carnx_buy_sell_slave_recipient_trigger = { RULER = scope:recipient }
+		trigger_if = {
+			limit = {
+				scope:actor = { is_ai = no }
+			}
+			scope:recipient = {
+				carnx_valid_buyer_or_seller_trigger = { OWNER = scope:actor }
+			}
 		}
 		scope:recipient = {
 			carnx_is_slave_owner_trigger = yes
@@ -241,7 +249,9 @@ carn_buy_slave_directly_interaction = {
 	}
 
 	ai_targets = {
-		ai_recipients = realm_characters
+		ai_recipients = liege
+		ai_recipients = vassals
+		ai_recipients = peer_vassals
 		ai_recipients = neighboring_rulers
 	}
 

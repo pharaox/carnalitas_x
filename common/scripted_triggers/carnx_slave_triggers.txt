@@ -37,26 +37,47 @@ carnx_slave_can_be_freed_trigger = {
 	}
 }
 
-carnx_buy_sell_slave_recipient_trigger = {
-	$RULER$ = {
-		is_ruler = yes
-	}
+carnx_valid_buyer_or_seller_trigger = {
+	is_ruler = yes
+	save_temporary_scope_as = ruler
 	OR = {
-		any_neighboring_and_across_water_top_liege_realm_owner = {
-			this = $RULER$
-		}
+		# Liege or vassals in the same realm
 		trigger_if = {
 			limit = { exists = top_liege }
-			top_liege = {
-				any_vassal_or_below = {
-					this = $RULER$
+			trigger_if = {
+				limit = { $OWNER$ = { exists = top_liege } }
+				$OWNER$.top_liege = top_liege
+			}
+			trigger_else = {
+				top_liege = $OWNER$
+			}
+		}
+		trigger_else = {
+			$OWNER$ = { exists = top_liege }
+			$OWNER$.top_liege = this
+		}
+
+		# Neighboring rulers
+		$OWNER$ = {
+			OR = {
+				any_neighboring_and_across_water_top_liege_realm_owner = {
+					this = scope:ruler
+				}
+				any_neighboring_and_across_water_realm_same_rank_owner = {
+					this = scope:ruler
 				}
 			}
 		}
-		trigger_if = {
-			limit = { NOT = { exists = top_liege } }
-			any_vassal_or_below = {
-				this = $RULER$
+
+		# Rulers within trading range
+		AND = {
+			is_landed = yes
+			$OWNER$ = { is_landed = yes }
+			capital_province = {
+				squared_distance = {
+					target = $OWNER$.capital_province
+					value <= $OWNER$.carnx_slave_trading_range_value
+				}
 			}
 		}
 	}
@@ -127,7 +148,10 @@ carnx_is_family_or_positive_relation_trigger = {
 		has_relation_crush = $CHARACTER$
 		is_spouse_of = $CHARACTER$
 		is_close_or_extended_family_of = $CHARACTER$
-		dynasty = $CHARACTER$.dynasty
+		AND = {
+			NOT = { is_lowborn = yes }
+			dynasty = $CHARACTER$.dynasty
+		}
 	}
 	NOR = {
 		has_relation_rival = $CHARACTER$
@@ -709,6 +733,68 @@ carnx_is_slave_owner_trigger = {
 		type = slave
 		exists = this
 	}
+}
+
+carnx_is_likely_to_buy_slave_trigger = {
+	save_temporary_scope_as = liege
+	NOR = {
+		is_at_war = yes
+		carnx_is_slavery_crime_trigger = { CHARACTER = $SLAVE$ }
+		carnx_is_slavery_shunned_trigger = { CHARACTER = $SLAVE$ }
+	}
+	$SLAVE$ = {
+		NOT = {
+			carnx_is_family_or_positive_relation_trigger = { CHARACTER = scope:liege }
+		}
+		#carnx_is_useful_slave_to_future_owner_trigger = { RULER = scope:liege }
+		OR = {
+			carnx_max_councillor_skill_difference_value >= 5
+			carnx_max_aptitude_difference_value >= 1
+			carnx_knight_skill_difference_value >= 8
+			carnx_commander_skill_difference_value >= 8
+			carnx_has_useful_claims_trigger = { RULER = scope:liege }
+			AND = {
+				carnx_is_attractive_to_character_trigger = { CHARACTER = scope:liege }
+				attraction >= 30
+			}
+		}
+	}
+	opinion = { target = scope:actor value >= 0 }
+}
+
+carnx_is_likely_to_sell_slave_trigger = {
+	save_temporary_scope_as = liege
+	$SLAVE$ = {
+		NOR = {
+			has_character_flag = carnx_slave_recently_bought
+			carnx_is_family_or_positive_relation_trigger = { CHARACTER = scope:liege }
+			#carnx_is_useful_slave_to_current_owner_trigger = { RULER = scope:ruler }
+			is_councillor_of = scope:liege
+			AND = {
+				has_any_court_position = yes
+				any_court_position_employer = { this = scope:liege }
+			}
+			is_knight_of = scope:liege
+			is_commanding_army = yes
+			carnx_has_important_role_trigger = { RULER = scope:liege }
+			carnx_has_useful_claims_trigger = { RULER = scope:liege }
+			AND = {
+				carnx_is_attractive_to_character_trigger = { CHARACTER = scope:liege }
+				attraction >= 30
+			}
+		}
+	}
+	opinion = { target = scope:actor value >= 0 }
+}
+
+carnx_is_likely_to_free_slave_trigger = {
+	# TODO
+	exists = $SLAVE$
+}
+
+carnx_is_likely_to_ransom_slave_trigger = {
+	# TODO
+	exists = $SLAVE$
 }
 
 carnx_employs_slave_as_court_position_trigger = {

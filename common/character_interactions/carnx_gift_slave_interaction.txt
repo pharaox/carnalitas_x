@@ -225,29 +225,15 @@ carnx_gift_slave_interaction = {
 	}
 
 	ai_targets = {
+		ai_recipients = liege
+		ai_recipients = vassals
+		ai_recipients = peer_vassals
+		ai_recipients = neighboring_rulers
 		ai_recipients = scripted_relations
 	}
 	ai_targets = {
-		ai_recipients = liege
-	}
-	ai_targets = {
-		ai_recipients = neighboring_rulers
-		ai_recipients = peer_vassals
-		max = 10
-	}
-	ai_targets = {
-		ai_recipients = vassals
-		max = 10
-	}
-	ai_targets = {
 		ai_recipients = children
-		max = 10
-	}
-	ai_targets = {
 		ai_recipients = family
-		max = 20
-	}
-	ai_targets = {
 		ai_recipients = dynasty
 		max = 20
 	}
