@@ -4,6 +4,9 @@
 
 * Characters that can be enslaved and have a base price higher than a threshold are now captured instead of killed during raids and sieges.
 * Characters captured during a raid have 50% chance of getting the "marked for enslavement" modifier, which makes enslavement by the AI more likely.
+* It is now possible to buy and sell slaves from / to foreign rulers within a dynamic trading range depending on rank, measured as the distance between capitals.
+* AI rulers will attempt to precision target one ruler per slave within the above range when selling slaves.
+* AI rulers will attempt to precision target one ruler per slave when ransoming slaves.
 
 ## Bug Fixes
 
