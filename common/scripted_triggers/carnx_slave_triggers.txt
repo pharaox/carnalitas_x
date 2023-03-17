@@ -746,18 +746,7 @@ carnx_is_likely_to_buy_slave_trigger = {
 		NOT = {
 			carnx_is_family_or_positive_relation_trigger = { CHARACTER = scope:liege }
 		}
-		#carnx_is_useful_slave_to_future_owner_trigger = { RULER = scope:liege }
-		OR = {
-			carnx_max_councillor_skill_difference_value >= 5
-			carnx_max_aptitude_difference_value >= 1
-			carnx_knight_skill_difference_value >= 8
-			carnx_commander_skill_difference_value >= 8
-			carnx_has_useful_claims_trigger = { RULER = scope:liege }
-			AND = {
-				carnx_is_attractive_to_character_trigger = { CHARACTER = scope:liege }
-				attraction >= 30
-			}
-		}
+		carnx_is_useful_above_threshold_to_future_liege_trigger = yes
 	}
 	opinion = { target = scope:actor value >= 0 }
 }
@@ -768,33 +757,66 @@ carnx_is_likely_to_sell_slave_trigger = {
 		NOR = {
 			has_character_flag = carnx_slave_recently_bought
 			carnx_is_family_or_positive_relation_trigger = { CHARACTER = scope:liege }
-			#carnx_is_useful_slave_to_current_owner_trigger = { RULER = scope:ruler }
-			is_councillor_of = scope:liege
-			AND = {
-				has_any_court_position = yes
-				any_court_position_employer = { this = scope:liege }
-			}
-			is_knight_of = scope:liege
-			is_commanding_army = yes
-			carnx_has_important_role_trigger = { RULER = scope:liege }
-			carnx_has_useful_claims_trigger = { RULER = scope:liege }
-			AND = {
-				carnx_is_attractive_to_character_trigger = { CHARACTER = scope:liege }
-				attraction >= 30
-			}
+			carnx_is_useful_above_threshold_to_current_liege_trigger = yes
 		}
 	}
 	opinion = { target = scope:actor value >= 0 }
 }
 
 carnx_is_likely_to_free_slave_trigger = {
-	# TODO
-	exists = $SLAVE$
+	save_temporary_scope_as = liege
+	OR = {
+		carnx_is_slavery_crime_trigger = { CHARACTER = $SLAVE$ }
+		carnx_is_slavery_shunned_trigger = { CHARACTER = $SLAVE$ }
+	}
+	$SLAVE$ = {
+		NOR = {
+			has_character_flag = carnx_slave_recently_bought
+			carnx_is_family_or_positive_relation_trigger = { CHARACTER = scope:liege }
+			carnx_is_useful_above_threshold_to_current_liege_trigger = yes
+		}
+	}
+	opinion = { target = $SLAVE$ value >= 0 }
 }
 
 carnx_is_likely_to_ransom_slave_trigger = {
-	# TODO
-	exists = $SLAVE$
+	save_temporary_scope_as = liege
+	$SLAVE$ = {
+		carnx_is_family_or_positive_relation_trigger = { CHARACTER = scope:liege }
+	}
+	opinion = { target = $SLAVE$ value >= 0 }
+}
+
+carnx_is_useful_above_threshold_to_future_liege_trigger = {
+	OR = {
+		carnx_max_councillor_skill_difference_value >= 5
+		carnx_max_aptitude_difference_value >= 1
+		carnx_knight_skill_difference_value >= 8
+		carnx_commander_skill_difference_value >= 8
+		carnx_has_useful_claims_trigger = { RULER = scope:liege }
+		AND = {
+			carnx_is_attractive_to_character_trigger = { CHARACTER = scope:liege }
+			attraction >= 30
+		}
+	}
+}
+
+carnx_is_useful_above_threshold_to_current_liege_trigger = {
+	OR = {
+		is_councillor_of = scope:liege
+		AND = {
+			has_any_court_position = yes
+			any_court_position_employer = { this = scope:liege }
+		}
+		is_knight_of = scope:liege
+		is_commanding_army = yes
+		carnx_has_important_role_trigger = { RULER = scope:liege }
+		carnx_has_useful_claims_trigger = { RULER = scope:liege }
+		AND = {
+			carnx_is_attractive_to_character_trigger = { CHARACTER = scope:liege }
+			attraction >= 30
+		}
+	}
 }
 
 carnx_employs_slave_as_court_position_trigger = {
