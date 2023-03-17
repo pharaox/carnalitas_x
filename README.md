@@ -25,12 +25,13 @@ With this mod:
 * Slave prices better reflect the actual usefulness of slaves.
 * It's much easier to find rulers willing to buy or sell slaves via special convenience interactions.
 * Slavery doctrines have a significant and consistent impact that better reflects their original meaning.
-* Slaves can be also ransomed or gifted.
+* Slaves can be also ransomed or gifted, and the AI will occasionally do it as well.
 * Slaves can be assigned to (some, but not all) council and court positions for additional benefits, and the AI is fully capable of doing this as well.
 * There are new court positions reserved for slaves or former slaves, such as *Slave Concubine* or *Mameluke Captain*, available depending on religion, culture, and government form.
 * Additional slaves fit for specific occupations are spawned into the world via events.
+* Useful characters are much more likely to be captured instead of killed during raids and sieges.
 
-All taken together, slaves are now genuinely useful to their owners, there is an actual demand for them conditioned by religion and culture, and this demand is satisfied by active enslaving, slave trade, and slave-related events. As a human player, you can still use the system to your advantage, but it's more challenging and hopefully more interesting to do this.
+All taken together, slaves are now genuinely useful to their owners, there is an actual demand for them conditioned by religion and culture, and this demand is satisfied by warfare, raiding, slave trade, and slave-related events. As a human player, you can still use the system to your advantage, but it's more challenging and hopefully more interesting to do this.
 
 ## Features
 
@@ -68,6 +69,16 @@ While it is possible to initiate buying or selling of slaves by right-clicking o
 * *Buy Slaves*: Buy a slave by choosing from the list of all slaves that other rulers are willing to sell to you. If there are no such slaves, the list will be empty.
 * *Sell Slaves*: Sell one of your slaves by choosing from the list of all other rulers that are willing to buy that slave from you. If there are no potential buyers for a slave, the list will be empty.
 
+#### Slave Trading Ranges
+
+For added realism and also for performance reasons, it is not possible to target any ruler with a request to buy or sell a slave. The following rulers are valid targets for buy and sell interactions for the human player:
+
+* Any vassal or liege in the same realm.
+* Neighboring independent rulers.
+* Foreign rulers within a dynamic trading range depending on rank (smallest for counts, largest for emperors), measured as the distance between capitals.
+
+The AI uses a slightly different version of the above due to engine limitations. Starting with version 0.5.0, AI rulers will attempt to precision target one ruler per slave within the above range when selling slaves, to improve their chances to find a buyer.
+
 ### Enslaving and Seizing Prisoners
 
 As in Carnalitas, prisoners can be enslaved via the *Enslave* interaction. Prisoners that are already someone else's slaves can be "seized" instead via the *Seize Slave* interaction.
@@ -75,6 +86,8 @@ As in Carnalitas, prisoners can be enslaved via the *Enslave* interaction. Priso
 Unlike Carnalitas, a person can only be enslaved if he or she is a prisoner. The *Enslave* interaction is not available on free courtiers. Since a prisoner doesn't really have a choice, both *Enslave* and *Seize Slave* interactions are accepted automatically.
 
 When deciding to initiate enslaving or seizing of slaves, the AI is driven by considerations similar to the ones listed under [AI Willingness to Buy or Sell](#ai-willingness-to-buy-or-sell). In addition, factors such as AI compassion, greed, and their opinion of the prisoner also play a role. Unlike Carnalitas, the AI would not enslave a prisoner that should rather be executed (execution reason, rival / nemesis, unfaithful spouse, etc.), unless the prisoner survived for more than 2 years.
+
+For added realism and to ensure the mod doesn't disrupt the original game balance, the *Enslave* interaction is balanced in such a way that only about 20% of all prisoners are actually enslaved by the AI. The rest are executed, ransomed, or simply released.
 
 ### Freeing and Ransoming Slaves
 
@@ -105,7 +118,7 @@ Carnalitas introduces the *Slavery Crime* and *Slavery Shunned* religious doctri
 
 Starting with version 0.4.0, this mod integrates the slavery system also with council and court positions. The overall idea is somewhat similar to the "slave professions" in the Slavery Expansion mod, but using court positions has a number of advantages - they are much more sophisticated, the AI can take full advantage of them, they can be restricted by religion, culture, and government type, etc.
 
-### New Slave Court Positions
+#### New Slave Court Positions
 
 This mod introduces 2 new court positions that are reserved for slaves or former slaves conferring somewhat lesser but still tangible advantages:
 
@@ -114,7 +127,7 @@ This mod introduces 2 new court positions that are reserved for slaves or former
 
 More slave court positions will be added in future versions.
 
-### Changes to Existing Council and Court Positions
+#### Changes to Existing Council and Court Positions
 
 This mod divides the existing council and court positions into ones that are available to slaves (always or only for certain government forms), and ones that are not available to slaves at all.
 
@@ -125,6 +138,10 @@ The following 4 council positions are available to slaves: *Chancellor*, *Stewar
 Once a slave is assigned to a court position, he or she is paid a reduced salary (25%) and has an increased opinion gain (3x) compared to other courtiers. AI rulers are therefore more likely to appoint slaves to court positions.
 
 When evaluating slaves for buying, selling, enslaving, etc., the AI considers their fitness for all these positions. Slaves that are evaluated as useful usually end up actually being used (employed in a council or court position) by the AI.
+
+### Capturing Slaves during Raids and Sieges
+
+With this mod, characters that can be enslaved and have a base price higher than a threshold are now captured instead of killed during raids and sieges. In addition, characters captured during a raid have 50% chance of getting the "marked for enslavement" modifier, which makes enslavement by the AI more likely. This increases the number of characters enslaved as a result of warfare or raiding.
 
 ### Slavery Events
 
