@@ -125,6 +125,8 @@ This mod introduces 2 new court positions that are reserved for slaves or former
 * *Slave Concubine*: diplomacy / attraction, restricted to polygamous religions and cultures, gives court grandeur and prestige (5 positions)
 * *Mameluke Captain*: martial / prowess, restricted to clan governments, gives court grandeur and knights effectiveness (3 positions)
 
+Any children of *Slave Concubines* are no longer slaves and have their correct father, house, dynasty, faith, and culture, including effects of dynasty perks.
+
 More slave court positions will be added in future versions.
 
 #### Changes to Existing Council and Court Positions
@@ -145,11 +147,17 @@ With this mod, characters that can be enslaved and have a base price higher than
 
 ### Slavery Events
 
-For the moment, there is just one additional slavery event introduced by this mod.
+#### Buy Foreign Slaves
 
-* *Buy Foreign Slaves*: Slave traders bring two slaves for sale and you can buy one of them. The slaves are of faith and culture that is different from yours, and never of faith that falls under the *Slavery Crime* doctrine. One of the slaves has skills / traits that make him or her a better fit for a particular occupation, for the other one they are generated completely at random.
+Slave traders bring two slaves for sale and you can buy one of them. The slaves are of faith and culture that is different from yours, and never of faith that falls under the *Slavery Crime* doctrine. One of the slaves has skills / traits that make him or her a better fit for a particular occupation, for the other one they are generated completely at random.
 
-Besides adding flavor, the above event serves the purpose of spawning more slaves that would normally exist if the only way to create them was to enslave prisoners. It will fire approximately every 5 years for every ruler of rank count and above. The AI will mostly not buy, unless it considers one of the slaves really useful according to the factors described in [AI Willingness to Buy or Sell](#ai-willingness-to-buy-or-sell).
+Besides adding flavor, the above event serves the purpose of spawning more slaves that would normally exist if the only way to create them was to enslave prisoners. It fires approximately every 5 years for every ruler of rank count and above. The AI will mostly not buy, unless it considers one of the slaves really useful according to the factors described in [AI Willingness to Buy or Sell](#ai-willingness-to-buy-or-sell).
+
+#### AI Rulers Having Sex with Their Slaves
+
+AI rulers may have sex with one of their slaves (or former slaves that are also *Slave Concubines*) once a year if they are attracted to them, via a hidden event. The chance of pregnancy is for the moment hardcoded at 10%.
+
+This event will fire also for the human player if the *Make Love* interaction is disabled. If the *Make Love* interaction is enabled, the event will not fire, since the player is then expected to make love to their slaves and *Slave Concubines*. The chance of pregnancy for the *Make Love* interaction is hardcoded at 30%, as in the original Carnalitas.
 
 ### Slave Memories
 
@@ -208,6 +216,11 @@ The sections below list the changes made to existing Carnalitas objects in somew
 * *Free Slave* (`carn_free_slave_interaction`): Modified as described above.
 * *Seize Slave* (`carn_seize_slave_interaction`): Modified as described above. Added triggering of the `carnx_on_slave_seized` on-action.
 
+### Triggers (`scripted_triggers`)
+
+* `carn_possible_pregnancy_after_sex_with_character_trigger`: Changed usages of `effective_age` to `carnx_age_value` to make sure that the age can be properly overridden by compatibility submods.
+* `carn_relationship_allows_free_sex_trigger`: Enabled free sex with former slaves that are also your *Slave Concubines*.
+
 ### Effects (`scripted_effects`)
 
 * `carn_enslave_effect`: Rebalanced (mainly slightly lowered) dread, tyranny, piety, and stress effects that were originally copied from the *Execute* interaction. Removed the removal of the slave's gold (it didn't work anyway and was reported in `errors.log`). Changed some tooltips.
@@ -223,3 +236,34 @@ The sections below list the changes made to existing Carnalitas objects in somew
 
 * The value `carn_slave_price_value` is no longer used by any interactions or effects. It has been replaced by other values, mainly `carnx_slave_bid_price_value` and `carnx_slave_ask_price_value`.
 * The character and trait flags `carn_wants_to_be_a_slave` and the opinion modifier `carn_wants_to_be_your_slave_opinion` are no longer used by any interactions. They are intended to work with the `carn_slavery_content_consensual_only` game rule that is not supported.
+
+## Changes to Vanilla
+
+The sections below list the changes made to existing vanilla objects in somewhat more detail for easier checking of compatibility with other mods.
+
+### Interactions (`character_interactions`)
+
+* `ask_for_conversion_courtier_interaction`: Reduced the chance of a slave being converted to their owner's faith to prevent freeing most slaves a few years after they were enslaved or bought.
+
+### Council Positions (`council_positions`)
+
+* `zzz_00_council_positions.txt`: Changed triggers and effects of the *Chancellor*, *Steward*, *Marshal*, and *Spymaster* council positions to check their eligibility for slaves and log receiving and revoking the positions. Changed the trigger for the *Court Chaplain* council position to ensure that it's not eligible for slaves.
+
+### Court Positions (`court_positions`)
+
+* `zzz_00_court_positions.txt`: Changed conditions, effects, salaries, and aptitudes for may court positions, as described in [Changes to Existing Council and Court Positions](#changes-to-existing-council-and-court-positions).
+
+### Triggers (`scripted_triggers`)
+
+* `desirable_for_capture_trigger`: Made characters with a slave price above a certain threshold desirable for capture, ensuring that they are captured instead of killed during sieges and raids.
+
+### Effects (`scripted_effects`)
+
+* `prisoner_of_war_capture_effect`: Added marking a certain percentage of characters captured during raids with a special modifier that increases their chance to be enslaved by the AI.
+* `imprison_tyranny_effect`: Ensured slaves can be imprisoned without gaining tyranny.
+
+### Values (`script_values`)
+
+* `court_position_aptitude_family_business_value`: Added a check if a liege exists to prevent errors (vanilla bug).
+* `raid_base_capture_chance`: Changed the scope for checking traits and dynasty perks from the character being captured to the army commander (vanilla bug).
+
