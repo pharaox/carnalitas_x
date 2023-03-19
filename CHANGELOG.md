@@ -1,3 +1,19 @@
+# Version 0.6.0
+
+## Court Positions
+
+* AI rulers may have sex with one of their slaves (or former slaves that are also *Slave Concubines*) once a year if they are attracted to them.
+  - This applies also to the human player if the *Make Love* interaction is disabled.
+  - The chance of pregnancy is for the moment hardcoded at 10%.
+* Children of *Slave Concubines* are no longer slaves and have their correct father, house, dynasty, faith, and culture, including effects of dynasty perks.
+  - If the concubine is the mother, the father is the mother's liege, and they get his house, dynasty, faith, and culture.
+  - If the concubine is the father, the father is the real father, and they get their mother's house, dynasty, faith, and culture.
+
+## Bug Fixes
+
+* Former slaves that are married are no longer eligible to become *Slave Concubines*.
+* It is now possible to *Make Love* to a former slave that is also a *Slave Concubine*.
+
 # Version 0.5.0
 
 ## Miscellaneous
