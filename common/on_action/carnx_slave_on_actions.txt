@@ -175,6 +175,24 @@ carnx_on_release_from_prison = {
 	}
 }
 
+carn_on_sex = {
+	on_actions = { carnx_on_sex }
+}
+
+carnx_on_sex = {
+	effect = {
+		#carnx_debug_log_effect = { MSG = carnx_debug_msg_character_had_sex }
+	}
+}
+
+# Called from code once a year for "playable" (count+) characters.
+# Root is the character
+yearly_playable_pulse = {
+	events = {
+		carnx_slave.0002
+	}
+}
+
 # Called from code once every five years for "playable" (count+) characters.
 # Root is the character
 five_year_playable_pulse = {

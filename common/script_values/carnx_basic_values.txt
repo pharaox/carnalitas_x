@@ -119,3 +119,6 @@ carnx_create_character_female_chance = 75
 
 # slave.0001 event chance for "none" option
 carnx_slave_0001_none_option_ai_chance = 7
+
+# Pregnancy chances
+carnx_slave_pregnancy_chance = 10

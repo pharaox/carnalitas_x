@@ -901,6 +901,19 @@ carnx_slave_trading_range_value = {
 	}
 }
 
+# Not used due to carn_had_sex_with_effect failing to parse script values.
+carnx_slave_pregnancy_chance_value = {
+	value = fertility
+	add = {
+		value = scope:slave.fertility
+		multiply = define:NChildbirth|CONCUBINE_FERTILITY_MULTIPLIER
+	}
+	divide = 2
+	multiply = carnx_slave_pregnancy_chance
+	floor = yes
+	min = 1
+}
+
 carn_scope_buyer_current_gold_value = {
 	value = scope:buyer.short_term_gold
 }

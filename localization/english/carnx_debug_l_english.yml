@@ -75,3 +75,7 @@
 
  carnx_debug_msg_slave_0001_valuable_option_chosen: "Buy Foreign Slaves valuable option chosen"
  carnx_debug_msg_slave_0001_common_option_chosen: "Buy Foreign Slaves common option chosen"
+
+ carnx_debug_msg_character_had_sex: "Character had sex"
+ carnx_debug_msg_character_had_sex_with_slave: "Character had sex with one of their slaves"
+ carnx_debug_msg_child_of_slave_concubine_born: "Child of slave concubine was born"

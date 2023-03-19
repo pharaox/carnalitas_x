@@ -1,0 +1,128 @@
+﻿namespace = carnx_slave
+
+scripted_trigger carnx_slave_0002_valid_liege_trigger = {
+	is_available_adult = yes
+	carn_can_have_sex_trigger = yes
+}
+
+scripted_trigger carnx_slave_0002_valid_slave_trigger = {
+	is_available_ai_adult = yes
+	carn_can_have_sex_trigger = yes
+	OR = {
+		AND = {
+			has_trait = slave
+			has_relation_slave_owner = root
+		}
+		AND = {
+			has_trait = former_slave
+			is_courtier_of = root
+			has_court_position = carnx_slave_concubine_court_position
+		}
+	}
+	root = {
+		is_attracted_to_gender_of = prev
+	}
+	OR = {
+		has_court_position = carnx_slave_concubine_court_position
+		root = {
+			is_ai = yes
+			might_cheat_on_every_partner_trigger = yes
+		}
+	}
+}
+
+carnx_slave.0002 = {
+	type = character_event
+	title = carnx_slave.0002.t
+	desc = carnx_slave.0002.desc
+	hidden = yes
+
+	theme = dungeon
+	left_portrait = {
+		character = scope:slave
+	}
+
+	trigger = {
+		NOT = { has_game_rule = carn_slavery_content_disabled }
+		OR = {
+			is_ai = yes
+			has_game_rule = carn_sex_interaction_disabled
+		}
+		carnx_slave_0002_valid_liege_trigger = yes
+		any_courtier = {
+			carnx_slave_0002_valid_slave_trigger = yes
+		}
+	}
+
+	weight_multiplier = {
+		base = 1
+
+		modifier = {
+			has_trait = lustful
+			add = 0.5
+		}
+		modifier = {
+			has_trait = chaste
+			add = -0.5
+		}
+	}
+
+	immediate = {
+		# Find a valid slave to have sex with
+		random_courtier = {
+			limit = {
+				carnx_slave_0002_valid_slave_trigger = yes
+			}
+
+			weight = {
+				base = 10
+
+				modifier = {
+					add = {
+						value = attraction
+						if = {
+							limit = { root = { has_trait = lustful } }
+							multiply = 2
+						}
+						else_if = {
+							limit = { root = { has_trait = chaste } }
+							multiply = 0.5
+						}
+						floor = yes
+					}
+				}
+				modifier = {
+					has_court_position = carnx_slave_concubine_court_position
+					add = 10
+				}
+				modifier = {
+					has_trait = lustful
+					add = 10
+				}
+			}
+
+			save_scope_as = slave
+		}
+
+		if = {
+			limit = { exists = scope:slave }
+			save_scope_value_as = {
+				name = pregnancy_chance
+				value = carnx_slave_pregnancy_chance # carnx_slave_pregnancy_chance_value
+			}
+			carnx_debug_log_effect = { MSG = carnx_debug_msg_character_had_sex_with_slave }
+			carn_had_sex_with_effect = {
+				CHARACTER_1 = root
+				CHARACTER_2 = scope:slave
+				C1_PREGNANCY_CHANCE = carnx_slave_pregnancy_chance # scope:pregnancy_chance
+				C2_PREGNANCY_CHANCE = carnx_slave_pregnancy_chance # scope:pregnancy_chance
+				STRESS_EFFECTS = no
+				DRAMA = yes
+			}
+		}
+	}
+
+	option = {
+		name = carnx_slave.0002.a
+	}
+}
