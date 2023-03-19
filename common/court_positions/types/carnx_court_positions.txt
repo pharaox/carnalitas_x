@@ -86,6 +86,10 @@
 				AND = {
 					has_trait = former_slave
 					is_courtier_of = scope:liege
+					NOR = {
+						is_married = yes
+						is_concubine = yes
+					}
 				}
 			}
 			is_imprisoned = no
@@ -172,6 +176,8 @@
 			monthly_prestige = 0.2
 		}
 	}
+
+	custom_employer_modifier_description = carnx_slave_concubine_employer_custom_effect_description
 
 	# Modifiers gained by the holder of the court position.
 	modifier = {

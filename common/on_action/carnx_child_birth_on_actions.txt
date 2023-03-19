@@ -1,0 +1,140 @@
+﻿# called for the newborn child
+# scope:child is the new born character
+# scope:mother is the pregnant mother
+# scope:father is the family father (not the biological)
+# scope:real_father is the biological father
+# scope:is_bastard, true if a known bastard
+on_birth_child = {
+	on_actions = { carnx_on_birth_child }
+}
+
+carnx_on_birth_child = {
+	effect = {
+		# Child of slave concubine
+		if = {
+			limit = {
+				scope:mother = {
+					OR = {
+						has_court_position = carnx_slave_concubine_court_position
+						AND = {
+							employs_court_position = carnx_slave_concubine_court_position
+							any_court_position_holder = {
+								type = carnx_slave_concubine_court_position
+								this = scope:real_father
+							}
+						}
+					}
+				}
+			}
+
+			# Make sure the child is not born a slave
+			if = {
+				limit = { has_trait = slave }
+				every_relation = {
+					type = slave_owner
+					remove_relation_slave = prev
+				}
+				remove_trait = slave
+			}
+
+			# Save old house, dynasty, faith, and culture
+			if = {
+				limit = { exists = house }
+				house = { save_scope_as = house }
+			}
+			if = {
+				limit = { exists = dynasty }
+				dynasty = { save_scope_as = dynasty }
+			}
+			if = {
+				limit = { exists = faith }
+				faith = { save_scope_as = faith }
+			}
+			if = {
+				limit = { exists = culture }
+				culture = { save_scope_as = culture }
+			}
+
+			carnx_debug_log_effect = { MSG = carnx_debug_msg_child_of_slave_concubine_born }
+
+			# Set father, house, faith, culture, and trait
+			if = {
+				# Child of female slave concubine and her owner / liege
+				limit = {
+					scope:mother = {
+						has_court_position = carnx_slave_concubine_court_position
+					}
+				}
+				set_father = scope:mother.liege
+				set_house = father.house
+				set_character_faith = father.faith
+				set_culture = father.culture
+				add_trait = child_of_concubine_female
+			}
+			else = {
+				# Child of male slave concubine and his owner / liege
+				set_father = scope:real_father
+				set_house = mother.house
+				set_character_faith = mother.faith
+				set_culture = mother.culture
+				add_trait = child_of_concubine_male
+			}
+
+			# If the faither changed, apply father effects
+			if = {
+				limit = {
+					NAND = {
+						exists = scope:father
+						scope:father = father
+					}
+				}
+				carnx_child_birth_father_effect = yes
+			}
+
+			# If the house changed, apply house effects
+			if = {
+				limit = {
+					NAND = {
+						exists = scope:house
+						scope:house = house
+					}
+				}
+				carnx_child_birth_house_effect = yes
+			}
+
+			# If the dynasty changed, apply dynasty effects
+			if = {
+				limit = {
+					NAND = {
+						exists = scope:dynasty
+						scope:dynasty = dynasty
+					}
+				}
+				carnx_child_birth_dynasty_effect = yes
+			}
+
+			# If the faith changed, apply faith effects
+			if = {
+				limit = {
+					NAND = {
+						exists = scope:faith
+						scope:faith = faith
+					}
+				}
+				carnx_child_birth_faith_effect = yes
+			}
+
+			# If the culture changed, apply culture effects
+			if = {
+				limit = {
+					NAND = {
+						exists = scope:culture
+						scope:culture = culture
+					}
+				}
+				carnx_child_birth_culture_effect = yes
+			}
+		}
+	}
+}
+

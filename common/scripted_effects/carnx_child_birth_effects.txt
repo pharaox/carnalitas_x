@@ -1,0 +1,248 @@
+﻿carnx_vanilla_child_birth_father_effect = {
+	# Remove sound foundaitons perk from the old father and add it to the new father
+	if = {
+		limit = { exists = scope:father }
+		scope:father = {
+			if = {
+				limit = { has_perk = sound_foundations_perk	}
+				sound_foundations_random_removal_effect = yes
+			}
+		}
+	}
+	if = {
+		limit = { exists = father }
+		father = {
+			if = {
+				limit = { has_perk = sound_foundations_perk	}
+				sound_foundations_skill_gain_effect = yes
+			}
+		}
+	}
+}
+
+carnx_vanilla_child_birth_house_effect = {
+	# Remove house head hook from the old house head and add it to the new house head
+	if = {
+		limit = { exists = scope:house }
+		scope:house.house_head = {
+			if = {
+				limit = {
+					has_hook_of_type = {
+						type = house_head_hook
+						target = scope:child
+					}
+				}
+				remove_hook = {
+					type = house_head_hook
+					target = scope:child
+				}
+			}
+		}
+	}
+	if = {
+		limit = { exists = house }
+		house.house_head = {
+			if = {
+				limit = {
+					is_alive = yes
+					NOT = { this = scope:child } # If the house dies out, a posthumous child can revive it
+				}
+				add_hook_no_toast = {
+					type = house_head_hook
+					target = scope:child
+				}
+			}
+		}
+	}
+}
+
+carnx_vanilla_child_birth_dynasty_effect = {
+	# Blood legacy 4 extra genetic trait chance effect
+	if = {
+		limit = {
+			exists = dynasty
+			dynasty = { has_dynasty_perk = blood_legacy_4 }
+			OR = { # The child must have a real parent of the Dynasty...
+				scope:mother.dynasty = dynasty
+				scope:real_father.dynasty = dynasty
+			}
+		}
+		if = {
+			limit = {
+				dynasty = {
+					exists = var:blood_legacy_4_beauty_good_1
+				}
+				NOR = {
+					has_trait = beauty_good
+					has_trait = beauty_bad
+				}
+			}
+			random = {
+				chance = blood_legacy_4_chance
+				modifier = {
+					add = blood_legacy_4_extra_player_chance
+					any_parent = { is_ai = no }
+				}
+				add_trait = beauty_good_1
+			}
+		}
+		else_if = {
+			limit = {
+				dynasty = {
+					exists = var:blood_legacy_4_intellect_good_1
+				}
+				NOR = {
+					has_trait = intellect_good
+					has_trait = intellect_bad
+				}
+			}
+			random = {
+				chance = blood_legacy_4_chance
+				modifier = {
+					add = blood_legacy_4_extra_player_chance
+					any_parent = { is_ai = no }
+				}
+				add_trait = intellect_good_1
+			}
+		}
+		else_if = {
+			limit = {
+				dynasty = {
+					exists = var:blood_legacy_4_physique_good_1
+				}
+				NOR = {
+					has_trait = physique_good
+					has_trait = physique_bad
+				}
+			}
+			random = {
+				chance = blood_legacy_4_chance
+				modifier = {
+					add = blood_legacy_4_extra_player_chance
+					any_parent = { is_ai = no }
+				}
+				add_trait = physique_good_1
+			}
+		}
+		else_if = {
+			limit = {
+				dynasty = {
+					exists = var:blood_legacy_4_fecund
+				}
+				NOR = {
+					has_trait = infertile
+					has_trait = fecund
+				}
+			}
+			random = {
+				chance = blood_legacy_4_chance
+				modifier = {
+					add = blood_legacy_4_extra_player_chance
+					any_parent = { is_ai = no }
+				}
+				add_trait = fecund
+			}
+		}
+		else_if = {
+			limit = {
+				dynasty = {
+					exists = var:blood_legacy_4_giant
+				}
+				NOR = {
+					has_trait = giant
+					has_trait = dwarf
+				}
+			}
+			random = {
+				chance = blood_legacy_4_chance
+				modifier = {
+					add = blood_legacy_4_extra_player_chance
+					any_parent = { is_ai = no }
+				}
+				add_trait = giant
+			}
+		}
+		else_if = {
+			limit = {
+				dynasty = {
+					exists = var:blood_legacy_4_dwarf
+				}
+				NOR = {
+					has_trait = giant
+					has_trait = dwarf
+				}
+			}
+			random = {
+				chance = blood_legacy_4_chance
+				modifier = {
+					add = blood_legacy_4_extra_player_chance
+					any_parent = { is_ai = no }
+				}
+				add_trait = dwarf
+			}
+		}
+		else_if = {
+			limit = {
+				dynasty = {
+					exists = var:blood_legacy_4_albino
+				}
+				NOT = {
+					has_trait = albino
+				}
+			}
+			random = {
+				chance = blood_legacy_4_chance
+				modifier = {
+					add = blood_legacy_4_extra_player_chance
+					any_parent = { is_ai = no }
+				}
+				add_trait = albino
+			}
+		}
+		else_if = {
+			limit = {
+				dynasty = {
+					exists = var:blood_legacy_4_scaly
+				}
+				NOT = {
+					has_trait = scaly
+				}
+			}
+			random = {
+				chance = blood_legacy_4_chance
+				modifier = {
+					add = blood_legacy_4_extra_player_chance
+					any_parent = { is_ai = no }
+				}
+				add_trait = scaly
+			}
+		}
+	}
+}
+
+carnx_vanilla_child_birth_faith_effect = {
+}
+
+carnx_vanilla_child_birth_culture_effect = {
+}
+
+carnx_child_birth_father_effect = {
+	carnx_vanilla_child_birth_father_effect = yes
+}
+
+carnx_child_birth_house_effect = {
+	carnx_vanilla_child_birth_house_effect = yes
+}
+
+carnx_child_birth_dynasty_effect = {
+	carnx_vanilla_child_birth_dynasty_effect = yes
+}
+
+carnx_child_birth_faith_effect = {
+	carnx_vanilla_child_birth_faith_effect = yes
+}
+
+carnx_child_birth_culture_effect = {
+	carnx_vanilla_child_birth_culture_effect = yes
+}
+
