@@ -2,12 +2,17 @@
 
 ## Court Positions
 
-* AI rulers may have sex with one of their slaves (or former slaves that are also *Slave Concubines*) once a year if they are attracted to them.
-  - This applies also to the human player if the *Make Love* interaction is disabled.
-  - The chance of pregnancy is for the moment hardcoded at 10%.
+* Added 1 new court position that is reserved for slaves or former slaves:
+  - *Slave Eunuch*: stewardship / intrigue, restricted to polygamous religions and cultures and cultures that can appoint *Chief Eunuch*, gives court grandeur, development growth, and hostile scheme resistance (3 positions)
 * Children of *Slave Concubines* are no longer slaves and have their correct father, house, dynasty, faith, and culture, including effects of dynasty perks.
   - If the concubine is the mother, the father is the mother's liege, and they get his house, dynasty, faith, and culture.
   - If the concubine is the father, the father is the real father, and they get their mother's house, dynasty, faith, and culture.
+
+## Events
+
+* AI rulers may have sex with one of their slaves (or former slaves that are also *Slave Concubines*) once a year if they are attracted to them.
+  - This applies also to the human player if the *Make Love* interaction is disabled.
+  - The chance of pregnancy is for the moment hardcoded at 10%.
 
 ## Bug Fixes
 

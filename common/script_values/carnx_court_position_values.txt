@@ -240,6 +240,15 @@ carnx_court_position_slave_captain_salary = {
 	multiply = carnx_court_position_salary_liege_multiplier
 }
 
+carnx_court_position_slave_eunuch_salary = {
+	add = {
+		value = 0.1
+		desc = COURT_POSITION_SALARY_BREAKDOWN_BASE
+		format = "BASE_VALUE_FORMAT_DECIMALS"
+	}
+	multiply = carnx_court_position_salary_liege_multiplier
+}
+
 carnx_court_position_salary_liege_multiplier = {
 	value = 1
 	if = {
@@ -463,6 +472,18 @@ carnx_number_of_desired_slave_concubines = {
 }
 
 carnx_number_of_desired_slave_captains = {
+	value = 1
+	if = {
+		limit = { highest_held_title_tier >= tier_duchy }
+		add = 1
+	}
+	if = {
+		limit = { highest_held_title_tier >= tier_kingdom }
+		add = 1
+	}
+}
+
+carnx_number_of_desired_slave_eunuchs = {
 	value = 1
 	if = {
 		limit = { highest_held_title_tier >= tier_duchy }
@@ -710,6 +731,17 @@ carnx_slave_captain_aptitude_difference_value = {
 	}
 }
 
+carnx_slave_eunuch_aptitude_difference_value = {
+	value = 0
+	if = {
+		limit = {
+			carnx_can_serve_as_slave_eunuch_trigger = { RULER = scope:liege }
+		}
+		value = aptitude:carnx_slave_eunuch_court_position
+		subtract = carnx_slave_eunuch_aptitude_threshold
+	}
+}
+
 carnx_vanilla_max_aptitude_difference_value = {
 	value = 0
 	min = {
@@ -744,6 +776,9 @@ carnx_vanilla_max_aptitude_difference_value = {
 																value = carnx_slave_concubine_aptitude_difference_value
 																min = {
 																	value = carnx_slave_captain_aptitude_difference_value
+																	min = {
+																		value = carnx_slave_eunuch_aptitude_difference_value
+																	}
 																}
 															}
 														}
@@ -796,7 +831,7 @@ carnx_vanilla_court_position_traits_character_value = {
 	if = {
 		limit = { # 50 (or prerequisite)
 			OR = {
-				has_trait = eunuch # Chief Eunuch
+				has_trait = eunuch # Chief Eunuch, Court Eunuch
 				has_trait = poet # Court Poet
 			}
 		}

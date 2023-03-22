@@ -5,6 +5,7 @@
  carnx_court_position_beauty_good_3_trait:0 "[GetTrait('beauty_good_3').GetName( ROOT.Char )]"
  carnx_court_position_beauty_good_2_trait:0 "[GetTrait('beauty_good_2').GetName( ROOT.Char )]"
  carnx_court_position_beauty_good_1_trait:0 "[GetTrait('beauty_good_1').GetName( ROOT.Char )]"
+ carnx_court_position_schemer_trait:0 "[GetTrait('schemer').GetName( ROOT.Char )]"
 
  carnx_slave_concubine_court_position:0 "Slave Concubine"
  carnx_slave_concubine_court_position_desc:0 "The $carnx_slave_concubine_court_position$ is a lower-rank concubine that is also a slave or former slave."
@@ -12,3 +13,6 @@
 
  carnx_slave_captain_court_position:0 "Mameluke Captain"
  carnx_slave_captain_court_position_desc:0 "The $carnx_slave_captain_court_position$ is a high-ranking soldier that is also a slave or former slave."
+
+ carnx_slave_eunuch_court_position:0 "Slave Eunuch"
+ carnx_slave_eunuch_court_position_desc:0 "The $carnx_slave_eunuch_court_position$ is an influential court official that is also a slave or former slave."

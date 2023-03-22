@@ -29,6 +29,7 @@
 
 # carnx_slave_concubine_court_position
 # carnx_slave_captain_court_position
+# carnx_slave_eunuch_court_position
 
 # COURT PHYSICIAN
 
@@ -510,4 +511,21 @@ carnx_slave_captain_title_revoked_effect = {
 carnx_slave_captain_title_invalidated_effect = {
 	basic_invalidated_court_position_effect = yes
 	carnx_debug_log_effect = { MSG = carnx_debug_msg_slave_captain_invalidated }
+}
+
+# SLAVE EUNUCH
+
+carnx_slave_eunuch_title_received_effect = {
+	basic_gained_court_position_effect = yes
+	carnx_debug_log_effect = { MSG = carnx_debug_msg_slave_eunuch_received }
+}
+
+carnx_slave_eunuch_title_revoked_effect = {
+	basic_revoked_court_position_effect = yes
+	carnx_debug_log_effect = { MSG = carnx_debug_msg_slave_eunuch_revoked }
+}
+
+carnx_slave_eunuch_title_invalidated_effect = {
+	basic_invalidated_court_position_effect = yes
+	carnx_debug_log_effect = { MSG = carnx_debug_msg_slave_eunuch_invalidated }
 }

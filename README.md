@@ -27,7 +27,7 @@ With this mod:
 * Slavery doctrines have a significant and consistent impact that better reflects their original meaning.
 * Slaves can be also ransomed or gifted, and the AI will occasionally do it as well.
 * Slaves can be assigned to (some, but not all) council and court positions for additional benefits, and the AI is fully capable of doing this as well.
-* There are new court positions reserved for slaves or former slaves, such as *Slave Concubine* or *Mameluke Captain*, available depending on religion, culture, and government form.
+* There are new court positions reserved for slaves or former slaves, such as *Slave Concubine*, *Slave Eunuch* or *Mameluke Captain*, available depending on religion, culture, and government form.
 * Additional slaves fit for specific occupations are spawned into the world via events.
 * Useful characters are much more likely to be captured instead of killed during raids and sieges.
 
@@ -124,10 +124,9 @@ This mod introduces 2 new court positions that are reserved for slaves or former
 
 * *Slave Concubine*: diplomacy / attraction, restricted to polygamous religions and cultures, gives court grandeur and prestige (5 positions)
 * *Mameluke Captain*: martial / prowess, restricted to clan governments, gives court grandeur and knights effectiveness (3 positions)
+* *Slave Eunuch*: stewardship / intrigue, restricted to polygamous religions and cultures and cultures that can appoint *Chief Eunuch*, gives court grandeur, development growth, and hostile scheme resistance (3 positions)
 
 Any children of *Slave Concubines* are no longer slaves and have their correct father, house, dynasty, faith, and culture, including effects of dynasty perks.
-
-More slave court positions will be added in future versions.
 
 #### Changes to Existing Council and Court Positions
 
@@ -256,6 +255,7 @@ The sections below list the changes made to existing vanilla objects in somewhat
 ### Triggers (`scripted_triggers`)
 
 * `desirable_for_capture_trigger`: Made characters with a slave price above a certain threshold desirable for capture, ensuring that they are captured instead of killed during sieges and raids.
+* `court_position_does_not_already_have_a_job_trigger`: Added *Slave Eunuch* and *Mameluke Captain* court positions to the list of "jobs".
 
 ### Effects (`scripted_effects`)
 

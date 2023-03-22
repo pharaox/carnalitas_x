@@ -1,0 +1,25 @@
+﻿# Used in the trigger for court positions to make sure that they don't already have a "job"
+# If a court position is considered a full time job, the character cannot hold another similar position
+# Overridden from vanilla.
+court_position_does_not_already_have_a_job_trigger = {
+	custom_tooltip = {
+		text = does_not_have_a_full_time_job
+		NOR = {
+			has_court_position = court_tutor_court_position
+			has_court_position = food_taster_court_position
+			has_court_position = seneschal_court_position
+			has_court_position = cupbearer_court_position
+			has_court_position = antiquarian_court_position
+			has_court_position = lady_in_waiting_court_position
+			has_court_position = court_jester_court_position
+			has_court_position = court_poet_court_position
+			has_court_position = court_musician_court_position
+			has_court_position = bodyguard_court_position
+			has_court_position = executioner_court_position
+			has_court_position = court_gardener_court_position
+			has_court_position = carnx_slave_captain_court_position
+			has_court_position = carnx_slave_eunuch_court_position
+			is_councillor = yes
+		}
+	}
+}

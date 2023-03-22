@@ -215,10 +215,10 @@ carnx_slave_0001_create_character_effect = {
 			carnx_slave_0001_create_prowess_character_effect = yes
 		}
 		5 = {
-			# Eunuch: Chief Eunuch
+			# Eunuch: Chief Eunuch, Slave Eunuch
 			modifier = {
-				root.culture = { has_cultural_parameter = can_appoint_chief_eunuch }
-				add = 5
+				root = { carnx_slave_eunuch_court_position_enabled_trigger = yes }
+				add = 10
 			}
 			carnx_slave_0001_create_eunuch_character_effect = yes
 		}

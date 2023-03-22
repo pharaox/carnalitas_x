@@ -245,6 +245,18 @@ carnx_lacking_court_positions_modifier = {
 			}
 			desc = carnx_lacking_slave_captain_reason
 		}
+		modifier = {
+			carnx_has_max_aptitude_difference_trigger = {
+				NAME = slave_eunuch
+				RULER = $RULER$
+				SLAVE = $SLAVE$
+			}
+			add = {
+				value = scope:max_aptitude_difference
+				multiply = $SCALE$
+			}
+			desc = carnx_lacking_slave_eunuch_reason
+		}
 	}
 }
 

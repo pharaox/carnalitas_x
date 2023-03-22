@@ -114,9 +114,11 @@ carnx_can_be_executioner_trigger = {
 # CarnalitasX Court Positions
 
 carnx_can_be_slave_concubine_trigger = {
-	diplomacy >= low_skill_rating
-	attraction > 0
-	is_adult = yes
+	is_capable_adult = yes
+	OR = {
+		diplomacy >= low_skill_rating
+		attraction > 0
+	}
 	is_visibly_fertile = yes
 	save_temporary_scope_as = can_be_slave_concubine
 	$LIEGE$ = {
@@ -125,25 +127,38 @@ carnx_can_be_slave_concubine_trigger = {
 }
 
 carnx_can_be_slave_captain_trigger = {
+	is_capable_adult = yes
+	OR = {
+		martial >= low_skill_rating
+		prowess >= low_skill_rating
+	}
 	is_knight = yes
 	can_be_combatant_based_on_gender_trigger = { ARMY_OWNER = $LIEGE$ }
-	martial >= low_skill_rating
-	prowess >= low_skill_rating
 	number_of_commander_traits >= 1
 }
 
-carnx_slave_concubine_court_position_enabled_trigger = {
+carnx_can_be_slave_eunuch_trigger = {
+	is_capable_adult = yes
 	OR = {
-		faith = { has_doctrine = doctrine_polygamy }
-		faith = { has_doctrine = doctrine_concubines }
-		culture = { has_cultural_tradition = tradition_polygamous }
-		culture = { has_cultural_tradition = tradition_concubines }
+		stewardship >= low_skill_rating
+		intrigue >= low_skill_rating
 	}
+	is_male = yes
+	has_trait = eunuch
+	exists = $LIEGE$
+}
+
+carnx_slave_concubine_court_position_enabled_trigger = {
+	carnx_is_slave_concubines_enabled_trigger = yes
 	NOT = { is_wrong_gender_in_faith_trigger = { FAITH = faith } }
 }
 
 carnx_slave_captain_court_position_enabled_trigger = {
 	carnx_is_slave_soldiers_enabled_trigger = yes
+}
+
+carnx_slave_eunuch_court_position_enabled_trigger = {
+	carnx_is_slave_eunuchs_enabled_trigger = yes
 }
 
 carnx_allowed_to_marry_trigger = {

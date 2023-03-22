@@ -72,6 +72,9 @@
  carnx_debug_msg_slave_captain_received: "Slave Captain court position received"
  carnx_debug_msg_slave_captain_revoked: "Slave Captain court position revoked"
  carnx_debug_msg_slave_captain_invalidated: "Slave Captain court position invalidated"
+ carnx_debug_msg_slave_eunuch_received: "Slave Eunuch court position received"
+ carnx_debug_msg_slave_eunuch_revoked: "Slave Eunuch court position revoked"
+ carnx_debug_msg_slave_eunuch_invalidated: "Slave Eunuch court position invalidated"
 
  carnx_debug_msg_slave_0001_valuable_option_chosen: "Buy Foreign Slaves valuable option chosen"
  carnx_debug_msg_slave_0001_common_option_chosen: "Buy Foreign Slaves common option chosen"
