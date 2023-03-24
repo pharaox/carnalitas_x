@@ -111,7 +111,7 @@ carnx_can_be_executioner_trigger = {
 	}
 }
 
-# CarnalitasX Court Positions
+# CSR Court Positions
 
 carnx_can_be_slave_concubine_trigger = {
 	is_capable_adult = yes

@@ -14,7 +14,7 @@ desirable_for_capture_trigger = {
 		has_trait = lifestyle_physician
 		has_trait = lifestyle_mystic
 
-		# CarnalitasX: Add slave base price condition
+		# CSR: Add slave base price condition
 		AND = {
 			scope:occupant = {
 				NOT = { carnx_is_slavery_crime_trigger = { CHARACTER = prev } }

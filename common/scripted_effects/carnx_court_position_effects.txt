@@ -25,7 +25,7 @@
 # executioner_court_position - Yes
 # court_artificer_court_position - No [multiple] [ceremonial]
 
-# CarnalitasX Court Positions
+# CSR Court Positions
 
 # carnx_slave_concubine_court_position
 # carnx_slave_captain_court_position

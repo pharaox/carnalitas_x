@@ -1,10 +1,10 @@
 ﻿# Base chance to capture a character during a raid.
 # Overridden from vanilla.
 raid_base_capture_chance = {
-	# CarnalitasX: Use a script value for easier tweaking
+	# CSR: Use a script value for easier tweaking
 	value = carnx_base_raid_capture_chance
 
-	# CarnalitasX: Fix army commander scope
+	# CSR: Fix army commander scope
 	if = {
 		limit = { exists = root.army_commander }
 		root.army_commander = {

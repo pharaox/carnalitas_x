@@ -130,7 +130,7 @@ ask_for_conversion_courtier_interaction = {
 	ai_will_do = {
 		base = 100
 
-		# CarnalitasX: More reluctant to convert slaves since they may have to be freed afterwards
+		# CSR: More reluctant to convert slaves since they may have to be freed afterwards
 		modifier = {
 			scope:actor = {
 				has_relation_slave = scope:recipient

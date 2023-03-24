@@ -32,7 +32,7 @@ prisoner_of_war_capture_effect = {
 		}
 	}
 
-	# CarnalitasX: Mark character for enslavement
+	# CSR: Mark character for enslavement
 	hidden_effect = {
 		scope:new_target = {
 			random = {
@@ -89,7 +89,7 @@ imprison_tyranny_effect = {
 		custom_tooltip = IS_ALLOWED_TO_IMPRISON_DESC
 	}
 
-	# CarnalitasX: Allowed to imprison your own slaves without tyranny
+	# CSR: Allowed to imprison your own slaves without tyranny
 	else_if = {
 		limit = {
 			scope:actor = { has_relation_slave = scope:recipient }
