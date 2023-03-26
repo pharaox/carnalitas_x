@@ -45,20 +45,20 @@ carnx_valid_buyer_or_seller_trigger = {
 		trigger_if = {
 			limit = { exists = top_liege }
 			trigger_if = {
-				limit = { $OWNER$ = { exists = top_liege } }
-				$OWNER$.top_liege = top_liege
+				limit = { $PARTY$ = { exists = top_liege } }
+				$PARTY$.top_liege = top_liege
 			}
 			trigger_else = {
-				top_liege = $OWNER$
+				top_liege = $PARTY$
 			}
 		}
 		trigger_else = {
-			$OWNER$ = { exists = top_liege }
-			$OWNER$.top_liege = this
+			$PARTY$ = { exists = top_liege }
+			$PARTY$.top_liege = this
 		}
 
 		# Neighboring rulers
-		$OWNER$ = {
+		$PARTY$ = {
 			OR = {
 				any_neighboring_and_across_water_top_liege_realm_owner = {
 					this = scope:ruler
@@ -72,11 +72,11 @@ carnx_valid_buyer_or_seller_trigger = {
 		# Rulers within trading range
 		AND = {
 			is_landed = yes
-			$OWNER$ = { is_landed = yes }
+			$PARTY$ = { is_landed = yes }
 			capital_province = {
 				squared_distance = {
-					target = $OWNER$.capital_province
-					value <= $OWNER$.carnx_slave_trading_range_value
+					target = $PARTY$.capital_province
+					value <= $PARTY$.carnx_slave_trading_range_value
 				}
 			}
 		}

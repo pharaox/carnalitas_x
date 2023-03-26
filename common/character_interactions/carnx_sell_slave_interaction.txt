@@ -68,7 +68,7 @@ carn_sell_slave_interaction = {
 				scope:actor = { is_ai = no }
 			}
 			scope:recipient = {
-				carnx_valid_buyer_or_seller_trigger = { OWNER = scope:actor }
+				carnx_valid_buyer_or_seller_trigger = { PARTY = scope:actor }
 			}
 		}
 		scope:actor = {

@@ -1295,10 +1295,10 @@ carnx_gift_slave_interaction_effect = {
 }
 
 carnx_get_valid_buyers_or_sellers_effect = {
-	save_temporary_scope_as = owner
+	save_temporary_scope_as = party
 	every_ruler = {
 		limit = {
-			carnx_valid_buyer_or_seller_trigger = { OWNER = scope:owner }
+			carnx_valid_buyer_or_seller_trigger = { PARTY = scope:party }
 		}
 		add_to_list = $LIST$
 	}
