@@ -35,8 +35,11 @@ carnx_gift_slave_interaction = {
 	}
 
 	is_valid_showing_failures_only = {
+		scope:actor = {
+			carnx_can_start_interaction_trigger = yes
+		}
 		scope:recipient = {
-			carnx_candidate_to_gift_slave_to_trigger = yes
+			carnx_can_gift_slave_to_trigger = yes
 		}
 	}
 

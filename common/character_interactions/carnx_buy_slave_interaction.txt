@@ -71,8 +71,11 @@ carn_buy_slave_directly_interaction = {
 	}
 
 	is_valid_showing_failures_only = {
+		scope:actor = {
+			carnx_can_start_interaction_trigger = yes
+		}
 		scope:recipient = {
-			carnx_candidate_to_buy_slave_from_trigger = yes
+			carnx_can_buy_slave_from_trigger = yes
 		}
 		trigger_if = {
 			limit = { exists = scope:secondary_recipient }
@@ -119,15 +122,7 @@ carn_buy_slave_directly_interaction = {
 		}
 	}
 
-	auto_accept = {
-		custom_description = {
-			text = "spending_hook"
-			subject = scope:actor
-			object = scope:recipient
-			scope:hook = yes
-			scope:actor = { has_strong_hook = scope:recipient }
-		}
-	}
+	auto_accept = no
 
 	ai_accept = {
 		base = 0
@@ -139,8 +134,15 @@ carn_buy_slave_directly_interaction = {
 
 		modifier = {
 			scope:hook = yes
+			NOT = { scope:actor = { has_strong_hook = scope:recipient } }
 			add = 50
 			desc = SCHEME_WEAK_HOOK_USED
+		}
+		modifier = {
+			scope:hook = yes
+			scope:actor = { has_strong_hook = scope:recipient }
+			add = 100
+			desc = SCHEME_STRONG_HOOK_USED
 		}
 
 		# Slave recently bought

@@ -28,6 +28,9 @@ carn_enslave_interaction = {
 	}
 
 	is_valid_showing_failures_only = {
+		scope:actor = {
+			carnx_can_start_interaction_trigger = yes
+		}
 		scope:recipient = {
 			NOT = { has_strong_hook = scope:actor }
 			custom_description = {

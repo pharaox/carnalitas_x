@@ -176,17 +176,18 @@ carnx_slave_ask_price_value = {
 	# Adjust price for tribal rulers
 	multiply = carnx_slave_price_tribal_multiplier
 
-	# Seller personality multiplier (0.8 to 1.2 based on ai_greed)
+	# Seller personality multiplier (0.87 to 1.13 based on ai_greed)
+	# Chosen so that 0.87 * 1.15 = 1
 	if = {
 		limit = { exists = scope:seller }
 		multiply = {
 			value = scope:seller.ai_greed
-			multiply = 0.002
+			multiply = 0.0013
 			add = 1
 		}
 	}
 
-	floor = yes
+	round = yes
 	min = 1
 }
 
@@ -205,17 +206,18 @@ carnx_slave_bid_price_value = {
 	# Adjust price for tribal rulers
 	multiply = carnx_slave_price_tribal_multiplier
 
-	# Buyer personality multiplier (0.8 to 1.2 based on ai_greed)
+	# Buyer personality multiplier (0.83 to 1.17 based on ai_greed)
+	# Chosen so that 1.17 * 0.85 = 1
 	if = {
 		limit = { exists = scope:buyer }
 		multiply = {
 			value = scope:buyer.ai_greed
-			multiply = -0.002
+			multiply = -0.0017
 			add = 1
 		}
 	}
 
-	floor = yes
+	round = yes
 	min = 1
 }
 
@@ -243,11 +245,17 @@ carnx_slave_price_tribal_multiplier = {
 	}
 
 	if = {
-		limit = { exists = scope:buyer }
+		limit = {
+			exists = scope:buyer
+			NOT = { scope:buyer = scope:party1 }
+		}
 		scope:buyer = { save_temporary_scope_as = party2 }
 	}
 	else_if = {
-		limit = { exists = scope:seller }
+		limit = {
+			exists = scope:seller
+			NOT = { scope:seller = scope:party1 }
+		}
 		scope:seller = { save_temporary_scope_as = party2 }
 	}
 	else_if = {

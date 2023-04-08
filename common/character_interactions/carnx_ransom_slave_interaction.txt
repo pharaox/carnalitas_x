@@ -29,7 +29,7 @@ carnx_ransom_slave_interaction = {
 				random_ruler = {
 					limit = {
 						save_temporary_scope_as = ruler
-						carnx_candidate_to_ransom_slave_trigger = yes
+						carnx_can_ransom_slave_trigger = yes
 						scope:secondary_recipient = {
 							carnx_is_family_or_positive_relation_trigger = { CHARACTER = scope:ruler }
 						}
@@ -70,8 +70,11 @@ carnx_ransom_slave_interaction = {
 	}
 
 	is_valid_showing_failures_only = {
+		scope:actor = {
+			carnx_can_start_interaction_trigger = yes
+		}
 		scope:recipient = {
-			carnx_candidate_to_ransom_slave_trigger = yes
+			carnx_can_ransom_slave_trigger = yes
 		}
 		trigger_if = {
 			limit = { exists = scope:secondary_recipient }

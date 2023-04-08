@@ -40,7 +40,9 @@ carn_free_slave_interaction = {
 	}
 
 	is_valid_showing_failures_only = {
-		always = yes
+		scope:actor = {
+			carnx_can_start_interaction_trigger = yes
+		}
 	}
 
 	on_accept = {

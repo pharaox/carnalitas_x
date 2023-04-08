@@ -1,4 +1,4 @@
-﻿carnx_candidate_to_interact_with_trigger = {
+﻿carnx_can_interact_with_trigger = {
 	NOT = { this = scope:actor }
 	highest_held_title_tier >= tier_county
 	is_diplomatically_available = yes
@@ -7,23 +7,29 @@
 	is_imprisoned = no
 }
 
-carnx_candidate_to_sell_slave_to_trigger = {
-	carnx_candidate_to_interact_with_trigger = yes
+carnx_can_sell_slave_to_trigger = {
+	carnx_can_interact_with_trigger = yes
 	is_ai = yes
 	short_term_gold > 1
 }
 
-carnx_candidate_to_buy_slave_from_trigger = {
-	carnx_candidate_to_interact_with_trigger = yes
+carnx_can_buy_slave_from_trigger = {
+	carnx_can_interact_with_trigger = yes
 	is_ai = yes
 }
 
-carnx_candidate_to_gift_slave_to_trigger = {
-	carnx_candidate_to_interact_with_trigger = yes
+carnx_can_gift_slave_to_trigger = {
+	carnx_can_interact_with_trigger = yes
 }
 
-carnx_candidate_to_ransom_slave_trigger = {
-	carnx_candidate_to_interact_with_trigger = yes
+carnx_can_ransom_slave_trigger = {
+	carnx_can_interact_with_trigger = yes
+}
+
+carnx_can_start_interaction_trigger = {
+	highest_held_title_tier >= tier_county
+	is_diplomatically_available = yes
+	is_imprisoned = no
 }
 
 carnx_slave_can_be_freed_trigger = {
@@ -39,46 +45,49 @@ carnx_slave_can_be_freed_trigger = {
 
 carnx_valid_buyer_or_seller_trigger = {
 	is_ruler = yes
-	save_temporary_scope_as = ruler
 	OR = {
-		# Liege or vassals in the same realm
+		carnx_is_same_realm_character_trigger = { PARTY = $PARTY$ }
+		carnx_is_neighboring_realm_character_trigger = { PARTY = $PARTY$ }
+		carnx_is_landed_ruler_within_trading_range_trigger = { PARTY = $PARTY$ }
+	}
+}
+
+carnx_is_same_realm_character_trigger = {
+	trigger_if = {
+		limit = { exists = top_liege }
 		trigger_if = {
-			limit = { exists = top_liege }
-			trigger_if = {
-				limit = { $PARTY$ = { exists = top_liege } }
-				$PARTY$.top_liege = top_liege
-			}
-			trigger_else = {
-				top_liege = $PARTY$
-			}
+			limit = { $PARTY$ = { exists = top_liege } }
+			$PARTY$.top_liege = top_liege
 		}
 		trigger_else = {
-			$PARTY$ = { exists = top_liege }
+			top_liege = $PARTY$
+		}
+	}
+	trigger_else = {
+		$PARTY$ = { exists = top_liege }
+		$PARTY$.top_liege = this
+	}
+}
+
+carnx_is_neighboring_realm_character_trigger = {
+	any_neighboring_and_across_water_top_liege_realm_owner = {
+		trigger_if = {
+			limit = { $PARTY$ = { exists = top_liege } }
 			$PARTY$.top_liege = this
 		}
-
-		# Neighboring rulers
-		$PARTY$ = {
-			OR = {
-				any_neighboring_and_across_water_top_liege_realm_owner = {
-					this = scope:ruler
-				}
-				any_neighboring_and_across_water_realm_same_rank_owner = {
-					this = scope:ruler
-				}
-			}
+		trigger_else = {
+			this = $PARTY$
 		}
+	}
+}
 
-		# Rulers within trading range
-		AND = {
-			is_landed = yes
-			$PARTY$ = { is_landed = yes }
-			capital_province = {
-				squared_distance = {
-					target = $PARTY$.capital_province
-					value <= $PARTY$.carnx_slave_trading_range_value
-				}
-			}
+carnx_is_landed_ruler_within_trading_range_trigger = {
+	is_landed = yes
+	$PARTY$ = { is_landed = yes }
+	capital_province = {
+		squared_distance = {
+			target = $PARTY$.capital_province
+			value <= $PARTY$.carnx_slave_trading_range_value
 		}
 	}
 }
@@ -415,6 +424,7 @@ carnx_can_serve_as_councillor_trigger = {
 	carnx_can_be_$NAME$_trigger = { COURT_OWNER = $LIEGE$ }
 	$SKILL$ > carnx_default_skill_threshold
 	$LIEGE$ = {
+		exists = council_task:councillor_$NAME$
 		OR = {
 			NOT = { exists = cp:$TYPE$ }
 			cp:$TYPE$ = { $SKILL$ <= carnx_default_skill_threshold }
@@ -438,6 +448,7 @@ carnx_can_serve_as_knight_trigger = {
 	can_be_knight_trigger = { ARMY_OWNER = $RULER$ }
 	prowess > carnx_default_skill_threshold
 	$RULER$ = {
+		highest_held_title_tier >= tier_county
 		OR = {
 			number_of_knights < max_number_of_knights
 			any_knight = {
@@ -452,6 +463,7 @@ carnx_can_serve_as_commander_trigger = {
 	martial >= carnx_default_skill_threshold
 	number_of_commander_traits >= 1
 	$RULER$ = {
+		highest_held_title_tier >= tier_county
 		NOR = {
 			any_vassal = {
 				can_be_commander_basic_trigger = { ARMY_OWNER = $RULER$ }

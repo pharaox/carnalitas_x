@@ -20,7 +20,7 @@ carnx_buy_slaves_interaction = {
 			every_in_list = {
 				list = potential_sellers
 				limit = {
-					carnx_candidate_to_buy_slave_from_trigger = yes
+					carnx_can_buy_slave_from_trigger = yes
 				}
 				save_scope_as = seller
 				every_relation = {
@@ -61,6 +61,9 @@ carnx_buy_slaves_interaction = {
 	}
 
 	is_valid_showing_failures_only = {
+		scope:actor = {
+			carnx_can_start_interaction_trigger = yes
+		}
 		trigger_if = {
 			limit = { exists = scope:secondary_actor }
 			scope:secondary_actor = {
