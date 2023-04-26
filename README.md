@@ -10,14 +10,14 @@ In particular:
 
 * Slave prices don't correspond well to other aspects of the game, they are way to high with claims and way to low otherwise.
 * The reasons behind the AI accepting or initiating slave interactions are not convincing, and the AI never initiates some of them.
-* It's not exactly easy for the human player to find rulers willing to buy or sell slaves, and there are rather few slaves owned by the AI to begin with.
+* It's not exactly easy for the player to find rulers willing to buy or sell slaves, and there are rather few slaves owned by the AI to begin with.
 * *Enslave* is possible on free courtiers, which doesn't make much sense.
 * Once a prisoner is converted to a slave, it's no longer possible to ransom him or her.
 * Religious doctrines that govern whether owning slaves of certain faiths is considered a crime, shunned, or accepted, are not followed consistently when determining if someone should be enslaved, freed, bought, or seized.
 
-In a nutshell, what you can do as a human player is easily enslave a lot of people, sell any you don't need to the AI, and buy any you may fancy from the AI, while the AI mostly passively obliges. With mods such as [Carnalitas Slavery Expansion](https://www.loverslab.com/files/file/21651-carnalitas-slavery-expansion/) you can also assign them "professions" for additional benefits. However, these are also human-only, the AI never assigns them. All of this undermines the realism and immersion, and makes the game both a lot easier and less interesting than it could be.
+In a nutshell, what you can do as a player is easily enslave a lot of people, sell any you don't need to the AI, and buy any you may fancy from the AI, while the AI mostly passively obliges. With mods such as [Carnalitas Slavery Expansion](https://www.loverslab.com/files/file/21651-carnalitas-slavery-expansion/) you can also assign them "professions" for additional benefits. However, these are also human-only, the AI never assigns them. All of this undermines the realism and immersion, and makes the game both a lot easier and less interesting than it could be.
 
-This mod introduces a redesigned slavery system, one aiming to better integrate slavery with other aspects of the game, make interacting with slaves and other rulers more interesting and rewarding, achieve a better game balance, and maintain a reasonable challenge for the human player. It does this by reworking most of the slave interactions, introducing some new ones, making slaves more desirable for council and court positions, adding slave-related events, and rebalancing or fixing many of the original effects and outcomes, while still maintaining compatibility with other Carnalitas features, other mods based on Carnalitas, and total conversion mods.
+This mod introduces a redesigned slavery system, one aiming to better integrate slavery with other aspects of the game, make interacting with slaves and other rulers more interesting and rewarding, achieve a better game balance, and maintain a reasonable challenge for the player. It does this by reworking most of the slave interactions, introducing some new ones, making slaves more desirable for council and court positions, adding slave-related events, and rebalancing or fixing many of the original effects and outcomes, while still maintaining compatibility with other Carnalitas features, other mods based on Carnalitas, and total conversion mods.
 
 With this mod:
 
@@ -31,7 +31,7 @@ With this mod:
 * Additional slaves fit for specific occupations are spawned into the world via events.
 * Useful characters are much more likely to be captured instead of killed during raids and sieges.
 
-All taken together, slaves are now genuinely useful to their owners, there is an actual demand for them conditioned by religion and culture, and this demand is satisfied by warfare, raiding, slave trade, and slave-related events. As a human player, you can still use the system to your advantage, but it's more challenging and hopefully more interesting to do this.
+All taken together, slaves are now genuinely useful to their owners, there is an actual demand for them conditioned by religion and culture, and this demand is satisfied by warfare, raiding, slave trade, and slave-related events. As a player, you can still use the system to your advantage, but it's more challenging and hopefully more interesting to do this.
 
 ## Features
 
@@ -41,9 +41,9 @@ As in Carnalitas, slaves can be bought or sold via the *Buy Slave* and *Sell Sla
 
 #### Slave Prices
 
-In this mod, slaves are bought and sold at prices that better correspond to the cost of recruiting guests. Most of the factors influencing the base price of a slave are the same as those influencing the cost of recruiting a guest, with similar impact, such as base, claims, dynasty prestige level, genetic, commander, and other traits, and skills. There are also some unique factors, such as attraction, visibly fertile female, and age. At the very end, a correction multiplier is applied to calculate the final base price, intended to prevent the human player from making too much money from selling slaves.
+In this mod, slaves are bought and sold at prices that better correspond to the cost of recruiting guests. Most of the factors influencing the base price of a slave are the same as those influencing the cost of recruiting a guest, with similar impact, such as base, claims, dynasty prestige level, genetic, commander, and other traits, and skills. There are also some unique factors, such as attraction, visibly fertile female, and age. At the very end, a correction multiplier is applied to calculate the final base price, intended to prevent the player from making too much money from selling slaves.
 
-Actual buy and sell transactions are settled at the *bid price* (buyer's price) if the initiating party is the seller, and the *ask price* (seller's price), if the initiating party is the buyer.These prices are calculated by multiplying the base price by a factor ranging from 0.8 to 1.2, depending on AI greed. These prices are also multiplied by an additional factor of 0.8 (for the bid price) or 1.2 (for the ask price) if the initiating party is the human player. Since the human player is always the initiating party when buying or selling slaves, they always buy at higher and sell at lower prices. This is to prevent exploits, and to make it a bit more challenging for the human player to use the slavery system to their own advantage.
+Actual buy and sell transactions are settled at the *bid price* (buyer's price) if the initiating party is the seller, and the *ask price* (seller's price), if the initiating party is the buyer. These prices are calculated by multiplying the base price by a factor depending on AI greed, and an additional factor of 0.8 (for the bid price) or 1.2 (for the ask price) if the initiating party is the player. As a result, the player always buys at higher and sells at lower prices compared to the AI. This is done to prevent exploits, and to make it a bit more challenging for the player to use the trading system to their advantage.
 
 #### AI Willingness to Buy or Sell
 
@@ -58,26 +58,28 @@ When buying slaves, the AI acceptance is influenced by a comprehensive estimatio
 
 When selling, the AI acceptance is influenced by similar factors, but working in the opposite direction. Factors such as the AI's opinion of the other party play a minor role, and dread plays no role at all. In addition, the AI will never offer to pay more than their "short term gold" (the portion of the AI's budget that can be used for short term purchases), and will only sell if the other party offers enough gold to pay the full price.
 
-When deciding to initiate buying or selling of slaves, the AI is driven by much the same considerations. Unlike Carnalitas, AI rulers will attempt to both buy and sell slaves from / to other AI rulers (never the human player).
+When deciding to initiate buying or selling of slaves, the AI is driven by much the same considerations. Unlike Carnalitas, AI rulers will attempt to both buy and sell slaves from / to other AI rulers (never the player).
 
-All in all, the AI is in general quite reluctant to buy slaves that are useless, or sell slaves that are useful to them. As a human player, you may find it impossible to find buyers for your slaves unless they have some of the useful qualities listed above. Still, for slaves that nobody wants to buy, there are plenty of other options what to do with them. You could also spend a hook if you have one on a ruler and really want to buy or sell a slave.
+All in all, the AI is in general quite reluctant to buy slaves that are useless, or sell slaves that are useful to them. As a player, you may find it impossible to find buyers for your slaves unless they have some of the useful qualities listed above. Still, for slaves that nobody wants to buy, there are plenty of other options what to do with them. You could also spend a hook if you have one on a ruler and really want to buy or sell a slave.
 
-#### Convenience Interactions for the Human Player
+#### Convenience Interactions for the player
 
-While it is possible to initiate buying or selling of slaves by right-clicking on a ruler, it may be quite hard to find rulers that are willing to buy one of your slaves, or sell some of their slaves to you. Furthermore, the price you get with each ruler may be different. To make it more convenient for the human player, this mod introduces the following 2 new interactions:
+While it is possible to initiate buying or selling of slaves by right-clicking on a ruler, it may be quite hard to find rulers that are willing to buy one of your slaves, or sell some of their slaves to you. Furthermore, the price you get with each ruler may be different. To make it more convenient for the player, this mod introduces the following 2 new interactions:
 
-* *Buy Slaves*: Buy a slave by choosing from the list of all slaves that other rulers are willing to sell to you. If there are no such slaves, the list will be empty.
-* *Sell Slaves*: Sell one of your slaves by choosing from the list of all other rulers that are willing to buy that slave from you. If there are no potential buyers for a slave, the list will be empty.
+* *Buy Slaves*: Buy a slave by choosing from a list of all slaves that other rulers are willing to sell to you. If there are no such slaves, the list will be empty.
+* *Sell Slaves*: Sell one of your slaves by choosing a list of those of your slaves that other rulers are willing to buy from you. If there are no such slaves, the list will be empty. After choosing a slave, you can choose a buyer from a list of other rulers that are willing to buy that slave from you. Since buyers can't be sorted by their bid prices, this list contains only a limited number of buyers offering the highest bid prices. This number is 5 by default and can be configured via the *Number of Potential Buyers* game rule.
 
-#### Slave Trading Ranges
+#### Valid Buyers and Sellers
 
-For added realism and also for performance reasons, it is not possible to target any ruler with a request to buy or sell a slave. The following rulers are valid targets for buy and sell interactions for the human player:
+For added realism and also to improve performance on lower-end machines, whether a character is considered to be a valid buyer or seller is determined by the *Valid Buyers or Sellers* game rule. It has the following settings:
 
-* Any vassal or liege in the same realm.
-* Neighboring independent rulers.
-* Foreign rulers within a dynamic trading range depending on rank (smallest for counts, largest for emperors), measured as the distance between capitals.
+* *Same and Neighboring Realms**: Rulers in the same and neighboring realms (less buyers or sellers, better performance and realism).
+* *Within Trading Range**: Rulers in the same and neighboring realms, and foreign rulers within a dynamic trading range depending on rank (smallest for counts, largest for emperors), measured as the distance between capitals. This is the default setting.
+* *All Rulers**: All rulers within diplomatic range (more buyers or sellers, worse performance and realism).
 
-The AI uses a slightly different version of the above due to engine limitations. Starting with version 0.5.0, AI rulers will attempt to precision target one ruler per slave within the above range when selling slaves, to improve their chances to find a buyer.
+The AI uses a slightly different version of the above due to engine limitations.
+
+Starting with version 0.5.0, AI rulers will attempt to precision target one valid buyer or seller per slave when selling slaves, to improve their chances to find a buyer.
 
 ### Enslaving and Seizing Prisoners
 
@@ -106,7 +108,7 @@ In this mod, a slave can also be gifted to another ruler for an opinion gain via
 Carnalitas introduces the *Slavery Crime* and *Slavery Shunned* religious doctrines that determine whether owning slaves of certain faiths is considered a crime, shunned, or accepted, depending on the faith's hostility level. However, in Carnalitas these doctrines are not followed consistently when determining if someone can be enslaved, bought, or seized, the AI acceptance of slave interactions, or the AI decisions to initiate them. This mod attempts to correct this by rebalancing the impact of slavery doctrines on all slave interactions:
 
 * If owning slaves of a certain faith is a crime, for adherents of this faith:
-  - It is not possible to enslave, seize, or buy them for the human player. The AI will not initiate such interactions at all.
+  - It is not possible to enslave, seize, or buy them for the player. The AI will not initiate such interactions at all.
   - The AI will not accept sell interactions for them.
   - The AI will be quite willing to free or ransom them.
 * If owning slaves of a certain faith is shunned, for adherents of this faith:
@@ -156,7 +158,7 @@ Besides adding flavor, the above event serves the purpose of spawning more slave
 
 AI rulers may have sex with one of their slaves (or former slaves that are also *Slave Concubines*) once a year if they are attracted to them, via a hidden event. The chance of pregnancy is for the moment hardcoded at 10%.
 
-This event will fire also for the human player if the *Make Love* interaction is disabled. If the *Make Love* interaction is enabled, the event will not fire, since the player is then expected to make love to their slaves and *Slave Concubines*. The chance of pregnancy for the *Make Love* interaction is hardcoded at 30%, as in the original Carnalitas.
+This event will fire also for the player if the *Make Love* interaction is disabled. If the *Make Love* interaction is enabled, the event will not fire, since the player is then expected to make love to their slaves and *Slave Concubines*. The chance of pregnancy for the *Make Love* interaction is hardcoded at 30%, as in the original Carnalitas.
 
 ### Slave Memories
 

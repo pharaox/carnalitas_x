@@ -1,3 +1,27 @@
+# Version 0.7.0
+
+## Interactions
+
+* Ensured that only non-busy count or above rulers can start slave interactions
+* Nerfed impact of strong hooks (+100 instead of auto accept)
+* All rulers from neighboring realms are now regarded as valid buyers or sellers
+* Changed AI greed slave price multipliers to correspond to player slave price multipliers
+* Slave prices are now rounded normally instead of down
+
+## Game Rules
+
+* Added *Valid Buyers or Sellers* game rule to specify which rules are considered valid buyers or sellers
+* Added *Number of Potential Buyers* game rule to limit the max number of buyers shown in the *Sell Slaves* interaction
+
+## Bug Fixes
+
+* Ensured that rulers that can't have councillors, court positions, knights, or commanders don't consider slaves for such roles
+* Fixed the tribal price multiplier to ensure that the two parties are always different characters
+
+## Housekeeping
+
+* Refactored character interactions and triggers to correspond to *Search & Trade Artifacts*
+
 # Version 0.6.0
 
 ## Court Positions
