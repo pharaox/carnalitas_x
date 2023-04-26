@@ -62,7 +62,7 @@ When deciding to initiate buying or selling of slaves, the AI is driven by much 
 
 All in all, the AI is in general quite reluctant to buy slaves that are useless, or sell slaves that are useful to them. As a player, you may find it impossible to find buyers for your slaves unless they have some of the useful qualities listed above. Still, for slaves that nobody wants to buy, there are plenty of other options what to do with them. You could also spend a hook if you have one on a ruler and really want to buy or sell a slave.
 
-#### Convenience Interactions for the player
+#### Convenience Interactions for the Player
 
 While it is possible to initiate buying or selling of slaves by right-clicking on a ruler, it may be quite hard to find rulers that are willing to buy one of your slaves, or sell some of their slaves to you. Furthermore, the price you get with each ruler may be different. To make it more convenient for the player, this mod introduces the following 2 new interactions:
 
@@ -73,13 +73,11 @@ While it is possible to initiate buying or selling of slaves by right-clicking o
 
 For added realism and also to improve performance on lower-end machines, whether a character is considered to be a valid buyer or seller is determined by the *Valid Buyers or Sellers* game rule. It has the following settings:
 
-* *Same and Neighboring Realms**: Rulers in the same and neighboring realms (less buyers or sellers, better performance and realism).
-* *Within Trading Range**: Rulers in the same and neighboring realms, and foreign rulers within a dynamic trading range depending on rank (smallest for counts, largest for emperors), measured as the distance between capitals. This is the default setting.
-* *All Rulers**: All rulers within diplomatic range (more buyers or sellers, worse performance and realism).
+* *Same and Neighboring Realms*: Rulers in the same and neighboring realms (less buyers or sellers, better performance and realism).
+* *Within Trading Range*: Rulers in the same and neighboring realms, and foreign rulers within a dynamic trading range depending on rank (smallest for counts, largest for emperors), measured as the distance between capitals. This is the default setting.
+* *All Rulers*: All rulers within diplomatic range (more buyers or sellers, worse performance and realism).
 
-The AI uses a slightly different version of the above due to engine limitations.
-
-Starting with version 0.5.0, AI rulers will attempt to precision target one valid buyer or seller per slave when selling slaves, to improve their chances to find a buyer.
+The AI uses a slightly different version of the above due to engine limitations. Starting with version 0.5.0, AI rulers will attempt to precision target one valid buyer or seller per slave when selling slaves, to improve their chances to find a buyer.
 
 ### Enslaving and Seizing Prisoners
 
