@@ -909,6 +909,37 @@ carnx_slave_trading_range_value = {
 	}
 }
 
+# Number of potential buyers shown in the Sell Slaves interaction.
+carnx_number_of_potential_buyers_value = {
+	if = {
+		limit = { has_game_rule = carnx_number_of_potential_buyers_01 }
+		value = 1
+	}
+	else_if = {
+		limit = { has_game_rule = carnx_number_of_potential_buyers_02 }
+		value = 2
+	}
+	else_if = {
+		limit = { has_game_rule = carnx_number_of_potential_buyers_05 }
+		value = 5
+	}
+	else_if = {
+		limit = { has_game_rule = carnx_number_of_potential_buyers_10 }
+		value = 10
+	}
+	else_if = {
+		limit = { has_game_rule = carnx_number_of_potential_buyers_20 }
+		value = 20
+	}
+	else_if = {
+		limit = { has_game_rule = carnx_number_of_potential_buyers_50 }
+		value = 50
+	}
+	else = {
+		value = 1000
+	}
+}
+
 # Not used due to carn_had_sex_with_effect failing to parse script values.
 carnx_slave_pregnancy_chance_value = {
 	value = fertility

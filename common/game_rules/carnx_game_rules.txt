@@ -1,0 +1,17 @@
+﻿carnx_valid_trading_partners = {
+	default = carnx_valid_trading_partners_within_trading_range
+	carnx_valid_trading_partners_same_and_neighboring_realms = {}
+	carnx_valid_trading_partners_within_trading_range = {}
+	carnx_valid_trading_partners_all = {}
+}
+
+carnx_number_of_potential_buyers = {
+	default = carnx_number_of_potential_buyers_05
+	carnx_number_of_potential_buyers_01 = {}
+	carnx_number_of_potential_buyers_02 = {}
+	carnx_number_of_potential_buyers_05 = {}
+	carnx_number_of_potential_buyers_10 = {}
+	carnx_number_of_potential_buyers_20 = {}
+	carnx_number_of_potential_buyers_50 = {}
+	carnx_number_of_potential_buyers_all = {}
+}

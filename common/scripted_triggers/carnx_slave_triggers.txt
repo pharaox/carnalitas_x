@@ -1,29 +1,29 @@
 ﻿carnx_can_interact_with_trigger = {
-	NOT = { this = scope:actor }
+	NOT = { this = $PARTY$ }
 	highest_held_title_tier >= tier_county
 	is_diplomatically_available = yes
-	in_diplomatic_range = scope:actor
-	NOT = { is_at_war_with = scope:actor }
+	in_diplomatic_range = $PARTY$
+	NOT = { is_at_war_with = $PARTY$ }
 	is_imprisoned = no
 }
 
 carnx_can_sell_slave_to_trigger = {
-	carnx_can_interact_with_trigger = yes
+	carnx_can_interact_with_trigger = { PARTY = $PARTY$ }
 	is_ai = yes
 	short_term_gold > 1
 }
 
 carnx_can_buy_slave_from_trigger = {
-	carnx_can_interact_with_trigger = yes
+	carnx_can_interact_with_trigger = { PARTY = $PARTY$ }
 	is_ai = yes
 }
 
 carnx_can_gift_slave_to_trigger = {
-	carnx_can_interact_with_trigger = yes
+	carnx_can_interact_with_trigger = { PARTY = $PARTY$ }
 }
 
 carnx_can_ransom_slave_trigger = {
-	carnx_can_interact_with_trigger = yes
+	carnx_can_interact_with_trigger = { PARTY = $PARTY$ }
 }
 
 carnx_can_start_interaction_trigger = {
@@ -44,11 +44,30 @@ carnx_slave_can_be_freed_trigger = {
 }
 
 carnx_valid_buyer_or_seller_trigger = {
+	NOT = { this = $PARTY$ }
+	in_diplomatic_range = $PARTY$
 	is_ruler = yes
-	OR = {
-		carnx_is_same_realm_character_trigger = { PARTY = $PARTY$ }
-		carnx_is_neighboring_realm_character_trigger = { PARTY = $PARTY$ }
-		carnx_is_landed_ruler_within_trading_range_trigger = { PARTY = $PARTY$ }
+	trigger_if = {
+		limit = {
+			has_game_rule = carnx_valid_trading_partners_same_and_neighboring_realms
+		}
+		OR = {
+			carnx_is_same_realm_character_trigger = { PARTY = $PARTY$ }
+			carnx_is_neighboring_realm_character_trigger = { PARTY = $PARTY$ }
+		}
+	}
+	trigger_else_if = {
+		limit = {
+			has_game_rule = carnx_valid_trading_partners_within_trading_range
+		}
+		OR = {
+			carnx_is_same_realm_character_trigger = { PARTY = $PARTY$ }
+			carnx_is_neighboring_realm_character_trigger = { PARTY = $PARTY$ }
+			carnx_is_landed_ruler_within_trading_range_trigger = { PARTY = $PARTY$ }
+		}
+	}
+	trigger_else = {
+		always = yes
 	}
 }
 

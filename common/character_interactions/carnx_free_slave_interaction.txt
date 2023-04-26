@@ -189,7 +189,7 @@ carn_free_slave_interaction = {
 
 		modifier = {
 			add = 100
-			desc = "WANTS_FREEDOM_REASON"
+			desc = WANTS_FREEDOM_REASON
 		}
 
 		# Demanded conversion (-20 to -100 for astray faith, -180 for hostile faith depending on ai_zeal)
@@ -197,7 +197,7 @@ carn_free_slave_interaction = {
 			scope:demand_conversion = yes
 			scope:recipient = { ai_zeal <= 20 }
 			add = -20
-			desc = "CONVERSION_NEGATIVE_REASON"
+			desc = CONVERSION_NEGATIVE_REASON
 		}
 		modifier = {
 			scope:demand_conversion = yes
@@ -219,7 +219,7 @@ carn_free_slave_interaction = {
 					multiply = -2
 				}
 			}
-			desc = "CONVERSION_NEGATIVE_REASON"
+			desc = CONVERSION_NEGATIVE_REASON
 		}
 
 		# Demanded renounce claims (-25 to -100 depending on ai_greed)
@@ -227,27 +227,27 @@ carn_free_slave_interaction = {
 			scope:renounce_claims = yes
 			ai_greed < 0
 			add = -25
-			desc = "RENOUNCE_CLAIMS_REASON"
+			desc = RENOUNCE_CLAIMS_REASON
 		}
 		modifier = {
 			scope:renounce_claims = yes
 			ai_greed >= 0
 			ai_greed <= 25
 			add = -50
-			desc = "RENOUNCE_CLAIMS_REASON"
+			desc = RENOUNCE_CLAIMS_REASON
 		}
 		modifier = {
 			scope:renounce_claims = yes
 			ai_greed > 25
 			ai_greed <= 50
 			add = -75
-			desc = "RENOUNCE_CLAIMS_REASON"
+			desc = RENOUNCE_CLAIMS_REASON
 		}
 		modifier = {
 			scope:renounce_claims = yes
 			ai_greed > 50
 			add = -100
-			desc = "RENOUNCE_CLAIMS_REASON"
+			desc = RENOUNCE_CLAIMS_REASON
 		}
 
 		# Demanded hook (-50 to -150 depending on ai_vengefulness)
@@ -262,7 +262,7 @@ carn_free_slave_interaction = {
 					subtract = ai_vengefulness
 				}
 			}
-			desc = "GAIN_HOOK_NEGATIVE_REASON"
+			desc = GAIN_HOOK_NEGATIVE_REASON
 		}
 
 		# Intimidated or cowed by actor (25 or 50)

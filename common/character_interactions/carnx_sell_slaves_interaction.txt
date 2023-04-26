@@ -25,18 +25,23 @@ carnx_sell_slaves_interaction = {
 
 	populate_actor_list = {
 		if = {
-			limit = { NOT = { exists = scope:secondary_recipient } }
+			limit = { 
+				NOT = { exists = scope:secondary_recipient }
+			}
 			scope:actor = {
-				carnx_get_valid_buyers_or_sellers_effect = { LIST = potential_buyers }
+				carnx_get_valid_buyers_or_sellers_effect = { LIST = valid_buyers }
 				every_relation = {
 					type = slave
 					limit = {
 						carn_slave_can_be_sold_trigger = yes
 						save_temporary_scope_as = slave
 						any_in_list = {
-							list = potential_buyers
-							carnx_can_sell_slave_to_trigger = yes
-							save_temporary_opinion_value_as = { name = opinion_of_actor target = scope:actor }
+							list = valid_buyers
+							carnx_can_sell_slave_to_trigger = { PARTY = scope:actor }
+							save_temporary_opinion_value_as = { 
+								name = opinion_of_actor
+								target = scope:actor
+							}
 							carnx_sell_slave_ai_accept_value > 0
 						}
 					}
@@ -47,17 +52,29 @@ carnx_sell_slaves_interaction = {
 	}
 
 	populate_recipient_list = {
-		scope:secondary_actor = { save_scope_as = slave }
 		scope:actor = {
-			carnx_get_valid_buyers_or_sellers_effect = { LIST = potential_buyers }
+			carnx_get_valid_buyers_or_sellers_effect = { LIST = valid_buyers }
 		}
-		every_in_list = {
-			list = potential_buyers
+		scope:secondary_actor = { 
+			save_scope_as = slave
+		}
+		ordered_in_list = {
+			list = valid_buyers
 			limit = {
-				carnx_can_sell_slave_to_trigger = yes
-				save_temporary_opinion_value_as = { name = opinion_of_actor target = scope:actor }
+				carnx_can_sell_slave_to_trigger = { PARTY = scope:actor }
+				save_temporary_opinion_value_as = { 
+					name = opinion_of_actor
+					target = scope:actor
+				}
 				carnx_sell_slave_ai_accept_value > 0
 			}
+			order_by = {
+				save_temporary_scope_as = buyer
+				value = scope:slave.carnx_slave_bid_price_value
+				max = short_term_gold
+			}
+			max = carnx_number_of_potential_buyers_value
+			check_range_bounds = no
 			add_to_list = characters
 		}
 	}

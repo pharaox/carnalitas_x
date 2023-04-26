@@ -75,7 +75,7 @@ carn_buy_slave_directly_interaction = {
 			carnx_can_start_interaction_trigger = yes
 		}
 		scope:recipient = {
-			carnx_can_buy_slave_from_trigger = yes
+			carnx_can_buy_slave_from_trigger = { PARTY = scope:actor }
 		}
 		trigger_if = {
 			limit = { exists = scope:secondary_recipient }
@@ -129,7 +129,7 @@ carn_buy_slave_directly_interaction = {
 
 		modifier = {
 			add = 50
-			desc = "GOLD_POSITIVE_REASON"
+			desc = GOLD_POSITIVE_REASON
 		}
 
 		modifier = {
@@ -151,7 +151,7 @@ carn_buy_slave_directly_interaction = {
 				has_character_flag = carnx_slave_recently_bought
 			}
 			add = -100
-			desc = "carnx_slave_recently_bought_reason"
+			desc = carnx_slave_recently_bought_reason
 		}
 
 		# Employed as councillor (NIV doubled), court position, knight / commander, or in some other way (NIV)
@@ -217,36 +217,30 @@ carn_buy_slave_directly_interaction = {
 
 		# Avoid doing business with rivals or nemesises
 		modifier = {
-			scope:recipient = {
-				has_relation_rival = scope:actor
-			}
+			has_relation_rival = scope:actor
 			add = -100
-			desc = "ACTOR_RIVAL_TO_ME_REASON"
+			desc = ACTOR_RIVAL_TO_ME_REASON
 		}
 		modifier = {
-			scope:recipient = {
-				has_relation_nemesis = scope:actor
-			}
+			has_relation_nemesis = scope:actor
 			add = -200
-			desc = "ACTOR_NEMESIS_TO_ME_REASON"
+			desc = ACTOR_NEMESIS_TO_ME_REASON
 		}
 
 		# Not enough gold
 		modifier = {
-			scope:recipient = {
-				save_temporary_scope_as = seller
-				scope:actor = {
-					trigger_if = {
-						limit = { is_ai = yes }
-						short_term_gold < scope:secondary_recipient.carnx_slave_ask_price_value
-					}
-					trigger_else = {
-						gold < scope:secondary_recipient.carnx_slave_ask_price_value
-					}
+			save_temporary_scope_as = seller
+			scope:actor = {
+				trigger_if = {
+					limit = { is_ai = yes }
+					short_term_gold < scope:secondary_recipient.carnx_slave_ask_price_value
+				}
+				trigger_else = {
+					gold < scope:secondary_recipient.carnx_slave_ask_price_value
 				}
 			}
 			factor = 0
-			desc = "carnx_not_enough_gold_reason"
+			desc = carnx_not_enough_gold_reason
 		}
 	}
 

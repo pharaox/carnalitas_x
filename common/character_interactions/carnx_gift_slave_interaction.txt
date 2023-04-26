@@ -39,7 +39,7 @@ carnx_gift_slave_interaction = {
 			carnx_can_start_interaction_trigger = yes
 		}
 		scope:recipient = {
-			carnx_can_gift_slave_to_trigger = yes
+			carnx_can_gift_slave_to_trigger = { PARTY = scope:actor }
 		}
 	}
 

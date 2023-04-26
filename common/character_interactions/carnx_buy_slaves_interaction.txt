@@ -13,14 +13,16 @@ carnx_buy_slaves_interaction = {
 
 	populate_actor_list = {
 		if = {
-			limit = { NOT = { exists = scope:secondary_recipient } }
+			limit = { 
+				NOT = { exists = scope:secondary_recipient }
+			}
 			scope:actor = {
-				carnx_get_valid_buyers_or_sellers_effect = { LIST = potential_sellers }
+				carnx_get_valid_buyers_or_sellers_effect = { LIST = valid_sellers }
 			}
 			every_in_list = {
-				list = potential_sellers
+				list = valid_sellers
 				limit = {
-					carnx_can_buy_slave_from_trigger = yes
+					carnx_can_buy_slave_from_trigger = { PARTY = scope:actor }
 				}
 				save_scope_as = seller
 				every_relation = {
@@ -28,7 +30,10 @@ carnx_buy_slaves_interaction = {
 					limit = {
 						carn_slave_can_be_sold_trigger = yes
 						scope:seller = {
-							save_temporary_opinion_value_as = { name = opinion_of_actor target = scope:actor }
+							save_temporary_opinion_value_as = { 
+								name = opinion_of_actor
+								target = scope:actor
+							}
 						}
 						carnx_buy_slave_ai_accept_value > 0
 					}
@@ -90,7 +95,6 @@ carnx_buy_slaves_interaction = {
 			recipient = scope:secondary_recipient
 			secondary_recipient = scope:secondary_actor
 		}
-
 	}
 
 	auto_accept = yes
