@@ -73,8 +73,8 @@ carnx_free_slave_dread_loss = -5
 carnx_enslave_basic_tyranny_gain = 10
 
 # Slave price multipliers for the player to limit exploits
-carnx_slave_ask_price_player_multiplier = 1.15
-carnx_slave_bid_price_player_multiplier = 0.85
+carnx_slave_ask_price_player_multiplier = 1.2
+carnx_slave_bid_price_player_multiplier = 0.8
 
 # Multiplier for the court position salary if held by a slave
 carnx_court_position_slave_salary_multiplier = 0.25
