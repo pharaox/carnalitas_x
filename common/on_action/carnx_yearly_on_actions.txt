@@ -1,0 +1,63 @@
+﻿# Called from code once a year for all "playable" characters, at a random point that year (individually for each character).
+# Root is the character
+random_yearly_playable_pulse = {
+	on_actions = {
+		delay = { days = { 8 288 } }
+		carnx_yearly_playable_pulse
+	}
+}
+
+# Called from code once every five years for "playable" (count+) characters.
+# Root is the character
+five_year_playable_pulse = {
+	on_actions = {
+		delay = { days = { 8 288 } }
+		carnx_five_year_playable_pulse
+	}
+}
+
+carnx_yearly_playable_pulse = {
+	trigger = {
+		basic_is_valid_for_yearly_events_trigger = yes
+	}
+
+	events = {
+		carnx_slave.0002 # Sex With a Slave
+	}
+
+	random_events = {
+		chance_of_no_event = {
+			value = 0
+			if = {
+				limit = { is_at_war = yes }
+				add = 50
+			}
+		}
+
+		900 = 0
+
+		100 = carnx_slave.0003 # Runaway Slave
+	}
+}
+
+carnx_five_year_playable_pulse = {
+	trigger = {
+		basic_is_valid_for_yearly_events_trigger = yes
+	}
+
+	events = {
+		carnx_slave.0001 # Buy Foreign Slaves
+	}
+
+	random_events = {
+		chance_of_no_event = {
+			value = 0
+			if = {
+				limit = { is_at_war = yes }
+				add = 50
+			}
+		}
+
+		100 = 0
+	}
+}

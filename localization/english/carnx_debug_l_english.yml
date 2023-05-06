@@ -5,6 +5,7 @@
  carnx_debug_msg_slave_seized: "Slave seized"
  carnx_debug_msg_slave_ransomed: "Slave ransomed"
  carnx_debug_msg_slave_gifted: "Slave gifted"
+ carnx_debug_msg_slave_escaped: "Slave escaped"
 
  carnx_debug_msg_moving_slave: "Moving slave to owner's court"
  carnx_debug_msg_freeing_slave: "Freeing slave"
@@ -82,3 +83,9 @@
  carnx_debug_msg_character_had_sex: "Character had sex"
  carnx_debug_msg_character_had_sex_with_slave: "Character had sex with one of their slaves"
  carnx_debug_msg_child_of_slave_concubine_born: "Child of slave concubine was born"
+
+ carnx_debug_msg_slave_0003_option_a_chosen: "Runaway Slave option a chosen"
+ carnx_debug_msg_slave_0003_option_b_chosen: "Runaway Slave option b chosen"
+ carnx_debug_msg_slave_0003_option_c_chosen: "Runaway Slave option c chosen"
+ carnx_debug_msg_slave_0003_option_d_chosen: "Runaway Slave option d chosen"
+ carnx_debug_msg_slave_0003_option_e_chosen: "Runaway Slave option e chosen"

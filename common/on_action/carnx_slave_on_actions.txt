@@ -70,6 +70,18 @@ carnx_on_slave_gifted = {
 	}
 }
 
+carnx_on_slave_escaped = {
+	effect = {
+		create_character_memory = {
+			type = carnx_escaped_memory
+			participants = {
+				former_owner = scope:former_owner
+			}
+		}
+		carnx_debug_log_effect = { MSG = carnx_debug_msg_slave_escaped }
+	}
+}
+
 # Fires when a character leaves a court. Not fired when leaving due to death or similar
 # Will still fire even if on_join_court is firing (fires just before it)
 # Root is the character
@@ -182,21 +194,5 @@ carn_on_sex = {
 carnx_on_sex = {
 	effect = {
 		#carnx_debug_log_effect = { MSG = carnx_debug_msg_character_had_sex }
-	}
-}
-
-# Called from code once a year for "playable" (count+) characters.
-# Root is the character
-yearly_playable_pulse = {
-	events = {
-		carnx_slave.0002
-	}
-}
-
-# Called from code once every five years for "playable" (count+) characters.
-# Root is the character
-five_year_playable_pulse = {
-	events = {
-		carnx_slave.0001
 	}
 }

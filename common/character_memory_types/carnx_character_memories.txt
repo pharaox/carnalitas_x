@@ -111,7 +111,7 @@ carnx_seized_memory = {
 }
 
 carnx_ransomed_memory = {
-	categories = { prison }
+	categories = { positive prison }
 	icon = "prison.dds"
 	description = {
 		random_valid = {
@@ -160,6 +160,34 @@ carnx_gifted_memory = {
 	}
 
 	participants = { new_owner }
+
+	duration = {
+		years = memory_default_duration
+	}
+}
+
+carnx_escaped_memory = {
+	categories = { poistive prison }
+	icon = "prison.dds"
+	description = {
+		random_valid = {
+			desc = carnx_escaped_desc_1
+		}
+	}
+
+	second_perspective_description = {
+		random_valid = {
+			desc = carnx_escaped_desc_second_perspective_1
+		}
+	}
+
+	third_perspective_description = {
+		random_valid = {
+			desc = carnx_escaped_desc_third_perspective_1
+		}
+	}
+
+	participants = { former_owner }
 
 	duration = {
 		years = memory_default_duration

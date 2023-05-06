@@ -1,0 +1,3 @@
+﻿l_english:
+ carnx_rival_slave_scapegoat:0 "[CHARACTER.GetShortUIName|U] scapegoated [TARGET_CHARACTER.GetShortUIName] for the loss of a slave."
+ carnx_rival_slave_scapegoat_corresponding:0 "[TARGET_CHARACTER.GetShortUIName|U] scapegoated [CHARACTER.GetShortUIName] for the loss of a slave."

@@ -158,6 +158,12 @@ AI rulers may have sex with one of their slaves (or former slaves that are also 
 
 This event will fire also for the player if the *Make Love* interaction is disabled. If the *Make Love* interaction is enabled, the event will not fire, since the player is then expected to make love to their slaves and *Slave Concubines*. The chance of pregnancy for the *Make Love* interaction is hardcoded at 30%, as in the original Carnalitas.
 
+#### Runaway Slave
+
+One of your slaves flees, taking some of your valuables with them, and a knight is chosen as a scapegoat. You can try to catch the slave via intrigue or martial challenges, fine or forgive the scapegoat, or do nothing, for a loss or gain of prestige or stress.
+
+This event is based on the *Escaped Thrall* event from FP1, but is somewhat more sophisticated as it involves a real character. Every year there is a chance of approximately 10% for this even to fire for every ruler that is a slave owner.
+
 ### Slave Memories
 
 Being enslaved, freed, bought, ransomed, seized, or gifted is certainly a significant lifetime event from the slave's perspective. This mod adds character memories for all these events in the slave's memory book.

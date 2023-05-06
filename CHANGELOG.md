@@ -1,3 +1,9 @@
+# Version 0.8.0
+
+## Events
+
+* Added *Runaway Slave* event (`carnx_slave.0003`). One of your slaves flees, taking some of your valuables with them, and a knight is chosen as a scapegoat.
+
 # Version 0.7.0
 
 ## Interactions

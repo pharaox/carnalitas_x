@@ -1,0 +1,581 @@
+﻿namespace = carnx_slave
+
+scripted_trigger carnx_slave_0003_valid_liege_trigger = {
+	is_available_adult = yes
+	carnx_is_slave_owner_trigger = yes
+}
+
+scripted_trigger carnx_slave_0003_valid_slave_trigger = {
+	is_available_ai_adult = yes
+	opinion = {
+		target = root
+		value < low_positive_opinion
+	}
+	OR = {
+		intrigue >= medium_skill_rating
+		martial >= medium_skill_rating
+		ai_boldness >= medium_positive_ai_value
+		ai_rationality < high_negative_ai_value
+	}
+	NOT = {
+		is_councillor_of = root
+		has_relation_friend = root
+		has_relation_lover = root
+		has_trait = loyal
+	}
+}
+
+scripted_trigger carnx_slave_0003_valid_scapegoat_trigger = {
+	is_available_ai_adult = yes
+	is_ruler = no
+	OR = {
+		prowess < high_skill_rating
+		ai_compassion >= medium_positive_ai_value
+	}
+	NOT = {
+		has_trait = blind
+	}
+}
+
+scripted_effect carnx_slave_0003_slave_is_caught_effect = {
+	imprison = {
+		target = scope:slave
+		type = dungeon
+	}
+	scope:slave = {
+		pay_short_term_gold = {
+			gold = scope:stolen_gold_value
+			target = root
+		}
+	}
+}
+
+scripted_effect carnx_slave_0003_slave_escapes_effect = {
+	scope:slave = {
+		carn_free_slave_effect = yes
+		move_to_pool = yes
+	}
+}
+
+# Runaway Slave
+carnx_slave.0003 = {
+	type = character_event
+	title = carnx_slave.0003.t
+	desc = {
+		first_valid = {
+			triggered_desc = {
+				trigger = {
+					exists = scope:scapegoat
+				}
+				desc = carnx_slave.0003.scapegoat.desc
+			}
+			desc = carnx_slave.0003.desc
+		}
+	}
+
+	theme = intrigue
+	left_portrait = {
+		character = scope:slave
+		animation = personality_bold
+	}
+	right_portrait = {
+		character = scope:scapegoat
+		animation = shame
+	}
+	override_background = {
+		event_background = throne_room
+	}
+
+	trigger = {
+		NOT = { has_game_rule = carn_slavery_content_disabled }
+		NOT = { has_character_flag = had_event_carnx_slave_0003 }
+		carnx_slave_0003_valid_liege_trigger = yes
+		any_relation = {
+			type = slave
+			carnx_slave_0003_valid_slave_trigger = yes
+		}
+	}
+
+	weight_multiplier = {
+		base = 1
+
+		# Weight up for "bad" rulers, weight down for "good" ones
+		modifier = {
+			has_trait = sadistic
+			add = 0.5
+		}
+		modifier = {
+			has_trait = callous
+			add = 0.25
+		}
+		modifier = {
+			has_trait = compassionate
+			add = -0.5
+		}
+		modifier = {
+			has_trait = forgiving
+			add = -0.25
+		}
+	}
+
+	immediate = {
+		add_character_flag = {
+			flag = had_event_carnx_slave_0003
+			days = 1825
+		}
+
+		# Find a valid slave to escape
+		random_relation = {
+			type = slave
+			limit = {
+				carnx_slave_0003_valid_slave_trigger = yes
+			}
+
+			weight = {
+				base = 50
+
+				# Opinion of owner
+				opinion_modifier = {
+					opinion_target = root
+					multiplier = -0.5
+				}
+
+				# Councillor, court position, knight, or other role
+				modifier = {
+					AND = {
+						has_any_court_position = yes
+						any_court_position_employer = { this = root }
+					}
+					add = -25
+				}
+				modifier = {
+					OR = {
+						is_knight_of = root
+						carnx_has_important_role_trigger = { RULER = root }
+					}
+					add = -15
+				}
+
+				# Relations
+				modifier = {
+					has_relation_rival = root
+					add = 50
+				}
+
+				# Skills
+				compare_modifier = {
+					value = intrigue
+					max = 25
+				}
+				compare_modifier = {
+					value = martial
+					max = 25
+				}
+
+				# AI values
+				ai_value_modifier = {
+					ai_boldness = 0.5
+					ai_rationality = -0.25
+				}
+
+				# Traits
+				modifier = {
+					has_trait = disloyal
+					add = 25
+				}
+			}
+
+			save_scope_as = slave
+		}
+
+		# Find a valid knight for a scapegoat
+		random_knight = {
+			limit = {
+				carnx_slave_0003_valid_scapegoat_trigger = yes
+			}
+
+			weight = {
+				base = 50
+
+				# Skills
+				compare_modifier = {
+					value = prowess
+					multiplier = -2
+					min = -50
+				}
+
+				# AI values
+				ai_value_modifier = {
+					ai_compassion = 0.5
+				}
+			}
+
+			save_scope_as = scapegoat
+		}
+
+		# Remove the stolen valuables
+		save_scope_value_as = {
+			name = stolen_gold_value
+			value = { minor_gold_value medium_gold_value }
+		}
+		pay_short_term_gold = {
+			gold = scope:stolen_gold_value
+			target = scope:slave
+		}
+	}
+
+	# Send a description to every town, village, and hamlet!
+	option = {
+		name = carnx_slave.0003.a
+
+		duel = {
+			skill = intrigue
+			value = scope:slave.intrigue
+
+			50 = {
+				compare_modifier = {
+					value = scope:duel_value
+					multiplier = 2.5
+					min = -49
+					max = 49
+				}
+				desc = carnx_slave.0003.a.tt_success
+				send_interface_toast = {
+					title = carnx_slave.0003.a.tt_success
+					left_icon = scope:slave
+					add_prestige = medium_prestige_gain
+					carnx_slave_0003_slave_is_caught_effect = yes
+				}
+			}
+			50 = {
+				compare_modifier = {
+					value = scope:duel_value
+					multiplier = -2.5
+					min = -49
+					max = 49
+				}
+				desc = carnx_slave.0003.a.tt_failure
+				send_interface_toast = {
+					title = carnx_slave.0003.a.tt_failure
+					left_icon = scope:slave
+					custom_tooltip = carnx_slave.0003.gold_stays_lost.tt
+					add_prestige = medium_prestige_loss
+					carnx_slave_0003_slave_escapes_effect = yes
+				}
+			}
+		}
+
+		stress_impact = {
+			diligent = medium_stress_impact_loss
+			lazy = medium_stress_impact_gain
+		}
+
+		hidden_effect = {
+			carnx_debug_log_no_details_effect = { MSG = carnx_debug_msg_slave_0003_option_a_chosen }
+		}
+
+		ai_chance = {
+			base = 100
+
+			compare_modifier = {
+				value = {
+					value = intrigue
+					subtract = scope:slave.intrigue
+				}
+				multiplier = 5
+			}
+
+			ai_value_modifier = {
+				ai_energy = 0.25
+				ai_rationality = 0.25
+			}
+
+			# Weight up or down for stress
+			modifier = {
+				add = 20
+				has_trait = diligent
+			}
+			modifier = {
+				add = -20
+				has_trait = lazy
+			}
+		}
+	}
+
+	# Get my cloak, I'll hunt [slave.GetHerHim] down myself.
+	option = {
+		name = carnx_slave.0003.b
+
+		duel = {
+			skill = martial
+			value = scope:slave.martial
+
+			50 = {
+				compare_modifier = {
+					value = scope:duel_value
+					multiplier = 2.5
+					min = -49
+					max = 49
+				}
+				desc = carnx_slave.0003.b.tt_success
+				send_interface_toast = {
+					title = carnx_slave.0003.b.tt_success
+					left_icon = scope:slave
+					add_prestige = medium_prestige_gain
+					carnx_slave_0003_slave_is_caught_effect = yes
+				}
+			}
+			50 = {
+				compare_modifier = {
+					value = scope:duel_value
+					multiplier = -2.5
+					min = -49
+					max = 49
+				}
+				desc = carnx_slave.0003.b.tt_failure
+				send_interface_toast = {
+					title = carnx_slave.0003.b.tt_failure
+					left_icon = scope:slave
+					custom_tooltip = carnx_slave.0003.gold_stays_lost.tt
+					add_prestige = medium_prestige_loss
+					carnx_slave_0003_slave_escapes_effect = yes
+				}
+			}
+		}
+
+		stress_impact = {
+			diligent = medium_stress_impact_loss
+			lazy = medium_stress_impact_gain
+		}
+
+		hidden_effect = {
+			carnx_debug_log_no_details_effect = { MSG = carnx_debug_msg_slave_0003_option_b_chosen }
+		}
+
+		ai_chance = {
+			base = 100
+
+			compare_modifier = {
+				value = {
+					value = martial
+					subtract = scope:slave.martial
+				}
+				multiplier = 5
+			}
+
+			ai_value_modifier = {
+				ai_energy = 0.25
+				ai_rationality = 0.25
+			}
+
+			# Weight up or down for stress
+			modifier = {
+				add = 20
+				has_trait = diligent
+			}
+			modifier = {
+				add = -20
+				has_trait = lazy
+			}
+		}
+	}
+
+	# [scapegoat.GetFirstNameNoTooltip], this is your fault, so you can pay!
+	option = {
+		name = carnx_slave.0003.c
+
+		trigger = {
+			exists = scope:scapegoat
+		}
+
+		add_prestige = minor_prestige_gain
+		carnx_slave_0003_slave_escapes_effect = yes
+
+		scope:scapegoat = {
+			pay_short_term_gold = {
+				gold = scope:stolen_gold_value
+				target = root
+			}
+			progress_towards_rival_effect = {
+				REASON = carnx_rival_slave_scapegoat
+				CHARACTER = root
+				OPINION = 0
+			}
+			add_opinion = {
+				target = root
+				modifier = angry_opinion
+				opinion = -20
+			}
+		}
+
+		stress_impact = {
+			calm = minor_stress_impact_gain
+			generous = medium_stress_impact_gain
+			forgiving = major_stress_impact_gain
+			wrathful = minor_stress_impact_loss
+			greedy = medium_stress_impact_loss
+			vengeful = major_stress_impact_loss
+		}
+
+		hidden_effect = {
+			carnx_debug_log_no_details_effect = { MSG = carnx_debug_msg_slave_0003_option_c_chosen }
+		}
+
+		ai_chance = {
+			base = 50
+
+			ai_value_modifier = {
+				ai_compassion = -0.25
+				ai_vengefulness = 0.25
+			}
+
+			# Weight up or down for stress
+			modifier = {
+				add = -10
+				has_trait = calm
+			}
+			modifier = {
+				add = -20
+				has_trait = generous
+			}
+			modifier = {
+				add = -30
+				has_trait = forgiving
+			}
+			modifier = {
+				add = 10
+				has_trait = wrathful
+			}
+			modifier = {
+				add = 20
+				has_trait = greedy
+			}
+			modifier = {
+				add = 30
+				has_trait = vengeful
+			}
+		}
+	}
+
+	# You are forgiven, [scapegoat.GetFirstNameNoTooltip]. These things happen.
+	option = {
+		name = carnx_slave.0003.d
+		custom_tooltip = carnx_slave.0003.gold_stays_lost.tt
+
+		trigger = {
+			exists = scope:scapegoat
+		}
+
+		carnx_slave_0003_slave_escapes_effect = yes
+
+		if = {
+			limit = {
+				can_add_hook = {
+					type = favor_hook
+					target = scope:scapegoat
+				}
+			}
+			add_hook = {
+				type = favor_hook
+				target = scope:scapegoat
+			}
+		}
+		scope:scapegoat = {
+			add_opinion = {
+				target = root
+				modifier = relieved_opinion
+				opinion = 20
+			}
+		}
+
+		stress_impact = {
+			calm = minor_stress_impact_loss
+			generous = medium_stress_impact_loss
+			forgiving = major_stress_impact_loss
+			wrathful = minor_stress_impact_gain
+			greedy = medium_stress_impact_gain
+			vengeful = major_stress_impact_gain
+		}
+
+		hidden_effect = {
+			carnx_debug_log_no_details_effect = { MSG = carnx_debug_msg_slave_0003_option_d_chosen }
+		}
+
+		ai_chance = {
+			base = 50
+
+			ai_value_modifier = {
+				ai_compassion = 0.25
+				ai_vengefulness = -0.25
+			}
+
+			# Weight up or down for stress
+			modifier = {
+				add = 10
+				has_trait = calm
+			}
+			modifier = {
+				add = 20
+				has_trait = generous
+			}
+			modifier = {
+				add = 30
+				has_trait = forgiving
+			}
+			modifier = {
+				add = -10
+				has_trait = wrathful
+			}
+			modifier = {
+				add = -20
+				has_trait = greedy
+			}
+			modifier = {
+				add = -30
+				has_trait = vengeful
+			}
+		}
+	}
+
+	# I have more important matters to attend to.
+	option = {
+		name = carnx_slave.0003.e
+		custom_tooltip = carnx_slave.0003.gold_stays_lost.tt
+
+		trigger = {
+			NOT = { exists = scope:scapegoat }
+		}
+
+		add_prestige = minor_prestige_loss
+		carnx_slave_0003_slave_escapes_effect = yes
+
+		stress_impact = {
+			diligent = medium_stress_impact_gain
+			lazy = medium_stress_impact_loss
+		}
+
+		hidden_effect = {
+			carnx_debug_log_no_details_effect = { MSG = carnx_debug_msg_slave_0003_option_e_chosen }
+		}
+
+		ai_chance = {
+			base = 100
+
+			ai_value_modifier = {
+				ai_energy = -0.25
+				ai_rationality = -0.25
+			}
+
+			# Weight up or down for stress
+			modifier = {
+				add = -20
+				has_trait = diligent
+			}
+			modifier = {
+				add = 20
+				has_trait = lazy
+			}
+		}
+	}
+
+}

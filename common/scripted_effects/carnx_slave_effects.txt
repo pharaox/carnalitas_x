@@ -653,6 +653,12 @@ carn_free_slave_effect = {
 				on_action = carnx_on_slave_ransomed
 			}
 		}
+		else_if = {
+			limit = { exists = scope:stolen_gold_value }
+			trigger_event = {
+				on_action = carnx_on_slave_escaped
+			}
+		}
 		else = {
 			trigger_event = {
 				on_action = carn_on_slave_freed

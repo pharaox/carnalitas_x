@@ -23,9 +23,14 @@
  carnx_gifted_desc_second_perspective_1:0 "you were gifted to [new_owner.GetTitledFirstName]"
  carnx_gifted_desc_third_perspective_1:0 "[owner.GetName] was gifted to [new_owner.GetTitledFirstName]"
 
+ carnx_escaped_desc_1:0 "I escaped from being a slave of [former_owner.GetTitledFirstName]"
+ carnx_escaped_desc_second_perspective_1:0 "you escaped from being a slave of [former_owner.GetTitledFirstName]"
+ carnx_escaped_desc_third_perspective_1:0 "[owner.GetName] escaped from being a slave of [former_owner.GetTitledFirstName]"
+
  carnx_enslaved_memory:0 "enslaved"
  carnx_freed_memory:0 "freed"
  carnx_bought_memory:0 "bought"
  carnx_seized_memory:0 "seized"
  carnx_ransomed_memory:0 "ransomed"
  carnx_gifted_memory:0 "gifted"
+ carnx_escaped_memory:0 "escaped"
