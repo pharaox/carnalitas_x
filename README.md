@@ -162,7 +162,14 @@ This event will fire also for the player if the *Make Love* interaction is disab
 
 One of your slaves flees, taking some of your valuables with them, and a knight is chosen as a scapegoat. You can try to catch the slave via intrigue or martial challenges, fine or forgive the scapegoat, or do nothing, for a loss or gain of prestige or stress.
 
-This event is based on the *Escaped Thrall* event from FP1, but is somewhat more sophisticated as it involves a real character. Every year there is a chance of approximately 10% for this even to fire for every ruler that is a slave owner.
+This event is based on the *Escaped Thrall* event from FP1, but is somewhat more sophisticated as it involves a real character. Every year there is a chance of approximately 10% for this event to fire for every ruler that is a slave owner.
+
+### Piety Loss From Slaves
+
+Once a year rulers may lose piety for any slaves owned against religious doctrines. The piety lost per slave is:
+
+* 25 if owning slaves of that slave's faith is shunned by your faith.
+* 50 if owning slaves of that slave's faith is considered a crime by your faith.
 
 ### Slave Memories
 

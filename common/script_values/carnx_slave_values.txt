@@ -980,6 +980,34 @@ carnx_slave_pregnancy_chance_value = {
 	min = 1
 }
 
+carnx_slavery_shunned_count_value = {
+	save_temporary_scope_as = owner
+	value = 0
+	every_relation = {
+		type = slave
+		limit = {
+			scope:owner = {
+				carnx_is_slavery_shunned_trigger = { CHARACTER = prev }
+			}
+		}
+		add = 1
+	}
+}
+
+carnx_slavery_crime_count_value = {
+	save_temporary_scope_as = owner
+	value = 0
+	every_relation = {
+		type = slave
+		limit = {
+			scope:owner = {
+				carnx_is_slavery_crime_trigger = { CHARACTER = prev }
+			}
+		}
+		add = 1
+	}
+}
+
 carn_scope_buyer_current_gold_value = {
 	value = scope:buyer.short_term_gold
 }

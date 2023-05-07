@@ -1,0 +1,57 @@
+﻿namespace = carnx_slave
+
+scripted_trigger carnx_slave_0004_valid_liege_trigger = {
+	any_relation = {
+		type = slave
+		root = {
+			NOT = {
+				carnx_is_slavery_accepted_trigger = { CHARACTER = prev }
+			}
+		}
+	}
+}
+
+carnx_slave.0004 = {
+	type = character_event
+	title = carnx_slave.0004.t
+	desc = carnx_slave.0004.desc
+	hidden = yes
+
+	theme = dungeon
+
+	trigger = {
+		NOT = { has_game_rule = carn_slavery_content_disabled }
+		carnx_slave_0004_valid_liege_trigger = yes
+	}
+
+	immediate = {
+		save_scope_value_as = {
+			name = piety_loss
+			value = {
+				value = carnx_slavery_shunned_count_value
+				multiply = miniscule_piety_loss
+				add = {
+					value = carnx_slavery_crime_count_value
+					multiply = minor_piety_loss
+				}
+			}
+		}
+
+		send_interface_message = {
+			type = event_generic_neutral
+			title = carnx_slave.0004.tt
+			custom_tooltip = carnx_slave.0004.piety_loss.tt
+
+			add_piety = scope:piety_loss
+			stress_impact = {
+				zealous = minor_stress_impact_gain
+			}
+		}
+
+		carnx_debug_log_effect = { MSG = carnx_debug_msg_character_lost_piety_from_slaves }
+	}
+
+	option = {
+		name = carnx_slave.0004.a
+	}
+}

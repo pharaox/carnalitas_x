@@ -22,3 +22,9 @@
  carnx_slave.0003.c:0 "[scapegoat.GetFirstNameNoTooltip], this is your fault, so you can pay!"
  carnx_slave.0003.d:0 "You are forgiven, [scapegoat.GetFirstNameNoTooltip]. These things happen."
  carnx_slave.0003.e:0 "I have more important matters to attend to."
+
+ carnx_slave.0004.t:0 "Piety Loss From Slaves"
+ carnx_slave.0004.desc:0 "I lost piety from slaves owned against religious doctrines."
+ carnx_slave.0004.a:0 "OK"
+ carnx_slave.0004.tt:0 "Piety Loss From Slaves"
+ carnx_slave.0004.piety_loss.tt:0 "Lost piety from slaves owned against religious doctrines"

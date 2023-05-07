@@ -9,6 +9,7 @@
 ### Events
 
 * Added *Runaway Slave* event (`carnx_slave.0003`). One of your slaves flees, taking some of your valuables with them, and a knight is chosen as a scapegoat.
+* Added *Piety Loss From Slaves* event (`carnx_slave.0004`). Once a year rulers may lose piety for any slaves owned against religious doctrines.
 
 ## Version 0.7.0
 
