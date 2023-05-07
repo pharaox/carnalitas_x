@@ -77,15 +77,20 @@
  carnx_debug_msg_slave_eunuch_revoked: "Slave Eunuch court position revoked"
  carnx_debug_msg_slave_eunuch_invalidated: "Slave Eunuch court position invalidated"
 
- carnx_debug_msg_slave_0001_valuable_option_chosen: "Buy Foreign Slaves valuable option chosen"
- carnx_debug_msg_slave_0001_common_option_chosen: "Buy Foreign Slaves common option chosen"
-
  carnx_debug_msg_character_had_sex: "Character had sex"
  carnx_debug_msg_character_had_sex_with_slave: "Character had sex with one of their slaves"
  carnx_debug_msg_child_of_slave_concubine_born: "Child of slave concubine was born"
 
+ carnx_debug_msg_slave_0001_fired: "Buy Foreign Slaves event fired"
+ carnx_debug_msg_slave_0001_option_a_chosen: "Buy Foreign Slaves option a chosen"
+ carnx_debug_msg_slave_0001_option_b_chosen: "Buy Foreign Slaves option b chosen"
+ carnx_debug_msg_slave_0001_option_c_chosen: "Buy Foreign Slaves option c chosen"
+
+ carnx_debug_msg_slave_0003_fired: "Runaway Slave event fired"
  carnx_debug_msg_slave_0003_option_a_chosen: "Runaway Slave option a chosen"
  carnx_debug_msg_slave_0003_option_b_chosen: "Runaway Slave option b chosen"
  carnx_debug_msg_slave_0003_option_c_chosen: "Runaway Slave option c chosen"
  carnx_debug_msg_slave_0003_option_d_chosen: "Runaway Slave option d chosen"
  carnx_debug_msg_slave_0003_option_e_chosen: "Runaway Slave option e chosen"
+
+ carnx_debug_msg_add_yearly_magicka: "Add yearly magicka"

@@ -32,6 +32,13 @@ carnx_yearly_playable_pulse = {
 				limit = { is_at_war = yes }
 				add = 50
 			}
+			if = {
+				limit = {
+					is_ai = yes
+					highest_held_title_tier < tier_duchy
+				}
+				add = 50
+			}
 		}
 
 		900 = 0
@@ -54,6 +61,13 @@ carnx_five_year_playable_pulse = {
 			value = 0
 			if = {
 				limit = { is_at_war = yes }
+				add = 50
+			}
+			if = {
+				limit = {
+					is_ai = yes
+					highest_held_title_tier < tier_duchy
+				}
 				add = 50
 			}
 		}

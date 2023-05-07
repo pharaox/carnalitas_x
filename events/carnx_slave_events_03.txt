@@ -119,6 +119,9 @@ carnx_slave.0003 = {
 	}
 
 	immediate = {
+		hidden_effect = {
+			carnx_debug_log_no_details_effect = { MSG = carnx_debug_msg_slave_0003_fired }
+		}
 		add_character_flag = {
 			flag = had_event_carnx_slave_0003
 			days = 1825
@@ -192,6 +195,7 @@ carnx_slave.0003 = {
 		random_knight = {
 			limit = {
 				carnx_slave_0003_valid_scapegoat_trigger = yes
+				NOT = { this = scope:slave }
 			}
 
 			weight = {
@@ -230,7 +234,7 @@ carnx_slave.0003 = {
 
 		duel = {
 			skill = intrigue
-			value = scope:slave.intrigue
+			value = { value = scope:slave.intrigue multiply = carnx_slave_0003_challenge_multiplier }
 
 			50 = {
 				compare_modifier = {
@@ -280,7 +284,7 @@ carnx_slave.0003 = {
 			compare_modifier = {
 				value = {
 					value = intrigue
-					subtract = scope:slave.intrigue
+					subtract = { value = scope:slave.intrigue multiply = carnx_slave_0003_challenge_multiplier }
 				}
 				multiplier = 5
 			}
@@ -308,7 +312,7 @@ carnx_slave.0003 = {
 
 		duel = {
 			skill = martial
-			value = scope:slave.martial
+			value = { value = scope:slave.martial multiply = carnx_slave_0003_challenge_multiplier }
 
 			50 = {
 				compare_modifier = {
@@ -358,7 +362,7 @@ carnx_slave.0003 = {
 			compare_modifier = {
 				value = {
 					value = martial
-					subtract = scope:slave.martial
+					subtract = { value = scope:slave.martial multiply = carnx_slave_0003_challenge_multiplier }
 				}
 				multiplier = 5
 			}
@@ -388,7 +392,8 @@ carnx_slave.0003 = {
 			exists = scope:scapegoat
 		}
 
-		add_prestige = minor_prestige_gain
+		add_prestige = minor_prestige_loss
+		add_dread = miniscule_dread_gain
 		carnx_slave_0003_slave_escapes_effect = yes
 
 		scope:scapegoat = {
@@ -466,6 +471,8 @@ carnx_slave.0003 = {
 			exists = scope:scapegoat
 		}
 
+		add_prestige = minor_prestige_loss
+		add_dread = miniscule_dread_loss
 		carnx_slave_0003_slave_escapes_effect = yes
 
 		if = {

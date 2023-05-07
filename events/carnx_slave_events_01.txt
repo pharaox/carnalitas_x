@@ -115,7 +115,7 @@ carnx_slave.0001 = {
 								multiply = carnx_slave_bid_price_player_multiplier
 							}
 							multiply = carnx_slave_price_tribal_multiplier
-							floor = yes
+							round = yes
 							min = 1
 						}
 					}
@@ -153,7 +153,7 @@ carnx_slave.0001 = {
 								multiply = carnx_slave_bid_price_player_multiplier
 							}
 							multiply = carnx_slave_price_tribal_multiplier
-							floor = yes
+							round = yes
 							min = 1
 						}
 					}
@@ -171,6 +171,8 @@ carnx_slave.0001 = {
 					}
 				}
 			}
+
+			carnx_debug_log_no_details_effect = { MSG = carnx_debug_msg_slave_0001_fired }
 		}
 	}
 
@@ -196,7 +198,7 @@ carnx_slave.0001 = {
 				limit = { exists = scope:common_option }
 				scope:common_option = { silent_disappearance_effect = yes }
 			}
-			carnx_debug_log_no_details_effect = { MSG = carnx_debug_msg_slave_0001_valuable_option_chosen }
+			carnx_debug_log_no_details_effect = { MSG = carnx_debug_msg_slave_0001_option_a_chosen }
 		}
 
 		carn_enslave_effect = {
@@ -247,7 +249,7 @@ carnx_slave.0001 = {
 				limit = { exists = scope:valuable_option }
 				scope:valuable_option = { silent_disappearance_effect = yes }
 			}
-			carnx_debug_log_no_details_effect = { MSG = carnx_debug_msg_slave_0001_common_option_chosen }
+			carnx_debug_log_no_details_effect = { MSG = carnx_debug_msg_slave_0001_option_b_chosen }
 		}
 
 		carn_enslave_effect = {
@@ -289,6 +291,7 @@ carnx_slave.0001 = {
 				limit = { exists = scope:common_option }
 				scope:common_option = { silent_disappearance_effect = yes }
 			}
+			carnx_debug_log_no_details_effect = { MSG = carnx_debug_msg_slave_0001_option_c_chosen }
 		}
 
 		ai_chance = {
