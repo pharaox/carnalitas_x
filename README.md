@@ -106,13 +106,13 @@ In this mod, a slave can also be gifted to another ruler for an opinion gain via
 Carnalitas introduces the *Slavery Crime* and *Slavery Shunned* religious doctrines that determine whether owning slaves of certain faiths is considered a crime, shunned, or accepted, depending on the faith's hostility level. However, in Carnalitas these doctrines are not followed consistently when determining if someone can be enslaved, bought, or seized, the AI acceptance of slave interactions, or the AI decisions to initiate them. This mod attempts to correct this by rebalancing the impact of slavery doctrines on all slave interactions:
 
 * If owning slaves of a certain faith is a crime, for adherents of this faith:
-  - It is not possible to enslave, seize, or buy them for the player. The AI will not initiate such interactions at all.
-  - The AI will not accept sell interactions for them.
-  - The AI will be quite willing to free or ransom them.
+  * It is not possible to enslave, seize, or buy them for the player. The AI will not initiate such interactions at all.
+  * The AI will not accept sell interactions for them.
+  * The AI will be quite willing to free or ransom them.
 * If owning slaves of a certain faith is shunned, for adherents of this faith:
-  - The AI will be quite unwilling to enslave, seize, or buy them.
-  - The AI will be quite unwilling to accept sell interactions for them.
-  - The AI will be somewhat more willing to free or ransom them.
+  * The AI will be quite unwilling to enslave, seize, or buy them.
+  * The AI will be quite unwilling to accept sell interactions for them.
+  * The AI will be somewhat more willing to free or ransom them.
 
 ### Council and Court Positions
 
@@ -272,4 +272,3 @@ The sections below list the changes made to existing vanilla objects in somewhat
 
 * `court_position_aptitude_family_business_value`: Added a check if a liege exists to prevent errors (vanilla bug).
 * `raid_base_capture_chance`: Changed the scope for checking traits and dynasty perks from the character being captured to the army commander (vanilla bug).
-
