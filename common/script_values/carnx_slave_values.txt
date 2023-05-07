@@ -851,12 +851,39 @@ carnx_enslave_tyranny_gain = {
 	value = carnx_enslave_basic_tyranny_gain
 	if = {
 		limit = {
-			exists = scope:new_slave
-			scope:new_slave = {
+			scope:slave = {
 				has_no_real_status_trigger = yes
 			}
 		}
 		divide = 2
+	}
+}
+
+carnx_enslave_piety_loss = {
+	if = {
+		limit = {
+			scope:slave = {
+				has_no_particular_noble_roots_trigger = yes
+			}
+		}
+		value = minor_piety_loss
+	}
+	else = {
+		value = medium_piety_loss
+	}
+}
+
+carnx_free_slave_piety_gain = {
+	if = {
+		limit = {
+			scope:slave = {
+				has_no_particular_noble_roots_trigger = yes
+			}
+		}
+		value = minor_piety_gain
+	}
+	else = {
+		value = medium_piety_gain
 	}
 }
 

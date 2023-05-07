@@ -1,19 +1,19 @@
-﻿# Enslaves scope:new_slave to scope:new_owner, also incurs opinion, dread, tyranny, piety, and stress
+﻿# Enslaves scope:slave to scope:new_owner, also incurs opinion, dread, tyranny, piety, and stress
 # effects if DRAMA is true.
 carnx_enslave_effect = {
-	scope:new_slave = {
+	scope:slave = {
 		if = {
 			limit = { is_ruler = yes }
 			every_character_war = {
 				if = {
 					limit = {
-						primary_attacker = scope:new_slave
+						primary_attacker = scope:slave
 					}
 					end_war = invalidated
 				}
 				else_if = {
 					limit = {
-						primary_defender = scope:new_slave
+						primary_defender = scope:slave
 					}
 					if = {
 						limit = { primary_attacker = scope:new_owner }
@@ -24,7 +24,7 @@ carnx_enslave_effect = {
 					}
 				}
 				else = {
-					remove_participant = scope:new_slave
+					remove_participant = scope:slave
 				}
 			}
 			depose = yes
@@ -35,7 +35,7 @@ carnx_enslave_effect = {
 			if = {
 				limit = { is_married = yes }
 				every_spouse = {
-					divorce = scope:new_slave
+					divorce = scope:slave
 				}
 			}
 			if = {
@@ -47,7 +47,7 @@ carnx_enslave_effect = {
 					number_of_concubines > 0
 				}
 				every_concubine = {
-					scope:new_slave = {
+					scope:slave = {
 						remove_concubine = prev
 					}
 				}
@@ -55,7 +55,7 @@ carnx_enslave_effect = {
 			if = {
 				limit = { is_concubine = yes }
 				this.concubinist = {
-					remove_concubine = scope:new_slave
+					remove_concubine = scope:slave
 				}
 			}
 			every_relation = {
@@ -73,19 +73,19 @@ carnx_enslave_effect = {
 	}
 
 	scope:new_owner = {
-		set_relation_slave = scope:new_slave
+		set_relation_slave = scope:slave
 		if = {
 			limit = {
-				scope:new_slave = { NOT = { is_courtier_of = scope:new_owner } }
+				scope:slave = { NOT = { is_courtier_of = scope:new_owner } }
 			}
-			hidden_effect = { add_courtier = scope:new_slave }
+			hidden_effect = { add_courtier = scope:slave }
 		}
 	}
 
 	if = {
 		limit = { $DRAMA$ = yes }
 
-		scope:new_slave = {
+		scope:slave = {
 			# Victim hates slaver
 			add_prestige_level = -1
 			if = {
@@ -95,7 +95,7 @@ carnx_enslave_effect = {
 				if = {
 					limit = {
 						scope:new_owner = {
-							has_execute_reason = scope:new_slave
+							has_execute_reason = scope:slave
 						}
 					}
 					add_opinion = {
@@ -136,7 +136,7 @@ carnx_enslave_effect = {
 				if = {
 					limit = {
 						scope:new_owner = {
-							has_execute_reason = scope:new_slave
+							has_execute_reason = scope:slave
 						}
 					}
 					every_in_list = {
@@ -168,7 +168,7 @@ carnx_enslave_effect = {
 					NOT = { dynasty = scope:new_owner.dynasty }
 					NOT = {
 						scope:new_owner = {
-							has_execute_reason = scope:new_slave
+							has_execute_reason = scope:slave
 						}
 					}
 				}
@@ -176,7 +176,7 @@ carnx_enslave_effect = {
 					every_dynasty_member = {
 						limit = {
 							NOR = {
-								this = scope:new_slave
+								this = scope:slave
 								is_in_list = victim_family_list
 							}
 						}
@@ -195,7 +195,7 @@ carnx_enslave_effect = {
 				type = friend
 				limit = {
 					NOR = {
-						this = scope:new_slave
+						this = scope:slave
 						is_in_list = victim_family_list
 						is_in_list = victim_dynasty_list
 					}
@@ -206,7 +206,7 @@ carnx_enslave_effect = {
 				type = lover
 				limit = {
 					NOR = {
-						this = scope:new_slave
+						this = scope:slave
 						is_in_list = victim_family_list
 						is_in_list = victim_dynasty_list
 						is_in_list = victim_close_relations_list
@@ -236,7 +236,7 @@ carnx_enslave_effect = {
 			# Dread (similar to execution but reduced)
 			if = {
 				limit = {
-					scope:new_slave = {
+					scope:slave = {
 						time_in_prison = { years > 15 } # No one even remembers who they are anymore
 					}
 				}
@@ -244,10 +244,10 @@ carnx_enslave_effect = {
 			}
 			else_if = { # Executing Emperors/HoF is quite dreadful
 				limit = {
-					scope:new_slave = {
+					scope:slave = {
 						OR = {
 							highest_held_title_tier >= tier_empire
-							scope:new_owner.faith.religious_head = scope:new_slave # Your head of faith
+							scope:new_owner.faith.religious_head = scope:slave # Your head of faith
 						}
 					}
 				}
@@ -255,7 +255,7 @@ carnx_enslave_effect = {
 			}
 			else_if = {
 				limit = {
-					scope:new_slave = {
+					scope:slave = {
 						OR = {
 							highest_held_title_tier >= tier_kingdom
 							tier_or_related_liege_tier_greater_or_equal_trigger = { TIER = tier_empire }
@@ -269,7 +269,7 @@ carnx_enslave_effect = {
 			}
 			else_if = {
 				limit = {
-					scope:new_slave = {
+					scope:slave = {
 						OR = {
 							highest_held_title_tier >= tier_duchy
 							tier_or_related_liege_tier_greater_or_equal_trigger = { TIER = tier_kingdom }
@@ -291,7 +291,7 @@ carnx_enslave_effect = {
 			}
 			else_if = {
 				limit = {
-					scope:new_slave = {
+					scope:slave = {
 						OR = {
 							highest_held_title_tier >= tier_county
 							tier_or_related_liege_tier_greater_or_equal_trigger = { TIER = tier_duchy }
@@ -300,12 +300,12 @@ carnx_enslave_effect = {
 
 							scope:new_owner = { # Executing close family of your vassals is dreadful...
 								any_vassal = {
-									is_close_family_of = scope:new_slave
+									is_close_family_of = scope:slave
 								}
 							}
 							scope:new_owner = { # Executing close family of your liege/s is the same...
 								any_liege_or_above = {
-									is_close_family_of = scope:new_slave
+									is_close_family_of = scope:slave
 								}
 							}
 						}
@@ -317,42 +317,16 @@ carnx_enslave_effect = {
 			# Piety (similar to execution but toned down one level)
 			if = {
 				limit = {
-					OR = {
-						faith = {
-							NOT = { has_doctrine = carn_doctrine_same_slavery_accepted }
-							faith_hostility_level = {
-								target = scope:new_slave.faith
-								value < faith_hostile_level
-							}
-						}
-						faith = {
-							NOT = { has_doctrine = carn_doctrine_other_slavery_accepted }
-							faith_hostility_level = {
-								target = scope:new_slave.faith
-								value >= faith_hostile_level
-							}
-						}
+					NOT = {
+						carnx_is_slavery_accepted_trigger = { CHARACTER = scope:slave }
 					}
 				}
-				add_piety = {
-					value = 0
-					if = {
-						limit = {
-							scope:new_slave = {
-								has_no_particular_noble_roots_trigger = yes
-							}
-						}
-						add = miniscule_piety_loss
-					}
-					else = {
-						add = medium_piety_loss
-					}
-				}
+				add_piety = carnx_enslave_piety_loss
 			}
 
 			# Stress (similar to execution but toned down one level)
 			if = { # Rival
-				limit = { has_relation_rival = scope:new_slave }
+				limit = { has_relation_rival = scope:slave }
 				if = {
 					limit = {
 						NOR = {
@@ -378,7 +352,7 @@ carnx_enslave_effect = {
 			else_if = { # Different faith and zealous
 				limit = {
 					has_trait = zealous
-					NOT = { scope:new_owner.faith = scope:new_slave.faith }
+					NOT = { scope:new_owner.faith = scope:slave.faith }
 				}
 				if = {
 					limit = {
@@ -402,12 +376,12 @@ carnx_enslave_effect = {
 			}
 			else_if = { # Execute reason and child / grandchild
 				limit = {
-					has_execute_reason = scope:new_slave
+					has_execute_reason = scope:slave
 					NOT = {
 						has_trait = sadistic
 						has_trait = callous
 					}
-					scope:new_slave = {
+					scope:slave = {
 						OR = {
 							is_child_of = scope:new_owner
 							is_grandchild_of = scope:new_owner
@@ -427,7 +401,7 @@ carnx_enslave_effect = {
 						has_trait = sadistic
 						has_trait = callous
 					}
-					scope:new_slave = {
+					scope:slave = {
 						OR = {
 							is_child_of = scope:new_owner
 							is_grandchild_of = scope:new_owner
@@ -447,7 +421,7 @@ carnx_enslave_effect = {
 						has_trait = sadistic
 						has_trait = callous
 					}
-					scope:new_slave = {
+					scope:slave = {
 						OR = {
 							has_relation_friend = scope:new_owner
 							has_relation_lover = scope:new_owner
@@ -462,7 +436,7 @@ carnx_enslave_effect = {
 			}
 			else_if = { # Execute reason
 				limit = {
-					has_execute_reason = scope:new_slave
+					has_execute_reason = scope:slave
 				}
 				stress_impact = {
 					sadistic = minor_stress_impact_loss
@@ -484,15 +458,15 @@ carnx_enslave_effect = {
 			if = { # Execute reason or at war
 				limit = {
 					OR = {
-						has_execute_reason = scope:new_slave
-						is_at_war_with = scope:new_slave
+						has_execute_reason = scope:slave
+						is_at_war_with = scope:slave
 					}
 				}
 				custom_tooltip = carn_is_allowed_to_enslave_desc
 			}
 			else_if = {
 				limit = {
-					scope:new_slave = {
+					scope:slave = {
 						OR = {
 							is_landed = no
 							NOT = { is_of_major_or_minor_interest_trigger = { CHARACTER = scope:new_owner } }
@@ -500,7 +474,7 @@ carnx_enslave_effect = {
 					}
 					scope:new_owner.faith = {
 						faith_hostility_level = {
-							target = scope:new_slave.faith
+							target = scope:slave.faith
 							value > faith_astray_level
 						}
 					}
@@ -509,13 +483,13 @@ carnx_enslave_effect = {
 			}
 			else_if = {
 				limit = {
-					scope:new_slave = { target_is_liege_or_above = prev }
+					scope:slave = { target_is_liege_or_above = prev }
 				}
 				add_tyranny = carnx_enslave_tyranny_gain
 			}
 			else_if = {
 				limit = {
-					scope:new_slave = {
+					scope:slave = {
 						NOT = { exists = liege }
 						exists = host
 					}
@@ -524,7 +498,7 @@ carnx_enslave_effect = {
 				every_pool_guest = {
 					limit = {
 						NOR = {
-							this = scope:new_slave
+							this = scope:slave
 							is_in_list = guest_list
 						}
 					}
@@ -542,11 +516,11 @@ carnx_enslave_effect = {
 			else = {
 				if = {
 					limit = {
-						scope:new_slave.liege = {
-							NOT = { this = scope:new_slave }
+						scope:slave.liege = {
+							NOT = { this = scope:slave }
 						}
 					}
-					scope:new_slave.liege = {
+					scope:slave.liege = {
 						add_opinion = {
 							target = prev
 							modifier = carn_enslaved_my_countryman_opinion
@@ -558,15 +532,15 @@ carnx_enslave_effect = {
 			# Consume execute reason
 			if = {
 				limit = {
-					has_execute_reason = scope:new_slave
+					has_execute_reason = scope:slave
 				}
-				consume_execute_reasons = scope:new_slave
+				consume_execute_reasons = scope:slave
 			}
 		}
 	}
 
 	hidden_effect = {
-		scope:new_slave = {
+		scope:slave = {
 			# Release from prison
 			if = {
 				limit = { is_imprisoned_by = scope:new_owner }
@@ -590,14 +564,14 @@ carnx_enslave_effect = {
 # Enslaves SLAVE to OWNER, also incurs opinion, dread, tyranny, piety, and stress
 # effects if DRAMA is true. Sends interface messages. Overridden from Carnalitas.
 carn_enslave_effect = {
-	$SLAVE$ = { save_scope_as = new_slave }
+	$SLAVE$ = { save_scope_as = slave }
 	$OWNER$ = { save_scope_as = new_owner }
 
 	scope:new_owner = {
 		send_interface_message = {
 			type = event_generic_neutral
 			title = carn_msg_enslave
-			right_icon = scope:new_slave
+			right_icon = scope:slave
 
 			carnx_enslave_effect = { DRAMA = $DRAMA$ }
 		}
@@ -794,39 +768,11 @@ carnx_free_slave_actual_effect = {
 			# Add piety
 			if = {
 				limit = {
-					faith = {
-						NOR = {
-							AND = {
-								faith_hostility_level = {
-									target = scope:slave.faith
-									value < faith_hostile_level
-								}
-								has_doctrine = carn_doctrine_same_slavery_accepted
-							}
-							AND = {
-								faith_hostility_level = {
-									target = scope:slave.faith
-									value >= faith_hostile_level
-								}
-								has_doctrine = carn_doctrine_other_slavery_accepted
-							}
-						}
+					NOT = {
+						carnx_is_slavery_accepted_trigger = { CHARACTER = scope:slave }
 					}
 				}
-				add_piety = {
-					value = 0
-					if = {
-						limit = {
-							scope:slave = {
-								has_no_particular_noble_roots_trigger = yes
-							}
-						}
-						add = miniscule_piety_gain
-					}
-					else = {
-						add = medium_piety_gain
-					}
-				}
+				add_piety = carnx_free_slave_piety_gain
 			}
 
 			# Add / remove stress
@@ -1044,6 +990,16 @@ carnx_buy_slave_effect = {
 		# Set buyer as new owner
 		set_relation_slave = scope:slave
 
+		# Remove piety
+		if = {
+			limit = {
+				NOT = {
+					carnx_is_slavery_accepted_trigger = { CHARACTER = scope:slave }
+				}
+			}
+			add_piety = carnx_enslave_piety_loss
+		}
+
 		hidden_effect = {
 			# Add slave to new owner's court
 			if = {
@@ -1148,6 +1104,16 @@ carnx_seize_slave_effect = {
 			modifier = carn_stole_my_slave_opinion
 		}
 
+		# Remove piety
+		if = {
+			limit = {
+				NOT = {
+					carnx_is_slavery_accepted_trigger = { CHARACTER = scope:slave }
+				}
+			}
+			add_piety = carnx_enslave_piety_loss
+		}
+
 		hidden_effect = {
 			# Add slave to new owner's court
 			if = {
@@ -1236,6 +1202,16 @@ carnx_gift_slave_effect = {
 			target = scope:former_owner
 			modifier = gift_opinion
 			opinion = scope:gift_slave_opinion
+		}
+
+		# Remove piety
+		if = {
+			limit = {
+				NOT = {
+					carnx_is_slavery_accepted_trigger = { CHARACTER = scope:slave }
+				}
+			}
+			add_piety = carnx_enslave_piety_loss
 		}
 
 		hidden_effect = {

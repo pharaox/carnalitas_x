@@ -2,6 +2,10 @@
 
 ## Version 0.8.0
 
+### Interactions
+
+* Ensured that piety is appropriately lost also when buying, seizing, or gifting a slave if slavery is not accepted according to doctrines.
+
 ### Events
 
 * Added *Runaway Slave* event (`carnx_slave.0003`). One of your slaves flees, taking some of your valuables with them, and a knight is chosen as a scapegoat.

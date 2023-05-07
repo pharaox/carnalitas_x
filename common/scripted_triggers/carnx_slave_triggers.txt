@@ -295,20 +295,42 @@ carnx_gift_slave_recipient_trigger = {
 	}
 }
 
+# Is owning slaves of $CHARACTER$'s faith accepted according to the scoped character's faith.
+carnx_is_slavery_accepted_trigger = {
+	$CHARACTER$ = { save_temporary_scope_as = other }
+	OR = {
+		faith = {
+			has_doctrine = carn_doctrine_same_slavery_accepted
+			faith_hostility_level = {
+				target = scope:other.faith
+				value < faith_hostile_level
+			}
+		}
+		faith = {
+			has_doctrine = carn_doctrine_other_slavery_accepted
+			faith_hostility_level = {
+				target = scope:other.faith
+				value >= faith_hostile_level
+			}
+		}
+	}
+}
+
 # Is owning slaves of $CHARACTER$'s faith shunned according to the scoped character's faith.
 carnx_is_slavery_shunned_trigger = {
+	$CHARACTER$ = { save_temporary_scope_as = other }
 	OR = {
 		faith = {
 			has_doctrine = carn_doctrine_same_slavery_shunned
 			faith_hostility_level = {
-				target = $CHARACTER$.faith
+				target = scope:other.faith
 				value < faith_hostile_level
 			}
 		}
 		faith = {
 			has_doctrine = carn_doctrine_other_slavery_shunned
 			faith_hostility_level = {
-				target = $CHARACTER$.faith
+				target = scope:other.faith
 				value >= faith_hostile_level
 			}
 		}
