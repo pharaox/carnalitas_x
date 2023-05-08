@@ -30,6 +30,7 @@ With this mod:
 * There are new court positions reserved for slaves or former slaves, such as *Slave Concubine*, *Slave Eunuch* or *Mameluke Captain*, available depending on religion, culture, and government form.
 * Additional slaves fit for specific occupations are spawned into the world via events.
 * Useful characters are much more likely to be captured instead of killed during raids and sieges.
+* There are flavor events related to the slavery system, such as a slave running away, demands for a slave's freedom, etc. There are also hidden events for AI rulers to interact with their slaves in ways that were previously only available to the player, e.g. have sex with them.
 
 All taken together, slaves are now genuinely useful to their owners, there is an actual demand for them conditioned by religion and culture, and this demand is satisfied by warfare, raiding, slave trade, and slave-related events. As a player, you can still use the system to your advantage, but it's more challenging and hopefully more interesting to do this.
 
