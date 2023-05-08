@@ -282,16 +282,6 @@ carnx_gift_slave_interaction = {
 			}
 		}
 
-		# Slavery crime or shunned by faith
-		modifier = {
-			carnx_is_slavery_crime_trigger = { CHARACTER = scope:secondary_recipient }
-			add = carnx_ai_positive_crime_impact_reduced_value
-		}
-		modifier = {
-			carnx_is_slavery_shunned_trigger = { CHARACTER = scope:secondary_recipient }
-			add = carnx_ai_positive_shunned_impact_reduced_value
-		}
-
 		# Family and relations (-50 to -200 depending on how close the relation)
 		# Reluctant to gift family and relations, wants to free them instead
 		carnx_family_and_relations_modifier = {
