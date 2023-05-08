@@ -84,3 +84,4 @@
  carnx_msg_slave_sold: "Slave Sold"
  carnx_msg_slave_ransomed: "Slave Ransomed"
  carnx_msg_slave_gifted: "Slave Gifted"
+ carnx_msg_slave_escaped: "Slave Escaped"

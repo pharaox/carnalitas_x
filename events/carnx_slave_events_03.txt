@@ -17,8 +17,9 @@ scripted_trigger carnx_slave_0003_valid_slave_trigger = {
 		ai_boldness >= medium_positive_ai_value
 		ai_rationality < high_negative_ai_value
 	}
-	NOT = {
+	NOR = {
 		is_councillor_of = root
+		is_close_family_of = root
 		has_relation_friend = root
 		has_relation_lover = root
 		has_trait = loyal
@@ -51,9 +52,15 @@ scripted_effect carnx_slave_0003_slave_is_caught_effect = {
 }
 
 scripted_effect carnx_slave_0003_slave_escapes_effect = {
-	scope:slave = {
-		carn_free_slave_effect = yes
-		move_to_pool = yes
+	send_interface_message = {
+		type = event_generic_neutral
+		title = carnx_msg_slave_escaped
+		right_icon = scope:slave
+
+		scope:slave = {
+			carn_free_slave_effect = yes
+			move_to_pool = yes
+		}
 	}
 }
 
@@ -161,7 +168,10 @@ carnx_slave.0003 = {
 
 				# Relations
 				modifier = {
-					has_relation_rival = root
+					OR = {
+						root = { has_execute_reason = prev }
+						has_relation_rival = root
+					}
 					add = 50
 				}
 
@@ -296,12 +306,12 @@ carnx_slave.0003 = {
 
 			# Weight up or down for stress
 			modifier = {
-				add = 20
 				has_trait = diligent
+				add = 20
 			}
 			modifier = {
-				add = -20
 				has_trait = lazy
+				add = -20
 			}
 		}
 	}
@@ -374,12 +384,12 @@ carnx_slave.0003 = {
 
 			# Weight up or down for stress
 			modifier = {
-				add = 20
 				has_trait = diligent
+				add = 20
 			}
 			modifier = {
-				add = -20
 				has_trait = lazy
+				add = -20
 			}
 		}
 	}
@@ -436,28 +446,28 @@ carnx_slave.0003 = {
 
 			# Weight up or down for stress
 			modifier = {
-				add = -10
 				has_trait = calm
+				add = -10
 			}
 			modifier = {
-				add = -20
 				has_trait = generous
+				add = -20
 			}
 			modifier = {
-				add = -30
 				has_trait = forgiving
+				add = -30
 			}
 			modifier = {
-				add = 10
 				has_trait = wrathful
+				add = 10
 			}
 			modifier = {
-				add = 20
 				has_trait = greedy
+				add = 20
 			}
 			modifier = {
-				add = 30
 				has_trait = vengeful
+				add = 30
 			}
 		}
 	}
@@ -518,28 +528,28 @@ carnx_slave.0003 = {
 
 			# Weight up or down for stress
 			modifier = {
-				add = 10
 				has_trait = calm
+				add = 10
 			}
 			modifier = {
-				add = 20
 				has_trait = generous
+				add = 20
 			}
 			modifier = {
-				add = 30
 				has_trait = forgiving
+				add = 30
 			}
 			modifier = {
-				add = -10
 				has_trait = wrathful
+				add = -10
 			}
 			modifier = {
-				add = -20
 				has_trait = greedy
+				add = -20
 			}
 			modifier = {
-				add = -30
 				has_trait = vengeful
+				add = -30
 			}
 		}
 	}
@@ -575,12 +585,12 @@ carnx_slave.0003 = {
 
 			# Weight up or down for stress
 			modifier = {
-				add = -20
 				has_trait = diligent
+				add = -20
 			}
 			modifier = {
-				add = 20
 				has_trait = lazy
+				add = 20
 			}
 		}
 	}
