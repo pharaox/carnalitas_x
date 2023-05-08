@@ -1,5 +1,21 @@
 ﻿namespace = carnx_slave
 
+scripted_trigger carnx_slave_0001_valid_liege_trigger = {
+	is_available_adult = yes
+	exists = capital_province
+}
+
+scripted_trigger carnx_slave_0001_valid_foreign_ruler_trigger = {
+	is_landed = yes
+	NOR = {
+		faith = root.faith
+		culture = root.culture
+	}
+	root = {
+		NOT = { carnx_is_slavery_crime_trigger = { CHARACTER = prev } }
+	}
+}
+
 # Buy Foreign Slaves
 carnx_slave.0001 = {
 	type = character_event
@@ -18,15 +34,9 @@ carnx_slave.0001 = {
 
 	trigger = {
 		NOT = { has_game_rule = carn_slavery_content_disabled }
-		exists = capital_province
+		carnx_slave_0001_valid_liege_trigger = yes
 		any_independent_ruler = {
-			NOR = {
-				faith = root.faith
-				culture = root.culture
-			}
-			root = {
-				NOT = { carnx_is_slavery_crime_trigger = { CHARACTER = prev } }
-			}
+			carnx_slave_0001_valid_foreign_ruler_trigger = yes
 		}
 	}
 
@@ -34,14 +44,7 @@ carnx_slave.0001 = {
 		hidden_effect = {
 			random_independent_ruler = {
 				limit = {
-					is_landed = yes
-					NOR = {
-						faith = root.faith
-						culture = root.culture
-					}
-					root = {
-						NOT = { carnx_is_slavery_crime_trigger = { CHARACTER = prev } }
-					}
+					carnx_slave_0001_valid_foreign_ruler_trigger = yes
 				}
 				weight = {
 					# Nearby rulers more likely
