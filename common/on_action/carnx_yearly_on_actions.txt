@@ -49,9 +49,9 @@ carnx_yearly_playable_pulse = {
 			}
 		}
 
-		900 = 0
+		100 = 0
 
-		100 = carnx_slave.0003 # Runaway Slave
+		100 = carnx_slave.0005 # Freedom for a Slave
 	}
 }
 
@@ -81,5 +81,7 @@ carnx_five_year_playable_pulse = {
 		}
 
 		100 = 0
+
+		100 = carnx_slave.0003 # Runaway Slave
 	}
 }

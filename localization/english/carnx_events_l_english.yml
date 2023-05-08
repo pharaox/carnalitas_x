@@ -28,3 +28,9 @@
  carnx_slave.0004.a:0 "OK"
  carnx_slave.0004.tt:0 "Piety Loss From Slaves"
  carnx_slave.0004.piety_loss.tt:0 "Lost piety from slaves owned against religious doctrines"
+
+ carnx_slave.0005.t:0 "Freedom for a Slave"
+ carnx_slave.0005.desc:1 "My [GetPlayer.GetCouncillorPosition('councillor_court_chaplain').GetPositionName] [court_chaplain.GetFirstNameNoTooltip] approaches me with a disapproving expression. [court_chaplain.GetSheHe|U] explains that our faith does not permit owning [slave.GetFaith.GetAdherentNamePluralNoTooltip|U] as slaves, and therefore I should immediately grant [slave.GetFirstNameNoTooltip] [slave.GetHerHis] freedom."
+ carnx_slave.0005.a:0 "You have a point, I will free [slave.GetHerHim]."
+ carnx_slave.0005.b:0 "I will not free [slave.GetHerHim], but make a generous donation instead."
+ carnx_slave.0005.c:0 "Be it as it may, I will not free [slave.GetHerHim]!"

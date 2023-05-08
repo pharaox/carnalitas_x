@@ -1,0 +1,300 @@
+﻿namespace = carnx_slave
+
+scripted_trigger carnx_slave_0005_valid_liege_trigger = {
+	is_available_adult = yes
+	carnx_is_slave_owner_trigger = yes
+}
+
+scripted_trigger carnx_slave_0005_valid_slave_trigger = {
+	is_available_ai_adult = yes
+	root = {
+		carnx_is_slavery_crime_trigger = { CHARACTER = prev }
+	}
+	reverse_opinion = {
+		target = root
+		value > medium_negative_opinion
+	}
+	NOR = {
+		root = { has_execute_reason = prev }
+		has_relation_rival = root
+	}
+}
+
+scripted_trigger carnx_slave_0005_valid_court_chaplain_trigger = {
+	is_available_ai_adult = yes
+}
+
+# Freedom for a Slave
+carnx_slave.0005 = {
+	type = character_event
+	title = carnx_slave.0005.t
+	desc = carnx_slave.0005.desc
+
+	theme = faith
+	left_portrait = {
+		character = scope:slave
+		animation = personality_zealous
+	}
+	right_portrait = {
+		character = scope:court_chaplain
+		animation = disapproval
+	}
+	override_background = {
+		event_background = throne_room
+	}
+
+	trigger = {
+		NOT = { has_game_rule = carn_slavery_content_disabled }
+		NOT = { has_character_flag = had_event_carnx_slave_0005 }
+		carnx_slave_0005_valid_liege_trigger = yes
+		any_relation = {
+			type = slave
+			carnx_slave_0005_valid_slave_trigger = yes
+		}
+		exists = cp:councillor_court_chaplain
+		cp:councillor_court_chaplain = {
+			carnx_slave_0005_valid_court_chaplain_trigger = yes
+		}
+	}
+
+	weight_multiplier = {
+		base = 1
+
+		# Weight up for zealous rulers, weight down for cynical ones
+		modifier = {
+			has_trait = zealous
+			add = 0.5
+		}
+		modifier = {
+			has_trait = cynical
+			add = -0.5
+		}
+	}
+
+	immediate = {
+		hidden_effect = {
+			carnx_debug_log_no_details_effect = { MSG = carnx_debug_msg_slave_0005_fired }
+		}
+		add_character_flag = {
+			flag = had_event_carnx_slave_0005
+			days = 365
+		}
+
+		# Find a valid slave to demand his freedom
+		random_relation = {
+			type = slave
+			limit = {
+				carnx_slave_0005_valid_slave_trigger = yes
+			}
+
+			weight = {
+				base = 50
+
+				# Owner's opinion of slave
+				opinion_modifier = {
+					who = root
+					opinion_target = this
+					multiplier = 0.5
+				}
+
+				# Relations
+				modifier = {
+					OR = {
+						is_close_family_of = root
+						has_relation_friend = root
+						has_relation_lover = root
+					}
+					add = 50
+				}
+			}
+
+			save_scope_as = slave
+		}
+
+		cp:councillor_court_chaplain = {
+			save_scope_as = court_chaplain
+		}
+	}
+
+	# You have a point, I will free [slave.GetHerHim].
+	option = {
+		name = carnx_slave.0005.a
+
+		send_interface_message = {
+			type = event_generic_neutral
+			title = carn_msg_slave_freed
+			right_icon = scope:slave
+
+			scope:slave = {
+				carn_free_slave_effect = yes
+				add_opinion = {
+					modifier = carn_freed_me_from_slavery_opinion
+					target = root
+				}
+			}
+		}
+
+		cp:councillor_court_chaplain = {
+			add_opinion = {
+				target = root
+				modifier = pious_opinion
+				opinion = 20
+			}
+		}
+
+		add_dread = carnx_free_slave_dread_loss
+		add_piety = carnx_free_slave_piety_gain
+
+		stress_impact = {
+			zealous = medium_stress_impact_loss
+			cynical = medium_stress_impact_gain
+			compassionate = medium_stress_impact_loss
+			sadistic = medium_stress_impact_gain
+			callous = minor_stress_impact_gain
+		}
+
+		hidden_effect = {
+			carnx_debug_log_no_details_effect = { MSG = carnx_debug_msg_slave_0005_option_a_chosen }
+		}
+
+		ai_chance = {
+			base = 100
+
+			opinion_modifier = {
+				opinion_target = scope:slave
+				multiplier = 0.25
+			}
+
+			ai_value_modifier = {
+				ai_zeal = 0.25
+				ai_compassion = 0.25
+			}
+
+			# Weight up or down for stress
+			modifier = {
+				has_trait = zealous
+				add = 20
+			}
+			modifier = {
+				has_trait = cynical
+				add = -20
+			}
+			modifier = {
+				has_trait = compassionate
+				add = 20
+			}
+			modifier = {
+				has_trait = sadistic
+				add = -20
+			}
+			modifier = {
+				has_trait = callous
+				add = -10
+			}
+		}
+	}
+
+	# I will not free [slave.GetHerHim], but make a generous donation instead.
+	option = {
+		name = carnx_slave.0005.b
+
+		scope:slave = {
+			add_opinion = {
+				target = root
+				modifier = disappointed_opinion
+				opinion = -20
+			}
+		}
+
+		remove_short_term_gold = medium_gold_value
+
+		stress_impact = {
+			generous = medium_stress_impact_loss
+			greedy = medium_stress_impact_gain
+		}
+
+		hidden_effect = {
+			carnx_debug_log_no_details_effect = { MSG = carnx_debug_msg_slave_0005_option_b_chosen }
+		}
+
+		ai_chance = {
+			base = 50
+
+			opinion_modifier = {
+				opinion_target = scope:slave
+				multiplier = -0.25
+			}
+
+			ai_value_modifier = {
+				ai_greed = -0.25
+				ai_compassion = -0.10
+			}
+
+			# Weight up or down for stress
+			modifier = {
+				has_trait = generous
+				add = 20
+			}
+			modifier = {
+				has_trait = greedy
+				add = -20
+			}
+		}
+	}
+
+	# Be it as it may, I will not free [slave.GetHerHim].
+	option = {
+		name = carnx_slave.0005.c
+
+		scope:slave = {
+			add_opinion = {
+				target = root
+				modifier = disappointed_opinion
+				opinion = -20
+			}
+		}
+
+		cp:councillor_court_chaplain = {
+			add_opinion = {
+				target = root
+				modifier = impious_opinion
+				opinion = -20
+			}
+		}
+
+		add_piety = medium_piety_loss
+
+		stress_impact = {
+			zealous = medium_stress_impact_gain
+			cynical = medium_stress_impact_loss
+		}
+
+		hidden_effect = {
+			carnx_debug_log_no_details_effect = { MSG = carnx_debug_msg_slave_0005_option_c_chosen }
+		}
+
+		ai_chance = {
+			base = 50
+
+			opinion_modifier = {
+				opinion_target = scope:slave
+				multiplier = -0.25
+			}
+
+			ai_value_modifier = {
+				ai_zeal = -0.25
+				ai_compassion = -0.10
+			}
+
+			# Weight up or down for stress
+			modifier = {
+				has_trait = zealous
+				add = -20
+			}
+			modifier = {
+				has_trait = cynical
+				add = 20
+			}
+		}
+	}
+}

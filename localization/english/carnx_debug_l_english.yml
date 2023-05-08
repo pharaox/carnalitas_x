@@ -94,3 +94,8 @@
  carnx_debug_msg_slave_0003_option_c_chosen: "Runaway Slave option c chosen"
  carnx_debug_msg_slave_0003_option_d_chosen: "Runaway Slave option d chosen"
  carnx_debug_msg_slave_0003_option_e_chosen: "Runaway Slave option e chosen"
+
+ carnx_debug_msg_slave_0005_fired: "Freedom for a Slave event fired"
+ carnx_debug_msg_slave_0005_option_a_chosen: "Freedom for a Slave option a chosen"
+ carnx_debug_msg_slave_0005_option_b_chosen: "Freedom for a Slave option b chosen"
+ carnx_debug_msg_slave_0005_option_c_chosen: "Freedom for a Slave option c chosen"
