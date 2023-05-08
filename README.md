@@ -150,7 +150,19 @@ With this mod, characters that can be enslaved and have a base price higher than
 
 Slave traders bring two slaves for sale and you can buy one of them. The slaves are of faith and culture that is different from yours, and never of faith that falls under the *Slavery Crime* doctrine. One of the slaves has skills / traits that make him or her a better fit for a particular occupation, for the other one they are generated completely at random.
 
-Besides adding flavor, the above event serves the purpose of spawning more slaves that would normally exist if the only way to create them was to enslave prisoners. It fires approximately every 5 years for every ruler of rank count and above. The AI will mostly not buy, unless it considers one of the slaves really useful according to the factors described in [AI Willingness to Buy or Sell](#ai-willingness-to-buy-or-sell).
+Besides adding flavor, this event also spawns more slaves that would normally exist if the only way to create them was to enslave prisoners. It fires approximately every 5 years for every ruler of rank count and above. The AI will mostly not buy, unless it considers one of the slaves really useful according to the factors described in [AI Willingness to Buy or Sell](#ai-willingness-to-buy-or-sell).
+
+#### Runaway Slave
+
+One of your slaves flees, taking some of your valuables with them, and a knight is chosen as a scapegoat. You can try to catch the slave via intrigue or martial challenges, fine or forgive the scapegoat, or do nothing, for a loss or gain of prestige or stress.
+
+This event is based on the *Escaped Thrall* event from FP1, but is somewhat more sophisticated as it involves a real character. Every year there is a chance of 10% for this event to fire for every ruler that is a slave owner.
+
+#### Freedom for a Slave
+
+Your Court Chaplain demands the freedom of one of your slaves because your faith does not permit owning slaves of their faith. You can free the slave, make a money donation, or ignore the demand for a loss of piety.
+
+Every year there is a chance of 50% for this event to fire for every ruler that owns eligible slaves.
 
 #### AI Rulers Having Sex with Their Slaves
 
@@ -158,18 +170,12 @@ AI rulers may have sex with one of their slaves (or former slaves that are also 
 
 This event will fire also for the player if the *Make Love* interaction is disabled. If the *Make Love* interaction is enabled, the event will not fire, since the player is then expected to make love to their slaves and *Slave Concubines*. The chance of pregnancy for the *Make Love* interaction is hardcoded at 30%, as in the original Carnalitas.
 
-#### Runaway Slave
+#### Piety Loss From Slaves
 
-One of your slaves flees, taking some of your valuables with them, and a knight is chosen as a scapegoat. You can try to catch the slave via intrigue or martial challenges, fine or forgive the scapegoat, or do nothing, for a loss or gain of prestige or stress.
+Once a year rulers may lose piety for any slaves owned against religious doctrines, via a hidden event. The piety lost per slave is:
 
-This event is based on the *Escaped Thrall* event from FP1, but is somewhat more sophisticated as it involves a real character. Every year there is a chance of approximately 10% for this event to fire for every ruler that is a slave owner.
-
-### Piety Loss From Slaves
-
-Once a year rulers may lose piety for any slaves owned against religious doctrines. The piety lost per slave is:
-
-* 25 if owning slaves of that slave's faith is shunned by your faith.
-* 50 if owning slaves of that slave's faith is considered a crime by your faith.
+* 25 if owning slaves of their faith is shunned by your faith.
+* 50 if owning slaves of their faith is considered a crime by your faith.
 
 ### Slave Memories
 

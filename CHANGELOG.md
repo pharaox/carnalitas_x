@@ -5,10 +5,12 @@
 ### Interactions
 
 * Ensured that piety is appropriately lost also when buying, seizing, or gifting a slave if slavery is not accepted according to doctrines.
+* The impact of religious doctrines on *Free Slave* and *Ransom Slave* is no longer reduced compared to other interactions.
 
 ### Events
 
 * Added *Runaway Slave* event (`carnx_slave.0003`). One of your slaves flees, taking some of your valuables with them, and a knight is chosen as a scapegoat.
+* Added *Freedom for a Slave* event (`carnx_slave.0005`). Your Court Chaplain demands the freedom of one of your slaves because your faith does not permit owning slaves of their faith.
 * Added *Piety Loss From Slaves* event (`carnx_slave.0004`). Once a year rulers may lose piety for any slaves owned against religious doctrines.
 
 ## Version 0.7.0
