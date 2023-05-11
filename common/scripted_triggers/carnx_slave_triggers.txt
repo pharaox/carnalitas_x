@@ -798,6 +798,19 @@ carnx_is_slave_owner_trigger = {
 	}
 }
 
+carnx_was_enslaved_by_character_trigger = {
+	OR = {
+		has_opinion_modifier = {
+			target = $CHARACTER$
+			modifier = carn_enslaved_me_opinion
+		}
+		has_opinion_modifier = {
+			target = $CHARACTER$
+			modifier = carn_enslaved_me_crime_opinion
+		}
+	}
+}
+
 carnx_is_likely_to_buy_slave_trigger = {
 	save_temporary_scope_as = liege
 	NOR = {

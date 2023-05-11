@@ -196,3 +196,18 @@ carnx_on_sex = {
 		#carnx_debug_log_effect = { MSG = carnx_debug_msg_character_had_sex }
 	}
 }
+
+on_set_relation_rival = {
+	on_actions = { carnx_on_set_relation_rival }
+}
+
+carnx_on_set_relation_rival = {
+	effect = {
+		if = {
+			limit = {
+				carnx_was_enslaved_by_character_trigger = { CHARACTER = scope:target }
+			}
+			carnx_debug_log_effect = { MSG = carnx_debug_msg_character_became_enslavers_rival }
+		}
+	}
+}

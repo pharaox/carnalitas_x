@@ -90,24 +90,26 @@ carnx_enslave_effect = {
 			add_prestige_level = -1
 			if = {
 				limit = {
-					NOT = { has_trait = contrite }
-				}
-				if = {
-					limit = {
-						scope:new_owner = {
-							has_execute_reason = scope:slave
-						}
-					}
-					add_opinion = {
-						target = scope:new_owner
-						modifier = carn_enslaved_me_opinion
+					scope:new_owner = {
+						has_execute_reason = scope:slave
 					}
 				}
-				else = {
-					add_opinion = {
-						target = scope:new_owner
-						modifier = carn_enslaved_me_crime_opinion
-					}
+				add_opinion = {
+					target = scope:new_owner
+					modifier = carn_enslaved_me_opinion
+				}
+			}
+			else = {
+				add_opinion = {
+					target = scope:new_owner
+					modifier = carn_enslaved_me_crime_opinion
+				}
+
+				# Progress towards rival if unlawfully enslaved
+				progress_towards_rival_effect = {
+					CHARACTER = scope:new_owner
+					REASON = carnx_rival_enslaved
+					OPINION = 0
 				}
 			}
 
@@ -962,6 +964,18 @@ carnx_buy_slave_effect = {
 			if = {
 				limit = { is_imprisoned_by = scope:seller }
 				release_from_prison = yes
+			}
+		}
+
+		# Progress towards rival if enslaved by scope:seller
+		if = {
+			limit = {
+				carnx_was_enslaved_by_character_trigger = { CHARACTER = scope:seller }
+			}
+			progress_towards_rival_effect = {
+				CHARACTER = scope:seller
+				REASON = carnx_rival_sold_into_slavery
+				OPINION = 0
 			}
 		}
 	}

@@ -1,3 +1,9 @@
 ﻿l_english:
  carnx_rival_slave_scapegoat:0 "[CHARACTER.GetShortUIName|U] scapegoated [TARGET_CHARACTER.GetShortUIName] for the loss of a slave."
  carnx_rival_slave_scapegoat_corresponding:0 "[TARGET_CHARACTER.GetShortUIName|U] scapegoated [CHARACTER.GetShortUIName] for the loss of a slave."
+
+ carnx_rival_enslaved:0 "[TARGET_CHARACTER.GetShortUIName|U] enslaved [CHARACTER.GetShortUIName]."
+ carnx_rival_enslaved_corresponding:0 "[CHARACTER.GetShortUIName|U] enslaved [TARGET_CHARACTER.GetShortUIName]."
+
+ carnx_rival_sold_into_slavery:0 "[TARGET_CHARACTER.GetShortUIName|U] sold [CHARACTER.GetShortUIName] into slavery."
+ carnx_rival_sold_into_slavery_corresponding:0 "[CHARACTER.GetShortUIName|U] sold [TARGET_CHARACTER.GetShortUIName] into slavery."
