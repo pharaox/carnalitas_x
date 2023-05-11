@@ -1,0 +1,4 @@
+﻿l_english:
+ carnx_buying_slaves_is_illegal: "Your faith does not permit buying [CHARACTER.GetFaith.GetAdherentNamePluralNoTooltip|U] as slaves"
+ carnx_selling_slaves_is_illegal: "Your faith does not permit selling [CHARACTER.GetFaith.GetAdherentNamePluralNoTooltip|U] as slaves"
+ carnx_gifting_slaves_is_illegal: "Your faith does not permit gifting [CHARACTER.GetFaith.GetAdherentNamePluralNoTooltip|U] as slaves"

@@ -1011,6 +1011,18 @@ carnx_buy_slave_effect = {
 		}
 	}
 
+	scope:seller = {
+		# Remove piety
+		if = {
+			limit = {
+				NOT = {
+					carnx_is_slavery_accepted_trigger = { CHARACTER = scope:slave }
+				}
+			}
+			add_piety = carnx_enslave_piety_loss
+		}
+	}
+
 	scope:slave = {
 		hidden_effect = {
 			# Add / remove modifiers and flags
@@ -1190,6 +1202,16 @@ carnx_gift_slave_effect = {
 		stress_impact = {
 			greedy = medium_stress_impact_gain
 			generous = medium_stress_impact_loss
+		}
+
+		# Remove piety
+		if = {
+			limit = {
+				NOT = {
+					carnx_is_slavery_accepted_trigger = { CHARACTER = scope:slave }
+				}
+			}
+			add_piety = carnx_enslave_piety_loss
 		}
 	}
 

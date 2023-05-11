@@ -1,0 +1,14 @@
+﻿carnx_buying_slaves_is_illegal = {
+	first_not = carnx_buying_slaves_is_illegal
+	third_not = carnx_buying_slaves_is_illegal
+}
+
+carnx_selling_slaves_is_illegal = {
+	first_not = carnx_selling_slaves_is_illegal
+	third_not = carnx_selling_slaves_is_illegal
+}
+
+carnx_gifting_slaves_is_illegal = {
+	first_not = carnx_gifting_slaves_is_illegal
+	third_not = carnx_gifting_slaves_is_illegal
+}

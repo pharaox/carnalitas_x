@@ -25,7 +25,7 @@ carnx_sell_slaves_interaction = {
 
 	populate_actor_list = {
 		if = {
-			limit = { 
+			limit = {
 				NOT = { exists = scope:secondary_recipient }
 			}
 			scope:actor = {
@@ -35,10 +35,13 @@ carnx_sell_slaves_interaction = {
 					limit = {
 						carn_slave_can_be_sold_trigger = yes
 						save_temporary_scope_as = slave
+						scope:actor = {
+							NOT = { carnx_is_slavery_crime_trigger = { CHARACTER = scope:slave } }
+						}
 						any_in_list = {
 							list = valid_buyers
 							carnx_can_sell_slave_to_trigger = { PARTY = scope:actor }
-							save_temporary_opinion_value_as = { 
+							save_temporary_opinion_value_as = {
 								name = opinion_of_actor
 								target = scope:actor
 							}
@@ -55,14 +58,14 @@ carnx_sell_slaves_interaction = {
 		scope:actor = {
 			carnx_get_valid_buyers_or_sellers_effect = { LIST = valid_buyers }
 		}
-		scope:secondary_actor = { 
+		scope:secondary_actor = {
 			save_scope_as = slave
 		}
 		ordered_in_list = {
 			list = valid_buyers
 			limit = {
 				carnx_can_sell_slave_to_trigger = { PARTY = scope:actor }
-				save_temporary_opinion_value_as = { 
+				save_temporary_opinion_value_as = {
 					name = opinion_of_actor
 					target = scope:actor
 				}
@@ -101,6 +104,12 @@ carnx_sell_slaves_interaction = {
 			limit = { exists = scope:secondary_actor }
 			scope:secondary_actor = {
 				carn_slave_can_be_sold_trigger = yes
+				custom_description = {
+					text = "carnx_selling_slaves_is_illegal"
+					scope:actor = {
+						NOT = { carnx_is_slavery_crime_trigger = { CHARACTER = scope:secondary_actor } }
+					}
+				}
 			}
 		}
 	}

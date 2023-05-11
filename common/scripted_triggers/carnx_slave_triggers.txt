@@ -816,6 +816,10 @@ carnx_is_likely_to_buy_slave_trigger = {
 
 carnx_is_likely_to_sell_slave_trigger = {
 	save_temporary_scope_as = liege
+	NOR = {
+		carnx_is_slavery_crime_trigger = { CHARACTER = $SLAVE$ }
+		carnx_is_slavery_shunned_trigger = { CHARACTER = $SLAVE$ }
+	}
 	$SLAVE$ = {
 		NOR = {
 			has_character_flag = carnx_slave_recently_bought

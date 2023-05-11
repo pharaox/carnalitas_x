@@ -35,7 +35,9 @@ carn_seize_slave_interaction = {
 			}
 			custom_description = {
 				text = "carn_slavery_is_illegal"
-				NOT = { scope:actor = { carnx_is_slavery_crime_trigger = { CHARACTER = scope:recipient } } }
+				scope:actor = {
+					NOT = { carnx_is_slavery_crime_trigger = { CHARACTER = scope:recipient } }
+				}
 			}
 		}
 	}

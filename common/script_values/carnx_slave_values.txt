@@ -302,6 +302,24 @@ carnx_buy_slave_ai_accept_no_actor_value = {
 	save_temporary_scope_as = slave
 	value = 50
 
+	# Slavery crime (-1000) or shunned by faith (-50)
+	if = {
+		limit = {
+			scope:seller = {
+				carnx_is_slavery_crime_trigger = { CHARACTER = scope:slave }
+			}
+		}
+		add = carnx_ai_negative_crime_impact_value
+	}
+	if = {
+		limit = {
+			scope:seller = {
+				carnx_is_slavery_shunned_trigger = { CHARACTER = scope:slave }
+			}
+		}
+		add = carnx_ai_negative_shunned_impact_value
+	}
+
 	# Slave recently bought
 	if = {
 		limit = {

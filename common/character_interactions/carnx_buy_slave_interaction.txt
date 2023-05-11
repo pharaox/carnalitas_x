@@ -82,7 +82,7 @@ carn_buy_slave_directly_interaction = {
 			scope:secondary_recipient = {
 				carn_slave_can_be_sold_trigger = yes
 				custom_description = {
-					text = "carn_slavery_is_illegal"
+					text = "carnx_buying_slaves_is_illegal"
 					scope:actor = {
 						NOT = { carnx_is_slavery_crime_trigger = { CHARACTER = scope:secondary_recipient } }
 					}
@@ -152,6 +152,18 @@ carn_buy_slave_directly_interaction = {
 			}
 			add = -100
 			desc = carnx_slave_recently_bought_reason
+		}
+
+		# Slavery crime or shunned by faith
+		modifier = {
+			carnx_is_slavery_crime_trigger = { CHARACTER = scope:secondary_recipient }
+			add = carnx_ai_negative_crime_impact_value
+			desc = carnx_selling_crime_in_recipient_faith
+		}
+		modifier = {
+			carnx_is_slavery_shunned_trigger = { CHARACTER = scope:secondary_recipient }
+			add = carnx_ai_negative_shunned_impact_value
+			desc = carnx_selling_shunned_in_recipient_faith
 		}
 
 		# Employed as councillor (NIV doubled), court position, knight / commander, or in some other way (NIV)
