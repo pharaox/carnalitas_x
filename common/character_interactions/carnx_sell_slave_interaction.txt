@@ -125,8 +125,15 @@ carn_sell_slave_interaction = {
 
 	on_accept = {
 		if = {
-			limit = { scope:hook = yes }
-			scope:actor = { use_hook = scope:recipient }
+			limit = {
+				scope:hook = yes
+				scope:actor = {
+					has_usable_hook = scope:recipient
+				}
+			}
+			scope:actor = {
+				use_hook = scope:recipient
+			}
 		}
 		scope:actor = { save_scope_as = seller }
 		scope:secondary_recipient = { save_scope_as = slave }
