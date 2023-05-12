@@ -1,0 +1,30 @@
+﻿namespace = carnx_slave
+
+# Acquire slaver trait
+carnx_slave.0006 = {
+	type = character_event
+	title = carnx_slave.0006.t
+	desc = carnx_slave.0006.desc
+
+	theme = prison
+	left_portrait = {
+		character = root
+		animation = personality_greedy
+	}
+
+	trigger = {
+		is_alive = yes
+		NOT = { has_trait = carnx_slaver }
+	}
+
+	# Accept the trait
+	option = {
+		name = carnx_slave.0006.a
+
+		add_trait = carnx_slaver
+
+		hidden_effect = {
+			carnx_debug_log_effect = { MSG = carnx_debug_msg_character_acquired_slaver_trait }
+		}
+	}
+}

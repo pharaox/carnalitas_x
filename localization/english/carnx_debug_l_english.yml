@@ -85,6 +85,8 @@
 
  carnx_debug_msg_character_became_enslavers_rival: "Character became their enslaver's rival"
 
+ carnx_debug_msg_character_acquired_slaver_trait: "Character acquired Slaver trait"
+
  carnx_debug_msg_slave_0001_fired: "Buy Foreign Slaves event fired"
  carnx_debug_msg_slave_0001_option_a_chosen: "Buy Foreign Slaves option a chosen"
  carnx_debug_msg_slave_0001_option_b_chosen: "Buy Foreign Slaves option b chosen"

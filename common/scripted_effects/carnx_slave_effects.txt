@@ -966,18 +966,6 @@ carnx_buy_slave_effect = {
 				release_from_prison = yes
 			}
 		}
-
-		# Progress towards rival if enslaved by scope:seller
-		if = {
-			limit = {
-				carnx_was_enslaved_by_character_trigger = { CHARACTER = scope:seller }
-			}
-			progress_towards_rival_effect = {
-				CHARACTER = scope:seller
-				REASON = carnx_rival_sold_into_slavery
-				OPINION = 0
-			}
-		}
 	}
 
 	scope:buyer = {
@@ -1034,6 +1022,18 @@ carnx_buy_slave_effect = {
 				}
 			}
 			add_piety = carnx_enslave_piety_loss
+		}
+
+		hidden_effect = {
+			# Potentially acquire slaver trait if scope:slave enslaved by scope:seller
+			if = {
+				limit = {
+					scope:slave = {
+						carnx_was_enslaved_by_character_trigger = { CHARACTER = scope:seller }
+					}
+				}
+				carnx_potentially_acquire_slaver_trait_effect = yes
+			}
 		}
 	}
 
@@ -1319,5 +1319,56 @@ carnx_get_valid_buyers_or_sellers_effect = {
 			carnx_valid_buyer_or_seller_trigger = { PARTY = scope:party }
 		}
 		add_to_list = $LIST$
+	}
+}
+
+carnx_potentially_acquire_slaver_trait_effect = {
+	# Increment slaver counter
+	if = {
+		limit = {
+			NOT = { has_variable = carnx_slaver_counter }
+		}
+		set_variable = {
+			name = carnx_slaver_counter
+			value = 1
+		}
+	}
+	else = {
+		change_variable = {
+			name = carnx_slaver_counter
+			add = 1
+		}
+	}
+
+	# Potentially acquire slaver trait if slaver counter >= 10
+	if = {
+		limit = {
+			has_variable = carnx_slaver_counter
+			var:carnx_slaver_counter >= 10
+			NOT = { has_trait = carnx_slaver }
+		}
+		random = {
+			chance = 5
+			modifier = {
+				var:carnx_slaver_counter >= 20
+				add = 5
+			}
+			modifier = {
+				var:carnx_slaver_counter >= 30
+				add = 5
+			}
+			modifier = {
+				var:carnx_slaver_counter >= 40
+				add = 5
+			}
+			modifier = {
+				var:carnx_slaver_counter >= 50
+				add = 5
+			}
+
+			trigger_event = {
+				id = carnx_slave.0006
+			}
+		}
 	}
 }

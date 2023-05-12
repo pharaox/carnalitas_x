@@ -1,0 +1,9 @@
+﻿carnx_slavery_crime_opinion = {
+	opinion = -15
+	imprisonment_reason = yes
+	execute_reason = yes
+}
+
+carnx_slavery_intolerant_opinion = {
+	opinion = -15
+}

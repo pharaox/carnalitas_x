@@ -34,3 +34,7 @@
  carnx_slave.0005.a:0 "You have a point, I will free [slave.GetHerHim]."
  carnx_slave.0005.b:0 "I will not free [slave.GetHerHim], but make a generous donation instead."
  carnx_slave.0005.c:0 "Be it as it may, I will not free [slave.GetHerHim]!"
+
+ carnx_slave.0006.t:0 "Infamous Slaver"
+ carnx_slave.0006.desc:0 "For years, I have been enslaving war captives and prisoners, and selling them to willing buyers. Yet even as they seek me to buy yet another slave, they slander me and call me "slaver" behind my back. But why should I care? Money and the power that it brings is what I seek, and selling people into slavery is a way to get ahead."
+ carnx_slave.0006.a:0 "Let them talk."

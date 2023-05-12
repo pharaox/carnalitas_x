@@ -1,0 +1,50 @@
+﻿carnx_slaver = {
+	fame = yes
+
+	ruler_designer_cost = -10
+
+	diplomacy = -1
+	monthly_prestige = -0.5
+	men_at_arms_maintenance = 0.25
+	army_maintenance_mult = 0.25
+	dread_gain_mult = 0.25
+	dread_decay_mult = -0.25
+
+	same_opinion = 10
+
+	triggered_opinion = {
+		parameter = other_slavery_illegal
+		opinion_modifier = carnx_slavery_crime_opinion
+		ignore_opinion_value_if_same_trait = yes
+	}
+	triggered_opinion = {
+		parameter = other_slavery_shunned
+		opinion_modifier = carnx_slavery_intolerant_opinion
+		ignore_opinion_value_if_same_trait = yes
+	}
+
+	desc = {
+		first_valid = {
+			triggered_desc = {
+				trigger = {
+					NOT = { exists = this }
+				}
+				desc = trait_carnx_slaver_desc
+			}
+			desc = trait_carnx_slaver_character_desc
+		}
+	}
+
+	ai_greed = medium_positive_ai_value
+	ai_honor = low_negative_ai_value
+	ai_compassion = low_negative_ai_value
+	ai_energy = very_low_positive_ai_value
+
+	compatibility = {
+		greedy = @pos_compat_medium
+		generous = @neg_compat_medium
+		compassionate = @neg_compat_low
+		callous = @pos_compat_low
+		sadistic = @pos_compat_low
+	}
+}

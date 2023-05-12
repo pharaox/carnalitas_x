@@ -1,0 +1,7 @@
+﻿l_english:
+ trait_carnx_slaver:0 "Slaver"
+ trait_carnx_slaver_desc:0 "This character has sold many people into slavery."
+ trait_carnx_slaver_character_desc:0 "[ROOT.GetCharacter.GetFirstNameNoTooltip] has sold many people into slavery."
+
+ carnx_slavery_crime_opinion:0 "Known [GetTrait('carnx_slaver').GetName( GetNullCharacter )]"
+ carnx_slavery_intolerant_opinion:0 "Known [GetTrait('carnx_slaver').GetName( GetNullCharacter )]"
