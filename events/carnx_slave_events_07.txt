@@ -1,0 +1,33 @@
+﻿namespace = carnx_slave
+
+# Acquire liberator trait
+carnx_slave.0007 = {
+	type = character_event
+	title = carnx_slave.0007.t
+	desc = carnx_slave.0007.desc
+
+	theme = prison
+	left_portrait = {
+		character = root
+		animation = personality_compassionate
+	}
+
+	trigger = {
+		is_alive = yes
+		NOT = {
+			has_trait = carnx_slaver
+			has_trait = carnx_liberator
+		}
+	}
+
+	# Accept the trait
+	option = {
+		name = carnx_slave.0007.a
+
+		add_trait = carnx_liberator
+
+		hidden_effect = {
+			carnx_debug_log_effect = { MSG = carnx_debug_msg_character_acquired_liberator_trait }
+		}
+	}
+}

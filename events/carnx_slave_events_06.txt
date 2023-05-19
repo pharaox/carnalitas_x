@@ -14,7 +14,10 @@ carnx_slave.0006 = {
 
 	trigger = {
 		is_alive = yes
-		NOT = { has_trait = carnx_slaver }
+		NOT = {
+			has_trait = carnx_slaver
+			has_trait = carnx_liberator
+		}
 	}
 
 	# Accept the trait

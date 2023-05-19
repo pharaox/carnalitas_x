@@ -783,6 +783,18 @@ carnx_free_slave_actual_effect = {
 				sadistic = medium_stress_impact_gain
 				callous = minor_stress_impact_gain
 			}
+
+			hidden_effect = {
+				# Potentially acquire liberator trait if scope:slave not enslaved by scope:owner
+				if = {
+					limit = {
+						scope:slave = {
+							NOT = { carnx_was_enslaved_by_character_trigger = { CHARACTER = scope:owner } }
+						}
+					}
+					carnx_potentially_acquire_liberator_trait_effect = yes
+				}
+			}
 		}
 	}
 }
@@ -873,6 +885,16 @@ carnx_ransom_slave_actual_effect = {
 					scope:slave = { NOT = { is_courtier_of = scope:payer } }
 				}
 				add_courtier = scope:slave
+			}
+
+			# Potentially acquire liberator trait if scope:slave not enslaved by scope:payer
+			if = {
+				limit = {
+					scope:slave = {
+						NOT = { carnx_was_enslaved_by_character_trigger = { CHARACTER = scope:payer } }
+					}
+				}
+				carnx_potentially_acquire_liberator_trait_effect = yes
 			}
 		}
 	}
@@ -1345,7 +1367,10 @@ carnx_potentially_acquire_slaver_trait_effect = {
 		limit = {
 			has_variable = carnx_slaver_counter
 			var:carnx_slaver_counter >= 10
-			NOT = { has_trait = carnx_slaver }
+			NOT = {
+				has_trait = carnx_slaver
+				has_trait = carnx_liberator
+			}
 		}
 		random = {
 			chance = 5
@@ -1368,6 +1393,60 @@ carnx_potentially_acquire_slaver_trait_effect = {
 
 			trigger_event = {
 				id = carnx_slave.0006
+			}
+		}
+	}
+}
+
+carnx_potentially_acquire_liberator_trait_effect = {
+	# Increment liberator counter
+	if = {
+		limit = {
+			NOT = { has_variable = carnx_liberator_counter }
+		}
+		set_variable = {
+			name = carnx_liberator_counter
+			value = 1
+		}
+	}
+	else = {
+		change_variable = {
+			name = carnx_liberator_counter
+			add = 1
+		}
+	}
+
+	# Potentially acquire liberator trait if liberator counter >= 10
+	if = {
+		limit = {
+			has_variable = carnx_liberator_counter
+			var:carnx_liberator_counter >= 10
+			NOT = {
+				has_trait = carnx_slaver
+				has_trait = carnx_liberator
+			}
+		}
+		random = {
+			chance = 5
+			modifier = {
+				var:carnx_liberator_counter >= 20
+				add = 5
+			}
+			modifier = {
+				var:carnx_liberator_counter >= 30
+				add = 5
+			}
+			modifier = {
+				var:carnx_liberator_counter >= 40
+				add = 5
+			}
+			modifier = {
+				var:carnx_liberator_counter >= 50
+				add = 5
+			}
+
+			trigger_event = {
+				id = carnx_slave.0007
 			}
 		}
 	}

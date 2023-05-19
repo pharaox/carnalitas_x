@@ -1,15 +1,19 @@
 ﻿carnx_slaver = {
 	fame = yes
+	opposites = {
+		carnx_liberator
+	}
 
 	ruler_designer_cost = -10
 
 	diplomacy = -1
 	monthly_prestige = -0.5
 	men_at_arms_maintenance = 0.25
-	army_maintenance_mult = 0.25
 	dread_gain_mult = 0.25
 	dread_decay_mult = -0.25
 
+	general_opinion = -5
+	opposite_opinion = -10
 	same_opinion = 10
 
 	triggered_opinion = {
@@ -38,13 +42,57 @@
 	ai_greed = medium_positive_ai_value
 	ai_honor = low_negative_ai_value
 	ai_compassion = low_negative_ai_value
-	ai_energy = very_low_positive_ai_value
 
 	compatibility = {
+		carnx_liberator = @neg_compat_high
 		greedy = @pos_compat_medium
 		generous = @neg_compat_medium
 		compassionate = @neg_compat_low
 		callous = @pos_compat_low
 		sadistic = @pos_compat_low
+	}
+}
+
+carnx_liberator = {
+	fame = yes
+	opposites = {
+		carnx_slaver
+	}
+
+	ruler_designer_cost = 50
+
+	diplomacy = 1
+	monthly_prestige = 0.5
+	men_at_arms_maintenance = -0.25
+	dread_baseline_add = -10
+	dread_decay_mult = 0.25
+
+	general_opinion = 5
+	opposite_opinion = -10
+	same_opinion = 10
+
+	desc = {
+		first_valid = {
+			triggered_desc = {
+				trigger = {
+					NOT = { exists = this }
+				}
+				desc = trait_carnx_liberator_desc
+			}
+			desc = trait_carnx_liberator_character_desc
+		}
+	}
+
+	ai_greed = medium_negative_ai_value
+	ai_honor = low_positive_ai_value
+	ai_compassion = low_positive_ai_value
+
+	compatibility = {
+		carnx_slaver = @neg_compat_high
+		greedy = @neg_compat_medium
+		generous = @pos_compat_medium
+		compassionate = @pos_compat_low
+		callous = @neg_compat_low
+		sadistic = @neg_compat_low
 	}
 }
