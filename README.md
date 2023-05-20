@@ -31,6 +31,7 @@ With this mod:
 * Additional slaves fit for specific occupations are spawned into the world via events.
 * Useful characters are much more likely to be captured instead of killed during raids and sieges.
 * There are flavor events related to the slavery system, such as a slave running away, demands for a slave's freedom, etc. There are also hidden events for AI rulers to interact with their slaves in ways that were previously only available to the player, e.g. have sex with them.
+* Enslaving and then selling too many people may get you the negative *Slaver* trait. Freeing or ransoming a similar number of people may get you the positive *Liberator* trait.
 
 All taken together, slaves are now genuinely useful to their owners, there is an actual demand for them conditioned by religion and culture, and this demand is satisfied by warfare, raiding, slave trade, and slave-related events. As a player, you can still use the system to your advantage, but it's more challenging and hopefully more interesting to do this.
 
@@ -104,16 +105,19 @@ In this mod, a slave can also be gifted to another ruler for an opinion gain via
 
 ### Impact of Slavery Doctrines
 
-Carnalitas introduces the *Slavery Crime* and *Slavery Shunned* religious doctrines that determine whether owning slaves of certain faiths is considered a crime, shunned, or accepted, depending on the faith's hostility level. However, in Carnalitas these doctrines are not followed consistently when determining if someone can be enslaved, bought, or seized, the AI acceptance of slave interactions, or the AI decisions to initiate them. This mod attempts to correct this by rebalancing the impact of slavery doctrines on all slave interactions:
+Carnalitas introduces the *Slavery Crime* and *Slavery Shunned* religious doctrines that determine whether owning slaves of certain faiths is considered a crime, shunned, or accepted, depending on the faith's hostility level. However, in Carnalitas these doctrines are not followed consistently when determining if someone can be enslaved, sold, bought, or seized, the AI acceptance of slave interactions, or the AI decisions to initiate them. This mod attempts to correct this by rebalancing the impact of slavery doctrines on all slave interactions:
 
 * If owning slaves of a certain faith is a crime, for adherents of this faith:
-  * It is not possible to enslave, seize, or buy them for the player. The AI will not initiate such interactions at all.
-  * The AI will not accept sell interactions for them.
+  * It is not possible to enslave, seize, sell, buy, or gift them for the player. The AI will not initiate such interactions at all.
+  * The AI will not accept sell, buy, or gift interactions for them.
   * The AI will be quite willing to free or ransom them.
 * If owning slaves of a certain faith is shunned, for adherents of this faith:
-  * The AI will be quite unwilling to enslave, seize, or buy them.
-  * The AI will be quite unwilling to accept sell interactions for them.
+  * The AI will be quite unwilling to enslave, seize, sell, buy, or gift them.
+  * The AI will be quite unwilling to accept sell, buy, or gift interactions for them.
   * The AI will be somewhat more willing to free or ransom them.
+  * Initiating or accepting most interactions (except freeing or ransoming) has a piety cost.
+
+In addition, owning slaves against religious doctrines leads to yearly [piety loss](#piety-loss-from-slaves).
 
 ### Council and Court Positions
 
@@ -144,6 +148,15 @@ When evaluating slaves for buying, selling, enslaving, etc., the AI considers th
 ### Capturing Slaves during Raids and Sieges
 
 With this mod, characters that can be enslaved and have a base price higher than a threshold are now captured instead of killed during raids and sieges. In addition, characters captured during a raid have 50% chance of getting the "marked for enslavement" modifier, which makes enslavement by the AI more likely. This increases the number of characters enslaved as a result of warfare or raiding.
+
+### Traits
+
+Starting with version 0.9.0, this mod adds two new fame traits, *Slaver* and *Liberator*.
+
+* *Slaver* is a fame trait that adds negative diplomacy, prestige, MAA maintenance, and general opinion, and positive dread multipliers. It is acquired via an [event](#trait-events) after enslaving and then selling a certain number of people, usually between 20 and 30.
+* *Liberator* is a fame trait that adds positive diplomacy, prestige, MAA maintenance, and general opinion, and negative dread multipliers. It is acquired via an [event](#trait-events) after freeing or ransoming a certain number of people, usually between 20 and 30.
+
+These traits represent consequences of "bad" and "good" behavior towards slaves. They are intended to further improve the balance and add some roleplaying flavor for the player. Although the AI also actively enslaves, frees, sells, and buys slaves, it is very unlikely to reach the numbers required for acquiring one of these traits.
 
 ### Slavery Events
 
@@ -177,6 +190,11 @@ Once a year rulers may lose piety for any slaves owned against religious doctrin
 
 * 25 if owning slaves of their faith is shunned by your faith.
 * 50 if owning slaves of their faith is considered a crime by your faith.
+
+#### Trait Events
+
+* Every time you sell someone originally enslaved by you, you may acquire the [*Slaver* trait](#traits) via the *Infamous Slaver* event. The chance is 5% after 10 times, 10% after 20, and so on.
+* Every time you free or ransom someone not originally enslaved by you, you may acquire the [*Liberator* trait](#traits) via the *Famous Liberator* event. The chance is 5% after 10 times, 10% after 20, and so on.
 
 ### Slave Memories
 
@@ -266,11 +284,11 @@ The sections below list the changes made to existing vanilla objects in somewhat
 
 ### Council Positions (`council_positions`)
 
-* `zzz_00_council_positions.txt`: Changed triggers and effects of the *Chancellor*, *Steward*, *Marshal*, and *Spymaster* council positions to check their eligibility for slaves and log receiving and revoking the positions. Changed the trigger for the *Court Chaplain* council position to ensure that it's not eligible for slaves.
+* `00_council_positions.txt`: Changed triggers and effects of the *Chancellor*, *Steward*, *Marshal*, and *Spymaster* council positions to check their eligibility for slaves and log receiving and revoking the positions. Changed the trigger for the *Court Chaplain* council position to ensure that it's not eligible for slaves.
 
 ### Court Positions (`court_positions`)
 
-* `zzz_00_court_positions.txt`: Changed conditions, effects, salaries, and aptitudes for may court positions, as described in [Changes to Existing Council and Court Positions](#changes-to-existing-council-and-court-positions).
+* `00_court_positions.txt`: Changed conditions, effects, salaries, and aptitudes for may court positions, as described in [Changes to Existing Council and Court Positions](#changes-to-existing-council-and-court-positions).
 
 ### Triggers (`scripted_triggers`)
 
@@ -281,6 +299,10 @@ The sections below list the changes made to existing vanilla objects in somewhat
 
 * `prisoner_of_war_capture_effect`: Added marking a certain percentage of characters captured during raids with a special modifier that increases their chance to be enslaved by the AI.
 * `imprison_tyranny_effect`: Ensured slaves can be imprisoned without gaining tyranny.
+
+### Modifiers (`scripted_modifiers`)
+
+* `hostile_murder_agent_base_join_chance_modifier`: Made vengeful characters more willing to join schemes against the person that originally enslaved them.
 
 ### Values (`script_values`)
 

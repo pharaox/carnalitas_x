@@ -1,10 +1,32 @@
 # Changelog
 
+## Version 0.9.0
+
+### Interactions
+
+* Religious doctrines now impact also selling and gifting slaves. These interactions can no longer be initiated and are not accepted if illegal, and have a piety cost if shunned.
+* Added progress towards rival when enslaving a character.
+* Made vengeful characters more willing to join schemes against the person that originally enslaved them.
+
+### Traits
+
+* Added *Slaver* trait. This is a fame trait that adds negative diplomacy, prestige, MAA maintenance, and general opinion, and positive dread multipliers. It is acquired via an event after enslaving and then selling a certain number of people, usually between 20 and 30.
+* Added *Liberator* trait. This is a fame trait that adds positive diplomacy, prestige, MAA maintenance, and general opinion, and negative dread multipliers. It is acquired via an event after freeing or ransoming a certain number of people, usually between 20 and 30.
+
+### Events
+
+* Added *Infamous Slaver* event (`carnx_slave.0006`) for a character to acquire the *Slaver* trait after selling someone originally enslaved by them.
+* Added *Famous Liberator* event (`carnx_slave.0007`) for a character to acquire the *Liberator* trait after freeing or ransoming someone not originally enslaved by them.
+
+### Bug Fixes
+
+* Fixed a rare error caused by trying to use a hook without a usable hook.
+
 ## Version 0.8.0
 
 ### Interactions
 
-* Ensured that piety is appropriately lost also when buying, seizing, or gifting a slave if slavery is not accepted according to doctrines.
+* Ensured that piety is appropriately lost also when buying, seizing, or accepting a slave as a gift if slavery is not accepted according to doctrines.
 * The impact of religious doctrines on *Free Slave* and *Ransom Slave* is no longer reduced compared to other interactions.
 
 ### Events
