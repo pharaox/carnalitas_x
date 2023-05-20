@@ -840,7 +840,7 @@ carnx_vanilla_court_position_traits_character_value = {
 	else_if = {
 		limit = { # 40
 			OR = {
-				has_trait = physician_3 # Court Physician
+				carnx_has_tiered_trait_xp_trigger = { TRAIT = lifestyle_physician XP = 100 } # Court Physician
 			}
 		}
 		add = 4
@@ -848,7 +848,7 @@ carnx_vanilla_court_position_traits_character_value = {
 	else_if = {
 		limit = { # 30
 			OR = {
-				has_trait = blademaster_3 # Bodyguard, Champion
+				carnx_has_tiered_trait_xp_trigger = { TRAIT = lifestyle_blademaster XP = 100 } # Bodyguard, Champion
 				has_completed_inspiration = yes # Antiquarian
 			}
 		}
@@ -857,14 +857,14 @@ carnx_vanilla_court_position_traits_character_value = {
 	else_if = { # 15-20
 		limit = {
 			OR = {
-				has_trait = physician_2 # Court Physician
-				has_trait = mystic_3 # Court Physician
+				carnx_has_tiered_trait_xp_trigger = { TRAIT = lifestyle_physician XP = 50 } # Court Physician
+				carnx_has_tiered_trait_xp_trigger = { TRAIT = lifestyle_mystic XP = 100 } # Court Physician
 				has_trait = shrewd # Court Jester, Court Tutor
 				has_trait = lifestyle_gardener # Court Gardener
 				has_trait = administrator # Seneschal
 				has_trait = overseer # Seneschal
 				has_trait = shieldmaiden # Champion
-				has_trait = blademaster_2 # Bodyguard, Champion
+				carnx_has_tiered_trait_xp_trigger = { TRAIT = lifestyle_blademaster XP = 50 } # Bodyguard, Champion
 				has_trait = lifestyle_herbalist # Food Taster, Court Physician
 				has_trait = comfort_eater # Food Taster
 			}
@@ -874,8 +874,8 @@ carnx_vanilla_court_position_traits_character_value = {
 	else_if = { # 10
 		limit = {
 			OR = {
-				has_trait = physician_1 # Court Physician
-				has_trait = mystic_2 # Court Physician
+				has_trait = lifestyle_physician # Court Physician
+				carnx_has_tiered_trait_xp_trigger = { TRAIT = lifestyle_mystic XP = 50 } # Court Physician
 				has_trait = athletic # Court Jester
 			}
 		}

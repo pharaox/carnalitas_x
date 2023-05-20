@@ -81,14 +81,23 @@ imprison_tyranny_effect = {
 	}
 
 	# Determine if tyrannical or not
-	# Got good reason
+	# Should use strife
 	if = {
+		limit = { exists = scope:use_strife_not_tyranny }
+		# If you have revocation reason, we allow that.
+		if = {
+			limit = { has_imprisonment_reason = scope:recipient }
+			consume_imprisonment_reasons = scope:recipient
+		}
+		else = { change_strife_opinion = medium_strife_gain }
+	}
+	# Got good reason
+	else_if = {
 		limit = {
 			scope:actor = { has_imprisonment_reason = scope:recipient }
 		}
 		custom_tooltip = IS_ALLOWED_TO_IMPRISON_DESC
 	}
-
 	# CSR: Allowed to imprison your own slaves without tyranny
 	else_if = {
 		limit = {
@@ -96,7 +105,6 @@ imprison_tyranny_effect = {
 		}
 		custom_tooltip = carnx_is_allowed_to_imprison_slave_desc
 	}
-
 	# Is at war or edge-case pondering general imprisonment
 	else_if = {
 		limit = {

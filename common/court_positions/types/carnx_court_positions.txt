@@ -1,5 +1,4 @@
 ﻿carnx_slave_concubine_court_position = {
-	skill = diplomacy
 	max_available_positions = 5
 	category = court_position_category_common
 	minimum_rank = county
@@ -151,6 +150,26 @@
 					format = "BASE_VALUE_FORMAT_DECIMALS_MINUS_POSITIVE"
 				}
 			}
+			if = {
+				limit = {
+					scope:liege = {
+						employs_court_position = carnx_slave_concubine_court_position
+						any_court_position_holder = {
+							type = carnx_slave_concubine_court_position
+							scope:liege = {
+								has_hook_of_type = {
+									type = obligation_hook
+									target = prev
+								}
+							}
+						}
+					}
+				}
+				multiply = {
+					value = 0.5
+					desc = obligation_hook_salary
+				}
+			}
 		}
 	}
 
@@ -254,7 +273,6 @@
 }
 
 carnx_slave_captain_court_position = {
-	skill = martial
 	max_available_positions = 3
 	category = court_position_category_common
 	minimum_rank = county
@@ -283,7 +301,7 @@ carnx_slave_captain_court_position = {
 		}
 		if = {
 			limit = {
-				has_trait = blademaster_3
+				carnx_has_tiered_trait_xp_trigger = { TRAIT = lifestyle_blademaster XP = 100 }
 			}
 			add = {
 				value = 15
@@ -292,7 +310,7 @@ carnx_slave_captain_court_position = {
 		}
 		else_if = {
 			limit = {
-				has_trait = blademaster_2
+				carnx_has_tiered_trait_xp_trigger = { TRAIT = lifestyle_blademaster XP = 50 }
 			}
 			add = {
 				value = 10
@@ -300,7 +318,7 @@ carnx_slave_captain_court_position = {
 		}
 		else_if = {
 			limit = {
-				has_trait = blademaster_1
+				has_trait = lifestyle_blademaster
 			}
 			add = {
 				value = 5
@@ -412,6 +430,26 @@ carnx_slave_captain_court_position = {
 					format = "BASE_VALUE_FORMAT_DECIMALS_MINUS_POSITIVE"
 				}
 			}
+			if = {
+				limit = {
+					scope:liege = {
+						employs_court_position = carnx_slave_captain_court_position
+						any_court_position_holder = {
+							type = carnx_slave_captain_court_position
+							scope:liege = {
+								has_hook_of_type = {
+									type = obligation_hook
+									target = prev
+								}
+							}
+						}
+					}
+				}
+				multiply = {
+					value = 0.5
+					desc = obligation_hook_salary
+				}
+			}
 		}
 	}
 
@@ -488,7 +526,6 @@ carnx_slave_captain_court_position = {
 }
 
 carnx_slave_eunuch_court_position = {
-	skill = stewardship
 	max_available_positions = 3
 	category = court_position_category_common
 	minimum_rank = county
@@ -618,6 +655,26 @@ carnx_slave_eunuch_court_position = {
 					value = 0.0
 					desc = inner_circle_salary_mod
 					format = "BASE_VALUE_FORMAT_DECIMALS_MINUS_POSITIVE"
+				}
+			}
+			if = {
+				limit = {
+					scope:liege = {
+						employs_court_position = carnx_slave_eunuch_court_position
+						any_court_position_holder = {
+							type = carnx_slave_eunuch_court_position
+							scope:liege = {
+								has_hook_of_type = {
+									type = obligation_hook
+									target = prev
+								}
+							}
+						}
+					}
+				}
+				multiply = {
+					value = 0.5
+					desc = obligation_hook_salary
 				}
 			}
 		}

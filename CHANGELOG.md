@@ -1,5 +1,15 @@
 # Changelog
 
+## Version 0.10.0
+
+### Compatibility
+
+* Adapted to CK3 1.9 and Carnalitas 2.0
+  * Adapted changes to vanilla council and court positions
+  * Adapted changes to vanilla triggers, effects, and values
+  * Adapted to new vanilla tiered lifestyle traits
+  * Ensured there are no `carnx` errors in the error log
+
 ## Version 0.9.0
 
 ### Interactions

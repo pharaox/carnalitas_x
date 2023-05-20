@@ -90,7 +90,7 @@ carnx_slave.0003 = {
 		animation = shame
 	}
 	override_background = {
-		event_background = throne_room
+		reference = throne_room
 	}
 
 	trigger = {

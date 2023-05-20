@@ -114,12 +114,8 @@ carnx_slave_0001_create_learning_character_effect = {
 		random_traits_list = {
 			count = { 0 1 }
 			# Court Physician
-			physician_1 = {}
-			physician_2 = {}
-			physician_3 = {}
-			mystic_1 = {}
-			mystic_2 = {}
-			mystic_3 = {}
+			lifestyle_physician = {}
+			lifestyle_mystic = {}
 			lifestyle_herbalist = {}
 			# Antiquarian
 			shy = {}

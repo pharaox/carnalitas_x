@@ -44,6 +44,11 @@
 	}
 
 	portrait_animation = chancellor
+
+	barbershop_data = {
+		position = { 918.0 172.0 }
+		click_to_front = no
+	}
 }
 
 councillor_steward = {
@@ -60,9 +65,9 @@ councillor_steward = {
 
 	modifier = {
 		name = councillor_steward_modifier
-		build_gold_cost = -0.05
+		build_gold_cost = -0.025
 		monthly_stewardship_lifestyle_xp_gain_mult = 0.05
-		domain_tax_mult = 0.05
+		domain_tax_mult = 0.025
 		scale = council_scaled_by_liege_tier
 	}
 
@@ -92,6 +97,11 @@ councillor_steward = {
 	}
 
 	portrait_animation = steward
+
+	barbershop_data = {
+		position = { 1268.0 172.0 }
+		click_to_front = no
+	}
 }
 
 councillor_marshal = {
@@ -135,6 +145,11 @@ councillor_marshal = {
 	}
 
 	portrait_animation = marshal
+
+	barbershop_data = {
+		position = { 558.0 172.0 }
+		click_to_front = no
+	}
 }
 
 councillor_spymaster = {
@@ -181,6 +196,11 @@ councillor_spymaster = {
 	use_for_scheme_resistance = yes
 
 	portrait_animation = spymaster
+
+	barbershop_data = {
+		position = { 1433.0 261.0 }
+		click_to_front = yes
+	}
 }
 
 councillor_court_chaplain = {
@@ -352,6 +372,94 @@ councillor_court_chaplain = {
 
 	on_get_position = {
 		got_council_position_effect = yes
+		if = {
+			limit = {
+				years_from_game_start >= 1
+			}
+			if = {
+				limit = {
+					is_ruler = no
+					liege = {
+						faith = { has_doctrine = doctrine_clerical_succession_spiritual_fixed_appointment }
+						any_vassal = {
+							is_physically_able_adult = yes
+							is_councillor = no
+							government_has_flag = government_is_theocracy
+							can_be_court_chaplain_trigger = { COURT_OWNER = liege }
+							faith = liege.faith
+						}
+					}
+				}
+				liege = {
+					random_vassal = {
+						limit = {
+							is_physically_able_adult = yes
+							is_councillor = no
+							government_has_flag = government_is_theocracy
+							can_be_court_chaplain_trigger = { COURT_OWNER = liege }
+							faith = liege.faith
+						}
+						weight = {
+							base = 1
+							modifier = {
+								add = 1000
+								faith.religious_head ?= this
+							}
+							modifier = {
+								add = learning
+							}
+							modifier = {
+								add = primary_title.tier
+							}
+						}
+						liege = {
+							assign_councillor_type = {
+								type = councillor_court_chaplain
+								remove_existing_councillor = yes
+								target = prev
+							}
+						}
+					}
+				}
+				move_to_pool = yes
+			}
+			if = {
+				limit = {
+					exists = this
+					exists = liege.culture
+					NOT = {
+						knows_language_of_culture = liege.culture
+					}
+				}
+				random_list = {
+					10 = {
+						modifier = {
+							add = learning
+						}
+						learn_language_of_culture = liege.culture
+					}
+					5 = {
+						trigger = {
+							can_start_scheme = { type = learn_language target = liege }
+						}
+						start_scheme = {
+							type = learn_language
+							target = liege
+						}
+					}
+					5 = {
+						trigger = {
+							OR = {
+								has_trait = arrogant
+								has_trait = arbitrary
+								has_trait = lazy
+								has_trait = fickle
+							}
+						}
+					}
+				}
+			}
+		}
 	}
 
 	on_fired_from_position = {
@@ -359,4 +467,10 @@ councillor_court_chaplain = {
 	}
 
 	portrait_animation = chaplain
+
+	barbershop_data = {
+		position = { 1618.0 172.0  }
+		click_to_front = no
+	}
+
 }

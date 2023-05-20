@@ -1,0 +1,9 @@
+﻿carnx_has_tiered_trait_xp_trigger = {
+	AND = {
+		has_trait = $TRAIT$
+		has_trait_xp = {
+			trait = $TRAIT$
+			value >= $XP$
+		}
+	}
+}

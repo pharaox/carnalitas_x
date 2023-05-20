@@ -1,5 +1,5 @@
 ﻿carnx_slaver = {
-	fame = yes
+	category = fame
 	opposites = {
 		carnx_liberator
 	}
@@ -54,7 +54,7 @@
 }
 
 carnx_liberator = {
-	fame = yes
+	category = fame
 	opposites = {
 		carnx_slaver
 	}

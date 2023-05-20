@@ -39,7 +39,7 @@
 		shrewd = { weight = { base = 5 } }
 		diplomat = { weight = { base = 5 } }
 		august = { weight = { base = 5 } }
-		reveler_1 = { weight = { base = 5 } }
+		lifestyle_reveler = { weight = { base = 5 } }
 		poet = { weight = { base = 5 } }
 	}
 	random_traits_list = {
@@ -70,6 +70,18 @@
 			}
 		}
 		set_interesting_traits_and_modifiers_effect = yes
+		if = {
+			limit = { has_trait = lifestyle_reveler }
+			add_trait_xp = {
+				trait = lifestyle_reveler
+				value = {
+					integer_range = {
+						min = small_lifestyle_random_xp_low
+						max = small_lifestyle_random_xp_high
+					}
+				}
+			}
+		}
 	}
 }
 
@@ -111,13 +123,10 @@ carnx_soldier_character_template = {
 		physique_good_3 = { weight = { base = 5 } } # Buffed
 		strong = { weight = { base = 5 } }
 		torturer = { weight = { base = 5 } }
-		blademaster_1 = { weight = { base = 10 } }
-		blademaster_2 = { weight = { base = 5 } }
-		blademaster_3 = { weight = { base = 2 } }
-		hunter_1 = { weight = { base = 10 } }
-		hunter_2 = { weight = { base = 5 } }
-		hunter_3 = { weight = { base = 2 } }
+		lifestyle_blademaster = { weight = { base = 10 } }
+		lifestyle_hunter = { weight = { base = 10 } }
 		athletic = { weight = { base = 5 } }
+		tourney_participant = { weight = { base = 10 } }
 	}
 	dynasty = none
 	after_creation = {
@@ -204,6 +213,23 @@ carnx_soldier_character_template = {
 			}
 		}
 		set_interesting_traits_and_modifiers_effect = yes
+		add_random_tiered_trait_xp_effect = {
+			TRAIT = lifestyle_blademaster
+			LEVEL_1 = yes
+			LEVEL_3 = yes
+		}
+		add_random_tiered_trait_track_xp_effect = {
+			TRAIT = lifestyle_hunter
+			TRACK = hunter
+			LEVEL_1 = yes
+			LEVEL_3 = no
+		}
+		add_random_tiered_trait_track_xp_effect = {
+			TRAIT = tourney_participant
+			TRACK = wit
+			LEVEL_1 = yes
+			LEVEL_3 = no
+		}
 	}
 }
 
@@ -249,7 +275,7 @@ carnx_eunuch_character_template = {
 		shrewd = { weight = { base = 5 } }
 		diplomat = { weight = { base = 10 } } # Buffed
 		august = { weight = { base = 5 } }
-		reveler_1 = { weight = { base = 5 } }
+		lifestyle_reveler = { weight = { base = 5 } }
 		poet = { weight = { base = 5 } }
 	}
 	random_traits_list = {
@@ -293,5 +319,17 @@ carnx_eunuch_character_template = {
 			}
 		}
 		set_interesting_traits_and_modifiers_effect = yes
+		if = {
+			limit = { has_trait = lifestyle_reveler }
+			add_trait_xp = {
+				trait = lifestyle_reveler
+				value = {
+					integer_range = {
+						min = small_lifestyle_random_xp_low
+						max = small_lifestyle_random_xp_high
+					}
+				}
+			}
+		}
 	}
 }

@@ -55,6 +55,15 @@ carnx_can_be_court_gardener_trigger = {
 
 carnx_can_be_court_tutor_trigger = {
 	NOT = { is_spouse_of = $LIEGE$ }
+	can_be_combatant_based_on_gender_trigger = { ARMY_OWNER = $LIEGE$ }
+	trigger_if = {
+		limit = {
+			$LIEGE$.faith = {
+				NOT = { has_doctrine = doctrine_clerical_function_recruitment }
+			}
+		}
+		is_clergy = no
+	}
 }
 
 carnx_can_be_food_taster_trigger = {

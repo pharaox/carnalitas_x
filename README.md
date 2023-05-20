@@ -2,6 +2,8 @@
 
 A comprehensive rework of the Carnalitas slavery system aiming at improved balance and better integration with other aspects of the game.
 
+The latest version is compatible with CK3 1.9.x and Carnalitas 2.0. If you are still on CK3 1.8.x, download version 0.9.x instead, and use it with Carnalitas 1.7. A compatibility patch with EK2 (for CK3 1.8.x) is provided as a separate download.
+
 ## Overview
 
 [Carnalitas](https://www.loverslab.com/files/file/14207-carnalitas-unified-sex-mod-framework-for-ck3/) added a much-needed slavery system to CK3. While this is great in itself and the basics of the original system are solid, there are certain things that could be improved, perhaps due to Carnalitas ambition to be a "unified sex mod framework" rather than a well-balanced mod in its own right.
@@ -217,6 +219,14 @@ The following bugs present in Carnalitas have been fixed in this mod:
 
 This mod requires [Carnalitas](https://www.loverslab.com/files/file/14207-carnalitas-unified-sex-mod-framework-for-ck3/) as a prerequisite (obviously). While it modifies the slavery system in a substantial way, it doesn't touch other Carnalitas features and should be compatible with all of them.
 
+### Compatibility with Total Conversion Mods
+
+Due to the changes mentioned in [Changes to Existing Council and Court Positions](#changes-to-existing-council-and-court-positions), this mod may overwrite changes to council and court positions by total conversion mods. For best experience, such mods now require compatibility patches.
+
+Compatibility patches for the following mods are provided as separate downloads:
+
+* [Elder Kings 2](https://steamcommunity.com/sharedfiles/filedetails/?id=2887120253)
+
 ### Compatibility with Mods Based on Carnalitas
 
 This mod should be compatible with all mods based on Carnalitas that don't modify the slavery system. Compatibility with the following mods has been explicitly verified, but most others should work as well:
@@ -234,12 +244,6 @@ This mod may not be compatible with all other mods that modify the slavery syste
 This mod is fully compatible with the *Slavery System: Disabled* and *Slavery System: Enabled* Carnalitas game rules. If the slavery system is disabled, all interactions and events introduced or modified by this mod will be disabled too, and vice versa.
 
 This mod is not compatible with the *Slavery System: Consensual Only* Carnalitas game rule. If this option is chosen, the effect will be exactly the same as with *Slavery System: Enabled*.
-
-### Compatibility with Total Conversion Mods
-
-Due to the changes mentioned in [Changes to Existing Council and Court Positions](#changes-to-existing-council-and-court-positions), this mod may overwrite changes to council and court positions by total conversion mods. For best experience, such mods now require compatibility patches.
-
-Compatibility patches for [Elder Kings 2](https://steamcommunity.com/sharedfiles/filedetails/?id=2887120253) and [Tales of Ireland](https://steamcommunity.com/sharedfiles/filedetails/?id=2453915294) are provided as separate downloads. I haven't checked compatibility with other total conversion mods, if you notice any issues please let me know.
 
 ## Changes to Carnalitas
 
@@ -306,5 +310,4 @@ The sections below list the changes made to existing vanilla objects in somewhat
 
 ### Values (`script_values`)
 
-* `court_position_aptitude_family_business_value`: Added a check if a liege exists to prevent errors (vanilla bug).
 * `raid_base_capture_chance`: Changed the scope for checking traits and dynasty perks from the character being captured to the army commander (vanilla bug).

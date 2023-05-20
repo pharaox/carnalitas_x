@@ -588,14 +588,7 @@ carn_free_slave_effect = {
 		type = slave_owner
 		remove_relation_slave = prev
 		hidden_effect = {
-			add_opinion = {
-				target = prev
-				modifier = carn_former_slave_or_slave_owner_opinion
-			}
-			reverse_add_opinion = {
-				target = prev
-				modifier = carn_former_slave_or_slave_owner_opinion
-			}
+			carn_add_mutual_former_slave_or_slave_owner_opinion_effect = { CHARACTER = prev }
 		}
 		save_scope_as = former_owner
 	}
@@ -972,14 +965,7 @@ carnx_buy_slave_effect = {
 			every_relation = {
 				type = slave_owner
 				remove_relation_slave = prev
-				add_opinion = {
-					target = prev
-					modifier = carn_former_slave_or_slave_owner_opinion
-				}
-				reverse_add_opinion = {
-					target = prev
-					modifier = carn_former_slave_or_slave_owner_opinion
-				}
+				carn_add_mutual_former_slave_or_slave_owner_opinion_effect = { CHARACTER = prev }
 			}
 
 			# Release from prison
@@ -1123,14 +1109,7 @@ carnx_seize_slave_effect = {
 			every_relation = {
 				type = slave_owner
 				remove_relation_slave = prev
-				add_opinion = {
-					target = prev
-					modifier = carn_former_slave_or_slave_owner_opinion
-				}
-				reverse_add_opinion = {
-					target = prev
-					modifier = carn_former_slave_or_slave_owner_opinion
-				}
+				carn_add_mutual_former_slave_or_slave_owner_opinion_effect = { CHARACTER = prev }
 				save_scope_as = former_owner
 			}
 
@@ -1215,14 +1194,7 @@ carnx_gift_slave_effect = {
 			every_relation = {
 				type = slave_owner
 				remove_relation_slave = prev
-				add_opinion = {
-					target = prev
-					modifier = carn_former_slave_or_slave_owner_opinion
-				}
-				reverse_add_opinion = {
-					target = prev
-					modifier = carn_former_slave_or_slave_owner_opinion
-				}
+				carn_add_mutual_former_slave_or_slave_owner_opinion_effect = { CHARACTER = prev }
 			}
 
 			# Release from prison
@@ -1341,6 +1313,28 @@ carnx_get_valid_buyers_or_sellers_effect = {
 			carnx_valid_buyer_or_seller_trigger = { PARTY = scope:party }
 		}
 		add_to_list = $LIST$
+	}
+}
+
+# Add carn_former_slave_or_slave_owner_opinion from CHARACTER to the scoped character.
+# Use carn prefix to avoid "carnx" errors.
+carn_add_former_slave_or_slave_owner_opinion_effect = {
+	reverse_add_opinion = {
+		target = $CHARACTER$
+		modifier = carn_former_slave_or_slave_owner_opinion
+	}
+}
+
+# Add carn_former_slave_or_slave_owner_opinion mutually for CHARACTER and the scoped character.
+# Use carn prefix to avoid "carnx" errors.
+carn_add_mutual_former_slave_or_slave_owner_opinion_effect = {
+	add_opinion = {
+		target = $CHARACTER$
+		modifier = carn_former_slave_or_slave_owner_opinion
+	}
+	reverse_add_opinion = {
+		target = $CHARACTER$
+		modifier = carn_former_slave_or_slave_owner_opinion
 	}
 }
 
