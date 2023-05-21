@@ -1,5 +1,11 @@
 # Changelog
 
+## Version 0.10.1
+
+### UI
+
+* Added trait and interaction icons
+
 ## Version 0.10.0
 
 ### Compatibility
