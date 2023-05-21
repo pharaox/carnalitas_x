@@ -7,6 +7,7 @@ carn_sell_slave_interaction = {
 	interface_priority = 31
 	common_interaction = yes
 	needs_recipient_to_open = yes
+	icon = carnx_chain
 
 	greeting = positive
 	send_name = carn_sell_slave_interaction

@@ -6,6 +6,7 @@ carn_seize_slave_interaction = {
 	desc = carn_seize_slave_interaction_desc
 	interface_priority = 100
 	common_interaction = yes
+	icon = carnx_chain
 
 	send_name = carn_seize_slave_interaction
 

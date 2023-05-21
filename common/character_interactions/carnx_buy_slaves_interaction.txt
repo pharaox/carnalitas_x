@@ -7,13 +7,14 @@ carnx_buy_slaves_interaction = {
 	interface_priority = 31
 	common_interaction = yes
 	needs_recipient_to_open = yes
+	icon = carnx_chain
 
 	greeting = positive
 	send_name = carnx_buy_slaves_interaction
 
 	populate_actor_list = {
 		if = {
-			limit = { 
+			limit = {
 				NOT = { exists = scope:secondary_recipient }
 			}
 			scope:actor = {
@@ -30,7 +31,7 @@ carnx_buy_slaves_interaction = {
 					limit = {
 						carn_slave_can_be_sold_trigger = yes
 						scope:seller = {
-							save_temporary_opinion_value_as = { 
+							save_temporary_opinion_value_as = {
 								name = opinion_of_actor
 								target = scope:actor
 							}

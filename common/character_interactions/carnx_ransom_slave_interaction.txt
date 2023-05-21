@@ -6,6 +6,7 @@ carnx_ransom_slave_interaction = {
 	interface_priority = 50
 	common_interaction = yes
 	needs_recipient_to_open = yes
+	icon = carnx_broken_chain
 
 	send_name = carnx_ransom_slave_interaction
 
