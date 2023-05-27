@@ -162,11 +162,10 @@ carn_seize_slave_interaction = {
 			SCALE = carnx_ai_positive_female_impact_halved_value
 		}
 
-		# Age (up to PIV depending on age, only if useful)
+		# Age (up to NIV depending on age)
 		carnx_age_modifier = {
-			RULER = scope:actor
 			SLAVE = scope:recipient
-			SCALE = carnx_ai_positive_age_impact_halved_value
+			SCALE = carnx_ai_negative_age_impact_halved_value
 		}
 
 		# Execute reason, rival, cheating spouse (75) or nemesis (150)

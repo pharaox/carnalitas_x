@@ -55,8 +55,9 @@ When buying slaves, the AI acceptance is influenced by a comprehensive estimatio
 * Does the slave have any useful claims on neighboring realms.
 * Is the buyer attracted to the sex of the slave, and if yes the slave's attraction.
 * Is the slave a visibly fertile female.
-* The age of the slave, peaks between 16 and 30 years of age (only applies to slaves that are considered useful for some of the above reasons).
+* The age of the slave, negative unless the slave is between 16 and 30 years of age.
 * The slave price.
+* The buyer's wealth.
 
 When selling, the AI acceptance is influenced by similar factors, but working in the opposite direction. Factors such as the AI's opinion of the other party play a minor role, and dread plays no role at all. In addition, the AI will never offer to pay more than their "short term gold" (the portion of the AI's budget that can be used for short term purchases), and will only sell if the other party offers enough gold to pay the full price.
 

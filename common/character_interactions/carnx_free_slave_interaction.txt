@@ -390,6 +390,28 @@ carn_free_slave_interaction = {
 			SCALE = carnx_ai_negative_employed_impact_halved_value
 		}
 
+		# Lacking councillors, court positions, knights, or commanders (NIV for each skill, aptitude, or trait above cutoff)
+		carnx_lacking_councillors_modifier = {
+			RULER = scope:actor
+			SLAVE = scope:recipient
+			SCALE = carnx_ai_negative_skill_impact_halved_value
+		}
+		carnx_lacking_court_positions_modifier = {
+			RULER = scope:actor
+			SLAVE = scope:recipient
+			SCALE = carnx_ai_negative_aptitude_impact_halved_value
+		}
+		carnx_lacking_knights_modifier = {
+			RULER = scope:actor
+			SLAVE = scope:recipient
+			SCALE = carnx_ai_negative_prowess_impact_halved_value
+		}
+		carnx_lacking_commanders_modifier = {
+			RULER = scope:actor
+			SLAVE = scope:recipient
+			SCALE = carnx_ai_negative_cs_impact_halved_value
+		}
+
 		# Claims (NIV if useful claims on neighbouring realms)
 		carnx_claims_modifier = {
 			RULER = scope:actor
@@ -410,11 +432,10 @@ carn_free_slave_interaction = {
 			SCALE = carnx_ai_negative_female_impact_halved_value
 		}
 
-		# Age (up to NIV depending on age, only if useful)
+		# Age (up to PIV depending on age)
 		carnx_age_modifier = {
-			RULER = scope:actor
 			SLAVE = scope:recipient
-			SCALE = carnx_ai_negative_age_impact_halved_value
+			SCALE = carnx_ai_positive_age_impact_halved_value
 		}
 
 		# Execute reason, rival, cheating spouse (-75) or nemesis (-150)

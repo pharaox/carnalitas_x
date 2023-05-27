@@ -71,6 +71,8 @@
  carnx_not_enough_gold_reason: "[actor.GetShortUIName|U] can't afford the price: $VALUE|=+0$"
  carnx_slave_recently_bought_reason: "[recipient.GetShortUIName|U] recently bought [secondary_recipient.GetShortUIName|U] and wants to keep [secondary_recipient.GetHerHim]: $VALUE|=+0$"
  carnx_reluctant_to_spend_gold_reason: "[recipient.GetSheHe|U] is reluctant to spend [gold|E]: $VALUE|=+0$"
+ carnx_recipient_poor_reason: "[recipient.GetShortUIName|U] considers [recipient.GetHerselfHimself] poor: $VALUE|=+0$"
+ carnx_recipient_rich_reason: "[recipient.GetShortUIName|U] considers [recipient.GetHerselfHimself] rich: $VALUE|=+0$"
  carnx_slave_reason: "Slaves can be useful and valuable: $VALUE|=+0$"
  carnx_debug1_reason: "Debug1: $VALUE|=+0$"
  carnx_debug2_reason: "Debug2: $VALUE|=+0$"

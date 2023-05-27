@@ -1,5 +1,20 @@
 # Changelog
 
+## Version 0.9.2
+
+### Interactions
+
+* Added wealth considerations for the AI when buying and selling slaves
+* Changed age considerations so that non-prime age impacts negatively, instead of prime age impacting positively
+* Added "lacking councillors, court positions, knights, or commanders" considerations for the seller / owner
+* Halved impact of claims held by slaves on AI decision making
+* Slightly increased impact of being a female and reduced impact of age
+* Slightly reduced impact of opinion by reducing AI opinion multiplier
+* Changed slave base price calculation to correspond to the above changes
+* Increased slave base price multiplier from 0.6 to 0.75
+* Reduced aptitude threshold for some court positions
+* Reduced "Buy Foreign Slaves" event chance for "none" option
+
 ## Version 0.9.1
 
 ### UI
