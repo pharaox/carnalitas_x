@@ -385,20 +385,15 @@ carnx_female_modifier = {
 
 carnx_age_modifier = {
 	modifier = {
-		$SLAVE$ = {
-			trigger_if = {
-				limit = { $SCALE$ > 0 }
-				carnx_is_useful_slave_to_future_owner_trigger = { RULER = $RULER$ }
-			}
-			trigger_else = {
-				carnx_is_useful_slave_to_current_owner_trigger = { RULER = $RULER$ }
-			}
+		OR = {
+			$SLAVE$.carnx_age_value < carnx_prime_age_min_value
+			$SLAVE$.carnx_age_value > carnx_prime_age_max_value
 		}
 		add = {
-			value = $SCALE$
+			value = 0
 			if = {
 				limit = { $SLAVE$.carnx_age_value < carnx_prime_age_min_value }
-				subtract = {
+				add = {
 					value = carnx_prime_age_min_value
 					subtract = $SLAVE$.carnx_age_value
 					divide = {
@@ -411,7 +406,7 @@ carnx_age_modifier = {
 			}
 			else_if = {
 				limit = { $SLAVE$.carnx_age_value > carnx_prime_age_max_value }
-				subtract = {
+				add = {
 					value = $SLAVE$.carnx_age_value
 					subtract = carnx_prime_age_max_value
 					divide = {

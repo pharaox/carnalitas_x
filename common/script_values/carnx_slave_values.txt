@@ -3,12 +3,30 @@ carnx_slave_base_price_value = {
 	# Base (reduced compared to guests 20 -> 10)
 	add = 10
 
-	# Claims (50 if any claims, reduced compared to guests)
+	# Claims (25 to 100 depending on tier, reduced compared to guests)
 	if = {
 		limit = {
-			any_claim = { always = yes }
+			any_claim = { tier = tier_empire }
+		}
+		add = 100
+	}
+	else_if = {
+		limit = {
+			any_claim = { tier = tier_kingdom }
+		}
+		add = 75
+	}
+	else_if = {
+		limit = {
+			any_claim = { tier = tier_duchy }
 		}
 		add = 50
+	}
+	else_if = {
+		limit = {
+			any_claim = { tier = tier_county }
+		}
+		add = 25
 	}
 
 	# Dynasty (5 for each dynasty prestige level, reduced compared to guests 15 -> 5)
@@ -22,31 +40,31 @@ carnx_slave_base_price_value = {
 		}
 	}
 
-	# Genetic traits (genetic character value multiplied by 5)
+	# Genetic traits (genetic character value multiplied by 5, same as guests)
 	add = {
 		value = carnx_genetic_character_value
 		multiply = 5
-		min = -15
 	}
 
-	# Commander traits (15 for each commander trait)
+	# Commander traits (10 for each commander trait, reduced compared to guests 15 -> 10)
 	if = {
 		limit = {
 			number_of_commander_traits >= 1
 		}
 		add = {
 			value = number_of_commander_traits
-			multiply = 15
+			multiply = 10
 		}
 	}
 
-	# Court Position traits (court position traits character value multiplied by 5)
+	# Court Position traits (court position traits character value multiplied by 5,
+	# reduced compared to guests but covering all relevant court positions)
 	add = {
 		value = carnx_court_position_traits_character_value
 		multiply = 5
 	}
 
-	# Skills (5 for each skill point above 12)
+	# Skills (5 for each skill point above 12, same as guests)
 	if = {
 		limit = {
 			diplomacy >= decent_skill_rating
@@ -115,40 +133,40 @@ carnx_slave_base_price_value = {
 		multiply = 25
 	}
 
-	# Female (15 if a visibly fertile female, new compared to guests)
+	# Female (20 if a visibly fertile female, new compared to guests)
 	if = {
 		limit = {
 			is_female = yes
 			is_visibly_fertile = yes
 		}
-		add = 15
+		add = 20
 	}
 
-	# Age (up to 12 depending on age, new compared to guests)
+	# Age (up to -10 depending on age, new compared to guests)
 	add = {
-		value = 12
+		value = 0
 		if = {
 			limit = { carnx_age_value < carnx_prime_age_min_value }
-			subtract = {
+			add = {
 				value = carnx_prime_age_min_value
 				subtract = carnx_age_value
 				divide = {
 					value = carnx_prime_age_min_value
 					subtract = carnx_young_zero_age_value
 				}
-				multiply = 12
+				multiply = -10
 			}
 		}
 		else_if = {
 			limit = { carnx_age_value > carnx_prime_age_max_value }
-			subtract = {
+			add = {
 				value = carnx_age_value
 				subtract = carnx_prime_age_max_value
 				divide = {
 					value = carnx_old_zero_age_value
 					subtract = carnx_prime_age_max_value
 				}
-				multiply = 12
+				multiply = -10
 			}
 		}
 		min = 0
@@ -158,7 +176,7 @@ carnx_slave_base_price_value = {
 	multiply = carnx_slave_base_price_multiplier
 
 	floor = yes
-	min = 1
+	min = 5
 }
 
 carnx_slave_ask_price_value = {
@@ -370,6 +388,42 @@ carnx_buy_slave_ai_accept_no_actor_value = {
 		add = carnx_ai_negative_employed_impact_value
 	}
 
+	# Lacking councillors or court positions (NIV for max skill or aptitude above cutoff)
+	scope:seller = { save_temporary_scope_as = liege }
+	add = {
+		value = scope:slave.carnx_max_councillor_skill_difference_value
+		multiply = carnx_ai_negative_skill_impact_value
+	}
+	add = {
+		value = scope:slave.carnx_max_aptitude_difference_value
+		multiply = carnx_ai_negative_aptitude_impact_value
+	}
+
+	# Lacking knights or commanders (NIV for skill above cutoff)
+	if = {
+		limit = {
+			scope:slave = {
+				carnx_can_serve_as_knight_trigger = { RULER = scope:seller }
+			}
+		}
+		add = {
+			value = scope:slave.prowess
+			subtract = carnx_default_skill_threshold
+			multiply = carnx_ai_negative_prowess_impact_value
+		}
+	}
+	if = {
+		limit = {
+			scope:slave = {
+				carnx_can_serve_as_commander_trigger = { RULER = scope:seller }
+			}
+		}
+		add = {
+			value = scope:slave.carnx_commander_skill_value
+			multiply = carnx_ai_negative_cs_impact_value
+		}
+	}
+
 	# Family and relations (-25 to -100 depending on how close the relation)
 	# Reluctant to sell family and relations, wants to free them instead
 	if = {
@@ -461,38 +515,39 @@ carnx_buy_slave_ai_accept_no_actor_value = {
 		add = carnx_ai_negative_female_impact_value
 	}
 
-	# Age (up to NIV depending on age, only if useful)
+	# Age (up to PIV depending on age)
 	if = {
 		limit = {
-			scope:slave = {
-				carnx_is_useful_slave_to_current_owner_trigger = { RULER = scope:seller }
+			OR = {
+				scope:slave.carnx_age_value < carnx_prime_age_min_value
+				scope:slave.carnx_age_value > carnx_prime_age_max_value
 			}
 		}
 		add = {
-			value = carnx_ai_negative_age_impact_value
+			value = 0
 			if = {
 				limit = { scope:slave.carnx_age_value < carnx_prime_age_min_value }
-				subtract = {
+				add = {
 					value = carnx_prime_age_min_value
 					subtract = scope:slave.carnx_age_value
 					divide = {
 						value = carnx_prime_age_min_value
 						subtract = carnx_young_zero_age_value
 					}
-					multiply = carnx_ai_negative_age_impact_value
+					multiply = carnx_ai_positive_age_impact_value
 					floor = yes
 				}
 			}
 			else_if = {
 				limit = { scope:slave.carnx_age_value > carnx_prime_age_max_value }
-				subtract = {
+				add = {
 					value = scope:slave.carnx_age_value
 					subtract = carnx_prime_age_max_value
 					divide = {
 						value = carnx_old_zero_age_value
 						subtract = carnx_prime_age_max_value
 					}
-					multiply = carnx_ai_negative_age_impact_value
+					multiply = carnx_ai_positive_age_impact_value
 					floor = yes
 				}
 			}
@@ -511,6 +566,24 @@ carnx_buy_slave_ai_accept_no_actor_value = {
 			scope:slave.carnx_slave_ask_price_value > scope:seller.major_gold_value
 		}
 		add = carnx_ai_positive_price_impact_value
+	}
+
+	# Seller wealth
+	if = {
+		limit = {
+			scope:seller = {
+				carnx_is_character_poor_trigger = yes
+			}
+		}
+		add = carnx_ai_positive_wealth_impact_value
+	}
+	else_if = {
+		limit = {
+			scope:seller = {
+				carnx_is_character_rich_trigger = yes
+			}
+		}
+		add = carnx_ai_negative_wealth_impact_value
 	}
 }
 
@@ -720,38 +793,39 @@ carnx_sell_slave_ai_accept_no_actor_value = {
 		add = carnx_ai_positive_female_impact_value
 	}
 
-	# Age (up to PIV depending on age, only if useful)
+	# Age (up to NIV depending on age)
 	if = {
 		limit = {
-			scope:slave = {
-				carnx_is_useful_slave_to_future_owner_trigger = { RULER = scope:buyer }
+			OR = {
+				scope:slave.carnx_age_value < carnx_prime_age_min_value
+				scope:slave.carnx_age_value > carnx_prime_age_max_value
 			}
 		}
 		add = {
-			value = carnx_ai_positive_age_impact_value
+			value = 0
 			if = {
 				limit = { scope:slave.carnx_age_value < carnx_prime_age_min_value }
-				subtract = {
+				add = {
 					value = carnx_prime_age_min_value
 					subtract = scope:slave.carnx_age_value
 					divide = {
 						value = carnx_prime_age_min_value
 						subtract = carnx_young_zero_age_value
 					}
-					multiply = carnx_ai_positive_age_impact_value
+					multiply = carnx_ai_negative_age_impact_value
 					floor = yes
 				}
 			}
 			else_if = {
 				limit = { scope:slave.carnx_age_value > carnx_prime_age_max_value }
-				subtract = {
+				add = {
 					value = scope:slave.carnx_age_value
 					subtract = carnx_prime_age_max_value
 					divide = {
 						value = carnx_old_zero_age_value
 						subtract = carnx_prime_age_max_value
 					}
-					multiply = carnx_ai_positive_age_impact_value
+					multiply = carnx_ai_negative_age_impact_value
 					floor = yes
 				}
 			}
@@ -770,6 +844,20 @@ carnx_sell_slave_ai_accept_no_actor_value = {
 			scope:slave.carnx_slave_bid_price_value > scope:buyer.major_gold_value
 		}
 		add = carnx_ai_negative_price_impact_value
+	}
+
+	# Buyer wealth
+	if = {
+		limit = {
+			carnx_is_character_poor_trigger = yes
+		}
+		add = carnx_ai_negative_wealth_impact_value
+	}
+	else_if = {
+		limit = {
+			carnx_is_character_rich_trigger = yes
+		}
+		add = carnx_ai_positive_wealth_impact_value
 	}
 }
 

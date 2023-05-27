@@ -358,73 +358,6 @@ carnx_is_slavery_crime_trigger = {
 	}
 }
 
-carnx_is_useful_slave_to_future_owner_trigger = {
-	OR = {
-		carnx_can_serve_as_any_councillor_trigger = { RULER = $RULER$ }
-		carnx_can_serve_as_any_court_position_trigger = { RULER = $RULER$ }
-		carnx_can_serve_as_knight_trigger = { RULER = $RULER$ }
-		carnx_can_serve_as_commander_trigger = { RULER = $RULER$ }
-		carnx_has_useful_claims_trigger = { RULER = $RULER$ }
-		carnx_is_attractive_to_character_trigger = { CHARACTER = $RULER$ }
-		carnx_is_visibly_fertile_female_trigger = yes
-	}
-}
-
-carnx_vanilla_can_serve_as_any_councillor_trigger = {
-	OR = {
-		carnx_can_serve_as_chancellor_trigger = { RULER = $RULER$ }
-		carnx_can_serve_as_marshal_trigger = { RULER = $RULER$ }
-		carnx_can_serve_as_steward_trigger = { RULER = $RULER$ }
-		carnx_can_serve_as_spymaster_trigger = { RULER = $RULER$ }
-	}
-}
-
-carnx_can_serve_as_any_councillor_trigger = {
-	carnx_vanilla_can_serve_as_any_councillor_trigger = { RULER = $RULER$ }
-}
-
-carnx_vanilla_can_serve_as_any_court_position_trigger = {
-	OR = {
-		carnx_can_serve_as_court_physician_trigger = { RULER = $RULER$ }
-		carnx_can_serve_as_antiquarian_trigger = { RULER = $RULER$ }
-		carnx_can_serve_as_court_gardener_trigger = { RULER = $RULER$ }
-		carnx_can_serve_as_court_tutor_trigger = { RULER = $RULER$ }
-		carnx_can_serve_as_food_taster_trigger = { RULER = $RULER$ }
-		carnx_can_serve_as_seneschal_trigger = { RULER = $RULER$ }
-		carnx_can_serve_as_cupbearer_trigger = { RULER = $RULER$ }
-		carnx_can_serve_as_chief_eunuch_trigger = { RULER = $RULER$ }
-		carnx_can_serve_as_court_jester_trigger = { RULER = $RULER$ }
-		carnx_can_serve_as_court_poet_trigger = { RULER = $RULER$ }
-		carnx_can_serve_as_court_musician_trigger = { RULER = $RULER$ }
-		carnx_can_serve_as_bodyguard_trigger = { RULER = $RULER$ }
-		carnx_can_serve_as_champion_trigger = { RULER = $RULER$ }
-		carnx_can_serve_as_executioner_trigger = { RULER = $RULER$ }
-		carnx_can_serve_as_slave_concubine_trigger = { RULER = $RULER$ }
-		carnx_can_serve_as_slave_captain_trigger = { RULER = $RULER$ }
-		carnx_can_serve_as_slave_eunuch_trigger = { RULER = $RULER$ }
-	}
-}
-
-carnx_can_serve_as_any_court_position_trigger = {
-	carnx_vanilla_can_serve_as_any_court_position_trigger = { RULER = $RULER$ }
-}
-
-carnx_is_useful_slave_to_current_owner_trigger = {
-	OR = {
-		is_councillor_of = $RULER$
-		AND = {
-			has_any_court_position = yes
-			any_court_position_employer = { this = $RULER$ }
-		}
-		is_knight_of = $RULER$
-		is_commanding_army = yes
-		carnx_has_important_role_trigger = { RULER = $RULER$ }
-		carnx_has_useful_claims_trigger = { RULER = $RULER$ }
-		carnx_is_attractive_to_character_trigger = { CHARACTER = $RULER$ }
-		carnx_is_visibly_fertile_female_trigger = yes
-	}
-}
-
 carnx_can_serve_as_chancellor_trigger = {
 	carnx_can_serve_as_councillor_trigger = {
 		TYPE = councillor_chancellor
@@ -462,23 +395,29 @@ carnx_can_serve_as_spymaster_trigger = {
 }
 
 carnx_can_serve_as_councillor_trigger = {
+	save_temporary_scope_as = candidate
 	carnx_can_be_$NAME$_trigger = { COURT_OWNER = $LIEGE$ }
 	$SKILL$ > carnx_default_skill_threshold
 	$LIEGE$ = {
 		exists = council_task:councillor_$NAME$
 		OR = {
 			NOT = { exists = cp:$TYPE$ }
-			cp:$TYPE$ = { $SKILL$ <= carnx_default_skill_threshold }
+			cp:$TYPE$ = {
+				OR = {
+					$SKILL$ <= carnx_default_skill_threshold
+					this = scope:candidate
+				}
+			}
 		}
 		NOR = {
 			any_vassal = {
+				NOT = { this = scope:candidate }
 				carnx_can_be_$NAME$_trigger = { COURT_OWNER = $LIEGE$ }
-				court_position_does_not_already_have_a_job_trigger = yes
 				$SKILL$ > carnx_default_skill_threshold
 			}
 			any_courtier = {
+				NOT = { this = scope:candidate }
 				carnx_can_be_$NAME$_trigger = { COURT_OWNER = $LIEGE$ }
-				court_position_does_not_already_have_a_job_trigger = yes
 				$SKILL$ > carnx_default_skill_threshold
 			}
 		}
@@ -486,6 +425,7 @@ carnx_can_serve_as_councillor_trigger = {
 }
 
 carnx_can_serve_as_knight_trigger = {
+	save_temporary_scope_as = candidate
 	can_be_knight_trigger = { ARMY_OWNER = $RULER$ }
 	prowess > carnx_default_skill_threshold
 	$RULER$ = {
@@ -493,13 +433,31 @@ carnx_can_serve_as_knight_trigger = {
 		OR = {
 			number_of_knights < max_number_of_knights
 			any_knight = {
-				prowess <= carnx_default_skill_threshold
+				OR = {
+					prowess <= carnx_default_skill_threshold
+					this = scope:candidate
+				}
+			}
+		}
+		NOR = {
+			any_vassal = {
+				NOT = { this = scope:candidate }
+				NOT = { is_knight_of = $RULER$ }
+				can_be_knight_trigger = { ARMY_OWNER = $RULER$ }
+				prowess > carnx_default_skill_threshold
+			}
+			any_courtier = {
+				NOT = { this = scope:candidate }
+				NOT = { is_knight_of = $RULER$ }
+				can_be_knight_trigger = { ARMY_OWNER = $RULER$ }
+				prowess > carnx_default_skill_threshold
 			}
 		}
 	}
 }
 
 carnx_can_serve_as_commander_trigger = {
+	save_temporary_scope_as = candidate
 	can_be_commander_basic_trigger = { ARMY_OWNER = $RULER$ }
 	martial >= carnx_default_skill_threshold
 	number_of_commander_traits >= 1
@@ -507,11 +465,13 @@ carnx_can_serve_as_commander_trigger = {
 		highest_held_title_tier >= tier_county
 		NOR = {
 			any_vassal = {
+				NOT = { this = scope:candidate }
 				can_be_commander_basic_trigger = { ARMY_OWNER = $RULER$ }
 				martial >= carnx_default_skill_threshold
 				number_of_commander_traits >= 1
 			}
 			any_courtier = {
+				NOT = { this = scope:candidate }
 				can_be_commander_basic_trigger = { ARMY_OWNER = $RULER$ }
 				martial >= carnx_default_skill_threshold
 				number_of_commander_traits >= 1
@@ -662,6 +622,7 @@ carnx_can_serve_as_slave_eunuch_trigger = {
 }
 
 carnx_can_serve_as_court_position_trigger = {
+	save_temporary_scope_as = candidate
 	carnx_can_be_$NAME$_trigger = { LIEGE = $LIEGE$ }
 	aptitude:$TYPE$ > carnx_$NAME$_aptitude_threshold
 	$LIEGE$ = {
@@ -674,16 +635,21 @@ carnx_can_serve_as_court_position_trigger = {
 				employs_court_position = $TYPE$
 				any_court_position_holder = {
 					type = $TYPE$
-					aptitude:$TYPE$ <= carnx_$NAME$_aptitude_threshold
+					OR = {
+						aptitude:$TYPE$ <= carnx_$NAME$_aptitude_threshold
+						this = scope:candidate
+					}
 				}
 			}
 		}
 		NOR = {
 			any_vassal = {
+				NOT = { this = scope:candidate }
 				can_be_employed_as = $TYPE$
 				aptitude:$TYPE$ > carnx_$NAME$_aptitude_threshold
 			}
 			any_courtier = {
+				NOT = { this = scope:candidate }
 				can_be_employed_as = $TYPE$
 				aptitude:$TYPE$ > carnx_$NAME$_aptitude_threshold
 			}
@@ -692,6 +658,7 @@ carnx_can_serve_as_court_position_trigger = {
 }
 
 carnx_can_serve_as_multi_court_position_trigger = {
+	save_temporary_scope_as = candidate
 	carnx_can_be_$NAME$_trigger = { LIEGE = $LIEGE$ }
 	aptitude:$TYPE$ > carnx_$NAME$_aptitude_threshold
 	$LIEGE$ = {
@@ -709,17 +676,22 @@ carnx_can_serve_as_multi_court_position_trigger = {
 					}
 					any_court_position_holder = {
 						type = $TYPE$
-						aptitude:$TYPE$ <= carnx_$NAME$_aptitude_threshold
+						OR = {
+							aptitude:$TYPE$ <= carnx_$NAME$_aptitude_threshold
+							this = scope:candidate
+						}
 					}
 				}
 			}
 		}
 		NOR = {
 			any_vassal = {
+				NOT = { this = scope:candidate }
 				can_be_employed_as = $TYPE$
 				aptitude:$TYPE$ > carnx_$NAME$_aptitude_threshold
 			}
 			any_courtier = {
+				NOT = { this = scope:candidate }
 				can_be_employed_as = $TYPE$
 				aptitude:$TYPE$ > carnx_$NAME$_aptitude_threshold
 			}
@@ -781,6 +753,26 @@ carnx_is_attractive_to_character_trigger = {
 carnx_is_visibly_fertile_female_trigger = {
 	is_female = yes
 	is_visibly_fertile = yes
+}
+
+carnx_is_character_poor_trigger = {
+	trigger_if = {
+		limit = { ai_has_economical_boom_personality = yes }
+		gold <= medium_gold_value
+	}
+	trigger_else = {
+		gold <= minor_gold_value
+	}
+}
+
+carnx_is_character_rich_trigger = {
+	trigger_if = {
+		limit = { ai_has_economical_boom_personality = yes }
+		short_term_gold >= massive_gold_value
+	}
+	trigger_else = {
+		short_term_gold >= major_gold_value
+	}
 }
 
 carnx_is_slave_trigger = {
