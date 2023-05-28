@@ -206,7 +206,7 @@ carnx_slave_ask_price_value = {
 	}
 
 	round = yes
-	min = 1
+	min = 5
 }
 
 carnx_slave_bid_price_value = {
@@ -236,7 +236,7 @@ carnx_slave_bid_price_value = {
 	}
 
 	round = yes
-	min = 1
+	min = 5
 }
 
 # Opinion gain from gifting a slave. Calculated by multiplying the slave base price (carnx_slave_base_price_value)
