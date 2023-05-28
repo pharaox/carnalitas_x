@@ -13,3 +13,37 @@ carnx_debug_log_no_details_effect = {
 		debug_log = $MSG$
 	}
 }
+
+carnx_debug_save_scopes_effect = {
+	if = {
+		limit = { debug_only = yes }
+		$CHARACTER$ = {
+			faith.religion = {
+				save_temporary_scope_as = $PREFIX$_religion
+			}
+			if = {
+				limit = { has_government = feudal_government }
+				save_temporary_scope_value_as = { name = $PREFIX$_government value = flag:feudal }
+			}
+			else_if = {
+				limit = { has_government = republic_government }
+				save_temporary_scope_value_as = { name = $PREFIX$_government value = flag:republic }
+			}
+			else_if = {
+				limit = { has_government = theocracy_government }
+				save_temporary_scope_value_as = { name = $PREFIX$_government value = flag:theocracy }
+			}
+			else_if = {
+				limit = { has_government = clan_government }
+				save_temporary_scope_value_as = { name = $PREFIX$_government value = flag:clan }
+			}
+			else_if = {
+				limit = { has_government = tribal_government }
+				save_temporary_scope_value_as = { name = $PREFIX$_government value = flag:tribal }
+			}
+			else = {
+				save_temporary_scope_value_as = { name = $PREFIX$_government value = flag:other }
+			}
+		}
+	}
+}
