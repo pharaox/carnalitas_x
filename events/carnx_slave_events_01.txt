@@ -119,7 +119,7 @@ carnx_slave.0001 = {
 							}
 							multiply = carnx_slave_price_tribal_multiplier
 							round = yes
-							min = 1
+							min = 5
 						}
 					}
 					save_scope_as = slave
@@ -157,7 +157,7 @@ carnx_slave.0001 = {
 							}
 							multiply = carnx_slave_price_tribal_multiplier
 							round = yes
-							min = 1
+							min = 5
 						}
 					}
 					save_scope_as = slave
@@ -223,10 +223,6 @@ carnx_slave.0001 = {
 				always = yes
 				add = scope:valuable_option_ai_accept_value
 			}
-			modifier = {
-				short_term_gold < medium_gold_value
-				factor = 0
-			}
 		}
 	}
 
@@ -273,10 +269,6 @@ carnx_slave.0001 = {
 			modifier = {
 				always = yes
 				add = scope:common_option_ai_accept_value
-			}
-			modifier = {
-				short_term_gold < medium_gold_value
-				factor = 0
 			}
 		}
 	}
