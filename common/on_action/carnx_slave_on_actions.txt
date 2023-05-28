@@ -6,6 +6,7 @@
 				enslaver = scope:new_owner
 			}
 		}
+		carnx_debug_save_scopes_effect = { CHARACTER = scope:new_owner PREFIX = enslaved_new_owner }
 		carnx_debug_log_effect = { MSG = carnx_debug_msg_slave_enslaved }
 	}
 }
@@ -18,6 +19,7 @@ carn_on_slave_freed = {
 				emancipator = scope:former_owner
 			}
 		}
+		carnx_debug_save_scopes_effect = { CHARACTER = scope:former_owner PREFIX = freed_former_owner }
 		carnx_debug_log_effect = { MSG = carnx_debug_msg_slave_freed }
 	}
 }
@@ -30,6 +32,8 @@ carnx_on_slave_bought = {
 				buyer = scope:buyer
 			}
 		}
+		carnx_debug_save_scopes_effect = { CHARACTER = scope:buyer PREFIX = bought_buyer }
+		carnx_debug_save_scopes_effect = { CHARACTER = scope:seller PREFIX = bought_seller }
 		carnx_debug_log_effect = { MSG = carnx_debug_msg_slave_bought }
 	}
 }
@@ -42,6 +46,7 @@ carnx_on_slave_seized = {
 				seizer = scope:new_owner
 			}
 		}
+		carnx_debug_save_scopes_effect = { CHARACTER = scope:new_owner PREFIX = seized_new_owner }
 		carnx_debug_log_effect = { MSG = carnx_debug_msg_slave_seized }
 	}
 }
@@ -54,6 +59,8 @@ carnx_on_slave_ransomed = {
 				ransomer = scope:payer
 			}
 		}
+		carnx_debug_save_scopes_effect = { CHARACTER = scope:payer PREFIX = ransomed_payer }
+		carnx_debug_save_scopes_effect = { CHARACTER = scope:former_owner PREFIX = ransomed_former_owner }
 		carnx_debug_log_effect = { MSG = carnx_debug_msg_slave_ransomed }
 	}
 }
@@ -66,6 +73,8 @@ carnx_on_slave_gifted = {
 				new_owner = scope:new_owner
 			}
 		}
+		carnx_debug_save_scopes_effect = { CHARACTER = scope:new_owner PREFIX = gifted_new_owner }
+		carnx_debug_save_scopes_effect = { CHARACTER = scope:former_owner PREFIX = gifted_former_owner }
 		carnx_debug_log_effect = { MSG = carnx_debug_msg_slave_gifted }
 	}
 }
@@ -78,6 +87,7 @@ carnx_on_slave_escaped = {
 				former_owner = scope:former_owner
 			}
 		}
+		carnx_debug_save_scopes_effect = { CHARACTER = scope:former_owner PREFIX = escaped_former_owner }
 		carnx_debug_log_effect = { MSG = carnx_debug_msg_slave_escaped }
 	}
 }
