@@ -42,30 +42,37 @@ carnx_can_be_court_chaplain_trigger = {
 # Vanilla Court Positions
 
 carnx_can_be_court_physician_trigger = {
+	is_capable_adult = yes
 	exists = $LIEGE$
 }
 
 carnx_can_be_antiquarian_trigger = {
+	is_capable_adult = yes
 	NOT = { is_spouse_of = $LIEGE$ }
 }
 
 carnx_can_be_court_gardener_trigger = {
+	is_capable_adult = yes
 	exists = $LIEGE$
 }
 
 carnx_can_be_court_tutor_trigger = {
+	is_capable_adult = yes
 	NOT = { is_spouse_of = $LIEGE$ }
 }
 
 carnx_can_be_food_taster_trigger = {
+	is_capable_adult = yes
 	NOT = { is_spouse_of = $LIEGE$ }
 }
 
 carnx_can_be_seneschal_trigger = {
+	is_capable_adult = yes
 	NOT = { is_spouse_of = $LIEGE$ }
 }
 
 carnx_can_be_cupbearer_trigger = {
+	is_capable_adult = yes
 	NOT = { is_spouse_of = $LIEGE$ }
 	OR = {
 		NOT = { carnx_is_slave_trigger = yes }
@@ -76,33 +83,40 @@ carnx_can_be_cupbearer_trigger = {
 }
 
 carnx_can_be_chief_eunuch_trigger = {
+	is_capable_adult = yes
 	exists = $LIEGE$
 	has_trait = eunuch
 }
 
 carnx_can_be_court_jester_trigger = {
+	is_capable_adult = yes
 	exists = $LIEGE$
 }
 
 carnx_can_be_court_poet_trigger = {
+	is_capable_adult = yes
 	NOT = { is_spouse_of = $LIEGE$ }
 	has_trait = poet
 }
 
 carnx_can_be_court_musician_trigger = {
+	is_capable_adult = yes
 	NOT = { is_spouse_of = $LIEGE$ }
 }
 
 carnx_can_be_bodyguard_trigger = {
+	is_capable_adult = yes
 	NOT = { is_spouse_of = $LIEGE$ }
 	can_be_combatant_based_on_gender_trigger = { ARMY_OWNER = $LIEGE$ }
 }
 
 carnx_can_be_champion_trigger = {
+	is_capable_adult = yes
 	can_be_combatant_based_on_gender_trigger = { ARMY_OWNER = $LIEGE$ }
 }
 
 carnx_can_be_executioner_trigger = {
+	is_capable_adult = yes
 	NOT = { is_spouse_of = $LIEGE$ }
 	is_ruler = no
 	OR = {
