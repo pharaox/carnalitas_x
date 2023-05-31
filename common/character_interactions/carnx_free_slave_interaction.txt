@@ -57,7 +57,6 @@ carn_free_slave_interaction = {
 		is_shown = {
 			scope:recipient = {
 				gold >= carnx_slave_ransom_cost_value
-				carn_slave_can_be_sold_trigger = yes
 			}
 		}
 		flag = gold
@@ -70,7 +69,6 @@ carn_free_slave_interaction = {
 			scope:recipient = {
 				gold < carnx_slave_ransom_cost_value
 				gold > 0
-				carn_slave_can_be_sold_trigger = yes
 			}
 		}
 		flag = current_gold
