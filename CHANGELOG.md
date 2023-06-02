@@ -1,5 +1,15 @@
 # Changelog
 
+## Version 0.11.1
+
+### Compatibility
+
+* Adapted to CK3 1.9.1
+
+### Bug Fixes
+
+* Free Slave interaction now longer checks if the slave can be sold
+
 ## Version 0.11.0
 
 ### Interactions
