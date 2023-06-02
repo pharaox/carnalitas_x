@@ -1,5 +1,11 @@
 # Changelog
 
+## Version 0.9.3
+
+### Bug Fixes
+
+* Free Slave interaction now longer checks if the slave can be sold
+
 ## Version 0.9.2
 
 ### Interactions
