@@ -1,0 +1,9 @@
+﻿carnx_tradition_placeholder = {
+	parameters = {
+		lustful_trait_more_common = yes
+		carn_no_consequences_for_extramarital_sex_with_me = yes
+		carn_no_consequences_for_extramarital_sex_with_others = yes
+		carn_prostitution_accepted = yes
+		carn_more_good_prostitution_events = yes
+	}
+}
