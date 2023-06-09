@@ -1,0 +1,25 @@
+﻿carn_button_prison_enslave = {
+	scope = character
+
+	is_shown = {
+		NOT = { has_game_rule = carn_slavery_content_disabled }
+	}
+	is_valid = {
+		exists = imprisoner
+		imprisoner = {
+			is_character_interaction_potentially_accepted = {
+				recipient = prev
+				interaction = carn_enslave_interaction
+			}
+		}
+	}
+	effect = {
+		imprisoner = {
+			open_interaction_window = {
+				interaction = carn_enslave_interaction
+				actor = this
+				recipient = prev
+			}
+		}
+	}
+}
