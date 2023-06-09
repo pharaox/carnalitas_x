@@ -4612,7 +4612,7 @@ executioner_court_position = {
 				}
 				custom_tooltip = {
 					text = has_strong_hook_no_subject
-					scope:liege = { has_strong_hook = prev }
+					scope:liege = { has_strong_usable_hook = prev }
 				}
 			}
 			trigger_if = {
@@ -4711,7 +4711,7 @@ executioner_court_position = {
 						has_imprisonment_reason = scope:employee
 						scope:employee = { is_imprisoned_by = scope:liege }
 					}
-					has_hook = scope:employee
+					has_usable_hook = scope:employee
 				}
 				use_hook = scope:employee
 			}
