@@ -2,9 +2,9 @@
 # Scopes: actor / recipient is the slave owner (seller), secondary_recipient is the buyer, seconary_actor is the slave.
 # Human player only.
 carnx_sell_slaves_interaction = {
-	category = interaction_category_prison
+	category = carnx_interaction_category_slavery
 	desc = carnx_sell_slaves_interaction_desc
-	interface_priority = 31
+	interface_priority = 30
 	common_interaction = yes
 	needs_recipient_to_open = no
 	icon = carnx_chain
