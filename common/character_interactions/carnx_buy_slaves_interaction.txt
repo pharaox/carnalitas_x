@@ -23,6 +23,7 @@ carnx_buy_slaves_interaction = {
 			every_in_list = {
 				list = valid_sellers
 				limit = {
+					is_ai = yes
 					carnx_can_buy_slave_from_trigger = { PARTY = scope:actor }
 				}
 				save_scope_as = seller

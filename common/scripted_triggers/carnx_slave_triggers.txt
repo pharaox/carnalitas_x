@@ -9,13 +9,11 @@
 
 carnx_can_sell_slave_to_trigger = {
 	carnx_can_interact_with_trigger = { PARTY = $PARTY$ }
-	is_ai = yes
 	short_term_gold > 1
 }
 
 carnx_can_buy_slave_from_trigger = {
 	carnx_can_interact_with_trigger = { PARTY = $PARTY$ }
-	is_ai = yes
 }
 
 carnx_can_gift_slave_to_trigger = {
