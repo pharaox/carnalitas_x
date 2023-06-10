@@ -224,7 +224,7 @@ carnx_court_position_executioner_salary = {
 
 carnx_court_position_slave_concubine_salary = {
 	add = {
-		value = 0.025
+		value = 0.05
 		desc = COURT_POSITION_SALARY_BREAKDOWN_BASE
 		format = "BASE_VALUE_FORMAT_DECIMALS"
 	}
@@ -233,7 +233,7 @@ carnx_court_position_slave_concubine_salary = {
 
 carnx_court_position_slave_captain_salary = {
 	add = {
-		value = 0.1
+		value = 0.15
 		desc = COURT_POSITION_SALARY_BREAKDOWN_BASE
 		format = "BASE_VALUE_FORMAT_DECIMALS"
 	}
@@ -242,7 +242,7 @@ carnx_court_position_slave_captain_salary = {
 
 carnx_court_position_slave_eunuch_salary = {
 	add = {
-		value = 0.1
+		value = 0.15
 		desc = COURT_POSITION_SALARY_BREAKDOWN_BASE
 		format = "BASE_VALUE_FORMAT_DECIMALS"
 	}
