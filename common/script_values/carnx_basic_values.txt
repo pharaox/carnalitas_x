@@ -60,7 +60,7 @@ carnx_buy_sell_slave_ai_opinion_multiplier = 0.1
 carnx_slave_base_price_multiplier = 0.75
 
 # Multiplier for the opinion gain from gifting a slave
-carnx_gift_slave_opinion_multiplier = 1.2
+carnx_gift_slave_opinion_multiplier = 1.25
 
 # Enslave interaction dread gain
 carnx_enslave_minor_dread_gain = 2

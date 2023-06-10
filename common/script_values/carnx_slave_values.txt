@@ -249,7 +249,7 @@ carnx_gift_slave_opinion = {
 	divide = gift_value
 	multiply = carnx_gift_slave_opinion_multiplier
 	floor = yes
-	min = 1
+	min = 10
 	max = 50
 }
 
