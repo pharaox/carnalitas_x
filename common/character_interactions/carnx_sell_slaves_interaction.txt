@@ -41,6 +41,7 @@ carnx_sell_slaves_interaction = {
 						}
 						any_in_list = {
 							list = valid_buyers
+							is_ai = yes
 							carnx_can_sell_slave_to_trigger = { PARTY = scope:actor }
 							save_temporary_opinion_value_as = {
 								name = opinion_of_actor
@@ -65,6 +66,7 @@ carnx_sell_slaves_interaction = {
 		ordered_in_list = {
 			list = valid_buyers
 			limit = {
+				is_ai = yes
 				carnx_can_sell_slave_to_trigger = { PARTY = scope:actor }
 				save_temporary_opinion_value_as = {
 					name = opinion_of_actor
