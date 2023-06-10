@@ -1,0 +1,99 @@
+﻿l_russian:
+ # carn_buy_slave_directly_interaction (original)
+
+ # carn_sell_slave_interaction (some original, some overriden)
+ carnx_sell_slave_interaction_desc: "Продать [slave|E] за [gold|E]"
+
+ # carnx_buy_slaves_interaction (new)
+ carnx_buy_slaves_interaction: "Купить рабов"
+ carnx_buy_slaves_interaction_desc: "Купить [slaves|E] у правителей, которые готовы их продать"
+ actor_secondary_carnx_buy_slaves_interaction: "Раб"
+ recipient_secondary_carnx_buy_slaves_interaction: "Продавец"
+
+ # carnx_sell_slaves_interaction (new)
+ carnx_sell_slaves_interaction: "Продать рабов"
+ carnx_sell_slaves_interaction_desc: "Продавать [slaves|E] правителям, которые готовы их купить"
+ actor_secondary_carnx_sell_slaves_interaction: "Раб"
+ recipient_secondary_carnx_sell_slaves_interaction: "Покупатель"
+
+ # carn_enslave_interaction (original)
+
+ # carn_free_slave_interaction (original)
+
+ # carn_seize_slave_interaction (original)
+
+ # carnx_ransom_slave_interaction
+ carnx_ransom_slave_interaction: "Выкуп раба"
+ carnx_ransom_slave_interaction_desc: "Выкуп за [slave|E] родственником"
+ recipient_secondary_carnx_ransom_slave_interaction: "Раб"
+
+ # carnx_gift_slave_interaction
+ carnx_gift_slave_interaction: "Раб в подарок"
+ carnx_gift_slave_interaction_desc: "Подарить [slave|E] для [recipient.GetShortUINameNoTooltip] увелечения [recipient.GetHerHis] мнения о вас"
+ recipient_secondary_carnx_gift_slave_interaction: "Раб"
+ carnx_gift_slave_proposal: "Пожалуйста, прими этого раба в подарок. Я надеюсь [secondary_recipient.GetSheHe] будет хорошо служить вам."
+ carnx_gift_slave_accept: "Принять"
+ carnx_gift_slave_reject: "Отклонить"
+
+ # Modifier reasons
+ carnx_secondary_recipient_has_court_position_reason: "[secondary_recipient.GetShortUIName|U] занимает [court|E] должность: $VALUE|=+0$"
+ carnx_secondary_recipient_has_important_role_reason: "[secondary_recipient.GetShortUIName|U] является преподавателем или получает образование: $VALUE|=+0$"
+ carnx_secondary_recipient_claims_reason: "[secondary_recipient.GetShortUIName|U] имеет притензии, которые полезны для [recipient.GetShortUIName|U]: $VALUE|=+0$"
+ carnx_secondary_recipient_attraction_reason: "[secondary_recipient.GetShortUIName|U] привлекателен для [recipient.GetShortUIName|U]: $VALUE|=+0$"
+ carnx_secondary_recipient_female_reason: "[secondary_recipient.GetShortUIName|U] явно фертильная женщина: $VALUE|=+0$"
+ carnx_secondary_recipient_age_reason: "[secondary_recipient.GetShortUIName|U] рассмотрение возраста: $VALUE|=+0$"
+ carnx_secondary_recipient_expensive_reason: "[secondary_recipient.GetShortUIName|U] это довольно дорого: $VALUE|=+0$"
+ carnx_secondary_recipient_cheap_reason: "[secondary_recipient.GetShortUIName|U] это довольно дешево: $VALUE|=+0$"
+ carnx_lacking_chancellor_reason: "[recipient.GetShortUIName|U] не хватает хорошего $councillor_chancellor$: $VALUE|=+0$"
+ carnx_lacking_marshal_reason: "[recipient.GetShortUIName|U] не хватает хорошего $councillor_marshal$: $VALUE|=+0$"
+ carnx_lacking_steward_reason: "[recipient.GetShortUIName|U] не хватает хорошего $councillor_steward$: $VALUE|=+0$"
+ carnx_lacking_spymaster_reason: "[recipient.GetShortUIName|U] не хватает хорошего $councillor_spymaster$: $VALUE|=+0$"
+ carnx_lacking_court_physician_reason: "[recipient.GetShortUIName|U] не хватает хорошего $court_physician_court_position$: $VALUE|=+0$"
+ carnx_lacking_antiquarian_reason: "[recipient.GetShortUIName|U] не хватает хорошего $antiquarian_court_position$: $VALUE|=+0$"
+ carnx_lacking_court_gardener_reason: "[recipient.GetShortUIName|U] не хватает хорошего $court_gardener_court_position$: $VALUE|=+0$"
+ carnx_lacking_court_tutor_reason: "[recipient.GetShortUIName|U] не хватает хорошего $court_tutor_court_position$: $VALUE|=+0$"
+ carnx_lacking_food_taster_reason: "[recipient.GetShortUIName|U] не хватает хорошего $food_taster_court_position$: $VALUE|=+0$"
+ carnx_lacking_seneschal_reason: "[recipient.GetShortUIName|U] не хватает хорошего $seneschal_court_position$: $VALUE|=+0$"
+ carnx_lacking_cupbearer_reason: "[recipient.GetShortUIName|U] не хватает хорошего $cupbearer_court_position$: $VALUE|=+0$"
+ carnx_lacking_chief_eunuch_reason: "[recipient.GetShortUIName|U] не хватает хорошего $chief_eunuch_court_position$: $VALUE|=+0$"
+ carnx_lacking_court_jester_reason: "[recipient.GetShortUIName|U] не хватает хорошего $court_jester_court_position$: $VALUE|=+0$"
+ carnx_lacking_court_poet_reason: "[recipient.GetShortUIName|U] не хватает хорошего $court_poet_court_position$: $VALUE|=+0$"
+ carnx_lacking_court_musician_reason: "[recipient.GetShortUIName|U] не хватает хорошего $court_musician_court_position$: $VALUE|=+0$"
+ carnx_lacking_bodyguard_reason: "[recipient.GetShortUIName|U] не помешал бы хороший $bodyguard_court_position$: $VALUE|=+0$"
+ carnx_lacking_champion_reason: "[recipient.GetShortUIName|U] не хватает хорошего $champion_court_position$: $VALUE|=+0$"
+ carnx_lacking_executioner_reason: "[recipient.GetShortUIName|U] не хватает хорошего $executioner_court_position$: $VALUE|=+0$"
+ carnx_lacking_slave_concubine_reason: "[recipient.GetShortUIName|U] не помешал бы хороший $carnx_slave_concubine_court_position$: $VALUE|=+0$"
+ carnx_lacking_slave_captain_reason: "[recipient.GetShortUIName|U] не помешал бы хороший $carnx_slave_captain_court_position$: $VALUE|=+0$"
+ carnx_lacking_slave_eunuch_reason: "[recipient.GetShortUIName|U] не помешал бы хороший $carnx_slave_eunuch_court_position$: $VALUE|=+0$"
+ carnx_lacking_knights_reason: "[recipient.GetShortUIName|U] не помешал бы хороший $knight_culture_player$: $VALUE|=+0$"
+ carnx_lacking_commanders_reason: "[recipient.GetShortUIName|U] не помешал бы хороший commander: $VALUE|=+0$"
+ carnx_not_enough_gold_reason: "[actor.GetShortUIName|U] не могу позволить себе такую цену: $VALUE|=+0$"
+ carnx_slave_recently_bought_reason: "[recipient.GetShortUIName|U] недавно купил [secondary_recipient.GetShortUIName|U] и хочу сохранить [secondary_recipient.GetHerHim]: $VALUE|=+0$"
+ carnx_reluctant_to_spend_gold_reason: "[recipient.GetSheHe|U] неохотно тратит [gold|E]: $VALUE|=+0$"
+ carnx_recipient_poor_reason: "[recipient.GetShortUIName|U] рассматривает [recipient.GetHerselfHimself] бедных: $VALUE|=+0$"
+ carnx_recipient_rich_reason: "[recipient.GetShortUIName|U] рассматривает [recipient.GetHerselfHimself] богатых: $VALUE|=+0$"
+ carnx_slave_reason: "Рабы могут быть полезными и ценными: $VALUE|=+0$"
+ carnx_debug1_reason: "Debug1: $VALUE|=+0$"
+ carnx_debug2_reason: "Debug2: $VALUE|=+0$"
+
+ carnx_selling_crime_in_recipient_faith: "Продажа [secondary_recipient.GetFaith.GetAdherentNamePluralNoTooltip|U] в качестве раба является [criminal|E] в [recipient.GetShortUIName|U]'s [faith|E]: $VALUE|=+0$"
+ carnx_selling_shunned_in_recipient_faith: "Продажа [secondary_recipient.GetFaith.GetAdherentNamePluralNoTooltip|U] в качестве раба [shunned|E] в [recipient.GetShortUIName|U]'s [faith|E]: $VALUE|=+0$"
+ carnx_owning_crime_in_recipient_faith: "Владение  [secondary_recipient.GetFaith.GetAdherentNamePluralNoTooltip|U] в качестве раба является [criminal|E] в [recipient.GetShortUIName|U]'s [faith|E]: $VALUE|=+0$"
+ carnx_owning_shunned_in_recipient_faith: "Владение [secondary_recipient.GetFaith.GetAdherentNamePluralNoTooltip|U] в качестве раба [shunned|E] в [recipient.GetShortUIName|U]'s [faith|E]: $VALUE|=+0$"
+
+ # Effect descriptions
+ carnx_buyer_not_enough_gold_for_slave_price_tooltip: "Платит #high [gold_i][SCOPE.ScriptValue('carn_scope_buyer_current_gold_value')|0]#! to [seller.GetShortUINameNoTooltip] #weak (полная стоимость [gold_i][SCOPE.ScriptValue('carn_scope_slave_price_value')|0] превышает краткосрочный бюджет)#!"
+ carnx_is_allowed_to_imprison_slave_desc: "[recipient.GetShortUIName] эта ваша [slave|E], позволяя вам заключить себя в тюрьму [recipient.GetShortUIName] не будучи рассмотренным как [tyrant|E]"
+
+ # Message titles
+ carnx_msg_slave_bought: "Купленный раб"
+ carnx_msg_slave_sold: "Проданный раб"
+ carnx_msg_slave_ransomed: "Выкупленный раб"
+ carnx_msg_slave_gifted: "Подаренный раб"
+ carnx_msg_slave_escaped: "Сбежавший раб"
+
+ # Interaction categories
+ carnx_interaction_category_slavery:0 "Рабство"
+
+ # Interaction category descriptions
+ CARNX_SLAVERY_ACTIONS:0 "slavery actions"

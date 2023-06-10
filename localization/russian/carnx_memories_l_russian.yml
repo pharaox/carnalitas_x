@@ -1,0 +1,36 @@
+﻿l_russian:
+ carnx_enslaved_desc_1:0 "Я был порабощен [enslaver.GetTitledFirstName]"
+ carnx_enslaved_desc_second_perspective_1:0 "Ты был порабощен [enslaver.GetTitledFirstName]"
+ carnx_enslaved_desc_third_perspective_1:0 "[owner.GetName] был порабощен [enslaver.GetTitledFirstName]"
+
+ carnx_freed_desc_1:0 "Я был освобожден из рабства благодаря [emancipator.GetTitledFirstName]"
+ carnx_freed_desc_second_perspective_1:0 "Вы были освобождены от рабства благодаря [emancipator.GetTitledFirstName]"
+ carnx_freed_desc_third_perspective_1:0 "[owner.GetName] был освобожден от рабства с помощью [emancipator.GetTitledFirstName]"
+
+ carnx_bought_desc_1:0 "Я был куплен [buyer.GetTitledFirstName]"
+ carnx_bought_desc_second_perspective_1:0 "Ты был куплен [buyer.GetTitledFirstName]"
+ carnx_bought_desc_third_perspective_1:0 "[owner.GetName] был куплен [buyer.GetTitledFirstName]"
+
+ carnx_seized_desc_1:0 "Я был захвачен [seizer.GetTitledFirstName]"
+ carnx_seized_desc_second_perspective_1:0 "Вы были захвачены [seizer.GetTitledFirstName]"
+ carnx_seized_desc_third_perspective_1:0 "[owner.GetName] был захвачен [seizer.GetTitledFirstName]"
+
+ carnx_ransomed_desc_1:0 "Я был выкуплен из рабства [ransomer.GetTitledFirstName]"
+ carnx_ransomed_desc_second_perspective_1:0 "Вы были выкуплены из рабства [ransomer.GetTitledFirstName]"
+ carnx_ransomed_desc_third_perspective_1:0 "[owner.GetName] был выкуплен из рабства [ransomer.GetTitledFirstName]"
+
+ carnx_gifted_desc_1:0 "Я был подарен [new_owner.GetTitledFirstName]"
+ carnx_gifted_desc_second_perspective_1:0 "Вы были подарены [new_owner.GetTitledFirstName]"
+ carnx_gifted_desc_third_perspective_1:0 "[owner.GetName] был подарен [new_owner.GetTitledFirstName]"
+
+ carnx_escaped_desc_1:0 "Я сбежал от того, чтобы быть рабом [former_owner.GetTitledFirstName]"
+ carnx_escaped_desc_second_perspective_1:0 "Ты сбежал от того, чтобы быть рабом [former_owner.GetTitledFirstName]"
+ carnx_escaped_desc_third_perspective_1:0 "[owner.GetName] сбежал от того, чтобы быть рабом [former_owner.GetTitledFirstName]"
+
+ carnx_enslaved_memory:0 "порабощенный"
+ carnx_freed_memory:0 "освобожденный"
+ carnx_bought_memory:0 "купленный"
+ carnx_seized_memory:0 "схваченный"
+ carnx_ransomed_memory:0 "выкупленный"
+ carnx_gifted_memory:0 "подаренный"
+ carnx_escaped_memory:0 "сбежавший"

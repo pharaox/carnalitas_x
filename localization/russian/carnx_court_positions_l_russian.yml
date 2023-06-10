@@ -1,0 +1,18 @@
+﻿l_russian:
+ carnx_slave_salary_mod:0 "[slave|E]"
+
+ carnx_court_position_skill_attraction:0 "[attraction|E]"
+ carnx_court_position_beauty_good_3_trait:0 "[GetTrait('beauty_good_3').GetName( ROOT.Char )]"
+ carnx_court_position_beauty_good_2_trait:0 "[GetTrait('beauty_good_2').GetName( ROOT.Char )]"
+ carnx_court_position_beauty_good_1_trait:0 "[GetTrait('beauty_good_1').GetName( ROOT.Char )]"
+ carnx_court_position_schemer_trait:0 "[GetTrait('schemer').GetName( ROOT.Char )]"
+
+ carnx_slave_concubine_court_position:0 "Рабыня-наложница"
+ carnx_slave_concubine_court_position_desc:0 "$carnx_slave_concubine_court_position$ эта наложница более низкого ранга, которая также является рабыней или бывшей рабыней."
+ carnx_slave_concubine_employer_custom_effect_description:0 "У всех детей вы будете отцом, если вы мужчина, и владельцем, если вы женщина. Они также будут принадлежать к вашей династии, вере и культуре."
+
+ carnx_slave_captain_court_position:0 "Мамлюкский капитан"
+ carnx_slave_captain_court_position_desc:0 "$carnx_slave_captain_court_position$ это высокопоставленный солдат, который также является рабом или бывшим рабом."
+
+ carnx_slave_eunuch_court_position:0 "Раб-евнух"
+ carnx_slave_eunuch_court_position_desc:0 "$carnx_slave_eunuch_court_position$ это влиятельный придворный чиновник, который также является рабом или бывшим рабом."

@@ -1,0 +1,4 @@
+﻿l_russian:
+ carnx_buying_slaves_is_illegal: "Ваша вера не позволяет покупать [CHARACTER.GetFaith.GetAdherentNamePluralNoTooltip|U] в качестве раба"
+ carnx_selling_slaves_is_illegal: "Ваша вера не позволяет продавать [CHARACTER.GetFaith.GetAdherentNamePluralNoTooltip|U] в качестве раба"
+ carnx_gifting_slaves_is_illegal: "Ваша вера не позволяет дарить [CHARACTER.GetFaith.GetAdherentNamePluralNoTooltip|U] в качестве раба"

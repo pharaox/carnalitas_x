@@ -1,0 +1,8 @@
+﻿l_russian:
+ carnx_special_doctrine_slave_employment_name: "Рабский труд"
+ carnx_special_doctrine_slave_employment_desc: "Мы доверяем рабам даже самые высокие посты, поскольку они более лояльны, чем другие наши подданные."
+ carnx_doctrine_slave_employment_name: "$carnx_special_doctrine_slave_employment_name$"
+
+ doctrine_parameter_carnx_slave_employment_active: "Может назначать [slaves|E] в большинство [council|E] и [court_positions|E]"
+ doctrine_parameter_carnx_employed_slaves_more_loyal_active: "[slaves|E] назначенные на [court_positions|E] имеют удвоенное [opinion|E] о приеме на работу"
+ doctrine_parameter_carnx_slave_soldiers_active: "Может назначить $carnx_slave_captain_court_position$ [court_position|E]"

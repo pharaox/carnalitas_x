@@ -1,0 +1,9 @@
+﻿l_russian:
+ carnx_rival_slave_scapegoat:0 "[CHARACTER.GetShortUIName|U] стал козлом отпущения [TARGET_CHARACTER.GetShortUIName] за потерю раба."
+ carnx_rival_slave_scapegoat_corresponding:0 "[TARGET_CHARACTER.GetShortUIName|U] стал козлом отпущения [CHARACTER.GetShortUIName] за потерю раба."
+
+ carnx_rival_enslaved:0 "[TARGET_CHARACTER.GetShortUIName|U] порабощенный [CHARACTER.GetShortUIName]."
+ carnx_rival_enslaved_corresponding:0 "[CHARACTER.GetShortUIName|U] порабощенный [TARGET_CHARACTER.GetShortUIName]."
+
+ carnx_rival_sold_into_slavery:0 "[TARGET_CHARACTER.GetShortUIName|U] продал [CHARACTER.GetShortUIName] в рабство."
+ carnx_rival_sold_into_slavery_corresponding:0 "[CHARACTER.GetShortUIName|U] продал [TARGET_CHARACTER.GetShortUIName] в рабство."
