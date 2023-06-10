@@ -3,7 +3,6 @@
 
  # carn_sell_slave_interaction (some original, some overriden)
  carnx_sell_slave_interaction_desc: "Sell a [slave|E] for [gold|E]"
- #recipient_secondary_carn_sell_slave_interaction: "Slave"
 
  # carnx_buy_slaves_interaction (new)
  carnx_buy_slaves_interaction: "Buy Slaves"
