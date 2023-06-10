@@ -2,9 +2,9 @@
 # Scopes: actor is the buyer, recipient is the slave owner (seller), seconary_recipient is the slave.
 # Overridden from Carnalitas.
 carn_buy_slave_directly_interaction = {
-	category = interaction_category_prison
+	category = carnx_interaction_category_slavery
 	desc = carn_buy_slave_directly_interaction_desc
-	interface_priority = 31
+	interface_priority = 30
 	common_interaction = yes
 	needs_recipient_to_open = yes
 	icon = carnx_chain

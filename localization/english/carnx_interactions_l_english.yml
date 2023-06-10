@@ -92,3 +92,9 @@
  carnx_msg_slave_ransomed: "Slave Ransomed"
  carnx_msg_slave_gifted: "Slave Gifted"
  carnx_msg_slave_escaped: "Slave Escaped"
+
+ # Interaction categories
+ carnx_interaction_category_slavery:0 "Slavery"
+
+ # Interaction category descriptions
+ CARNX_SLAVERY_ACTIONS:0 "slavery actions"
