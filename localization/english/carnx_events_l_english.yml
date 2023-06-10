@@ -3,7 +3,8 @@
  carnx_slave.0001.desc:0 "Slave traders have arrived from foreign lands, bringing some slaves for sale. Should I buy one of them?"
  carnx_slave.0001.a:0 "[valuable_option.GetFirstNameNoTooltip] looks quite valuable."
  carnx_slave.0001.b:0 "[common_option.GetFirstNameNoTooltip] seems like a better bargain."
- carnx_slave.0001.c:0 "Both of them fail to impress me."
+ carnx_slave.0001.c:0 "I will buy both of them!"
+ carnx_slave.0001.d:0 "Both of them fail to impress me."
 
  carnx_slave.0002.t:0 "Sex With a Slave"
  carnx_slave.0002.desc:0 "I just had sex with [slave.GetFirstNameNoTooltip]."
