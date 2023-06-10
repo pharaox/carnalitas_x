@@ -92,6 +92,7 @@
  carnx_debug_msg_slave_0001_option_a_chosen: "Buy Foreign Slaves option a chosen"
  carnx_debug_msg_slave_0001_option_b_chosen: "Buy Foreign Slaves option b chosen"
  carnx_debug_msg_slave_0001_option_c_chosen: "Buy Foreign Slaves option c chosen"
+ carnx_debug_msg_slave_0001_option_d_chosen: "Buy Foreign Slaves option d chosen"
 
  carnx_debug_msg_slave_0003_fired: "Runaway Slave event fired"
  carnx_debug_msg_slave_0003_option_a_chosen: "Runaway Slave option a chosen"

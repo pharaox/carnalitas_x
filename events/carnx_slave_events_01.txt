@@ -175,6 +175,20 @@ carnx_slave.0001 = {
 				}
 			}
 
+			if = {
+				limit = {
+					exists = scope:valuable_option
+					exists = scope:common_option
+				}
+				save_scope_value_as = {
+					name = both_price
+					value = {
+						value = scope:valuable_option_price
+						add = scope:common_option_price
+					}
+				}
+			}
+
 			carnx_debug_log_no_details_effect = { MSG = carnx_debug_msg_slave_0001_fired }
 		}
 	}
@@ -273,9 +287,65 @@ carnx_slave.0001 = {
 		}
 	}
 
-	# None...
+	# Both
 	option = {
 		name = carnx_slave.0001.c
+
+		trigger = {
+			is_ai = no
+			exists = scope:valuable_option
+			exists = scope:common_option
+			short_term_gold >= scope:both_price
+			is_landed = yes # Extra check to make sure they haven't lost their status
+		}
+		show_as_unavailable = {
+			exists = scope:valuable_option
+			exists = scope:common_option
+		}
+
+		remove_short_term_gold = scope:both_price
+
+		hidden_effect = {
+			if = {
+				limit = { carnx_enable_nudity = yes }
+				scope:valuable_option = { remove_character_flag = is_naked }
+				scope:common_option = { remove_character_flag = is_naked }
+			}
+			carnx_debug_log_no_details_effect = { MSG = carnx_debug_msg_slave_0001_option_c_chosen }
+		}
+
+		carn_enslave_effect = {
+			SLAVE = scope:valuable_option
+			OWNER = root
+			DRAMA = no
+		}
+		carn_enslave_effect = {
+			SLAVE = scope:common_option
+			OWNER = root
+			DRAMA = no
+		}
+
+		scope:valuable_option = {
+			add_character_flag = {
+				flag = carnx_slave_recently_bought
+				years = 2
+			}
+		}
+		scope:common_option = {
+			add_character_flag = {
+				flag = carnx_slave_recently_bought
+				years = 2
+			}
+		}
+
+		ai_chance = {
+			base = 0
+		}
+	}
+
+	# None...
+	option = {
+		name = carnx_slave.0001.d
 
 		hidden_effect = {
 			if = {
@@ -286,7 +356,7 @@ carnx_slave.0001 = {
 				limit = { exists = scope:common_option }
 				scope:common_option = { silent_disappearance_effect = yes }
 			}
-			carnx_debug_log_no_details_effect = { MSG = carnx_debug_msg_slave_0001_option_c_chosen }
+			carnx_debug_log_no_details_effect = { MSG = carnx_debug_msg_slave_0001_option_d_chosen }
 		}
 
 		ai_chance = {
