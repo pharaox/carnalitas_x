@@ -860,16 +860,18 @@ carnx_ransom_slave_actual_effect = {
 			}
 			add_opinion = {
 				modifier = ransomed_from_prison
+				opinion = 30
 				target = scope:payer
-				years = 1
+				years = 10
 			}
 		}
 		else = {
 			hidden_effect = {
 				add_opinion = {
 					modifier = ransomed_from_prison
+					opinion = 30
 					target = scope:payer
-					years = 1
+					years = 10
 				}
 			}
 		}

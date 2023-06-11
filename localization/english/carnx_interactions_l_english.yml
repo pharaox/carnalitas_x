@@ -27,6 +27,11 @@
  carnx_ransom_slave_interaction_desc: "Ransom a [slave|E] by a relative"
  recipient_secondary_carnx_ransom_slave_interaction: "Slave"
 
+ # carnx_pay_ransom_slave_interaction
+ carnx_pay_ransom_slave_interaction: "Pay Slave Ransom"
+ carnx_pay_ransom_slave_interaction_desc: "Offer to pay ransom for a [slave|E] who is your relative"
+ recipient_secondary_carnx_pay_ransom_slave_interaction: "Slave"
+
  # carnx_gift_slave_interaction
  carnx_gift_slave_interaction: "Gift Slave"
  carnx_gift_slave_interaction_desc: "Give a [slave|E] to [recipient.GetShortUINameNoTooltip] to increase [recipient.GetHerHis] opinion of you"
@@ -50,6 +55,7 @@
  carnx_secondary_recipient_age_reason: "[secondary_recipient.GetShortUIName|U] age considerations: $VALUE|=+0$"
  carnx_secondary_recipient_expensive_reason: "[secondary_recipient.GetShortUIName|U] is quite expensive: $VALUE|=+0$"
  carnx_secondary_recipient_cheap_reason: "[secondary_recipient.GetShortUIName|U] is quite cheap: $VALUE|=+0$"
+ carnx_secondary_recipient_criminal_reason: "[secondary_recipient.GetShortUIName|U] is a criminal or my rival: $VALUE|=+0$"
  carnx_lacking_chancellor_reason: "[recipient.GetShortUIName|U] is lacking a good $councillor_chancellor$: $VALUE|=+0$"
  carnx_lacking_marshal_reason: "[recipient.GetShortUIName|U] is lacking a good $councillor_marshal$: $VALUE|=+0$"
  carnx_lacking_steward_reason: "[recipient.GetShortUIName|U] is lacking a good $councillor_steward$: $VALUE|=+0$"
@@ -79,6 +85,7 @@
  carnx_recipient_poor_reason: "[recipient.GetShortUIName|U] considers [recipient.GetHerselfHimself] poor: $VALUE|=+0$"
  carnx_recipient_rich_reason: "[recipient.GetShortUIName|U] considers [recipient.GetHerselfHimself] rich: $VALUE|=+0$"
  carnx_slave_reason: "Slaves can be useful and valuable: $VALUE|=+0$"
+ carnx_nothing_offered_reason: "[actor.GetShortUIName|U] must offer something: $VALUE|=+0$"
  carnx_debug1_reason: "Debug1: $VALUE|=+0$"
  carnx_debug2_reason: "Debug2: $VALUE|=+0$"
 
