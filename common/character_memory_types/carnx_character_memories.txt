@@ -167,7 +167,7 @@ carnx_gifted_memory = {
 }
 
 carnx_escaped_memory = {
-	categories = { poistive prison }
+	categories = { positive prison }
 	icon = "prison.dds"
 	description = {
 		random_valid = {
@@ -188,6 +188,34 @@ carnx_escaped_memory = {
 	}
 
 	participants = { former_owner }
+
+	duration = {
+		years = memory_default_duration
+	}
+}
+
+carnx_liberated_memory = {
+	categories = { positive prison }
+	icon = "prison.dds"
+	description = {
+		random_valid = {
+			desc = carnx_liberated_desc_1
+		}
+	}
+
+	second_perspective_description = {
+		random_valid = {
+			desc = carnx_liberated_desc_second_perspective_1
+		}
+	}
+
+	third_perspective_description = {
+		random_valid = {
+			desc = carnx_liberated_desc_third_perspective_1
+		}
+	}
+
+	participants = { liberator }
 
 	duration = {
 		years = memory_default_duration

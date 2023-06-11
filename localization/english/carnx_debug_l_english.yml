@@ -6,6 +6,7 @@
  carnx_debug_msg_slave_ransomed: "Slave ransomed"
  carnx_debug_msg_slave_gifted: "Slave gifted"
  carnx_debug_msg_slave_escaped: "Slave escaped"
+ carnx_debug_msg_slave_liberated: "Slave liberated"
 
  carnx_debug_msg_moving_slave: "Moving slave to owner's court"
  carnx_debug_msg_freeing_slave: "Freeing slave"

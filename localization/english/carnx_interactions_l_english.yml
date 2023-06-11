@@ -35,6 +35,12 @@
  carnx_gift_slave_accept: "Accept"
  carnx_gift_slave_reject: "Decline"
 
+ # carnx_liberate_slave_interaction
+ carnx_liberate_slave_interaction: "Liberate Slave"
+ carnx_liberate_slave_interaction_desc: "Liberate [recipient.GetShortUINameNoTooltip] from [slavery|E]"
+ carnx_liberate_slave_offer: "Out of the goodness of my heart, I am liberating you from slavery."
+ carnx_liberate_slave_offer_conditional: "I am willing to liberate you from slavery, but not unconditionally..."
+
  # Modifier reasons
  carnx_secondary_recipient_has_court_position_reason: "[secondary_recipient.GetShortUIName|U] holds a [court|E] position: $VALUE|=+0$"
  carnx_secondary_recipient_has_important_role_reason: "[secondary_recipient.GetShortUIName|U] is an educator or being educated: $VALUE|=+0$"
@@ -91,6 +97,8 @@
  carnx_msg_slave_ransomed: "Slave Ransomed"
  carnx_msg_slave_gifted: "Slave Gifted"
  carnx_msg_slave_escaped: "Slave Escaped"
+ carnx_msg_slave_seized: "Slave Seized"
+ carnx_msg_slave_liberated: "Slave Liberated"
 
  # Interaction categories
  carnx_interaction_category_slavery:0 "Slavery"
