@@ -228,6 +228,7 @@ carnx_on_set_relation_rival = {
 	effect = {
 		if = {
 			limit = {
+				exists = scope:target
 				carnx_was_enslaved_by_character_trigger = { CHARACTER = scope:target }
 			}
 			carnx_debug_log_effect = { MSG = carnx_debug_msg_character_became_enslavers_rival }
