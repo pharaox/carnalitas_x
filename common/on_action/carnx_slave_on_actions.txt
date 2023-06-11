@@ -92,6 +92,19 @@ carnx_on_slave_escaped = {
 	}
 }
 
+carnx_on_slave_liberated = {
+	effect = {
+		create_character_memory = {
+			type = carnx_liberated_memory
+			participants = {
+				liberator = scope:liberator
+			}
+		}
+		carnx_debug_save_scopes_effect = { CHARACTER = scope:liberator PREFIX = liberated_liberator }
+		carnx_debug_log_effect = { MSG = carnx_debug_msg_slave_liberated }
+	}
+}
+
 # Fires when a character leaves a court. Not fired when leaving due to death or similar
 # Will still fire even if on_join_court is firing (fires just before it)
 # Root is the character

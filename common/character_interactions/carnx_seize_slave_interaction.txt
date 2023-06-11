@@ -47,7 +47,13 @@ carn_seize_slave_interaction = {
 
 	on_accept = {
 		scope:actor = { save_scope_as = new_owner }
-		scope:recipient = { save_scope_as = slave }
+		scope:recipient = {
+			save_scope_as = slave
+			random_relation = {
+				type = slave_owner
+				save_scope_as = former_owner
+			}
+		}
 		carnx_seize_slave_interaction_effect = yes
 	}
 

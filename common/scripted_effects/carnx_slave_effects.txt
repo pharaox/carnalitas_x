@@ -623,6 +623,12 @@ carn_free_slave_effect = {
 			}
 		}
 		else_if = {
+			limit = { exists = scope:liberator }
+			trigger_event = {
+				on_action = carnx_on_slave_liberated
+			}
+		}
+		else_if = {
 			limit = { exists = scope:stolen_gold_value }
 			trigger_event = {
 				on_action = carnx_on_slave_escaped
@@ -637,10 +643,16 @@ carn_free_slave_effect = {
 }
 
 # Frees scope:slave from slavery, also incurs opinion, dread, piety, and stress effects.
-# Pays ransom cost to scope:owner if scope:gold or scope:current_gold is yes.
+# Pays ransom cost to $EMANCIPATOR$ if scope:gold or scope:current_gold is yes.
 carnx_free_slave_actual_effect = {
 	scope:slave = {
 		carn_free_slave_effect = yes
+
+		# Release from prison
+		if = {
+			limit = { is_imprisoned_by = $EMANCIPATOR$ }
+			release_from_prison = yes
+		}
 
 		# Pay agreed ransom cost
 		if = {
@@ -652,23 +664,23 @@ carnx_free_slave_actual_effect = {
 			}
 			pay_short_term_gold = {
 				gold = scope:ransom_cost
-				target = scope:owner
+				target = $EMANCIPATOR$
 			}
 		}
 
-		# Convert to owner's faith
+		# Convert to emancipator's faith
 		if = {
 			limit = {
 				scope:demand_conversion = yes
 			}
 
 			# Set faith
-			set_character_faith = scope:owner.faith
+			set_character_faith = $EMANCIPATOR$.faith
 
-			# Add opinion to owner
+			# Add opinion to emancipator
 			add_opinion = {
 				modifier = demanded_my_conversion_opinion
-				target = scope:owner
+				target = $EMANCIPATOR$
 			}
 		}
 
@@ -678,10 +690,10 @@ carnx_free_slave_actual_effect = {
 				scope:renounce_claims = yes
 			}
 
-			# Add opinion to owner
+			# Add opinion to emancipator
 			add_opinion = {
 				modifier = demanded_claim_renouncement
-				target = scope:owner
+				target = $EMANCIPATOR$
 			}
 
 			# Remove claims
@@ -690,13 +702,13 @@ carnx_free_slave_actual_effect = {
 				limit = {
 					save_temporary_scope_as = temp_claim
 					OR = {
-						holder = scope:owner
+						holder = $EMANCIPATOR$
 						AND = {
 							exists = holder
-							NOT = { prev = { target_is_liege_or_above = scope:owner } }
-							holder = { target_is_liege_or_above = scope:owner }
+							NOT = { prev = { target_is_liege_or_above = $EMANCIPATOR$ } }
+							holder = { target_is_liege_or_above = $EMANCIPATOR$ }
 						}
-						scope:owner = {
+						$EMANCIPATOR$ = {
 							any_held_title = {
 								is_de_jure_liege_or_above_target = scope:temp_claim
 							}
@@ -719,16 +731,16 @@ carnx_free_slave_actual_effect = {
 				scope:gain_hook = no
 			}
 
-			# Add opinion to owner
+			# Add opinion to emancipator
 			add_opinion = {
 				modifier = carn_freed_me_from_slavery_opinion
-				target = scope:owner
+				target = $EMANCIPATOR$
 			}
 		}
 	}
 
-	scope:owner = {
-		# Add hook to owner
+	$EMANCIPATOR$ = {
+		# Add hook to emancipator
 		if = {
 			limit = {
 				scope:gain_hook = yes
@@ -740,7 +752,7 @@ carnx_free_slave_actual_effect = {
 				modifier = demanded_hook
 			}
 
-			# Add hook to owner
+			# Add hook to emancipator
 			add_hook = { # Hook effect must match gain_hook option condition
 				target = scope:slave
 				type = favor_hook
@@ -778,16 +790,23 @@ carnx_free_slave_actual_effect = {
 			}
 
 			hidden_effect = {
-				# Potentially acquire liberator trait if scope:slave not enslaved by scope:owner
+				# Potentially acquire liberator trait if scope:slave not enslaved by $EMANCIPATOR$
 				if = {
 					limit = {
 						scope:slave = {
-							NOT = { carnx_was_enslaved_by_character_trigger = { CHARACTER = scope:owner } }
+							NOT = { carnx_was_enslaved_by_character_trigger = { CHARACTER = $EMANCIPATOR$ } }
 						}
 					}
 					carnx_potentially_acquire_liberator_trait_effect = yes
 				}
 			}
+		}
+
+		if = {
+			limit = {
+				scope:slave = { NOT = { is_courtier_of = $EMANCIPATOR$ } }
+			}
+			hidden_effect = { add_courtier = scope:slave }
 		}
 	}
 }
@@ -817,7 +836,7 @@ carn_free_slave_interaction_effect = {
 			title = carn_msg_slave_freed
 			right_icon = scope:slave
 
-			carnx_free_slave_actual_effect = yes
+			carnx_free_slave_actual_effect = { EMANCIPATOR = scope:owner }
 		}
 	}
 }
@@ -1178,10 +1197,25 @@ carnx_seize_slave_interaction_effect = {
 	scope:new_owner = {
 		send_interface_message = {
 			type = event_generic_neutral
-			title = carn_msg_enslave
+			title = carnx_msg_slave_seized
 			right_icon = scope:slave
 
 			carnx_seize_slave_effect = yes
+		}
+	}
+
+	scope:former_owner = {
+		hidden_effect = {
+			send_interface_message = {
+				type = event_generic_neutral
+				title = carnx_msg_slave_seized
+				left_icon = scope:slave
+				right_icon = scope:new_owner
+
+				show_as_tooltip = {
+					carnx_seize_slave_effect = yes
+				}
+			}
 		}
 	}
 }
@@ -1302,6 +1336,51 @@ carnx_gift_slave_interaction_effect = {
 			right_icon = scope:new_owner
 
 			carnx_gift_slave_effect = yes
+		}
+	}
+}
+
+# Liberates scope:slave from slavery, also incurs opinion, dread, piety, and stress effects.
+# Pays ransom cost to scope:liberator if scope:gold or scope:current_gold is yes.
+# Sends interface messages.
+carnx_liberate_slave_interaction_effect = {
+	if = {
+		limit = { scope:gold = yes }
+		save_scope_value_as = {
+			name = ransom_cost
+			value = scope:slave.carnx_slave_ransom_cost_value
+		}
+	}
+	else_if = {
+		limit = { scope:current_gold = yes }
+		save_scope_value_as = {
+			name = ransom_cost
+			value = scope:slave.current_gold_value
+		}
+	}
+
+	scope:liberator = {
+		send_interface_message = {
+			type = event_generic_neutral
+			title = carnx_msg_slave_liberated
+			right_icon = scope:slave
+
+			carnx_free_slave_actual_effect = { EMANCIPATOR = scope:liberator }
+		}
+	}
+
+	scope:former_owner = {
+		hidden_effect = {
+			send_interface_message = {
+				type = event_generic_neutral
+				title = carnx_msg_slave_liberated
+				left_icon = scope:slave
+				right_icon = scope:liberator
+
+				show_as_tooltip = {
+					carnx_free_slave_actual_effect = { EMANCIPATOR = scope:liberator }
+				}
+			}
 		}
 	}
 }
