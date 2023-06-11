@@ -1390,6 +1390,17 @@ carnx_potentially_acquire_slaver_trait_effect = {
 			}
 		}
 	}
+
+	# Potentially acquire "the Slaver" nickname
+	if = {
+		limit = {
+			has_trait = carnx_slaver
+		}
+		random = {
+			chance = 10
+			set_nickname_effect = { NICKNAME = carnx_nick_the_slaver }
+		}
+	}
 }
 
 carnx_potentially_acquire_liberator_trait_effect = {
@@ -1442,6 +1453,17 @@ carnx_potentially_acquire_liberator_trait_effect = {
 			trigger_event = {
 				id = carnx_slave.0007
 			}
+		}
+	}
+
+	# Potentially acquire "Breaker of Chains" nickname
+	if = {
+		limit = {
+			has_trait = carnx_liberator
+		}
+		random = {
+			chance = 10
+			set_nickname_effect = { NICKNAME = carnx_nick_the_liberator }
 		}
 	}
 }
