@@ -518,7 +518,7 @@ carnx_execute_reason_modifier = {
 				multiply = 2
 			}
 		}
-		desc = AI_EXECUTE_REASON_MODIFIER
+		desc = "carnx_secondary_recipient_criminal_reason"
 	}
 }
 
