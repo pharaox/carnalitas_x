@@ -12,3 +12,13 @@ carnx_gifting_slaves_is_illegal = {
 	first_not = carnx_gifting_slaves_is_illegal
 	third_not = carnx_gifting_slaves_is_illegal
 }
+
+carnx_ransom_slave_invalid = {
+	first_not = carnx_ransom_slave_invalid
+	third_not = carnx_ransom_slave_invalid
+}
+
+carnx_pay_ransom_slave_invalid = {
+	first_not = carnx_pay_ransom_slave_invalid
+	third_not = carnx_pay_ransom_slave_invalid
+}

@@ -2,3 +2,6 @@
  carnx_buying_slaves_is_illegal: "Your faith does not permit buying [CHARACTER.GetFaith.GetAdherentNamePluralNoTooltip|U] as slaves"
  carnx_selling_slaves_is_illegal: "Your faith does not permit selling [CHARACTER.GetFaith.GetAdherentNamePluralNoTooltip|U] as slaves"
  carnx_gifting_slaves_is_illegal: "Your faith does not permit gifting [CHARACTER.GetFaith.GetAdherentNamePluralNoTooltip|U] as slaves"
+
+ carnx_ransom_slave_invalid: "You can only demand ransom for their family members, kinsmen, friends, or lovers"
+ carnx_pay_ransom_slave_invalid: "You can only pay ransom for your family members, kinsmen, friends, or lovers"

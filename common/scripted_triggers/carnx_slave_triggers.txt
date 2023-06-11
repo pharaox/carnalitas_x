@@ -24,6 +24,10 @@ carnx_can_ransom_slave_trigger = {
 	carnx_can_interact_with_trigger = { PARTY = $PARTY$ }
 }
 
+carnx_can_pay_ransom_slave_trigger = {
+	carnx_can_interact_with_trigger = { PARTY = $PARTY$ }
+}
+
 carnx_can_start_interaction_trigger = {
 	highest_held_title_tier >= tier_county
 	is_diplomatically_available = yes
@@ -833,7 +837,7 @@ carnx_is_likely_to_sell_slave_trigger = {
 	opinion = { target = scope:actor value >= 0 }
 }
 
-carnx_is_likely_to_free_slave_trigger = {
+carnx_is_likely_to_ransom_slave_trigger = {
 	save_temporary_scope_as = liege
 	OR = {
 		carnx_is_slavery_crime_trigger = { CHARACTER = $SLAVE$ }
@@ -843,13 +847,12 @@ carnx_is_likely_to_free_slave_trigger = {
 		NOR = {
 			has_character_flag = carnx_slave_recently_bought
 			carnx_is_family_or_positive_relation_trigger = { CHARACTER = scope:liege }
-			carnx_is_useful_above_threshold_to_current_liege_trigger = yes
 		}
 	}
 	opinion = { target = $SLAVE$ value >= 0 }
 }
 
-carnx_is_likely_to_ransom_slave_trigger = {
+carnx_is_likely_to_pay_ransom_slave_trigger = {
 	save_temporary_scope_as = liege
 	$SLAVE$ = {
 		carnx_is_family_or_positive_relation_trigger = { CHARACTER = scope:liege }
