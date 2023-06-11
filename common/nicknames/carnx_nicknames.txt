@@ -1,0 +1,2 @@
+﻿carnx_nick_the_slaver = { is_bad = yes }
+carnx_nick_the_liberator = {}
