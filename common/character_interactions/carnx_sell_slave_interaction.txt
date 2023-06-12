@@ -150,11 +150,6 @@ carn_sell_slave_interaction = {
 		base = 0
 
 		modifier = {
-			add = -50
-			desc = carnx_reluctant_to_spend_gold_reason
-		}
-
-		modifier = {
 			scope:hook = yes
 			NOT = { scope:actor = { has_strong_hook = scope:recipient } }
 			add = 50
@@ -165,6 +160,11 @@ carn_sell_slave_interaction = {
 			scope:actor = { has_strong_hook = scope:recipient }
 			add = 100
 			desc = SCHEME_STRONG_HOOK_USED
+		}
+
+		modifier = {
+			add = -50
+			desc = carnx_reluctant_to_spend_gold_reason
 		}
 
 		# Avoid spending money if at war (-50)
@@ -184,6 +184,14 @@ carn_sell_slave_interaction = {
 			carnx_is_slavery_shunned_trigger = { CHARACTER = scope:secondary_recipient }
 			add = carnx_ai_negative_shunned_impact_value
 			desc = carnx_owning_shunned_in_recipient_faith
+		}
+
+		# Family and relations (-25 to -100 depending on how close the relation)
+		# Reluctant to buy family and relations, wants to ransom them instead
+		carnx_family_and_relations_modifier = {
+			RULER = scope:recipient
+			SLAVE = scope:secondary_recipient
+			SCALE = -25
 		}
 
 		# Lacking councillors, court positions, knights, or commanders (PIV for each skill, aptitude, or trait above cutoff)
@@ -206,14 +214,6 @@ carn_sell_slave_interaction = {
 			RULER = scope:recipient
 			SLAVE = scope:secondary_recipient
 			SCALE = carnx_ai_positive_cs_impact_value
-		}
-
-		# Family and relations (-25 to -100 depending on how close the relation)
-		# Reluctant to buy family and relations, wants to ransom them instead
-		carnx_family_and_relations_modifier = {
-			RULER = scope:recipient
-			SLAVE = scope:secondary_recipient
-			SCALE = -25
 		}
 
 		# Claims (PIV if useful claims on neighbouring realms)
@@ -317,6 +317,14 @@ carn_sell_slave_interaction = {
 			add = carnx_ai_negative_shunned_impact_value
 		}
 
+		# Family and relations (-25 to -100 depending on how close the relation)
+		# Reluctant to sell family and relations, wants to free them instead
+		carnx_family_and_relations_modifier = {
+			RULER = scope:actor
+			SLAVE = scope:secondary_recipient
+			SCALE = -25
+		}
+
 		# Employed as councillor (NIV doubled), court position, knight / commander, or in some other way (NIV)
 		carnx_employed_modifier = {
 			RULER = scope:actor
@@ -344,14 +352,6 @@ carn_sell_slave_interaction = {
 			RULER = scope:actor
 			SLAVE = scope:secondary_recipient
 			SCALE = carnx_ai_negative_cs_impact_value
-		}
-
-		# Family and relations (-25 to -100 depending on how close the relation)
-		# Reluctant to sell family and relations, wants to free them instead
-		carnx_family_and_relations_modifier = {
-			RULER = scope:actor
-			SLAVE = scope:secondary_recipient
-			SCALE = -25
 		}
 
 		# Claims (NIV if useful claims on neighbouring realms)
@@ -430,7 +430,7 @@ carn_sell_slave_interaction = {
 					gold < scope:secondary_recipient.carnx_slave_bid_price_value
 				}
 			}
-			factor = 0
+			add = -1000
 		}
 	}
 }

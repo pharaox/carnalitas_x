@@ -86,42 +86,6 @@ carnx_ransom_slave_interaction = {
 		}
 	}
 
-	on_accept = {
-		if = {
-			limit = {
-				scope:hook = yes
-				scope:actor = {
-					has_usable_hook = scope:recipient
-				}
-			}
-			scope:actor = {
-				use_hook = scope:recipient
-			}
-		}
-		scope:actor = { save_scope_as = owner }
-		scope:secondary_recipient = { save_scope_as = slave }
-		scope:recipient = { save_scope_as = payer }
-		carnx_ransom_slave_interaction_effect = yes
-	}
-
-	on_decline = {
-		# If a player declines this ransom offer, wait 10 years before sending another one
-		if = {
-			limit = { scope:recipient = { is_ai = no } }
-			scope:secondary_recipient = {
-				add_character_flag = {
-					flag = character_ransom_refused_by_player
-					years = 10
-				}
-			}
-		}
-
-		# Trigger notification event
-		scope:actor = {
-			trigger_event = char_interaction.0131
-		}
-	}
-
 	# Ask recipient to pay the full price
 	send_option = {
 		is_shown = {
@@ -190,6 +154,42 @@ carnx_ransom_slave_interaction = {
 		CURRENT_GOLD = scope:recipient.gold
 	}
 
+	on_accept = {
+		if = {
+			limit = {
+				scope:hook = yes
+				scope:actor = {
+					has_usable_hook = scope:recipient
+				}
+			}
+			scope:actor = {
+				use_hook = scope:recipient
+			}
+		}
+		scope:actor = { save_scope_as = owner }
+		scope:secondary_recipient = { save_scope_as = slave }
+		scope:recipient = { save_scope_as = payer }
+		carnx_ransom_slave_interaction_effect = yes
+	}
+
+	on_decline = {
+		# If a player declines this ransom offer, wait 10 years before sending another one
+		if = {
+			limit = { scope:recipient = { is_ai = no } }
+			scope:secondary_recipient = {
+				add_character_flag = {
+					flag = character_ransom_refused_by_player
+					years = 10
+				}
+			}
+		}
+
+		# Trigger notification event
+		scope:actor = {
+			trigger_event = char_interaction.0131
+		}
+	}
+
 	auto_accept = no
 
 	ai_accept = {
@@ -236,6 +236,13 @@ carnx_ransom_slave_interaction = {
 			NOT = { scope:recipient.top_liege = scope:actor.top_liege }
 			add = -25
 			desc = GAIN_HOOK_NEGATIVE_REASON
+		}
+
+		# Avoid spending money if at war (-50)
+		modifier = {
+			is_at_war = yes
+			add = -50
+			desc = IS_AT_WAR_REASON
 		}
 
 		# Opinion of slave (-25 to 25 depending on opinion)
@@ -348,14 +355,6 @@ carnx_ransom_slave_interaction = {
 	ai_will_do = {
 		base = 0
 
-		# Slave recently bought
-		modifier = {
-			scope:secondary_recipient = {
-				has_character_flag = carnx_slave_recently_bought
-			}
-			add = -100
-		}
-
 		# Offerred gold (0 to 50)
 		modifier = {
 			scope:gold = yes
@@ -396,6 +395,14 @@ carnx_ransom_slave_interaction = {
 			add = 25
 		}
 
+		# Slave recently bought
+		modifier = {
+			scope:secondary_recipient = {
+				has_character_flag = carnx_slave_recently_bought
+			}
+			add = -100
+		}
+
 		# Opinion of slave (-25 to 25 depending on opinion)
 		opinion_modifier = {
 			trigger = {
@@ -422,7 +429,7 @@ carnx_ransom_slave_interaction = {
 		}
 
 		# Family and relations (-25 to -100 depending on how close the relation)
-		# Reluctant to ransom family and relations, prefers to free them instead
+		# Reluctant to ransom family and relations, wants to free them instead
 		carnx_family_and_relations_modifier = {
 			RULER = scope:actor
 			SLAVE = scope:secondary_recipient
@@ -508,7 +515,7 @@ carnx_ransom_slave_interaction = {
 				scope:current_gold = yes
 				scope:favor = yes
 			}
-			factor = 0
+			add = -1000
 		}
 
 		# Don't annoy players
