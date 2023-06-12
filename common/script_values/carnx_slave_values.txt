@@ -965,6 +965,12 @@ carnx_slave_ransom_cost_value = {
 	multiply = define:NImprisonment|RANSOM_ROUNDED_TO
 }
 
+carnx_slave_half_ransom_cost_value = {
+	value = carnx_slave_ransom_cost_value
+	divide = 2
+	floor = yes
+}
+
 carnx_enslave_tyranny_gain = {
 	value = carnx_enslave_basic_tyranny_gain
 	if = {

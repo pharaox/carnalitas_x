@@ -142,7 +142,7 @@ carnx_ransom_slave_interaction = {
 			scope:recipient = {
 				save_temporary_scope_as = payer
 				gold < scope:secondary_recipient.carnx_slave_ransom_cost_value
-				gold >= 10
+				gold >= 0
 			}
 		}
 		flag = current_gold
@@ -208,7 +208,7 @@ carnx_ransom_slave_interaction = {
 			desc = SCHEME_STRONG_HOOK_USED
 		}
 
-		# Asked for gold (-25 to -50)
+		# Asked for gold (0 to -50)
 		modifier = {
 			OR = {
 				scope:gold = yes
@@ -216,17 +216,9 @@ carnx_ransom_slave_interaction = {
 			}
 			add = {
 				value = -25
-				if = {
-					limit = {
-						OR = {
-							ai_greed >= medium_positive_ai_value
-							ai_greed <= medium_negative_ai_value
-						}
-					}
-					add = {
-						value = ai_greed
-						multiply = -0.25
-					}
+				add = {
+					value = ai_greed
+					multiply = -0.25
 				}
 			}
 			desc = carnx_reluctant_to_spend_gold_reason
@@ -235,21 +227,14 @@ carnx_ransom_slave_interaction = {
 		# Asked for a favor (-25 or -50)
 		modifier = {
 			scope:favor = yes
-			add = {
-				value = -25
-				if = {
-					limit = {
-						OR = {
-							is_vassal_of = scope:actor
-							AND = {
-								exists = liege
-								liege = scope:actor
-							}
-						}
-					}
-					add = -25
-				}
-			}
+			scope:recipient.top_liege = scope:actor.top_liege
+			add = -50
+			desc = GAIN_HOOK_NEGATIVE_REASON
+		}
+		modifier = {
+			scope:favor = yes
+			NOT = { scope:recipient.top_liege = scope:actor.top_liege }
+			add = -25
 			desc = GAIN_HOOK_NEGATIVE_REASON
 		}
 
@@ -262,6 +247,11 @@ carnx_ransom_slave_interaction = {
 			opinion_target = scope:secondary_recipient
 			multiplier = 0.25
 			desc = AI_OPINION_REASON
+		}
+
+		# Compassion (-25 to 25 depending on compassion)
+		ai_value_modifier = {
+			ai_compassion = 0.25
 		}
 
 		# Family and relations (25 to 100 depending on how close the relation)
@@ -366,47 +356,44 @@ carnx_ransom_slave_interaction = {
 			add = -100
 		}
 
-		# Offerred gold (25 to 50)
+		# Offerred gold (0 to 50)
 		modifier = {
-			OR = {
-				scope:gold = yes
-				scope:current_gold = yes
-			}
-			add = {
-				value = 25
-				if = {
-					limit = {
-						OR = {
-							ai_greed >= medium_positive_ai_value
-							ai_greed <= medium_negative_ai_value
-						}
-					}
-					add = {
-						value = ai_greed
-						multiply = 0.25
-					}
+			scope:gold = yes
+			add = 50
+		}
+		modifier = {
+			scope:current_gold = yes
+			AND = {
+				scope:recipient = {
+					save_temporary_scope_as = payer
+					gold >= scope:secondary_recipient.carnx_slave_half_ransom_cost_value
 				}
+				NOT = { ai_greed >= medium_positive_ai_value }
 			}
+			add = 25
+		}
+		modifier = { # for clarification
+			scope:current_gold = yes
+			OR = {
+				scope:recipient = {
+					save_temporary_scope_as = payer
+					gold < scope:secondary_recipient.carnx_slave_half_ransom_cost_value
+				}
+				ai_greed >= medium_positive_ai_value
+			}
+			add = 0
 		}
 
 		# Offerred a favor (25 or 50)
 		modifier = {
 			scope:favor = yes
-			add = {
-				value = 25
-				if = {
-					limit = {
-						OR = {
-							is_vassal_of = scope:recipient
-							AND = {
-								exists = liege
-								liege = scope:recipient
-							}
-						}
-					}
-					add = 25
-				}
-			}
+			scope:recipient.top_liege = scope:actor.top_liege
+			add = 50
+		}
+		modifier = {
+			scope:favor = yes
+			NOT = { scope:recipient.top_liege = scope:actor.top_liege }
+			add = 25
 		}
 
 		# Opinion of slave (-25 to 25 depending on opinion)
@@ -417,6 +404,11 @@ carnx_ransom_slave_interaction = {
 			who = scope:actor
 			opinion_target = scope:secondary_recipient
 			multiplier = 0.25
+		}
+
+		# Compassion (-25 to 25 depending on compassion)
+		ai_value_modifier = {
+			ai_compassion = 0.25
 		}
 
 		# Slavery crime or shunned by faith
