@@ -149,20 +149,7 @@ carn_free_slave_interaction = {
 	# Gain hook
 	send_option = {
 		is_valid = {
-			trigger_if = {
-				limit = {
-					scope:actor = { is_ai = yes }
-				}
-				scope:recipient = {
-					OR = {
-						is_vassal_of = scope:actor
-						AND = {
-							exists = liege
-							liege = scope:actor
-						}
-					}
-				}
-			}
+			always = yes
 		}
 		flag = gain_hook
 		localization = "RELEASE_GAIN_HOOK"
@@ -189,6 +176,22 @@ carn_free_slave_interaction = {
 		modifier = {
 			add = 100
 			desc = WANTS_FREEDOM_REASON
+		}
+
+		# Demanded gold (0 to -50)
+		modifier = {
+			OR = {
+				scope:gold = yes
+				scope:current_gold = yes
+			}
+			add = {
+				value = -25
+				add = {
+					value = ai_greed
+					multiply = -0.25
+				}
+			}
+			desc = carnx_reluctant_to_spend_gold_reason
 		}
 
 		# Demanded conversion (-20 to -100 for astray faith, -180 for hostile faith depending on ai_zeal)
@@ -305,14 +308,6 @@ carn_free_slave_interaction = {
 			add = carnx_free_slave_ai_will_do_base
 		}
 
-		# Slave recently bought
-		modifier = {
-			scope:recipient = {
-				has_character_flag = carnx_slave_recently_bought
-			}
-			add = -100
-		}
-
 		# Options
 		modifier = {
 			scope:gold = yes
@@ -320,7 +315,13 @@ carn_free_slave_interaction = {
 		}
 		modifier = {
 			scope:current_gold = yes
-			scope:recipient.gold >= 25
+			AND = {
+				scope:recipient = {
+					save_temporary_scope_as = payer
+					gold >= carnx_slave_half_ransom_cost_value
+				}
+				NOT = { ai_greed >= medium_positive_ai_value }
+			}
 			add = 25
 		}
 		modifier = {
@@ -330,6 +331,14 @@ carn_free_slave_interaction = {
 		modifier = {
 			scope:renounce_claims = yes
 			add = 25
+		}
+
+		# Slave recently bought
+		modifier = {
+			scope:recipient = {
+				has_character_flag = carnx_slave_recently_bought
+			}
+			add = -100
 		}
 
 		# Opinion of slave (-25 to 25 depending on opinion)
@@ -354,13 +363,6 @@ carn_free_slave_interaction = {
 				add = -1
 				multiply = 25
 			}
-		}
-
-		# Child (25 if child and compassionate)
-		modifier = {
-			ai_compassion >= low_positive_ai_value
-			scope:recipient = { is_adult = no }
-			add = 25
 		}
 
 		# Slavery crime or shunned by faith

@@ -160,20 +160,7 @@ carnx_liberate_slave_interaction = {
 	# Gain hook
 	send_option = {
 		is_valid = {
-			trigger_if = {
-				limit = {
-					scope:actor = { is_ai = yes }
-				}
-				scope:recipient = {
-					OR = {
-						is_vassal_of = scope:actor
-						AND = {
-							exists = liege
-							liege = scope:actor
-						}
-					}
-				}
-			}
+			always = yes
 		}
 		flag = gain_hook
 		localization = "RELEASE_GAIN_HOOK"
@@ -200,6 +187,22 @@ carnx_liberate_slave_interaction = {
 		modifier = {
 			add = 100
 			desc = WANTS_FREEDOM_REASON
+		}
+
+		# Demanded gold (0 to -50)
+		modifier = {
+			OR = {
+				scope:gold = yes
+				scope:current_gold = yes
+			}
+			add = {
+				value = -25
+				add = {
+					value = ai_greed
+					multiply = -0.25
+				}
+			}
+			desc = carnx_reluctant_to_spend_gold_reason
 		}
 
 		# Demanded conversion (-20 to -100 for astray faith, -180 for hostile faith depending on ai_zeal)
@@ -323,7 +326,13 @@ carnx_liberate_slave_interaction = {
 		}
 		modifier = {
 			scope:current_gold = yes
-			scope:recipient.gold >= 25
+			AND = {
+				scope:recipient = {
+					save_temporary_scope_as = payer
+					gold >= carnx_slave_half_ransom_cost_value
+				}
+				NOT = { ai_greed >= medium_positive_ai_value }
+			}
 			add = 25
 		}
 		modifier = {
@@ -363,13 +372,6 @@ carnx_liberate_slave_interaction = {
 		# Compassion (-50 to 50 depending on compassion)
 		ai_value_modifier = {
 			ai_compassion = 0.5
-		}
-
-		# Child (25 if child and compassionate)
-		modifier = {
-			ai_compassion >= low_positive_ai_value
-			scope:recipient = { is_adult = no }
-			add = 25
 		}
 
 		# Marked for enslavement (-50)
