@@ -210,6 +210,30 @@ carnx_on_release_from_prison = {
 	}
 }
 
+# Code on-action: character changes faith. Not called when a character gets a faith on birth, creation, and similar
+# Root is the character
+# scope:old_faith is the faith they used to have
+on_character_faith_change = {
+	on_actions = { carnx_on_character_faith_change }
+}
+
+carnx_on_character_faith_change = {
+	effect = {
+		if = {
+			limit = {
+				has_trait = slave
+				any_relation = {
+					type = slave_owner
+					save_temporary_scope_as = owner
+				}
+				exists = scope:owner
+				faith = scope:owner.faith
+			}
+			carnx_debug_log_effect = { MSG = carnx_debug_msg_slave_converted }
+		}
+	}
+}
+
 carn_on_sex = {
 	on_actions = { carnx_on_sex }
 }
