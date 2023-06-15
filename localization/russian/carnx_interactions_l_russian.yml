@@ -26,6 +26,10 @@
  carnx_ransom_slave_interaction: "Выкуп раба"
  carnx_ransom_slave_interaction_desc: "Выкуп за [slave|E] родственником"
  recipient_secondary_carnx_ransom_slave_interaction: "Раб"
+ # carnx_pay_ransom_slave_interaction
+ carnx_pay_ransom_slave_interaction: "Заплатить выкуп за раба"
+ carnx_pay_ransom_slave_interaction_desc: "Предложить выкуп за [slave|E], который является вашим родственником"
+ recipient_secondary_carnx_pay_ransom_slave_interaction: "Раб"
 
  # carnx_gift_slave_interaction
  carnx_gift_slave_interaction: "Раб в подарок"
@@ -34,6 +38,11 @@
  carnx_gift_slave_proposal: "Пожалуйста, прими этого раба в подарок. Я надеюсь [secondary_recipient.GetSheHe] будет хорошо служить вам."
  carnx_gift_slave_accept: "Принять"
  carnx_gift_slave_reject: "Отклонить"
+ # carnx_liberate_slave_interaction
+ carnx_liberate_slave_interaction: "Освободить раба"
+ carnx_liberate_slave_interaction_desc: "Освободить [recipient.GetShortUINameNoTooltip] от [slavery|E]"
+ carnx_liberate_slave_offer: "По доброте душевной я освобождаю вас от рабства."
+ carnx_liberate_slave_offer_conditional: "Я готов освободить вас от рабства, но не безоговорочно..."
 
  # Modifier reasons
  carnx_secondary_recipient_has_court_position_reason: "[secondary_recipient.GetShortUIName|U] занимает [court|E] должность: $VALUE|=+0$"
@@ -44,6 +53,7 @@
  carnx_secondary_recipient_age_reason: "[secondary_recipient.GetShortUIName|U] рассмотрение возраста: $VALUE|=+0$"
  carnx_secondary_recipient_expensive_reason: "[secondary_recipient.GetShortUIName|U] это довольно дорого: $VALUE|=+0$"
  carnx_secondary_recipient_cheap_reason: "[secondary_recipient.GetShortUIName|U] это довольно дешево: $VALUE|=+0$"
+ carnx_secondary_recipient_criminal_reason: "[secondary_recipient.GetShortUIName|U] преступник или мой соперник: $VALUE|=+0$"
  carnx_lacking_chancellor_reason: "[recipient.GetShortUIName|U] не хватает хорошего $councillor_chancellor$: $VALUE|=+0$"
  carnx_lacking_marshal_reason: "[recipient.GetShortUIName|U] не хватает хорошего $councillor_marshal$: $VALUE|=+0$"
  carnx_lacking_steward_reason: "[recipient.GetShortUIName|U] не хватает хорошего $councillor_steward$: $VALUE|=+0$"
@@ -73,6 +83,7 @@
  carnx_recipient_poor_reason: "[recipient.GetShortUIName|U] рассматривает [recipient.GetHerselfHimself] бедных: $VALUE|=+0$"
  carnx_recipient_rich_reason: "[recipient.GetShortUIName|U] рассматривает [recipient.GetHerselfHimself] богатых: $VALUE|=+0$"
  carnx_slave_reason: "Рабы могут быть полезными и ценными: $VALUE|=+0$"
+ carnx_nothing_offered_reason: "[actor.GetShortUIName|U] должен предложить что-то: $VALUE|=+0$"
  carnx_debug1_reason: "Debug1: $VALUE|=+0$"
  carnx_debug2_reason: "Debug2: $VALUE|=+0$"
 
@@ -91,6 +102,8 @@
  carnx_msg_slave_ransomed: "Выкупленный раб"
  carnx_msg_slave_gifted: "Подаренный раб"
  carnx_msg_slave_escaped: "Сбежавший раб"
+ carnx_msg_slave_seized: "Схваченный раб"
+ carnx_msg_slave_liberated: "Освобожденный раб"
 
  # Interaction categories
  carnx_interaction_category_slavery:0 "Рабство"

@@ -27,6 +27,10 @@
  carnx_escaped_desc_second_perspective_1:0 "Ты сбежал от того, чтобы быть рабом [former_owner.GetTitledFirstName]"
  carnx_escaped_desc_third_perspective_1:0 "[owner.GetName] сбежал от того, чтобы быть рабом [former_owner.GetTitledFirstName]"
 
+ carnx_liberated_desc_1:0 "Меня освободил из рабства [liberator.GetTitledFirstName]"
+ carnx_liberated_desc_second_perspective_1:0 "Вы были освобождены из рабства [liberator.GetTitledFirstName]"
+ carnx_liberated_desc_third_perspective_1:0 "[owner.GetName] был освобожден из рабства [liberator.GetTitledFirstName]"
+
  carnx_enslaved_memory:0 "порабощенный"
  carnx_freed_memory:0 "освобожденный"
  carnx_bought_memory:0 "купленный"
@@ -34,3 +38,4 @@
  carnx_ransomed_memory:0 "выкупленный"
  carnx_gifted_memory:0 "подаренный"
  carnx_escaped_memory:0 "сбежавший"
+ carnx_liberated_memory:0 "освобожденный"

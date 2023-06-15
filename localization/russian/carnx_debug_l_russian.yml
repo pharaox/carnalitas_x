@@ -6,6 +6,7 @@
  carnx_debug_msg_slave_ransomed: "Slave ransomed"
  carnx_debug_msg_slave_gifted: "Slave gifted"
  carnx_debug_msg_slave_escaped: "Slave escaped"
+ carnx_debug_msg_slave_liberated: "Slave liberated"
 
  carnx_debug_msg_moving_slave: "Moving slave to owner's court"
  carnx_debug_msg_freeing_slave: "Freeing slave"
@@ -13,6 +14,8 @@
 
  carnx_debug_msg_non_slave_imprisoned: "Non-slave character imprisoned"
  carnx_debug_msg_non_slave_released_from_prison: "Non-slave character released from prison"
+
+ carnx_debug_msg_slave_converted: "Slave converted to owner's faith"
 
  carnx_debug_msg_char_marked_for_enslavement: "Character marked for enslavement"
 
