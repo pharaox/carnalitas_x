@@ -62,10 +62,7 @@ carnx_ransom_slave_interaction = {
 			any_relation = {
 				type = slave
 				carnx_slave_can_be_freed_trigger = yes
-				custom_description = {
-					text = "carnx_ransom_slave_invalid"
-					carnx_is_family_or_positive_relation_trigger = { CHARACTER = scope:recipient }
-				}
+				carnx_is_family_or_positive_relation_trigger = { CHARACTER = scope:recipient }
 			}
 		}
 	}
