@@ -24,12 +24,12 @@
 
  # carnx_ransom_slave_interaction
  carnx_ransom_slave_interaction: "Ransom Slave"
- carnx_ransom_slave_interaction_desc: "Ransom a [slave|E] by a relative"
+ carnx_ransom_slave_interaction_desc: "Demand ransom for a [slave|E]"
  recipient_secondary_carnx_ransom_slave_interaction: "Slave"
 
  # carnx_pay_ransom_slave_interaction
- carnx_pay_ransom_slave_interaction: "Pay Slave Ransom"
- carnx_pay_ransom_slave_interaction_desc: "Offer to pay ransom for a [slave|E] who is your relative"
+ carnx_pay_ransom_slave_interaction: "Ransom Slave"
+ carnx_pay_ransom_slave_interaction_desc: "Offer ransom for a [slave|E]"
  recipient_secondary_carnx_pay_ransom_slave_interaction: "Slave"
 
  # carnx_gift_slave_interaction

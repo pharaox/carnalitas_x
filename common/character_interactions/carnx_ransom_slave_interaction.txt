@@ -32,7 +32,7 @@ carnx_ransom_slave_interaction = {
 						save_temporary_scope_as = ruler
 						carnx_can_ransom_slave_trigger = { PARTY = scope:actor }
 						scope:secondary_recipient = {
-							carnx_is_family_or_positive_relation_trigger = { CHARACTER = scope:ruler }
+							carnx_slave_can_be_ransomed_by_trigger = { CHARACTER = scope:ruler }
 						}
 						carnx_is_likely_to_pay_ransom_slave_trigger = { SLAVE = scope:secondary_recipient }
 					}
@@ -48,7 +48,7 @@ carnx_ransom_slave_interaction = {
 				type = slave
 				limit = {
 					carnx_slave_can_be_freed_trigger = yes
-					carnx_is_family_or_positive_relation_trigger = { CHARACTER = scope:recipient }
+					carnx_slave_can_be_ransomed_by_trigger = { CHARACTER = scope:recipient }
 				}
 				add_to_list = characters
 			}
@@ -58,11 +58,19 @@ carnx_ransom_slave_interaction = {
 	is_shown = {
 		NOT = { has_game_rule = carn_slavery_content_disabled }
 		NOT = { scope:actor = scope:recipient }
+		trigger_if = {
+			limit = {
+				scope:actor = { is_ai = no }
+			}
+			scope:recipient = {
+				carnx_valid_ransomer_trigger = { PARTY = scope:actor }
+			}
+		}
 		scope:actor = {
 			any_relation = {
 				type = slave
 				carnx_slave_can_be_freed_trigger = yes
-				carnx_is_family_or_positive_relation_trigger = { CHARACTER = scope:recipient }
+				carnx_slave_can_be_ransomed_by_trigger = { CHARACTER = scope:recipient }
 			}
 		}
 	}
@@ -73,13 +81,6 @@ carnx_ransom_slave_interaction = {
 		}
 		scope:recipient = {
 			carnx_can_ransom_slave_trigger = { PARTY = scope:actor }
-		}
-		trigger_if = {
-			limit = { exists = scope:secondary_recipient }
-			scope:secondary_recipient = {
-				carnx_slave_can_be_freed_trigger = yes
-				carnx_is_family_or_positive_relation_trigger = { CHARACTER = scope:recipient }
-			}
 		}
 	}
 
@@ -125,7 +126,6 @@ carnx_ransom_slave_interaction = {
 		}
 		flag = favor
 		localization = "RANSOM_FAVOR_OPTION"
-		starts_enabled = { always = yes }
 	}
 
 	# Use hook
@@ -352,6 +352,16 @@ carnx_ransom_slave_interaction = {
 	ai_will_do = {
 		base = 0
 
+		# Nothing offerred (-100)
+		modifier = {
+			NOR = {
+				scope:gold = yes
+				scope:current_gold = yes
+				scope:favor = yes
+			}
+			add = -100
+		}
+
 		# Offerred gold (0 to 50)
 		modifier = {
 			scope:gold = yes
@@ -380,7 +390,7 @@ carnx_ransom_slave_interaction = {
 			add = 0
 		}
 
-		# Offerred a favor (25 or 50)
+		# Offerred a favor (0 or 50)
 		modifier = {
 			scope:favor = yes
 			scope:recipient.top_liege = scope:actor.top_liege
@@ -389,7 +399,7 @@ carnx_ransom_slave_interaction = {
 		modifier = {
 			scope:favor = yes
 			NOT = { scope:recipient.top_liege = scope:actor.top_liege }
-			add = 25
+			add = 0
 		}
 
 		# Slave recently bought
@@ -418,11 +428,11 @@ carnx_ransom_slave_interaction = {
 		# Slavery crime or shunned by faith
 		modifier = {
 			carnx_is_slavery_crime_trigger = { CHARACTER = scope:secondary_recipient }
-			add = carnx_ai_positive_crime_impact_value
+			add = carnx_ai_positive_crime_impact_reduced_value
 		}
 		modifier = {
 			carnx_is_slavery_shunned_trigger = { CHARACTER = scope:secondary_recipient }
-			add = carnx_ai_positive_shunned_impact_value
+			add = carnx_ai_positive_shunned_impact_reduced_value
 		}
 
 		# Family and relations (-25 to -100 depending on how close the relation)
@@ -503,16 +513,6 @@ carnx_ransom_slave_interaction = {
 		modifier = {
 			has_relation_nemesis = scope:recipient
 			add = -200
-		}
-
-		# Don't give away slaves for free
-		modifier = {
-			NOR = {
-				scope:gold = yes
-				scope:current_gold = yes
-				scope:favor = yes
-			}
-			add = -1000
 		}
 
 		# Don't annoy players
