@@ -31,12 +31,7 @@ carnx_pay_ransom_slave_interaction = {
 				type = slave
 				limit = {
 					carnx_slave_can_be_freed_trigger = yes
-					trigger_if = {
-						limit = {
-							scope:actor = { is_ai = yes }
-						}
-						carnx_is_family_or_positive_relation_trigger = { CHARACTER = scope:actor }
-					}
+					carnx_slave_can_be_ransomed_by_trigger = { CHARACTER = scope:actor }
 				}
 				add_to_list = characters
 			}
@@ -46,15 +41,27 @@ carnx_pay_ransom_slave_interaction = {
 	is_shown = {
 		NOT = { has_game_rule = carn_slavery_content_disabled }
 		NOT = { scope:actor = scope:recipient }
-		scope:recipient = {
-			any_relation = {
-				type = slave
+		trigger_if = {
+			limit = {
+				scope:actor = { is_ai = no }
+			}
+			scope:recipient = {
+				carnx_valid_ransomer_trigger = { PARTY = scope:actor }
+			}
+		}
+		trigger_if = {
+			limit = { exists = scope:secondary_recipient }
+			scope:secondary_recipient = {
 				carnx_slave_can_be_freed_trigger = yes
-				trigger_if = {
-					limit = {
-						scope:actor = { is_ai = yes }
-					}
-					carnx_is_family_or_positive_relation_trigger = { CHARACTER = scope:actor }
+				carnx_slave_can_be_ransomed_by_trigger = { CHARACTER = scope:actor }
+			}
+		}
+		trigger_else = {
+			scope:recipient = {
+				any_relation = {
+					type = slave
+					carnx_slave_can_be_freed_trigger = yes
+					carnx_slave_can_be_ransomed_by_trigger = { CHARACTER = scope:actor }
 				}
 			}
 		}
@@ -66,18 +73,6 @@ carnx_pay_ransom_slave_interaction = {
 		}
 		scope:recipient = {
 			carnx_can_pay_ransom_slave_trigger = { PARTY = scope:actor }
-		}
-		trigger_if = {
-			limit = { exists = scope:secondary_recipient }
-			scope:secondary_recipient = {
-				carnx_slave_can_be_freed_trigger = yes
-				trigger_if = {
-					limit = {
-						scope:actor = { is_ai = yes }
-					}
-					carnx_is_family_or_positive_relation_trigger = { CHARACTER = scope:actor }
-				}
-			}
 		}
 	}
 
@@ -123,7 +118,6 @@ carnx_pay_ransom_slave_interaction = {
 		}
 		flag = favor
 		localization = "RANSOM_FAVOR_OPTION"
-		starts_enabled = { always = yes }
 	}
 
 	# Use hook
@@ -203,6 +197,17 @@ carnx_pay_ransom_slave_interaction = {
 			desc = SCHEME_STRONG_HOOK_USED
 		}
 
+		# Nothing offerred (-100)
+		modifier = {
+			NOR = {
+				scope:gold = yes
+				scope:current_gold = yes
+				scope:favor = yes
+			}
+			add = -100
+			desc = carnx_nothing_offered_reason
+		}
+
 		# Offerred gold (0 to 50)
 		modifier = {
 			scope:gold = yes
@@ -234,7 +239,7 @@ carnx_pay_ransom_slave_interaction = {
 			desc = WANTS_MORE_GOLD
 		}
 
-		# Offerred a favor (25 or 50)
+		# Offerred a favor (0 or 50)
 		modifier = {
 			scope:favor = yes
 			scope:recipient.top_liege = scope:actor.top_liege
@@ -244,8 +249,8 @@ carnx_pay_ransom_slave_interaction = {
 		modifier = {
 			scope:favor = yes
 			NOT = { scope:recipient.top_liege = scope:actor.top_liege }
-			add = 25
-			desc = FAVOR_POSITIVE_REASON
+			add = 0
+			desc = NO_USE_FOR_A_FAVOR_REASON
 		}
 
 		# Slave recently bought
@@ -276,12 +281,12 @@ carnx_pay_ransom_slave_interaction = {
 		# Slavery crime or shunned by faith
 		modifier = {
 			carnx_is_slavery_crime_trigger = { CHARACTER = scope:secondary_recipient }
-			add = carnx_ai_positive_crime_impact_value
+			add = carnx_ai_positive_crime_impact_reduced_value
 			desc = carnx_owning_crime_in_recipient_faith
 		}
 		modifier = {
 			carnx_is_slavery_shunned_trigger = { CHARACTER = scope:secondary_recipient }
-			add = carnx_ai_positive_shunned_impact_value
+			add = carnx_ai_positive_shunned_impact_reduced_value
 			desc = carnx_owning_shunned_in_recipient_faith
 		}
 
@@ -385,17 +390,6 @@ carnx_pay_ransom_slave_interaction = {
 			}
 			add = cowed_halved_reason_value
 			desc = COWED_REASON
-		}
-
-		# Don't give away slaves for free
-		modifier = {
-			NOR = {
-				scope:gold = yes
-				scope:current_gold = yes
-				scope:favor = yes
-			}
-			add = -1000
-			desc = carnx_nothing_offered_reason
 		}
 	}
 

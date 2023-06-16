@@ -45,6 +45,16 @@ carnx_slave_can_be_freed_trigger = {
 	}
 }
 
+carnx_slave_can_be_ransomed_by_trigger = {
+	OR = {
+		AND = {
+			$CHARACTER$ = { is_ai = no }
+			faith = $CHARACTER$.faith
+		}
+		carnx_is_family_or_positive_relation_trigger = { CHARACTER = $CHARACTER$ }
+	}
+}
+
 carnx_valid_buyer_or_seller_trigger = {
 	NOT = { this = $PARTY$ }
 	in_diplomatic_range = $PARTY$
@@ -71,6 +81,12 @@ carnx_valid_buyer_or_seller_trigger = {
 	trigger_else = {
 		always = yes
 	}
+}
+
+carnx_valid_ransomer_trigger = {
+	NOT = { this = $PARTY$ }
+	in_diplomatic_range = $PARTY$
+	is_ruler = yes
 }
 
 carnx_is_same_realm_character_trigger = {
