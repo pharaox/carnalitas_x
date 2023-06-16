@@ -23,19 +23,19 @@
  # carn_seize_slave_interaction (original)
 
  # carnx_ransom_slave_interaction
- carnx_ransom_slave_interaction: "Выкуп раба"
- carnx_ransom_slave_interaction_desc: "Выкуп за [slave|E] родственником"
+ carnx_ransom_slave_interaction: "Выкупить раба"
+ carnx_ransom_slave_interaction_desc: "Требовать выкуп за [slave|E]"
  recipient_secondary_carnx_ransom_slave_interaction: "Раб"
  # carnx_pay_ransom_slave_interaction
- carnx_pay_ransom_slave_interaction: "Заплатить выкуп за раба"
- carnx_pay_ransom_slave_interaction_desc: "Предложить выкуп за [slave|E], который является вашим родственником"
+ carnx_pay_ransom_slave_interaction: "Выкупить раба"
+ carnx_pay_ransom_slave_interaction_desc: "Предложить выкуп за [slave|E]"
  recipient_secondary_carnx_pay_ransom_slave_interaction: "Раб"
 
  # carnx_gift_slave_interaction
  carnx_gift_slave_interaction: "Раб в подарок"
  carnx_gift_slave_interaction_desc: "Подарить [slave|E] для [recipient.GetShortUINameNoTooltip] увелечения [recipient.GetHerHis] мнения о вас"
  recipient_secondary_carnx_gift_slave_interaction: "Раб"
- carnx_gift_slave_proposal: "Пожалуйста, прими этого раба в подарок. Я надеюсь [secondary_recipient.GetSheHe] будет хорошо служить вам."
+ carnx_gift_slave_proposal: "Пожалуйста, примите этого раба в подарок. Я надеюсь [secondary_recipient.GetSheHe] будет хорошо служить вам."
  carnx_gift_slave_accept: "Принять"
  carnx_gift_slave_reject: "Отклонить"
  # carnx_liberate_slave_interaction
