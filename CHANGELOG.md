@@ -1,5 +1,11 @@
 # Changelog
 
+## Version 0.12.1
+
+### Compatibility
+
+* Adapted to CK3 1.9.2
+
 ## Version 0.12.0
 
 ### Interactions
