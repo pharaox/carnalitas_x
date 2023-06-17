@@ -23,12 +23,12 @@
  # carn_seize_slave_interaction (original)
 
  # carnx_ransom_slave_interaction
- carnx_ransom_slave_interaction: "Ransom Slave"
+ carnx_ransom_slave_interaction: "Demand Ransom for Slave"
  carnx_ransom_slave_interaction_desc: "Demand ransom for a [slave|E]"
  recipient_secondary_carnx_ransom_slave_interaction: "Slave"
 
  # carnx_pay_ransom_slave_interaction
- carnx_pay_ransom_slave_interaction: "Ransom Slave"
+ carnx_pay_ransom_slave_interaction: "Offer Ransom for Slave"
  carnx_pay_ransom_slave_interaction_desc: "Offer ransom for a [slave|E]"
  recipient_secondary_carnx_pay_ransom_slave_interaction: "Slave"
 
