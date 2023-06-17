@@ -27,7 +27,7 @@ With this mod:
 * Slave prices better reflect the actual usefulness of slaves.
 * It's much easier to find rulers willing to buy or sell slaves via special convenience interactions.
 * Slavery doctrines have a significant and consistent impact that better reflects their original meaning.
-* Slaves can be also ransomed or gifted, and the AI will occasionally do it as well.
+* Slaves can be also ransomed, gifted, or liberated, and the AI will occasionally do it as well.
 * Slaves can be assigned to (some, but not all) council and court positions for additional benefits, and the AI is fully capable of doing this as well.
 * There are new court positions reserved for slaves or former slaves, such as *Slave Concubine*, *Slave Eunuch* or *Mameluke Captain*, available depending on religion, culture, and government form.
 * Additional slaves fit for specific occupations are spawned into the world via events.
@@ -65,14 +65,14 @@ When selling, the AI acceptance is influenced by similar factors, but working in
 
 When deciding to initiate buying or selling of slaves, the AI is driven by much the same considerations. Unlike Carnalitas, AI rulers will attempt to both buy and sell slaves from / to other AI rulers (never the player).
 
-All in all, the AI is in general quite reluctant to buy slaves that are useless, or sell slaves that are useful to them. As a player, you may find it impossible to find buyers for your slaves unless they have some of the useful qualities listed above. Still, for slaves that nobody wants to buy, there are plenty of other options what to do with them. You could also spend a hook if you have one on a ruler and really want to buy or sell a slave.
+All in all, the AI is in general quite reluctant to buy slaves who are useless, or sell slaves who are useful to them. As a player, you may find it impossible to find buyers for your slaves unless they have some of the useful qualities listed above. Still, for slaves whom nobody wants to buy, there are plenty of other options what to do with them. You could also spend a hook if you have one on a ruler and really want to buy or sell a slave.
 
 #### Convenience Interactions for the Player
 
-While it is possible to initiate buying or selling of slaves by right-clicking on a ruler, it may be quite hard to find rulers that are willing to buy one of your slaves, or sell some of their slaves to you. Furthermore, the price you get with each ruler may be different. To make it more convenient for the player, this mod introduces the following 2 new interactions:
+While it is possible to initiate buying or selling of slaves by right-clicking on a ruler, it may be quite hard to find rulers who are willing to buy one of your slaves, or sell some of their slaves to you. Furthermore, the price you get with each ruler may be different. To make it more convenient for the player, this mod introduces the following 2 new interactions:
 
-* *Buy Slaves*: Buy a slave by choosing from a list of all slaves that other rulers are willing to sell to you. If there are no such slaves, the list will be empty.
-* *Sell Slaves*: Sell one of your slaves by choosing a list of those of your slaves that other rulers are willing to buy from you. If there are no such slaves, the list will be empty. After choosing a slave, you can choose a buyer from a list of other rulers that are willing to buy that slave from you. Since buyers can't be sorted by their bid prices, this list contains only a limited number of buyers offering the highest bid prices. This number is 5 by default and can be configured via the *Number of Potential Buyers* game rule.
+* *Buy Slaves*: Buy a slave by choosing from a list of all slaves whom other rulers are willing to sell to you. If there are no such slaves, the list will be empty.
+* *Sell Slaves*: Sell one of your slaves by choosing a list of those of your slaves whom other rulers are willing to buy from you. If there are no such slaves, the list will be empty. After choosing a slave, you can choose a buyer from a list of other rulers who are willing to buy that slave from you. Since buyers can't be sorted by their bid prices, this list contains only a limited number of buyers offering the highest bid prices. This number is 5 by default and can be configured via the *Number of Potential Buyers* game rule.
 
 #### Valid Buyers and Sellers
 
@@ -86,7 +86,7 @@ The AI uses a slightly different version of the above due to engine limitations.
 
 ### Enslaving and Seizing Prisoners
 
-As in Carnalitas, prisoners can be enslaved via the *Enslave* interaction. Prisoners that are already someone else's slaves can be "seized" instead via the *Seize Slave* interaction.
+As in Carnalitas, prisoners can be enslaved via the *Enslave* interaction. Prisoners who are already someone else's slaves can be "seized" instead via the *Seize Slave* interaction.
 
 Unlike Carnalitas, a person can only be enslaved if he or she is a prisoner. The *Enslave* interaction is not available on free courtiers. Since a prisoner doesn't really have a choice, both *Enslave* and *Seize Slave* interactions are accepted automatically.
 
@@ -94,13 +94,17 @@ When deciding to initiate enslaving or seizing of slaves, the AI is driven by co
 
 For added realism and to ensure the mod doesn't disrupt the original game balance, the *Enslave* interaction is balanced in such a way that only about 20% of all prisoners are actually enslaved by the AI. The rest are executed, ransomed, or simply released.
 
-### Freeing and Ransoming Slaves
+### Freeing, Liberating, and Ransoming Slaves
 
-As in Carnalitas, slaves can be freed by their owners via the *Free Slave* interaction. In return the owner may ask for gold, conversion, renouncing of claims, a favor, or nothing. In this mod it is also possible to ransom a slave with another ruler that is their relative or relation for either gold or a favor, via the new *Ransom Slave* interaction.
+As in Carnalitas, slaves can be freed by their owners via the *Free Slave* interaction. In return the owner may ask for gold, conversion, renouncing of claims, a favor, or nothing. Prisoners who are someone else's slaves can be "liberated" instead via the new *Liberate Slave* interaction.
 
-When deciding to initiate freeing or ransoming of slaves, the AI is driven by considerations similar to the ones listed under [Enslaving and Seizing Prisoners](#enslaving-and-seizing-prisoners), but working in the opposite direction.
+In this mod it is also possible to demand ransom for a slave from another ruler who is their relative, as well as offer ransom for a slave who is your relative, via the new *Demand Ransom for Slave* and *Offer Ransom for Slave* interactions. The player (but not the AI) is also able to offer ransom for slaves of their own faith, even if they are not relatives.
 
-Note that the cost of freeing or ransoming a slave is not their slave price, but their usual [ransom cost](https://ck3.paradoxwikis.com/Court#Ransom_cost). If you enslaved a prisoner instead of ransoming, you won't be able to sell the slave back to a relative at their slave price (relatives get additional negative modifiers to their willingness to buy), but you would still be able to ransom - potentially for less money, since the slave is no longer a spouse or an heir.
+When deciding to initiate freeing, liberating, demanding ransom, or offering ransom for slaves, the AI is driven by considerations similar to the ones listed under [AI Willingness to Buy or Sell](#ai-willingness-to-buy-or-sell). In addition, factors such as AI compassion, greed, and their opinion of the slave also play a role.
+
+Note that the cost of freeing, liberating, or ransoming a slave is not their slave price, but their usual [ransom cost](https://ck3.paradoxwikis.com/Court#Ransom_cost).
+
+If you enslaved a prisoner instead of ransoming them, you may not be able to sell them to a relative since relatives get additional negative modifiers to their willingness to buy, and this may also be [forbidden by slavery doctrines](#impact-of-slavery-doctrines), but you would still be able to demand ransom from one of their relatives. Similarly, if someone enslaved one of your relatives, you may not be able to buy them, but you would still be able to offer ransom to their owner.
 
 ### Gifting Slaves
 
@@ -113,11 +117,11 @@ Carnalitas introduces the *Slavery Crime* and *Slavery Shunned* religious doctri
 * If owning slaves of a certain faith is a crime, for adherents of this faith:
   * It is not possible to enslave, seize, sell, buy, or gift them for the player. The AI will not initiate such interactions at all.
   * The AI will not accept sell, buy, or gift interactions for them.
-  * The AI will be quite willing to free or ransom them.
+  * The AI will be quite willing to free, liberate, demand ransom, or offer ransom for them.
 * If owning slaves of a certain faith is shunned, for adherents of this faith:
   * The AI will be quite unwilling to enslave, seize, sell, buy, or gift them.
   * The AI will be quite unwilling to accept sell, buy, or gift interactions for them.
-  * The AI will be somewhat more willing to free or ransom them.
+  * The AI will be somewhat more willing to free, liberate, demand ransom, or offer ransom for them.
   * Initiating or accepting most interactions (except freeing or ransoming) has a piety cost.
 
 In addition, owning slaves against religious doctrines leads to yearly [piety loss](#piety-loss-from-slaves).
@@ -150,7 +154,7 @@ When evaluating slaves for buying, selling, enslaving, etc., the AI considers th
 
 ### Capturing Slaves during Raids and Sieges
 
-With this mod, characters that can be enslaved and have a base price higher than a threshold are now captured instead of killed during raids and sieges. In addition, characters captured during a raid have 50% chance of getting the "marked for enslavement" modifier, which makes enslavement by the AI more likely. This increases the number of characters enslaved as a result of warfare or raiding.
+With this mod, characters who can be enslaved and have a base price higher than a threshold are now captured instead of killed during raids and sieges. In addition, characters captured during a raid have 50% chance of getting the "marked for enslavement" modifier, which makes enslavement by the AI more likely. This increases the number of characters enslaved as a result of warfare or raiding.
 
 ### Traits
 
@@ -167,13 +171,13 @@ These traits represent consequences of "bad" and "good" behavior towards slaves.
 
 Slave traders bring two slaves for sale and you can buy one of them. The slaves are of faith and culture that is different from yours, and never of faith that falls under the *Slavery Crime* doctrine. One of the slaves has skills / traits that make him or her a better fit for a particular occupation, for the other one they are generated completely at random.
 
-Besides adding flavor, this event also spawns more slaves that would normally exist if the only way to create them was to enslave prisoners. It fires approximately every 5 years for every ruler of rank count and above. The AI will mostly not buy, unless it considers one of the slaves really useful according to the factors described in [AI Willingness to Buy or Sell](#ai-willingness-to-buy-or-sell).
+Besides adding flavor, this event also spawns more slaves than would normally exist if the only way to create them was to enslave prisoners. It fires approximately every 5 years for every ruler of rank count and above. The AI will mostly not buy, unless it considers one of the slaves really useful according to the factors described in [AI Willingness to Buy or Sell](#ai-willingness-to-buy-or-sell).
 
 #### Runaway Slave
 
 One of your slaves flees, taking some of your valuables with them, and a knight is chosen as a scapegoat. You can try to catch the slave via intrigue or martial challenges, fine or forgive the scapegoat, or do nothing, for a loss or gain of prestige or stress.
 
-This event is based on the *Escaped Thrall* event from FP1, but is somewhat more sophisticated as it involves a real character. Every year there is a chance of 10% for this event to fire for every ruler that is a slave owner.
+This event is based on the *Escaped Thrall* event from FP1, but is somewhat more sophisticated as it involves a real character. Every year there is a chance of 10% for this event to fire for every ruler who is a slave owner.
 
 #### Freedom for a Slave
 
@@ -183,7 +187,7 @@ Every year there is a chance of 50% for this event to fire for every ruler that 
 
 #### AI Rulers Having Sex with Their Slaves
 
-AI rulers may have sex with one of their slaves (or former slaves that are also *Slave Concubines*) once a year if they are attracted to them, via a hidden event. The chance of pregnancy is for the moment hardcoded at 10%.
+AI rulers may have sex with one of their slaves (or former slaves who are also *Slave Concubines*) once a year if they are attracted to them, via a hidden event. The chance of pregnancy is for the moment hardcoded at 10%.
 
 This event will fire also for the player if the *Make Love* interaction is disabled. If the *Make Love* interaction is enabled, the event will not fire, since the player is then expected to make love to their slaves and *Slave Concubines*. The chance of pregnancy for the *Make Love* interaction is hardcoded at 30%, as in the original Carnalitas.
 
@@ -201,7 +205,7 @@ Once a year rulers may lose piety for any slaves owned against religious doctrin
 
 ### Slave Memories
 
-Being enslaved, freed, bought, ransomed, seized, or gifted is certainly a significant lifetime event from the slave's perspective. This mod adds character memories for all these events in the slave's memory book.
+Being enslaved, freed, bought, ransomed, seized, liberated, or gifted is certainly a significant lifetime event from the slave's perspective. This mod adds character memories for all these events in the slave's memory book.
 
 ### Bug Fixes
 
@@ -307,7 +311,7 @@ The sections below list the changes made to existing vanilla objects in somewhat
 
 ### Modifiers (`scripted_modifiers`)
 
-* `hostile_murder_agent_base_join_chance_modifier`: Made vengeful characters more willing to join schemes against the person that originally enslaved them.
+* `hostile_murder_agent_base_join_chance_modifier`: Made vengeful characters more willing to join schemes against the person who originally enslaved them.
 
 ### Values (`script_values`)
 
