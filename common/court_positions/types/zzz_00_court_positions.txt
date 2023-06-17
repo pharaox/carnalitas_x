@@ -50,81 +50,72 @@ court_physician_court_position = {
 			max = 50
 			desc = court_position_skill_learning
 		}
+		# Physician
 		if = {
-			limit = {
-				has_trait = lifestyle_physician
-				has_trait_xp = {
-					trait = lifestyle_physician
-					value >= 100
-				}
-			}
-			add = {
-				value = 40
-				desc = court_position_physician_3_trait
-			}
-		}
-		else_if = {
-			limit = {
-				has_trait = lifestyle_physician
-				has_trait_xp = {
-					trait = lifestyle_physician
-					value >= 50
-				}
-			}
-			add = {
-				value = 20
-				desc = court_position_physician_2_trait
-			}
-		}
-		else_if = {
 			limit = { has_trait = lifestyle_physician }
 			add = {
-				value = 10
+				value = 15
+				if = {
+					limit = {
+						has_trait_xp = { trait = lifestyle_physician value >= 50 }
+					}
+					add = 15
+				}
+				if = {
+					limit = {
+						has_trait_xp = { trait = lifestyle_physician value >= 100 }
+					}
+					add = 15
+				}
 				desc = court_position_physician_1_trait
 			}
 		}
+		# Mystic
 		if = {
-			limit = {
-				has_trait = lifestyle_mystic
-				has_trait_xp = {
-					trait = lifestyle_mystic
-					value >= 100
-				}
-			}
-			add = {
-				value = 20
-				desc = court_position_mystic_3_trait
-			}
-		}
-		else_if = {
-			limit = {
-				has_trait = lifestyle_mystic
-				has_trait_xp = {
-					trait = lifestyle_mystic
-					value >= 50
-				}
-			}
-			add = {
-				value = 10
-				desc = court_position_mystic_2_trait
-			}
-		}
-		else_if = {
-			limit = {
-				has_trait = lifestyle_mystic
-			}
+			limit = { has_trait = lifestyle_mystic }
 			add = {
 				value = 5
+				if = {
+					limit = {
+						has_trait_xp = { trait = lifestyle_mystic value >= 50 }
+					}
+					add = 5
+				}
+				if = {
+					limit = {
+						has_trait_xp = { trait = lifestyle_mystic value >= 100 }
+					}
+					add = 5
+				}
 				desc = court_position_mystic_1_trait
 			}
 		}
+		# Herbalist
 		if = {
-			limit = {
-				has_trait = lifestyle_herbalist
-			}
+			limit = { has_trait = lifestyle_herbalist }
 			add = {
-				value = 10
+				value = 15
 				desc = court_position_herbalist_trait
+			}
+		}
+		# Education
+		if = {
+			limit = { has_trait = education_learning }
+			add = {
+				value = 4
+				if = {
+					limit = { has_trait = education_learning_2 }
+					add = 4
+				}
+				else_if = {
+					limit = { has_trait = education_learning_3 }
+					add = 8
+				}
+				else_if = {
+					limit = { has_trait = education_learning_4 }
+					add = 12
+				}
+				desc = education_learning
 			}
 		}
 		if = {
@@ -5920,9 +5911,14 @@ court_artificer_court_position = {
 			value = stewardship
 			desc = court_position_skill_stewardship
 		}
-		add = {
-			value = -20
-			desc = local_artisan_modifier
+		if = {
+			limit = {
+				has_character_modifier = local_artisan_modifier
+			}
+			add = {
+				value = -20
+				desc = local_artisan_modifier
+			}
 		}
 		add = court_position_aptitude_family_business_value
 		#add = court_position_aptitude_high_penalty_value
