@@ -113,3 +113,5 @@
  carnx_debug_msg_slave_0005_option_a_chosen: "Freedom for a Slave option a chosen"
  carnx_debug_msg_slave_0005_option_b_chosen: "Freedom for a Slave option b chosen"
  carnx_debug_msg_slave_0005_option_c_chosen: "Freedom for a Slave option c chosen"
+
+ carnx_debug_msg_debug_character: "Debug character"

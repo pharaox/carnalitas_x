@@ -258,6 +258,23 @@ carnx_ransom_slave_interaction = {
 			ai_compassion = 0.25
 		}
 
+		# Slavery attitude
+		# Liberators more likely to offer ransom, slavers less likely
+		modifier = {
+			OR = {
+				has_character_modifier = carnx_slavery_attitude_liberator_modifier
+			}
+			add = carnx_ai_positive_attitude_impact_value
+			desc = carnx_slavery_attitude_reason
+		}
+		modifier = {
+			OR = {
+				has_character_modifier = carnx_slavery_attitude_slaver_modifier
+			}
+			add = carnx_ai_negative_attitude_impact_value
+			desc = carnx_slavery_attitude_reason
+		}
+
 		# Family and relations (25 to 100 depending on how close the relation)
 		# Eager to pay ransom for family and relations
 		carnx_family_and_relations_modifier = {
@@ -423,6 +440,21 @@ carnx_ransom_slave_interaction = {
 		modifier = {
 			carnx_is_slavery_shunned_trigger = { CHARACTER = scope:secondary_recipient }
 			add = carnx_ai_positive_shunned_impact_reduced_value
+		}
+
+		# Slavery attitude
+		# Liberators more likely to demand ransom, slavers less likely
+		modifier = {
+			OR = {
+				has_character_modifier = carnx_slavery_attitude_liberator_modifier
+			}
+			add = carnx_ai_positive_attitude_impact_value
+		}
+		modifier = {
+			OR = {
+				has_character_modifier = carnx_slavery_attitude_slaver_modifier
+			}
+			add = carnx_ai_negative_attitude_impact_value
 		}
 
 		# Family and relations (-25 to -100 depending on how close the relation)

@@ -392,6 +392,23 @@ carnx_liberate_slave_interaction = {
 			add = carnx_ai_positive_shunned_impact_reduced_value
 		}
 
+		# Slavery attitude
+		# Liberators more likely to liberate, slavers, traders, and employers less likely
+		modifier = {
+			OR = {
+				has_character_modifier = carnx_slavery_attitude_liberator_modifier
+			}
+			add = carnx_ai_positive_attitude_impact_value
+		}
+		modifier = {
+			OR = {
+				has_character_modifier = carnx_slavery_attitude_slaver_modifier
+				has_character_modifier = carnx_slavery_attitude_trader_modifier
+				has_character_modifier = carnx_slavery_attitude_employer_modifier
+			}
+			add = carnx_ai_negative_attitude_impact_value
+		}
+
 		# Family and relations (50 to 200 depending on how close the relation)
 		# Eager to liberate family and relations
 		carnx_family_and_relations_modifier = {

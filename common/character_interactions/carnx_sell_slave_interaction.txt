@@ -186,6 +186,25 @@ carn_sell_slave_interaction = {
 			desc = carnx_owning_shunned_in_recipient_faith
 		}
 
+		# Slavery attitude
+		# Traders and employers more likely to buy, slavers and liberators less likely
+		modifier = {
+			OR = {
+				has_character_modifier = carnx_slavery_attitude_trader_modifier
+				has_character_modifier = carnx_slavery_attitude_employer_modifier
+			}
+			add = carnx_ai_positive_attitude_impact_value
+			desc = carnx_slavery_attitude_reason
+		}
+		modifier = {
+			OR = {
+				has_character_modifier = carnx_slavery_attitude_slaver_modifier
+				has_character_modifier = carnx_slavery_attitude_liberator_modifier
+			}
+			add = carnx_ai_negative_attitude_impact_value
+			desc = carnx_slavery_attitude_reason
+		}
+
 		# Family and relations (-25 to -100 depending on how close the relation)
 		# Reluctant to buy family and relations, wants to ransom them instead
 		carnx_family_and_relations_modifier = {
@@ -315,6 +334,23 @@ carn_sell_slave_interaction = {
 		modifier = {
 			carnx_is_slavery_shunned_trigger = { CHARACTER = scope:secondary_recipient }
 			add = carnx_ai_negative_shunned_impact_value
+		}
+
+		# Slavery attitude
+		# Slavers and traders more likely to sell, liberators and employers less likely
+		modifier = {
+			OR = {
+				has_character_modifier = carnx_slavery_attitude_slaver_modifier
+				has_character_modifier = carnx_slavery_attitude_trader_modifier
+			}
+			add = carnx_ai_positive_attitude_impact_value
+		}
+		modifier = {
+			OR = {
+				has_character_modifier = carnx_slavery_attitude_liberator_modifier
+				has_character_modifier = carnx_slavery_attitude_employer_modifier
+			}
+			add = carnx_ai_negative_attitude_impact_value
 		}
 
 		# Family and relations (-25 to -100 depending on how close the relation)
