@@ -205,6 +205,22 @@ carnx_slave_ask_price_value = {
 		}
 	}
 
+	# Traders get better prices
+	if = {
+		limit = {
+			exists = scope:actor
+			scope:actor = { has_character_modifier = carnx_slavery_attitude_trader_modifier }
+		}
+		multiply = carnx_slave_price_trader_buyer_multiplier
+	}
+	if = {
+		limit = {
+			exists = scope:seller
+			scope:seller = { has_character_modifier = carnx_slavery_attitude_trader_modifier }
+		}
+		multiply = carnx_slave_price_trader_seller_multiplier
+	}
+
 	round = yes
 	min = 5
 }
@@ -233,6 +249,22 @@ carnx_slave_bid_price_value = {
 			multiply = -0.0025
 			add = 1
 		}
+	}
+
+	# Traders get better prices
+	if = {
+		limit = {
+			exists = scope:actor
+			scope:actor = { has_character_modifier = carnx_slavery_attitude_trader_modifier }
+		}
+		multiply = carnx_slave_price_trader_seller_multiplier
+	}
+	if = {
+		limit = {
+			exists = scope:buyer
+			scope:buyer = { has_character_modifier = carnx_slavery_attitude_trader_modifier }
+		}
+		multiply = carnx_slave_price_trader_buyer_multiplier
 	}
 
 	round = yes
@@ -346,6 +378,31 @@ carnx_buy_slave_ai_accept_no_actor_value = {
 			}
 		}
 		add = -100
+	}
+
+	# Slavery attitude
+	# Slavers and traders more likely to sell, liberators and employers less likely
+	if = {
+		limit = {
+			scope:seller = {
+				OR = {
+					has_character_modifier = carnx_slavery_attitude_slaver_modifier
+					has_character_modifier = carnx_slavery_attitude_trader_modifier
+				}
+			}
+		}
+		add = carnx_ai_positive_attitude_impact_value
+	}
+	if = {
+		limit = {
+			scope:seller = {
+				OR = {
+					has_character_modifier = carnx_slavery_attitude_liberator_modifier
+					has_character_modifier = carnx_slavery_attitude_employer_modifier
+				}
+			}
+		}
+		add = carnx_ai_negative_attitude_impact_value
 	}
 
 	# Employed as councillor (NIV doubled), court position, knight / commander, or in some other way (NIV)
@@ -629,7 +686,7 @@ carnx_buy_slave_ai_accept_value = {
 				}
 			}
 		}
-		multiply = 0
+		add = -1000
 	}
 }
 
@@ -663,6 +720,31 @@ carnx_sell_slave_ai_accept_no_actor_value = {
 			}
 		}
 		add = carnx_ai_negative_shunned_impact_value
+	}
+
+	# Slavery attitude
+	# Traders and employers more likely to buy, slavers and liberators less likely
+	if = {
+		limit = {
+			scope:buyer = {
+				OR = {
+					has_character_modifier = carnx_slavery_attitude_trader_modifier
+					has_character_modifier = carnx_slavery_attitude_employer_modifier
+				}
+			}
+		}
+		add = carnx_ai_positive_attitude_impact_value
+	}
+	if = {
+		limit = {
+			scope:buyer = {
+				OR = {
+					has_character_modifier = carnx_slavery_attitude_slaver_modifier
+					has_character_modifier = carnx_slavery_attitude_liberator_modifier
+				}
+			}
+		}
+		add = carnx_ai_negative_attitude_impact_value
 	}
 
 	# Lacking councillors or court positions (PIV for max skill or aptitude above cutoff)

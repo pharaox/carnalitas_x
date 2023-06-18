@@ -424,6 +424,14 @@ carnx_court_position_candidate_slave_value = {
 			}
 			add = 25
 		}
+		if = {
+			limit = {
+				scope:liege = {
+					has_character_modifier = carnx_slavery_attitude_employer_modifier
+				}
+			}
+			add = 25
+		}
 	}
 }
 

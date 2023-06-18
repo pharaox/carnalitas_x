@@ -502,15 +502,7 @@ carnx_employed_modifier = {
 
 carnx_execute_reason_modifier = {
 	modifier = {
-		OR = {
-			has_execute_reason = $SLAVE$
-			has_relation_rival = $SLAVE$
-			has_relation_nemesis = $SLAVE$
-			$SLAVE$ = {
-				is_spouse_of = $RULER$
-				exposed_cheating_on_spouse_trigger = { SPOUSE = $RULER$ }
-			}
-		}
+		carnx_has_execute_reason_slave_trigger = { CHARACTER = $SLAVE$ RULER = $RULER$ }
 		add = {
 			value = $SCALE$
 			if = {

@@ -27,6 +27,8 @@ carnx_ai_positive_price_impact_value = 10
 carnx_ai_negative_price_impact_value = -10
 carnx_ai_positive_wealth_impact_value = 10
 carnx_ai_negative_wealth_impact_value = -10
+carnx_ai_positive_attitude_impact_value = 25
+carnx_ai_negative_attitude_impact_value = -25
 
 # AI impact halved values
 carnx_ai_positive_skill_impact_halved_value = 2
@@ -76,9 +78,13 @@ carnx_free_slave_dread_loss = -5
 # Enslave interaction tyranny gain (halved for character of no particular importance)
 carnx_enslave_basic_tyranny_gain = 10
 
-# Slave price multipliers for the player to limit exploits
+# Slave price multipliers for the player
 carnx_slave_ask_price_player_multiplier = 1.2
 carnx_slave_bid_price_player_multiplier = 0.8
+
+# Slave price multipliers for trader characters
+carnx_slave_price_trader_buyer_multiplier = 0.9
+carnx_slave_price_trader_seller_multiplier = 1.11
 
 # Multiplier for the court position salary if held by a slave
 carnx_court_position_slave_salary_multiplier = 0.25

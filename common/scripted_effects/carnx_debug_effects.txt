@@ -18,9 +18,12 @@ carnx_debug_save_scopes_effect = {
 	if = {
 		limit = { debug_only = yes }
 		$CHARACTER$ = {
+			# Religion
 			faith.religion = {
 				save_temporary_scope_as = $PREFIX$_religion
 			}
+
+			# Government
 			if = {
 				limit = { has_government = feudal_government }
 				save_temporary_scope_value_as = { name = $PREFIX$_government value = flag:feudal }
@@ -43,6 +46,27 @@ carnx_debug_save_scopes_effect = {
 			}
 			else = {
 				save_temporary_scope_value_as = { name = $PREFIX$_government value = flag:other }
+			}
+
+			# Slavery attitude
+			if = {
+				limit = { has_character_modifier = carnx_slavery_attitude_slaver_modifier }
+				save_temporary_scope_value_as = { name = $PREFIX$_attitude value = flag:slaver }
+			}
+			else_if = {
+				limit = { has_character_modifier = carnx_slavery_attitude_liberator_modifier }
+				save_temporary_scope_value_as = { name = $PREFIX$_attitude value = flag:liberator }
+			}
+			else_if = {
+				limit = { has_character_modifier = carnx_slavery_attitude_trader_modifier }
+				save_temporary_scope_value_as = { name = $PREFIX$_attitude value = flag:trader }
+			}
+			else_if = {
+				limit = { has_character_modifier = carnx_slavery_attitude_employer_modifier }
+				save_temporary_scope_value_as = { name = $PREFIX$_attitude value = flag:employer }
+			}
+			else = {
+				save_temporary_scope_value_as = { name = $PREFIX$_attitude value = flag:none }
 			}
 		}
 	}

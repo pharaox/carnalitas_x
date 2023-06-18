@@ -48,7 +48,12 @@ carnx_slave_can_be_freed_trigger = {
 carnx_slave_can_be_ransomed_by_trigger = {
 	OR = {
 		AND = {
-			$CHARACTER$ = { is_ai = no }
+			$CHARACTER$ = {
+				OR = {
+					is_ai = no
+					has_character_modifier = carnx_slavery_attitude_liberator_modifier
+				}
+			}
 			faith = $CHARACTER$.faith
 		}
 		carnx_is_family_or_positive_relation_trigger = { CHARACTER = $CHARACTER$ }
@@ -179,6 +184,17 @@ carnx_has_execute_reason_trigger = {
 				target = prev
 				value > 2
 			}
+		}
+	}
+}
+
+carnx_has_execute_reason_slave_trigger = {
+	OR = {
+		has_execute_reason = $CHARACTER$
+		has_relation_rival = $CHARACTER$
+		has_relation_nemesis = $CHARACTER$
+		$CHARACTER$ = {
+			exposed_cheating_on_spouse_trigger = { SPOUSE = $RULER$ }
 		}
 	}
 }
@@ -845,53 +861,71 @@ carnx_is_likely_to_buy_slave_trigger = {
 		is_at_war = yes
 		carnx_is_slavery_crime_trigger = { CHARACTER = $SLAVE$ }
 		carnx_is_slavery_shunned_trigger = { CHARACTER = $SLAVE$ }
-	}
-	$SLAVE$ = {
-		NOT = {
+		has_character_modifier = carnx_slavery_attitude_slaver_modifier
+		has_character_modifier = carnx_slavery_attitude_liberator_modifier
+		$SLAVE$ = {
 			carnx_is_family_or_positive_relation_trigger = { CHARACTER = scope:liege }
 		}
-		carnx_is_useful_above_threshold_to_future_liege_trigger = yes
 	}
-	opinion = { target = scope:actor value >= 0 }
+	OR = {
+		has_character_modifier = carnx_slavery_attitude_trader_modifier
+		has_character_modifier = carnx_slavery_attitude_employer_modifier
+		$SLAVE$ = {
+			carnx_is_useful_above_threshold_to_future_liege_trigger = yes
+		}
+	}
 }
 
 carnx_is_likely_to_sell_slave_trigger = {
 	save_temporary_scope_as = liege
 	NOR = {
+		$SLAVE$ = { has_character_flag = carnx_slave_recently_bought }
 		carnx_is_slavery_crime_trigger = { CHARACTER = $SLAVE$ }
 		carnx_is_slavery_shunned_trigger = { CHARACTER = $SLAVE$ }
-	}
-	$SLAVE$ = {
-		NOR = {
-			has_character_flag = carnx_slave_recently_bought
+		has_character_modifier = carnx_slavery_attitude_liberator_modifier
+		has_character_modifier = carnx_slavery_attitude_employer_modifier
+		$SLAVE$ = {
 			carnx_is_family_or_positive_relation_trigger = { CHARACTER = scope:liege }
-			carnx_is_useful_above_threshold_to_current_liege_trigger = yes
 		}
 	}
-	opinion = { target = scope:actor value >= 0 }
+	OR = {
+		has_character_modifier = carnx_slavery_attitude_slaver_modifier
+		has_character_modifier = carnx_slavery_attitude_trader_modifier
+		$SLAVE$ = {
+			carnx_is_useful_above_threshold_to_current_liege_trigger = no
+		}
+	}
 }
 
 carnx_is_likely_to_ransom_slave_trigger = {
 	save_temporary_scope_as = liege
+	NOR = {
+		$SLAVE$ = { has_character_flag = carnx_slave_recently_bought }
+		has_character_modifier = carnx_slavery_attitude_slaver_modifier
+		$SLAVE$ = {
+			carnx_is_family_or_positive_relation_trigger = { CHARACTER = scope:liege }
+		}
+		carnx_has_execute_reason_slave_trigger = { CHARACTER = $SLAVE$ RULER = scope:liege }
+	}
 	OR = {
 		carnx_is_slavery_crime_trigger = { CHARACTER = $SLAVE$ }
 		carnx_is_slavery_shunned_trigger = { CHARACTER = $SLAVE$ }
+		has_character_modifier = carnx_slavery_attitude_liberator_modifier
 	}
-	$SLAVE$ = {
-		NOR = {
-			has_character_flag = carnx_slave_recently_bought
-			carnx_is_family_or_positive_relation_trigger = { CHARACTER = scope:liege }
-		}
-	}
-	opinion = { target = $SLAVE$ value >= 0 }
 }
 
 carnx_is_likely_to_pay_ransom_slave_trigger = {
 	save_temporary_scope_as = liege
-	$SLAVE$ = {
-		carnx_is_family_or_positive_relation_trigger = { CHARACTER = scope:liege }
+	NOR = {
+		has_character_modifier = carnx_slavery_attitude_slaver_modifier
+		carnx_has_execute_reason_slave_trigger = { CHARACTER = $SLAVE$ RULER = scope:liege }
 	}
-	opinion = { target = $SLAVE$ value >= 0 }
+	OR = {
+		has_character_modifier = carnx_slavery_attitude_liberator_modifier
+		$SLAVE$ = {
+			carnx_is_family_or_positive_relation_trigger = { CHARACTER = scope:liege }
+		}
+	}
 }
 
 carnx_is_useful_above_threshold_to_future_liege_trigger = {

@@ -89,9 +89,9 @@ carn_seize_slave_interaction = {
 			multiplier = -0.25
 		}
 
-		# Honor (-50 to 50 depending on honor)
+		# Honor (-25 to 25 depending on honor)
 		ai_value_modifier = {
-			ai_honor = -0.5
+			ai_honor = -0.25
 		}
 
 		# Greed (0 to 50 depending on greed)
@@ -116,6 +116,23 @@ carn_seize_slave_interaction = {
 		modifier = {
 			carnx_is_slavery_shunned_trigger = { CHARACTER = scope:recipient }
 			add = carnx_ai_negative_shunned_impact_value
+		}
+
+		# Slavery attitude
+		# Slavers, traders, and employers more likely to seize, liberators less likely
+		modifier = {
+			OR = {
+				has_character_modifier = carnx_slavery_attitude_slaver_modifier
+				has_character_modifier = carnx_slavery_attitude_trader_modifier
+				has_character_modifier = carnx_slavery_attitude_employer_modifier
+			}
+			add = carnx_ai_positive_attitude_impact_value
+		}
+		modifier = {
+			OR = {
+				has_character_modifier = carnx_slavery_attitude_liberator_modifier
+			}
+			add = carnx_ai_negative_attitude_impact_value
 		}
 
 		# Family and relations (-50 to -200 depending on how close the relation)

@@ -148,6 +148,19 @@ carnx_gift_slave_interaction = {
 			desc = carnx_owning_shunned_in_recipient_faith
 		}
 
+		# Slavery attitude
+		# Slavers, liberators, traders, and employers more likely to accept slaves as gift
+		modifier = {
+			OR = {
+				has_character_modifier = carnx_slavery_attitude_slaver_modifier
+				has_character_modifier = carnx_slavery_attitude_liberator_modifier
+				has_character_modifier = carnx_slavery_attitude_trader_modifier
+				has_character_modifier = carnx_slavery_attitude_employer_modifier
+			}
+			add = carnx_ai_positive_attitude_impact_value
+			desc = carnx_slavery_attitude_reason
+		}
+
 		# Family and relations (-50 to -200 depending on how close the relation)
 		# Reluctant to receive as gift family and relations, wants to ransom them instead
 		carnx_family_and_relations_modifier = {
@@ -306,6 +319,18 @@ carnx_gift_slave_interaction = {
 				add = -1
 				multiply = 25
 			}
+		}
+
+		# Slavery attitude
+		# Slavers, liberators, traders, end employers less likely to offer slaves as gift
+		modifier = {
+			OR = {
+				has_character_modifier = carnx_slavery_attitude_slaver_modifier
+				has_character_modifier = carnx_slavery_attitude_liberator_modifier
+				has_character_modifier = carnx_slavery_attitude_trader_modifier
+				has_character_modifier = carnx_slavery_attitude_employer_modifier
+			}
+			add = carnx_ai_negative_attitude_impact_value
 		}
 
 		# Family and relations (-50 to -200 depending on how close the relation)

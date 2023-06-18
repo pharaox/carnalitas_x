@@ -91,9 +91,9 @@ carn_enslave_interaction = {
 			multiplier = -0.25
 		}
 
-		# Compassion (-50 to 50 depending on compassion)
+		# Compassion (-25 to 25 depending on compassion)
 		ai_value_modifier = {
-			ai_compassion = -0.5
+			ai_compassion = -0.25
 		}
 
 		# Greed (0 to 50 depending on greed)
@@ -104,13 +104,6 @@ carn_enslave_interaction = {
 				add = 1
 				multiply = 25
 			}
-		}
-
-		# Child (-25 if child and compassionate)
-		modifier = {
-			ai_compassion >= low_positive_ai_value
-			scope:recipient = { is_adult = no }
-			add = -25
 		}
 
 		# Marked for enslavement (50)
@@ -125,6 +118,23 @@ carn_enslave_interaction = {
 		modifier = {
 			carnx_is_slavery_shunned_trigger = { CHARACTER = scope:recipient }
 			add = carnx_ai_negative_shunned_impact_value
+		}
+
+		# Slavery attitude
+		# Slavers, traders, and employers more likely to enslave, liberators less likely
+		modifier = {
+			OR = {
+				has_character_modifier = carnx_slavery_attitude_slaver_modifier
+				has_character_modifier = carnx_slavery_attitude_trader_modifier
+				has_character_modifier = carnx_slavery_attitude_employer_modifier
+			}
+			add = carnx_ai_positive_attitude_impact_value
+		}
+		modifier = {
+			OR = {
+				has_character_modifier = carnx_slavery_attitude_liberator_modifier
+			}
+			add = carnx_ai_negative_attitude_impact_value
 		}
 
 		# Family and relations (-50 to -200 depending on how close the relation)
