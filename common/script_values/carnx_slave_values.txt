@@ -1034,6 +1034,120 @@ carnx_mark_for_enslavement_chance = {
 	}
 }
 
+carnx_slavery_attitude_slaver_chance = {
+	value = 0
+	if = {
+		limit = { carnx_slavery_attitude_slaver_government_trigger = yes }
+		add = 5
+	}
+	if = {
+		limit = { carnx_slavery_attitude_slaver_faith_culture_trigger = yes }
+		add = 5
+	}
+	if = {
+		limit = { carnx_is_slavery_always_accepted_trigger = yes }
+		add = 2.5
+	}
+	add = {
+		value = ai_greed
+		multiply = 0.025
+	}
+	add = {
+		value = ai_compassion
+		multiply = -0.025
+	}
+	min = 0
+}
+
+carnx_slavery_attitude_liberator_chance = {
+	value = 0
+	if = {
+		limit = { carnx_slavery_attitude_liberator_government_trigger = yes }
+		add = 5
+	}
+	if = {
+		limit = { carnx_slavery_attitude_liberator_faith_culture_trigger = yes }
+		add = 5
+	}
+	else_if = {
+		limit = { carnx_is_slavery_never_accepted_trigger = yes }
+		add = 2.5
+	}
+	add = {
+		value = ai_greed
+		multiply = -0.025
+	}
+	add = {
+		value = ai_compassion
+		multiply = 0.025
+	}
+	min = 0
+}
+
+carnx_slavery_attitude_trader_chance = {
+	value = 0
+	if = {
+		limit = { carnx_slavery_attitude_trader_government_trigger = yes }
+		add = 5
+	}
+	if = {
+		limit = { carnx_slavery_attitude_trader_faith_culture_trigger = yes }
+		add = 5
+	}
+	if = {
+		limit = {
+			carnx_is_slavery_always_accepted_trigger = no
+			carnx_is_slavery_never_accepted_trigger = no
+		}
+		add = 2.5
+	}
+	if = {
+		limit = {
+			highest_held_title_tier >= tier_kingdom
+		}
+		add = -2.5
+	}
+	add = {
+		value = ai_greed
+		multiply = 0.025
+	}
+	add = {
+		value = ai_honor
+		multiply = -0.025
+	}
+	min = 0
+}
+
+carnx_slavery_attitude_employer_chance = {
+	value = 0
+	if = {
+		limit = { carnx_slavery_attitude_employer_government_trigger = yes }
+		add = 5
+	}
+	if = {
+		limit = { carnx_slavery_attitude_employer_faith_culture_trigger = yes }
+		add = 5
+	}
+	if = {
+		limit = {
+			carnx_is_slavery_always_accepted_trigger = no
+			carnx_is_slavery_never_accepted_trigger = no
+		}
+		add = 2.5
+	}
+	if = {
+		limit = {
+			highest_held_title_tier >= tier_kingdom
+		}
+		add = 2.5
+	}
+	add = {
+		value = ai_rationality
+		multiply = 0.025
+	}
+	min = 0
+}
+
 carnx_age_value = {
 	value = age
 }

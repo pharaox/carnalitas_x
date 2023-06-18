@@ -62,6 +62,7 @@ carnx_five_year_playable_pulse = {
 
 	events = {
 		carnx_slave.0001 # Buy Foreign Slaves
+		carnx_slave.0008 # Slavery Attitude
 	}
 
 	random_events = {
