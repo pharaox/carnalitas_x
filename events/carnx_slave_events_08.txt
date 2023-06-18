@@ -1,0 +1,110 @@
+﻿namespace = carnx_slave
+
+scripted_trigger carnx_slave_0008_valid_liege_trigger = {
+	is_available_ai_adult = yes
+	NOR = {
+		has_character_modifier = carnx_slavery_attitude_slaver_modifier
+		has_character_modifier = carnx_slavery_attitude_liberator_modifier
+		has_character_modifier = carnx_slavery_attitude_trader_modifier
+		has_character_modifier = carnx_slavery_attitude_employer_modifier
+	}
+}
+
+scripted_effect carnx_slave_008_acquire_slavery_attitude_modifier_effect = {
+	add_character_modifier = {
+		modifier = carnx_slavery_attitude_$ATTITUDE$_modifier
+		years = 10
+	}
+	carnx_debug_save_scopes_effect = { CHARACTER = this PREFIX = acquired_$ATTITUDE$ }
+	carnx_debug_log_effect = { MSG = carnx_debug_msg_character_acquired_$ATTITUDE$_modifier }
+}
+
+carnx_slave.0008 = {
+	type = character_event
+	title = carnx_slave.0008.t
+	desc = carnx_slave.0008.desc
+	hidden = yes
+
+	theme = dungeon
+
+	trigger = {
+		NOT = { has_game_rule = carn_slavery_content_disabled }
+		carnx_slave_0008_valid_liege_trigger = yes
+	}
+
+	option = {
+		name = carnx_slave.0008.a
+
+		trigger = {
+			carnx_is_slavery_never_accepted_trigger = no
+		}
+
+		carnx_slave_008_acquire_slavery_attitude_modifier_effect = { ATTITUDE = slaver }
+
+		ai_chance = {
+			base = 0
+			modifier = {
+				add = carnx_slavery_attitude_slaver_chance
+			}
+		}
+	}
+
+	option = {
+		name = carnx_slave.0008.b
+
+		trigger = {
+			carnx_is_slavery_always_accepted_trigger = no
+		}
+
+		carnx_slave_008_acquire_slavery_attitude_modifier_effect = { ATTITUDE = liberator }
+
+		ai_chance = {
+			base = 0
+			modifier = {
+				add = carnx_slavery_attitude_liberator_chance
+			}
+		}
+	}
+
+	option = {
+		name = carnx_slave.0008.c
+
+		trigger = {
+			carnx_is_slavery_never_accepted_trigger = no
+		}
+
+		carnx_slave_008_acquire_slavery_attitude_modifier_effect = { ATTITUDE = trader }
+
+		ai_chance = {
+			base = 0
+			modifier = {
+				add = carnx_slavery_attitude_trader_chance
+			}
+		}
+	}
+
+	option = {
+		name = carnx_slave.0008.d
+
+		trigger = {
+			carnx_is_slavery_never_accepted_trigger = no
+		}
+
+		carnx_slave_008_acquire_slavery_attitude_modifier_effect = { ATTITUDE = employer }
+
+		ai_chance = {
+			base = 0
+			modifier = {
+				add = carnx_slavery_attitude_employer_chance
+			}
+		}
+	}
+
+	option = {
+		name = carnx_slave.0008.e
+
+		ai_chance = {
+			base = 100
+		}
+	}
+}

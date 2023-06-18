@@ -1,2 +1,6 @@
 ﻿l_english:
  carnx_marked_for_enslavement_modifier:0 "Marked for Enslavement"
+ carnx_slavery_attitude_slaver_modifier:0 "Slaver"
+ carnx_slavery_attitude_liberator_modifier:0 "Liberator"
+ carnx_slavery_attitude_trader_modifier:0 "Slave Trader"
+ carnx_slavery_attitude_employer_modifier:0 "Slave Employer"

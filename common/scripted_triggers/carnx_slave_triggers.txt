@@ -376,6 +376,24 @@ carnx_is_slavery_crime_trigger = {
 	}
 }
 
+carnx_is_slavery_always_accepted_trigger = {
+	faith = {
+		AND = {
+			has_doctrine = carn_doctrine_same_slavery_accepted
+			has_doctrine = carn_doctrine_other_slavery_accepted
+		}
+	}
+}
+
+carnx_is_slavery_never_accepted_trigger = {
+	faith = {
+		NOR = {
+			has_doctrine = carn_doctrine_same_slavery_accepted
+			has_doctrine = carn_doctrine_other_slavery_accepted
+		}
+	}
+}
+
 carnx_can_serve_as_chancellor_trigger = {
 	carnx_can_serve_as_councillor_trigger = {
 		TYPE = councillor_chancellor
@@ -973,4 +991,58 @@ carnx_is_landed_or_family_trigger = {
 
 is_diplomatically_available = {
 	is_busy_in_events_localised = yes
+}
+
+carnx_slavery_attitude_slaver_government_trigger = {
+	has_government = tribal_government
+}
+
+carnx_slavery_attitude_liberator_government_trigger = {
+	has_government = theocracy_government
+}
+
+carnx_slavery_attitude_trader_government_trigger = {
+	has_government = republic_government
+}
+
+carnx_slavery_attitude_employer_government_trigger = {
+	has_government = clan_government
+}
+
+carnx_slavery_attitude_slaver_faith_culture_trigger = {
+	faith = {
+		religion = { is_in_family = rf_pagan }
+	}
+}
+
+carnx_slavery_attitude_liberator_faith_culture_trigger = {
+	faith = {
+		OR = {
+			religion = religion:christianity_religion
+			religion = religion:buddhism_religion
+			religion = religion:jainism_religion
+			religion = religion:taoism_religion
+		}
+	}
+}
+
+carnx_slavery_attitude_trader_faith_culture_trigger = {
+	faith = {
+		OR = {
+			religion = religion:christianity_religion
+			religion = religion:islam_religion
+			religion = religion:judaism_religion
+		}
+	}
+}
+
+carnx_slavery_attitude_employer_faith_culture_trigger = {
+	faith = {
+		OR = {
+			has_doctrine_parameter = carnx_slave_employment_active
+			religion = religion:islam_religion
+			religion = religion:judaism_religion
+			religion = religion:zoroastrianism_religion
+		}
+	}
 }
