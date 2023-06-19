@@ -1,5 +1,11 @@
 # Changelog
 
+## Version 0.12.2
+
+### Bug Fixes
+
+* The AI will no longer send empty ransom offers to the player.
+
 ## Version 0.12.1
 
 ### Compatibility
