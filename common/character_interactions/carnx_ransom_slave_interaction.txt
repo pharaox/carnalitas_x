@@ -352,16 +352,6 @@ carnx_ransom_slave_interaction = {
 	ai_will_do = {
 		base = 0
 
-		# Nothing offerred (-100)
-		modifier = {
-			NOR = {
-				scope:gold = yes
-				scope:current_gold = yes
-				scope:favor = yes
-			}
-			add = -100
-		}
-
 		# Offerred gold (0 to 50)
 		modifier = {
 			scope:gold = yes
@@ -513,6 +503,16 @@ carnx_ransom_slave_interaction = {
 		modifier = {
 			has_relation_nemesis = scope:recipient
 			add = -200
+		}
+
+		# Don't send empty offers
+		modifier = {
+			NOR = {
+				scope:gold = yes
+				scope:current_gold = yes
+				scope:favor = yes
+			}
+			factor = 0
 		}
 
 		# Don't annoy players
