@@ -32,6 +32,18 @@
  carnx_pay_ransom_slave_interaction_desc: "Offer ransom for a [slave|E]"
  recipient_secondary_carnx_pay_ransom_slave_interaction: "Slave"
 
+ # carnx_ransom_slaves_interaction (new)
+ carnx_ransom_slaves_interaction: "Demand Ransom for Slaves"
+ carnx_ransom_slaves_interaction_desc: "Demand ransom for [slaves|E] from rulers that are willing and able to ransom them"
+ actor_secondary_carnx_ransom_slaves_interaction: "Slave"
+ recipient_secondary_carnx_ransom_slaves_interaction: "Payer"
+
+ # carnx_pay_ransom_slaves_interaction (new)
+ carnx_pay_ransom_slaves_interaction: "Offer Ransom for Slaves"
+ carnx_pay_ransom_slaves_interaction_desc: "Offer ransom for [slaves|E] to rulers that are willing to ransom them"
+ actor_secondary_carnx_pay_ransom_slaves_interaction: "Slave"
+ recipient_secondary_carnx_pay_ransom_slaves_interaction: "Owner"
+
  # carnx_gift_slave_interaction
  carnx_gift_slave_interaction: "Gift Slave"
  carnx_gift_slave_interaction_desc: "Give a [slave|E] to [recipient.GetShortUINameNoTooltip] to increase [recipient.GetHerHis] opinion of you"
