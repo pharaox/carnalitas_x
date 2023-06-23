@@ -20,11 +20,11 @@ carnx_can_gift_slave_to_trigger = {
 	carnx_can_interact_with_trigger = { PARTY = $PARTY$ }
 }
 
-carnx_can_ransom_slave_trigger = {
+carnx_can_demand_ransom_slave_from_trigger = {
 	carnx_can_interact_with_trigger = { PARTY = $PARTY$ }
 }
 
-carnx_can_pay_ransom_slave_trigger = {
+carnx_can_offer_ransom_slave_to_trigger = {
 	carnx_can_interact_with_trigger = { PARTY = $PARTY$ }
 }
 
@@ -88,7 +88,7 @@ carnx_valid_buyer_or_seller_trigger = {
 	}
 }
 
-carnx_valid_ransomer_trigger = {
+carnx_valid_payer_or_owner_trigger = {
 	NOT = { this = $PARTY$ }
 	in_diplomatic_range = $PARTY$
 	is_ruler = yes

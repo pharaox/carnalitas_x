@@ -1,9 +1,9 @@
-﻿# Ransom one of your slaves with another ruler that is their relative or relation for either gold or a favor.
+﻿# Demand ransom for one of your slaves from another ruler who is their relative.
 # Scopes: actor is the slave owner, recipient is the payer, seconary_recipient is the slave.
 carnx_ransom_slave_interaction = {
 	category = carnx_interaction_category_slavery
 	desc = carnx_ransom_slave_interaction_desc
-	interface_priority = 50
+	interface_priority = 20
 	common_interaction = yes
 	needs_recipient_to_open = yes
 	icon = carnx_broken_chain
@@ -30,7 +30,7 @@ carnx_ransom_slave_interaction = {
 				random_ruler = {
 					limit = {
 						save_temporary_scope_as = ruler
-						carnx_can_ransom_slave_trigger = { PARTY = scope:actor }
+						carnx_can_demand_ransom_slave_from_trigger = { PARTY = scope:actor }
 						scope:secondary_recipient = {
 							carnx_slave_can_be_ransomed_by_trigger = { CHARACTER = scope:ruler }
 						}
@@ -63,7 +63,7 @@ carnx_ransom_slave_interaction = {
 				scope:actor = { is_ai = no }
 			}
 			scope:recipient = {
-				carnx_valid_ransomer_trigger = { PARTY = scope:actor }
+				carnx_valid_payer_or_owner_trigger = { PARTY = scope:actor }
 			}
 		}
 		scope:actor = {
@@ -80,7 +80,7 @@ carnx_ransom_slave_interaction = {
 			carnx_can_start_interaction_trigger = yes
 		}
 		scope:recipient = {
-			carnx_can_ransom_slave_trigger = { PARTY = scope:actor }
+			carnx_can_demand_ransom_slave_from_trigger = { PARTY = scope:actor }
 		}
 	}
 
@@ -104,7 +104,7 @@ carnx_ransom_slave_interaction = {
 			scope:recipient = {
 				save_temporary_scope_as = payer
 				gold < scope:secondary_recipient.carnx_slave_ransom_cost_value
-				gold >= 0
+				gold > 0
 			}
 		}
 		flag = current_gold

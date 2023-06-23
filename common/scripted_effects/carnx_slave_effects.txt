@@ -1425,6 +1425,16 @@ carnx_get_valid_buyers_or_sellers_effect = {
 	}
 }
 
+carnx_get_valid_payers_or_owners_effect = {
+	save_temporary_scope_as = party
+	every_ruler = {
+		limit = {
+			carnx_valid_payer_or_owner_trigger = { PARTY = scope:party }
+		}
+		add_to_list = $LIST$
+	}
+}
+
 carnx_potentially_acquire_slaver_trait_effect = {
 	# Increment slaver counter
 	if = {

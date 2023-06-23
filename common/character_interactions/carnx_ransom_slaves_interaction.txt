@@ -1,0 +1,193 @@
+﻿# Demand ransom for some of your slaves from other rulers who are their relatives.
+# Scopes: actor / recipient is the slave owner, secondary_recipient is the payer, seconary_actor is the slave.
+# Human player only.
+carnx_ransom_slaves_interaction = {
+	category = carnx_interaction_category_slavery
+	desc = carnx_ransom_slaves_interaction_desc
+	interface_priority = 20
+	common_interaction = yes
+	needs_recipient_to_open = no
+	icon = carnx_broken_chain
+
+	greeting = positive
+	send_name = carnx_ransom_slaves_interaction
+
+	redirect = {
+		if = {
+			limit = { NOT = { scope:actor = scope:recipient } }
+			scope:recipient = {
+				save_scope_as = secondary_actor
+			}
+			scope:actor = {
+				save_scope_as = recipient
+			}
+		}
+	}
+
+	populate_actor_list = {
+		if = {
+			limit = {
+				NOT = { exists = scope:secondary_recipient }
+			}
+			scope:actor = {
+				carnx_get_valid_payers_or_owners_effect = { LIST = valid_payers }
+				every_relation = {
+					type = slave
+					limit = {
+						carnx_slave_can_be_freed_trigger = yes
+						save_temporary_scope_as = slave
+						any_in_list = {
+							list = valid_payers
+							is_ai = yes
+							save_temporary_scope_as = payer
+							carnx_can_demand_ransom_slave_from_trigger = { PARTY = scope:actor }
+							scope:slave = {
+								carnx_slave_can_be_ransomed_by_trigger = { CHARACTER = scope:payer }
+							}
+							save_temporary_opinion_value_as = {
+								name = opinion_of_slave
+								target = scope:slave
+							}
+							OR = {
+								AND = {
+									gold > 0
+									carnx_ransom_slave_gold_ai_accept_value > 0
+								}
+								AND = {
+									scope:actor = {
+										can_add_hook = {
+											target = scope:payer
+											type = favor_hook
+										}
+									}
+									carnx_ransom_slave_favor_ai_accept_value > 0
+								}
+							}
+						}
+					}
+					add_to_list = characters
+				}
+			}
+		}
+	}
+
+	populate_recipient_list = {
+		scope:actor = {
+			carnx_get_valid_payers_or_owners_effect = { LIST = valid_payers }
+		}
+		scope:secondary_actor = {
+			save_scope_as = slave
+		}
+		ordered_in_list = {
+			list = valid_payers
+			limit = {
+				is_ai = yes
+				save_temporary_scope_as = payer
+				carnx_can_demand_ransom_slave_from_trigger = { PARTY = scope:actor }
+				scope:slave = {
+					carnx_slave_can_be_ransomed_by_trigger = { CHARACTER = scope:payer }
+				}
+				save_temporary_opinion_value_as = {
+					name = opinion_of_slave
+					target = scope:slave
+				}
+				OR = {
+					AND = {
+						gold > 0
+						carnx_ransom_slave_gold_ai_accept_value > 0
+					}
+					AND = {
+						scope:actor = {
+							can_add_hook = {
+								target = scope:payer
+								type = favor_hook
+							}
+						}
+						carnx_ransom_slave_favor_ai_accept_value > 0
+					}
+				}
+			}
+			order_by = {
+				save_temporary_scope_as = payer
+				value = scope:slave.carnx_slave_ransom_cost_value
+				max = gold
+			}
+			max = carnx_number_of_potential_buyers_value
+			check_range_bounds = no
+			add_to_list = characters
+		}
+	}
+
+	is_shown = {
+		NOT = { has_game_rule = carn_slavery_content_disabled }
+		scope:actor = scope:recipient
+		scope:actor = {
+			carnx_is_slave_owner_trigger = yes
+		}
+		trigger_if = {
+			limit = { exists = scope:secondary_actor }
+			scope:actor = {
+				has_relation_slave = scope:secondary_actor
+			}
+		}
+	}
+
+	is_valid_showing_failures_only = {
+		scope:actor = {
+			carnx_can_start_interaction_trigger = yes
+		}
+		trigger_if = {
+			limit = { exists = scope:secondary_actor }
+			scope:secondary_actor = {
+				carnx_slave_can_be_freed_trigger = yes
+			}
+		}
+	}
+
+	on_accept = {
+		show_as_tooltip = {
+			scope:actor = { save_scope_as = owner }
+			scope:secondary_actor = { save_scope_as = slave }
+			scope:secondary_recipient = { save_scope_as = payer }
+			scope:payer = {
+				save_temporary_opinion_value_as = {
+					name = opinion_of_slave
+					target = scope:slave
+				}
+				if = {
+					limit = {
+						gold >= scope:slave.carnx_slave_ransom_cost_value
+						carnx_ransom_slave_gold_ai_accept_value > 0
+					}
+					save_scope_value_as = { name = gold value = yes }
+					save_scope_value_as = { name = current_gold value = no }
+					save_scope_value_as = { name = favor value = no }
+				}
+				else_if = {
+					limit = {
+						gold < scope:slave.carnx_slave_ransom_cost_value
+						gold > 0
+						carnx_ransom_slave_gold_ai_accept_value > 0
+					}
+					save_scope_value_as = { name = gold value = no }
+					save_scope_value_as = { name = current_gold value = yes }
+					save_scope_value_as = { name = favor value = no }
+				}
+				else = {
+					save_scope_value_as = { name = gold value = no }
+					save_scope_value_as = { name = current_gold value = no }
+					save_scope_value_as = { name = favor value = yes }
+				}
+			}
+			carnx_ransom_slave_interaction_effect = yes
+		}
+		open_interaction_window = {
+			interaction = carnx_ransom_slave_interaction
+			actor = scope:actor
+			recipient = scope:secondary_recipient
+			secondary_recipient = scope:secondary_actor
+		}
+	}
+
+	auto_accept = yes
+}

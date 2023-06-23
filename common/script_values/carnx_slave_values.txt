@@ -972,6 +972,610 @@ carnx_sell_slave_ai_accept_value = {
 	}
 }
 
+carnx_ransom_slave_none_ai_accept_value = {
+	save_temporary_scope_as = payer
+	value = 0
+
+	# Avoid spending money if at war
+	if = {
+		limit = {
+			scope:payer = {
+				is_at_war = yes
+			}
+		}
+		add = -50
+	}
+
+	# Opinion of slave
+	add = {
+		value = scope:opinion_of_slave
+		multiply = 0.25
+		floor = yes
+	}
+
+	# Compassion (-25 to 25 depending on compassion)
+	add = {
+		value = scope:payer.ai_compassion
+		multiply = 0.25
+		floor = yes
+	}
+
+	# Slavery attitude
+	# Liberators more likely to offer ransom, slavers less likely
+	if = {
+		limit = {
+			scope:payer = {
+				has_character_modifier = carnx_slavery_attitude_liberator_modifier
+			}
+		}
+		add = carnx_ai_positive_attitude_impact_value
+	}
+	if = {
+		limit = {
+			scope:payer = {
+				has_character_modifier = carnx_slavery_attitude_slaver_modifier
+			}
+		}
+		add = carnx_ai_negative_attitude_impact_value
+	}
+
+	# Family and relations (25 to 100 depending on how close the relation)
+	# Eager to pay ransom for family and relations
+	if = {
+		limit = {
+			scope:slave = {
+				carnx_is_family_or_positive_relation_trigger = { CHARACTER = scope:payer }
+			}
+		}
+		add = {
+			value = 25
+			if = {
+				limit = {
+					scope:slave = {
+						OR = {
+							is_child_of = scope:payer
+							has_relation_best_friend = scope:payer
+							has_relation_soulmate = scope:payer
+						}
+					}
+				}
+				multiply = 4
+			}
+			else_if = {
+				limit = {
+					scope:slave = {
+						OR = {
+							is_close_family_of = scope:payer
+							has_relation_friend = scope:payer
+							has_relation_lover = scope:payer
+							has_secret_relation_lover = scope:payer
+							has_relation_crush = scope:payer
+							is_spouse_of = scope:payer
+						}
+					}
+				}
+				multiply = 3
+			}
+			else_if = {
+				limit = {
+					scope:slave = {
+						is_close_or_extended_family_of = scope:payer
+					}
+				}
+				multiply = 2
+			}
+		}
+	}
+
+	# Lacking councillors or court positions (PIV for max skill or aptitude above cutoff)
+	save_temporary_scope_as = liege
+	add = {
+		value = scope:slave.carnx_max_councillor_skill_difference_value
+		multiply = carnx_ai_positive_skill_impact_halved_value
+	}
+	add = {
+		value = scope:slave.carnx_max_aptitude_difference_value
+		multiply = carnx_ai_positive_aptitude_impact_halved_value
+	}
+
+	# Lacking knights or commanders (PIV for skill above cutoff)
+	if = {
+		limit = {
+			scope:slave = {
+				carnx_can_serve_as_knight_trigger = { RULER = scope:payer }
+			}
+		}
+		add = {
+			value = scope:slave.prowess
+			subtract = carnx_default_skill_threshold
+			multiply = carnx_ai_positive_prowess_impact_halved_value
+		}
+	}
+	if = {
+		limit = {
+			scope:slave = {
+				carnx_can_serve_as_commander_trigger = { RULER = scope:payer }
+			}
+		}
+		add = {
+			value = scope:slave.carnx_commander_skill_value
+			multiply = carnx_ai_positive_cs_impact_halved_value
+		}
+	}
+
+	# Claims (PIV if useful claims on neighbouring realms)
+	if = {
+		limit = {
+			scope:slave = {
+				carnx_has_useful_claims_trigger = { RULER = scope:payer }
+			}
+		}
+		add = carnx_ai_positive_claims_impact_halved_value
+	}
+
+	# Execute reason, rival, cheating spouse (-75) or nemesis (-150)
+	if = {
+		limit = {
+			scope:payer = {
+				carnx_has_execute_reason_slave_trigger = { CHARACTER = scope:slave RULER = scope:payer }
+			}
+		}
+		add = {
+			value = -75
+			if = {
+				limit = {
+					scope:payer = {
+						has_relation_nemesis = scope:slave
+					}
+				}
+				multiply = 2
+			}
+		}
+	}
+
+	# Avoid doing business with rivals or nemesises
+	if = {
+		limit = {
+			scope:payer = {
+				has_relation_rival = scope:actor
+			}
+		}
+		add = -100
+	}
+	if = {
+		limit = {
+			scope:payer = {
+				has_relation_nemesis = scope:actor
+			}
+		}
+		add = -200
+	}
+
+	# Intimidated or cowed by actor (25 or 50)
+	if = {
+		limit = {
+			scope:payer = {
+				target_is_liege_or_above = scope:actor
+				has_dread_level_towards = {
+					target = scope:actor
+					level = 1
+				}
+			}
+		}
+		add = intimidated_halved_reason_value
+	}
+	if = {
+		limit = {
+			scope:payer = {
+				target_is_liege_or_above = scope:actor
+				has_dread_level_towards = {
+					target = scope:actor
+					level = 2
+				}
+			}
+		}
+		add = cowed_halved_reason_value
+	}
+}
+
+carnx_ransom_slave_gold_ai_accept_value = {
+	value = carnx_ransom_slave_none_ai_accept_value
+
+	# Asked for gold (0 to -50)
+	add = {
+		value = -25
+		add = {
+			value = scope:payer.ai_greed
+			multiply = -0.25
+			floor = yes
+		}
+	}
+}
+
+carnx_ransom_slave_favor_ai_accept_value = {
+	value = carnx_ransom_slave_none_ai_accept_value
+
+	# Asked for a favor (-25 or -50)
+	if = {
+		limit = { scope:payer.top_liege = scope:actor.top_liege	}
+		add = -50
+	}
+	else = {
+		add = -25
+	}
+}
+
+carnx_pay_ransom_slave_none_ai_accept_value = {
+	save_temporary_scope_as = slave
+	value = 0
+
+	# Slave recently bought
+	if = {
+		limit = {
+			scope:slave = {
+				has_character_flag = carnx_slave_recently_bought
+			}
+		}
+		add = -100
+	}
+
+	# Opinion of slave
+	add = {
+		value = scope:opinion_of_slave
+		multiply = 0.25
+		floor = yes
+	}
+
+	# Compassion (-25 to 25 depending on compassion)
+	add = {
+		value = scope:owner.ai_compassion
+		multiply = 0.25
+		floor = yes
+	}
+
+	# Slavery crime (-1000) or shunned by faith (-50)
+	if = {
+		limit = {
+			scope:owner = {
+				carnx_is_slavery_crime_trigger = { CHARACTER = scope:slave }
+			}
+		}
+		add = carnx_ai_positive_crime_impact_reduced_value
+	}
+	if = {
+		limit = {
+			scope:owner = {
+				carnx_is_slavery_shunned_trigger = { CHARACTER = scope:slave }
+			}
+		}
+		add = carnx_ai_positive_shunned_impact_reduced_value
+	}
+
+	# Slavery attitude
+	# Liberators more likely to offer ransom, slavers less likely
+	if = {
+		limit = {
+			scope:owner = {
+				has_character_modifier = carnx_slavery_attitude_liberator_modifier
+			}
+		}
+		add = carnx_ai_positive_attitude_impact_value
+	}
+	if = {
+		limit = {
+			scope:owner = {
+				has_character_modifier = carnx_slavery_attitude_slaver_modifier
+			}
+		}
+		add = carnx_ai_negative_attitude_impact_value
+	}
+
+	# Family and relations (-25 to -100 depending on how close the relation)
+	# Reluctant to ransom family and relations, wants to free them instead
+	if = {
+		limit = {
+			scope:slave = {
+				carnx_is_family_or_positive_relation_trigger = { CHARACTER = scope:owner }
+			}
+		}
+		add = {
+			value = -25
+			if = {
+				limit = {
+					scope:slave = {
+						OR = {
+							is_child_of = scope:owner
+							has_relation_best_friend = scope:owner
+							has_relation_soulmate = scope:owner
+						}
+					}
+				}
+				multiply = 4
+			}
+			else_if = {
+				limit = {
+					scope:slave = {
+						OR = {
+							is_close_family_of = scope:owner
+							has_relation_friend = scope:owner
+							has_relation_lover = scope:owner
+							has_secret_relation_lover = scope:owner
+							has_relation_crush = scope:owner
+							is_spouse_of = scope:owner
+						}
+					}
+				}
+				multiply = 3
+			}
+			else_if = {
+				limit = {
+					scope:slave = {
+						is_close_or_extended_family_of = scope:owner
+					}
+				}
+				multiply = 2
+			}
+		}
+	}
+
+	# Employed as councillor (NIV doubled), court position, knight / commander, or in some other way (NIV)
+	if = {
+		limit = {
+			scope:slave = {
+				is_councillor_of = scope:owner
+			}
+		}
+		add = { value = carnx_ai_negative_employed_impact_halved_value multiply = 2 }
+	}
+	if = {
+		limit = {
+			scope:slave = {
+				AND = {
+					has_any_court_position = yes
+					any_court_position_employer = { this = scope:owner }
+				}
+			}
+		}
+		add = { value = carnx_ai_negative_employed_impact_halved_value multiply = 2 }
+	}
+	if = {
+		limit = {
+			scope:slave = {
+				OR = {
+					is_knight_of = scope:owner
+					is_commanding_army = yes
+				}
+			}
+		}
+		add = carnx_ai_negative_employed_impact_halved_value
+	}
+	if = {
+		limit = {
+			scope:slave = {
+				carnx_has_important_role_trigger = { RULER = scope:owner }
+			}
+		}
+		add = carnx_ai_negative_employed_impact_halved_value
+	}
+
+	# Lacking councillors or court positions (NIV for max skill or aptitude above cutoff)
+	scope:owner = { save_temporary_scope_as = liege }
+	add = {
+		value = scope:slave.carnx_max_councillor_skill_difference_value
+		multiply = carnx_ai_negative_skill_impact_halved_value
+	}
+	add = {
+		value = scope:slave.carnx_max_aptitude_difference_value
+		multiply = carnx_ai_negative_aptitude_impact_halved_value
+	}
+
+	# Lacking knights or commanders (NIV for skill above cutoff)
+	if = {
+		limit = {
+			scope:slave = {
+				carnx_can_serve_as_knight_trigger = { RULER = scope:owner }
+			}
+		}
+		add = {
+			value = scope:slave.prowess
+			subtract = carnx_default_skill_threshold
+			multiply = carnx_ai_negative_prowess_impact_halved_value
+		}
+	}
+	if = {
+		limit = {
+			scope:slave = {
+				carnx_can_serve_as_commander_trigger = { RULER = scope:owner }
+			}
+		}
+		add = {
+			value = scope:slave.carnx_commander_skill_value
+			multiply = carnx_ai_negative_cs_impact_halved_value
+		}
+	}
+
+	# Claims (NIV if useful claims on neighbouring realms)
+	if = {
+		limit = {
+			scope:slave = {
+				carnx_has_useful_claims_trigger = { RULER = scope:owner }
+			}
+		}
+		add = carnx_ai_negative_claims_impact_halved_value
+	}
+
+	# Attraction (0 to NIV depending on attraction, doubled for lustful, halved for chaste)
+	if = {
+		limit = {
+			scope:slave = {
+				carnx_is_attractive_to_character_trigger = { CHARACTER = scope:owner }
+			}
+		}
+		add = {
+			value = scope:slave.attraction
+			divide = high_positive_attraction
+			multiply = carnx_ai_negative_attraction_impact_halved_value
+			if = {
+				limit = { scope:owner = { has_trait = lustful } }
+				multiply = 2
+			}
+			else_if = {
+				limit = { scope:owner = { has_trait = chaste } }
+				multiply = 0.5
+			}
+			floor = yes
+		}
+	}
+
+	# Female (NIV if a visibly fertile female)
+	if = {
+		limit = {
+			scope:slave = {
+				carnx_is_visibly_fertile_female_trigger = yes
+			}
+		}
+		add = carnx_ai_negative_female_impact_halved_value
+	}
+
+	# Age (up to PIV depending on age)
+	if = {
+		limit = {
+			OR = {
+				scope:slave.carnx_age_value < carnx_prime_age_min_value
+				scope:slave.carnx_age_value > carnx_prime_age_max_value
+			}
+		}
+		add = {
+			value = 0
+			if = {
+				limit = { scope:slave.carnx_age_value < carnx_prime_age_min_value }
+				add = {
+					value = carnx_prime_age_min_value
+					subtract = scope:slave.carnx_age_value
+					divide = {
+						value = carnx_prime_age_min_value
+						subtract = carnx_young_zero_age_value
+					}
+					multiply = carnx_ai_positive_age_impact_halved_value
+					floor = yes
+				}
+			}
+			else_if = {
+				limit = { scope:slave.carnx_age_value > carnx_prime_age_max_value }
+				add = {
+					value = scope:slave.carnx_age_value
+					subtract = carnx_prime_age_max_value
+					divide = {
+						value = carnx_old_zero_age_value
+						subtract = carnx_prime_age_max_value
+					}
+					multiply = carnx_ai_positive_age_impact_halved_value
+					floor = yes
+				}
+			}
+		}
+	}
+
+	# Execute reason, rival, cheating spouse (-75) or nemesis (-150)
+	if = {
+		limit = {
+			scope:owner = {
+				carnx_has_execute_reason_slave_trigger = { CHARACTER = scope:slave RULER = scope:owner }
+			}
+		}
+		add = {
+			value = -75
+			if = {
+				limit = {
+					scope:owner = {
+						has_relation_nemesis = scope:slave
+					}
+				}
+				multiply = 2
+			}
+		}
+	}
+
+	# Avoid doing business with rivals or nemesises
+	if = {
+		limit = {
+			scope:owner = {
+				has_relation_rival = scope:actor
+			}
+		}
+		add = -100
+	}
+	if = {
+		limit = {
+			scope:owner = {
+				has_relation_nemesis = scope:actor
+			}
+		}
+		add = -200
+	}
+
+	# Intimidated or cowed by actor (25 or 50)
+	if = {
+		limit = {
+			scope:owner = {
+				target_is_liege_or_above = scope:actor
+				has_dread_level_towards = {
+					target = scope:actor
+					level = 1
+				}
+			}
+		}
+		add = intimidated_halved_reason_value
+	}
+	if = {
+		limit = {
+			scope:owner = {
+				target_is_liege_or_above = scope:actor
+				has_dread_level_towards = {
+					target = scope:actor
+					level = 2
+				}
+			}
+		}
+		add = cowed_halved_reason_value
+	}
+}
+
+carnx_pay_ransom_slave_gold_ai_accept_value = {
+	value = carnx_pay_ransom_slave_none_ai_accept_value
+
+	# Offerred gold (0 to 50)
+	if = {
+		limit = {
+			scope:actor = {
+				save_temporary_scope_as = payer
+				gold >= scope:slave.carnx_slave_ransom_cost_value
+			}
+		}
+		add = 50
+	}
+	else_if = {
+		limit = {
+			scope:actor = {
+				save_temporary_scope_as = payer
+				gold >= scope:slave.carnx_slave_half_ransom_cost_value
+			}
+			NOT = { scope:owner.ai_greed >= medium_positive_ai_value }
+		}
+		add = 25
+	}
+}
+
+carnx_pay_ransom_slave_favor_ai_accept_value = {
+	value = carnx_pay_ransom_slave_none_ai_accept_value
+
+	# Offerred a favor (0 or 50)
+	if = {
+		limit = { scope:owner.top_liege = scope:actor.top_liege	}
+		add = 50
+	}
+}
+
 carnx_commander_skill_value = {
 	value = martial
 	subtract = carnx_default_skill_threshold
