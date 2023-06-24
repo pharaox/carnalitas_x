@@ -37,9 +37,10 @@ carnx_slave.0002 = {
 	desc = carnx_slave.0002.desc
 	hidden = yes
 
-	theme = dungeon
+	theme = seduction
 	left_portrait = {
 		character = scope:slave
+		animation = flirtation
 	}
 
 	trigger = {

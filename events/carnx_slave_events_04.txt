@@ -17,7 +17,7 @@ carnx_slave.0004 = {
 	desc = carnx_slave.0004.desc
 	hidden = yes
 
-	theme = dungeon
+	theme = faith
 
 	trigger = {
 		NOT = { has_game_rule = carn_slavery_content_disabled }

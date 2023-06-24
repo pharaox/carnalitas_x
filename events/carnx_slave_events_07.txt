@@ -6,7 +6,7 @@ carnx_slave.0007 = {
 	title = carnx_slave.0007.t
 	desc = carnx_slave.0007.desc
 
-	theme = prison
+	theme = faith
 	left_portrait = {
 		character = root
 		animation = personality_compassionate
