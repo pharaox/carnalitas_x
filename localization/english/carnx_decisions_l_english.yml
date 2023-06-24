@@ -1,0 +1,6 @@
+﻿l_english:
+ carnx_choose_slavery_attitude_decision:0 "Choose Slavery Attitude"
+ carnx_choose_slavery_attitude_decision_desc:0 "I can choose my attitude towards slavery to better take advantage of it."
+ carnx_choose_slavery_attitude_decision_tooltip:0 "You will be able to choose your attitude towards [slavery|E], one of $carnx_slavery_attitude_slaver_modifier$, $carnx_slavery_attitude_liberator_modifier$, $carnx_slavery_attitude_trader_modifier$, or $carnx_slavery_attitude_employer_modifier$. Each attitude gives you a minor modifier and a unique slavery-related perk."
+ carnx_choose_slavery_attitude_decision.tt:0 "$carnx_choose_slavery_attitude_decision_tooltip$"
+ carnx_choose_slavery_attitude_decision_confirm:0 "Choose Slavery Attitude"

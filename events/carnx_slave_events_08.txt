@@ -1,31 +1,52 @@
 ﻿namespace = carnx_slave
 
 scripted_trigger carnx_slave_0008_valid_liege_trigger = {
-	is_available_ai_adult = yes
-	NOR = {
-		has_character_modifier = carnx_slavery_attitude_slaver_modifier
-		has_character_modifier = carnx_slavery_attitude_liberator_modifier
-		has_character_modifier = carnx_slavery_attitude_trader_modifier
-		has_character_modifier = carnx_slavery_attitude_employer_modifier
-	}
+	is_physically_able_adult = yes
 }
 
 scripted_effect carnx_slave_008_acquire_slavery_attitude_modifier_effect = {
-	add_character_modifier = {
-		modifier = carnx_slavery_attitude_$ATTITUDE$_modifier
-		years = 10
+	if = {
+		limit = {
+			NOT = { has_character_modifier = carnx_slavery_attitude_$ATTITUDE$_modifier }
+		}
+		carnx_slave_008_remove_slavery_attitude_modifier_effect = yes
+		add_character_modifier = carnx_slavery_attitude_$ATTITUDE$_modifier
+		hidden_effect = {
+			carnx_debug_save_scopes_effect = { CHARACTER = this PREFIX = acquired_$ATTITUDE$ }
+			carnx_debug_log_effect = { MSG = carnx_debug_msg_character_acquired_$ATTITUDE$_modifier }
+		}
 	}
-	carnx_debug_save_scopes_effect = { CHARACTER = this PREFIX = acquired_$ATTITUDE$ }
-	carnx_debug_log_effect = { MSG = carnx_debug_msg_character_acquired_$ATTITUDE$_modifier }
+}
+
+scripted_effect carnx_slave_008_remove_slavery_attitude_modifier_effect = {
+	if = {
+		limit = { has_character_modifier = carnx_slavery_attitude_slaver_modifier }
+		remove_character_modifier = carnx_slavery_attitude_slaver_modifier
+	}
+	else_if = {
+		limit = { has_character_modifier = carnx_slavery_attitude_liberator_modifier }
+		remove_character_modifier = carnx_slavery_attitude_liberator_modifier
+	}
+	else_if = {
+		limit = { has_character_modifier = carnx_slavery_attitude_trader_modifier }
+		remove_character_modifier = carnx_slavery_attitude_trader_modifier
+	}
+	else_if = {
+		limit = { has_character_modifier = carnx_slavery_attitude_employer_modifier }
+		remove_character_modifier = carnx_slavery_attitude_employer_modifier
+	}
 }
 
 carnx_slave.0008 = {
 	type = character_event
 	title = carnx_slave.0008.t
 	desc = carnx_slave.0008.desc
-	hidden = yes
 
-	theme = dungeon
+	theme = realm
+	left_portrait = {
+		character = root
+		animation = personality_rational
+	}
 
 	trigger = {
 		NOT = { has_game_rule = carn_slavery_content_disabled }
@@ -36,8 +57,12 @@ carnx_slave.0008 = {
 		name = carnx_slave.0008.a
 
 		trigger = {
-			carnx_is_slavery_never_accepted_trigger = no
+			custom_description = {
+				text = "carnx_slavery_is_never_accepted"
+				carnx_is_slavery_never_accepted_trigger = no
+			}
 		}
+		show_as_unavailable = { always = yes }
 
 		carnx_slave_008_acquire_slavery_attitude_modifier_effect = { ATTITUDE = slaver }
 
@@ -53,8 +78,12 @@ carnx_slave.0008 = {
 		name = carnx_slave.0008.b
 
 		trigger = {
-			carnx_is_slavery_always_accepted_trigger = no
+			custom_description = {
+				text = "carnx_slavery_is_always_accepted"
+				carnx_is_slavery_always_accepted_trigger = no
+			}
 		}
+		show_as_unavailable = { always = yes }
 
 		carnx_slave_008_acquire_slavery_attitude_modifier_effect = { ATTITUDE = liberator }
 
@@ -70,8 +99,12 @@ carnx_slave.0008 = {
 		name = carnx_slave.0008.c
 
 		trigger = {
-			carnx_is_slavery_never_accepted_trigger = no
+			custom_description = {
+				text = "carnx_slavery_is_never_accepted"
+				carnx_is_slavery_never_accepted_trigger = no
+			}
 		}
+		show_as_unavailable = { always = yes }
 
 		carnx_slave_008_acquire_slavery_attitude_modifier_effect = { ATTITUDE = trader }
 
@@ -87,8 +120,12 @@ carnx_slave.0008 = {
 		name = carnx_slave.0008.d
 
 		trigger = {
-			carnx_is_slavery_never_accepted_trigger = no
+			custom_description = {
+				text = "carnx_slavery_is_never_accepted"
+				carnx_is_slavery_never_accepted_trigger = no
+			}
 		}
+		show_as_unavailable = { always = yes }
 
 		carnx_slave_008_acquire_slavery_attitude_modifier_effect = { ATTITUDE = employer }
 
@@ -102,6 +139,8 @@ carnx_slave.0008 = {
 
 	option = {
 		name = carnx_slave.0008.e
+
+		carnx_slave_008_remove_slavery_attitude_modifier_effect = yes
 
 		ai_chance = {
 			base = 100

@@ -185,8 +185,13 @@ carnx_slave_ask_price_value = {
 	# Make it higher for the player
 	if = {
 		limit = {
-			exists = scope:actor
-			scope:actor = { is_ai = no }
+			trigger_if = {
+				limit = { exists = scope:actor }
+				scope:actor = { is_ai = no }
+			}
+			trigger_else = {
+				root = { is_ai = no }
+			}
 		}
 		multiply = carnx_slave_ask_price_player_multiplier
 	}
@@ -208,8 +213,13 @@ carnx_slave_ask_price_value = {
 	# Traders get better prices
 	if = {
 		limit = {
-			exists = scope:actor
-			scope:actor = { has_character_modifier = carnx_slavery_attitude_trader_modifier }
+			trigger_if = {
+				limit = { exists = scope:actor }
+				scope:actor = { has_character_modifier = carnx_slavery_attitude_trader_modifier }
+			}
+			trigger_else = {
+				root = { has_character_modifier = carnx_slavery_attitude_trader_modifier }
+			}
 		}
 		multiply = carnx_slave_price_trader_buyer_multiplier
 	}
@@ -231,8 +241,13 @@ carnx_slave_bid_price_value = {
 	# Make it lower for the player
 	if = {
 		limit = {
-			exists = scope:actor
-			scope:actor = { is_ai = no }
+			trigger_if = {
+				limit = { exists = scope:actor }
+				scope:actor = { is_ai = no }
+			}
+			trigger_else = {
+				root = { is_ai = no }
+			}
 		}
 		multiply = carnx_slave_bid_price_player_multiplier
 	}
@@ -254,8 +269,13 @@ carnx_slave_bid_price_value = {
 	# Traders get better prices
 	if = {
 		limit = {
-			exists = scope:actor
-			scope:actor = { has_character_modifier = carnx_slavery_attitude_trader_modifier }
+			trigger_if = {
+				limit = { exists = scope:actor }
+				scope:actor = { has_character_modifier = carnx_slavery_attitude_trader_modifier }
+			}
+			trigger_else = {
+				root = { has_character_modifier = carnx_slavery_attitude_trader_modifier }
+			}
 		}
 		multiply = carnx_slave_price_trader_seller_multiplier
 	}
