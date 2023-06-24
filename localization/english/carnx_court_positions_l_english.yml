@@ -1,5 +1,6 @@
 ﻿l_english:
  carnx_slave_salary_mod:0 "[slave|E]"
+ carnx_slave_salary_employer_mod:0 "[slave|E] employed by $carnx_slavery_attitude_employer_modifier$"
 
  carnx_court_position_skill_attraction:0 "[attraction|E]"
  carnx_court_position_beauty_good_3_trait:0 "[GetTrait('beauty_good_3').GetName( ROOT.Char )]"

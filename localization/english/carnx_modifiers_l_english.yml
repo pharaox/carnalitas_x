@@ -1,6 +1,14 @@
 ﻿l_english:
  carnx_marked_for_enslavement_modifier:0 "Marked for Enslavement"
+
  carnx_slavery_attitude_slaver_modifier:0 "Slaver"
+ carnx_slavery_attitude_slaver_modifier_desc:0 "This character likes enslaving prisoners and selling them to willing buyers.\n$EFFECT_LIST_BULLET$ More likely to capture rather than kill characters during sieges and raids"
+
  carnx_slavery_attitude_liberator_modifier:0 "Liberator"
+ carnx_slavery_attitude_liberator_modifier_desc:0 "This character likes freeing, liberating, and ransoming slaves.\n$EFFECT_LIST_BULLET$ Can pay ransom for slaves of their own faith, even if they are not relatives"
+
  carnx_slavery_attitude_trader_modifier:0 "Slave Trader"
+ carnx_slavery_attitude_trader_modifier_desc:0 "This character tries to make profit from buying and selling slaves.\n$EFFECT_LIST_BULLET$ Gets more favorable prices when buying and selling slaves"
+
  carnx_slavery_attitude_employer_modifier:0 "Slave Employer"
+ carnx_slavery_attitude_employer_modifier_desc:0 "This character likes employing slaves since he considers them more loyal.\n$EFFECT_LIST_BULLET$ Can employ slaves in additional occupations and for lower salaries"

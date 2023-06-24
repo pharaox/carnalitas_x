@@ -87,7 +87,8 @@ carnx_slave_price_trader_buyer_multiplier = 0.9
 carnx_slave_price_trader_seller_multiplier = 1.11
 
 # Multiplier for the court position salary if held by a slave
-carnx_court_position_slave_salary_multiplier = 0.25
+carnx_court_position_salary_slave_regular_multiplier = 0.5
+carnx_court_position_salary_slave_employer_multiplier = 0.25
 
 # Skill threshold
 carnx_default_skill_threshold = decent_skill_rating
@@ -117,7 +118,8 @@ carnx_base_raid_mark_for_enslavement_chance = 50
 carnx_base_siege_mark_for_enslavement_chance = 0
 
 # Slave price thresholds
-carnx_desirable_for_capture_slave_price_threshold = 15
+carnx_desirable_for_capture_slave_price_regular_threshold = 20
+carnx_desirable_for_capture_slave_price_slaver_threshold = 10
 
 # Age min and max values
 carnx_prime_age_min_value = 16

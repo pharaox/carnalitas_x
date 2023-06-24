@@ -20,10 +20,10 @@ desirable_for_capture_trigger = {
 				NOT = { carnx_is_slavery_crime_trigger = { CHARACTER = prev } }
 			}
 			OR = {
-				carnx_slave_base_price_value >= carnx_desirable_for_capture_slave_price_threshold
+				carnx_slave_base_price_value >= carnx_desirable_for_capture_slave_price_regular_threshold
 				scope:occupant = {
-					carnx_is_slavery_accepted_trigger = { CHARACTER = prev }
 					has_character_modifier = carnx_slavery_attitude_slaver_modifier
+					carnx_slave_base_price_value >= carnx_desirable_for_capture_slave_price_slaver_threshold
 				}
 			}
 		}

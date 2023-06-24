@@ -1,0 +1,55 @@
+﻿carnx_choose_slavery_attitude_decision = {
+	desc = carnx_choose_slavery_attitude_decision_desc
+	picture = "gfx/interface/illustrations/decisions/decision_misc.dds"
+
+	cooldown = { years = 10 }
+
+	is_shown = {
+		NOT = { has_game_rule = carn_slavery_content_disabled }
+	}
+
+	is_valid_showing_failures_only = {
+		is_physically_able_adult = yes
+	}
+
+	effect = {
+		custom_tooltip = carnx_choose_slavery_attitude_decision.tt
+		trigger_event = carnx_slave.0008
+	}
+
+	cost = {
+		piety = medium_piety_value
+	}
+
+	ai_check_interval = 120
+
+	ai_potential = {
+		is_physically_able_adult = yes
+
+		# Choose a slavery attitude the first time it's available,
+		# only choose a new one if the current one is incompatible with doctrines
+		trigger_if = {
+			limit = {
+				OR = {
+					has_character_modifier = carnx_slavery_attitude_slaver_modifier
+					has_character_modifier = carnx_slavery_attitude_trader_modifier
+					has_character_modifier = carnx_slavery_attitude_employer_modifier
+				}
+			}
+			carnx_is_slavery_never_accepted_trigger = yes
+		}
+		trigger_else_if = {
+			limit = {
+				has_character_modifier = carnx_slavery_attitude_liberator_modifier
+			}
+			carnx_is_slavery_always_accepted_trigger = yes
+		}
+		trigger_else = {
+			always = yes
+		}
+	}
+
+	ai_will_do = {
+		base = 100
+	}
+}

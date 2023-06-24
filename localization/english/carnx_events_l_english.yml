@@ -44,8 +44,8 @@
  carnx_slave.0007.desc:0 "For years, I have been freeing people from slavery, rather than keeping them in bondage or selling them. I recently heard people call me "liberator" with respect in their voice. This fills my heart with joy. I should continue being a force for good and free even more."
  carnx_slave.0007.a:0 "May [ROOT.Char.GetFaith.HighGodName] help me."
 
- carnx_slave.0008.t:0 "Slavery Attitude"
- carnx_slave.0008.desc:0 "I can acquire a slavery attitude modifier."
+ carnx_slave.0008.t:0 "Choose Slavery Attitude"
+ carnx_slave.0008.desc:0 "I can choose my attitude towards slavery to better take advantage of it."
  carnx_slave.0008.a:0 "$carnx_slavery_attitude_slaver_modifier$"
  carnx_slave.0008.b:0 "$carnx_slavery_attitude_liberator_modifier$"
  carnx_slave.0008.c:0 "$carnx_slavery_attitude_trader_modifier$"

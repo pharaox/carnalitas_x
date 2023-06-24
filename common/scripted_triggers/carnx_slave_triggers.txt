@@ -49,10 +49,7 @@ carnx_slave_can_be_ransomed_by_trigger = {
 	OR = {
 		AND = {
 			$CHARACTER$ = {
-				OR = {
-					is_ai = no
-					has_character_modifier = carnx_slavery_attitude_liberator_modifier
-				}
+				has_character_modifier = carnx_slavery_attitude_liberator_modifier
 			}
 			faith = $CHARACTER$.faith
 		}
@@ -974,6 +971,7 @@ carnx_is_slave_employment_enabled_trigger = {
 		faith = { has_doctrine_parameter = carnx_slave_employment_active }
 		has_government = clan_government
 		has_government = tribal_government
+		has_character_modifier = carnx_slavery_attitude_employer_modifier
 	}
 }
 
@@ -982,6 +980,7 @@ carnx_is_employed_slaves_more_loyal_enabled_trigger = {
 		faith = { has_doctrine_parameter = carnx_employed_slaves_more_loyal_active }
 		has_government = clan_government
 		has_government = tribal_government
+		has_character_modifier = carnx_slavery_attitude_employer_modifier
 	}
 }
 
@@ -993,6 +992,7 @@ carnx_is_slave_soldiers_enabled_trigger = {
 	OR = {
 		faith = { has_doctrine_parameter = carnx_slave_soldiers_active }
 		has_government = clan_government
+		has_character_modifier = carnx_slavery_attitude_employer_modifier
 	}
 }
 
@@ -1000,7 +1000,10 @@ carnx_is_slave_eunuchs_enabled_trigger = {
 	OR = {
 		AND = {
 			carnx_is_polygamous_faith_or_culture_trigger = yes
-			has_government = clan_government
+			OR = {
+				has_government = clan_government
+				has_character_modifier = carnx_slavery_attitude_employer_modifier
+			}
 		}
 		culture = { has_cultural_parameter = can_appoint_chief_eunuch }
 	}

@@ -1,18 +1,18 @@
 ﻿# VANILLA COURT POSITIONS
 
 # court_physician_court_position - Yes
-# cultural_emissary_court_position - No
+# cultural_emissary_court_position - No [TBD]
 # keeper_of_swans_court_position - No [country-specific (England)] [vassal] [ceremonial]
 # chief_qadi_court_position - No [religious] [ceremonial]
 # garuda_court_position - No [culture-specific (Kannada)] [multiple]
 # court_gardener_court_position - Yes [culture-specific (Persian)]
-# lady_in_waiting_court_position - No [multiple]
+# lady_in_waiting_court_position - No [multiple] [TBD]
 # antiquarian_court_position - Yes
 # court_tutor_court_position - Yes
 # food_taster_court_position - Yes
 # master_of_horse_court_position - No [vassal] [ceremonial]
 # master_of_hunt_court_position - No [vassal] [ceremonial]
-# royal_architect_court_position - No [vassal]
+# royal_architect_court_position - No [vassal] [TBD]
 # high_almoner_court_position - No [religious] [ceremonial]
 # seneschal_court_position - Yes
 # cupbearer_court_position - Yes* [ceremonial]
@@ -23,7 +23,7 @@
 # bodyguard_court_position - Yes [multiple]
 # champion_court_position - Yes
 # executioner_court_position - Yes
-# court_artificer_court_position - No [multiple] [ceremonial]
+# court_artificer_court_position - No [multiple] [ceremonial] [TBD]
 
 # CSR Court Positions
 
