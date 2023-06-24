@@ -22,7 +22,7 @@ carnx_slave.0001 = {
 	title = carnx_slave.0001.t
 	desc = carnx_slave.0001.desc
 
-	theme = dungeon
+	theme = stewardship
 	left_portrait = {
 		character = scope:valuable_option
 		animation = shame
@@ -30,6 +30,9 @@ carnx_slave.0001 = {
 	right_portrait = {
 		character = scope:common_option
 		animation = sadness
+	}
+	override_background = {
+		reference = market
 	}
 
 	trigger = {
