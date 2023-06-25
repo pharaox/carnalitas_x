@@ -10,6 +10,7 @@
 
  carnx_debug_msg_moving_slave: "Moving slave to owner's court"
  carnx_debug_msg_freeing_slave: "Freeing slave"
+ carnx_debug_msg_freeing_illegal_slave: "Freeing illegal slave"
  carnx_debug_msg_seizing_slave: "Seizing slave by the new title holder"
 
  carnx_debug_msg_non_slave_imprisoned: "Non-slave character imprisoned"
