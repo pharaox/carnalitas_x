@@ -23,16 +23,16 @@ This mod introduces a redesigned slavery system, one aiming to better integrate 
 
 With this mod:
 
-* The AI competes actively in obtaining the best slaves, taking into account factors such as skills, aptitudes, claims, attraction, age, price, current jobs and more when buying, selling, enslaving or freeing.
-* Slave prices better reflect the actual usefulness of slaves.
-* Slaves can be also ransomed, gifted, or liberated, and the AI will occasionally do it as well.
-* It's much easier to find rulers willing to buy, sell, or ransom slaves via special convenience interactions.
-* Slavery doctrines have a significant and consistent impact that better reflects their original meaning.
-* Slaves can be assigned to (some, but not all) council and court positions for additional benefits, and the AI is fully capable of doing this as well. There are also new court positions reserved for slaves or former slaves, such as *Slave Concubine*, *Slave Eunuch* or *Mameluke Captain*, available depending on religion, culture, and government form.
-* You can choose a slavery attitude, one of *Slaver*, *Liberator*, *Slave Trader*, or *Slave Employer* to get a minor modifier and a unique slavery-related perk. This unlocks additional roleplaying options for players and results in actual "human trafficking" when used by the AI.
-* Additional slaves fit for specific occupations are spawned into the world via events. Useful characters are more likely to be captured (and then enslaved) instead of killed during raids and sieges.
-* There are slavery-related flavor events, such as a slave running away, demands for a slave's freedom, etc. There are also hidden events for AI rulers to interact with their slaves in ways that were previously only available to the player, e.g. have sex with them.
-* Enslaving and then selling too many people may get you the negative *Slaver* trait. Freeing or ransoming a similar number of people may get you the positive *Liberator* trait.
+* The **AI competes actively** in obtaining and keeping the best slaves, and **evaluates them better** taking into account their skills, aptitudes, claims, attraction, age, price, current jobs and more when buying, selling, enslaving or freeing.
+* **Slave prices** better reflect the actual usefulness of slaves.
+* Slaves can be also **ransomed, gifted, or liberated**, and the AI will occasionally do it as well.
+* It's much easier to find rulers willing to buy, sell, or ransom slaves via special **convenience interactions**.
+* **Slavery doctrines** have a significant and consistent impact that better reflects their original meaning.
+* Slaves can be assigned to (some, but not all) **council and court positions** for additional benefits, and the AI is fully capable of doing this as well. There are also new court positions reserved for slaves or former slaves, such as *Slave Concubine*, *Slave Eunuch* or *Mameluke Captain*, available depending on religion, culture, and government form.
+* You can choose a **slavery attitude**, one of *Slaver*, *Liberator*, *Slave Trader*, or *Slave Employer* to get a minor modifier and a unique slavery-related perk. This unlocks additional roleplaying options for players and results in actual "human trafficking" when used by the AI.
+* **Additional slaves** fit for specific occupations are spawned into the world via events. Useful characters are more likely to be captured (and then enslaved) instead of killed during raids and sieges.
+* There are **slavery-related flavor events**, such as a slave running away, demands for a slave's freedom, etc. There are also hidden events for AI rulers to interact with their slaves in ways that were previously only available to the player, e.g. have sex with them.
+* There are **fame traits** that add roleplaying flavor, such as the negative *Slaver* trait and the positive *Liberator* trait.
 
 All taken together, slaves are now genuinely useful to their owners, there is an actual demand for them conditioned by religion and culture, and this demand is satisfied by warfare, raiding, slave trade, and slave-related events. As a player, you can choose between many different ways to interact with the system to either roleplay or use it to your advantage, and it's more challenging and hopefully more interesting to do this.
 
