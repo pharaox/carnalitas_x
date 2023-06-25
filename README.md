@@ -19,23 +19,22 @@ In particular:
 
 In a nutshell, what you can do as a player is easily enslave a lot of people, sell any you don't need to the AI, and buy any you may fancy from the AI, while the AI mostly passively obliges. With mods such as [Carnalitas Slavery Expansion](https://www.loverslab.com/files/file/21651-carnalitas-slavery-expansion/) you can also assign them "professions" for additional benefits. However, these are also human-only, the AI never assigns them. All of this undermines the realism and immersion, and makes the game both a lot easier and less interesting than it could be.
 
-This mod introduces a redesigned slavery system, one aiming to better integrate slavery with other aspects of the game, make interacting with slaves and other rulers more interesting and rewarding, achieve a better game balance, and maintain a reasonable challenge for the player. It does this by reworking most of the slave interactions, introducing some new ones, making slaves more desirable for council and court positions, adding slave-related events, and rebalancing or fixing many of the original effects and outcomes, while still maintaining compatibility with other Carnalitas features, other mods based on Carnalitas, and total conversion mods.
+This mod introduces a redesigned slavery system, one aiming to better integrate slavery with other aspects of the game, make interacting with slaves and other rulers more interesting and rewarding, achieve a better game balance, enable more roleplaying options, and maintain a reasonable challenge for the player. It does this by reworking most of the slave interactions, introducing some new ones, making slaves more desirable for council and court positions, adding slavery attitudes and slave-related events, and rebalancing or fixing many of the original effects and outcomes, while still maintaining compatibility with other Carnalitas features, other mods based on Carnalitas, and total conversion mods.
 
 With this mod:
 
 * The AI competes actively in obtaining the best slaves, taking into account factors such as skills, aptitudes, claims, attraction, age, price, current jobs and more when buying, selling, enslaving or freeing.
 * Slave prices better reflect the actual usefulness of slaves.
-* It's much easier to find rulers willing to buy or sell slaves via special convenience interactions.
-* Slavery doctrines have a significant and consistent impact that better reflects their original meaning.
 * Slaves can be also ransomed, gifted, or liberated, and the AI will occasionally do it as well.
-* Slaves can be assigned to (some, but not all) council and court positions for additional benefits, and the AI is fully capable of doing this as well.
-* There are new court positions reserved for slaves or former slaves, such as *Slave Concubine*, *Slave Eunuch* or *Mameluke Captain*, available depending on religion, culture, and government form.
-* Additional slaves fit for specific occupations are spawned into the world via events.
-* Useful characters are much more likely to be captured instead of killed during raids and sieges.
-* There are flavor events related to the slavery system, such as a slave running away, demands for a slave's freedom, etc. There are also hidden events for AI rulers to interact with their slaves in ways that were previously only available to the player, e.g. have sex with them.
+* It's much easier to find rulers willing to buy, sell, or ransom slaves via special convenience interactions.
+* Slavery doctrines have a significant and consistent impact that better reflects their original meaning.
+* Slaves can be assigned to (some, but not all) council and court positions for additional benefits, and the AI is fully capable of doing this as well. There are also new court positions reserved for slaves or former slaves, such as *Slave Concubine*, *Slave Eunuch* or *Mameluke Captain*, available depending on religion, culture, and government form.
+* You can choose a slavery attitude, one of *Slaver*, *Liberator*, *Slave Trader*, or *Slave Employer* to get a minor modifier and a unique slavery-related perk. This unlocks additional roleplaying options for players and results in actual "human trafficking" when used by the AI.
+* Additional slaves fit for specific occupations are spawned into the world via events. Useful characters are more likely to be captured (and then enslaved) instead of killed during raids and sieges.
+* There are slavery-related flavor events, such as a slave running away, demands for a slave's freedom, etc. There are also hidden events for AI rulers to interact with their slaves in ways that were previously only available to the player, e.g. have sex with them.
 * Enslaving and then selling too many people may get you the negative *Slaver* trait. Freeing or ransoming a similar number of people may get you the positive *Liberator* trait.
 
-All taken together, slaves are now genuinely useful to their owners, there is an actual demand for them conditioned by religion and culture, and this demand is satisfied by warfare, raiding, slave trade, and slave-related events. As a player, you can still use the system to your advantage, but it's more challenging and hopefully more interesting to do this.
+All taken together, slaves are now genuinely useful to their owners, there is an actual demand for them conditioned by religion and culture, and this demand is satisfied by warfare, raiding, slave trade, and slave-related events. As a player, you can choose between many different ways to interact with the system to either roleplay or use it to your advantage, and it's more challenging and hopefully more interesting to do this.
 
 ## Features
 
@@ -48,6 +47,8 @@ As in Carnalitas, slaves can be bought or sold via the *Buy Slave* and *Sell Sla
 In this mod, slaves are bought and sold at prices that better correspond to the cost of recruiting guests. Most of the factors influencing the base price of a slave are the same as those influencing the cost of recruiting a guest, with similar impact, such as base, claims, dynasty prestige level, genetic, commander, and other traits, and skills. There are also some unique factors, such as attraction, visibly fertile female, and age. At the very end, a correction multiplier is applied to calculate the final base price, intended to prevent the player from making too much money from selling slaves.
 
 Actual buy and sell transactions are settled at the *bid price* (buyer's price) if the initiating party is the seller, and the *ask price* (seller's price), if the initiating party is the buyer. These prices are calculated by multiplying the base price by a factor depending on AI greed, and an additional factor of 0.8 (for the bid price) or 1.2 (for the ask price) if the initiating party is the player. As a result, the player always buys at higher and sells at lower prices compared to the AI. This is done to prevent exploits, and to make it a bit more challenging for the player to use the trading system to their advantage.
+
+Characters with the [*Slave Trader* attitude](#slavery-attitudes) get more favorable prices when buying and selling slaves. Currently, these prices are 10% lower when buying and 10% higher when selling.
 
 #### AI Willingness to Buy or Sell
 
@@ -72,7 +73,7 @@ All in all, the AI is in general quite reluctant to buy slaves who are useless, 
 While it is possible to initiate buying or selling of slaves by right-clicking on a ruler, it may be quite hard to find rulers who are willing to buy one of your slaves, or sell some of their slaves to you. Furthermore, the price you get with each ruler may be different. To make it more convenient for the player, this mod introduces the following 2 new interactions:
 
 * *Buy Slaves*: Buy a slave by choosing from a list of all slaves whom other rulers are willing to sell to you. If there are no such slaves, the list will be empty.
-* *Sell Slaves*: Sell one of your slaves by choosing a list of those of your slaves whom other rulers are willing to buy from you. If there are no such slaves, the list will be empty. After choosing a slave, you can choose a buyer from a list of other rulers who are willing to buy that slave from you. Since buyers can't be sorted by their bid prices, this list contains only a limited number of buyers offering the highest bid prices. This number is 5 by default and can be configured via the *Number of Potential Buyers* game rule.
+* *Sell Slaves*: Sell one of your slaves by choosing from a list of those of your slaves whom other rulers are willing to buy from you. If there are no such slaves, the list will be empty. After choosing a slave, you can choose a buyer from a list of other rulers who are willing to buy that slave from you. Since buyers can't be sorted by their bid prices, this list contains only a limited number of buyers offering the highest bid prices. This number is 5 by default and can be configured via the *Number of Potential Buyers* game rule.
 
 #### Valid Buyers and Sellers
 
@@ -98,13 +99,20 @@ For added realism and to ensure the mod doesn't disrupt the original game balanc
 
 As in Carnalitas, slaves can be freed by their owners via the *Free Slave* interaction. In return the owner may ask for gold, conversion, renouncing of claims, a favor, or nothing. Prisoners who are someone else's slaves can be "liberated" instead via the new *Liberate Slave* interaction.
 
-In this mod it is also possible to demand ransom for a slave from another ruler who is their relative, as well as offer ransom for a slave who is your relative, via the new *Demand Ransom for Slave* and *Offer Ransom for Slave* interactions. The player (but not the AI) is also able to offer ransom for slaves of their own faith, even if they are not relatives.
+In this mod it is also possible to demand ransom for a slave from another ruler who is their relative, as well as offer ransom for a slave who is your relative, via the new *Demand Ransom for Slave* and *Offer Ransom for Slave* interactions. Characters with the [*Liberator* attitude](#slavery-attitudes) are also able to offer ransom for slaves of their own faith, even if they are not relatives.
 
 When deciding to initiate freeing, liberating, demanding ransom, or offering ransom for slaves, the AI is driven by considerations similar to the ones listed under [AI Willingness to Buy or Sell](#ai-willingness-to-buy-or-sell). In addition, factors such as AI compassion, greed, and their opinion of the slave also play a role.
 
 Note that the cost of freeing, liberating, or ransoming a slave is not their slave price, but their usual [ransom cost](https://ck3.paradoxwikis.com/Court#Ransom_cost).
 
 If you enslaved a prisoner instead of ransoming them, you may not be able to sell them to a relative since relatives get additional negative modifiers to their willingness to buy, and this may also be [forbidden by slavery doctrines](#impact-of-slavery-doctrines), but you would still be able to demand ransom from one of their relatives. Similarly, if someone enslaved one of your relatives, you may not be able to buy them, but you would still be able to offer ransom to their owner.
+
+#### Convenience Interactions for the Player
+
+Starting with version 0.13.0, this mod introduces convenience interactions also for demanding and offering ransom for slaves, similar to the ones for buying and selling slaves:
+
+* *Offer Ransom for Slaves*: Offer ransom for a slave by choosing from a list of all slaves whom you can ransom and whose owners are willing to accept your offer. If there are no such slaves, the list will be empty.
+* *Demand Ransom for Slaves*: Demand ransom for one of your slaves by choosing from a list of those of your slaves whom other rulers are able and willing to ransom. If there are no such slaves, the list will be empty.
 
 ### Gifting Slaves
 
@@ -146,15 +154,40 @@ This mod divides the existing council and court positions into ones that are ava
 
 The following 14 court positions are available to slaves: *Court Physician*, *Antiquarian*, *Court Gardener*, *Court Tutor*, *Food Taster*, *Seneschal*, *Cupbearer*, *Chief Eunuch*, *Court Jester*, *Court Poet*, *Court Musician*, *Bodyguard*, *Personal Champion*, and *Executioner*. The rest of the court positions are not available to slaves, because they are considered either ceremonial (reserved for vassals to make them happy) or religious, or are subject to certain game limitations.
 
-The following 4 council positions are available to slaves: *Chancellor*, *Steward*, *Marshal*, and *Spymaster*. The *Court Chaplain* council position is not available to slaves, since it is considered religious. Note that *Chancellor*, *Steward*, and *Marshal* are only available to slaves if your government is clan or tribal, to reflect the fact that historically such important roles were held by slaves only if they were considered more loyal than other available options, which was the case in certain Muslim and tribal societies.
+The following 4 council positions are available to slaves: *Chancellor*, *Steward*, *Marshal*, and *Spymaster*. The *Court Chaplain* council position is not available to slaves, since it is considered religious. Note that *Chancellor*, *Steward*, and *Marshal* are only available to slaves if your government is clan or tribal, to reflect the fact that historically such important roles were held by slaves only if they were considered more loyal than other available options, which was the case in certain Muslim and tribal societies. They are also available to characters with the [*Slave Employer* attitude](#slavery-attitudes).
 
-Once a slave is assigned to a court position, he or she is paid a reduced salary (25%) and has an increased opinion gain (3x) compared to other courtiers. AI rulers are therefore more likely to appoint slaves to court positions.
+Once a slave is assigned to a court position, he or she is paid a reduced salary (50%, or 25% for characters with [*Slave Employer* attitude](#slavery-attitudes)) and has an increased opinion gain (3x) compared to other courtiers. AI rulers are therefore more likely to appoint slaves to court positions.
 
 When evaluating slaves for buying, selling, enslaving, etc., the AI considers their fitness for all these positions. Slaves that are evaluated as useful usually end up actually being used (employed in a council or court position) by the AI.
 
 ### Capturing Slaves during Raids and Sieges
 
-With this mod, characters who can be enslaved and have a base price higher than a threshold are now captured instead of killed during raids and sieges. In addition, characters captured during a raid have 50% chance of getting the "marked for enslavement" modifier, which makes enslavement by the AI more likely. This increases the number of characters enslaved as a result of warfare or raiding.
+With this mod, characters who can be enslaved and have a base price higher than a threshold are now captured instead of killed during raids and sieges. This threshold is lower for characters with the [*Slaver* attitude](#slavery-attitudes). In addition, characters captured during a raid have 50% chance of getting the "marked for enslavement" modifier, which makes enslavement by the AI more likely. This increases the number of characters enslaved as a result of warfare or raiding.
+
+### Slavery Attitudes
+
+Starting with version 0.13.0, this mod introduces *slavery attitudes*. You can choose a slavery attitude via the *Choose Slavery Attitude* decision to get a minor modifier and a unique slavery-related perk. There are 4 slavery attitudes:
+
+* *Slaver*: This character likes enslaving prisoners and selling them to willing buyers.
+  * Minor prestige penalty and dread decay bonus
+  * More likely to capture rather than kill characters during sieges and raids
+  * AI rulers more willing to enslave, seize, and sell and less willing to free, liberate, buy, ransom, and gift
+* *Liberator*: This character likes freeing, liberating, and ransoming slaves.
+  * Minor prestige bonus and dread decay penalty
+  * Can pay ransom for slaves of their own faith, even if they are not relatives
+  * AI rulers more willing to free, liberate, and ransom and less willing to enslave, seize, buy, sell, and gift
+* *Slave Trader*: This character tries to make profit from buying and selling slaves.
+  * Minor development growth bonus and stress gain penalty
+  * Gets more favorable prices when buying and selling slaves
+  * AI rulers more willing to enslave, seize, buy, and sell and less willing to free, liberate, and gift
+* *Slave Employer*: This character likes employing slaves since he considers them more loyal.
+  * Minor tax bonus and popular opinion penalty
+  * Can employ slaves in additional occupations and for lower salaries
+  * AI rulers more willing to enslave, seize, and buy and less willing to free, liberate, sell, and gift
+
+Slavery attitudes are mainly intended to enable additional roleplaying options for the player, but can also be chosen by the AI. Only about 10% to 20% of AI rulers will ever choose an attitude, the rest will remain "neutral". The likelihood of AI choosing a certain attitude is heavily influenced by their religion and government form, as well as their personality. Tribal and pagan rulers tend to choose *Slaver*, feudal and Christian rulers prefer *Liberator* or *Slave Trader*, clan and Muslim rulers tend to choose *Slave Employer*, and republics usually opt for *Slave Trader*.
+
+One intended and historically accurate outcome of this is that it results in actual "human trafficking" of slaves from realms where they are more easily created (tribal realms with a pagan religion) to realms where they are more in demand (clan and feudal realms with an abrahamic religion).
 
 ### Traits
 
@@ -163,7 +196,7 @@ Starting with version 0.9.0, this mod adds two new fame traits, *Slaver* and *Li
 * *Slaver* is a fame trait that adds negative diplomacy, prestige, MAA maintenance, and general opinion, and positive dread multipliers. It is acquired via an [event](#trait-events) after enslaving and then selling a certain number of people, usually between 20 and 30.
 * *Liberator* is a fame trait that adds positive diplomacy, prestige, MAA maintenance, and general opinion, and negative dread multipliers. It is acquired via an [event](#trait-events) after freeing or ransoming a certain number of people, usually between 20 and 30.
 
-These traits represent consequences of "bad" and "good" behavior towards slaves. They are intended to further improve the balance and add some roleplaying flavor for the player. Although the AI also actively enslaves, frees, sells, and buys slaves, it is very unlikely to reach the numbers required for acquiring one of these traits.
+These traits represent consequences of "bad" and "good" behavior towards slaves. They are intended to further improve the balance and add some roleplaying flavor for the player. Although the AI also actively enslaves, frees, sells, and buys slaves, it is very unlikely to reach the numbers required for acquiring one of these traits. They are independent of the [slavery attitudes](#slavery-attitudes) described above, but choosing the *Slaver* or *Liberator* attitude certainly makes acquiring the corresponding trait easier.
 
 ### Slavery Events
 
