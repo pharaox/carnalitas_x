@@ -1,2 +1,14 @@
 ﻿l_russian:
  carnx_marked_for_enslavement_modifier:0 "Отмечен для порабощения"
+
+ carnx_slavery_attitude_slaver_modifier:0 "Поработитель"
+ carnx_slavery_attitude_slaver_modifier_desc:0 "Этот персонаж любит порабощать заключенных и продавать их желающим покупателям.\n$EFFECT_LIST_BULLET$ Больше шансов захватить, чем убить персонажей во время осад и рейдов"
+
+ carnx_slavery_attitude_liberator_modifier:0 "Освободитель"
+ carnx_slavery_attitude_liberator_modifier_desc:0 "Этот персонаж любит освобождать и выкупать рабов.\n$EFFECT_LIST_BULLET$ Может платить выкуп за рабов своей веры, даже если они не родственники"
+
+ carnx_slavery_attitude_trader_modifier:0 "Работорговец"
+ carnx_slavery_attitude_trader_modifier_desc:0 "Этот персонаж пытается получить прибыль от покупки и продажи рабов.\n$EFFECT_LIST_BULLET$ Получает более выгодные цены при покупке и продаже рабов"
+
+ carnx_slavery_attitude_employer_modifier:0 "Рабовладелец"
+ carnx_slavery_attitude_employer_modifier_desc:0 "Этот персонаж любит нанимать рабов, так как считает их более лояльными.\n$EFFECT_LIST_BULLET$ Может нанимать рабов на дополнительные занятия и за меньшую зарплату."

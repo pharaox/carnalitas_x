@@ -10,6 +10,7 @@
 
  carnx_debug_msg_moving_slave: "Moving slave to owner's court"
  carnx_debug_msg_freeing_slave: "Freeing slave"
+ carnx_debug_msg_freeing_illegal_slave: "Freeing illegal slave"
  carnx_debug_msg_seizing_slave: "Seizing slave by the new title holder"
 
  carnx_debug_msg_non_slave_imprisoned: "Non-slave character imprisoned"
@@ -91,6 +92,11 @@
  carnx_debug_msg_character_acquired_slaver_trait: "Character acquired Slaver trait"
  carnx_debug_msg_character_acquired_liberator_trait: "Character acquired Liberator trait"
 
+ carnx_debug_msg_character_acquired_slaver_modifier: "Character acquired slaver modifier"
+ carnx_debug_msg_character_acquired_liberator_modifier: "Character acquired liberator modifier"
+ carnx_debug_msg_character_acquired_trader_modifier: "Character acquired trader modifier"
+ carnx_debug_msg_character_acquired_employer_modifier: "Character acquired employer modifier"
+
  carnx_debug_msg_slave_0001_fired: "Buy Foreign Slaves event fired"
  carnx_debug_msg_slave_0001_option_a_chosen: "Buy Foreign Slaves option a chosen"
  carnx_debug_msg_slave_0001_option_b_chosen: "Buy Foreign Slaves option b chosen"
@@ -108,3 +114,5 @@
  carnx_debug_msg_slave_0005_option_a_chosen: "Freedom for a Slave option a chosen"
  carnx_debug_msg_slave_0005_option_b_chosen: "Freedom for a Slave option b chosen"
  carnx_debug_msg_slave_0005_option_c_chosen: "Freedom for a Slave option c chosen"
+
+ carnx_debug_msg_debug_character: "Debug character"
