@@ -1,5 +1,25 @@
 # Changelog
 
+## Version 0.9.6
+
+### Interactions
+
+* Added *Offer Ransom for Slaves* interaction (`carnx_pay_ransom_slaves_interaction`). Offer ransom to other rulers for one of their slaves who is your relative. This is a convenience interaction for the human player to quickly find all slaves they could offer ransom for.
+* Added *Demand Ransom for Slaves* interaction (`carnx_ransom_slaves_interaction`). Demand ransom for some of your slaves from other rulers who are their relatives. This is a convenience interaction for the human player to quickly find all rulers able and willing to pay ransom for their slaves.
+
+### Slavery Attitudes
+
+* Added *Choose Slavery Attitude* decision and event. Choose a slavery attitude, one of *Slaver*, *Liberator*, *Slave Trader*, or *Slave Employer* to get a minor modifier and a unique slavery-related perk.
+* Added impact of slavery attitudes on AI willingness to initiate and accept slavery interactions.
+
+### Miscellaneous
+
+* Improved event themes and backgrounds.
+
+### Housekeeping
+
+* Added debug logging of freeing illegal slaves.
+
 ## Version 0.9.5
 
 ### Bug Fixes
