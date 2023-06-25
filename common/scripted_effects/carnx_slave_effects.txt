@@ -649,6 +649,25 @@ carn_free_slave_effect = {
 	}
 }
 
+# Frees all slaves owned by scope:recipient against slavery doctrines from slavery.
+# Overriden from Carnalitas.
+carn_free_illegal_slaves_effect = {
+	scope:recipient = {
+		every_relation = {
+			type = slave
+			if = {
+				limit = {
+					scope:recipient = {
+						carnx_is_slavery_crime_trigger = { CHARACTER = prev }
+					}
+				}
+				carnx_debug_log_no_details_effect = { MSG = carnx_debug_msg_freeing_illegal_slave }
+				carn_free_slave_effect = yes
+			}
+		}
+	}
+}
+
 # Frees scope:slave from slavery, also incurs opinion, dread, piety, and stress effects.
 # Pays ransom cost to $EMANCIPATOR$ if scope:gold or scope:current_gold is yes.
 carnx_free_slave_actual_effect = {
