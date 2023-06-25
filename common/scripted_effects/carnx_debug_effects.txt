@@ -21,6 +21,18 @@ carnx_debug_save_scopes_effect = {
 			# Religion
 			faith.religion = {
 				save_temporary_scope_as = $PREFIX$_religion
+				if = {
+					limit = { is_in_family = rf_abrahamic }
+					save_temporary_scope_value_as = { name = $PREFIX$_rf value = flag:abrahamic }
+				}
+				else_if = {
+					limit = { is_in_family = rf_eastern }
+					save_temporary_scope_value_as = { name = $PREFIX$_rf value = flag:eastern }
+				}
+				else_if = {
+					limit = { is_in_family = rf_pagan }
+					save_temporary_scope_value_as = { name = $PREFIX$_rf value = flag:pagan }
+				}
 			}
 
 			# Government
