@@ -1,5 +1,15 @@
 # Changelog
 
+## Version 0.13.1
+
+### Slavery Attitudes
+
+* Reduced impact of slavery attitudes on AI willingness to initiate and accept slavery interactions.
+
+### Bug Fixes
+
+* Added support for dynamic faith hostility in total conversion mods such as EK2
+
 ## Version 0.13.0
 
 ### Interactions
