@@ -19,16 +19,16 @@ carnx_ai_positive_claims_impact_value = 25
 carnx_ai_negative_claims_impact_value = -25
 carnx_ai_positive_attraction_impact_value = 25
 carnx_ai_negative_attraction_impact_value = -25
-carnx_ai_positive_female_impact_value = 20
-carnx_ai_negative_female_impact_value = -20
+carnx_ai_positive_female_impact_value = 15
+carnx_ai_negative_female_impact_value = -15
 carnx_ai_positive_age_impact_value = 10
 carnx_ai_negative_age_impact_value = -10
 carnx_ai_positive_price_impact_value = 10
 carnx_ai_negative_price_impact_value = -10
 carnx_ai_positive_wealth_impact_value = 10
 carnx_ai_negative_wealth_impact_value = -10
-carnx_ai_positive_attitude_impact_value = 25
-carnx_ai_negative_attitude_impact_value = -25
+carnx_ai_positive_attitude_impact_value = 15
+carnx_ai_negative_attitude_impact_value = -15
 
 # AI impact halved values
 carnx_ai_positive_skill_impact_halved_value = 2
@@ -44,8 +44,8 @@ carnx_ai_positive_claims_impact_halved_value = 12
 carnx_ai_negative_claims_impact_halved_value = -12
 carnx_ai_positive_attraction_impact_halved_value = 12
 carnx_ai_negative_attraction_impact_halved_value = -12
-carnx_ai_positive_female_impact_halved_value = 10
-carnx_ai_negative_female_impact_halved_value = -10
+carnx_ai_positive_female_impact_halved_value = 7
+carnx_ai_negative_female_impact_halved_value = -7
 carnx_ai_positive_age_impact_halved_value = 5
 carnx_ai_negative_age_impact_halved_value = -5
 
