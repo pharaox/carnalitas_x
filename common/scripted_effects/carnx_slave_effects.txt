@@ -477,7 +477,7 @@ carnx_enslave_effect = {
 					scope:new_owner.faith = {
 						faith_hostility_level = {
 							target = scope:slave.faith
-							value > faith_astray_level
+							value >= faith_hostile_level
 						}
 					}
 				}
