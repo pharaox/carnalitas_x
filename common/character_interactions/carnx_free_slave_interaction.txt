@@ -211,7 +211,7 @@ carn_free_slave_interaction = {
 						scope:recipient.faith = {
 							faith_hostility_level = {
 								target = scope:actor.faith
-								value = faith_astray_level
+								value < faith_hostile_level
 							}
 						}
 					}
