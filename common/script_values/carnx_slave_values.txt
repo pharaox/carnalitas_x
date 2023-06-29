@@ -139,7 +139,7 @@ carnx_slave_base_price_value = {
 			is_female = yes
 			is_visibly_fertile = yes
 		}
-		add = 20
+		add = 15
 	}
 
 	# Age (up to -10 depending on age, new compared to guests)
