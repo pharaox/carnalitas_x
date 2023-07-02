@@ -234,16 +234,6 @@ carnx_on_character_faith_change = {
 	}
 }
 
-carn_on_sex = {
-	on_actions = { carnx_on_sex }
-}
-
-carnx_on_sex = {
-	effect = {
-		#carnx_debug_log_effect = { MSG = carnx_debug_msg_character_had_sex }
-	}
-}
-
 on_set_relation_rival = {
 	on_actions = { carnx_on_set_relation_rival }
 }
