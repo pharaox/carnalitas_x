@@ -38,7 +38,8 @@ prisoner_of_war_capture_effect = {
 	hidden_effect = {
 		scope:new_target = {
 			random = {
-				chance = carnx_mark_for_enslavement_chance
+				chance = 0
+				modifier = { add = carnx_mark_for_enslavement_chance }
 				add_character_modifier = {
 					modifier = carnx_marked_for_enslavement_modifier
 					years = 2
