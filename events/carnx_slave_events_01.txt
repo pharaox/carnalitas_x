@@ -116,7 +116,7 @@ carnx_slave.0001 = {
 							# Make it even lower for the AI to encourage them to buy
 							if = {
 								limit = { root = { is_ai = yes } }
-								multiply = 0.8
+								multiply = 0.6
 							}
 						}
 					}
@@ -149,7 +149,7 @@ carnx_slave.0001 = {
 							# Make it even lower for the AI to encourage them to buy
 							if = {
 								limit = { root = { is_ai = yes } }
-								multiply = 0.8
+								multiply = 0.6
 							}
 						}
 					}

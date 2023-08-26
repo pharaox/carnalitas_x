@@ -11,6 +11,10 @@
 * Enabled *Wet Nurse* court position to be assigned to slaves
 * Nerfed slave court position modifiers
 
+### Events
+
+* Further reduced *Buy Foreign Slaves* slave prices for the AI
+
 ## Version 0.13.1
 
 ### Slavery Attitudes
