@@ -176,22 +176,22 @@
 	# Scaling modifiers gained by the employer of the court position as the employee's aptitude level increases.
 	scaling_employer_modifiers = {
 		aptitude_level_1 = {
-			monthly_court_grandeur_change_mult = 0.02
+			monthly_court_grandeur_change_mult = 0.01
 		}
 		aptitude_level_2 = {
-			monthly_court_grandeur_change_mult = 0.04
+			monthly_court_grandeur_change_mult = 0.02
 			monthly_prestige = 0.05
 		}
 		aptitude_level_3 = {
-			monthly_court_grandeur_change_mult = 0.06
+			monthly_court_grandeur_change_mult = 0.03
 			monthly_prestige = 0.1
 		}
 		aptitude_level_4 = {
-			monthly_court_grandeur_change_mult = 0.08
+			monthly_court_grandeur_change_mult = 0.04
 			monthly_prestige = 0.15
 		}
 		aptitude_level_5 = {
-			monthly_court_grandeur_change_mult = 0.10
+			monthly_court_grandeur_change_mult = 0.05
 			monthly_prestige = 0.2
 		}
 	}
@@ -456,23 +456,22 @@ carnx_slave_captain_court_position = {
 	# Scaling modifiers gained by the employer of the court position as the employee's aptitude level increases.
 	scaling_employer_modifiers = {
 		aptitude_level_1 = {
-			monthly_court_grandeur_change_mult = 0.02
+			monthly_court_grandeur_change_mult = 0.01
 		}
 		aptitude_level_2 = {
-			monthly_court_grandeur_change_mult = 0.04
-			knight_effectiveness_mult = 0.05
+			monthly_court_grandeur_change_mult = 0.02
 		}
 		aptitude_level_3 = {
-			monthly_court_grandeur_change_mult = 0.06
-			knight_effectiveness_mult = 0.1
+			monthly_court_grandeur_change_mult = 0.03
+			knight_effectiveness_mult = 0.01
 		}
 		aptitude_level_4 = {
-			monthly_court_grandeur_change_mult = 0.08
-			knight_effectiveness_mult = 0.2
+			monthly_court_grandeur_change_mult = 0.04
+			knight_effectiveness_mult = 0.02
 		}
 		aptitude_level_5 = {
-			monthly_court_grandeur_change_mult = 0.10
-			knight_effectiveness_mult = 0.4
+			monthly_court_grandeur_change_mult = 0.05
+			knight_effectiveness_mult = 0.04
 		}
 	}
 
@@ -683,26 +682,26 @@ carnx_slave_eunuch_court_position = {
 	# Scaling modifiers gained by the employer of the court position as the employee's aptitude level increases.
 	scaling_employer_modifiers = {
 		aptitude_level_1 = {
-			monthly_court_grandeur_change_mult = 0.02
+			monthly_court_grandeur_change_mult = 0.01
 			hostile_scheme_resistance_mult = 0.01
 		}
 		aptitude_level_2 = {
-			monthly_court_grandeur_change_mult = 0.04
+			monthly_court_grandeur_change_mult = 0.02
 			character_capital_county_monthly_development_growth_add = 0.05
 			hostile_scheme_resistance_mult = 0.02
 		}
 		aptitude_level_3 = {
-			monthly_court_grandeur_change_mult = 0.06
+			monthly_court_grandeur_change_mult = 0.03
 			character_capital_county_monthly_development_growth_add = 0.1
 			hostile_scheme_resistance_mult = 0.04
 		}
 		aptitude_level_4 = {
-			monthly_court_grandeur_change_mult = 0.08
+			monthly_court_grandeur_change_mult = 0.04
 			character_capital_county_monthly_development_growth_add = 0.2
 			hostile_scheme_resistance_mult = 0.08
 		}
 		aptitude_level_5 = {
-			monthly_court_grandeur_change_mult = 0.10
+			monthly_court_grandeur_change_mult = 0.05
 			character_capital_county_monthly_development_growth_add = 0.4
 			hostile_scheme_resistance_mult = 0.16
 		}

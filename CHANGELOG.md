@@ -9,6 +9,7 @@
 ### Court Positions
 
 * Enabled *Wet Nurse* court position to be assigned to slaves
+* Nerfed slave court position modifiers
 
 ## Version 0.13.1
 
