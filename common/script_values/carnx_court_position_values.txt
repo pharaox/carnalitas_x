@@ -34,6 +34,18 @@ carnx_court_position_antiquarian_salary = {
 	}
 }
 
+carnx_court_position_wet_nurse_salary = {
+	value = minor_court_position_salary
+	if = {
+		limit = {
+			scope:liege = {
+				carnx_employs_slave_as_court_position_trigger = { TYPE = wet_nurse_court_position }
+			}
+		}
+		multiply = carnx_court_position_salary_slave_multiplier
+	}
+}
+
 carnx_court_position_court_tutor_salary = {
 	value = medium_court_position_salary
 	if = {
@@ -558,6 +570,17 @@ carnx_court_gardener_aptitude_difference_value = {
 	}
 }
 
+carnx_wet_nurse_aptitude_difference_value = {
+	value = 0
+	if = {
+		limit = {
+			carnx_can_serve_as_wet_nurse_trigger = { RULER = scope:liege }
+		}
+		value = aptitude:wet_nurse_court_position
+		subtract = carnx_wet_nurse_aptitude_threshold
+	}
+}
+
 carnx_court_tutor_aptitude_difference_value = {
 	value = 0
 	if = {
@@ -721,33 +744,36 @@ carnx_vanilla_max_aptitude_difference_value = {
 			min = {
 				value = carnx_court_gardener_aptitude_difference_value
 				min = {
-					value = carnx_court_tutor_aptitude_difference_value
+					value = carnx_wet_nurse_aptitude_difference_value
 					min = {
-						value = carnx_food_taster_aptitude_difference_value
+						value = carnx_court_tutor_aptitude_difference_value
 						min = {
-							value = carnx_seneschal_aptitude_difference_value
+							value = carnx_food_taster_aptitude_difference_value
 							min = {
-								value = carnx_cupbearer_aptitude_difference_value
+								value = carnx_seneschal_aptitude_difference_value
 								min = {
-									value = carnx_chief_eunuch_aptitude_difference_value
+									value = carnx_cupbearer_aptitude_difference_value
 									min = {
-										value = carnx_court_jester_aptitude_difference_value
+										value = carnx_chief_eunuch_aptitude_difference_value
 										min = {
-											value = carnx_court_poet_aptitude_difference_value
+											value = carnx_court_jester_aptitude_difference_value
 											min = {
-												value = carnx_court_musician_aptitude_difference_value
+												value = carnx_court_poet_aptitude_difference_value
 												min = {
-													value = carnx_bodyguard_aptitude_difference_value
+													value = carnx_court_musician_aptitude_difference_value
 													min = {
-														value = carnx_champion_aptitude_difference_value
+														value = carnx_bodyguard_aptitude_difference_value
 														min = {
-															value = carnx_executioner_aptitude_difference_value
+															value = carnx_champion_aptitude_difference_value
 															min = {
-																value = carnx_slave_concubine_aptitude_difference_value
+																value = carnx_executioner_aptitude_difference_value
 																min = {
-																	value = carnx_slave_captain_aptitude_difference_value
+																	value = carnx_slave_concubine_aptitude_difference_value
 																	min = {
-																		value = carnx_slave_eunuch_aptitude_difference_value
+																		value = carnx_slave_captain_aptitude_difference_value
+																		min = {
+																			value = carnx_slave_eunuch_aptitude_difference_value
+																		}
 																	}
 																}
 															}

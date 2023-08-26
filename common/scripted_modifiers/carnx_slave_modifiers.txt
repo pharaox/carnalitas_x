@@ -91,6 +91,18 @@ carnx_lacking_court_positions_modifier = {
 		}
 		modifier = {
 			carnx_has_max_aptitude_difference_trigger = {
+				NAME = wet_nurse
+				RULER = $RULER$
+				SLAVE = $SLAVE$
+			}
+			add = {
+				value = scope:max_aptitude_difference
+				multiply = $SCALE$
+			}
+			desc = carnx_lacking_wet_nurse_reason
+		}
+		modifier = {
+			carnx_has_max_aptitude_difference_trigger = {
 				NAME = court_tutor
 				RULER = $RULER$
 				SLAVE = $SLAVE$

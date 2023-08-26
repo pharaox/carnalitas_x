@@ -17,3 +17,5 @@
 
  carnx_slave_eunuch_court_position:0 "Slave Eunuch"
  carnx_slave_eunuch_court_position_desc:0 "The $carnx_slave_eunuch_court_position$ is an influential court official that is also a slave or former slave."
+
+ hunt_can_hunt_parameter_tt:0 "[culture|E] is able to Hunt"

@@ -97,6 +97,7 @@ carnx_default_skill_threshold = decent_skill_rating
 carnx_court_physician_aptitude_threshold = poor_effectiveness
 carnx_antiquarian_aptitude_threshold = poor_effectiveness
 carnx_court_gardener_aptitude_threshold = poor_effectiveness
+carnx_wet_nurse_aptitude_threshold = average_effectiveness
 carnx_court_tutor_aptitude_threshold = average_effectiveness
 carnx_food_taster_aptitude_threshold = average_effectiveness
 carnx_seneschal_aptitude_threshold = average_effectiveness

@@ -8,6 +8,8 @@
 # court_gardener_court_position - Yes [culture-specific (Persian)]
 # lady_in_waiting_court_position - No [multiple] [TBD]
 # antiquarian_court_position - Yes
+# travel_leader_court_position - No
+# wet_nurse_court_position - Yes
 # court_tutor_court_position - Yes
 # food_taster_court_position - Yes
 # master_of_horse_court_position - No [vassal] [ceremonial]
@@ -124,6 +126,38 @@ carnx_court_gardener_title_invalidated_effect = {
 			scope:employee = { has_trait = slave }
 		}
 		carnx_debug_log_effect = { MSG = carnx_debug_msg_court_gardener_invalidated }
+	}
+}
+
+# WET NURSE
+
+carnx_wet_nurse_title_accepted_effect = {
+	wet_nurse_title_accepted_effect = yes
+	if = {
+		limit = {
+			scope:employee = { has_trait = slave }
+		}
+		carnx_debug_log_effect = { MSG = carnx_debug_msg_wet_nurse_received }
+	}
+}
+
+carnx_wet_nurse_title_revoked_effect = {
+	wet_nurse_title_revoked_effect = yes
+	if = {
+		limit = {
+			scope:employee = { has_trait = slave }
+		}
+		carnx_debug_log_effect = { MSG = carnx_debug_msg_wet_nurse_revoked }
+	}
+}
+
+carnx_wet_nurse_title_invalidated_effect = {
+	wet_nurse_title_invalidated_effect = yes
+	if = {
+		limit = {
+			scope:employee = { has_trait = slave }
+		}
+		carnx_debug_log_effect = { MSG = carnx_debug_msg_wet_nurse_invalidated }
 	}
 }
 

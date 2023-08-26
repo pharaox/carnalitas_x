@@ -1,5 +1,15 @@
 # Changelog
 
+## Version 0.14.0
+
+### Compatibility
+
+* Adapted to CK3 1.10.0
+
+### Court Positions
+
+* Enabled *Wet Nurse* court position to be assigned to slaves
+
 ## Version 0.13.1
 
 ### Slavery Attitudes

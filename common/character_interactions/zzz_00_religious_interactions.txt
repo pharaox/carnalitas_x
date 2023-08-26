@@ -97,9 +97,11 @@ ask_for_conversion_courtier_interaction = {
 	}
 
 	on_decline = {
-		send_interface_toast = {
-			title = ask_for_conversion_decline_notification
-			left_icon = scope:recipient
+		scope:actor = { # CSR: Adopted from Unofficial Patch
+			send_interface_toast = {
+				title = ask_for_conversion_decline_notification
+				left_icon = scope:recipient
+			}
 		}
 	}
 

@@ -661,6 +661,14 @@ hostile_murder_agent_base_join_chance_modifier = {
 		desc = BONUS_TO_AGENT_RECRUITMENT_FROM_AMENITIES
 	}
 
+	modifier = {
+		add = 25
+		scope:owner = {
+			has_trait_with_flag = can_murder_own_children
+		}
+		desc = INTRIGUE_EDUCATION_5_BONUS
+	}
+
 
 	# Difficulty
 	modifier = {

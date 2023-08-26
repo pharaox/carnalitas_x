@@ -16,3 +16,5 @@
 
  carnx_slave_eunuch_court_position:0 "Раб-евнух"
  carnx_slave_eunuch_court_position_desc:0 "$carnx_slave_eunuch_court_position$ это влиятельный придворный чиновник, который также является рабом или бывшим рабом."
+
+ hunt_can_hunt_parameter_tt:0 "[culture|E] is able to Hunt"

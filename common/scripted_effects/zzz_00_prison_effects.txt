@@ -32,6 +32,8 @@ prisoner_of_war_capture_effect = {
 		}
 	}
 
+	imprison_hostage_tooltip_effect = { WHO = scope:new_target }
+
 	# CSR: Mark character for enslavement
 	hidden_effect = {
 		scope:new_target = {

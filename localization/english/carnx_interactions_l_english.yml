@@ -75,6 +75,7 @@
  carnx_lacking_court_physician_reason: "[recipient.GetShortUIName|U] is lacking a good $court_physician_court_position$: $VALUE|=+0$"
  carnx_lacking_antiquarian_reason: "[recipient.GetShortUIName|U] is lacking a good $antiquarian_court_position$: $VALUE|=+0$"
  carnx_lacking_court_gardener_reason: "[recipient.GetShortUIName|U] is lacking a good $court_gardener_court_position$: $VALUE|=+0$"
+ carnx_lacking_wet_nurse_reason: "[recipient.GetShortUIName|U] is lacking a good $wet_nurse_court_position$: $VALUE|=+0$"
  carnx_lacking_court_tutor_reason: "[recipient.GetShortUIName|U] is lacking a good $court_tutor_court_position$: $VALUE|=+0$"
  carnx_lacking_food_taster_reason: "[recipient.GetShortUIName|U] is lacking a good $food_taster_court_position$: $VALUE|=+0$"
  carnx_lacking_seneschal_reason: "[recipient.GetShortUIName|U] is lacking a good $seneschal_court_position$: $VALUE|=+0$"
