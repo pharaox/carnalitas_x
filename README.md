@@ -2,7 +2,7 @@
 
 A comprehensive rework of the Carnalitas slavery system aiming at improved balance and better integration with other aspects of the game.
 
-The latest version is compatible with CK3 1.9.x and Carnalitas 2.0. If you are still on CK3 1.8.x, download version 0.9.x instead, and use it with Carnalitas 1.7. A compatibility patch with EK2 (for CK3 1.8.x) is provided as a separate download.
+The latest version is compatible with CK3 1.10.x and Carnalitas 2.1. If you are still on CK3 1.8.x, download version 0.9.x instead, and use it with Carnalitas 1.7. A compatibility patch with EK2 (for CK3 1.8.x) is provided as a separate download.
 
 ## Overview
 
