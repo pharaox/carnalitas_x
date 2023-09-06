@@ -1153,6 +1153,13 @@ carnx_ransom_slave_none_ai_accept_value = {
 		}
 	}
 
+	# Opinion of actor
+	add = {
+		value = scope:opinion_of_actor
+		multiply = 0.25
+		floor = yes
+	}
+
 	# Avoid doing business with rivals or nemesises
 	if = {
 		limit = {
@@ -1171,30 +1178,28 @@ carnx_ransom_slave_none_ai_accept_value = {
 		add = -200
 	}
 
-	# Intimidated or cowed by actor (25 or 50)
+	# Intimidated or cowed by actor
 	if = {
 		limit = {
 			scope:payer = {
-				target_is_liege_or_above = scope:actor
 				has_dread_level_towards = {
 					target = scope:actor
 					level = 1
 				}
 			}
 		}
-		add = intimidated_halved_reason_value
+		add = scope:payer.carnx_intimidated_reason_value
 	}
 	if = {
 		limit = {
 			scope:payer = {
-				target_is_liege_or_above = scope:actor
 				has_dread_level_towards = {
 					target = scope:actor
 					level = 2
 				}
 			}
 		}
-		add = cowed_halved_reason_value
+		add = scope:payer.carnx_cowed_reason_value
 	}
 }
 
@@ -1516,6 +1521,13 @@ carnx_pay_ransom_slave_none_ai_accept_value = {
 		}
 	}
 
+	# Opinion of actor
+	add = {
+		value = scope:opinion_of_actor
+		multiply = 0.25
+		floor = yes
+	}
+
 	# Avoid doing business with rivals or nemesises
 	if = {
 		limit = {
@@ -1534,30 +1546,28 @@ carnx_pay_ransom_slave_none_ai_accept_value = {
 		add = -200
 	}
 
-	# Intimidated or cowed by actor (25 or 50)
+	# Intimidated or cowed by actor
 	if = {
 		limit = {
 			scope:owner = {
-				target_is_liege_or_above = scope:actor
 				has_dread_level_towards = {
 					target = scope:actor
 					level = 1
 				}
 			}
 		}
-		add = intimidated_halved_reason_value
+		add = scope:owner.carnx_intimidated_reason_value
 	}
 	if = {
 		limit = {
 			scope:owner = {
-				target_is_liege_or_above = scope:actor
 				has_dread_level_towards = {
 					target = scope:actor
 					level = 2
 				}
 			}
 		}
-		add = cowed_halved_reason_value
+		add = scope:owner.carnx_cowed_reason_value
 	}
 }
 
@@ -1593,6 +1603,125 @@ carnx_pay_ransom_slave_favor_ai_accept_value = {
 	if = {
 		limit = { scope:owner.top_liege = scope:actor.top_liege	}
 		add = 50
+	}
+}
+
+carnx_demand_free_illegal_slaves_ai_accept_value = {
+	value = 0
+
+	# Personality
+	add = {
+		value = ai_compassion
+		multiply = 0.25
+		floor = yes
+	}
+	add = {
+		value = ai_zeal
+		multiply = 0.25
+		floor = yes
+	}
+	add = {
+		value = ai_greed
+		multiply = 0.25
+		floor = yes
+	}
+
+	# Difference in diplomacy and learning skills
+	add = {
+		value = scope:actor.diplomacy
+		subtract = diplomacy
+		multiply = 2
+	}
+	add = {
+		value = scope:actor.learning
+		subtract = learning
+		multiply = 2
+	}
+
+	# Slavery attitude
+	# Liberators more likely to accept demands, slavers, slave traders, and slave employers less likely
+	if = {
+		limit = {
+			OR = {
+				has_character_modifier = carnx_slavery_attitude_liberator_modifier
+			}
+		}
+		add = 25
+	}
+	if = {
+		limit = {
+			OR = {
+				has_character_modifier = carnx_slavery_attitude_slaver_modifier
+				has_character_modifier = carnx_slavery_attitude_trader_modifier
+				has_character_modifier = carnx_slavery_attitude_employer_modifier
+			}
+		}
+		add = -25
+	}
+
+	# Opinion of actor
+	add = {
+		value = scope:opinion_of_actor
+		multiply = 0.25
+		floor = yes
+	}
+
+	# Reject demands from rivals or nemesises
+	if = {
+		limit = {
+			has_relation_rival = scope:actor
+		}
+		add = -100
+	}
+	if = {
+		limit = {
+			has_relation_nemesis = scope:actor
+		}
+		add = -200
+	}
+
+	# Intimidated or cowed by actor
+	if = {
+		limit = {
+			has_dread_level_towards = {
+				target = scope:actor
+				level = 1
+			}
+		}
+		add = carnx_intimidated_reason_value
+	}
+	if = {
+		limit = {
+			has_dread_level_towards = {
+				target = scope:actor
+				level = 2
+			}
+		}
+		add = carnx_cowed_reason_value
+	}
+}
+
+carnx_intimidated_reason_value = {
+	if = {
+		limit = {
+			target_is_liege_or_above = scope:actor
+		}
+		value = intimidated_halved_reason_value
+	}
+	else = {
+		value = intimidated_external_reason_value
+	}
+}
+
+carnx_cowed_reason_value = {
+	if = {
+		limit = {
+			target_is_liege_or_above = scope:actor
+		}
+		value = cowed_halved_reason_value
+	}
+	else = {
+		value = cowed_external_reason_value
 	}
 }
 
@@ -1950,6 +2079,11 @@ carnx_slavery_crime_count_value = {
 		}
 		add = 1
 	}
+}
+
+carnx_demand_free_illegal_slaves_bribe_size = {
+	value = carnx_slavery_crime_count_value
+	multiply = minor_gold_value
 }
 
 carn_scope_buyer_current_gold_value = {

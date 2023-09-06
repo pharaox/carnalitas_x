@@ -377,6 +377,17 @@ carnx_pay_ransom_slave_interaction = {
 			SCALE = -75
 		}
 
+		# Opinion of actor
+		opinion_modifier = {
+			trigger = {
+				NOT = { scope:actor = scope:recipient }
+			}
+			who = scope:recipient
+			opinion_target = scope:actor
+			multiplier = 0.25
+			desc = AI_OPINION_REASON
+		}
+
 		# Avoid doing business with rivals or nemesises
 		modifier = {
 			has_relation_rival = scope:actor
@@ -389,23 +400,21 @@ carnx_pay_ransom_slave_interaction = {
 			desc = ACTOR_NEMESIS_TO_ME_REASON
 		}
 
-		# Intimidated or cowed by actor (25 or 50)
+		# Intimidated or cowed by actor
 		modifier = {
-			target_is_liege_or_above = scope:actor
 			has_dread_level_towards = {
 				target = scope:actor
 				level = 1
 			}
-			add = intimidated_halved_reason_value
+			add = carnx_intimidated_reason_value
 			desc = INTIMIDATED_REASON
 		}
 		modifier = {
-			target_is_liege_or_above = scope:actor
 			has_dread_level_towards = {
 				target = scope:actor
 				level = 2
 			}
-			add = cowed_halved_reason_value
+			add = carnx_cowed_reason_value
 			desc = COWED_REASON
 		}
 	}

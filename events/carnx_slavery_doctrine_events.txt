@@ -1,0 +1,270 @@
+﻿namespace = carnx_slavery_doctrine
+
+# 0001. A vassal agrees to emancipate illegal slaves they may hold.
+# 0002. A vassal agrees to emancipate illegal slaves they may hold in exchange for gold.
+# 0003. A vassal agrees to emancipate illegal slaves they may hold in exchange for a weak hook.
+# 0004. A vassal refuses to emancipate illegal slaves.
+
+# A vassal agrees to emancipate illegal slaves they may hold.
+carnx_slavery_doctrine.0001 = {
+	type = letter_event
+	opening = {
+		desc = religious_interaction.1.opening
+	}
+	desc = carn_slavery_doctrine.0001.desc
+	sender = scope:recipient
+
+	immediate = {
+		carn_free_illegal_slaves_effect = yes
+
+		scope:recipient = {
+			add_opinion = {
+				modifier = carn_demanded_manumission_opinion
+				target = root
+			}
+		}
+	}
+
+	option = {
+		name = carn_slavery_doctrine.0001.a
+	}
+}
+
+# A vassal agrees to emancipate illegal slaves they may hold in exchange for gold.
+carnx_slavery_doctrine.0002 = {
+	type = letter_event
+	opening = {
+		desc = religious_interaction.1.opening
+	}
+	desc = carn_slavery_doctrine.0002.desc
+	sender = scope:recipient
+
+	immediate = {
+		scope:recipient = {
+			add_opinion = {
+				modifier = carn_demanded_manumission_opinion
+				target = root
+			}
+		}
+	}
+
+	# Accept
+	option = {
+		name = carn_slavery_doctrine.0002.a
+
+		carn_free_illegal_slaves_effect = yes
+
+		pay_short_term_gold = {
+			target = scope:recipient
+			gold = scope:recipient.carnx_demand_free_illegal_slaves_bribe_size
+		}
+
+		stress_impact = {
+			greedy = medium_stress_impact_gain
+			generous = medium_stress_impact_loss
+		}
+
+		ai_chance = {
+			base = 25
+			ai_value_modifier = {
+				ai_compassion = 0.25
+				ai_zeal = 0.25
+				ai_greed = -0.25
+			}
+			modifier = {
+				OR = {
+					has_character_modifier = carnx_slavery_attitude_liberator_modifier
+				}
+				add = 25
+			}
+			modifier = {
+				OR = {
+					has_character_modifier = carnx_slavery_attitude_slaver_modifier
+					has_character_modifier = carnx_slavery_attitude_trader_modifier
+					has_character_modifier = carnx_slavery_attitude_employer_modifier
+				}
+				add = -25
+			}
+		}
+	}
+
+	# Refuse
+	option = {
+		name = carn_slavery_doctrine.0002.b
+
+		add_opinion = {
+			modifier = carn_refused_manumission_demand_opinion
+			target = scope:recipient
+		}
+
+		ai_chance = {
+			base = 25
+			modifier = {
+				short_term_gold < scope:recipient.carnx_demand_free_illegal_slaves_bribe_size
+				add = 75
+			}
+		}
+	}
+
+	# Use a hook to force it through
+	option = {
+		name = carn_slavery_doctrine.0002.c
+		trigger = {
+			has_strong_usable_hook = scope:recipient
+		}
+
+		carn_free_illegal_slaves_effect = yes
+
+		use_hook = scope:recipient
+
+		ai_chance = {
+			base = 100
+			ai_value_modifier = {
+				ai_rationality = 1
+			}
+		}
+	}
+}
+
+# A vassal agrees to emancipate illegal slaves they may hold in exchange for a weak hook.
+carnx_slavery_doctrine.0003 = {
+	type = letter_event
+	opening = {
+		desc = religious_interaction.1.opening
+	}
+	desc = carn_slavery_doctrine.0003.desc
+	sender = scope:recipient
+
+	immediate = {
+		scope:recipient = {
+			add_opinion = {
+				modifier = carn_demanded_manumission_opinion
+				target = root
+			}
+		}
+	}
+
+	# Accept
+	option = {
+		name = carn_slavery_doctrine.0003.a
+
+		carn_free_illegal_slaves_effect = yes
+
+		scope:recipient = {
+			add_hook = {
+				target = root
+				type = favor_hook
+			}
+		}
+
+		ai_chance = {
+			base = 25
+			ai_value_modifier = {
+				ai_compassion = 0.25
+				ai_zeal = 0.25
+			}
+			modifier = {
+				OR = {
+					has_character_modifier = carnx_slavery_attitude_liberator_modifier
+				}
+				add = 25
+			}
+			modifier = {
+				OR = {
+					has_character_modifier = carnx_slavery_attitude_slaver_modifier
+					has_character_modifier = carnx_slavery_attitude_trader_modifier
+					has_character_modifier = carnx_slavery_attitude_employer_modifier
+				}
+				add = -25
+			}
+		}
+	}
+
+	# Refuse
+	option = {
+		name = carn_slavery_doctrine.0003.b
+
+		add_opinion = {
+			modifier = carn_refused_manumission_demand_opinion
+			target = scope:recipient
+		}
+
+		ai_chance = {
+			base = 25
+		}
+	}
+
+	# Use a hook to force it through
+	option = {
+		name = carn_slavery_doctrine.0003.c
+		trigger = {
+			has_strong_usable_hook = scope:recipient
+		}
+
+		carn_free_illegal_slaves_effect = yes
+
+		use_hook = scope:recipient
+
+		ai_chance = {
+			base = 100
+			ai_value_modifier = {
+				ai_rationality = 1
+			}
+		}
+	}
+}
+
+# A vassal refuses to emancipate illegal slaves.
+carnx_slavery_doctrine.0004 = {
+	type = letter_event
+	opening = {
+		desc = religious_interaction.1.opening
+	}
+	desc = carn_slavery_doctrine.0004.desc
+	sender = {
+		character = scope:recipient
+		animation = dismissal
+	}
+
+	immediate = {
+		scope:recipient = {
+			add_opinion = {
+				modifier = carn_demanded_manumission_opinion
+				target = root
+			}
+		}
+	}
+
+	# Accept
+	option = {
+		name = carn_slavery_doctrine.0004.b
+
+		add_opinion = {
+			modifier = carn_illegal_refused_manumission_demand_opinion
+			target = scope:recipient
+		}
+
+		ai_chance = {
+			base = 25
+		}
+	}
+
+	# Use a hook to force it through
+	option = {
+		name = carn_slavery_doctrine.0004.d
+		trigger = {
+			has_strong_usable_hook = scope:recipient
+		}
+
+		carn_free_illegal_slaves_effect = yes
+
+		use_hook = scope:recipient
+
+		ai_chance = {
+			base = 100
+			ai_value_modifier = {
+				ai_rationality = 1
+			}
+		}
+	}
+}

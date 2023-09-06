@@ -267,27 +267,21 @@ carn_free_slave_interaction = {
 			desc = GAIN_HOOK_NEGATIVE_REASON
 		}
 
-		# Intimidated or cowed by actor (25 or 50)
+		# Intimidated or cowed by actor
 		modifier = {
-			scope:recipient = {
-				target_is_liege_or_above = scope:actor
-				has_dread_level_towards = {
-					target = scope:actor
-					level = 1
-				}
+			has_dread_level_towards = {
+				target = scope:actor
+				level = 1
 			}
-			add = intimidated_halved_reason_value
+			add = carnx_intimidated_reason_value
 			desc = INTIMIDATED_REASON
 		}
 		modifier = {
-			scope:recipient = {
-				target_is_liege_or_above = scope:actor
-				has_dread_level_towards = {
-					target = scope:actor
-					level = 2
-				}
+			has_dread_level_towards = {
+				target = scope:actor
+				level = 2
 			}
-			add = cowed_halved_reason_value
+			add = carnx_cowed_reason_value
 			desc = COWED_REASON
 		}
 	}

@@ -28,6 +28,11 @@ carnx_can_offer_ransom_slave_to_trigger = {
 	carnx_can_interact_with_trigger = { PARTY = $PARTY$ }
 }
 
+carnx_can_demand_free_illegal_slaves_trigger = {
+	carnx_can_interact_with_trigger = { PARTY = $PARTY$ }
+	NOT = { has_strong_hook = $PARTY$ }
+}
+
 carnx_can_start_interaction_trigger = {
 	highest_held_title_tier >= tier_county
 	is_busy_in_events_localised = yes

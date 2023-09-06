@@ -1,0 +1,406 @@
+﻿# Demand the freedom of all illegal slaves from another ruler.
+# Overridden from Carnalitas.
+carn_demand_free_illegal_slaves_interaction = {
+	category = interaction_category_religion
+	icon = carnx_broken_chain
+
+	desc = {
+		desc = carn_demand_free_slaves_interaction_desc
+		desc = line_break
+		desc = might_ask_for_something_in_return_warning
+		desc = carn_demand_free_illegal_slaves_is_crime
+	}
+
+	send_name = carn_demand_free_illegal_slaves_interaction
+
+	can_send_despite_rejection = yes
+	popup_on_receive = yes
+
+	ai_maybe = yes
+	ai_accept_negotiation = yes
+
+	# TODO
+	ai_min_reply_days = 0
+	ai_max_reply_days = 0
+
+	is_shown = {
+		NOT = { has_game_rule = carn_slavery_content_disabled }
+		NOT = { scope:actor = scope:recipient }
+		scope:recipient = {
+			is_ai = yes
+			is_ruler = yes
+			target_is_liege_or_above = scope:actor
+			faith = scope:actor.faith
+			any_relation = {
+				type = slave
+				scope:recipient = {
+					carnx_is_slavery_crime_trigger = { CHARACTER = prev }
+				}
+			}
+		}
+	}
+
+	is_valid_showing_failures_only = {
+		scope:actor = {
+			carnx_can_start_interaction_trigger = yes
+		}
+		scope:recipient = {
+			carnx_can_demand_free_illegal_slaves_trigger = { PARTY = scope:actor }
+			custom_tooltip = {
+				text = cannot_take_overt_hostile_actions_against_diarch.tt
+				NOT = { scope:recipient ?= scope:actor.diarch }
+			}
+		}
+	}
+
+	cooldown_against_recipient = { years = 5 }
+
+	# Use hook
+	send_option = {
+		is_valid = {
+			exists = scope:recipient
+			scope:actor = {
+				has_usable_hook = scope:recipient
+			}
+		}
+		flag = hook
+		localization = SCHEME_HOOK
+	}
+	should_use_extra_icon = {
+		scope:actor = { has_usable_hook = scope:recipient }
+	}
+	extra_icon = "gfx/interface/icons/character_interactions/hook_icon.dds"
+
+	send_options_exclusive = no
+
+	on_accept = {
+		if = {
+			limit = {
+				scope:hook = yes
+				scope:actor = {
+					has_usable_hook = scope:recipient
+				}
+			}
+			scope:actor = {
+				use_hook = scope:recipient
+			}
+		}
+		else = {
+			save_scope_value_as = {
+				name = accepted_no_hook
+				value = yes
+			}
+		}
+		scope:actor = {
+			trigger_event = carnx_slavery_doctrine.0001
+		}
+		scope:recipient = {
+			show_as_tooltip = {
+				carn_free_illegal_slaves_effect = yes
+			}
+		}
+  	}
+
+	on_decline = {
+		scope:recipient = {
+			hidden_effect = {
+				random_list = {
+					# Conditional acceptance
+					75 = {
+						ai_value_modifier = {
+							ai_greed = 0.5
+						}
+						random_list = {
+							# They ask for gold
+							50 = {
+								# More likely to ask for gold if they're poor
+								modifier = {
+									carnx_is_character_poor_trigger = yes
+									add = 50
+								}
+								# More likely to ask for gold if involved in an own war
+								modifier = {
+									is_at_war = yes
+									any_character_war = {
+										is_war_leader = scope:recipient
+									}
+									add = {
+										value = 50
+										if = {
+											limit = { gold < 0 }
+											add = 50
+										}
+									}
+								}
+								scope:actor = {
+									trigger_event = carnx_slavery_doctrine.0002
+								}
+							}
+							# They ask for a favor
+							50 = {
+								trigger = {
+									exists = capital_county
+									NOT = { has_hook = scope:actor }
+								}
+								# More likely to ask for a favor if direct feudal vassal
+								modifier = {
+									liege = scope:actor
+									government_has_flag = government_is_feudal
+									add = {
+										value = 50
+										if = {
+											limit = { is_powerful_vassal_of = scope:actor }
+											add = 50
+										}
+									}
+								}
+								scope:actor = {
+									trigger_event = carnx_slavery_doctrine.0003
+								}
+							}
+						}
+					}
+					# Full refusal
+					25 = {
+						modifier = {
+							save_temporary_opinion_value_as = {
+								name = opinion_of_actor
+								target = scope:actor
+							}
+							carnx_demand_free_illegal_slaves_ai_accept_value < 75
+							add = 25
+						}
+						modifier = {
+							save_temporary_opinion_value_as = {
+								name = opinion_of_actor
+								target = scope:actor
+							}
+							carnx_demand_free_illegal_slaves_ai_accept_value < 50
+							add = 25
+						}
+						modifier = {
+							save_temporary_opinion_value_as = {
+								name = opinion_of_actor
+								target = scope:actor
+							}
+							carnx_demand_free_illegal_slaves_ai_accept_value < 25
+							add = 25
+						}
+						modifier = {
+							save_temporary_opinion_value_as = {
+								name = opinion_of_actor
+								target = scope:actor
+							}
+							carnx_demand_free_illegal_slaves_ai_accept_value < 0
+							add = 25
+						}
+						scope:actor = {
+							trigger_event = carnx_slavery_doctrine.0004
+						}
+					}
+				}
+			}
+			custom_tooltip = carnx_demand_free_illegal_slaves_refused
+			show_as_tooltip = {
+				add_opinion = {
+					modifier = carn_demanded_manumission_opinion
+					target = scope:actor
+				}
+				scope:actor = {
+					custom_tooltip = action_can_lawfully_imprison_label
+				}
+			}
+		}
+	}
+
+	# recipient might ask for something in return
+	on_decline_summary = stop_attacker_vassal_war_decline_summary
+
+	auto_accept = {
+		custom_description = {
+			text = "spending_hook"
+			subject = scope:actor
+			object = scope:recipient
+			scope:hook = yes
+			scope:actor = { has_strong_hook = scope:recipient }
+		}
+	}
+
+	ai_accept = {
+		base = 0
+
+		modifier = {
+			scope:hook = yes
+			add = 50
+			desc = SCHEME_WEAK_HOOK_USED
+		}
+
+		modifier = {
+			add = 25
+			desc = carnx_declining_to_free_illegal_slaves_is_crime_reason
+		}
+
+		# Personality
+		ai_value_modifier = {
+			ai_compassion = 0.25
+			ai_zeal = 0.25
+			ai_greed = -0.25
+		}
+
+		# Difference in diplomacy and learning skills
+		modifier = {
+			add = {
+				value = scope:actor.diplomacy
+				subtract = scope:recipient.diplomacy
+				multiply = 2
+			}
+			desc = ASK_FOR_CONVERSION_RECIPIENT_DIPLOMACY
+		}
+		modifier = {
+			add = {
+				value = scope:actor.learning
+				subtract = scope:recipient.learning
+				multiply = 2
+			}
+			desc = ASK_FOR_CONVERSION_RECIPIENT_LEARNING
+		}
+
+		# Slavery attitude
+		# Liberators more likely to accept demands, slavers, slave traders, and slave employers less likely
+		modifier = {
+			OR = {
+				has_character_modifier = carnx_slavery_attitude_liberator_modifier
+			}
+			add = 25
+			desc = carnx_slavery_attitude_reason
+		}
+		modifier = {
+			OR = {
+				has_character_modifier = carnx_slavery_attitude_slaver_modifier
+				has_character_modifier = carnx_slavery_attitude_trader_modifier
+				has_character_modifier = carnx_slavery_attitude_employer_modifier
+			}
+			add = -25
+			desc = carnx_slavery_attitude_reason
+		}
+
+		# Opinion of actor
+		opinion_modifier = {
+			trigger = {
+				NOT = { scope:actor = scope:recipient }
+			}
+			who = scope:recipient
+			opinion_target = scope:actor
+			multiplier = 0.25
+			desc = AI_OPINION_REASON
+		}
+
+		# Reject demands from rivals and nemesises
+		modifier = {
+			has_relation_rival = scope:actor
+			add = -100
+			desc = ACTOR_RIVAL_TO_ME_REASON
+		}
+		modifier = {
+			has_relation_nemesis = scope:actor
+			add = -200
+			desc = ACTOR_NEMESIS_TO_ME_REASON
+		}
+
+		# Intimidated or cowed by actor
+		modifier = {
+			has_dread_level_towards = {
+				target = scope:actor
+				level = 1
+			}
+			add = carnx_intimidated_reason_value
+			desc = INTIMIDATED_REASON
+		}
+		modifier = {
+			has_dread_level_towards = {
+				target = scope:actor
+				level = 2
+			}
+			add = carnx_cowed_reason_value
+			desc = COWED_REASON
+		}
+
+		# Display warning
+		modifier = {
+			add = 0
+			desc = might_ask_for_something_in_return_warning_line_break
+		}
+	}
+
+	ai_targets = {
+		ai_recipients = vassals
+	}
+	ai_target_quick_trigger = {
+		adult = yes
+	}
+
+	ai_frequency = 24
+
+	ai_potential = {
+		is_adult = yes
+	}
+
+	ai_will_do = {
+		base = 0
+		modifier = {
+			add = carnx_demand_free_illegal_slaves_ai_will_do_base
+		}
+
+		# Make sure the AI uses hooks for this as it's % based
+		modifier = {
+			add = 1
+			scope:hook = yes
+		}
+
+		# Personality
+		ai_value_modifier = {
+			ai_compassion = 0.25
+			ai_zeal = 0.25
+		}
+
+		# Slavery attitude
+		# Liberators more likely to make demands, slavers, slave traders, and slave employers less likely
+		modifier = {
+			OR = {
+				has_character_modifier = carnx_slavery_attitude_liberator_modifier
+			}
+			add = 25
+		}
+		modifier = {
+			OR = {
+				has_character_modifier = carnx_slavery_attitude_slaver_modifier
+				has_character_modifier = carnx_slavery_attitude_trader_modifier
+				has_character_modifier = carnx_slavery_attitude_employer_modifier
+			}
+			add = -25
+		}
+
+		# Avoid making demands if the chance of acceptance is small or not enough money for a bribe
+		modifier = {
+			scope:recipient = {
+				save_temporary_opinion_value_as = {
+					name = opinion_of_actor
+					target = scope:actor
+				}
+				carnx_demand_free_illegal_slaves_ai_accept_value < 25
+			}
+			factor = 0
+		}
+		modifier = {
+			scope:recipient = {
+				save_temporary_opinion_value_as = {
+					name = opinion_of_actor
+					target = scope:actor
+				}
+				carnx_demand_free_illegal_slaves_ai_accept_value < 75
+			}
+			short_term_gold < scope:recipient.carnx_demand_free_illegal_slaves_bribe_size
+			factor = 0
+		}
+	}
+}

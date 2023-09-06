@@ -654,6 +654,32 @@ carn_free_illegal_slaves_effect = {
 						carnx_is_slavery_crime_trigger = { CHARACTER = prev }
 					}
 				}
+
+				save_scope_as = slave
+				if = {
+					limit = {
+						exists = scope:accepted_no_hook
+					}
+					scope:recipient = { save_scope_as = emancipator }
+				}
+				else = {
+					scope:actor = { save_scope_as = emancipator }
+				}
+
+				scope:emancipator = {
+					hidden_effect = {
+						# Potentially acquire liberator trait if scope:slave not enslaved by scope:emancipator
+						if = {
+							limit = {
+								scope:slave = {
+									NOT = { carnx_was_enslaved_by_character_trigger = { CHARACTER = scope:emancipator } }
+								}
+							}
+							carnx_potentially_acquire_liberator_trait_effect = yes
+						}
+					}
+				}
+
 				carnx_debug_log_no_details_effect = { MSG = carnx_debug_msg_freeing_illegal_slave }
 				carn_free_slave_effect = yes
 			}

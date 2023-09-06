@@ -4,6 +4,7 @@ carnx_free_slave_ai_will_do_base = 0	# neutral to free
 carnx_seize_slave_ai_will_do_base = 25	# quite willing to seize
 carnx_gift_slave_ai_will_do_base = 25	# quite willing to gift
 carnx_liberate_slave_ai_will_do_base = 0	# neutral to liberate
+carnx_demand_free_illegal_slaves_ai_will_do_base = 25 # quite willing to demand manumission
 
 # AI impact values (base is -50 / 50)
 carnx_ai_positive_skill_impact_value = 5

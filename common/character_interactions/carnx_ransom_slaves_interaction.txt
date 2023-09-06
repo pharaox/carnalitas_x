@@ -48,6 +48,10 @@ carnx_ransom_slaves_interaction = {
 								name = opinion_of_slave
 								target = scope:slave
 							}
+							save_temporary_opinion_value_as = {
+								name = opinion_of_actor
+								target = scope:actor
+							}
 							OR = {
 								AND = {
 									gold > 0
@@ -90,6 +94,10 @@ carnx_ransom_slaves_interaction = {
 				save_temporary_opinion_value_as = {
 					name = opinion_of_slave
 					target = scope:slave
+				}
+				save_temporary_opinion_value_as = {
+					name = opinion_of_actor
+					target = scope:actor
 				}
 				OR = {
 					AND = {
@@ -153,6 +161,10 @@ carnx_ransom_slaves_interaction = {
 				save_temporary_opinion_value_as = {
 					name = opinion_of_slave
 					target = scope:slave
+				}
+				save_temporary_opinion_value_as = {
+					name = opinion_of_actor
+					target = scope:actor
 				}
 				if = {
 					limit = {
