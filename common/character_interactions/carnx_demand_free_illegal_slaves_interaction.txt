@@ -8,7 +8,14 @@ carn_demand_free_illegal_slaves_interaction = {
 		desc = carn_demand_free_slaves_interaction_desc
 		desc = line_break
 		desc = might_ask_for_something_in_return_warning
-		desc = carn_demand_free_illegal_slaves_is_crime
+		triggered_desc = {
+			trigger = {
+				scope:actor = {
+					carnx_is_declining_to_free_illegal_slaves_crime_trigger = yes
+				}
+			}
+			desc = carn_demand_free_illegal_slaves_is_crime
+		}
 	}
 
 	send_name = carn_demand_free_illegal_slaves_interaction
@@ -97,9 +104,13 @@ carn_demand_free_illegal_slaves_interaction = {
 		scope:recipient = {
 			show_as_tooltip = {
 				carn_free_illegal_slaves_effect = yes
+				add_opinion = {
+					modifier = carn_demanded_manumission_opinion
+					target = scope:actor
+				}
 			}
 		}
-  	}
+	}
 
 	on_decline = {
 		scope:recipient = {
@@ -207,7 +218,12 @@ carn_demand_free_illegal_slaves_interaction = {
 					target = scope:actor
 				}
 				scope:actor = {
-					custom_tooltip = action_can_lawfully_imprison_label
+					if = {
+						limit = {
+							carnx_is_declining_to_free_illegal_slaves_crime_trigger = yes
+						}
+						custom_tooltip = action_can_lawfully_imprison_label
+					}
 				}
 			}
 		}
@@ -235,7 +251,11 @@ carn_demand_free_illegal_slaves_interaction = {
 			desc = SCHEME_WEAK_HOOK_USED
 		}
 
+		# Declining is a crime
 		modifier = {
+			scope:actor = {
+				carnx_is_declining_to_free_illegal_slaves_crime_trigger = yes
+			}
 			add = 25
 			desc = carnx_declining_to_free_illegal_slaves_is_crime_reason
 		}
@@ -389,6 +409,7 @@ carn_demand_free_illegal_slaves_interaction = {
 				}
 				carnx_demand_free_illegal_slaves_ai_accept_value < 25
 			}
+			carnx_is_declining_to_free_illegal_slaves_crime_trigger = no
 			factor = 0
 		}
 		modifier = {

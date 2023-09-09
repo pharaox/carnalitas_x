@@ -1609,6 +1609,16 @@ carnx_pay_ransom_slave_favor_ai_accept_value = {
 carnx_demand_free_illegal_slaves_ai_accept_value = {
 	value = 0
 
+	# Declining is a crime
+	if = {
+		limit = {
+			scope:actor = {
+				carnx_is_declining_to_free_illegal_slaves_crime_trigger = yes
+			}
+		}
+		add = 25
+	}
+
 	# Personality
 	add = {
 		value = ai_compassion
@@ -1622,7 +1632,7 @@ carnx_demand_free_illegal_slaves_ai_accept_value = {
 	}
 	add = {
 		value = ai_greed
-		multiply = 0.25
+		multiply = -0.25
 		floor = yes
 	}
 
