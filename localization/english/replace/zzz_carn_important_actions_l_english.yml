@@ -1,0 +1,9 @@
+﻿l_english:
+ action_carn_can_demand_free_illegal_slaves_interaction: "@carnx_broken_chain_icon! You can $carn_demand_free_illegal_slaves_interaction$"
+ action_carn_can_demand_free_illegal_slaves_interaction_label: "$action_carn_can_demand_free_illegal_slaves_interaction$ from [recipient.GetUINameNoTooltip]"
+ action_carn_can_demand_free_illegal_slaves_interaction_desc: "You can demand that [recipient.GetUIName] frees all illegal [slaves|E] [recipient.GetSheHe] owns."
+ action_carn_can_demand_free_illegal_slaves_interaction_click: "#I Click to $carn_demand_free_illegal_slaves_interaction$#!"
+ action_carn_can_demand_free_illegal_slaves_interaction_combined_group_label: "$action_carn_can_demand_free_illegal_slaves_interaction$"
+ action_carn_can_demand_free_illegal_slaves_interaction_combined_group_name: "$action_carn_can_demand_free_illegal_slaves_interaction$"
+ action_carn_can_demand_free_illegal_slaves_interaction_combined_group_description: "You can demand that one of your vassals frees all illegal [slaves|E] they own."
+ action_carn_can_demand_free_illegal_slaves_interaction_combined_label: "From [recipient.GetUINameNoTooltip]"

@@ -1,0 +1,19 @@
+texticon = {
+	icon = carnx_chain_icon
+	iconsize = {
+		texture = "gfx/interface/icons/character_interactions/carnx_chain.dds"
+		size = { 25 25 }
+		offset = { 0 6 }
+		fontsize = 16
+	}
+}
+
+texticon = {
+	icon = carnx_broken_chain_icon
+	iconsize = {
+		texture = "gfx/interface/icons/character_interactions/carnx_broken_chain.dds"
+		size = { 25 25 }
+		offset = { 0 6 }
+		fontsize = 16
+	}
+}

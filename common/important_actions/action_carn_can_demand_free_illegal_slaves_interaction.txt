@@ -1,0 +1,54 @@
+﻿# Overridden from Carnalitas.
+action_carn_can_demand_free_illegal_slaves_interaction = {
+	icon = carnx_broken_chain
+	combine_into_one = yes
+
+	check_create_action = {
+		if = {
+			limit = {
+				NOT = { has_game_rule = carn_slavery_content_disabled }
+				carnx_can_start_interaction_trigger = yes
+			}
+
+			every_vassal_or_below = {
+				if = {
+					limit = {
+						root = {
+							is_character_interaction_valid = {
+								interaction = carn_demand_free_illegal_slaves_interaction
+								recipient = prev
+							}
+						}
+					}
+					try_create_important_action = {
+						important_action_type = action_carn_can_demand_free_illegal_slaves_interaction
+						actor = root
+						recipient = this
+					}
+				}
+			}
+		}
+	}
+
+	unimportant = {
+		scope:recipient = {
+			has_important_relationship_with_root_trigger = no
+			is_close_family_or_spouse_of_root_trigger = no
+			trigger_if = {
+				limit = {
+					is_ruler = yes
+					target_is_liege_or_above = scope:actor
+				}
+				NOT = { liege = root }
+			}
+		}
+	}
+
+	effect = {
+		open_interaction_window = {
+			interaction = carn_demand_free_illegal_slaves_interaction
+			actor = scope:actor
+			recipient = scope:recipient
+		}
+	}
+}
