@@ -37,529 +37,349 @@
 
 carnx_court_physician_title_accepted_effect = {
 	court_physician_title_accepted_effect = yes
-	if = {
-		limit = {
-			scope:employee = { has_trait = slave }
-		}
-		carnx_debug_log_effect = { MSG = carnx_debug_msg_court_physician_received }
-	}
+	carnx_debug_log_title_received_slave_effect = { NAME = court_physician }
 }
 
 carnx_court_physician_title_revoked_effect = {
 	court_physician_title_revoked_effect = yes
-	if = {
-		limit = {
-			scope:employee = { has_trait = slave }
-		}
-		carnx_debug_log_effect = { MSG = carnx_debug_msg_court_physician_revoked }
-	}
+	carnx_debug_log_title_revoked_slave_effect = { NAME = court_physician }
 }
 
 carnx_court_physician_title_invalidated_effect = {
 	court_physician_title_invalidated_effect = yes
-	if = {
-		limit = {
-			scope:employee = { has_trait = slave }
-		}
-		carnx_debug_log_effect = { MSG = carnx_debug_msg_court_physician_invalidated }
-	}
+	carnx_debug_log_title_invalidated_slave_effect = { NAME = court_physician }
 }
 
 # ANTIQUARIAN
 
 carnx_antiquarian_title_accepted_effect = {
 	antiquarian_title_accepted_effect = yes
-	if = {
-		limit = {
-			scope:employee = { has_trait = slave }
-		}
-		carnx_debug_log_effect = { MSG = carnx_debug_msg_antiquarian_received }
-	}
+	carnx_debug_log_title_received_slave_effect = { NAME = antiquarian }
 }
 
 carnx_antiquarian_title_revoked_effect = {
 	antiquarian_title_revoked_effect = yes
-	if = {
-		limit = {
-			scope:employee = { has_trait = slave }
-		}
-		carnx_debug_log_effect = { MSG = carnx_debug_msg_antiquarian_revoked }
-	}
+	carnx_debug_log_title_revoked_slave_effect = { NAME = antiquarian }
 }
 
 carnx_antiquarian_title_invalidated_effect = {
 	antiquarian_title_invalidated_effect = yes
-	if = {
-		limit = {
-			scope:employee = { has_trait = slave }
-		}
-		carnx_debug_log_effect = { MSG = carnx_debug_msg_antiquarian_invalidated }
-	}
+	carnx_debug_log_title_invalidated_slave_effect = { NAME = antiquarian }
 }
 
 # COURT GARDENER
 
 carnx_court_gardener_title_accepted_effect = {
 	court_gardener_title_accepted_effect = yes
-	if = {
-		limit = {
-			scope:employee = { has_trait = slave }
-		}
-		carnx_debug_log_effect = { MSG = carnx_debug_msg_court_gardener_received }
-	}
+	carnx_debug_log_title_received_slave_effect = { NAME = court_gardener }
 }
 
 carnx_court_gardener_title_revoked_effect = {
 	court_gardener_title_revoked_effect = yes
-	if = {
-		limit = {
-			scope:employee = { has_trait = slave }
-		}
-		carnx_debug_log_effect = { MSG = carnx_debug_msg_court_gardener_revoked }
-	}
+	carnx_debug_log_title_revoked_slave_effect = { NAME = court_gardener }
 }
 
 carnx_court_gardener_title_invalidated_effect = {
 	court_gardener_title_invalidated_effect = yes
-	if = {
-		limit = {
-			scope:employee = { has_trait = slave }
-		}
-		carnx_debug_log_effect = { MSG = carnx_debug_msg_court_gardener_invalidated }
-	}
+	carnx_debug_log_title_invalidated_slave_effect = { NAME = court_gardener }
 }
 
 # WET NURSE
 
 carnx_wet_nurse_title_accepted_effect = {
 	wet_nurse_title_accepted_effect = yes
-	if = {
-		limit = {
-			scope:employee = { has_trait = slave }
-		}
-		carnx_debug_log_effect = { MSG = carnx_debug_msg_wet_nurse_received }
-	}
+	carnx_debug_log_title_received_slave_effect = { NAME = wet_nurse }
 }
 
 carnx_wet_nurse_title_revoked_effect = {
 	wet_nurse_title_revoked_effect = yes
-	if = {
-		limit = {
-			scope:employee = { has_trait = slave }
-		}
-		carnx_debug_log_effect = { MSG = carnx_debug_msg_wet_nurse_revoked }
-	}
+	carnx_debug_log_title_revoked_slave_effect = { NAME = wet_nurse }
 }
 
 carnx_wet_nurse_title_invalidated_effect = {
 	wet_nurse_title_invalidated_effect = yes
-	if = {
-		limit = {
-			scope:employee = { has_trait = slave }
-		}
-		carnx_debug_log_effect = { MSG = carnx_debug_msg_wet_nurse_invalidated }
-	}
+	carnx_debug_log_title_invalidated_slave_effect = { NAME = wet_nurse }
 }
 
 # COURT TUTOR
 
 carnx_court_tutor_title_accepted_effect = {
 	court_tutor_title_accepted_effect = yes
-	if = {
-		limit = {
-			scope:employee = { has_trait = slave }
-		}
-		carnx_debug_log_effect = { MSG = carnx_debug_msg_court_tutor_received }
-	}
+	carnx_debug_log_title_received_slave_effect = { NAME = court_tutor }
 }
 
 carnx_court_tutor_title_revoked_effect = {
 	court_tutor_title_revoked_effect = yes
-	if = {
-		limit = {
-			scope:employee = { has_trait = slave }
-		}
-		carnx_debug_log_effect = { MSG = carnx_debug_msg_court_tutor_revoked }
-	}
+	carnx_debug_log_title_revoked_slave_effect = { NAME = court_tutor }
 }
 
 carnx_court_tutor_title_invalidated_effect = {
 	court_tutor_title_invalidated_effect = yes
-	if = {
-		limit = {
-			scope:employee = { has_trait = slave }
-		}
-		carnx_debug_log_effect = { MSG = carnx_debug_msg_court_tutor_invalidated }
-	}
+	carnx_debug_log_title_invalidated_slave_effect = { NAME = court_tutor }
 }
 
 # FOOD TASTER
 
 carnx_food_taster_title_accepted_effect = {
 	food_taster_title_accepted_effect = yes
-	if = {
-		limit = {
-			scope:employee = { has_trait = slave }
-		}
-		carnx_debug_log_effect = { MSG = carnx_debug_msg_food_taster_received }
-	}
+	carnx_debug_log_title_received_slave_effect = { NAME = food_taster }
 }
 
 carnx_food_taster_title_revoked_effect = {
 	food_taster_title_revoked_effect = yes
-	if = {
-		limit = {
-			scope:employee = { has_trait = slave }
-		}
-		carnx_debug_log_effect = { MSG = carnx_debug_msg_food_taster_revoked }
-	}
+	carnx_debug_log_title_revoked_slave_effect = { NAME = food_taster }
 }
 
 carnx_food_taster_title_invalidated_effect = {
 	food_taster_title_invalidated_effect = yes
-	if = {
-		limit = {
-			scope:employee = { has_trait = slave }
-		}
-		carnx_debug_log_effect = { MSG = carnx_debug_msg_food_taster_invalidated }
-	}
+	carnx_debug_log_title_invalidated_slave_effect = { NAME = food_taster }
 }
 
 # SENESCHAL
 
 carnx_seneschal_title_accepted_effect = {
 	seneschal_title_accepted_effect = yes
-	if = {
-		limit = {
-			scope:employee = { has_trait = slave }
-		}
-		carnx_debug_log_effect = { MSG = carnx_debug_msg_seneschal_received }
-	}
+	carnx_debug_log_title_received_slave_effect = { NAME = seneschal }
 }
 
 carnx_seneschal_title_revoked_effect = {
 	seneschal_title_revoked_effect = yes
-	if = {
-		limit = {
-			scope:employee = { has_trait = slave }
-		}
-		carnx_debug_log_effect = { MSG = carnx_debug_msg_seneschal_revoked }
-	}
+	carnx_debug_log_title_revoked_slave_effect = { NAME = seneschal }
 }
 
 carnx_seneschal_title_invalidated_effect = {
 	seneschal_title_invalidated_effect = yes
-	if = {
-		limit = {
-			scope:employee = { has_trait = slave }
-		}
-		carnx_debug_log_effect = { MSG = carnx_debug_msg_seneschal_invalidated }
-	}
+	carnx_debug_log_title_invalidated_slave_effect = { NAME = seneschal }
 }
 
 # CUPBEARER
 
 carnx_cupbearer_title_accepted_effect = {
 	cupbearer_title_accepted_effect = yes
-	if = {
-		limit = {
-			scope:employee = { has_trait = slave }
-		}
-		carnx_debug_log_effect = { MSG = carnx_debug_msg_cupbearer_received }
-	}
+	carnx_debug_log_title_received_slave_effect = { NAME = cupbearer }
 }
 
 carnx_cupbearer_title_revoked_effect = {
 	cupbearer_title_revoked_effect = yes
-	if = {
-		limit = {
-			scope:employee = { has_trait = slave }
-		}
-		carnx_debug_log_effect = { MSG = carnx_debug_msg_cupbearer_revoked }
-	}
+	carnx_debug_log_title_revoked_slave_effect = { NAME = cupbearer }
 }
 
 carnx_cupbearer_title_invalidated_effect = {
 	cupbearer_title_invalidated_effect = yes
-	if = {
-		limit = {
-			scope:employee = { has_trait = slave }
-		}
-		carnx_debug_log_effect = { MSG = carnx_debug_msg_cupbearer_invalidated }
-	}
+	carnx_debug_log_title_invalidated_slave_effect = { NAME = cupbearer }
 }
 
 # COURT EUNUCH
 
 carnx_chief_eunuch_title_accepted_effect = {
 	chief_eunuch_title_accepted_effect = yes
-	if = {
-		limit = {
-			scope:employee = { has_trait = slave }
-		}
-		carnx_debug_log_effect = { MSG = carnx_debug_msg_chief_eunuch_received }
-	}
+	carnx_debug_log_title_received_slave_effect = { NAME = chief_eunuch }
 }
 
 carnx_chief_eunuch_title_revoked_effect = {
 	chief_eunuch_title_revoked_effect = yes
-	if = {
-		limit = {
-			scope:employee = { has_trait = slave }
-		}
-		carnx_debug_log_effect = { MSG = carnx_debug_msg_chief_eunuch_revoked }
-	}
+	carnx_debug_log_title_revoked_slave_effect = { NAME = chief_eunuch }
 }
 
 carnx_chief_eunuch_title_invalidated_effect = {
 	chief_eunuch_title_invalidated_effect = yes
-	if = {
-		limit = {
-			scope:employee = { has_trait = slave }
-		}
-		carnx_debug_log_effect = { MSG = carnx_debug_msg_chief_eunuch_invalidated }
-	}
+	carnx_debug_log_title_invalidated_slave_effect = { NAME = chief_eunuch }
 }
 
 # COURT JESTER
 
 carnx_court_jester_title_accepted_effect = {
 	court_jester_title_accepted_effect = yes
-	if = {
-		limit = {
-			scope:employee = { has_trait = slave }
-		}
-		carnx_debug_log_effect = { MSG = carnx_debug_msg_court_jester_received }
-	}
+	carnx_debug_log_title_received_slave_effect = { NAME = court_jester }
 }
 
 carnx_court_jester_title_revoked_effect = {
 	court_jester_title_revoked_effect = yes
-	if = {
-		limit = {
-			scope:employee = { has_trait = slave }
-		}
-		carnx_debug_log_effect = { MSG = carnx_debug_msg_court_jester_revoked }
-	}
+	carnx_debug_log_title_revoked_slave_effect = { NAME = court_jester }
 }
 
 carnx_court_jester_title_invalidated_effect = {
 	court_jester_title_invalidated_effect = yes
-	if = {
-		limit = {
-			scope:employee = { has_trait = slave }
-		}
-		carnx_debug_log_effect = { MSG = carnx_debug_msg_court_jester_invalidated }
-	}
+	carnx_debug_log_title_invalidated_slave_effect = { NAME = court_jester }
 }
 
 # COURT POET
 
 carnx_court_poet_title_accepted_effect = {
 	court_poet_title_accepted_effect = yes
-	if = {
-		limit = {
-			scope:employee = { has_trait = slave }
-		}
-		carnx_debug_log_effect = { MSG = carnx_debug_msg_court_poet_received }
-	}
+	carnx_debug_log_title_received_slave_effect = { NAME = court_poet }
 }
 
 carnx_court_poet_title_revoked_effect = {
-	basic_revoked_court_position_effect = yes
-	if = {
-		limit = {
-			scope:employee = { has_trait = slave }
-		}
-		carnx_debug_log_effect = { MSG = carnx_debug_msg_court_poet_revoked }
-	}
+	court_poet_title_revoked_effect = yes
+	carnx_debug_log_title_revoked_slave_effect = { NAME = court_poet }
 }
 
 carnx_court_poet_title_invalidated_effect = {
 	court_poet_title_invalidated_effect = yes
-	if = {
-		limit = {
-			scope:employee = { has_trait = slave }
-		}
-		carnx_debug_log_effect = { MSG = carnx_debug_msg_court_poet_invalidated }
-	}
+	carnx_debug_log_title_invalidated_slave_effect = { NAME = court_poet }
 }
 
 # COURT MUSICIAN
 
 carnx_court_musician_title_accepted_effect = {
 	court_musician_title_accepted_effect = yes
-	if = {
-		limit = {
-			scope:employee = { has_trait = slave }
-		}
-		carnx_debug_log_effect = { MSG = carnx_debug_msg_court_musician_received }
-	}
+	carnx_debug_log_title_received_slave_effect = { NAME = court_musician }
 }
 
 carnx_court_musician_title_revoked_effect = {
 	court_musician_title_revoked_effect = yes
-	if = {
-		limit = {
-			scope:employee = { has_trait = slave }
-		}
-		carnx_debug_log_effect = { MSG = carnx_debug_msg_court_musician_revoked }
-	}
+	carnx_debug_log_title_revoked_slave_effect = { NAME = court_musician }
 }
 
 carnx_court_musician_title_invalidated_effect = {
 	court_musician_title_invalidated_effect = yes
-	if = {
-		limit = {
-			scope:employee = { has_trait = slave }
-		}
-		carnx_debug_log_effect = { MSG = carnx_debug_msg_court_musician_invalidated }
-	}
+	carnx_debug_log_title_invalidated_slave_effect = { NAME = court_musician }
 }
 
 # BODYGUARD
 
 carnx_bodyguard_title_accepted_effect = {
 	bodyguard_title_accepted_effect = yes
-	if = {
-		limit = {
-			scope:employee = { has_trait = slave }
-		}
-		carnx_debug_log_effect = { MSG = carnx_debug_msg_bodyguard_received }
-	}
+	carnx_debug_log_title_received_slave_effect = { NAME = bodyguard }
 }
 
 carnx_bodyguard_title_revoked_effect = {
 	bodyguard_title_revoked_effect = yes
-	if = {
-		limit = {
-			scope:employee = { has_trait = slave }
-		}
-		carnx_debug_log_effect = { MSG = carnx_debug_msg_bodyguard_revoked }
-	}
+	carnx_debug_log_title_revoked_slave_effect = { NAME = bodyguard }
 }
 
 carnx_bodyguard_title_invalidated_effect = {
 	bodyguard_title_invalidated_effect = yes
-	if = {
-		limit = {
-			scope:employee = { has_trait = slave }
-		}
-		carnx_debug_log_effect = { MSG = carnx_debug_msg_bodyguard_invalidated }
-	}
+	carnx_debug_log_title_invalidated_slave_effect = { NAME = bodyguard }
 }
 
 # CHAMPION
 
 carnx_champion_title_accepted_effect = {
 	champion_title_accepted_effect = yes
-	if = {
-		limit = {
-			scope:employee = { has_trait = slave }
-		}
-		carnx_debug_log_effect = { MSG = carnx_debug_msg_champion_received }
-	}
+	carnx_debug_log_title_received_slave_effect = { NAME = champion }
 }
 
 carnx_champion_title_revoked_effect = {
 	champion_title_revoked_effect = yes
-	if = {
-		limit = {
-			scope:employee = { has_trait = slave }
-		}
-		carnx_debug_log_effect = { MSG = carnx_debug_msg_champion_revoked }
-	}
+	carnx_debug_log_title_revoked_slave_effect = { NAME = champion }
 }
 
 carnx_champion_title_invalidated_effect = {
 	champion_title_invalidated_effect = yes
-	if = {
-		limit = {
-			scope:employee = { has_trait = slave }
-		}
-		carnx_debug_log_effect = { MSG = carnx_debug_msg_champion_invalidated }
-	}
+	carnx_debug_log_title_invalidated_slave_effect = { NAME = champion }
 }
 
 # EXECUTIONER
 
 carnx_executioner_title_accepted_effect = {
 	executioner_title_accepted_effect = yes
-	if = {
-		limit = {
-			scope:employee = { has_trait = slave }
-		}
-		carnx_debug_log_effect = { MSG = carnx_debug_msg_executioner_received }
-	}
+	carnx_debug_log_title_received_slave_effect = { NAME = executioner }
 }
 
 carnx_executioner_title_revoked_effect = {
 	executioner_title_revoked_effect = yes
-	if = {
-		limit = {
-			scope:employee = { has_trait = slave }
-		}
-		carnx_debug_log_effect = { MSG = carnx_debug_msg_executioner_revoked }
-	}
+	carnx_debug_log_title_revoked_slave_effect = { NAME = executioner }
 }
 
 carnx_executioner_title_invalidated_effect = {
 	executioner_title_invalidated_effect = yes
-	if = {
-		limit = {
-			scope:employee = { has_trait = slave }
-		}
-		carnx_debug_log_effect = { MSG = carnx_debug_msg_executioner_invalidated }
-	}
+	carnx_debug_log_title_invalidated_slave_effect = { NAME = executioner }
 }
 
 # SLAVE CONCUBINE
 
 carnx_slave_concubine_title_received_effect = {
 	basic_gained_court_position_effect = yes
-	carnx_debug_log_effect = { MSG = carnx_debug_msg_slave_concubine_received }
+	carnx_debug_log_title_received_effect = { NAME = slave_concubine }
 }
 
 carnx_slave_concubine_title_revoked_effect = {
 	basic_revoked_court_position_effect = yes
-	carnx_debug_log_effect = { MSG = carnx_debug_msg_slave_concubine_revoked }
+	carnx_debug_log_title_revoked_effect = { NAME = slave_concubine }
 }
 
 carnx_slave_concubine_title_invalidated_effect = {
 	basic_invalidated_court_position_effect = yes
-	carnx_debug_log_effect = { MSG = carnx_debug_msg_slave_concubine_invalidated }
+	carnx_debug_log_title_invalidated_effect = { NAME = slave_concubine}
 }
 
 # SLAVE CAPTAIN
 
 carnx_slave_captain_title_received_effect = {
 	basic_gained_court_position_effect = yes
-	carnx_debug_log_effect = { MSG = carnx_debug_msg_slave_captain_received }
+	carnx_debug_log_title_received_effect = { NAME = slave_captain }
 }
 
 carnx_slave_captain_title_revoked_effect = {
 	basic_revoked_court_position_effect = yes
-	carnx_debug_log_effect = { MSG = carnx_debug_msg_slave_captain_revoked }
+	carnx_debug_log_title_revoked_effect = { NAME = slave_captain }
 }
 
 carnx_slave_captain_title_invalidated_effect = {
 	basic_invalidated_court_position_effect = yes
-	carnx_debug_log_effect = { MSG = carnx_debug_msg_slave_captain_invalidated }
+	carnx_debug_log_title_invalidated_effect = { NAME = slave_captain }
 }
 
 # SLAVE EUNUCH
 
 carnx_slave_eunuch_title_received_effect = {
 	basic_gained_court_position_effect = yes
-	carnx_debug_log_effect = { MSG = carnx_debug_msg_slave_eunuch_received }
+	carnx_debug_log_title_received_effect = { NAME = slave_eunuch }
 }
 
 carnx_slave_eunuch_title_revoked_effect = {
 	basic_revoked_court_position_effect = yes
-	carnx_debug_log_effect = { MSG = carnx_debug_msg_slave_eunuch_revoked }
+	carnx_debug_log_title_revoked_effect = { NAME = slave_eunuch }
 }
 
 carnx_slave_eunuch_title_invalidated_effect = {
 	basic_invalidated_court_position_effect = yes
-	carnx_debug_log_effect = { MSG = carnx_debug_msg_slave_eunuch_invalidated }
+	carnx_debug_log_title_invalidated_effect = { NAME = slave_eunuch }
+}
+
+carnx_debug_log_title_received_slave_effect = {
+	scope:employee = {
+		if = {
+			limit = { has_trait = slave }
+			carnx_debug_log_effect = { MSG = carnx_debug_msg_$NAME$_received }
+		}
+	}
+}
+
+carnx_debug_log_title_revoked_slave_effect = {
+	scope:employee = {
+		if = {
+			limit = { has_trait = slave }
+			carnx_debug_log_effect = { MSG = carnx_debug_msg_$NAME$_revoked }
+		}
+	}
+}
+
+carnx_debug_log_title_invalidated_slave_effect = {
+	scope:employee = {
+		if = {
+			limit = { has_trait = slave }
+			carnx_debug_log_effect = { MSG = carnx_debug_msg_$NAME$_invalidated }
+		}
+	}
+}
+
+carnx_debug_log_title_received_effect = {
+	scope:employee = {
+		carnx_debug_log_effect = { MSG = carnx_debug_msg_$NAME$_received }
+	}
+}
+
+carnx_debug_log_title_revoked_effect = {
+	scope:employee = {
+		carnx_debug_log_effect = { MSG = carnx_debug_msg_$NAME$_revoked }
+	}
+}
+
+carnx_debug_log_title_invalidated_effect = {
+	scope:employee = {
+		carnx_debug_log_effect = { MSG = carnx_debug_msg_$NAME$_invalidated }
+	}
 }
