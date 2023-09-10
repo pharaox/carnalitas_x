@@ -35,6 +35,7 @@ carnx_sell_slaves_interaction = {
 					type = slave
 					limit = {
 						carn_slave_can_be_sold_trigger = yes
+						carnx_slave_has_pending_transaction = no
 						save_temporary_scope_as = slave
 						scope:actor = {
 							NOT = { carnx_is_slavery_crime_trigger = { CHARACTER = scope:slave } }
@@ -107,6 +108,7 @@ carnx_sell_slaves_interaction = {
 			limit = { exists = scope:secondary_actor }
 			scope:secondary_actor = {
 				carn_slave_can_be_sold_trigger = yes
+				carnx_slave_has_pending_transaction = no
 				custom_description = {
 					text = "carnx_selling_slaves_is_illegal"
 					scope:actor = {

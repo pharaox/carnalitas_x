@@ -31,7 +31,8 @@ carnx_pay_ransom_slaves_interaction = {
 					type = slave
 					limit = {
 						carnx_slave_can_be_freed_trigger = yes
-						carnx_slave_can_be_ransomed_by_trigger = { CHARACTER = scope:actor }
+						carnx_slave_has_pending_transaction = no
+						carnx_character_can_ransom_slave_trigger = { CHARACTER = scope:actor }
 						save_temporary_scope_as = slave
 						scope:owner = {
 							save_temporary_opinion_value_as = {
@@ -87,7 +88,8 @@ carnx_pay_ransom_slaves_interaction = {
 			limit = { exists = scope:secondary_actor }
 			scope:secondary_actor = {
 				carnx_slave_can_be_freed_trigger = yes
-				carnx_slave_can_be_ransomed_by_trigger = { CHARACTER = scope:actor }
+				carnx_slave_has_pending_transaction = no
+				carnx_character_can_ransom_slave_trigger = { CHARACTER = scope:actor }
 			}
 		}
 	}

@@ -980,18 +980,29 @@ carnx_ransom_slave_actual_effect = {
 # Pays ransom cost to scope:owner if scope:gold or scope:current_gold is yes.
 # Sends interface messages.
 carnx_ransom_slave_interaction_effect = {
-	if = {
-		limit = { scope:gold = yes }
-		save_scope_value_as = {
-			name = ransom_cost
-			value = scope:slave.carnx_slave_ransom_cost_value
+	scope:slave = {
+		if = {
+			limit = { has_variable = carnx_ransom_cost }
+			save_scope_value_as = {
+				name = ransom_cost
+				value = var:carnx_ransom_cost
+			}
 		}
-	}
-	else_if = {
-		limit = { scope:current_gold = yes }
-		save_scope_value_as = {
-			name = ransom_cost
-			value = scope:payer.current_gold_value
+		else = {
+			if = {
+				limit = { scope:gold = yes }
+				save_scope_value_as = {
+					name = ransom_cost
+					value = scope:slave.carnx_slave_ransom_cost_value
+				}
+			}
+			else_if = {
+				limit = { scope:current_gold = yes }
+				save_scope_value_as = {
+					name = ransom_cost
+					value = scope:payer.current_gold_value
+				}
+			}
 		}
 	}
 
@@ -1046,7 +1057,7 @@ carnx_buy_slave_effect = {
 		# Pay price to seller
 		if = {
 			limit = {
-				short_term_gold >= scope:slave_price
+				scope:buyer_short_term_gold >= scope:slave_price
 			}
 			pay_short_term_gold = {
 				gold = scope:slave_price
@@ -1057,7 +1068,7 @@ carnx_buy_slave_effect = {
 			custom_tooltip = carnx_buyer_not_enough_gold_for_slave_price_tooltip
 			hidden_effect = {
 				pay_short_term_gold = {
-					gold = short_term_gold
+					gold = scope:buyer_short_term_gold
 					target = scope:seller
 				}
 			}
@@ -1135,9 +1146,34 @@ carnx_buy_slave_effect = {
 # and pays SLAVE_PRICE to scope:seller. Sends interface messages.
 # Overridden from Carnalitas.
 carn_buy_slave_effect = {
-	save_scope_value_as = {
-		name = slave_price
-		value = $SLAVE_PRICE$
+	scope:slave = {
+		if = {
+			limit = { has_variable = carnx_slave_price }
+			save_scope_value_as = {
+				name = slave_price
+				value = var:carnx_slave_price
+			}
+		}
+		else = {
+			save_scope_value_as = {
+				name = slave_price
+				value = $SLAVE_PRICE$
+			}
+		}
+
+		if = {
+			limit = { has_variable = carnx_buyer_short_term_gold }
+			save_scope_value_as = {
+				name = buyer_short_term_gold
+				value = var:carnx_buyer_short_term_gold
+			}
+		}
+		else = {
+			save_scope_value_as = {
+				name = buyer_short_term_gold
+				value = scope:buyer.short_term_gold
+			}
+		}
 	}
 
 	scope:buyer = {
@@ -1449,6 +1485,82 @@ carnx_get_valid_payers_or_owners_effect = {
 			carnx_valid_payer_or_owner_trigger = { PARTY = scope:party }
 		}
 		add_to_list = $LIST$
+	}
+}
+
+carnx_add_buy_slave_variables_effect = {
+	set_variable = {
+		name = carnx_slave_price
+		value = $SLAVE_PRICE$
+	}
+	set_variable = {
+		name = carnx_buyer_short_term_gold
+		value = scope:buyer.short_term_gold
+	}
+	set_variable = {
+		name = carnx_buyer
+		value = scope:buyer
+	}
+}
+
+carnx_remove_buy_slave_variables_effect = {
+	if = {
+		limit = { has_variable = carnx_slave_price }
+		remove_variable = carnx_slave_price
+	}
+	if = {
+		limit = { has_variable = carnx_buyer_short_term_gold }
+		remove_variable = carnx_buyer_short_term_gold
+	}
+	if = {
+		limit = { has_variable = carnx_buyer }
+		remove_variable = carnx_buyer
+	}
+}
+
+carnx_add_ransom_slave_variables_effect = {
+	if = {
+		limit = { scope:gold = yes }
+		set_variable = {
+			name = carnx_ransom_cost
+			value = scope:slave.carnx_slave_ransom_cost_value
+		}
+	}
+	else_if = {
+		limit = { scope:current_gold = yes }
+		set_variable = {
+			name = carnx_ransom_cost
+			value = scope:payer.current_gold_value
+		}
+	}
+	set_variable = {
+		name = carnx_payer
+		value = scope:payer
+	}
+}
+
+carnx_remove_ransom_slave_variables_effect = {
+	if = {
+		limit = { has_variable = carnx_ransom_cost }
+		remove_variable = carnx_ransom_cost
+	}
+	if = {
+		limit = { has_variable = carnx_payer }
+		remove_variable = carnx_payer
+	}
+}
+
+carnx_add_gift_slave_variables_effect = {
+	set_variable = {
+		name = carnx_new_owner
+		value = scope:new_owner
+	}
+}
+
+carnx_remove_gift_slave_variables_effect = {
+	if = {
+		limit = { has_variable = carnx_new_owner }
+		remove_variable = carnx_new_owner
 	}
 }
 

@@ -12,8 +12,8 @@ carn_buy_slave_directly_interaction = {
 	greeting = positive
 	send_name = carn_buy_slave_directly_interaction
 
-	ai_min_reply_days = 0
-	ai_max_reply_days = 0
+	ai_min_reply_days = 4
+	ai_max_reply_days = 9
 
 	redirect = {
 		scope:recipient = {
@@ -37,16 +37,13 @@ carn_buy_slave_directly_interaction = {
 				type = slave
 				limit = {
 					carn_slave_can_be_sold_trigger = yes
-				}
-				save_scope_as = slave
-				if = {
-					limit = {
-						scope:actor = {
-							NOT = { carnx_is_slavery_crime_trigger = { CHARACTER = scope:slave } }
-						}
+					carnx_slave_can_be_bought_by_trigger = { CHARACTER = scope:actor }
+					save_temporary_scope_as = slave
+					scope:actor = {
+						NOT = { carnx_is_slavery_crime_trigger = { CHARACTER = scope:slave } }
 					}
-					add_to_list = characters
 				}
+				add_to_list = characters
 			}
 		}
 	}
@@ -82,6 +79,7 @@ carn_buy_slave_directly_interaction = {
 			limit = { exists = scope:secondary_recipient }
 			scope:secondary_recipient = {
 				carn_slave_can_be_sold_trigger = yes
+				carnx_slave_can_be_bought_by_trigger = { CHARACTER = scope:actor }
 				custom_description = {
 					text = "carnx_buying_slaves_is_illegal"
 					scope:actor = {
@@ -110,6 +108,17 @@ carn_buy_slave_directly_interaction = {
 
 	send_options_exclusive = no
 
+	on_send = {
+		scope:actor = { save_scope_as = buyer }
+		scope:secondary_recipient = { save_scope_as = slave }
+		scope:recipient = { save_scope_as = seller }
+		scope:slave = {
+			carnx_add_buy_slave_variables_effect = {
+				SLAVE_PRICE = scope:slave.carnx_slave_ask_price_value
+			}
+		}
+	}
+
 	on_accept = {
 		if = {
 			limit = {
@@ -127,6 +136,9 @@ carn_buy_slave_directly_interaction = {
 		scope:recipient = { save_scope_as = seller }
 		carn_buy_slave_effect = {
 			SLAVE_PRICE = scope:slave.carnx_slave_ask_price_value
+		}
+		scope:slave = {
+			carnx_remove_buy_slave_variables_effect = yes
 		}
 	}
 

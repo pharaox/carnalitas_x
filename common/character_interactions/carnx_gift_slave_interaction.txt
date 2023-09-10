@@ -15,22 +15,22 @@ carnx_gift_slave_interaction = {
 	answer_accept_key = carnx_gift_slave_accept
 	answer_reject_key = carnx_gift_slave_reject
 
+	ai_min_reply_days = 4
+	ai_max_reply_days = 9
+
 	populate_recipient_list = {
 		scope:actor = {
 			every_relation = {
 				type = slave
 				limit = {
 					carn_slave_can_be_sold_trigger = yes
-				}
-				save_scope_as = slave
-				if = {
-					limit = {
-						scope:actor = {
-							NOT = { carnx_is_slavery_crime_trigger = { CHARACTER = scope:slave } }
-						}
+					carnx_slave_can_be_received_by_trigger = { CHARACTER = scope:recipient }
+					save_temporary_scope_as = slave
+					scope:actor = {
+						NOT = { carnx_is_slavery_crime_trigger = { CHARACTER = scope:slave } }
 					}
-					add_to_list = characters
 				}
+				add_to_list = characters
 			}
 		}
 	}
@@ -54,6 +54,7 @@ carnx_gift_slave_interaction = {
 			limit = { exists = scope:secondary_recipient }
 			scope:secondary_recipient = {
 				carn_slave_can_be_sold_trigger = yes
+				carnx_slave_can_be_received_by_trigger = { CHARACTER = scope:recipient }
 				custom_description = {
 					text = "carnx_gifting_slaves_is_illegal"
 					scope:actor = {
@@ -61,6 +62,15 @@ carnx_gift_slave_interaction = {
 					}
 				}
 			}
+		}
+	}
+
+	on_send = {
+		scope:actor = { save_scope_as = former_owner }
+		scope:secondary_recipient = { save_scope_as = slave }
+		scope:recipient = { save_scope_as = new_owner }
+		scope:slave = {
+			carnx_add_gift_slave_variables_effect = yes
 		}
 	}
 
@@ -123,6 +133,9 @@ carnx_gift_slave_interaction = {
 		scope:recipient = { save_scope_as = new_owner }
 		carnx_gift_slave_interaction_effect = {
 			OPINION = scope:slave.carnx_gift_slave_opinion
+		}
+		scope:slave = {
+			carnx_remove_gift_slave_variables_effect = yes
 		}
 	}
 
@@ -287,9 +300,6 @@ carnx_gift_slave_interaction = {
 			has_trait = greedy
 		}
 	}
-
-	ai_min_reply_days = 0
-	ai_max_reply_days = 0
 
 	ai_will_do = {
 		base = 0

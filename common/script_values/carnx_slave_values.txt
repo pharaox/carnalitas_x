@@ -2097,7 +2097,7 @@ carnx_demand_free_illegal_slaves_bribe_size = {
 }
 
 carn_scope_buyer_current_gold_value = {
-	value = scope:buyer.short_term_gold
+	value = scope:buyer_short_term_gold
 }
 
 carnx_scope_secondary_recipient_slave_ransom_cost_value = {

@@ -12,6 +12,9 @@ carnx_ransom_slave_interaction = {
 
 	notification_text = OFFER_RANSOM_PROPOSAL
 
+	ai_min_reply_days = 4
+	ai_max_reply_days = 9
+
 	redirect = {
 		# If the recipient is a slave of scope:actor that they are likely to ransom,
 		# redirect to a random ruler who is a family or relation of the slave and is likely to pay their ransom
@@ -21,6 +24,7 @@ carnx_ransom_slave_interaction = {
 					has_trait = slave
 					has_relation_slave_owner = scope:actor
 					carnx_slave_can_be_freed_trigger = yes
+					carnx_slave_has_pending_transaction = no
 					scope:actor = {
 						is_ai = yes
 						carnx_is_likely_to_ransom_slave_trigger = { SLAVE = scope:recipient }
@@ -32,7 +36,7 @@ carnx_ransom_slave_interaction = {
 						save_temporary_scope_as = ruler
 						carnx_can_demand_ransom_slave_from_trigger = { PARTY = scope:actor }
 						scope:secondary_recipient = {
-							carnx_slave_can_be_ransomed_by_trigger = { CHARACTER = scope:ruler }
+							carnx_character_can_ransom_slave_trigger = { CHARACTER = scope:ruler }
 						}
 						carnx_is_likely_to_pay_ransom_slave_trigger = { SLAVE = scope:secondary_recipient }
 					}
@@ -49,6 +53,7 @@ carnx_ransom_slave_interaction = {
 				limit = {
 					carnx_slave_can_be_freed_trigger = yes
 					carnx_slave_can_be_ransomed_by_trigger = { CHARACTER = scope:recipient }
+					carnx_character_can_ransom_slave_trigger = { CHARACTER = scope:recipient }
 				}
 				add_to_list = characters
 			}
@@ -66,11 +71,18 @@ carnx_ransom_slave_interaction = {
 				carnx_valid_payer_or_owner_trigger = { PARTY = scope:actor }
 			}
 		}
-		scope:actor = {
-			any_relation = {
-				type = slave
-				carnx_slave_can_be_freed_trigger = yes
-				carnx_slave_can_be_ransomed_by_trigger = { CHARACTER = scope:recipient }
+		trigger_if = {
+			limit = { exists = scope:secondary_recipient }
+			scope:secondary_recipient = {
+				carnx_character_can_ransom_slave_trigger = { CHARACTER = scope:recipient }
+			}
+		}
+		trigger_else = {
+			scope:actor = {
+				any_relation = {
+					type = slave
+					carnx_character_can_ransom_slave_trigger = { CHARACTER = scope:recipient }
+				}
 			}
 		}
 	}
@@ -81,6 +93,13 @@ carnx_ransom_slave_interaction = {
 		}
 		scope:recipient = {
 			carnx_can_demand_ransom_slave_from_trigger = { PARTY = scope:actor }
+		}
+		trigger_if = {
+			limit = { exists = scope:secondary_recipient }
+			scope:secondary_recipient = {
+				carnx_slave_can_be_freed_trigger = yes
+				carnx_slave_can_be_ransomed_by_trigger = { CHARACTER = scope:recipient }
+			}
 		}
 	}
 
@@ -151,6 +170,15 @@ carnx_ransom_slave_interaction = {
 		CURRENT_GOLD = scope:recipient.gold
 	}
 
+	on_send = {
+		scope:actor = { save_scope_as = owner }
+		scope:secondary_recipient = { save_scope_as = slave }
+		scope:recipient = { save_scope_as = payer }
+		scope:slave = {
+			carnx_add_ransom_slave_variables_effect = yes
+		}
+	}
+
 	on_accept = {
 		if = {
 			limit = {
@@ -167,6 +195,9 @@ carnx_ransom_slave_interaction = {
 		scope:secondary_recipient = { save_scope_as = slave }
 		scope:recipient = { save_scope_as = payer }
 		carnx_ransom_slave_interaction_effect = yes
+		scope:slave = {
+			carnx_remove_ransom_slave_variables_effect = yes
+		}
 	}
 
 	on_decline = {

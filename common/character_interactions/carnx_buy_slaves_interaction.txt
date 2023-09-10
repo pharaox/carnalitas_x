@@ -31,6 +31,11 @@ carnx_buy_slaves_interaction = {
 					type = slave
 					limit = {
 						carn_slave_can_be_sold_trigger = yes
+						carnx_slave_has_pending_transaction = no
+						save_temporary_scope_as = slave
+						scope:actor = {
+							NOT = { carnx_is_slavery_crime_trigger = { CHARACTER = scope:slave } }
+						}
 						scope:seller = {
 							save_temporary_opinion_value_as = {
 								name = opinion_of_actor
@@ -39,15 +44,7 @@ carnx_buy_slaves_interaction = {
 						}
 						carnx_buy_slave_ai_accept_value > 0
 					}
-					save_scope_as = slave
-					if = {
-						limit = {
-							scope:actor = {
-								NOT = { carnx_is_slavery_crime_trigger = { CHARACTER = scope:slave } }
-							}
-						}
-						add_to_list = characters
-					}
+					add_to_list = characters
 				}
 			}
 		}
@@ -75,6 +72,7 @@ carnx_buy_slaves_interaction = {
 			limit = { exists = scope:secondary_actor }
 			scope:secondary_actor = {
 				carn_slave_can_be_sold_trigger = yes
+				carnx_slave_has_pending_transaction = no
 			}
 			scope:actor = {
 				NOT = { carnx_is_slavery_crime_trigger = { CHARACTER = scope:secondary_actor } }

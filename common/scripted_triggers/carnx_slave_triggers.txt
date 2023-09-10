@@ -50,7 +50,7 @@ carnx_slave_can_be_freed_trigger = {
 	}
 }
 
-carnx_slave_can_be_ransomed_by_trigger = {
+carnx_character_can_ransom_slave_trigger = {
 	OR = {
 		AND = {
 			$CHARACTER$ = {
@@ -59,6 +59,47 @@ carnx_slave_can_be_ransomed_by_trigger = {
 			faith = $CHARACTER$.faith
 		}
 		carnx_is_family_or_positive_relation_trigger = { CHARACTER = $CHARACTER$ }
+	}
+}
+
+carnx_slave_can_be_bought_by_trigger = {
+	NOR = {
+		has_variable = carnx_payer
+		has_variable = carnx_new_owner
+	}
+	trigger_if = {
+		limit = { has_variable = carnx_buyer }
+		var:carnx_buyer = $CHARACTER$
+	}
+}
+
+carnx_slave_can_be_ransomed_by_trigger = {
+	NOR = {
+		has_variable = carnx_buyer
+		has_variable = carnx_new_owner
+	}
+	trigger_if = {
+		limit = { has_variable = carnx_payer }
+		var:carnx_payer = $CHARACTER$
+	}
+}
+
+carnx_slave_can_be_received_by_trigger = {
+	NOR = {
+		has_variable = carnx_buyer
+		has_variable = carnx_payer
+	}
+	trigger_if = {
+		limit = { has_variable = carnx_new_owner }
+		var:carnx_new_owner = $CHARACTER$
+	}
+}
+
+carnx_slave_has_pending_transaction = {
+	OR = {
+		has_variable = carnx_buyer
+		has_variable = carnx_payer
+		has_variable = carnx_new_owner
 	}
 }
 

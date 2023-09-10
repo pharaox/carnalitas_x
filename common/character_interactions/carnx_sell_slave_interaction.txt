@@ -12,8 +12,8 @@ carn_sell_slave_interaction = {
 	greeting = positive
 	send_name = carn_sell_slave_interaction
 
-	ai_min_reply_days = 0
-	ai_max_reply_days = 0
+	ai_min_reply_days = 4
+	ai_max_reply_days = 9
 
 	redirect = {
 		# If the recipient is a slave of scope:actor that they are likely to sell,
@@ -24,6 +24,7 @@ carn_sell_slave_interaction = {
 					has_trait = slave
 					has_relation_slave_owner = scope:actor
 					carn_slave_can_be_sold_trigger = yes
+					carnx_slave_has_pending_transaction = no
 					scope:actor = {
 						is_ai = yes
 						carnx_is_likely_to_sell_slave_trigger = { SLAVE = scope:recipient }
@@ -51,16 +52,13 @@ carn_sell_slave_interaction = {
 				type = slave
 				limit = {
 					carn_slave_can_be_sold_trigger = yes
-				}
-				save_scope_as = slave
-				if = {
-					limit = {
-						scope:actor = {
-							NOT = { carnx_is_slavery_crime_trigger = { CHARACTER = scope:slave } }
-						}
+					carnx_slave_can_be_bought_by_trigger = { CHARACTER = scope:recipient }
+					save_temporary_scope_as = slave
+					scope:actor = {
+						NOT = { carnx_is_slavery_crime_trigger = { CHARACTER = scope:slave } }
 					}
-					add_to_list = characters
 				}
+				add_to_list = characters
 			}
 		}
 	}
@@ -96,6 +94,7 @@ carn_sell_slave_interaction = {
 			limit = { exists = scope:secondary_recipient }
 			scope:secondary_recipient = {
 				carn_slave_can_be_sold_trigger = yes
+				carnx_slave_can_be_bought_by_trigger = { CHARACTER = scope:recipient }
 				custom_description = {
 					text = "carnx_selling_slaves_is_illegal"
 					scope:actor = {
@@ -124,6 +123,17 @@ carn_sell_slave_interaction = {
 
 	send_options_exclusive = no
 
+	on_send = {
+		scope:actor = { save_scope_as = seller }
+		scope:secondary_recipient = { save_scope_as = slave }
+		scope:recipient = { save_scope_as = buyer }
+		scope:slave = {
+			carnx_add_buy_slave_variables_effect = {
+				SLAVE_PRICE = scope:slave.carnx_slave_bid_price_value
+			}
+		}
+	}
+
 	on_accept = {
 		if = {
 			limit = {
@@ -141,6 +151,9 @@ carn_sell_slave_interaction = {
 		scope:recipient = { save_scope_as = buyer }
 		carn_buy_slave_effect = {
 			SLAVE_PRICE = scope:slave.carnx_slave_bid_price_value
+		}
+		scope:slave = {
+			carnx_remove_buy_slave_variables_effect = yes
 		}
 	}
 

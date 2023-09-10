@@ -12,6 +12,9 @@ carnx_pay_ransom_slave_interaction = {
 
 	notification_text = PAY_RANSOM_PROPOSAL
 
+	ai_min_reply_days = 4
+	ai_max_reply_days = 9
+
 	redirect = {
 		scope:recipient = {
 			if = {
@@ -32,6 +35,7 @@ carnx_pay_ransom_slave_interaction = {
 				limit = {
 					carnx_slave_can_be_freed_trigger = yes
 					carnx_slave_can_be_ransomed_by_trigger = { CHARACTER = scope:actor }
+					carnx_character_can_ransom_slave_trigger = { CHARACTER = scope:actor }
 				}
 				add_to_list = characters
 			}
@@ -52,16 +56,14 @@ carnx_pay_ransom_slave_interaction = {
 		trigger_if = {
 			limit = { exists = scope:secondary_recipient }
 			scope:secondary_recipient = {
-				carnx_slave_can_be_freed_trigger = yes
-				carnx_slave_can_be_ransomed_by_trigger = { CHARACTER = scope:actor }
+				carnx_character_can_ransom_slave_trigger = { CHARACTER = scope:actor }
 			}
 		}
 		trigger_else = {
 			scope:recipient = {
 				any_relation = {
 					type = slave
-					carnx_slave_can_be_freed_trigger = yes
-					carnx_slave_can_be_ransomed_by_trigger = { CHARACTER = scope:actor }
+					carnx_character_can_ransom_slave_trigger = { CHARACTER = scope:actor }
 				}
 			}
 		}
@@ -73,6 +75,13 @@ carnx_pay_ransom_slave_interaction = {
 		}
 		scope:recipient = {
 			carnx_can_offer_ransom_slave_to_trigger = { PARTY = scope:actor }
+		}
+		trigger_if = {
+			limit = { exists = scope:secondary_recipient }
+			scope:secondary_recipient = {
+				carnx_slave_can_be_freed_trigger = yes
+				carnx_slave_can_be_ransomed_by_trigger = { CHARACTER = scope:actor }
+			}
 		}
 	}
 
@@ -143,6 +152,15 @@ carnx_pay_ransom_slave_interaction = {
 		CURRENT_GOLD = scope:actor.gold
 	}
 
+	on_send = {
+		scope:actor = { save_scope_as = payer }
+		scope:secondary_recipient = { save_scope_as = slave }
+		scope:recipient = { save_scope_as = owner }
+		scope:slave = {
+			carnx_add_ransom_slave_variables_effect = yes
+		}
+	}
+
 	on_accept = {
 		if = {
 			limit = {
@@ -159,6 +177,9 @@ carnx_pay_ransom_slave_interaction = {
 		scope:secondary_recipient = { save_scope_as = slave }
 		scope:recipient = { save_scope_as = owner }
 		carnx_ransom_slave_interaction_effect = yes
+		scope:slave = {
+			carnx_remove_ransom_slave_variables_effect = yes
+		}
 	}
 
 	on_decline = {

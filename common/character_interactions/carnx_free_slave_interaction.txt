@@ -36,13 +36,16 @@ carn_free_slave_interaction = {
 		}
 		scope:recipient = {
 			carnx_is_slave_trigger = yes
-			carnx_slave_can_be_freed_trigger = yes
 		}
 	}
 
 	is_valid_showing_failures_only = {
 		scope:actor = {
 			carnx_can_start_interaction_trigger = yes
+		}
+		scope:recipient = {
+			carnx_slave_can_be_freed_trigger = yes
+			carnx_slave_has_pending_transaction = no
 		}
 	}
 
