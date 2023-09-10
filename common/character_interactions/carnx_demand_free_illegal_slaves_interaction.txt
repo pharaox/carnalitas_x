@@ -26,9 +26,8 @@ carn_demand_free_illegal_slaves_interaction = {
 	ai_maybe = yes
 	ai_accept_negotiation = yes
 
-	# TODO
-	ai_min_reply_days = 0
-	ai_max_reply_days = 0
+	ai_min_reply_days = 4
+	ai_max_reply_days = 9
 
 	is_shown = {
 		NOT = { has_game_rule = carn_slavery_content_disabled }

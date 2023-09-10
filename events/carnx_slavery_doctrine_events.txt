@@ -85,6 +85,10 @@ carnx_slavery_doctrine.0002 = {
 				}
 				add = -25
 			}
+			modifier = {
+				short_term_gold < scope:recipient.carnx_demand_free_illegal_slaves_bribe_size
+				add = -75
+			}
 		}
 	}
 
@@ -112,10 +116,6 @@ carnx_slavery_doctrine.0002 = {
 
 		ai_chance = {
 			base = 25
-			modifier = {
-				short_term_gold < scope:recipient.carnx_demand_free_illegal_slaves_bribe_size
-				add = 75
-			}
 		}
 	}
 
