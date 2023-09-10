@@ -6,6 +6,24 @@
 
 * Adapted to CK3 1.10.1
 
+### Interactions
+
+* Modified *Demand Manumission* Carnalitas interaction (`carn_free_illegal_slaves_interaction`). Demand the freedom of all illegal slaves from a vassal. This was the only remaining Carnalitas interaction that was not touched by this mod so far.
+* Modified *Can Demand Manumission* Carnalitas important action to match the interaction changes.
+* Changed *Buy Slave*, *Sell Slave*, and *Gift Slave* interactions to have the standard AI reply time of 4 to 9 days, similarly to *Offer Ransom for Slave* and *Demand Ransom for Slave*.
+  * Ensured that a slave can't be sold, ransomed, or gifted multiple times while waiting for a reply.
+  * Ensured that the agreed slave price or ransom cost is always paid, even if the buyer or payer short term gold changed meanwhile.
+
+### Bug Fixes
+
+* Fixed a bug that allowed a slave to be ransomed multiple times while waiting for a reply.
+* Fixed a bug that allowed a slave to be ransomed for a different than the agreed ransom cost if the payer short term gold changed meanwhile.
+
+### Housekeeping
+
+* Added a prefix with the character name and id to debug logs.
+* Refactored some interaction triggers to use temporary scopes.
+
 ## Version 0.14.0
 
 ### Compatibility
