@@ -142,6 +142,15 @@ carn_buy_slave_directly_interaction = {
 		}
 	}
 
+	on_decline = {
+		scope:actor = { save_scope_as = buyer }
+		scope:secondary_recipient = { save_scope_as = slave }
+		scope:recipient = { save_scope_as = seller }
+		scope:slave = {
+			carnx_remove_buy_slave_variables_effect = yes
+		}
+	}
+
 	auto_accept = no
 
 	ai_accept = {
@@ -315,13 +324,7 @@ carn_buy_slave_directly_interaction = {
 		modifier = {
 			save_temporary_scope_as = seller
 			scope:actor = {
-				trigger_if = {
-					limit = { is_ai = yes }
-					short_term_gold < scope:secondary_recipient.carnx_slave_ask_price_value
-				}
-				trigger_else = {
-					gold < scope:secondary_recipient.carnx_slave_ask_price_value
-				}
+				short_term_gold < scope:secondary_recipient.carnx_slave_ask_price_value
 			}
 			add = -1000
 			desc = carnx_not_enough_gold_reason

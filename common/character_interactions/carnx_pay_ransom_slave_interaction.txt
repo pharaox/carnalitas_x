@@ -129,23 +129,7 @@ carnx_pay_ransom_slave_interaction = {
 		localization = "RANSOM_FAVOR_OPTION"
 	}
 
-	# Use hook
-	send_option = {
-		is_valid = {
-			exists = scope:recipient
-			scope:actor = {
-				has_usable_hook = scope:recipient
-			}
-		}
-		flag = hook
-		localization = SCHEME_HOOK
-	}
-	should_use_extra_icon = {
-		scope:actor = { has_usable_hook = scope:recipient }
-	}
-	extra_icon = "gfx/interface/icons/character_interactions/hook_icon.dds"
-
-	send_options_exclusive = no
+	send_options_exclusive = yes
 
 	localization_values = {
 		RANSOM_COST = carnx_scope_secondary_recipient_slave_pay_ransom_cost_value
@@ -162,17 +146,6 @@ carnx_pay_ransom_slave_interaction = {
 	}
 
 	on_accept = {
-		if = {
-			limit = {
-				scope:hook = yes
-				scope:actor = {
-					has_usable_hook = scope:recipient
-				}
-			}
-			scope:actor = {
-				use_hook = scope:recipient
-			}
-		}
 		scope:actor = { save_scope_as = payer }
 		scope:secondary_recipient = { save_scope_as = slave }
 		scope:recipient = { save_scope_as = owner }
@@ -198,36 +171,19 @@ carnx_pay_ransom_slave_interaction = {
 		scope:actor = {
 			trigger_event = char_interaction.0141
 		}
+
+		scope:actor = { save_scope_as = payer }
+		scope:secondary_recipient = { save_scope_as = slave }
+		scope:recipient = { save_scope_as = owner }
+		scope:slave = {
+			carnx_remove_ransom_slave_variables_effect = yes
+		}
 	}
 
 	auto_accept = no
 
 	ai_accept = {
 		base = 0
-
-		modifier = {
-			scope:hook = yes
-			NOT = { scope:actor = { has_strong_hook = scope:recipient } }
-			add = 50
-			desc = SCHEME_WEAK_HOOK_USED
-		}
-		modifier = {
-			scope:hook = yes
-			scope:actor = { has_strong_hook = scope:recipient }
-			add = 100
-			desc = SCHEME_STRONG_HOOK_USED
-		}
-
-		# Nothing offerred (-100)
-		modifier = {
-			NOR = {
-				scope:gold = yes
-				scope:current_gold = yes
-				scope:favor = yes
-			}
-			add = -100
-			desc = carnx_nothing_offered_reason
-		}
 
 		# Offerred gold (0 to 50)
 		modifier = {

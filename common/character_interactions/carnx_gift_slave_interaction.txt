@@ -139,6 +139,15 @@ carnx_gift_slave_interaction = {
 		}
 	}
 
+	on_decline = {
+		scope:actor = { save_scope_as = former_owner }
+		scope:secondary_recipient = { save_scope_as = slave }
+		scope:recipient = { save_scope_as = new_owner }
+		scope:slave = {
+			carnx_remove_gift_slave_variables_effect = yes
+		}
+	}
+
 	auto_accept = no
 
 	ai_accept = {
