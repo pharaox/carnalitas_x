@@ -34,7 +34,12 @@ carnx_can_demand_free_illegal_slaves_trigger = {
 }
 
 carnx_can_start_interaction_trigger = {
-	highest_held_title_tier >= tier_county
+	trigger_if = {
+		limit = {
+			NOT = { has_character_flag = carnx_slave_0001_seller }
+		}
+		highest_held_title_tier >= tier_county
+	}
 	is_busy_in_events_localised = yes
 	is_imprisoned = no
 }

@@ -76,6 +76,7 @@ carnx_enslave_effect = {
 		set_relation_slave = scope:slave
 		if = {
 			limit = {
+				NOT = { has_character_flag = carnx_slave_0001_seller }
 				scope:slave = { NOT = { is_courtier_of = scope:new_owner } }
 			}
 			hidden_effect = { add_courtier = scope:slave }
@@ -556,8 +557,15 @@ carnx_enslave_effect = {
 			}
 
 			# Trigger event
-			trigger_event = {
-				on_action = carn_on_slave_enslaved
+			if = {
+				limit = {
+					scope:new_owner = {
+						NOT = { has_character_flag = carnx_slave_0001_seller }
+					}
+				}
+				trigger_event = {
+					on_action = carn_on_slave_enslaved
+				}
 			}
 		}
 	}

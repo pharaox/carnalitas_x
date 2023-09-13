@@ -34,21 +34,18 @@ carnx_sell_slaves_interaction = {
 				every_relation = {
 					type = slave
 					limit = {
-						carn_slave_can_be_sold_trigger = yes
-						carnx_slave_has_pending_transaction = no
 						save_temporary_scope_as = slave
-						scope:actor = {
-							NOT = { carnx_is_slavery_crime_trigger = { CHARACTER = scope:slave } }
-						}
 						any_in_list = {
 							list = valid_buyers
 							is_ai = yes
-							carnx_can_sell_slave_to_trigger = { PARTY = scope:actor }
-							save_temporary_opinion_value_as = {
-								name = opinion_of_actor
-								target = scope:actor
+							save_temporary_scope_as = buyer
+							scope:actor = {
+								is_character_interaction_potentially_accepted = {
+									interaction = carn_sell_slave_interaction
+									recipient = scope:buyer
+									secondary_recipient = scope:slave
+								}
 							}
-							carnx_sell_slave_ai_accept_value > 0
 						}
 					}
 					add_to_list = characters
@@ -68,12 +65,14 @@ carnx_sell_slaves_interaction = {
 			list = valid_buyers
 			limit = {
 				is_ai = yes
-				carnx_can_sell_slave_to_trigger = { PARTY = scope:actor }
-				save_temporary_opinion_value_as = {
-					name = opinion_of_actor
-					target = scope:actor
+				save_temporary_scope_as = buyer
+				scope:actor = {
+					is_character_interaction_potentially_accepted = {
+						interaction = carn_sell_slave_interaction
+						recipient = scope:buyer
+						secondary_recipient = scope:slave
+					}
 				}
-				carnx_sell_slave_ai_accept_value > 0
 			}
 			order_by = {
 				save_temporary_scope_as = buyer

@@ -132,9 +132,6 @@ carnx_old_zero_age_value = 60
 # Female chance when creating slave characters
 carnx_create_character_female_chance = 75
 
-# slave.0001 event chance for "none" option
-carnx_slave_0001_none_option_ai_chance = 1
-
 # slave.0003 event challenge multiplier
 carnx_slave_0003_challenge_multiplier = 1.5
 

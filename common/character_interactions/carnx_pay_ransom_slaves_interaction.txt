@@ -24,39 +24,17 @@ carnx_pay_ransom_slaves_interaction = {
 				list = valid_owners
 				limit = {
 					is_ai = yes
-					carnx_can_offer_ransom_slave_to_trigger = { PARTY = scope:actor }
 				}
 				save_scope_as = owner
 				every_relation = {
 					type = slave
 					limit = {
-						carnx_slave_can_be_freed_trigger = yes
-						carnx_slave_has_pending_transaction = no
-						carnx_character_can_ransom_slave_trigger = { CHARACTER = scope:actor }
 						save_temporary_scope_as = slave
-						scope:owner = {
-							save_temporary_opinion_value_as = {
-								name = opinion_of_slave
-								target = scope:slave
-							}
-							save_temporary_opinion_value_as = {
-								name = opinion_of_actor
-								target = scope:actor
-							}
-						}
-						OR = {
-							AND = {
-								scope:actor.gold > 0
-								carnx_pay_ransom_slave_gold_ai_accept_value > 0
-							}
-							AND = {
-								scope:owner = {
-									can_add_hook = {
-										target = scope:actor
-										type = favor_hook
-									}
-								}
-								carnx_pay_ransom_slave_favor_ai_accept_value > 0
+						scope:actor = {
+							is_character_interaction_potentially_accepted = {
+								interaction = carnx_pay_ransom_slave_interaction
+								recipient = scope:owner
+								secondary_recipient = scope:slave
 							}
 						}
 					}
@@ -100,18 +78,9 @@ carnx_pay_ransom_slaves_interaction = {
 			scope:secondary_actor = { save_scope_as = slave }
 			scope:secondary_recipient = { save_scope_as = owner }
 			scope:owner = {
-				save_temporary_opinion_value_as = {
-					name = opinion_of_slave
-					target = scope:slave
-				}
-				save_temporary_opinion_value_as = {
-					name = opinion_of_actor
-					target = scope:actor
-				}
 				if = {
 					limit = {
 						scope:payer.gold >= scope:slave.carnx_slave_ransom_cost_value
-						scope:slave.carnx_pay_ransom_slave_gold_ai_accept_value > 0
 					}
 					save_scope_value_as = { name = gold value = yes }
 					save_scope_value_as = { name = current_gold value = no }
@@ -121,7 +90,6 @@ carnx_pay_ransom_slaves_interaction = {
 					limit = {
 						scope:payer.gold < scope:slave.carnx_slave_ransom_cost_value
 						scope:payer.gold > 0
-						scope:slave.carnx_pay_ransom_slave_gold_ai_accept_value > 0
 					}
 					save_scope_value_as = { name = gold value = no }
 					save_scope_value_as = { name = current_gold value = yes }

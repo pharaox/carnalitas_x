@@ -102,8 +102,34 @@ carnx_slave.0001 = {
 				}
 			}
 
+			create_character = {
+				location = root.capital_province
+				template_character = root
+				gender_female_chance = 50
+				age = { 20 50 }
+				dynasty = none
+				random_traits = yes
+				save_scope_as = seller
+			}
+
+			scope:seller = {
+				add_character_flag = carnx_slave_0001_seller
+				reverse_add_opinion = {
+					target = root
+					modifier = pleased_opinion
+					opinion = 200
+				}
+			}
+
+			root = { save_scope_as = buyer }
+
 			if = {
 				limit = { exists = scope:valuable_option }
+				carn_enslave_effect = {
+					SLAVE = scope:valuable_option
+					OWNER = scope:seller
+					DRAMA = no
+				}
 				scope:valuable_option = {
 					if = {
 						limit = { carnx_enable_nudity = yes }
@@ -112,7 +138,7 @@ carnx_slave.0001 = {
 					save_scope_value_as = {
 						name = valuable_option_price
 						value = {
-							value = carnx_slave_ask_price_value
+							value = carnx_slave_bid_price_value
 							# Make it even lower for the AI to encourage them to buy
 							if = {
 								limit = { root = { is_ai = yes } }
@@ -122,21 +148,33 @@ carnx_slave.0001 = {
 					}
 					save_scope_as = slave
 				}
-				save_scope_value_as = {
-					name = valuable_option_ai_accept_value
-					value = {
-						value = carnx_sell_slave_ai_accept_no_actor_value
-						add = {
-							value = 100 # Assume max opinion to make it more likely
-							multiply = carnx_buy_sell_slave_ai_opinion_multiplier
+				if = {
+					limit = {
+						OR = {
+							is_ai = no
+							scope:seller = {
+								is_character_interaction_potentially_accepted = {
+									interaction = carn_sell_slave_interaction
+									recipient = root
+									secondary_recipient = scope:slave
+								}
+							}
 						}
-						min = 0
+					}
+					save_scope_value_as = {
+						name = valuable_option_ai_accept_value
+						value = yes
 					}
 				}
 			}
 
 			if = {
 				limit = { exists = scope:common_option }
+				carn_enslave_effect = {
+					SLAVE = scope:common_option
+					OWNER = scope:seller
+					DRAMA = no
+				}
 				scope:common_option = {
 					if = {
 						limit = { carnx_enable_nudity = yes }
@@ -145,7 +183,7 @@ carnx_slave.0001 = {
 					save_scope_value_as = {
 						name = common_option_price
 						value = {
-							value = carnx_slave_ask_price_value
+							value = carnx_slave_bid_price_value
 							# Make it even lower for the AI to encourage them to buy
 							if = {
 								limit = { root = { is_ai = yes } }
@@ -155,15 +193,22 @@ carnx_slave.0001 = {
 					}
 					save_scope_as = slave
 				}
-				save_scope_value_as = {
-					name = common_option_ai_accept_value
-					value = {
-						value = carnx_sell_slave_ai_accept_no_actor_value
-						add = {
-							value = 100 # Assume max opinion to make it more likely
-							multiply = carnx_buy_sell_slave_ai_opinion_multiplier
+				if = {
+					limit = {
+						OR = {
+							is_ai = no
+							scope:seller = {
+								is_character_interaction_potentially_accepted = {
+									interaction = carn_sell_slave_interaction
+									recipient = root
+									secondary_recipient = scope:slave
+								}
+							}
 						}
-						min = 0
+					}
+					save_scope_value_as = {
+						name = common_option_ai_accept_value
+						value = yes
 					}
 				}
 			}
@@ -192,12 +237,16 @@ carnx_slave.0001 = {
 
 		trigger = {
 			exists = scope:valuable_option
+			exists = scope:valuable_option_ai_accept_value
 			short_term_gold >= scope:valuable_option_price
 			is_landed = yes # Extra check to make sure they haven't lost their status
 		}
 		show_as_unavailable = { exists = scope:valuable_option }
 
-		remove_short_term_gold = scope:valuable_option_price
+		scope:valuable_option = { save_scope_as = slave }
+		carn_buy_slave_effect = {
+			SLAVE_PRICE = scope:valuable_option_price
+		}
 
 		hidden_effect = {
 			if = {
@@ -208,28 +257,12 @@ carnx_slave.0001 = {
 				limit = { exists = scope:common_option }
 				scope:common_option = { silent_disappearance_effect = yes }
 			}
+			scope:seller = { silent_disappearance_effect = yes }
 			carnx_debug_log_no_details_effect = { MSG = carnx_debug_msg_slave_0001_option_a_chosen }
 		}
 
-		carn_enslave_effect = {
-			SLAVE = scope:valuable_option
-			OWNER = root
-			DRAMA = no
-		}
-
-		scope:valuable_option = {
-			add_character_flag = {
-				flag = carnx_slave_recently_bought
-				years = 2
-			}
-		}
-
 		ai_chance = {
-			base = 0
-			modifier = {
-				always = yes
-				add = scope:valuable_option_ai_accept_value
-			}
+			base = 50
 		}
 	}
 
@@ -239,12 +272,16 @@ carnx_slave.0001 = {
 
 		trigger = {
 			exists = scope:common_option
+			exists = scope:common_option_ai_accept_value
 			short_term_gold >= scope:common_option_price
 			is_landed = yes # Extra check to make sure they haven't lost their status
 		}
 		show_as_unavailable = { exists = scope:common_option }
 
-		remove_short_term_gold = scope:common_option_price
+		scope:common_option = { save_scope_as = slave }
+		carn_buy_slave_effect = {
+			SLAVE_PRICE = scope:common_option_price
+		}
 
 		hidden_effect = {
 			if = {
@@ -255,28 +292,12 @@ carnx_slave.0001 = {
 				limit = { exists = scope:valuable_option }
 				scope:valuable_option = { silent_disappearance_effect = yes }
 			}
+			scope:seller = { silent_disappearance_effect = yes }
 			carnx_debug_log_no_details_effect = { MSG = carnx_debug_msg_slave_0001_option_b_chosen }
 		}
 
-		carn_enslave_effect = {
-			SLAVE = scope:common_option
-			OWNER = root
-			DRAMA = no
-		}
-
-		scope:common_option = {
-			add_character_flag = {
-				flag = carnx_slave_recently_bought
-				years = 2
-			}
-		}
-
 		ai_chance = {
-			base = 0
-			modifier = {
-				always = yes
-				add = scope:common_option_ai_accept_value
-			}
+			base = 50
 		}
 	}
 
@@ -296,7 +317,14 @@ carnx_slave.0001 = {
 			exists = scope:common_option
 		}
 
-		remove_short_term_gold = scope:both_price
+		scope:valuable_option = { save_scope_as = slave }
+		carn_buy_slave_effect = {
+			SLAVE_PRICE = scope:valuable_option_price
+		}
+		scope:common_option = { save_scope_as = slave }
+		carn_buy_slave_effect = {
+			SLAVE_PRICE = scope:common_option_price
+		}
 
 		hidden_effect = {
 			if = {
@@ -304,31 +332,8 @@ carnx_slave.0001 = {
 				scope:valuable_option = { remove_character_flag = is_naked }
 				scope:common_option = { remove_character_flag = is_naked }
 			}
+			scope:seller = { silent_disappearance_effect = yes }
 			carnx_debug_log_no_details_effect = { MSG = carnx_debug_msg_slave_0001_option_c_chosen }
-		}
-
-		carn_enslave_effect = {
-			SLAVE = scope:valuable_option
-			OWNER = root
-			DRAMA = no
-		}
-		carn_enslave_effect = {
-			SLAVE = scope:common_option
-			OWNER = root
-			DRAMA = no
-		}
-
-		scope:valuable_option = {
-			add_character_flag = {
-				flag = carnx_slave_recently_bought
-				years = 2
-			}
-		}
-		scope:common_option = {
-			add_character_flag = {
-				flag = carnx_slave_recently_bought
-				years = 2
-			}
 		}
 
 		ai_chance = {
@@ -349,15 +354,12 @@ carnx_slave.0001 = {
 				limit = { exists = scope:common_option }
 				scope:common_option = { silent_disappearance_effect = yes }
 			}
+			scope:seller = { silent_disappearance_effect = yes }
 			carnx_debug_log_no_details_effect = { MSG = carnx_debug_msg_slave_0001_option_d_chosen }
 		}
 
 		ai_chance = {
-			base = 0
-			modifier = {
-				always = yes
-				add = carnx_slave_0001_none_option_ai_chance
-			}
+			base = 1
 		}
 	}
 }

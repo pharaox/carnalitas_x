@@ -104,8 +104,6 @@
  carnx_nothing_offered_reason: "[actor.GetShortUIName|U] must offer something: $VALUE|=+0$"
  carnx_slavery_attitude_reason: "[recipient.GetShortUIName|U] slavery attitude: $VALUE|=+0$"
  carnx_declining_to_free_illegal_slaves_is_crime_reason: "Declining to free illegal slaves is a crime: $VALUE|=+0$"
- carnx_debug1_reason: "Debug1: $VALUE|=+0$"
- carnx_debug2_reason: "Debug2: $VALUE|=+0$"
 
  carnx_selling_crime_in_recipient_faith: "Selling [secondary_recipient.GetFaith.GetAdherentNamePluralNoTooltip|U] as slaves is [criminal|E] in [recipient.GetShortUIName|U]'s [faith|E]: $VALUE|=+0$"
  carnx_selling_shunned_in_recipient_faith: "Selling [secondary_recipient.GetFaith.GetAdherentNamePluralNoTooltip|U] as slaves is [shunned|E] in [recipient.GetShortUIName|U]'s [faith|E]: $VALUE|=+0$"

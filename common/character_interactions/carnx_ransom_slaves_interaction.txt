@@ -34,38 +34,16 @@ carnx_ransom_slaves_interaction = {
 				every_relation = {
 					type = slave
 					limit = {
-						carnx_slave_can_be_freed_trigger = yes
-						carnx_slave_has_pending_transaction = no
 						save_temporary_scope_as = slave
 						any_in_list = {
 							list = valid_payers
 							is_ai = yes
 							save_temporary_scope_as = payer
-							carnx_can_demand_ransom_slave_from_trigger = { PARTY = scope:actor }
-							scope:slave = {
-								carnx_character_can_ransom_slave_trigger = { CHARACTER = scope:payer }
-							}
-							save_temporary_opinion_value_as = {
-								name = opinion_of_slave
-								target = scope:slave
-							}
-							save_temporary_opinion_value_as = {
-								name = opinion_of_actor
-								target = scope:actor
-							}
-							OR = {
-								AND = {
-									gold > 0
-									carnx_ransom_slave_gold_ai_accept_value > 0
-								}
-								AND = {
-									scope:actor = {
-										can_add_hook = {
-											target = scope:payer
-											type = favor_hook
-										}
-									}
-									carnx_ransom_slave_favor_ai_accept_value > 0
+							scope:actor = {
+								is_character_interaction_potentially_accepted = {
+									interaction = carnx_ransom_slave_interaction
+									recipient = scope:payer
+									secondary_recipient = scope:slave
 								}
 							}
 						}
@@ -88,31 +66,11 @@ carnx_ransom_slaves_interaction = {
 			limit = {
 				is_ai = yes
 				save_temporary_scope_as = payer
-				carnx_can_demand_ransom_slave_from_trigger = { PARTY = scope:actor }
-				scope:slave = {
-					carnx_character_can_ransom_slave_trigger = { CHARACTER = scope:payer }
-				}
-				save_temporary_opinion_value_as = {
-					name = opinion_of_slave
-					target = scope:slave
-				}
-				save_temporary_opinion_value_as = {
-					name = opinion_of_actor
-					target = scope:actor
-				}
-				OR = {
-					AND = {
-						gold > 0
-						carnx_ransom_slave_gold_ai_accept_value > 0
-					}
-					AND = {
-						scope:actor = {
-							can_add_hook = {
-								target = scope:payer
-								type = favor_hook
-							}
-						}
-						carnx_ransom_slave_favor_ai_accept_value > 0
+				scope:actor = {
+					is_character_interaction_potentially_accepted = {
+						interaction = carnx_ransom_slave_interaction
+						recipient = scope:payer
+						secondary_recipient = scope:slave
 					}
 				}
 			}
@@ -160,18 +118,9 @@ carnx_ransom_slaves_interaction = {
 			scope:secondary_actor = { save_scope_as = slave }
 			scope:secondary_recipient = { save_scope_as = payer }
 			scope:payer = {
-				save_temporary_opinion_value_as = {
-					name = opinion_of_slave
-					target = scope:slave
-				}
-				save_temporary_opinion_value_as = {
-					name = opinion_of_actor
-					target = scope:actor
-				}
 				if = {
 					limit = {
 						gold >= scope:slave.carnx_slave_ransom_cost_value
-						carnx_ransom_slave_gold_ai_accept_value > 0
 					}
 					save_scope_value_as = { name = gold value = yes }
 					save_scope_value_as = { name = current_gold value = no }
@@ -181,7 +130,6 @@ carnx_ransom_slaves_interaction = {
 					limit = {
 						gold < scope:slave.carnx_slave_ransom_cost_value
 						gold > 0
-						carnx_ransom_slave_gold_ai_accept_value > 0
 					}
 					save_scope_value_as = { name = gold value = no }
 					save_scope_value_as = { name = current_gold value = yes }

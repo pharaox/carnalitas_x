@@ -24,25 +24,19 @@ carnx_buy_slaves_interaction = {
 				list = valid_sellers
 				limit = {
 					is_ai = yes
-					carnx_can_buy_slave_from_trigger = { PARTY = scope:actor }
 				}
 				save_scope_as = seller
 				every_relation = {
 					type = slave
 					limit = {
-						carn_slave_can_be_sold_trigger = yes
-						carnx_slave_has_pending_transaction = no
 						save_temporary_scope_as = slave
 						scope:actor = {
-							NOT = { carnx_is_slavery_crime_trigger = { CHARACTER = scope:slave } }
-						}
-						scope:seller = {
-							save_temporary_opinion_value_as = {
-								name = opinion_of_actor
-								target = scope:actor
+							is_character_interaction_potentially_accepted = {
+								interaction = carn_buy_slave_directly_interaction
+								recipient = scope:seller
+								secondary_recipient = scope:slave
 							}
 						}
-						carnx_buy_slave_ai_accept_value > 0
 					}
 					add_to_list = characters
 				}
