@@ -15,15 +15,6 @@ random_yearly_playable_pulse = {
 	}
 }
 
-# Called from code once every five years for "playable" (count+) characters.
-# Root is the character
-five_year_playable_pulse = {
-	on_actions = {
-		delay = { days = { 8 288 } }
-		carnx_five_year_playable_pulse
-	}
-}
-
 carnx_yearly_playable_pulse = {
 	trigger = {
 		basic_is_valid_for_yearly_events_trigger = yes
@@ -51,37 +42,8 @@ carnx_yearly_playable_pulse = {
 
 		100 = 0
 
+		75 = carnx_slave.0001 # Buy Foreign Slaves
+		25 = carnx_slave.0003 # Runaway Slave
 		100 = carnx_slave.0005 # Freedom for a Slave
-	}
-}
-
-carnx_five_year_playable_pulse = {
-	trigger = {
-		basic_is_valid_for_yearly_events_trigger = yes
-	}
-
-	events = {
-		carnx_slave.0001 # Buy Foreign Slaves
-	}
-
-	random_events = {
-		chance_of_no_event = {
-			value = 0
-			if = {
-				limit = { is_at_war = yes }
-				add = 50
-			}
-			if = {
-				limit = {
-					is_ai = yes
-					highest_held_title_tier < tier_duchy
-				}
-				add = 50
-			}
-		}
-
-		100 = 0
-
-		100 = carnx_slave.0003 # Runaway Slave
 	}
 }
