@@ -118,6 +118,20 @@ Starting with version 0.13.0, this mod introduces convenience interactions also 
 
 In this mod, a slave can also be gifted to another ruler for an opinion gain via the new *Gift Slave* interaction. The opinion gain is proportional to the slave base price and to the "gift opinion / gift value" ratio of the *Send Gift* vanilla interaction. AI rulers are much more likely to accept slaves as gifts than to buy them.
 
+### Demanding Manumission
+
+As in Carnalitas, you can demand the freedom of all slaves owned against religious doctrines from one of your vassals via the *Demand Manumission* interaction. The recipient can accept or decline the demand, or ask for gold or a favor in return.
+
+Starting with version 0.15.0, this interaction has been changed from its Carnalitas version to better reflect the nature of the demand, instead of mostly copying the *Demand Conversion* vanilla interaction. The most important changes are:
+
+* You can only demand manumission from vassals of your own faith.
+* Declining the interaction is not considered a crime (and so does not grant you an imprisonment reason), unless you have the [*Liberator* attitude](#slavery-attitudes).
+* The amount of gold that the recipient may ask for is proportional to the number of slaves being freed.
+* The AI acceptance is influenced by their personality and slavery attitude, as well as the difference between your and their diplomacy and learning skills.
+* The AI is much less willing to initiate the interaction than before, since they don't have much to gain from it, unless they are a *Liberator*. This willingness is influenced by their personality and slavery attitude, as well as the chance of acceptance.
+
+For the purposes of acquiring the *Liberator* trait, the slaves freed by the *Demand Manumission* interaction are considered freed by the recipient only if they accepted the interaction without asking for anything in return. If they asked for something and the actor accepted, the slaves are considered freed by the actor.
+
 ### Impact of Slavery Doctrines
 
 Carnalitas introduces the *Slavery Crime* and *Slavery Shunned* religious doctrines that determine whether owning slaves of certain faiths is considered a crime, shunned, or accepted, depending on the faith's hostility level. However, in Carnalitas these doctrines are not followed consistently when determining if someone can be enslaved, sold, bought, or seized, the AI acceptance of slave interactions, or the AI decisions to initiate them. This mod attempts to correct this by rebalancing the impact of slavery doctrines on all slave interactions:
@@ -175,6 +189,7 @@ Starting with version 0.13.0, this mod introduces *slavery attitudes*. You can c
 * *Liberator*: This character likes freeing, liberating, and ransoming slaves.
   * Minor prestige bonus and dread decay penalty
   * Can pay ransom for slaves of their own faith, even if they are not relatives
+  * Gets an imprisonment reason on vassals who decline to free their illegal slaves.
   * AI rulers more willing to free, liberate, and ransom and less willing to enslave, seize, buy, sell, and gift
 * *Slave Trader*: This character tries to make profit from buying and selling slaves.
   * Minor development growth bonus and stress gain penalty
@@ -210,13 +225,13 @@ Besides adding flavor, this event also spawns more slaves than would normally ex
 
 One of your slaves flees, taking some of your valuables with them, and a knight is chosen as a scapegoat. You can try to catch the slave via intrigue or martial challenges, fine or forgive the scapegoat, or do nothing, for a loss or gain of prestige or stress.
 
-This event is based on the *Escaped Thrall* event from FP1, but is somewhat more sophisticated as it involves a real character. Every year there is a chance of 10% for this event to fire for every ruler who is a slave owner.
+This event is based on the *Escaped Thrall* event from FP1, but is somewhat more sophisticated as it involves a real character. It fires approximately every 10 years for every ruler who is a slave owner.
 
 #### Freedom for a Slave
 
 Your Court Chaplain demands the freedom of one of your slaves because your faith does not permit owning slaves of their faith. You can free the slave, make a money donation, or ignore the demand for a loss of piety.
 
-Every year there is a chance of 50% for this event to fire for every ruler that owns eligible slaves.
+This event fires approximately every 2 years for every ruler that owns eligible slaves.
 
 #### AI Rulers Having Sex with Their Slaves
 

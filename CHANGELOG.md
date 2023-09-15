@@ -4,25 +4,32 @@
 
 ### Compatibility
 
-* Adapted to CK3 1.10.1
+* Adapted to CK3 1.10.2
 
 ### Interactions
 
-* Modified *Demand Manumission* Carnalitas interaction (`carn_free_illegal_slaves_interaction`). Demand the freedom of all illegal slaves from a vassal. This was the only remaining Carnalitas interaction that was not touched by this mod so far.
+* Modified *Demand Manumission* Carnalitas interaction (`carn_free_illegal_slaves_interaction`). Demand the freedom of all illegal slaves from a vassal. It now better reflects the nature of the demand, instead of mostly copying the *Demand Conversion* vanilla interaction.
 * Modified *Can Demand Manumission* Carnalitas important action to match the interaction changes.
 * Changed *Buy Slave*, *Sell Slave*, and *Gift Slave* interactions to have the standard AI reply time of 4 to 9 days, similarly to *Offer Ransom for Slave* and *Demand Ransom for Slave*.
   * Ensured that a slave can't be sold, ransomed, or gifted multiple times while waiting for a reply.
   * Ensured that the agreed slave price or ransom cost is always paid, even if the buyer or payer short term gold changed meanwhile.
+* Changed *Offer Ransom for Slave* and *Demand Ransom for Slave* to allow ransoming for either gold or favor, but not both, similarly to the vanilla *Ransom* interactions. Also similarly to vanilla, it is no longer possible to spend hooks to force ransoming.
+
+### Events
+
+* The *Buy Foreign Slaves* event now involves buying slaves from an actual trader character, instead of simulating a trade via enslaving and removing some gold.
+* The *Buy Foreign Slaves* and *Runaway Slave* events are now slightly more probable.
 
 ### Bug Fixes
 
 * Fixed a bug that allowed a slave to be ransomed multiple times while waiting for a reply.
 * Fixed a bug that allowed a slave to be ransomed for a different than the agreed ransom cost if the payer short term gold changed meanwhile.
+* Fixed *Buy Foreign Slaves* and *Runaway Slave* events often firing at the same time.
 
 ### Housekeeping
 
+* Refactored slave interactions to use `is_character_interaction_potentially_accepted` and removed obsolete `ai_accept` values.
 * Added a prefix with the character name and id to debug logs.
-* Refactored some interaction triggers to use temporary scopes.
 
 ## Version 0.14.0
 
