@@ -136,4 +136,5 @@ carnx_create_character_female_chance = 75
 carnx_slave_0003_challenge_multiplier = 1.5
 
 # Pregnancy chances
-carnx_slave_pregnancy_chance = 10
+# Overridden by CLR script value
+carnx_pregnancy_chance_value = 10

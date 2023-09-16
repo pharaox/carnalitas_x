@@ -8,6 +8,7 @@ scripted_trigger carnx_slave_0002_valid_liege_trigger = {
 scripted_trigger carnx_slave_0002_valid_slave_trigger = {
 	is_available_ai_adult = yes
 	carn_can_have_sex_trigger = yes
+	is_at_same_location = root
 	OR = {
 		AND = {
 			has_trait = slave
@@ -107,16 +108,14 @@ carnx_slave.0002 = {
 
 		if = {
 			limit = { exists = scope:slave }
-			save_scope_value_as = {
-				name = pregnancy_chance
-				value = carnx_slave_pregnancy_chance # carnx_slave_pregnancy_chance_value
-			}
+
 			carnx_debug_log_effect = { MSG = carnx_debug_msg_character_had_sex_with_slave }
+
 			carn_had_sex_with_effect = {
 				CHARACTER_1 = root
 				CHARACTER_2 = scope:slave
-				C1_PREGNANCY_CHANCE = carnx_slave_pregnancy_chance # scope:pregnancy_chance
-				C2_PREGNANCY_CHANCE = carnx_slave_pregnancy_chance # scope:pregnancy_chance
+				C1_PREGNANCY_CHANCE = carnx_pregnancy_chance_value
+				C2_PREGNANCY_CHANCE = carnx_pregnancy_chance_value
 				STRESS_EFFECTS = no
 				DRAMA = yes
 			}

@@ -800,19 +800,6 @@ carnx_number_of_potential_buyers_value = {
 	}
 }
 
-# Not used due to carn_had_sex_with_effect failing to parse script values.
-carnx_slave_pregnancy_chance_value = {
-	value = fertility
-	add = {
-		value = scope:slave.fertility
-		multiply = define:NChildbirth|CONCUBINE_FERTILITY_MULTIPLIER
-	}
-	divide = 2
-	multiply = carnx_slave_pregnancy_chance
-	floor = yes
-	min = 1
-}
-
 carnx_slavery_shunned_count_value = {
 	save_temporary_scope_as = owner
 	value = 0
