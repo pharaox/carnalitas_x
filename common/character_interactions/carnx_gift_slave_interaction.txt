@@ -152,6 +152,7 @@ carnx_gift_slave_interaction = {
 				SENDER = scope:former_owner
 				RECIPIENT = scope:new_owner
 				ORIGIN = scope:slave_location
+				COMPANIONS = none
 			}
 		}
 	}

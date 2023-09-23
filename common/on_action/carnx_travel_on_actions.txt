@@ -2,13 +2,20 @@
 	effect = {
 		var:carnx_travel_sender ?= { save_scope_as = sender }
 		var:carnx_travel_recipient ?= { save_scope_as = recipient }
+		var:carnx_travel_leader ?= { save_scope_as = leader }
+		carnx_travel_get_companions_effect = { COMPANIONS = companions }
 
-		# Send departure messages
-		carnx_travel_send_messages_effect = {
-			SENDER = scope:sender
-			RECIPIENT = scope:recipient
-			TITLE = carnx_msg_departed_for_court
-			TEXT = carnx_departed_for_court_tt
+		if = {
+			limit = { this = scope:leader }
+
+			# Send departure messages
+			carnx_travel_send_messages_effect = {
+				SENDER = scope:sender
+				RECIPIENT = scope:recipient
+				COMPANIONS = companions
+				TITLE = carnx_msg_departed_for_court
+				TEXT = carnx_departed_for_court_tt
+			}
 		}
 
 		carnx_debug_log_effect = { MSG = carnx_debug_msg_character_departed }
@@ -19,6 +26,8 @@ carnx_travel_on_arrival = {
 	effect = {
 		var:carnx_travel_sender ?= { save_scope_as = sender }
 		var:carnx_travel_recipient ?= { save_scope_as = recipient }
+		var:carnx_travel_leader ?= { save_scope_as = leader }
+		carnx_travel_get_companions_effect = { COMPANIONS = companions }
 
 		if = {
 			limit = {
@@ -28,20 +37,28 @@ carnx_travel_on_arrival = {
 			}
 
 			# Set location to recipient's capital province
-			if = {
-				limit = {
-					NOT = { location = scope:recipient.capital_province }
-				}
-				set_location = scope:recipient.capital_province
-			}
+			set_location = scope:recipient.capital_province
 		}
 
-		# Send arrival messages
-		carnx_travel_send_messages_effect = {
-			SENDER = scope:sender
-			RECIPIENT = scope:recipient
-			TITLE = carnx_msg_arrived_at_court
-			TEXT = carnx_arrived_at_court_tt
+		if = {
+			limit = { this = scope:leader }
+
+			# Ensure companions arrive as well
+			every_in_list = {
+				list = companions
+				current_travel_plan ?= {
+					add_destination_progress = { years = 2 }
+				}
+			}
+
+			# Send arrival messages
+			carnx_travel_send_messages_effect = {
+				SENDER = scope:sender
+				RECIPIENT = scope:recipient
+				COMPANIONS = companions
+				TITLE = carnx_msg_arrived_at_court
+				TEXT = carnx_arrived_at_court_tt
+			}
 		}
 
 		# Remove travel variables
@@ -67,6 +84,43 @@ carnx_on_travel_plan_movement = {
 
 		var:carnx_travel_sender ?= { save_scope_as = sender }
 		var:carnx_travel_recipient ?= { save_scope_as = recipient }
+		var:carnx_travel_leader ?= { save_scope_as = leader }
+		carnx_travel_get_companions_effect = { COMPANIONS = companions }
+
+		# If the leader died, make root leader
+		if = {
+			limit = {
+				exists = scope:leader
+				NOT = { this = scope:leader }
+				scope:leader = { is_alive = no }
+			}
+
+			# Evaluate new leader and companions
+			save_scope_as = leader
+			remove_from_list = companions
+
+			# Reset leader travel variables
+			carnx_travel_remove_variables_effect = yes
+			carnx_travel_set_variables_effect = {
+				SENDER = scope:sender
+				RECIPIENT = scope:recipient
+				LEADER = this
+				COMPANIONS = companions
+			}
+
+			every_in_list = {
+				list = companions
+
+				# Reset companion travel variables
+				carnx_travel_remove_variables_effect = yes
+				carnx_travel_set_variables_effect = {
+					SENDER = scope:sender
+					RECIPIENT = scope:recipient
+					LEADER = prev
+					COMPANIONS = companions
+				}
+			}
+		}
 
 		if = {
 			limit = {
@@ -82,10 +136,13 @@ carnx_on_travel_plan_movement = {
 					}
 				}
 
-				# Set travel variables
+				# Reset travel variables
+				carnx_travel_remove_variables_effect = yes
 				carnx_travel_set_variables_effect = {
 					SENDER = scope:sender
 					RECIPIENT = liege
+					LEADER = scope:leader
+					COMPANIONS = companions
 				}
 
 				# Reroute to home

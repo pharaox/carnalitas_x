@@ -155,6 +155,7 @@ carn_buy_slave_directly_interaction = {
 				SENDER = scope:seller
 				RECIPIENT = scope:buyer
 				ORIGIN = scope:slave_location
+				COMPANIONS = none
 			}
 		}
 	}

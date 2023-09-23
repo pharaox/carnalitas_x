@@ -163,6 +163,7 @@ carnx_pay_ransom_slave_interaction = {
 				SENDER = scope:owner
 				RECIPIENT = scope:payer
 				ORIGIN = scope:slave_location
+				COMPANIONS = none
 			}
 		}
 	}
