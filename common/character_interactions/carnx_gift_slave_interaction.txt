@@ -23,7 +23,7 @@ carnx_gift_slave_interaction = {
 			every_relation = {
 				type = slave
 				limit = {
-					carn_slave_can_be_sold_trigger = yes
+					carnx_slave_can_be_sold_trigger = yes
 					carnx_slave_can_be_received_by_trigger = { CHARACTER = scope:recipient }
 					save_temporary_scope_as = slave
 					scope:actor = {
@@ -38,8 +38,16 @@ carnx_gift_slave_interaction = {
 	is_shown = {
 		NOT = { has_game_rule = carn_slavery_content_disabled }
 		NOT = { scope:actor = scope:recipient }
-		scope:actor = {
-			carnx_is_slave_owner_trigger = yes
+		trigger_if = {
+			limit = { exists = scope:secondary_recipient }
+			scope:actor = {
+				has_relation_slave = scope:secondary_recipient
+			}
+		}
+		trigger_else = {
+			scope:actor = {
+				carnx_is_slave_owner_trigger = yes
+			}
 		}
 	}
 
@@ -53,7 +61,7 @@ carnx_gift_slave_interaction = {
 		trigger_if = {
 			limit = { exists = scope:secondary_recipient }
 			scope:secondary_recipient = {
-				carn_slave_can_be_sold_trigger = yes
+				carnx_slave_can_be_sold_trigger = yes
 				carnx_slave_can_be_received_by_trigger = { CHARACTER = scope:recipient }
 				custom_description = {
 					text = "carnx_gifting_slaves_is_illegal"
@@ -131,11 +139,20 @@ carnx_gift_slave_interaction = {
 		scope:actor = { save_scope_as = former_owner }
 		scope:secondary_recipient = { save_scope_as = slave }
 		scope:recipient = { save_scope_as = new_owner }
+		scope:slave.location = { save_scope_as = slave_location }
 		carnx_gift_slave_interaction_effect = {
 			OPINION = scope:slave.carnx_gift_slave_opinion
 		}
 		scope:slave = {
 			carnx_remove_gift_slave_variables_effect = yes
+		}
+
+		scope:slave = {
+			carnx_travel_effect = {
+				SENDER = scope:former_owner
+				RECIPIENT = scope:new_owner
+				ORIGIN = scope:slave_location
+			}
 		}
 	}
 

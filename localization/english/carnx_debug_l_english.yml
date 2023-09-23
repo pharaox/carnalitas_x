@@ -1,5 +1,5 @@
 ﻿l_english:
- carnx_debug_prefix: "[THIS.Char.GetFullNameNoTooltip] ([THIS.Char.GetID])"
+ carnx_debug_prefix: "[GetCurrentDate.GetStringShort]: [THIS.Char.GetFullNameNoTooltip] ([THIS.Char.GetID])"
 
  carnx_debug_msg_slave_enslaved: "$carnx_debug_prefix$: Slave enslaved"
  carnx_debug_msg_slave_freed: "$carnx_debug_prefix$: Slave freed"
@@ -14,6 +14,18 @@
  carnx_debug_msg_freeing_slave: "$carnx_debug_prefix$: Freeing slave"
  carnx_debug_msg_freeing_illegal_slave: "$carnx_debug_prefix$: Freeing illegal slave"
  carnx_debug_msg_seizing_slave: "$carnx_debug_prefix$: Seizing slave by the new title holder"
+
+ carnx_debug_msg_character_departed: "$carnx_debug_prefix$: Character departed for court"
+ carnx_debug_msg_character_arrived: "$carnx_debug_prefix$: Character arrived at court"
+ carnx_debug_msg_character_rerouted_to_home: "$carnx_debug_prefix$: Character rerouted to home"
+ carnx_debug_msg_character_travel_cancelled: "$carnx_debug_prefix$: Character travel cancelled"
+
+ carnx_debug_msg_travel_moved: "$carnx_debug_prefix$: Travel plan moved"
+ carnx_debug_msg_travel_started: "$carnx_debug_prefix$: Travel plan started"
+ carnx_debug_msg_travel_arrived: "$carnx_debug_prefix$: Travel plan arrived"
+ carnx_debug_msg_travel_completed: "$carnx_debug_prefix$: Travel plan completed"
+ carnx_debug_msg_travel_aborted: "$carnx_debug_prefix$: Travel plan aborted"
+ carnx_debug_msg_travel_cancelled: "$carnx_debug_prefix$: Travel plan cancelled"
 
  carnx_debug_msg_non_slave_imprisoned: "$carnx_debug_prefix$: Non-slave character imprisoned"
  carnx_debug_msg_non_slave_released_from_prison: "$carnx_debug_prefix$: Non-slave character released from prison"

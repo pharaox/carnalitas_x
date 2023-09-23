@@ -55,6 +55,9 @@ carnx_pay_ransom_slave_interaction = {
 		}
 		trigger_if = {
 			limit = { exists = scope:secondary_recipient }
+			scope:recipient = {
+				has_relation_slave = scope:secondary_recipient
+			}
 			scope:secondary_recipient = {
 				carnx_character_can_ransom_slave_trigger = { CHARACTER = scope:actor }
 			}
@@ -149,9 +152,18 @@ carnx_pay_ransom_slave_interaction = {
 		scope:actor = { save_scope_as = payer }
 		scope:secondary_recipient = { save_scope_as = slave }
 		scope:recipient = { save_scope_as = owner }
+		scope:slave.location = { save_scope_as = slave_location }
 		carnx_ransom_slave_interaction_effect = yes
 		scope:slave = {
 			carnx_remove_ransom_slave_variables_effect = yes
+		}
+
+		scope:slave = {
+			carnx_travel_effect = {
+				SENDER = scope:owner
+				RECIPIENT = scope:payer
+				ORIGIN = scope:slave_location
+			}
 		}
 	}
 

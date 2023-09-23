@@ -36,7 +36,7 @@ carn_buy_slave_directly_interaction = {
 			every_relation = {
 				type = slave
 				limit = {
-					carn_slave_can_be_sold_trigger = yes
+					carnx_slave_can_be_sold_trigger = yes
 					carnx_slave_can_be_bought_by_trigger = { CHARACTER = scope:actor }
 					save_temporary_scope_as = slave
 					scope:actor = {
@@ -59,8 +59,16 @@ carn_buy_slave_directly_interaction = {
 				carnx_valid_buyer_or_seller_trigger = { PARTY = scope:actor }
 			}
 		}
-		scope:recipient = {
-			carnx_is_slave_owner_trigger = yes
+		trigger_if = {
+			limit = { exists = scope:secondary_recipient }
+			scope:recipient = {
+				has_relation_slave = scope:secondary_recipient
+			}
+		}
+		trigger_else = {
+			scope:recipient = {
+				carnx_is_slave_owner_trigger = yes
+			}
 		}
 		NAND = { # Prevent ai from spamming you with buy slave requests
 			scope:actor = { is_ai = yes }
@@ -78,7 +86,7 @@ carn_buy_slave_directly_interaction = {
 		trigger_if = {
 			limit = { exists = scope:secondary_recipient }
 			scope:secondary_recipient = {
-				carn_slave_can_be_sold_trigger = yes
+				carnx_slave_can_be_sold_trigger = yes
 				carnx_slave_can_be_bought_by_trigger = { CHARACTER = scope:actor }
 				custom_description = {
 					text = "carnx_buying_slaves_is_illegal"
@@ -134,11 +142,20 @@ carn_buy_slave_directly_interaction = {
 		scope:actor = { save_scope_as = buyer }
 		scope:secondary_recipient = { save_scope_as = slave }
 		scope:recipient = { save_scope_as = seller }
+		scope:slave.location = { save_scope_as = slave_location }
 		carn_buy_slave_effect = {
 			SLAVE_PRICE = scope:slave.carnx_slave_ask_price_value
 		}
 		scope:slave = {
 			carnx_remove_buy_slave_variables_effect = yes
+		}
+
+		scope:slave = {
+			carnx_travel_effect = {
+				SENDER = scope:seller
+				RECIPIENT = scope:buyer
+				ORIGIN = scope:slave_location
+			}
 		}
 	}
 

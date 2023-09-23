@@ -1,0 +1,96 @@
+﻿carnx_travel_effect = {
+	if = {
+		limit = {
+			exists = $ORIGIN$
+			exists = $RECIPIENT$.capital_province
+			NOT = { $ORIGIN$ = $RECIPIENT$.capital_province }
+		}
+
+		carnx_travel_set_variables_effect = {
+			SENDER = $SENDER$
+			RECIPIENT = $RECIPIENT$
+		}
+
+		set_location = $ORIGIN$
+		start_travel_plan = {
+			destination = $RECIPIENT$.capital_province
+			return_trip = no
+			on_start_on_action = carnx_travel_on_departure
+			on_arrival_on_action = carnx_travel_on_arrival
+			on_arrival_destinations = last
+		}
+	}
+}
+
+carnx_travel_set_variables_effect = {
+	set_variable = {
+		name = carnx_travel_sender
+		value = $SENDER$
+		years = 2
+	}
+	set_variable = {
+		name = carnx_travel_recipient
+		value = $RECIPIENT$
+		years = 2
+	}
+}
+
+carnx_travel_remove_variables_effect = {
+	if = {
+		limit = { has_variable = carnx_travel_sender }
+		remove_variable = carnx_travel_sender
+	}
+	if = {
+		limit = { has_variable = carnx_travel_recipient }
+		remove_variable = carnx_travel_recipient
+	}
+}
+
+carnx_travel_send_messages_effect = {
+	save_temporary_scope_as = character
+
+	if = {
+		limit = {
+			exists = $SENDER$
+			scope:character.liege ?= $SENDER$
+		}
+		$SENDER$ = {
+			send_interface_message = {
+				type = event_generic_neutral
+				title = $TITLE$
+				left_icon = scope:character
+				right_icon = $RECIPIENT$
+
+				scope:character = {
+					custom_description = {
+						text = $TEXT$
+						subject = scope:character
+						object = $RECIPIENT$
+					}
+				}
+			}
+		}
+	}
+	else_if = {
+		limit = {
+			exists = $RECIPIENT$
+			scope:character.liege ?= $RECIPIENT$
+		}
+		$RECIPIENT$ = {
+			send_interface_message = {
+				type = event_generic_neutral
+				title = $TITLE$
+				left_icon = scope:character
+				right_icon = $SENDER$
+
+				scope:character = {
+					custom_description = {
+						text = $TEXT$
+						subject = scope:character
+						object = $RECIPIENT$
+					}
+				}
+			}
+		}
+	}
+}

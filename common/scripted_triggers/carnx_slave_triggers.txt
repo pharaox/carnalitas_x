@@ -44,6 +44,17 @@ carnx_can_start_interaction_trigger = {
 	is_imprisoned = no
 }
 
+carnx_slave_can_be_sold_trigger = {
+	carn_slave_can_be_sold_trigger = yes
+	is_travelling = no
+	is_in_army = no
+	custom_description = {
+		text = ALREADY_IN_ACTIVITY
+		NOT = { exists = involved_activity }
+	}
+	NOT = { has_variable = gone_adventuring }
+}
+
 carnx_slave_can_be_freed_trigger = {
 	NOR = {
 		has_character_flag = carn_slave_cannot_be_freed

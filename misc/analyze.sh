@@ -14,6 +14,13 @@ echo "Slave gifted: $(grep -a "Slave gifted" debug.log | wc -l)"
 echo "Slave escaped: $(grep -a "Slave escaped" debug.log | wc -l)"
 echo
 
+# Travel events
+echo "Character departed for court: $(grep -a "Character departed for court" debug.log | wc -l)"
+echo "Character arrived at court: $(grep -a "Character arrived at court" debug.log | wc -l)"
+echo "Character rerouted to home: $(grep -a "Character rerouted to home" debug.log | wc -l)"
+echo "Character travel cancelled: $(grep -a "Character travel cancelled" debug.log | wc -l)"
+echo
+
 # Slave flavor events
 echo "Buy Foreign Slaves event fired: $(grep -a "Buy Foreign Slaves event fired" debug.log | wc -l)"
 echo "- Buy Foreign Slaves option a chosen: $(grep -a "Buy Foreign Slaves option a chosen" debug.log | wc -l)"
