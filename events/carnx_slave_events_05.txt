@@ -73,7 +73,7 @@ carnx_slave.0005 = {
 
 	immediate = {
 		hidden_effect = {
-			carnx_debug_log_no_details_effect = { MSG = carnx_debug_msg_slave_0005_fired }
+			carnx_debug_log_effect = { MSG = carnx_debug_msg_slave_0005_fired }
 		}
 		add_character_flag = {
 			flag = had_event_carnx_slave_0005
@@ -154,7 +154,7 @@ carnx_slave.0005 = {
 		}
 
 		hidden_effect = {
-			carnx_debug_log_no_details_effect = { MSG = carnx_debug_msg_slave_0005_option_a_chosen }
+			carnx_debug_log_effect = { MSG = carnx_debug_msg_slave_0005_option_a_chosen }
 		}
 
 		ai_chance = {
@@ -214,7 +214,7 @@ carnx_slave.0005 = {
 		}
 
 		hidden_effect = {
-			carnx_debug_log_no_details_effect = { MSG = carnx_debug_msg_slave_0005_option_b_chosen }
+			carnx_debug_log_effect = { MSG = carnx_debug_msg_slave_0005_option_b_chosen }
 		}
 
 		ai_chance = {
@@ -270,7 +270,7 @@ carnx_slave.0005 = {
 		}
 
 		hidden_effect = {
-			carnx_debug_log_no_details_effect = { MSG = carnx_debug_msg_slave_0005_option_c_chosen }
+			carnx_debug_log_effect = { MSG = carnx_debug_msg_slave_0005_option_c_chosen }
 		}
 
 		ai_chance = {

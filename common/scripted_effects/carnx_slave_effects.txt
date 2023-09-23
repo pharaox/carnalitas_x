@@ -688,7 +688,7 @@ carn_free_illegal_slaves_effect = {
 					}
 				}
 
-				carnx_debug_log_no_details_effect = { MSG = carnx_debug_msg_freeing_illegal_slave }
+				carnx_debug_log_effect = { MSG = carnx_debug_msg_freeing_illegal_slave }
 				carn_free_slave_effect = yes
 			}
 		}

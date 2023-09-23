@@ -227,7 +227,7 @@ carnx_slave.0001 = {
 				}
 			}
 
-			carnx_debug_log_no_details_effect = { MSG = carnx_debug_msg_slave_0001_fired }
+			carnx_debug_log_effect = { MSG = carnx_debug_msg_slave_0001_fired }
 		}
 	}
 
@@ -258,7 +258,7 @@ carnx_slave.0001 = {
 				scope:common_option = { silent_disappearance_effect = yes }
 			}
 			scope:seller = { silent_disappearance_effect = yes }
-			carnx_debug_log_no_details_effect = { MSG = carnx_debug_msg_slave_0001_option_a_chosen }
+			carnx_debug_log_effect = { MSG = carnx_debug_msg_slave_0001_option_a_chosen }
 		}
 
 		ai_chance = {
@@ -293,7 +293,7 @@ carnx_slave.0001 = {
 				scope:valuable_option = { silent_disappearance_effect = yes }
 			}
 			scope:seller = { silent_disappearance_effect = yes }
-			carnx_debug_log_no_details_effect = { MSG = carnx_debug_msg_slave_0001_option_b_chosen }
+			carnx_debug_log_effect = { MSG = carnx_debug_msg_slave_0001_option_b_chosen }
 		}
 
 		ai_chance = {
@@ -333,7 +333,7 @@ carnx_slave.0001 = {
 				scope:common_option = { remove_character_flag = is_naked }
 			}
 			scope:seller = { silent_disappearance_effect = yes }
-			carnx_debug_log_no_details_effect = { MSG = carnx_debug_msg_slave_0001_option_c_chosen }
+			carnx_debug_log_effect = { MSG = carnx_debug_msg_slave_0001_option_c_chosen }
 		}
 
 		ai_chance = {
@@ -355,7 +355,7 @@ carnx_slave.0001 = {
 				scope:common_option = { silent_disappearance_effect = yes }
 			}
 			scope:seller = { silent_disappearance_effect = yes }
-			carnx_debug_log_no_details_effect = { MSG = carnx_debug_msg_slave_0001_option_d_chosen }
+			carnx_debug_log_effect = { MSG = carnx_debug_msg_slave_0001_option_d_chosen }
 		}
 
 		ai_chance = {

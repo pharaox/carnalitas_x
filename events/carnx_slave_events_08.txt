@@ -12,7 +12,6 @@ scripted_effect carnx_slave_008_acquire_slavery_attitude_modifier_effect = {
 		carnx_slave_008_remove_slavery_attitude_modifier_effect = yes
 		add_character_modifier = carnx_slavery_attitude_$ATTITUDE$_modifier
 		hidden_effect = {
-			carnx_debug_save_scopes_effect = { CHARACTER = this PREFIX = acquired_$ATTITUDE$ }
 			carnx_debug_log_effect = { MSG = carnx_debug_msg_character_acquired_$ATTITUDE$_modifier }
 		}
 	}
