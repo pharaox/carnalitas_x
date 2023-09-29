@@ -1,0 +1,4 @@
+﻿# Overridden from Travellers
+travl_can_be_recruited_trigger = {
+	carnx_is_slave_trigger = no
+}
