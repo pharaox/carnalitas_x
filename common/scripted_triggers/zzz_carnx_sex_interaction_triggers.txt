@@ -1,18 +1,4 @@
-﻿carn_relationship_allows_free_sex_trigger = {
-	save_temporary_scope_as = character
-
-	OR = {
-		has_relation_lover = $PARTNER$
-		has_relation_soulmate = $PARTNER$
-		$PARTNER$ = { 
-			OR = {
-				is_consort_of = scope:character
-				carnx_is_slave_consort_of_trigger = { CHARACTER = scope:character }
-			}
-		}
-	}
-}
-
+﻿# Overridden from CLR
 carnx_is_slave_consort_of_trigger = {
 	OR = {
 		AND = {
