@@ -5,3 +5,10 @@
 
  carnx_slavery_is_always_accepted: "You can only choose Liberator if either $carn_doctrine_same_slavery_name$ or $carn_doctrine_other_slavery_name$ is not Accepted by your faith"
  carnx_slavery_is_never_accepted: "You can only choose Slaver, Slave Trader, or Slave Employer if either $carn_doctrine_same_slavery_name$ or $carn_doctrine_other_slavery_name$ is Accepted by your faith"
+
+ carnx_is_slave_trigger: "[CHARACTER.GetShortUIName|U] is a [slave|E]"
+
+ carnx_has_relation_slave: "[TARGET_CHARACTER.GetShortUIName] is [CHARACTER.GetShortUINamePossessive] slave"
+ carnx_has_relation_slave_owner: "[TARGET_CHARACTER.GetShortUIName] is [CHARACTER.GetShortUINamePossessive] owner"
+ carnx_num_of_relation_slave: "Number of slaves is $COMPARATOR$ $NUM|V0$"
+ carnx_num_of_relation_slave_owner: "Number of owners is $COMPARATOR$ $NUM|V0$"

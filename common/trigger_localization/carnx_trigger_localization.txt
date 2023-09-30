@@ -22,3 +22,23 @@ carnx_slavery_is_never_accepted = {
 	first_not = carnx_slavery_is_never_accepted
 	third_not = carnx_slavery_is_never_accepted
 }
+
+carnx_is_slave_trigger = {
+	third = carnx_is_slave_trigger
+}
+
+has_relation_slave = {
+	global = carnx_has_relation_slave
+}
+
+num_of_relation_slave = {
+	global = carnx_num_of_relation_slave
+}
+
+has_relation_slave_owner = {
+	global = carnx_has_relation_slave_owner
+}
+
+num_of_relation_slave_owner = {
+	global = carnx_num_of_relation_slave_owner
+}

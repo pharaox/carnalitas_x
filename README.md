@@ -338,6 +338,7 @@ The sections below list the changes made to existing vanilla objects in somewhat
 ### Interactions (`character_interactions`)
 
 * `ask_for_conversion_courtier_interaction`: Reduced the chance of a slave being converted to their owner's faith to prevent freeing most slaves a few years after they were enslaved or bought.
+* `release_from_prison_interaction`: Disabled the *Banish* option, as well as dread and stress impact for slaves.
 
 ### Council Positions (`council_positions`)
 
@@ -351,6 +352,8 @@ The sections below list the changes made to existing vanilla objects in somewhat
 
 * `desirable_for_capture_trigger`: Made characters with a slave price above a certain threshold desirable for capture, ensuring that they are captured instead of killed during sieges and raids.
 * `court_position_does_not_already_have_a_job_trigger`: Added *Slave Eunuch* and *Mameluke Captain* court positions to the list of "jobs".
+* `can_recruit_character_to_court_trigger`: Disabled *Invite to Court* for slaves.
+* `kick_from_court_validity_trigger`: Disabled *Dismiss* for slaves.
 
 ### Effects (`scripted_effects`)
 

@@ -1,0 +1,150 @@
+﻿###################
+# Demand Payment
+# by Petter Vilberg
+###################
+# Overridden from vanilla.
+demand_payment_interaction = {
+	category = interaction_category_diplomacy
+	icon = icon_gold
+
+	auto_accept = yes
+	use_diplomatic_range = yes
+
+	desc = demand_payment_interaction_desc
+
+	is_shown = {
+		scope:actor = {
+			OR = {
+				has_perk = golden_obligations_perk
+				AND = {
+					any_character_struggle = {
+						involvement = involved
+						has_struggle_phase_parameter = unlocks_demand_payments_for_all
+						is_secondary_character_involvement_either_trigger = {
+							CHAR = scope:recipient
+						}
+					}
+				}
+			}
+		}
+		scope:recipient = {
+			is_ai = yes
+		}
+		NOT = { scope:recipient = scope:actor }
+	}
+
+	is_valid_showing_failures_only = {
+		scope:actor = {
+			is_physically_able_adult = yes
+			NOT = {
+				is_at_war_with = scope:recipient
+			}
+			# CSR: Disable Demand Payment for slaves
+			NOT = { has_relation_slave = scope:recipient }
+		}
+		scope:recipient = {
+			is_imprisoned = no
+		}
+		scope:recipient = {
+			custom_description = {
+				text = demand_payment_too_little_gold
+				gold >= 1
+			}
+		}
+	}
+
+	is_valid = {
+		scope:actor = {
+			has_usable_hook = scope:recipient
+		}
+	}
+
+	is_highlighted = {
+		scope:actor = {
+			has_usable_hook = scope:recipient
+		}
+	}
+
+	on_accept = {
+		if = {
+			limit = {
+				scope:recipient.gold < scope:recipient.golden_obligation_value
+			}
+			custom_tooltip = demand_payment_too_little_gold_tt
+		}
+		scope:actor = {
+			send_interface_toast = {
+				title = demand_payment_interaction_message
+				left_icon = scope:recipient
+
+				scope:actor = {
+					use_hook = scope:recipient
+				}
+				scope:recipient = {
+					if = {
+						pay_short_term_gold = {
+							target = scope:actor
+							gold = golden_obligation_value
+						}
+						limit = {
+							gold > golden_obligation_value
+						}
+					}
+					else = {
+						pay_short_term_gold = {
+							target = scope:actor
+							gold = {
+								value = scope:recipient.gold
+								floor = yes
+							}
+						}
+					}
+				}
+			}
+			stress_impact = {
+				generous = medium_stress_impact_gain
+			}
+		}
+	}
+
+	ai_potential = {
+		NOT = {
+			has_trait = generous
+		}
+		OR = {
+			ai_greed >= low_positive_ai_value
+			is_at_war = yes
+		}
+	}
+
+	ai_target_quick_trigger = {
+		adult = yes
+	}
+
+	ai_targets = {
+		ai_recipients = hooked_characters
+	}
+
+	ai_frequency = 36
+
+	ai_will_do = {
+		base = 100
+
+		modifier = { #ai won't use the interaction if they'll get nothing out of it
+			factor = 0
+			scope:recipient.gold < 8
+		}
+
+		modifier = {
+			factor = 0
+			scope:actor = {
+				OR = {
+					has_relation_friend = scope:recipient
+					has_relation_lover = scope:recipient
+					has_relation_best_friend = scope:recipient
+					has_relation_soulmate = scope:recipient
+				}
+			}
+		}
+	}
+}

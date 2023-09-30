@@ -1,0 +1,30 @@
+﻿# Overridden from vanilla.
+kick_from_court_validity_trigger = {
+	is_busy_in_events_localised = yes
+	NOR = {
+		is_spouse_of = scope:actor
+		is_concubine_of = scope:actor
+		is_close_family_of = scope:actor
+		has_council_position = councillor_court_chaplain
+		is_diarch = yes
+		# Marriage major partners of diarchs.
+		## Female.
+		AND = {
+			is_married = yes
+			is_female = yes
+			matrilinear_marriage = yes
+			any_consort = { is_diarch = yes }
+		}
+		## Male.
+		AND = {
+			is_married = yes
+			is_male = yes
+			patrilinear_marriage = yes
+			any_consort = { is_diarch = yes }
+		}
+		# CSR: Disable Dismiss for slaves since they will be returned automatically
+		scope:actor = {
+			has_relation_slave = prev
+		}
+	}
+}
