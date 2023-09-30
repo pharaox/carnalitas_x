@@ -91,10 +91,15 @@ carnx_pay_ransom_slave_interaction = {
 	# Offer to pay the full price
 	send_option = {
 		is_shown = {
-			exists = scope:secondary_recipient
-			scope:actor = {
-				save_temporary_scope_as = payer
-				gold >= scope:secondary_recipient.carnx_slave_ransom_cost_value
+			trigger_if = {
+				limit = { exists = scope:secondary_recipient }
+				scope:actor = {
+					save_temporary_scope_as = payer
+					gold >= scope:secondary_recipient.carnx_slave_ransom_cost_value
+				}
+			}
+			trigger_else = {
+				scope:actor.gold > 0
 			}
 		}
 		flag = gold
@@ -104,11 +109,16 @@ carnx_pay_ransom_slave_interaction = {
 	# Offer to pay what they have
 	send_option = {
 		is_shown = {
-			exists = scope:secondary_recipient
-			scope:actor = {
-				save_temporary_scope_as = payer
-				gold < scope:secondary_recipient.carnx_slave_ransom_cost_value
-				gold > 0
+			trigger_if = {
+				limit = { exists = scope:secondary_recipient }
+				scope:actor = {
+					save_temporary_scope_as = payer
+					gold < scope:secondary_recipient.carnx_slave_ransom_cost_value
+					gold > 0
+				}
+			}
+			trigger_else = {
+				always = no
 			}
 		}
 		flag = current_gold
@@ -200,30 +210,44 @@ carnx_pay_ransom_slave_interaction = {
 
 		# Offerred gold (0 to 50)
 		modifier = {
-			scope:gold = yes
+			OR = {
+				scope:gold = yes
+				scope:current_gold = yes
+			}
+			scope:actor = {
+				save_temporary_scope_as = payer
+				gold >= scope:secondary_recipient.carnx_slave_ransom_cost_value
+			}
 			add = 50
 			desc = GOLD_POSITIVE_REASON
 		}
 		modifier = {
-			scope:current_gold = yes
-			AND = {
-				scope:actor = {
-					save_temporary_scope_as = payer
-					gold >= scope:secondary_recipient.carnx_slave_half_ransom_cost_value
-				}
-				NOT = { ai_greed >= medium_positive_ai_value }
+			OR = {
+				scope:gold = yes
+				scope:current_gold = yes
 			}
-			add = 25
+			scope:actor = {
+				save_temporary_scope_as = payer
+				gold < scope:secondary_recipient.carnx_slave_ransom_cost_value
+				gold >= scope:secondary_recipient.carnx_slave_half_ransom_cost_value
+			}
+			add = {
+				value = 25
+				add = {
+					value = ai_greed
+					multiply = -0.25
+				}
+			}
 			desc = GOLD_POSITIVE_REASON
 		}
 		modifier = { # for clarification
-			scope:current_gold = yes
 			OR = {
-				scope:actor = {
-					save_temporary_scope_as = payer
-					gold < scope:secondary_recipient.carnx_slave_half_ransom_cost_value
-				}
-				ai_greed >= medium_positive_ai_value
+				scope:gold = yes
+				scope:current_gold = yes
+			}
+			scope:actor = {
+				save_temporary_scope_as = payer
+				gold < scope:secondary_recipient.carnx_slave_half_ransom_cost_value
 			}
 			add = 0
 			desc = WANTS_MORE_GOLD
@@ -442,16 +466,16 @@ carnx_pay_ransom_slave_interaction = {
 			}
 		}
 
-		# Asked for a favor (-25 or -50)
+		# Asked for a favor (-50 or -100)
 		modifier = {
 			scope:favor = yes
 			scope:recipient.top_liege = scope:actor.top_liege
-			add = -50
+			add = -100
 		}
 		modifier = {
 			scope:favor = yes
 			NOT = { scope:recipient.top_liege = scope:actor.top_liege }
-			add = -25
+			add = -50
 		}
 
 		# Avoid spending money if at war (-50)
