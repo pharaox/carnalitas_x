@@ -1,8 +1,10 @@
 ﻿l_english:
  # carn_buy_slave_directly_interaction (original)
+ carn_buy_slave_directly_interaction_extra_icon: "$hook_extra_icon$"
 
  # carn_sell_slave_interaction (some original, some overriden)
  carnx_sell_slave_interaction_desc: "Sell a [slave|E] for [gold|E]"
+ carn_sell_slave_interaction_extra_icon: "$hook_extra_icon$"
 
  # carnx_buy_slaves_interaction (new)
  carnx_buy_slaves_interaction: "Buy Slaves"
@@ -60,6 +62,7 @@
 
  # carn_demand_free_illegal_slaves_interaction
  carnx_demand_free_illegal_slaves_refused: "[recipient.GetShortUIName|U] does not free [recipient.GetHerHis] illegal slaves"
+ carn_demand_free_illegal_slaves_interaction_extra_icon: "$hook_extra_icon$"
 
  # Modifier reasons
  carnx_secondary_recipient_has_court_position_reason: "[secondary_recipient.GetShortUIName|U] holds a [court|E] position: $VALUE|=+0$"
