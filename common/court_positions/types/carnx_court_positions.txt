@@ -98,6 +98,13 @@
 	# Is this a valid character for the position?
 	valid_character = {
 		scope:employee = {
+			OR = {
+				has_court_position = carnx_slave_concubine_court_position
+				AND = {
+					has_trait = slave
+					has_relation_slave_owner = scope:liege
+				}
+			}
 			carnx_can_be_slave_concubine_trigger = { LIEGE = scope:liege }
 		}
 	}
@@ -378,6 +385,13 @@ carnx_slave_captain_court_position = {
 	# Is this a valid character for the position?
 	valid_character = {
 		scope:employee = {
+			OR = {
+				has_court_position = carnx_slave_captain_court_position
+				AND = {
+					has_trait = slave
+					has_relation_slave_owner = scope:liege
+				}
+			}
 			carnx_can_be_slave_captain_trigger = { LIEGE = scope:liege }
 		}
 	}
@@ -604,6 +618,13 @@ carnx_slave_eunuch_court_position = {
 	# Is this a valid character for the position?
 	valid_character = {
 		scope:employee = {
+			OR = {
+				has_court_position = carnx_slave_eunuch_court_position
+				AND = {
+					has_trait = slave
+					has_relation_slave_owner = scope:liege
+				}
+			}
 			carnx_can_be_slave_eunuch_trigger = { LIEGE = scope:liege }
 		}
 	}
