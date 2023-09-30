@@ -137,7 +137,7 @@ ask_for_conversion_courtier_interaction = {
 			scope:actor = {
 				has_relation_slave = scope:recipient
 			}
-			add = -75
+			add = -90
 		}
 
 		modifier = { # The AI will only use a Hook if they couldn't otherwise do this
