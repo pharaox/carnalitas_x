@@ -542,14 +542,14 @@ carnx_enslave_effect = {
 		}
 	}
 
-	hidden_effect = {
-		scope:slave = {
-			# Release from prison
-			if = {
-				limit = { is_imprisoned_by = scope:new_owner }
-				release_from_prison = yes
-			}
+	scope:slave = {
+		# Release from prison
+		if = {
+			limit = { is_imprisoned_by = scope:new_owner }
+			release_from_prison = yes
+		}
 
+		hidden_effect = {
 			# Add / remove modifiers and flags
 			if = {
 				limit = { has_character_modifier = carnx_marked_for_enslavement_modifier }
@@ -701,9 +701,12 @@ carnx_free_slave_actual_effect = {
 	scope:slave = {
 		carn_free_slave_effect = yes
 
-		# Release from prison
+		# Release from prison if former owner different from emancipator
 		if = {
-			limit = { is_imprisoned_by = $EMANCIPATOR$ }
+			limit = {
+				NOT = { scope:former_owner ?= $EMANCIPATOR$ }
+				is_imprisoned_by = $EMANCIPATOR$
+			}
 			release_from_prison = yes
 		}
 
@@ -852,6 +855,17 @@ carnx_free_slave_actual_effect = {
 					}
 					carnx_potentially_acquire_liberator_trait_effect = yes
 				}
+			}
+		}
+
+		# Add opinion from former owner if different from emancipator
+		if = {
+			limit = {
+				NOT = { scope:former_owner ?= $EMANCIPATOR$ }
+			}
+			reverse_add_opinion = {
+				target = scope:former_owner
+				modifier = carnx_liberated_my_slave_opinion
 			}
 		}
 
@@ -1052,12 +1066,12 @@ carnx_buy_slave_effect = {
 				remove_relation_slave = prev
 				carn_add_mutual_former_slave_or_slave_owner_opinion_effect = { CHARACTER = prev }
 			}
+		}
 
-			# Release from prison
-			if = {
-				limit = { is_imprisoned_by = scope:seller }
-				release_from_prison = yes
-			}
+		# Release from prison
+		if = {
+			limit = { is_imprisoned_by = scope:seller }
+			release_from_prison = yes
 		}
 	}
 
@@ -1222,12 +1236,12 @@ carnx_seize_slave_effect = {
 				carn_add_mutual_former_slave_or_slave_owner_opinion_effect = { CHARACTER = prev }
 				save_scope_as = former_owner
 			}
+		}
 
-			# Release from prison
-			if = {
-				limit = { is_imprisoned_by = scope:new_owner }
-				release_from_prison = yes
-			}
+		# Release from prison
+		if = {
+			limit = { is_imprisoned_by = scope:new_owner }
+			release_from_prison = yes
 		}
 	}
 
@@ -1321,12 +1335,12 @@ carnx_gift_slave_effect = {
 				remove_relation_slave = prev
 				carn_add_mutual_former_slave_or_slave_owner_opinion_effect = { CHARACTER = prev }
 			}
+		}
 
-			# Release from prison
-			if = {
-				limit = { is_imprisoned_by = scope:former_owner }
-				release_from_prison = yes
-			}
+		# Release from prison
+		if = {
+			limit = { is_imprisoned_by = scope:former_owner }
+			release_from_prison = yes
 		}
 	}
 
