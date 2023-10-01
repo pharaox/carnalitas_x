@@ -148,7 +148,7 @@ carnx_gift_slave_interaction = {
 		}
 
 		scope:slave = {
-			carnx_travel_effect = {
+			travl_travel_effect = {
 				SENDER = scope:former_owner
 				RECIPIENT = scope:new_owner
 				ORIGIN = scope:slave_location

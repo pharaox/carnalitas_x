@@ -15,18 +15,6 @@
  carnx_debug_msg_freeing_illegal_slave: "$carnx_debug_prefix$: Freeing illegal slave"
  carnx_debug_msg_seizing_slave: "$carnx_debug_prefix$: Seizing slave by the new title holder"
 
- carnx_debug_msg_character_departed: "$carnx_debug_prefix$: Character departed for court"
- carnx_debug_msg_character_arrived: "$carnx_debug_prefix$: Character arrived at court"
- carnx_debug_msg_character_rerouted_to_home: "$carnx_debug_prefix$: Character rerouted to home"
- carnx_debug_msg_character_travel_cancelled: "$carnx_debug_prefix$: Character travel cancelled"
-
- carnx_debug_msg_travel_moved: "$carnx_debug_prefix$: Travel plan moved"
- carnx_debug_msg_travel_started: "$carnx_debug_prefix$: Travel plan started"
- carnx_debug_msg_travel_arrived: "$carnx_debug_prefix$: Travel plan arrived"
- carnx_debug_msg_travel_completed: "$carnx_debug_prefix$: Travel plan completed"
- carnx_debug_msg_travel_aborted: "$carnx_debug_prefix$: Travel plan aborted"
- carnx_debug_msg_travel_cancelled: "$carnx_debug_prefix$: Travel plan cancelled"
-
  carnx_debug_msg_non_slave_imprisoned: "$carnx_debug_prefix$: Non-slave character imprisoned"
  carnx_debug_msg_non_slave_released_from_prison: "$carnx_debug_prefix$: Non-slave character released from prison"
 
@@ -131,5 +119,7 @@
  carnx_debug_msg_slave_0005_option_a_chosen: "$carnx_debug_prefix$: Freedom for a Slave option a chosen"
  carnx_debug_msg_slave_0005_option_b_chosen: "$carnx_debug_prefix$: Freedom for a Slave option b chosen"
  carnx_debug_msg_slave_0005_option_c_chosen: "$carnx_debug_prefix$: Freedom for a Slave option c chosen"
+
+ carnx_debug_msg_travel_requested: "$carnx_debug_prefix$: Travel requested, but Travelers mod is not available"
 
  carnx_debug_msg_debug_character: "$carnx_debug_prefix$: Debug character"

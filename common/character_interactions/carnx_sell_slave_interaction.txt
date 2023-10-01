@@ -166,7 +166,7 @@ carn_sell_slave_interaction = {
 		}
 
 		scope:slave = {
-			carnx_travel_effect = {
+			travl_travel_effect = {
 				SENDER = scope:seller
 				RECIPIENT = scope:buyer
 				ORIGIN = scope:slave_location

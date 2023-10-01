@@ -125,12 +125,6 @@
  carnx_msg_slave_escaped: "Slave Escaped"
  carnx_msg_slave_seized: "Slave Seized"
  carnx_msg_slave_liberated: "Slave Liberated"
- carnx_msg_departed_for_court: "Departed for Court"
- carnx_msg_arrived_at_court: "Arrived at Court"
-
- # Message tooltips
- carnx_departed_for_court_tt: "[CHARACTER.GetShortUIName] departed for [TARGET_CHARACTER.GetShortUINamePossessive] court"
- carnx_arrived_at_court_tt: "[CHARACTER.GetShortUIName] arrived at [TARGET_CHARACTER.GetShortUINamePossessive] court"
 
  # Interaction categories
  carnx_interaction_category_slavery:0 "Slavery"

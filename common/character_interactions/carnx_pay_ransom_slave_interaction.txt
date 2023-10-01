@@ -169,7 +169,7 @@ carnx_pay_ransom_slave_interaction = {
 		}
 
 		scope:slave = {
-			carnx_travel_effect = {
+			travl_travel_effect = {
 				SENDER = scope:owner
 				RECIPIENT = scope:payer
 				ORIGIN = scope:slave_location
