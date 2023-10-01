@@ -36,6 +36,11 @@ With this mod:
 
 All taken together, slaves are now genuinely useful to their owners, there is an actual demand for them conditioned by religion and culture, and this demand is satisfied by warfare, raiding, slave trade, and slave-related events. As a player, you can choose between many different ways to interact with the system to either roleplay or use it to your advantage, and it's more challenging and hopefully more interesting to do this.
 
+If you like this mod, you may also consider my other mods:
+
+* [Carnalitas Love Reimagined](https://www.loverslab.com/files/file/29200-carnalitas-love-reimagined/). This mod and CLR have been designed to complement each other, but could be used independently as well.
+* [Search & Trade Artifacts](https://steamcommunity.com/sharedfiles/filedetails/?id=2962238514)
+
 ## Features
 
 ### Buying and Selling Slaves
@@ -154,13 +159,15 @@ Starting with version 0.4.0, this mod integrates the slavery system also with co
 
 #### New Slave Court Positions
 
-This mod introduces 2 new court positions that are reserved for slaves or former slaves conferring somewhat lesser but still tangible advantages:
+This mod introduces 3 new court positions that are reserved for slaves or former slaves conferring somewhat lesser but still tangible advantages:
 
 * *Slave Concubine*: diplomacy / attraction, restricted to polygamous religions and cultures, gives court grandeur and prestige (5 positions)
 * *Mameluke Captain*: martial / prowess, restricted to clan governments, gives court grandeur and knights effectiveness (3 positions)
 * *Slave Eunuch*: stewardship / intrigue, restricted to polygamous religions and cultures and cultures that can appoint *Chief Eunuch*, gives court grandeur, development growth, and hostile scheme resistance (3 positions)
 
 Any children of *Slave Concubines* are no longer slaves and have their correct father, house, dynasty, faith, and culture, including effects of dynasty perks.
+
+Note that only slaves, but not former slaves, can be appointed to slave court positions. If a slave holding a court position is freed, they retain the position, however if it's revoked they can't be appointed to it again.
 
 #### Changes to Existing Council and Court Positions
 
@@ -235,7 +242,7 @@ This event fires approximately every 2 years for every ruler that owns eligible 
 
 #### AI Rulers Having Sex with Their Slaves
 
-AI rulers may have sex with one of their slaves (or former slaves who are also *Slave Concubines*) once a year if they are attracted to them, via a hidden event. The chance of pregnancy is for the moment hardcoded at 10%.
+AI rulers may have sex with one of their slaves (or former slaves who are also *Slave Concubines*) once a year if they are attracted to them, via a hidden event. The chance of pregnancy is dynamic if [Carnalitas Love Reimagined](https://www.loverslab.com/files/file/29200-carnalitas-love-reimagined/) is installed, or hardcoded at 10% otherwise.
 
 This event will fire also for the player if the *Make Love* interaction is disabled. If the *Make Love* interaction is enabled, the event will not fire, since the player is then expected to make love to their slaves and *Slave Concubines*. The chance of pregnancy for the *Make Love* interaction is hardcoded at 30%, as in the original Carnalitas.
 
@@ -259,14 +266,17 @@ Being enslaved, freed, bought, ransomed, seized, liberated, or gifted is certain
 
 The following bugs present in Carnalitas have been fixed in this mod:
 
+* Slaves can no longer leave their owner's court to become wanderers. If a slave leaves their owners court for whatever reason, they are returned automatically.
 * If a slave owner dies and their heir doesn't inherit their court (e.g. because they have their own court), slaves don't just wander off similarly to other courtiers, but are instead added to the court of their new owner.
 * If a slave owner stops being a ruler, their slaves are seized by the new title holder of their last title. Non-rulers owning slaves is problematic because they are not under AI control and their slaves can never be freed, ransomed, or traded.
 * Enslaved concubines are properly "divorced".
 
 ## Vanilla Changes
 
-* Slaves can be imprisoned without incurring tyranny (and dread). Prisoner interactions on the imprisoned slave are not affected by their slave status.
-* Slaves are less likely to be converted to their owner's faith compared to other courtiers. This is mostly to prevent too many slaves to be freed too quickly as a result of the rebalanced impact of slavery doctrines.
+* The *Invite to Court* and *Dismiss* vanilla interactions, as well as the *Banish* option of the *Negotiate Release* interaction are not available on slaves since they are returned automatically to their owners court. To dismiss or banish a slave, they should be freed first.
+* The *Demand Payment* vanilla interaction is no longer available on slaves since using it on slaves can be considered an exploit.
+* Slaves can be imprisoned without incurring tyranny, and can also be released from prison without losing dread.
+* Slaves are less likely to be converted to their owner's faith compared to other courtiers. This is mostly to prevent them to be freed too quickly as a result of the rebalanced impact of slavery doctrines.
 
 ## Compatibility
 
@@ -339,6 +349,7 @@ The sections below list the changes made to existing vanilla objects in somewhat
 
 * `ask_for_conversion_courtier_interaction`: Reduced the chance of a slave being converted to their owner's faith to prevent freeing most slaves a few years after they were enslaved or bought.
 * `release_from_prison_interaction`: Disabled the *Banish* option, as well as dread and stress impact for slaves.
+* `demand_payment_interaction`: Disabled the *Demand Payment* interaction for slaves.
 
 ### Council Positions (`council_positions`)
 
@@ -352,8 +363,8 @@ The sections below list the changes made to existing vanilla objects in somewhat
 
 * `desirable_for_capture_trigger`: Made characters with a slave price above a certain threshold desirable for capture, ensuring that they are captured instead of killed during sieges and raids.
 * `court_position_does_not_already_have_a_job_trigger`: Added *Slave Eunuch* and *Mameluke Captain* court positions to the list of "jobs".
-* `can_recruit_character_to_court_trigger`: Disabled *Invite to Court* for slaves.
-* `kick_from_court_validity_trigger`: Disabled *Dismiss* for slaves.
+* `can_recruit_character_to_court_trigger`: Disabled the *Invite to Court* interaction for slaves.
+* `kick_from_court_validity_trigger`: Disabled the *Dismiss* interaction for slaves.
 
 ### Effects (`scripted_effects`)
 

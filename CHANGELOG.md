@@ -1,5 +1,38 @@
 # Changelog
 
+## Version 0.16.0
+
+### Interactions
+
+* The *Invite to Court* and *Dismiss* vanilla interactions, as well as the *Banish* option of the *Negotiate Release* interaction are no longer available on slaves since they are returned automatically to their owners court.
+* The *Demand Payment* vanilla interaction is no longer available on slaves since using it on slaves can be considered an exploit.
+* Slaves can now be released from prison without losing dread and without stress impact.
+* Freeing a slave using the *Free Slave* interaction no longer releases them from prison if they are imprisoned.
+  * Imprisoned slaves can therefore be freed in order to be banished.
+* If a slave is released from prison as a result of an interaction is now visible as an interaction effect.
+* AI rulers are now much more reluctant to offer hooks as ransom for slaves since this can be exploited via *Demand Payment*.
+* *Liberate Slave* now adds "liberated my slave" negative opinion modifier to the former owner, similarly to *Seize Slave*.
+* Bought, ransomed, and gifted slaves now travel to their new liege if Travelers (not yet released) is installed.
+
+### Court Positions
+
+* Only slaves, but not former slaves, can now be appointed to slave court positions. If a slave holding a court position is freed, they retain the position, however if it's revoked they can't be appointed to it again.
+
+### Miscellaneous
+
+* Increased the AI reluctance to convert slaves to their faith to avoid freeing them too soon afterwards.
+* The pregnancy chance for AI rulers having sex with their slaves is now dynamic if [Carnalitas Love Reimagined](https://www.loverslab.com/files/file/29200-carnalitas-love-reimagined/) is installed.
+* Added missing "extra icon" descriptions to slave interactions for hooked characters.
+
+### Bug Fixes
+
+* Fixed the *Demand Ransom for Slaves* and *Offer Ransom for Slaves* convenience interactions sometimes not showing all willing recipients.
+* Fixed the *Carnal Court Make Love* interaction not being available for slaves if CBO is installed.
+
+### Housekeeping
+
+* Added a date prefix to debug logs.
+
 ## Version 0.15.0
 
 ### Compatibility
