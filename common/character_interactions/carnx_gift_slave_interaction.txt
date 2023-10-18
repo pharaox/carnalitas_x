@@ -139,21 +139,11 @@ carnx_gift_slave_interaction = {
 		scope:actor = { save_scope_as = former_owner }
 		scope:secondary_recipient = { save_scope_as = slave }
 		scope:recipient = { save_scope_as = new_owner }
-		scope:slave.location = { save_scope_as = slave_location }
 		carnx_gift_slave_interaction_effect = {
 			OPINION = scope:slave.carnx_gift_slave_opinion
 		}
 		scope:slave = {
 			carnx_remove_gift_slave_variables_effect = yes
-		}
-
-		scope:slave = {
-			travl_travel_effect = {
-				SENDER = scope:former_owner
-				RECIPIENT = scope:new_owner
-				ORIGIN = scope:slave_location
-				COMPANIONS = none
-			}
 		}
 	}
 

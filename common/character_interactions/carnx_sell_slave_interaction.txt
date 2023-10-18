@@ -157,21 +157,11 @@ carn_sell_slave_interaction = {
 		scope:actor = { save_scope_as = seller }
 		scope:secondary_recipient = { save_scope_as = slave }
 		scope:recipient = { save_scope_as = buyer }
-		scope:slave.location = { save_scope_as = slave_location }
 		carn_buy_slave_effect = {
 			SLAVE_PRICE = scope:slave.carnx_slave_bid_price_value
 		}
 		scope:slave = {
 			carnx_remove_buy_slave_variables_effect = yes
-		}
-
-		scope:slave = {
-			travl_travel_effect = {
-				SENDER = scope:seller
-				RECIPIENT = scope:buyer
-				ORIGIN = scope:slave_location
-				COMPANIONS = none
-			}
 		}
 	}
 
