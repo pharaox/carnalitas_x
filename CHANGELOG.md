@@ -1,5 +1,15 @@
 # Changelog
 
+## Version 0.17.0
+
+### Compatibility
+
+* Adapted to CK3 1.11.0
+
+### Court Positions
+
+* Enabled *Master Assassin* court position to be assigned to slaves
+
 ## Version 0.16.0
 
 ### Interactions

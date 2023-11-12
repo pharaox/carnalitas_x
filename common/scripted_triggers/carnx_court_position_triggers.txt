@@ -142,6 +142,36 @@ carnx_can_be_executioner_trigger = {
 	}
 }
 
+carnx_can_be_master_assassin_trigger = {
+	is_capable_adult = yes
+	has_no_particular_noble_roots_trigger = yes
+	NOT = { is_spouse_of = $LIEGE$ }
+	is_landed = no #You can't be a public figure and a master assassin
+	faith = {
+		has_doctrine = tenet_fp3_fedayeen
+		NOR = {
+			has_doctrine = tenet_pacifism
+			has_doctrine = tenet_dharmic_pacifism
+		}
+	}
+	trigger_if = {
+		limit = {
+			$LIEGE$.faith = {
+				has_doctrine = doctrine_gender_male_dominated
+			}
+		}
+		is_male = yes
+	}
+	trigger_if = {
+		limit = {
+			$LIEGE$.faith = {
+				has_doctrine = doctrine_gender_female_dominated
+			}
+		}
+		is_female = yes
+	}
+}
+
 # CSR Court Positions
 
 carnx_can_be_slave_concubine_trigger = {

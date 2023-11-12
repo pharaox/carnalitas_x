@@ -105,6 +105,15 @@ demand_payment_interaction = {
 				generous = medium_stress_impact_gain
 			}
 		}
+
+		# If we're a clan this interaction affects unity
+		add_clan_unity_interaction_effect = {
+			CHARACTER = scope:actor
+			TARGET = scope:recipient
+			VALUE = minor_unity_loss
+			DESC = clan_unity_demand_payment.desc
+			REVERSE_NON_HOUSE_TARGET = no
+		}
 	}
 
 	ai_potential = {
@@ -129,6 +138,11 @@ demand_payment_interaction = {
 
 	ai_will_do = {
 		base = 100
+
+		# Unity modifiers
+		evaluate_action_increasing_house_unity = {
+			VALUE = -100
+		}
 
 		modifier = { #ai won't use the interaction if they'll get nothing out of it
 			factor = 0

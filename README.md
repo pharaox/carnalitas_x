@@ -2,7 +2,7 @@
 
 A comprehensive rework of the Carnalitas slavery system aiming at improved balance and better integration with other aspects of the game.
 
-The latest version is compatible with CK3 1.10.x and Carnalitas 2.1. If you are still on CK3 1.8.x, download version 0.9.x instead, and use it with Carnalitas 1.7. A compatibility patch with EK2 (for CK3 1.8.x) is provided as a separate download.
+The latest version is compatible with CK3 1.11.x and Carnalitas 2.2.
 
 ## Overview
 
@@ -173,9 +173,9 @@ Note that only slaves, but not former slaves, can be appointed to slave court po
 
 This mod divides the existing council and court positions into ones that are available to slaves (always or only for certain government forms), and ones that are not available to slaves at all.
 
-The following 15 court positions are available to slaves: *Court Physician*, *Antiquarian*, *Court Gardener*, *Wet Nurse*, *Court Tutor*, *Food Taster*, *Seneschal*, *Cupbearer*, *Chief Eunuch*, *Court Jester*, *Court Poet*, *Court Musician*, *Bodyguard*, *Personal Champion*, and *Executioner*. The rest of the court positions are not available to slaves, because they are considered either ceremonial (reserved for vassals to make them happy) or religious, or are subject to certain game limitations.
+The following 16 court positions are available to slaves: *Court Physician*, *Antiquarian*, *Court Gardener*, *Wet Nurse*, *Court Tutor*, *Food Taster*, *Seneschal*, *Cupbearer*, *Chief Eunuch*, *Court Jester*, *Court Poet*, *Court Musician*, *Bodyguard*, *Personal Champion*, *Executioner* and *Master Assassin*. The rest of the court positions are not available to slaves, because they are considered either ceremonial (reserved for vassals to make them happy) or religious, or are subject to certain game limitations.
 
-The following 4 council positions are available to slaves: *Chancellor*, *Steward*, *Marshal*, and *Spymaster*. The *Court Chaplain* council position is not available to slaves, since it is considered religious. Note that *Chancellor*, *Steward*, and *Marshal* are only available to slaves if your government is clan or tribal, to reflect the fact that historically such important roles were held by slaves only if they were considered more loyal than other available options, which was the case in certain Muslim and tribal societies. They are also available to characters with the [*Slave Employer* attitude](#slavery-attitudes).
+The following 4 council positions are available to slaves: *Chancellor*, *Steward*, *Marshal*, and *Spymaster*. The *Court Chaplain* council position is not available to slaves, since it is considered religious. The *Vizier* council position (added in CK3 1.11) is also not available to slaves, since it is reserved for diarchs and spouses. Note that *Chancellor*, *Steward*, and *Marshal* are only available to slaves if your government is clan or tribal, to reflect the fact that historically such important roles were held by slaves only if they were considered more loyal than other available options, which was the case in certain Muslim and tribal societies. They are also available to characters with the [*Slave Employer* attitude](#slavery-attitudes).
 
 Once a slave is assigned to a court position, he or she is paid a reduced salary (50%, or 25% for characters with [*Slave Employer* attitude](#slavery-attitudes)) and has an increased opinion gain (3x) compared to other courtiers. AI rulers are therefore more likely to appoint slaves to court positions.
 

@@ -4,6 +4,8 @@ ask_for_conversion_courtier_interaction = {
 	icon = religious
 
 	special_interaction = request_conversion_interaction
+	ai_maybe = yes
+	can_send_despite_rejection = yes
 
 	desc = {
 		desc = ask_for_conversion_interaction_desc
@@ -38,12 +40,19 @@ ask_for_conversion_courtier_interaction = {
 		scope:recipient = { is_imprisoned = no }
 	}
 
+	cooldown_against_recipient = { years = 15 }
+
 	is_valid_showing_failures_only = {
 		valid_demand_conversion_conditions_trigger = yes
 	}
 
 	ai_accept = {
 		base = 0
+		# Increase base chance
+		modifier = {
+			add = 50
+			desc = EDUCATE_CHILD_ACTOR_IS_MY_LIEGE
+		}
 		religion_demand_conversion_default_modifier = yes
 	}
 
@@ -84,25 +93,83 @@ ask_for_conversion_courtier_interaction = {
 				}
 			}
 			scope:recipient = {
-				trigger_event = char_interaction.0180
+				# trigger_event = char_interaction.0180
+				trigger_event = false_conversion.0900
+				save_scope_value_as = {
+					name = forcibly_converted
+					value = yes
+				}
 			}
 		}
 		if = {
 			limit = { scope:recipient = { is_imprisoned_by = scope:actor } }
 			scope:recipient = { release_from_prison = yes }
 			scope:recipient = {
-				trigger_event = char_interaction.0180
+				# trigger_event = char_interaction.0180
+				trigger_event = false_conversion.0900
+				save_scope_value_as = {
+					name = forcibly_converted
+					value = yes
+				}
+			}
+		}
+
+		# If we're a clan this interaction affects unity
+		accept_faith_conversion_add_clan_unity_effect = yes
+
+		scope:actor = {
+			if = {
+				limit = {
+					any_character_struggle = {
+						involvement = involved
+						has_struggle_phase_parameter = piety_from_converting_involved_rulers
+						is_secondary_character_involvement_involved_trigger = {
+							CHAR = scope:recipient
+						}
+					}
+				}
+				add_piety = medium_piety_gain
 			}
 		}
 	}
 
 	on_decline = {
-		scope:actor = { # CSR: Adopted from Unofficial Patch
+		#Negative opinions
+		scope:recipient = {
+			if = {
+				limit = {
+					scope:actor = {
+						refusing_conversion_is_crime_trigger = {
+							CHARACTER = scope:recipient
+						}
+					}
+					scope:recipient = {
+						target_is_liege_or_above = scope:actor
+					}
+				}
+				reverse_add_opinion = {
+					target = scope:actor
+					modifier = illegal_resisted_conversion_opinion
+					years = 10
+				}
+			}
+			else = {
+				add_opinion = {
+					modifier = demanded_my_conversion_opinion
+					target = scope:actor
+					opinion = -10
+				}
+			}
+		}
+		scope:actor = {
 			send_interface_toast = {
 				title = ask_for_conversion_decline_notification
 				left_icon = scope:recipient
 			}
 		}
+
+		# If we're a clan this interaction affects unity
+		refuse_faith_conversion_add_clan_unity_effect = yes
 	}
 
 	# Use hook

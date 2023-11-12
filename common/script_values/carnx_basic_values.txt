@@ -95,24 +95,25 @@ carnx_court_position_salary_slave_employer_multiplier = 0.25
 carnx_default_skill_threshold = decent_skill_rating
 
 # Aptitude thresholds
-carnx_court_physician_aptitude_threshold = poor_effectiveness
-carnx_antiquarian_aptitude_threshold = poor_effectiveness
-carnx_court_gardener_aptitude_threshold = poor_effectiveness
-carnx_wet_nurse_aptitude_threshold = average_effectiveness
-carnx_court_tutor_aptitude_threshold = average_effectiveness
-carnx_food_taster_aptitude_threshold = average_effectiveness
-carnx_seneschal_aptitude_threshold = average_effectiveness
-carnx_cupbearer_aptitude_threshold = average_effectiveness
-carnx_chief_eunuch_aptitude_threshold = average_effectiveness
-carnx_court_jester_aptitude_threshold = poor_effectiveness
-carnx_court_poet_aptitude_threshold = average_effectiveness
-carnx_court_musician_aptitude_threshold = poor_effectiveness
-carnx_bodyguard_aptitude_threshold = average_effectiveness
-carnx_champion_aptitude_threshold = average_effectiveness
-carnx_executioner_aptitude_threshold = average_effectiveness
-carnx_slave_concubine_aptitude_threshold = poor_effectiveness
-carnx_slave_captain_aptitude_threshold = average_effectiveness
-carnx_slave_eunuch_aptitude_threshold = poor_effectiveness
+carnx_court_physician_aptitude_threshold = 1 # poor_effectiveness
+carnx_antiquarian_aptitude_threshold = 1 # poor_effectiveness
+carnx_court_gardener_aptitude_threshold = 1 # poor_effectiveness
+carnx_wet_nurse_aptitude_threshold = 2 # average_effectiveness
+carnx_court_tutor_aptitude_threshold = 2 # average_effectiveness
+carnx_food_taster_aptitude_threshold = 2 # average_effectiveness
+carnx_seneschal_aptitude_threshold = 2 # average_effectiveness
+carnx_cupbearer_aptitude_threshold = 2 # average_effectiveness
+carnx_chief_eunuch_aptitude_threshold = 2 # average_effectiveness
+carnx_court_jester_aptitude_threshold = 1 # poor_effectiveness
+carnx_court_poet_aptitude_threshold = 2 # average_effectiveness
+carnx_court_musician_aptitude_threshold = 1 # poor_effectiveness
+carnx_bodyguard_aptitude_threshold = 2 # average_effectiveness
+carnx_champion_aptitude_threshold = 2 # average_effectiveness
+carnx_executioner_aptitude_threshold = 2 # average_effectiveness
+carnx_master_assassin_aptitude_threshold = 2 # average_effectiveness
+carnx_slave_concubine_aptitude_threshold = 1 # poor_effectiveness
+carnx_slave_captain_aptitude_threshold = 2 # average_effectiveness
+carnx_slave_eunuch_aptitude_threshold = 1 # poor_effectiveness
 
 # Capture and enslavement chances
 carnx_base_raid_capture_chance = 20

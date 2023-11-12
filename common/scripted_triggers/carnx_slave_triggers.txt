@@ -713,6 +713,14 @@ carnx_can_serve_as_executioner_trigger = {
 	}
 }
 
+carnx_can_serve_as_master_assassin_trigger = {
+	carnx_can_serve_as_court_position_trigger = {
+		TYPE = master_assassin_court_position
+		NAME = master_assassin
+		LIEGE = $RULER$
+	}
+}
+
 carnx_can_serve_as_slave_concubine_trigger = {
 	carnx_can_serve_as_multi_court_position_trigger = {
 		TYPE = carnx_slave_concubine_court_position

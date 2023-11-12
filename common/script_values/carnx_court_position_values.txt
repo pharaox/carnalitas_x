@@ -178,6 +178,18 @@ carnx_court_position_executioner_salary = {
 	}
 }
 
+carnx_court_position_master_assassin_salary = {
+	value = medium_court_position_salary
+	if = {
+		limit = {
+			scope:liege = {
+				carnx_employs_slave_as_court_position_trigger = { TYPE = master_assassin_court_position }
+			}
+		}
+		multiply = carnx_court_position_salary_slave_multiplier
+	}
+}
+
 carnx_court_position_slave_concubine_salary = {
 	add = {
 		value = 0.1
@@ -702,6 +714,17 @@ carnx_executioner_aptitude_difference_value = {
 	}
 }
 
+carnx_master_assassin_aptitude_difference_value = {
+	value = 0
+	if = {
+		limit = {
+			carnx_can_serve_as_master_assassin_trigger = { RULER = scope:liege }
+		}
+		value = aptitude:master_assassin_court_position
+		subtract = carnx_master_assassin_aptitude_threshold
+	}
+}
+
 carnx_slave_concubine_aptitude_difference_value = {
 	value = 0
 	if = {
@@ -768,11 +791,14 @@ carnx_vanilla_max_aptitude_difference_value = {
 															min = {
 																value = carnx_executioner_aptitude_difference_value
 																min = {
-																	value = carnx_slave_concubine_aptitude_difference_value
+																	value = carnx_master_assassin_aptitude_difference_value
 																	min = {
-																		value = carnx_slave_captain_aptitude_difference_value
+																		value = carnx_slave_concubine_aptitude_difference_value
 																		min = {
-																			value = carnx_slave_eunuch_aptitude_difference_value
+																			value = carnx_slave_captain_aptitude_difference_value
+																			min = {
+																				value = carnx_slave_eunuch_aptitude_difference_value
+																			}
 																		}
 																	}
 																}
