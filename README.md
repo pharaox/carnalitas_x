@@ -2,7 +2,7 @@
 
 A comprehensive rework of the Carnalitas slavery system aiming at improved balance and better integration with other aspects of the game.
 
-The latest version is compatible with CK3 1.11.x and Carnalitas 2.2.
+The latest version is compatible with CK3 1.11.x and Carnalitas 2.2. If you are still on CK3 1.10.x, download version 0.16.x instead, and use it with Carnalitas 2.1.
 
 ## Overview
 
@@ -38,8 +38,9 @@ All taken together, slaves are now genuinely useful to their owners, there is an
 
 If you like this mod, you may also consider my other mods:
 
-* [Carnalitas Love Reimagined](https://www.loverslab.com/files/file/29200-carnalitas-love-reimagined/). This mod and CLR have been designed to complement each other, but could be used independently as well.
-* [Search & Trade Artifacts](https://steamcommunity.com/sharedfiles/filedetails/?id=2962238514)
+* [Carnalitas Love Reimagined](https://www.loverslab.com/files/file/29200-carnalitas-love-reimagined/), a rework of the Carnalitas *Make Love* interaction and its related effects.
+* [Search & Trade Artifacts](https://steamcommunity.com/sharedfiles/filedetails/?id=2962238514), search for artifacts, buy them from other characters, and sell them to other characters.
+* [Travelers](https://steamcommunity.com/sharedfiles/filedetails/?id=3082182371), characters always travel to their home when it changes instead of teleporting.
 
 ## Features
 
