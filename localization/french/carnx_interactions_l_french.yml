@@ -1,0 +1,134 @@
+﻿l_french:
+ # carn_buy_slave_directly_interaction (original)
+ carn_buy_slave_directly_interaction_extra_icon: "$hook_extra_icon$"
+
+ # carn_sell_slave_interaction (some original, some overriden)
+ carnx_sell_slave_interaction_desc: "Vendre un [slave|El] pour de l’[gold|El]"
+ carn_sell_slave_interaction_extra_icon: "$hook_extra_icon$"
+
+ # carnx_buy_slaves_interaction (new)
+ carnx_buy_slaves_interaction: "Acheter des esclaves"
+ carnx_buy_slaves_interaction_desc: "Acheter des [slaves|El] à des dirigeants qui sont prêts à les vendre"
+ actor_secondary_carnx_buy_slaves_interaction: "Esclave"
+ recipient_secondary_carnx_buy_slaves_interaction: "vendeur"
+
+ # carnx_sell_slaves_interaction (new)
+ carnx_sell_slaves_interaction: "Vendre des esclaves"
+ carnx_sell_slaves_interaction_desc: "Vendre des [slaves|El] à des dirigeants qui sont prêts à les acheter"
+ actor_secondary_carnx_sell_slaves_interaction: "Esclave"
+ recipient_secondary_carnx_sell_slaves_interaction: "Acheteur"
+
+ # carn_enslave_interaction (original)
+
+ # carn_free_slave_interaction (original)
+
+ # carn_seize_slave_interaction (original)
+
+ # carnx_ransom_slave_interaction
+ carnx_ransom_slave_interaction: "Demande de rançon pour un esclave"
+ carnx_ransom_slave_interaction_desc: "Demander un rançon pour un [slave|El]"
+ recipient_secondary_carnx_ransom_slave_interaction: "Esclave"
+
+ # carnx_pay_ransom_slave_interaction
+ carnx_pay_ransom_slave_interaction: "Offrir une rançon pour un esclave"
+ carnx_pay_ransom_slave_interaction_desc: "Offrir une rançon pour un [slave|El]"
+ recipient_secondary_carnx_pay_ransom_slave_interaction: "Esclave"
+
+ # carnx_ransom_slaves_interaction (new)
+ carnx_ransom_slaves_interaction: "Demande de rançon pour des esclaves"
+ carnx_ransom_slaves_interaction_desc: "Demander une rançon pour des [slaves|El] à des dirigeants désireux et capables de les rançonner"
+ actor_secondary_carnx_ransom_slaves_interaction: "Esclave"
+ recipient_secondary_carnx_ransom_slaves_interaction: "Payer"
+
+ # carnx_pay_ransom_slaves_interaction (new)
+ carnx_pay_ransom_slaves_interaction: "Offrir une rançon pour des esclaves"
+ carnx_pay_ransom_slaves_interaction_desc: "Offrir une rançon pour des [slaves|El] à des dirigeants désireux de les rançonner"
+ actor_secondary_carnx_pay_ransom_slaves_interaction: "Esclave"
+ recipient_secondary_carnx_pay_ransom_slaves_interaction: "Propriétaire"
+
+ # carnx_gift_slave_interaction
+ carnx_gift_slave_interaction: "Esclave cadeau"
+ carnx_gift_slave_interaction_desc: "Offrir un [slave|El] à [recipient.GetShortUINameNoTooltip] pour accroître son opinion envers vous"
+ recipient_secondary_carnx_gift_slave_interaction: "Esclave"
+ carnx_gift_slave_proposal: "Acceptez cet esclave en cadeau. J’espère que [secondary_recipient.GetSheHe] vous servira bien."
+ carnx_gift_slave_accept: "Accepter"
+ carnx_gift_slave_reject: "Décliner"
+
+ # carnx_liberate_slave_interaction
+ carnx_liberate_slave_interaction: "Libérer un esclave"
+ carnx_liberate_slave_interaction_desc: "Libérer [recipient.GetShortUINameNoTooltip] de l’[slavery|El]"
+ carnx_liberate_slave_offer: "Dans la bonté de mon cœur, je vous libère de l’esclavage."
+ carnx_liberate_slave_offer_conditional: "Je suis prêt à vous libérer de l’esclavage, mais pas sans conditions..."
+
+ # carn_demand_free_illegal_slaves_interaction
+ carnx_demand_free_illegal_slaves_refused: "[recipient.GetShortUIName|U] ne libère pas ses esclaves illégaux"
+ carn_demand_free_illegal_slaves_interaction_extra_icon: "$hook_extra_icon$"
+
+ # Modifier reasons
+ carnx_secondary_recipient_has_court_position_reason: "[secondary_recipient.GetShortUIName|U] occupe un position de la [court|El] : $VALUE|=+0$"
+ carnx_secondary_recipient_has_important_role_reason: "[secondary_recipient.GetShortUIName|U] est un éducateur ou est éduqué : $VALUE|=+0$"
+ carnx_secondary_recipient_claims_reason: "[secondary_recipient.GetShortUIName|U] a des prétentions qui sont utiles pour [recipient.GetShortUIName|U] : $VALUE|=+0$"
+ carnx_secondary_recipient_attraction_reason: "[secondary_recipient.GetShortUIName|U] est attrayante pour [recipient.GetShortUIName|U] : $VALUE|=+0$"
+ carnx_secondary_recipient_female_reason: "[secondary_recipient.GetShortUIName|U] est une femme visiblement féconde : $VALUE|=+0$"
+ carnx_secondary_recipient_age_reason: "[secondary_recipient.GetShortUIName|U] considérations d’âge : $VALUE|=+0$"
+ carnx_secondary_recipient_expensive_reason: "[secondary_recipient.GetShortUIName|U] est assez cher : $VALUE|=+0$"
+ carnx_secondary_recipient_cheap_reason: "[secondary_recipient.GetShortUIName|U] est assez bon marché : $VALUE|=+0$"
+ carnx_secondary_recipient_criminal_reason: "[secondary_recipient.GetShortUIName|U] est un criminel ou mon rival : $VALUE|=+0$"
+ carnx_lacking_chancellor_reason: "[recipient.GetShortUIName|U] manque d’un bon $councillor_chancellor$ : $VALUE|=+0$"
+ carnx_lacking_marshal_reason: "[recipient.GetShortUIName|U] manque d’un bon $councillor_marshal$ : $VALUE|=+0$"
+ carnx_lacking_steward_reason: "[recipient.GetShortUIName|U] manque d’un bon $councillor_steward$ : $VALUE|=+0$"
+ carnx_lacking_spymaster_reason: "[recipient.GetShortUIName|U] manque d’un bon $councillor_spymaster$ : $VALUE|=+0$"
+ carnx_lacking_court_physician_reason: "[recipient.GetShortUIName|U] manque d’un bon $court_physician_court_position$ : $VALUE|=+0$"
+ carnx_lacking_antiquarian_reason: "[recipient.GetShortUIName|U] manque d’un bon $antiquarian_court_position$ : $VALUE|=+0$"
+ carnx_lacking_court_gardener_reason: "[recipient.GetShortUIName|U] manque d’un bon $court_gardener_court_position$ : $VALUE|=+0$"
+ carnx_lacking_wet_nurse_reason: "[recipient.GetShortUIName|U] manque d’une bonne $wet_nurse_court_position$ : $VALUE|=+0$"
+ carnx_lacking_court_tutor_reason: "[recipient.GetShortUIName|U] manque d’un bon $court_tutor_court_position$ : $VALUE|=+0$"
+ carnx_lacking_food_taster_reason: "[recipient.GetShortUIName|U] manque d’un bon $food_taster_court_position$ : $VALUE|=+0$"
+ carnx_lacking_seneschal_reason: "[recipient.GetShortUIName|U] manque d’un bon $seneschal_court_position$ : $VALUE|=+0$"
+ carnx_lacking_cupbearer_reason: "[recipient.GetShortUIName|U] manque d’un bon $cupbearer_court_position$ : $VALUE|=+0$"
+ carnx_lacking_chief_eunuch_reason: "[recipient.GetShortUIName|U] manque d’un bon $chief_eunuch_court_position$ : $VALUE|=+0$"
+ carnx_lacking_court_jester_reason: "[recipient.GetShortUIName|U] manque d’un bon $court_jester_court_position$ : $VALUE|=+0$"
+ carnx_lacking_court_poet_reason: "[recipient.GetShortUIName|U] manque d’un bon $court_poet_court_position$ : $VALUE|=+0$"
+ carnx_lacking_court_musician_reason: "[recipient.GetShortUIName|U] manque d’un bon $court_musician_court_position$ : $VALUE|=+0$"
+ carnx_lacking_bodyguard_reason: "[recipient.GetShortUIName|U] pourrait bénéficier d’un bon $bodyguard_court_position$ : $VALUE|=+0$"
+ carnx_lacking_champion_reason: "[recipient.GetShortUIName|U] manque d’un bon $champion_court_position$ : $VALUE|=+0$"
+ carnx_lacking_executioner_reason: "[recipient.GetShortUIName|U] manque d’un bon $executioner_court_position$ : $VALUE|=+0$"
+ carnx_lacking_master_assassin_reason: "[recipient.GetShortUIName|U] manque d’un bon $master_assassin_court_position$ : $VALUE|=+0$"
+ carnx_lacking_slave_concubine_reason: "[recipient.GetShortUIName|U] pourrait bénéficier d’une bonne $carnx_slave_concubine_court_position$ : $VALUE|=+0$"
+ carnx_lacking_slave_captain_reason: "[recipient.GetShortUIName|U] pourrait bénéficier d’un bon $carnx_slave_captain_court_position$ : $VALUE|=+0$"
+ carnx_lacking_slave_eunuch_reason: "[recipient.GetShortUIName|U] pourrait bénéficier d’un bon $carnx_slave_eunuch_court_position$ : $VALUE|=+0$"
+ carnx_lacking_knights_reason: "[recipient.GetShortUIName|U] pourrait bénéficier d’un bon $knight_culture_player$ : $VALUE|=+0$"
+ carnx_lacking_commanders_reason: "[recipient.GetShortUIName|U] pourrait bénéficier d’un bon commandant : $VALUE|=+0$"
+ carnx_not_enough_gold_reason: "[actor.GetShortUIName|U] ne peut pas se permettre le prix : $VALUE|=+0$"
+ carnx_slave_recently_bought_reason: "[recipient.GetShortUIName|U] a récemment acheté [secondary_recipient.GetShortUIName|U] et veut [secondary_recipient.GetHerHim] garder : $VALUE|=+0$"
+ carnx_reluctant_to_spend_gold_reason: "[recipient.GetSheHe|U] est réticent à dépenser de l’[gold|El] : $VALUE|=+0$"
+ carnx_recipient_poor_reason: "[recipient.GetShortUIName|U] considère [recipient.GetHerselfHimself] pauvre : $VALUE|=+0$"
+ carnx_recipient_rich_reason: "[recipient.GetShortUIName|U] considère [recipient.GetHerselfHimself] riche : $VALUE|=+0$"
+ carnx_slave_reason: "Les esclaves peuvent être utiles et précieux : $VALUE|=+0$"
+ carnx_nothing_offered_reason: "[actor.GetShortUIName|U] doit offrir quelque chose : $VALUE|=+0$"
+ carnx_slavery_attitude_reason: "[recipient.GetShortUIName|U] attitude esclavagiste : $VALUE|=+0$"
+ carnx_declining_to_free_illegal_slaves_is_crime_reason: "Refuser de libérer des esclaves illégaux est un crime : $VALUE|=+0$"
+
+ carnx_selling_crime_in_recipient_faith: "Vendre [secondary_recipient.GetFaith.GetAdherentNamePluralNoTooltip|U] en tant qu’esclave est [criminal|El] dans la [faith|El] de [recipient.GetShortUIName|U] : $VALUE|=+0$"
+ carnx_selling_shunned_in_recipient_faith: "Vendre [secondary_recipient.GetFaith.GetAdherentNamePluralNoTooltip|U] en tant qu’esclave est [shunned|El] dans la [faith|El] de [recipient.GetShortUIName|U] : $VALUE|=+0$"
+ carnx_owning_crime_in_recipient_faith: "Posséder [secondary_recipient.GetFaith.GetAdherentNamePluralNoTooltip|U] en tant qu’esclave est [criminal|El] dans la [faith|El] de [recipient.GetShortUIName|U] : $VALUE|=+0$"
+ carnx_owning_shunned_in_recipient_faith: "Posséder [secondary_recipient.GetFaith.GetAdherentNamePluralNoTooltip|U] en tant qu’esclave est [shunned|El] dans la [faith|El] de [recipient.GetShortUIName|U] : $VALUE|=+0$"
+
+ # Effect descriptions
+ carnx_buyer_not_enough_gold_for_slave_price_tooltip: "Paye #high [gold_i][SCOPE.ScriptValue('carn_scope_buyer_current_gold_value')|0]#! à [seller.GetShortUINameNoTooltip] #weak (prix total de [gold_i][SCOPE.ScriptValue('carn_scope_slave_price_value')|0] dépasse le budget à court terme)#!"
+ carnx_is_allowed_to_imprison_slave_desc: "[recipient.GetShortUIName] est votre [slave|El], vous permettant d’emprisonner [recipient.GetShortUIName] sans être considéré comme un [tyrant|El]"
+
+ # Message titles
+ carnx_msg_slave_bought: "Esclave acheté"
+ carnx_msg_slave_sold: "Esclave vendu"
+ carnx_msg_slave_ransomed: "Esclave rançonné"
+ carnx_msg_slave_gifted: "Esclave offert"
+ carnx_msg_slave_escaped: "Esclave échappé"
+ carnx_msg_slave_seized: "Esclave saisi"
+ carnx_msg_slave_liberated: "Esclave libéré"
+
+ # Interaction categories
+ carnx_interaction_category_slavery:0 "Esclavage"
+
+ # Interaction category descriptions
+ CARNX_SLAVERY_ACTIONS:0 "actions d’esclavage"

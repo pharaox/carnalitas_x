@@ -1,0 +1,9 @@
+﻿l_french:
+ carnx_rival_slave_scapegoat:0 "[CHARACTER.GetShortUIName|U] a pris [TARGET_CHARACTER.GetShortUIName] comme bouc émissaire de la perte d’un esclave."
+ carnx_rival_slave_scapegoat_corresponding:0 "[TARGET_CHARACTER.GetShortUIName|U] a pris [CHARACTER.GetShortUIName] comme bouc émissaire de la perte d’un esclave."
+
+ carnx_rival_enslaved:0 "[TARGET_CHARACTER.GetShortUIName|U] a asservi [CHARACTER.GetShortUIName]."
+ carnx_rival_enslaved_corresponding:0 "[CHARACTER.GetShortUIName|U] a asservi [TARGET_CHARACTER.GetShortUIName]."
+
+ carnx_rival_sold_into_slavery:0 "[TARGET_CHARACTER.GetShortUIName|U] a vendu [CHARACTER.GetShortUIName] en esclavage."
+ carnx_rival_sold_into_slavery_corresponding:0 "[CHARACTER.GetShortUIName|U] a vendu [TARGET_CHARACTER.GetShortUIName] en esclavage."

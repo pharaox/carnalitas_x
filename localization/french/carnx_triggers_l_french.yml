@@ -1,0 +1,15 @@
+﻿l_french:
+ carnx_buying_slaves_is_illegal: "Votre foi ne vous permet pas d’acheter [CHARACTER.GetFaith.GetAdherentNamePluralNoTooltip|U] comme esclaves"
+ carnx_selling_slaves_is_illegal: "Votre foi ne vous permet pas de vendre [CHARACTER.GetFaith.GetAdherentNamePluralNoTooltip|U] comme esclaves"
+ carnx_gifting_slaves_is_illegal: "Votre foi ne vous permet pas d’offrir [CHARACTER.GetFaith.GetAdherentNamePluralNoTooltip|U] comme esclaves"
+
+ carnx_slavery_is_always_accepted: "Vous ne pouvez choisir Libérateur que si $carn_doctrine_same_slavery_name$ ou $carn_doctrine_other_slavery_name$ n’est pas accepté par votre foi"
+ carnx_slavery_is_never_accepted: "Vous ne pouvez choisir Esclavagiste, Négociant d’esclaves, ou Employeur d’esclaves que si $carn_doctrine_same_slavery_name$ ou $carn_doctrine_other_slavery_name$ est accepté par votre foi"
+
+ carnx_is_slave_trigger: "[CHARACTER.GetShortUIName|U] est un[CHARACTER.Custom('FR_E')] [slave|El]"
+ NOT_carnx_is_slave_trigger: "[CHARACTER.GetShortUIName|U] n’est pas un[CHARACTER.Custom('FR_E')] [slave|El]"
+
+ carnx_has_relation_slave: "[TARGET_CHARACTER.GetShortUIName] est l’esclave de [CHARACTER.GetShortUIName]"
+ carnx_has_relation_slave_owner: "[TARGET_CHARACTER.GetShortUIName] est le propriétaire de [CHARACTER.GetShortUIName]"
+ carnx_num_of_relation_slave: "Le nombre d’esclaves est $COMPARATOR$ $NUM|V0$"
+ carnx_num_of_relation_slave_owner: "Le nombre de propriétaires est $COMPARATOR$ $NUM|V0$"

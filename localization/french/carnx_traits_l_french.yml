@@ -1,0 +1,11 @@
+﻿l_french:
+ trait_carnx_slaver:0 "Esclavagiste"
+ trait_carnx_slaver_desc:0 "Ce personnage a vendu de nombreuses personnes en esclavage."
+ trait_carnx_slaver_character_desc:0 "[ROOT.GetCharacter.GetFirstNameNoTooltip] a vendu de nombreuses personnes en esclavage."
+
+ trait_carnx_liberator:0 "Libérateur"
+ trait_carnx_liberator_desc:0 "Ce personnage a libéré de nombreuses personnes de l’esclavage."
+ trait_carnx_liberator_character_desc:0 "[ROOT.GetCharacter.GetFirstNameNoTooltip]  libéré de nombreuses personnes de l’esclavage."
+
+ carnx_slavery_crime_opinion:0 "[GetTrait('carnx_slaver').GetName( GetNullCharacter )|U] notoire"
+ carnx_slavery_intolerant_opinion:0 "[GetTrait('carnx_slaver').GetName( GetNullCharacter )|U] notoire"
