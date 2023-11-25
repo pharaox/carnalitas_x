@@ -10,12 +10,12 @@
   * `demand_payment_interaction` - Adapted
 
 * `common/character_interactions/zzz_00_prison_interactions.txt`
-  * `release_from_prison_interaction` - Adapted, adopted UP improvements
+  * `release_from_prison_interaction` - Adapted, adopted UP improvements (*)
 
 * `common/character_interactions/zzz_00_religious_interactions.txt`
   * `ask_for_conversion_courtier_interaction` - Adapted
 
-* `common/council_positions/zzz_00_council_positions.txt` - Adapted
+* `common/council_positions/zzz_00_council_positions.txt` - Adapted (*)
   * Added `councillor_vizier`
 
 * `common/court_positions/types/zzz_00_court_positions.txt` - Adapted
@@ -36,7 +36,7 @@
   * `court_position_does_not_already_have_a_job_trigger` - Adapted, fixed vanilla bugs
 
 * `common/scripted_triggers/zzz_00_courtier_guest_management_triggers.txt`
-  * `can_recruit_character_to_court_trigger` - No changes
+  * `can_recruit_character_to_court_trigger` - No changes (*)
 
 * `common/scripted_triggers/zzz_00_interaction_triggers.txt`
   * `kick_from_court_validity_trigger` - No changes
