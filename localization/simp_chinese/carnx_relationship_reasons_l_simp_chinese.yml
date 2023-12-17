@@ -1,0 +1,7 @@
+﻿l_simp_chinese:
+ carnx_rival_slave_scapegoat:0 "[CHARACTER.GetShortUIName|U] 因失去一名奴隶而替罪于 [TARGET_CHARACTER.GetShortUIName] 。"
+ carnx_rival_slave_scapegoat_corresponding:0 "[TARGET_CHARACTER.GetShortUIName|U] 因失去一名奴隶而替 [CHARACTER.GetShortUIName] 承担责任。"
+ carnx_rival_enslaved:0 "[TARGET_CHARACTER.GetShortUIName|U] 被 [CHARACTER.GetShortUIName]奴役."
+ carnx_rival_enslaved_corresponding:0 "[CHARACTER.GetShortUIName|U] 被 [TARGET_CHARACTER.GetShortUIName]奴役."
+ carnx_rival_sold_into_slavery:0 "[TARGET_CHARACTER.GetShortUIName|U] 将 [CHARACTER.GetShortUIName] 卖为奴隶."
+ carnx_rival_sold_into_slavery_corresponding:0 "[CHARACTER.GetShortUIName|U] 将 [TARGET_CHARACTER.GetShortUIName] 卖为奴隶."

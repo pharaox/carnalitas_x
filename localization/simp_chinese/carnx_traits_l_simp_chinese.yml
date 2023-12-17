@@ -1,0 +1,9 @@
+﻿l_simp_chinese:
+ trait_carnx_slaver:0 "奴隶主"
+ trait_carnx_slaver_desc:0 "这个角色把很多人卖为奴隶。"
+ trait_carnx_slaver_character_desc:0 "[ROOT.GetCharacter.GetFirstNameNoTooltip] 把很多人卖为奴隶。"
+ trait_carnx_liberator:0 "解放者"
+ trait_carnx_liberator_desc:0 "这个角色将许多人从奴隶制中解放出来。"
+ trait_carnx_liberator_character_desc:0 "[ROOT.GetCharacter.GetFirstNameNoTooltip]将许多人从奴隶制中解放出来。"
+ carnx_slavery_crime_opinion:0 "著名的[GetTrait('carnx_slaver').GetName( GetNullCharacter )]"
+ carnx_slavery_intolerant_opinion:0 "著名的[GetTrait('carnx_slaver').GetName( GetNullCharacter )]"

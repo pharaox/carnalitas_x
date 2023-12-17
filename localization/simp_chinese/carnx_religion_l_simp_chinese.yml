@@ -1,0 +1,7 @@
+﻿l_simp_chinese:
+ carnx_special_doctrine_slave_employment_name: "雇佣奴隶"
+ carnx_special_doctrine_slave_employment_desc: "我们甚至把我们的最高职位托付给奴隶，因为他们比我们的其他臣民更忠诚。"
+ carnx_doctrine_slave_employment_name: "$carnx_special_doctrine_slave_employment_name$"
+ doctrine_parameter_carnx_slave_employment_active: "能任命[slaves|E]到大多数[council|E]和[court_positions|E]"
+ doctrine_parameter_carnx_employed_slaves_more_loyal_active: "[slaves|E] 被任命为[court_positions|E]有他们的[opinion|E]为了被双倍雇佣"
+ doctrine_parameter_carnx_slave_soldiers_active: "能任命$carnx_slave_captain_court_position$ [court_position|E]"
