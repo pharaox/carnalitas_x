@@ -1,17 +1,55 @@
 ﻿carnx_valid_trading_partners = {
+	categories = {
+		carnx_carnalitas_x
+	}
+
 	default = carnx_valid_trading_partners_within_trading_range
-	carnx_valid_trading_partners_same_and_neighboring_realms = {}
-	carnx_valid_trading_partners_within_trading_range = {}
-	carnx_valid_trading_partners_all = {}
+
+	carnx_valid_trading_partners_same_and_neighboring_realms = {
+		flag = GG_can_change_rule
+	}
+
+	carnx_valid_trading_partners_within_trading_range = {
+		flag = GG_can_change_rule
+	}
+
+	carnx_valid_trading_partners_all = {
+		flag = GG_can_change_rule
+	}
 }
 
 carnx_number_of_potential_buyers = {
+	categories = {
+		carnx_carnalitas_x
+	}
+
 	default = carnx_number_of_potential_buyers_05
-	carnx_number_of_potential_buyers_01 = {}
-	carnx_number_of_potential_buyers_02 = {}
-	carnx_number_of_potential_buyers_05 = {}
-	carnx_number_of_potential_buyers_10 = {}
-	carnx_number_of_potential_buyers_20 = {}
-	carnx_number_of_potential_buyers_50 = {}
-	carnx_number_of_potential_buyers_all = {}
+
+	carnx_number_of_potential_buyers_01 = {
+		flag = GG_can_change_rule
+	}
+
+	carnx_number_of_potential_buyers_02 = {
+		flag = GG_can_change_rule
+	}
+
+	carnx_number_of_potential_buyers_05 = {
+		flag = GG_can_change_rule
+	}
+
+	carnx_number_of_potential_buyers_10 = {
+		flag = GG_can_change_rule
+	}
+
+	carnx_number_of_potential_buyers_20 = {
+		flag = GG_can_change_rule
+	}
+
+	carnx_number_of_potential_buyers_50 = {
+		flag = GG_can_change_rule
+	}
+
+	carnx_number_of_potential_buyers_all = {
+		flag = GG_can_change_rule
+	}
 }
