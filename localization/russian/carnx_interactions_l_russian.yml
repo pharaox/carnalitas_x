@@ -58,6 +58,10 @@
  carnx_liberate_slave_offer: "По доброте душевной я освобождаю вас от рабства."
  carnx_liberate_slave_offer_conditional: "Я готов освободить вас от рабства, но не безоговорочно..."
 
+ # carn_demand_free_illegal_slaves_interaction
+ carnx_demand_free_illegal_slaves_refused: "[recipient.GetShortUIName|U] не освобождает своих нелегальных рабов"
+ carn_demand_free_illegal_slaves_interaction_extra_icon: "$hook_extra_icon$"
+
  # Modifier reasons
  carnx_secondary_recipient_has_court_position_reason: "[secondary_recipient.GetShortUIName|U] занимает [court|E] должность: $VALUE|=+0$"
  carnx_secondary_recipient_has_important_role_reason: "[secondary_recipient.GetShortUIName|U] является преподавателем или получает образование: $VALUE|=+0$"
@@ -101,6 +105,7 @@
  carnx_slave_reason: "Рабы могут быть полезными и ценными: $VALUE|=+0$"
  carnx_nothing_offered_reason: "[actor.GetShortUIName|U] должен предложить что-то: $VALUE|=+0$"
  carnx_slavery_attitude_reason: "[recipient.GetShortUIName|U] отношение к рабству: $VALUE|=+0$"
+ carnx_declining_to_free_illegal_slaves_is_crime_reason: "Отказ от освобождения нелегальных рабов является преступлением: $VALUE|=+0$"
 
  carnx_selling_crime_in_recipient_faith: "Продажа [secondary_recipient.GetFaith.GetAdherentNamePluralNoTooltip|U] в качестве раба является [criminal|E] в [recipient.GetShortUIName|U]'s [faith|E]: $VALUE|=+0$"
  carnx_selling_shunned_in_recipient_faith: "Продажа [secondary_recipient.GetFaith.GetAdherentNamePluralNoTooltip|U] в качестве раба [shunned|E] в [recipient.GetShortUIName|U]'s [faith|E]: $VALUE|=+0$"

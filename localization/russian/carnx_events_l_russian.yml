@@ -27,7 +27,7 @@
  carnx_slave.0004.t:0 "Piety Loss From Slaves"
  carnx_slave.0004.desc:0 "I lost piety from slaves owned against religious doctrines."
  carnx_slave.0004.a:0 "OK"
- carnx_slave.0004.tt:0 "Piety Loss From Slaves"
+ carnx_slave.0004.tt:0 "Потеря благочестия от рабов"
  carnx_slave.0004.piety_loss.tt:0 "Утраченно благочестие из-за рабов, принадлежавших вам вопреки религиозным доктринам"
 
  carnx_slave.0005.t:0 "Свобода для раба"
