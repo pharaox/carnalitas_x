@@ -211,7 +211,8 @@ carnx_can_be_slave_eunuch_trigger = {
 
 carnx_slave_concubine_court_position_enabled_trigger = {
 	carnx_is_slave_concubines_enabled_trigger = yes
-	NOT = { is_wrong_gender_in_faith_trigger = { FAITH = faith } }
+	# Commented out for better compatibility with Regula Magistri
+	#NOT = { is_wrong_gender_in_faith_trigger = { FAITH = faith } }
 }
 
 carnx_slave_captain_court_position_enabled_trigger = {
