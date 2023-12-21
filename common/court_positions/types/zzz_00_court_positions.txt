@@ -2464,7 +2464,28 @@ wet_nurse_court_position = {
 
 	# How good is this character in this position? root scope is the holder of the court position
 	aptitude = {
-		value = 25
+		# CSR: If Carnalitas lactation is enabled, take milk production into account
+		if = {
+			limit = {
+				OR = {
+					has_game_rule = carn_lactation_female_only
+					has_game_rule = carn_lactation_any_gender
+				}
+			}
+			value = 5
+			if = {
+				limit = { exists = var:carn_milk_production }
+				add = {
+					value = var:carn_milk_production
+					multiply = 0.25
+					floor = yes
+					max = 50
+					desc = carnx_court_position_milk_production
+				}
+			}
+		} else = {
+			value = 25
+		}
 		if = {
 			limit = { health >= 5 }
 			add = {

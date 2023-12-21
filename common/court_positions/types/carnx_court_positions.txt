@@ -19,13 +19,11 @@
 			max = 50
 			desc = court_position_skill_diplomacy
 		}
-		if = {
-			add = {
-				value = attraction
-				multiply = 2
-				max = 50
-				desc = carnx_court_position_skill_attraction
-			}
+		add = {
+			value = attraction
+			multiply = 2
+			max = 50
+			desc = carnx_court_position_skill_attraction
 		}
 		if = {
 			limit = {

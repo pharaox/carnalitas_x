@@ -6,6 +6,7 @@
  carnx_court_position_beauty_good_2_trait:0 "[GetTrait('beauty_good_2').GetName( ROOT.Char )]"
  carnx_court_position_beauty_good_1_trait:0 "[GetTrait('beauty_good_1').GetName( ROOT.Char )]"
  carnx_court_position_schemer_trait:0 "[GetTrait('schemer').GetName( ROOT.Char )]"
+ carnx_court_position_milk_production:0 "[milk_production|E]"
  carnx_slave_concubine_court_position:0 "奴隶侍妾"
  carnx_slave_concubine_court_position_desc:0 "$carnx_slave_concubine_court_position$是一个低级的小妾，同时是一个奴隶或者曾是奴隶。"
  carnx_slave_concubine_employer_custom_effect_description:0 "如果你是男性，任何孩子都会把你当作父亲，如果你是女性，就会是他们的持有人。他们也将归入你的王朝、信仰和文化。"
