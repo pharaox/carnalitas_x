@@ -246,3 +246,15 @@ carnx_child_birth_culture_effect = {
 	carnx_vanilla_child_birth_culture_effect = yes
 }
 
+carnx_child_birth_name_effect = {
+	create_character = {
+		location = root.location
+		template_character = root
+		gender = root
+		age = 16
+		random_traits = yes
+		save_scope_as = dummy
+	}
+	change_first_name = { template_character = scope:dummy }
+	scope:dummy = { silent_disappearance_effect = yes }
+}

@@ -134,6 +134,9 @@ carnx_on_birth_child = {
 				}
 				carnx_child_birth_culture_effect = yes
 			}
+
+			# Change the name to one appropriate to the child's house, dynasty, faith, and culture
+			carnx_child_birth_name_effect = yes
 		}
 	}
 }
