@@ -1,5 +1,31 @@
 # Changelog
 
+## Version 0.17.1
+
+### Compatibility
+
+* Adapted to minor changes in CK3 1.11.2.
+* Improved compatibility with *Extended Marriage Doctrines* and *Regula Magistri* mods, based on suggestions from **@OzcarMike**.
+  * The *Slave Concubine* court position is now correctly enabled for EMD marriage doctrines.
+
+### Court Positions
+
+* If Carnalitas lactation is enabled, the milk production amount is now taken into account for the *Wet Nurse* court position aptitude.
+
+### Game Rules
+
+* Added the `GG_can_change_rule` flag to all game rules so they could be changed mid-game with the *Gamerule Gadget* mod.
+
+### Localization
+
+* Added Chinese translation by **@Dark_Crow**.
+* Updated Russian translation (originally by **@Undertalk**).
+
+### Bug Fixes
+
+* Names for children of Slave Concubines are now appropriate for their updated faith and culture.
+* Fixed rare errors in `error.log` reported by **@Eagleman**
+
 ## Version 0.17.0
 
 ### Compatibility

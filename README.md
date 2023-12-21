@@ -1,5 +1,7 @@
 # Carnalitas Slavery Reimagined
 
+[Download from LoversLab](https://www.loverslab.com/files/file/25565-carnalitas-slavery-reimagined/)
+
 A comprehensive rework of the Carnalitas slavery system aiming at improved balance and better integration with other aspects of the game.
 
 The latest version is compatible with CK3 1.11.x and Carnalitas 2.2. If you are still on CK3 1.10.x, download version 0.16.x instead, and use it with Carnalitas 2.1.
@@ -35,6 +37,36 @@ With this mod:
 * There are **fame traits** that add roleplaying flavor, such as the negative *Slaver* trait and the positive *Liberator* trait.
 
 All taken together, slaves are now genuinely useful to their owners, there is an actual demand for them conditioned by religion and culture, and this demand is satisfied by warfare, raiding, slave trade, and slave-related events. As a player, you can choose between many different ways to interact with the system to either roleplay or use it to your advantage, and it's more challenging and hopefully more interesting to do this.
+
+## Compatibility
+
+This mod requires [Carnalitas](https://www.loverslab.com/files/file/14207-carnalitas-unified-sex-mod-framework-for-ck3/) as a prerequisite (obviously). While it modifies the slavery system in a substantial way, it doesn't touch other Carnalitas features and should be compatible with all of them.
+
+This mod also supports changing its game rules mid-game with the [Gamerule Gadget](https://steamcommunity.com/sharedfiles/filedetails/?id=2826829936) mod.
+
+### Compatibility with Mods Based on Carnalitas
+
+This mod should be compatible with all mods based on Carnalitas that don't modify the slavery system. Compatibility with the following mods has been explicitly verified, but most others should work as well:
+
+* [Character Body Overhaul](https://www.loverslab.com/files/file/16683-character-body-overhaul/)
+* [Physical Attributes](https://www.loverslab.com/files/file/16927-physical-attributes/)
+
+This mod may not be compatible with all other mods that modify the slavery system. However, it should still be compatible with mods that don't change the original Carnalitas slave interactions, modifiers, or effects. Compatibility with the following mods has been explicitly verified:
+
+* [Carnalitas Slavery Expansion](https://www.loverslab.com/files/file/21651-carnalitas-slavery-expansion/).
+
+### Compatibility with Total Conversion Mods
+
+Due to its changes to existing council and court positions, this mod may overwrite similar changes by total conversion mods. For best experience, such mods now require compatibility patches.
+
+## Localization
+
+This mod is currently available in English, Russian (translated by [@Undertalk](https://www.loverslab.com/profile/9955238-undertalk/)), and Chinese (translated by [@Dark_Crow](https://www.loverslab.com/profile/10396935-dark_crow/)).
+
+## Links
+
+* [LoversLab](https://www.loverslab.com/files/file/25565-carnalitas-slavery-reimagined/)
+* [GitHub Repository](https://github.com/pharaox/carnalitas_x)
 
 If you like this mod, you may also consider my other mods:
 
@@ -182,6 +214,8 @@ Once a slave is assigned to a court position, he or she is paid a reduced salary
 
 When evaluating slaves for buying, selling, enslaving, etc., the AI considers their fitness for all these positions. Slaves that are evaluated as useful usually end up actually being used (employed in a council or court position) by the AI.
 
+In addition, if Carnalitas lactation is enabled, the milk production amount is taken into account for the *Wet Nurse* court position aptitude.
+
 ### Capturing Slaves during Raids and Sieges
 
 With this mod, characters who can be enslaved and have a base price higher than a threshold are now captured instead of killed during raids and sieges. This threshold is lower for characters with the [*Slaver* attitude](#slavery-attitudes). In addition, characters captured during a raid have 50% chance of getting the "marked for enslavement" modifier, which makes enslavement by the AI more likely. This increases the number of characters enslaved as a result of warfare or raiding.
@@ -278,36 +312,6 @@ The following bugs present in Carnalitas have been fixed in this mod:
 * The *Demand Payment* vanilla interaction is no longer available on slaves since using it on slaves can be considered an exploit.
 * Slaves can be imprisoned without incurring tyranny, and can also be released from prison without losing dread.
 * Slaves are less likely to be converted to their owner's faith compared to other courtiers. This is mostly to prevent them to be freed too quickly as a result of the rebalanced impact of slavery doctrines.
-
-## Compatibility
-
-This mod requires [Carnalitas](https://www.loverslab.com/files/file/14207-carnalitas-unified-sex-mod-framework-for-ck3/) as a prerequisite (obviously). While it modifies the slavery system in a substantial way, it doesn't touch other Carnalitas features and should be compatible with all of them.
-
-### Compatibility with Total Conversion Mods
-
-Due to the changes mentioned in [Changes to Existing Council and Court Positions](#changes-to-existing-council-and-court-positions), this mod may overwrite changes to council and court positions by total conversion mods. For best experience, such mods now require compatibility patches.
-
-Compatibility patches for the following mods are provided as separate downloads:
-
-* [Elder Kings 2](https://steamcommunity.com/sharedfiles/filedetails/?id=2887120253)
-
-### Compatibility with Mods Based on Carnalitas
-
-This mod should be compatible with all mods based on Carnalitas that don't modify the slavery system. Compatibility with the following mods has been explicitly verified, but most others should work as well:
-
-* [CBO](https://www.loverslab.com/files/file/16683-character-body-overhaul/)
-* [CBO Carnal Court](https://www.loverslab.com/files/file/21059-cbo-carnal-court/)
-* [Physical Attributes](https://www.loverslab.com/files/file/16927-physical-attributes/)
-
-This mod may not be compatible with all other mods that modify the slavery system. However, it should still be compatible with mods that don't change the original Carnalitas slave interactions, modifiers, or effects. Compatibility with the following mods has been explicitly verified:
-
-* [Carnalitas Slavery Expansion](https://www.loverslab.com/files/file/21651-carnalitas-slavery-expansion/).
-
-### Compatibility with Carnalitas Slavery System Rules
-
-This mod is fully compatible with the *Slavery System: Disabled* and *Slavery System: Enabled* Carnalitas game rules. If the slavery system is disabled, all interactions and events introduced or modified by this mod will be disabled too, and vice versa.
-
-This mod is not compatible with the *Slavery System: Consensual Only* Carnalitas game rule. If this option is chosen, the effect will be exactly the same as with *Slavery System: Enabled*.
 
 ## Changes to Carnalitas
 
