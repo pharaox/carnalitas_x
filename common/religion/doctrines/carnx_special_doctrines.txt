@@ -32,3 +32,19 @@
 		}
 	}
 }
+
+carnx_doctrine_placeholder = {
+	group = "special"
+
+	is_available_on_create = { always = no }
+
+	carnx_special_doctrine_placeholder = {
+		is_shown = { always = no }
+		can_pick = { always = no }
+
+		parameters = {
+			allows_polygamy = yes
+			allows_concubinage = yes
+		}
+	}
+}

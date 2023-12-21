@@ -1,9 +1,17 @@
 ﻿carnx_tradition_placeholder = {
+	category = regional
+
+	is_shown = { always = no }
+	can_pick = { always = no }
+	can_pick_for_hybridization = { always = no }
+
 	parameters = {
 		lustful_trait_more_common = yes
 		carn_no_consequences_for_extramarital_sex_with_me = yes
 		carn_no_consequences_for_extramarital_sex_with_others = yes
 		carn_prostitution_accepted = yes
 		carn_more_good_prostitution_events = yes
+		allows_polygamy = yes
+		allows_concubinage = yes
 	}
 }
