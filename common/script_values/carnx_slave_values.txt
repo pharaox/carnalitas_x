@@ -322,7 +322,10 @@ carnx_slave_price_tribal_multiplier = {
 	}
 
 	if = {
-		limit = { exists = scope:party2 }
+		limit = {
+			exists = scope:party1
+			exists = scope:party2
+		}
 		if = {
 			limit = {
 				scope:party1 = { has_government = tribal_government }
@@ -343,7 +346,10 @@ carnx_slave_price_tribal_multiplier = {
 			value = 1
 		}
 	}
-	else = {
+	else_if = {
+		limit = {
+			exists = scope:party1
+		}
 		if = {
 			limit = {
 				scope:party1 = { has_government = tribal_government }
@@ -353,6 +359,9 @@ carnx_slave_price_tribal_multiplier = {
 		else = {
 			value = 1
 		}
+	}
+	else = {
+		value = 1
 	}
 }
 
