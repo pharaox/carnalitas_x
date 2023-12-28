@@ -7,6 +7,7 @@
  carnx_court_position_beauty_good_2_trait:0 "[GetTrait('beauty_good_2').GetName( ROOT.Char )]"
  carnx_court_position_beauty_good_1_trait:0 "[GetTrait('beauty_good_1').GetName( ROOT.Char )]"
  carnx_court_position_schemer_trait:0 "[GetTrait('schemer').GetName( ROOT.Char )]"
+ carnx_court_position_milk_production:0 "[milk_production|E]"
 
  carnx_slave_concubine_court_position:0 "Concubine esclave"
  carnx_slave_concubine_court_position_desc:0 "La $carnx_slave_concubine_court_position$ est une concubine de rang inférieur qui est également esclave ou ancienne esclave."

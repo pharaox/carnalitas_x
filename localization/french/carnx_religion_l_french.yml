@@ -6,3 +6,7 @@
  doctrine_parameter_carnx_slave_employment_active: "Peut nommer des [slaves|El] à la plupart des [court_positions|El] et du [council|E]"
  doctrine_parameter_carnx_employed_slaves_more_loyal_active: "[slaves|E] nommés aux [court_positions|El] ont leur [opinion|El] doublée pour être employés"
  doctrine_parameter_carnx_slave_soldiers_active: "Peut nommer le $carnx_slave_captain_court_position$ [court_position|El]"
+
+ carnx_special_doctrine_placeholder_name: "Placeholder Doctrine"
+ carnx_special_doctrine_placeholder_desc: "This is a placeholder doctrine to avoid errors in error.log."
+ carnx_doctrine_placeholder_name: "$carnx_special_doctrine_placeholder_name$"
