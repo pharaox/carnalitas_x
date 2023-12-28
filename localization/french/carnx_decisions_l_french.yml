@@ -1,0 +1,6 @@
+﻿l_french:
+ carnx_choose_slavery_attitude_decision:0 "Choisir l’attitude esclavagiste"
+ carnx_choose_slavery_attitude_decision_desc:0 "Je peux choisir mon attitude vis-à-vis de l’esclavage pour mieux en profiter."
+ carnx_choose_slavery_attitude_decision_tooltip:0 "Vous pourrez choisir votre attitude envers [slavery|El], parmi $carnx_slavery_attitude_slaver_modifier$, $carnx_slavery_attitude_liberator_modifier$, $carnx_slavery_attitude_trader_modifier$, ou $carnx_slavery_attitude_employer_modifier$. Chaque attitude vous donne un modificateur mineur et un avantage unique lié à l’esclavage."
+ carnx_choose_slavery_attitude_decision.tt:0 "$carnx_choose_slavery_attitude_decision_tooltip$"
+ carnx_choose_slavery_attitude_decision_confirm:0 "Choisir l’attitude esclavagiste"

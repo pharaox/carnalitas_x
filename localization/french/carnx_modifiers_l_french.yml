@@ -1,0 +1,14 @@
+﻿l_french:
+ carnx_marked_for_enslavement_modifier:0 "Marqué pour l’esclavage"
+
+ carnx_slavery_attitude_slaver_modifier:0 "Esclavagiste"
+ carnx_slavery_attitude_slaver_modifier_desc:0 "Ce personnage aime réduire les prisonniers en esclavage et les vendre à des acheteurs intéressés.\n$EFFECT_LIST_BULLET$ Plus de chances de capturer plutôt que de tuer les personnages pendant les sièges et les raids."
+
+ carnx_slavery_attitude_liberator_modifier:0 "Libérateur"
+ carnx_slavery_attitude_liberator_modifier_desc:0 "Ce personnage aime libérer les esclaves et payer leur rançon.\n$EFFECT_LIST_BULLET$ Peut payer la rançon d’esclaves de sa propre confession, même s’ils ne sont pas de sa famille"
+
+ carnx_slavery_attitude_trader_modifier:0 "Négociant d’esclaves"
+ carnx_slavery_attitude_trader_modifier_desc:0 "Ce personnage tente de tirer profit de l’achat et de la vente d’esclaves.\n$EFFECT_LIST_BULLET$ Obtient des prix plus favorables lors de l’achat et de la vente d’esclaves"
+
+ carnx_slavery_attitude_employer_modifier:0 "Employeur d’esclaves"
+ carnx_slavery_attitude_employer_modifier_desc:0 "Ce personnage aime employer des esclaves car il les considère comme plus loyaux.\n$EFFECT_LIST_BULLET$ Peut employer les esclaves à d’autres tâches et à des salaires moins élevés"

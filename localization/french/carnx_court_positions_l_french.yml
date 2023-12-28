@@ -1,0 +1,21 @@
+﻿l_french:
+ carnx_slave_salary_mod:0 "[slave|E]"
+ carnx_slave_salary_employer_mod:0 "[slave|E] employé par $carnx_slavery_attitude_employer_modifier$"
+
+ carnx_court_position_skill_attraction:0 "[attraction|E]"
+ carnx_court_position_beauty_good_3_trait:0 "[GetTrait('beauty_good_3').GetName( ROOT.Char )]"
+ carnx_court_position_beauty_good_2_trait:0 "[GetTrait('beauty_good_2').GetName( ROOT.Char )]"
+ carnx_court_position_beauty_good_1_trait:0 "[GetTrait('beauty_good_1').GetName( ROOT.Char )]"
+ carnx_court_position_schemer_trait:0 "[GetTrait('schemer').GetName( ROOT.Char )]"
+
+ carnx_slave_concubine_court_position:0 "Concubine esclave"
+ carnx_slave_concubine_court_position_desc:0 "La $carnx_slave_concubine_court_position$ est une concubine de rang inférieur qui est également esclave ou ancienne esclave."
+ carnx_slave_concubine_employer_custom_effect_description:0 "Tous les enfants vous auront comme père si vous êtes un homme, et comme titulaire si vous êtes une femme. Ils seront également de votre dynastie, de votre foi et de votre culture."
+
+ carnx_slave_captain_court_position:0 "Capitaine mamelouk"
+ carnx_slave_captain_court_position_desc:0 "Le $carnx_slave_captain_court_position$ est un militaire de haut rang qui est également esclave ou ancien esclave."
+
+ carnx_slave_eunuch_court_position:0 "Eunuque esclave"
+ carnx_slave_eunuch_court_position_desc:0 "L'$carnx_slave_eunuch_court_position$ est un fonctionnaire judiciaire influent qui est également un esclave ou un ancien esclave."
+
+ hunt_can_hunt_parameter_tt:0 "[culture|E] est capable de Chasser"

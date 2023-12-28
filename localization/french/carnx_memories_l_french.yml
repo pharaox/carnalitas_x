@@ -1,0 +1,41 @@
+﻿l_french:
+ carnx_enslaved_desc_1:0 "J’ai été asservi[owner.Custom('FR_E')] par [enslaver.GetTitledFirstName]"
+ carnx_enslaved_desc_second_perspective_1:0 "vous avez été asservi[owner.Custom('FR_E')] par [enslaver.GetTitledFirstName]"
+ carnx_enslaved_desc_third_perspective_1:0 "[owner.GetName] a été asservi[owner.Custom('FR_E')] par [enslaver.GetTitledFirstName]"
+
+ carnx_freed_desc_1:0 "J’ai été affranchi[owner.Custom('FR_E')] de l’esclavage par [emancipator.GetTitledFirstName]"
+ carnx_freed_desc_second_perspective_1:0 "vous avez été affranchi[owner.Custom('FR_E')] de l’esclavage par [emancipator.GetTitledFirstName]"
+ carnx_freed_desc_third_perspective_1:0 "[owner.GetName] a été affranchi[owner.Custom('FR_E')] de l’esclavage par [emancipator.GetTitledFirstName]"
+
+ carnx_bought_desc_1:0 "J’ai été acheté[owner.Custom('FR_E')] par [buyer.GetTitledFirstName]"
+ carnx_bought_desc_second_perspective_1:0 "vous avez été acheté[owner.Custom('FR_E')] par [buyer.GetTitledFirstName]"
+ carnx_bought_desc_third_perspective_1:0 "[owner.GetName] a été acheté[owner.Custom('FR_E')] par [buyer.GetTitledFirstName]"
+
+ carnx_seized_desc_1:0 "J’ai été saisi[owner.Custom('FR_E')] par [seizer.GetTitledFirstName]"
+ carnx_seized_desc_second_perspective_1:0 "vous avez été saisi[owner.Custom('FR_E')] par [seizer.GetTitledFirstName]"
+ carnx_seized_desc_third_perspective_1:0 "[owner.GetName] a été saisi[owner.Custom('FR_E')] par [seizer.GetTitledFirstName]"
+
+ carnx_ransomed_desc_1:0 "J’ai été rançonné[owner.Custom('FR_E')] par [ransomer.GetTitledFirstName]"
+ carnx_ransomed_desc_second_perspective_1:0 "vous avez été rançonné[owner.Custom('FR_E')] par [ransomer.GetTitledFirstName]"
+ carnx_ransomed_desc_third_perspective_1:0 "[owner.GetName] a été rançonné[owner.Custom('FR_E')] par [ransomer.GetTitledFirstName]"
+
+ carnx_gifted_desc_1:0 "J’ai été offert[owner.Custom('FR_E')] à [new_owner.GetTitledFirstName]"
+ carnx_gifted_desc_second_perspective_1:0 "vous avez été offert[owner.Custom('FR_E')] à [new_owner.GetTitledFirstName]"
+ carnx_gifted_desc_third_perspective_1:0 "[owner.GetName] a été offert[owner.Custom('FR_E')] à [new_owner.GetTitledFirstName]"
+
+ carnx_escaped_desc_1:0 "Je me suis enfui[owner.Custom('FR_E')] de l’esclavage de [former_owner.GetTitledFirstName]"
+ carnx_escaped_desc_second_perspective_1:0 "vous vous êtes enfui[owner.Custom('FR_E')] de l’esclavage de [former_owner.GetTitledFirstName]"
+ carnx_escaped_desc_third_perspective_1:0 "[owner.GetName] s’est enfui[owner.Custom('FR_E')] de l’esclavage de [former_owner.GetTitledFirstName]"
+
+ carnx_liberated_desc_1:0 "J’ai été libéré[owner.Custom('FR_E')] de l’esclavage par [liberator.GetTitledFirstName]"
+ carnx_liberated_desc_second_perspective_1:0 "vous avez été libéré[owner.Custom('FR_E')] de l’esclavage par [liberator.GetTitledFirstName]"
+ carnx_liberated_desc_third_perspective_1:0 "[owner.GetName] a été libéré[owner.Custom('FR_E')] de l’esclavage par [liberator.GetTitledFirstName]"
+
+ carnx_enslaved_memory:0 "asservi"
+ carnx_freed_memory:0 "affranchi"
+ carnx_bought_memory:0 "acheté"
+ carnx_seized_memory:0 "saisi"
+ carnx_ransomed_memory:0 "rançonné"
+ carnx_gifted_memory:0 "offert"
+ carnx_escaped_memory:0 "enfui"
+ carnx_liberated_memory:0 "libéré"
