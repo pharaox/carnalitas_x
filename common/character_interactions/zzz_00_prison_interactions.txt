@@ -822,7 +822,7 @@ release_from_prison_interaction = {
 				scope:banish = no
 			}
 			scope:recipient = {
-				age >= 10
+				carnx_age_value >= 10
 				NOR = {
 					has_trait = excommunicated
 					has_trait = devoted

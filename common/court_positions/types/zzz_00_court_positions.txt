@@ -2595,7 +2595,7 @@ wet_nurse_court_position = {
 	is_shown_character = {
 		scope:employee = {
 			NOT = { is_close_family_of = scope:liege }
-			age < 46
+			carnx_age_value < 46
 			is_female = yes
 			has_no_particular_noble_roots_trigger = yes
 		}
@@ -2609,7 +2609,7 @@ wet_nurse_court_position = {
 			}
 			is_imprisoned = no
 			is_courtier_of = scope:liege
-			age < 46
+			carnx_age_value < 46
 		}
 	}
 
