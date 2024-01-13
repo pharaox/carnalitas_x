@@ -615,6 +615,20 @@ carnx_free_slave_piety_gain = {
 	}
 }
 
+carnx_ransom_slave_piety_gain = {
+	if = {
+		limit = {
+			scope:slave = {
+				has_no_particular_noble_roots_trigger = yes
+			}
+		}
+		value = miniscule_piety_gain
+	}
+	else = {
+		value = minor_piety_gain
+	}
+}
+
 carnx_root_faith_dominant_gender_adjusted_female_chance = {
 	value = root_faith_dominant_gender_adjusted_female_chance
 	add = carnx_create_character_female_chance

@@ -959,6 +959,21 @@ carnx_ransom_slave_actual_effect = {
 			}
 		}
 
+		# Add piety
+		if = {
+			limit = {
+				carnx_is_slavery_crime_trigger = { CHARACTER = scope:slave }
+			}
+			add_piety = carnx_ransom_slave_piety_gain
+		}
+
+		# Add / remove stress
+		stress_impact = {
+			compassionate = minor_stress_impact_loss
+			sadistic = minor_stress_impact_gain
+			callous = miniscule_stress_impact_gain
+		}
+
 		hidden_effect = {
 			# Add slave to payer's court
 			if = {
