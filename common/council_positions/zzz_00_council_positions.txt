@@ -240,6 +240,7 @@ councillor_court_chaplain = {
 		first_valid = {
 			triggered_desc = {
 				trigger = {
+					has_game_rule = carnx_universe_historical
 					scope:councillor_liege.faith = {
 						OR = {
 							has_doctrine = doctrine_theocracy_temporal
@@ -251,6 +252,7 @@ councillor_court_chaplain = {
 			}
 			triggered_desc = {
 				trigger = {
+					has_game_rule = carnx_universe_historical
 					scope:councillor_liege.faith = {
 						NOR = {
 							has_doctrine = doctrine_theocracy_temporal

@@ -24,3 +24,9 @@
  setting_carnx_number_of_potential_buyers_50_desc: "Limit to max 50 buyers offering the best price."
  setting_carnx_number_of_potential_buyers_all: "#high All#!"
  setting_carnx_number_of_potential_buyers_all_desc: "No limit, show all buyers."
+
+ rule_carnx_universe: "#X CSR:#! Universe"
+ setting_carnx_universe_historical: "Historical"
+ setting_carnx_universe_historical_desc: "Assume historical religions and cultures exist."
+ setting_carnx_universe_fantasy: "#high Fantasy#!"
+ setting_carnx_universe_fantasy_desc: "Don't assume historical religions and cultures exist. Does not guarantee compatibility, just avoids errors."

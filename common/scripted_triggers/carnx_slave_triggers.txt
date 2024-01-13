@@ -1126,12 +1126,14 @@ carnx_slavery_attitude_employer_government_trigger = {
 }
 
 carnx_slavery_attitude_slaver_faith_culture_trigger = {
+	has_game_rule = carnx_universe_historical
 	faith = {
 		religion = { is_in_family = rf_pagan }
 	}
 }
 
 carnx_slavery_attitude_liberator_faith_culture_trigger = {
+	has_game_rule = carnx_universe_historical
 	faith = {
 		OR = {
 			religion = religion:christianity_religion
@@ -1143,6 +1145,7 @@ carnx_slavery_attitude_liberator_faith_culture_trigger = {
 }
 
 carnx_slavery_attitude_trader_faith_culture_trigger = {
+	has_game_rule = carnx_universe_historical
 	faith = {
 		OR = {
 			religion = religion:christianity_religion
@@ -1153,6 +1156,7 @@ carnx_slavery_attitude_trader_faith_culture_trigger = {
 }
 
 carnx_slavery_attitude_employer_faith_culture_trigger = {
+	has_game_rule = carnx_universe_historical
 	faith = {
 		OR = {
 			has_doctrine_parameter = carnx_slave_employment_active

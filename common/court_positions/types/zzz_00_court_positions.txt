@@ -591,10 +591,12 @@ keeper_of_swans_court_position = {
 	}
 
 	is_shown = {
+		has_game_rule = carnx_universe_historical
 		has_title = title:k_england #This has only been a thing in England
 	}
 
 	valid_position = {
+		has_game_rule = carnx_universe_historical
 		has_title = title:k_england #This has only been a thing in England
 		highest_held_title_tier >= tier_kingdom
 	}
@@ -829,10 +831,12 @@ chief_qadi_court_position = {
 
 	# Is this an available position for this court? (root is court owner)
 	is_shown = {
+		has_game_rule = carnx_universe_historical
 		has_religion = religion:islam_religion
 	}
 
 	valid_position = {
+		has_game_rule = carnx_universe_historical
 		has_religion = religion:islam_religion
 		highest_held_title_tier >= tier_kingdom
 	}
@@ -846,6 +850,7 @@ chief_qadi_court_position = {
 
 	valid_character = {
 		scope:employee = {
+			has_game_rule = carnx_universe_historical
 			has_religion = religion:islam_religion
 			has_trait = education_learning
 			trigger_if = {

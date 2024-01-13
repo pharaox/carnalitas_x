@@ -53,3 +53,19 @@ carnx_number_of_potential_buyers = {
 		flag = GG_can_change_rule
 	}
 }
+
+carnx_universe = {
+	categories = {
+		carnx_carnalitas_x
+	}
+
+	default = carnx_universe_historical
+
+	carnx_universe_historical = {
+		flag = GG_can_change_rule
+	}
+
+	carnx_universe_fantasy = {
+		flag = GG_can_change_rule
+	}
+}
