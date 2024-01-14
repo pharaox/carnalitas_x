@@ -21,3 +21,9 @@
  setting_carnx_number_of_potential_buyers_50_desc: "最多 50 名买家提供最优惠的价格。"
  setting_carnx_number_of_potential_buyers_all: "所有"
  setting_carnx_number_of_potential_buyers_all_desc: "无限，展示所有买家。"
+
+ rule_carnx_universe: "#X CSR:#! Universe"
+ setting_carnx_universe_historical: "Historical"
+ setting_carnx_universe_historical_desc: "Assume historical religions and cultures exist."
+ setting_carnx_universe_fantasy: "#high Fantasy#!"
+ setting_carnx_universe_fantasy_desc: "Don't assume historical religions and cultures exist. Does not guarantee compatibility, just avoids errors."

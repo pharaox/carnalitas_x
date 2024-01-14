@@ -22,3 +22,9 @@
  setting_carnx_number_of_potential_buyers_50_desc: "Не более 50ти покупателей, предлагающих лучшую цену."
  setting_carnx_number_of_potential_buyers_all: "Все"
  setting_carnx_number_of_potential_buyers_all_desc: "Без ограничений, показать всех покупателей."
+
+ rule_carnx_universe: "#X CSR:#! Вселенная"
+ setting_carnx_universe_historical: "Историческая"
+ setting_carnx_universe_historical_desc: "Предполагается, что исторические религии и культуры существуют."
+ setting_carnx_universe_fantasy: "#high Фантастическая#!"
+ setting_carnx_universe_fantasy_desc: "Предполагается, что исторические религии и культуры не существуют. Не гарантирует совместимость, просто позволяет избежать ошибок."
