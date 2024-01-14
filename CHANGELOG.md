@@ -12,7 +12,7 @@
 
 ### Localization
 
-* Added French translation by **@don_vip**.
+* Added French translation by **@don-vip**.
 
 ## Version 0.17.1
 

@@ -66,7 +66,7 @@ If you still want to try using CSR with a total conversion mod, be prepared that
 
 ## Localization
 
-This mod is currently available in English, Russian (translated by [@Undertalk](https://www.loverslab.com/profile/9955238-undertalk/)), Chinese (translated by [@Dark_Crow](https://www.loverslab.com/profile/10396935-dark_crow/)), and French (translated by [@don_vip](https://github.com/don-vip)).
+This mod is currently available in English, Russian (translated by [@Undertalk](https://www.loverslab.com/profile/9955238-undertalk/)), Chinese (translated by [@Dark_Crow](https://www.loverslab.com/profile/10396935-dark_crow/)), and French (translated by [@don-vip](https://github.com/don-vip)).
 
 ## Links
 
