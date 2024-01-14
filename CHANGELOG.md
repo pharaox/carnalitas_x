@@ -1,5 +1,19 @@
 # Changelog
 
+## Version 0.17.2
+
+### Interactions
+
+* Added piety and stress impact for the ransomer in the *Offer Ransom for Slave* and *Demand Ransom for Slave* interactions.
+
+### Game Rules
+
+* Added the *Universe* game rule to enable avoiding errors for historical religions, cultures, and titles with fantasy mods.
+
+### Localization
+
+* Added French translation by **@don_vip**.
+
 ## Version 0.17.1
 
 ### Compatibility

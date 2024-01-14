@@ -21,7 +21,7 @@ In particular:
 
 In a nutshell, what you can do as a player is easily enslave a lot of people, sell any you don't need to the AI, and buy any you may fancy from the AI, while the AI mostly passively obliges. With mods such as [Carnalitas Slavery Expansion](https://www.loverslab.com/files/file/21651-carnalitas-slavery-expansion/) you can also assign them "professions" for additional benefits. However, these are also human-only, the AI never assigns them. All of this undermines the realism and immersion, and makes the game both a lot easier and less interesting than it could be.
 
-This mod introduces a redesigned slavery system, one aiming to better integrate slavery with other aspects of the game, make interacting with slaves and other rulers more interesting and rewarding, achieve a better game balance, enable more roleplaying options, and maintain a reasonable challenge for the player. It does this by reworking most of the slave interactions, introducing some new ones, making slaves more desirable for council and court positions, adding slavery attitudes and slave-related events, and rebalancing or fixing many of the original effects and outcomes, while still maintaining compatibility with other Carnalitas features, other mods based on Carnalitas, and total conversion mods.
+This mod introduces a redesigned slavery system, one aiming to better integrate slavery with other aspects of the game, make interacting with slaves and other rulers more interesting and rewarding, achieve a better game balance, enable more roleplaying options, and maintain a reasonable challenge for the player. It does this by reworking most of the slave interactions, introducing some new ones, making slaves more desirable for council and court positions, adding slavery attitudes and slave-related events, and rebalancing or fixing many of the original effects and outcomes, while still maintaining compatibility with other Carnalitas features and other mods based on Carnalitas.
 
 With this mod:
 
@@ -57,11 +57,16 @@ This mod may not be compatible with all other mods that modify the slavery syste
 
 ### Compatibility with Total Conversion Mods
 
-Due to its changes to existing council and court positions, this mod may overwrite similar changes by total conversion mods. For best experience, such mods now require compatibility patches.
+Due to its changes to vanilla files, this mod may conflict with changes done by total conversion mods. This is also true for Carnalitas itself. For best experience, such mods require compatibility patches for both Carnalitas and CSR.
+
+If you still want to try using CSR with a total conversion mod, be prepared that some features might be broken. To make the best of it, follow these recommendations:
+
+* Load Carnalitas and CSR **before** the total conversion mod. They overwrite a few vanilla files entirely, and if there are conflicts you would rather want the conversion mod overwrites, not the Carnalitas / CSR ones. Note that they also overwrite some specific vanilla objects, and will always do so, no matter the order.
+* Change the *Universe* CSR game rule to *Fantasy*. This avoids errors for historical religions, cultures, and titles that may have been removed by the conversion mod. Note that there may still be errors for other removed vanilla objects that can't be clearly identified as "historical".
 
 ## Localization
 
-This mod is currently available in English, Russian (translated by [@Undertalk](https://www.loverslab.com/profile/9955238-undertalk/)), and Chinese (translated by [@Dark_Crow](https://www.loverslab.com/profile/10396935-dark_crow/)).
+This mod is currently available in English, Russian (translated by [@Undertalk](https://www.loverslab.com/profile/9955238-undertalk/)), Chinese (translated by [@Dark_Crow](https://www.loverslab.com/profile/10396935-dark_crow/)), and French (translated by [@don_vip](https://github.com/don-vip)).
 
 ## Links
 
