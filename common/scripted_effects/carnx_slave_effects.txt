@@ -79,7 +79,9 @@ carnx_enslave_effect = {
 				NOT = { has_character_flag = carnx_slave_0001_seller }
 				scope:slave = { NOT = { is_courtier_of = scope:new_owner } }
 			}
-			hidden_effect = { add_courtier = scope:slave }
+			hidden_effect = {
+				carnx_add_courtier_effect = { SLAVE = scope:slave }
+			}
 		}
 	}
 
@@ -873,7 +875,9 @@ carnx_free_slave_actual_effect = {
 			limit = {
 				scope:slave = { NOT = { is_courtier_of = $EMANCIPATOR$ } }
 			}
-			hidden_effect = { add_courtier = scope:slave }
+			hidden_effect = {
+				carnx_add_courtier_effect = { SLAVE = scope:slave }
+			}
 		}
 	}
 }
@@ -980,7 +984,7 @@ carnx_ransom_slave_actual_effect = {
 				limit = {
 					scope:slave = { NOT = { is_courtier_of = scope:payer } }
 				}
-				add_courtier = scope:slave
+				carnx_add_courtier_effect = { SLAVE = scope:slave }
 			}
 
 			# Potentially acquire liberator trait if scope:slave not enslaved by scope:payer
@@ -1130,7 +1134,7 @@ carnx_buy_slave_effect = {
 				limit = {
 					scope:slave = { NOT = { is_courtier_of = scope:buyer } }
 				}
-				add_courtier = scope:slave
+				carnx_add_courtier_effect = { SLAVE = scope:slave }
 			}
 		}
 	}
@@ -1286,7 +1290,7 @@ carnx_seize_slave_effect = {
 				limit = {
 					scope:slave = { NOT = { is_courtier_of = scope:new_owner } }
 				}
-				add_courtier = scope:slave
+				carnx_add_courtier_effect = { SLAVE = scope:slave }
 			}
 		}
 	}
@@ -1404,7 +1408,7 @@ carnx_gift_slave_effect = {
 				limit = {
 					scope:slave = { NOT = { is_courtier_of = scope:new_owner } }
 				}
-				add_courtier = scope:slave
+				carnx_add_courtier_effect = { SLAVE = scope:slave }
 			}
 		}
 	}
@@ -1751,4 +1755,9 @@ carnx_potentially_acquire_liberator_trait_effect = {
 			set_nickname_effect = { NICKNAME = carnx_nick_the_liberator }
 		}
 	}
+}
+
+# carnx_add_courtier_effect allows compatibility mods to prevent conversion mods (e.g. AGOT) from redirecting courtiers.
+carnx_add_courtier_effect = {
+	add_courtier = $SLAVE$
 }

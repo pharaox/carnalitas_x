@@ -489,66 +489,6 @@ carnx_number_of_desired_slave_eunuchs = {
 	}
 }
 
-carnx_chancellor_skill_difference_value = {
-	value = 0
-	if = {
-		limit = {
-			carnx_can_serve_as_chancellor_trigger = { RULER = scope:liege }
-		}
-		value = diplomacy
-		subtract = carnx_default_skill_threshold
-	}
-}
-
-carnx_marshal_skill_difference_value = {
-	value = 0
-	if = {
-		limit = {
-			carnx_can_serve_as_marshal_trigger = { RULER = scope:liege }
-		}
-		value = martial
-		subtract = carnx_default_skill_threshold
-	}
-}
-
-carnx_steward_skill_difference_value = {
-	value = 0
-	if = {
-		limit = {
-			carnx_can_serve_as_steward_trigger = { RULER = scope:liege }
-		}
-		value = stewardship
-		subtract = carnx_default_skill_threshold
-	}
-}
-
-carnx_spymaster_skill_difference_value = {
-	value = 0
-	if = {
-		limit = {
-			carnx_can_serve_as_spymaster_trigger = { RULER = scope:liege }
-		}
-		value = intrigue
-		subtract = carnx_default_skill_threshold
-	}
-}
-
-carnx_max_councillor_skill_difference_value = {
-	value = 0
-	min = {
-		value = carnx_chancellor_skill_difference_value
-		min = {
-			value = carnx_marshal_skill_difference_value
-			min = {
-				value = carnx_steward_skill_difference_value
-				min = {
-					value = carnx_spymaster_skill_difference_value
-				}
-			}
-		}
-	}
-}
-
 carnx_court_physician_aptitude_difference_value = {
 	value = 0
 	if = {

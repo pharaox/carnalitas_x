@@ -118,8 +118,9 @@ carnx_on_leave_court = {
 				if = {
 					limit = { NOT = { is_courtier_of = scope:owner } }
 					carnx_debug_log_effect = { MSG = carnx_debug_msg_moving_slave }
+					save_temporary_scope_as = slave
 					scope:owner = {
-						add_courtier = prev
+						carnx_add_courtier_effect = { SLAVE = scope:slave }
 					}
 				}
 			}
@@ -148,8 +149,9 @@ carnx_on_title_gain_inheritance = {
 				limit = {
 					NOT = { is_courtier_of = root }
 				}
+				save_temporary_scope_as = slave
 				root = {
-					add_courtier = prev
+					carnx_add_courtier_effect = { SLAVE = scope:slave }
 				}
 			}
 		}
@@ -202,7 +204,7 @@ carnx_on_imprison = {
 			limit = {
 				NOT = { has_trait = slave }
 			}
-			#carnx_debug_log_effect = { MSG = carnx_debug_msg_non_slave_imprisoned }
+			carnx_debug_log_effect = { MSG = carnx_debug_msg_non_slave_imprisoned }
 		}
 	}
 }
@@ -219,7 +221,7 @@ carnx_on_release_from_prison = {
 			limit = {
 				NOT = { has_trait = slave }
 			}
-			#carnx_debug_log_effect = { MSG = carnx_debug_msg_non_slave_released_from_prison }
+			carnx_debug_log_effect = { MSG = carnx_debug_msg_non_slave_released_from_prison }
 		}
 	}
 }

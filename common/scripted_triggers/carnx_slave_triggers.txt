@@ -510,9 +510,10 @@ carnx_can_serve_as_councillor_trigger = {
 	carnx_can_be_$NAME$_trigger = { COURT_OWNER = $LIEGE$ }
 	$SKILL$ > carnx_default_skill_threshold
 	$LIEGE$ = {
-		exists = council_task:councillor_$NAME$
-		OR = {
-			NOT = { exists = cp:$TYPE$ }
+		exists = council_task:$TYPE$
+		carnx_can_appoint_$NAME$_trigger = yes
+		trigger_if = {
+			limit = { exists = cp:$TYPE$ }
 			cp:$TYPE$ = {
 				OR = {
 					$SKILL$ <= carnx_default_skill_threshold
@@ -521,15 +522,17 @@ carnx_can_serve_as_councillor_trigger = {
 			}
 		}
 		NOR = {
-			any_vassal = {
-				NOT = { this = scope:candidate }
-				carnx_can_be_$NAME$_trigger = { COURT_OWNER = $LIEGE$ }
-				$SKILL$ > carnx_default_skill_threshold
-			}
 			any_courtier = {
-				NOT = { this = scope:candidate }
 				carnx_can_be_$NAME$_trigger = { COURT_OWNER = $LIEGE$ }
+				NOT = { has_council_position = $TYPE$ }
 				$SKILL$ > carnx_default_skill_threshold
+				NOT = { this = scope:candidate }
+			}
+			any_vassal = {
+				carnx_can_be_$NAME$_trigger = { COURT_OWNER = $LIEGE$ }
+				NOT = { has_council_position = $TYPE$ }
+				$SKILL$ > carnx_default_skill_threshold
+				NOT = { this = scope:candidate }
 			}
 		}
 	}
@@ -551,17 +554,17 @@ carnx_can_serve_as_knight_trigger = {
 			}
 		}
 		NOR = {
-			any_vassal = {
-				NOT = { this = scope:candidate }
-				NOT = { is_knight_of = $RULER$ }
-				can_be_knight_trigger = { ARMY_OWNER = $RULER$ }
-				prowess > carnx_default_skill_threshold
-			}
 			any_courtier = {
-				NOT = { this = scope:candidate }
-				NOT = { is_knight_of = $RULER$ }
 				can_be_knight_trigger = { ARMY_OWNER = $RULER$ }
+				NOT = { is_knight_of = $RULER$ }
 				prowess > carnx_default_skill_threshold
+				NOT = { this = scope:candidate }
+			}
+			any_vassal = {
+				can_be_knight_trigger = { ARMY_OWNER = $RULER$ }
+				NOT = { is_knight_of = $RULER$ }
+				prowess > carnx_default_skill_threshold
+				NOT = { this = scope:candidate }
 			}
 		}
 	}
@@ -570,23 +573,23 @@ carnx_can_serve_as_knight_trigger = {
 carnx_can_serve_as_commander_trigger = {
 	save_temporary_scope_as = candidate
 	can_be_commander_basic_trigger = { ARMY_OWNER = $RULER$ }
-	martial >= carnx_default_skill_threshold
-	number_of_commander_traits >= 1
+	carnx_commander_skill_value > carnx_commander_skill_value_threshold
 	$RULER$ = {
 		highest_held_title_tier >= tier_county
-		NOR = {
-			any_vassal = {
-				NOT = { this = scope:candidate }
-				can_be_commander_basic_trigger = { ARMY_OWNER = $RULER$ }
-				martial >= carnx_default_skill_threshold
-				number_of_commander_traits >= 1
-			}
-			any_courtier = {
-				NOT = { this = scope:candidate }
-				can_be_commander_basic_trigger = { ARMY_OWNER = $RULER$ }
-				martial >= carnx_default_skill_threshold
-				number_of_commander_traits >= 1
-			}
+		any_courtier = {
+			count = all
+			add_to_temporary_list = commanders
+		}
+		any_vassal = {
+			count = all
+			add_to_temporary_list = commanders
+		}
+		any_in_list = {
+			list = commanders
+			can_be_commander_basic_trigger = { ARMY_OWNER = $RULER$ }
+			carnx_commander_skill_value > carnx_commander_skill_value_threshold
+			NOT = { this = scope:candidate }
+			count < 3
 		}
 	}
 }
@@ -754,10 +757,7 @@ carnx_can_serve_as_court_position_trigger = {
 	aptitude:$TYPE$ > carnx_$NAME$_aptitude_threshold
 	$LIEGE$ = {
 		OR = {
-			AND = {
-				can_employ_court_position_type = $TYPE$
-				NOT = { employs_court_position = $TYPE$ }
-			}
+			can_employ_court_position_type = $TYPE$
 			AND = {
 				employs_court_position = $TYPE$
 				any_court_position_holder = {
@@ -770,15 +770,17 @@ carnx_can_serve_as_court_position_trigger = {
 			}
 		}
 		NOR = {
-			any_vassal = {
-				NOT = { this = scope:candidate }
-				can_be_employed_as = $TYPE$
-				aptitude:$TYPE$ > carnx_$NAME$_aptitude_threshold
-			}
 			any_courtier = {
-				NOT = { this = scope:candidate }
 				can_be_employed_as = $TYPE$
+				NOT = { has_court_position = $TYPE$ }
 				aptitude:$TYPE$ > carnx_$NAME$_aptitude_threshold
+				NOT = { this = scope:candidate }
+			}
+			any_vassal = {
+				can_be_employed_as = $TYPE$
+				NOT = { has_court_position = $TYPE$ }
+				aptitude:$TYPE$ > carnx_$NAME$_aptitude_threshold
+				NOT = { this = scope:candidate }
 			}
 		}
 	}
@@ -792,35 +794,34 @@ carnx_can_serve_as_multi_court_position_trigger = {
 		OR = {
 			AND = {
 				can_employ_court_position_type = $TYPE$
-				NOT = { employs_court_position = $TYPE$ }
+				any_court_position_holder = {
+					type = $TYPE$
+					count < $DESIRED_COUNT$
+				}
 			}
 			AND = {
 				employs_court_position = $TYPE$
-				OR = {
-					any_court_position_holder = {
-						type = $TYPE$
-						count < $DESIRED_COUNT$
-					}
-					any_court_position_holder = {
-						type = $TYPE$
-						OR = {
-							aptitude:$TYPE$ <= carnx_$NAME$_aptitude_threshold
-							this = scope:candidate
-						}
+				any_court_position_holder = {
+					type = $TYPE$
+					OR = {
+						aptitude:$TYPE$ <= carnx_$NAME$_aptitude_threshold
+						this = scope:candidate
 					}
 				}
 			}
 		}
 		NOR = {
-			any_vassal = {
-				NOT = { this = scope:candidate }
-				can_be_employed_as = $TYPE$
-				aptitude:$TYPE$ > carnx_$NAME$_aptitude_threshold
-			}
 			any_courtier = {
-				NOT = { this = scope:candidate }
 				can_be_employed_as = $TYPE$
+				NOT = { has_court_position = $TYPE$ }
 				aptitude:$TYPE$ > carnx_$NAME$_aptitude_threshold
+				NOT = { this = scope:candidate }
+			}
+			any_vassal = {
+				can_be_employed_as = $TYPE$
+				NOT = { has_court_position = $TYPE$ }
+				aptitude:$TYPE$ > carnx_$NAME$_aptitude_threshold
+				NOT = { this = scope:candidate }
 			}
 		}
 	}

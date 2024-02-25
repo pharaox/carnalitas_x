@@ -1,47 +1,11 @@
-﻿# Council Positions
-
-carnx_can_be_chancellor_trigger = {
-	can_be_chancellor_trigger = { COURT_OWNER = $COURT_OWNER$ }
-	OR = {
-		NOT = { carnx_is_slave_trigger = yes }
-		$COURT_OWNER$ = {
-			carnx_is_slave_employment_enabled_trigger = yes
-		}
-	}
-}
-
-carnx_can_be_marshal_trigger = {
-	can_be_marshal_trigger = { COURT_OWNER = $COURT_OWNER$ }
-	OR = {
-		NOT = { carnx_is_slave_trigger = yes }
-		$COURT_OWNER$ = {
-			carnx_is_slave_employment_enabled_trigger = yes
-		}
-	}
-}
-
-carnx_can_be_steward_trigger = {
-	can_be_steward_trigger = { COURT_OWNER = $COURT_OWNER$ }
-	OR = {
-		NOT = { carnx_is_slave_trigger = yes }
-		$COURT_OWNER$ = {
-			carnx_is_slave_employment_enabled_trigger = yes
-		}
-	}
-}
-
-carnx_can_be_spymaster_trigger = {
-	can_be_spymaster_trigger = { COURT_OWNER = $COURT_OWNER$ }
-}
-
-carnx_can_be_court_chaplain_trigger = {
-	can_be_court_chaplain_trigger = { COURT_OWNER = $COURT_OWNER$ }
-	NOT = { carnx_is_slave_trigger = yes }
-}
-
-# Vanilla Court Positions
+﻿# Vanilla Court Positions
 
 carnx_can_be_court_physician_trigger = {
+	is_capable_adult = yes
+	exists = $LIEGE$
+}
+
+carnx_can_be_court_gardener_trigger = {
 	is_capable_adult = yes
 	exists = $LIEGE$
 }
@@ -49,11 +13,6 @@ carnx_can_be_court_physician_trigger = {
 carnx_can_be_antiquarian_trigger = {
 	is_capable_adult = yes
 	NOT = { is_spouse_of = $LIEGE$ }
-}
-
-carnx_can_be_court_gardener_trigger = {
-	is_capable_adult = yes
-	exists = $LIEGE$
 }
 
 carnx_can_be_wet_nurse_trigger = {
@@ -67,6 +26,11 @@ carnx_can_be_wet_nurse_trigger = {
 carnx_can_be_court_tutor_trigger = {
 	is_capable_adult = yes
 	NOT = { is_spouse_of = $LIEGE$ }
+}
+
+carnx_can_be_food_taster_trigger = {
+	is_capable_adult = yes
+	NOT = { is_spouse_of = $LIEGE$ }
 	can_be_combatant_based_on_gender_trigger = { ARMY_OWNER = $LIEGE$ }
 	trigger_if = {
 		limit = {
@@ -76,11 +40,6 @@ carnx_can_be_court_tutor_trigger = {
 		}
 		is_clergy = no
 	}
-}
-
-carnx_can_be_food_taster_trigger = {
-	is_capable_adult = yes
-	NOT = { is_spouse_of = $LIEGE$ }
 }
 
 carnx_can_be_seneschal_trigger = {
@@ -101,13 +60,21 @@ carnx_can_be_cupbearer_trigger = {
 
 carnx_can_be_chief_eunuch_trigger = {
 	is_capable_adult = yes
-	exists = $LIEGE$
 	has_trait = eunuch
+	exists = $LIEGE$
 }
 
 carnx_can_be_court_jester_trigger = {
 	is_capable_adult = yes
 	exists = $LIEGE$
+	NOR = {
+		is_close_family_of = $LIEGE$
+		is_consort_of = $LIEGE$
+		is_ruler = yes
+		#carnx_has_real_dynasty_trigger = yes
+		is_clergy = yes
+		is_theocratic_lessee = yes
+	}
 }
 
 carnx_can_be_court_poet_trigger = {
@@ -136,9 +103,11 @@ carnx_can_be_executioner_trigger = {
 	is_capable_adult = yes
 	NOT = { is_spouse_of = $LIEGE$ }
 	is_ruler = no
-	OR = {
-		$LIEGE$ = { has_imprisonment_reason = prev }
-		$LIEGE$ = { has_strong_hook = prev }
+	$LIEGE$ = {
+		OR = {
+			has_imprisonment_reason = prev
+			has_strong_usable_hook = prev
+		}
 	}
 }
 
@@ -146,7 +115,7 @@ carnx_can_be_master_assassin_trigger = {
 	is_capable_adult = yes
 	has_no_particular_noble_roots_trigger = yes
 	NOT = { is_spouse_of = $LIEGE$ }
-	is_landed = no #You can't be a public figure and a master assassin
+	is_landed = no
 	faith = {
 		has_doctrine = tenet_fp3_fedayeen
 		NOR = {

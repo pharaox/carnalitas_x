@@ -1,0 +1,54 @@
+﻿carnx_can_be_chancellor_trigger = {
+	can_be_chancellor_trigger = { COURT_OWNER = $COURT_OWNER$ }
+	OR = {
+		NOT = { carnx_is_slave_trigger = yes }
+		$COURT_OWNER$ = {
+			carnx_is_slave_employment_enabled_trigger = yes
+		}
+	}
+}
+
+carnx_can_be_marshal_trigger = {
+	can_be_marshal_trigger = { COURT_OWNER = $COURT_OWNER$ }
+	OR = {
+		NOT = { carnx_is_slave_trigger = yes }
+		$COURT_OWNER$ = {
+			carnx_is_slave_employment_enabled_trigger = yes
+		}
+	}
+}
+
+carnx_can_be_steward_trigger = {
+	can_be_steward_trigger = { COURT_OWNER = $COURT_OWNER$ }
+	OR = {
+		NOT = { carnx_is_slave_trigger = yes }
+		$COURT_OWNER$ = {
+			carnx_is_slave_employment_enabled_trigger = yes
+		}
+	}
+}
+
+carnx_can_be_spymaster_trigger = {
+	can_be_spymaster_trigger = { COURT_OWNER = $COURT_OWNER$ }
+}
+
+carnx_can_be_court_chaplain_trigger = {
+	can_be_court_chaplain_trigger = { COURT_OWNER = $COURT_OWNER$ }
+	NOT = { carnx_is_slave_trigger = yes }
+}
+
+carnx_can_appoint_chancellor_trigger = {
+	always = yes
+}
+
+carnx_can_appoint_steward_trigger = {
+	always = yes
+}
+
+carnx_can_appoint_marshal_trigger = {
+	always = yes
+}
+
+carnx_can_appoint_spymaster_trigger = {
+	always = yes
+}
