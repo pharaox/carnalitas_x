@@ -56,9 +56,12 @@ carnx_slave.0008 = {
 		name = carnx_slave.0008.a
 
 		trigger = {
-			custom_description = {
-				text = "carnx_slavery_is_never_accepted"
-				carnx_is_slavery_never_accepted_trigger = no
+			OR = {
+				custom_description = {
+					text = "carnx_slavery_is_never_accepted"
+					carnx_is_slavery_never_accepted_trigger = no
+				}
+				is_ai = no
 			}
 		}
 		show_as_unavailable = { always = yes }
@@ -77,9 +80,12 @@ carnx_slave.0008 = {
 		name = carnx_slave.0008.b
 
 		trigger = {
-			custom_description = {
-				text = "carnx_slavery_is_always_accepted"
-				carnx_is_slavery_always_accepted_trigger = no
+			OR = {
+				custom_description = {
+					text = "carnx_slavery_is_always_accepted"
+					carnx_is_slavery_always_accepted_trigger = no
+				}
+				is_ai = no
 			}
 		}
 		show_as_unavailable = { always = yes }
@@ -98,9 +104,12 @@ carnx_slave.0008 = {
 		name = carnx_slave.0008.c
 
 		trigger = {
-			custom_description = {
-				text = "carnx_slavery_is_never_accepted"
-				carnx_is_slavery_never_accepted_trigger = no
+			OR = {
+				custom_description = {
+					text = "carnx_slavery_is_never_accepted"
+					carnx_is_slavery_never_accepted_trigger = no
+				}
+				is_ai = no
 			}
 		}
 		show_as_unavailable = { always = yes }
@@ -119,9 +128,12 @@ carnx_slave.0008 = {
 		name = carnx_slave.0008.d
 
 		trigger = {
-			custom_description = {
-				text = "carnx_slavery_is_never_accepted"
-				carnx_is_slavery_never_accepted_trigger = no
+			OR = {
+				custom_description = {
+					text = "carnx_slavery_is_never_accepted"
+					carnx_is_slavery_never_accepted_trigger = no
+				}
+				is_ai = no
 			}
 		}
 		show_as_unavailable = { always = yes }
