@@ -38,12 +38,12 @@ carn_enslave_interaction = {
 				text = "currently_being_tortured"
 				NOT = { has_character_flag = is_being_tortured }
 			}
-			custom_description = {
-				text = "carn_slavery_is_illegal"
-				scope:actor = {
-					NOT = { carnx_is_slavery_crime_trigger = { CHARACTER = scope:recipient } }
-				}
-			}
+			#custom_description = {
+			#	text = "carn_slavery_is_illegal"
+			#	scope:actor = {
+			#		NOT = { carnx_is_slavery_crime_trigger = { CHARACTER = scope:recipient } }
+			#	}
+			#}
 		}
 	}
 
@@ -114,10 +114,23 @@ carn_enslave_interaction = {
 			add = 50
 		}
 
-		# Slavery shunned by faith
+		# Slavery crime or shunned by faith
+		modifier = {
+			carnx_is_slavery_crime_trigger = { CHARACTER = scope:recipient }
+			add = carnx_ai_negative_crime_impact_value
+		}
 		modifier = {
 			carnx_is_slavery_shunned_trigger = { CHARACTER = scope:recipient }
 			add = carnx_ai_negative_shunned_impact_value
+		}
+
+		# Slavery is not allowed for other reasons (culture, realm laws, etc.)
+		modifier = {
+			carnx_is_slavery_forbidden_trigger = {
+				CHARACTER = scope:secondary_recipient
+				ACTION = flag:enslave
+			}
+			add = carnx_ai_negative_forbidden_impact_value
 		}
 
 		# Slavery attitude

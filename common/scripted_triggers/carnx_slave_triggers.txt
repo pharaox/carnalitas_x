@@ -469,6 +469,12 @@ carnx_is_slavery_never_accepted_trigger = {
 	}
 }
 
+carnx_is_slavery_forbidden_trigger = {
+	exists = $CHARACTER$
+	$ACTION$ = flag:none
+	always = no
+}
+
 carnx_can_serve_as_chancellor_trigger = {
 	carnx_can_serve_as_councillor_trigger = {
 		TYPE = councillor_chancellor
@@ -937,6 +943,7 @@ carnx_is_likely_to_buy_slave_trigger = {
 		is_at_war = yes
 		carnx_is_slavery_crime_trigger = { CHARACTER = $SLAVE$ }
 		carnx_is_slavery_shunned_trigger = { CHARACTER = $SLAVE$ }
+		carnx_is_slavery_forbidden_trigger = { CHARACTER = $SLAVE$ ACTION = flag:buy }
 		has_character_modifier = carnx_slavery_attitude_slaver_modifier
 		has_character_modifier = carnx_slavery_attitude_liberator_modifier
 		$SLAVE$ = {
@@ -958,6 +965,7 @@ carnx_is_likely_to_sell_slave_trigger = {
 		$SLAVE$ = { has_character_flag = carnx_slave_recently_bought }
 		carnx_is_slavery_crime_trigger = { CHARACTER = $SLAVE$ }
 		carnx_is_slavery_shunned_trigger = { CHARACTER = $SLAVE$ }
+		carnx_is_slavery_forbidden_trigger = { CHARACTER = $SLAVE$ ACTION = flag:sell }
 		has_character_modifier = carnx_slavery_attitude_liberator_modifier
 		has_character_modifier = carnx_slavery_attitude_employer_modifier
 		$SLAVE$ = {
@@ -986,6 +994,7 @@ carnx_is_likely_to_ransom_slave_trigger = {
 	OR = {
 		carnx_is_slavery_crime_trigger = { CHARACTER = $SLAVE$ }
 		carnx_is_slavery_shunned_trigger = { CHARACTER = $SLAVE$ }
+		carnx_is_slavery_forbidden_trigger = { CHARACTER = $SLAVE$ ACTION = flag:demand_ransom }
 		has_character_modifier = carnx_slavery_attitude_liberator_modifier
 	}
 }

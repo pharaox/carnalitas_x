@@ -108,12 +108,12 @@ carnx_sell_slaves_interaction = {
 			scope:secondary_actor = {
 				carnx_slave_can_be_sold_trigger = yes
 				carnx_slave_has_pending_transaction = no
-				custom_description = {
-					text = "carnx_selling_slaves_is_illegal"
-					scope:actor = {
-						NOT = { carnx_is_slavery_crime_trigger = { CHARACTER = scope:secondary_actor } }
-					}
-				}
+				#custom_description = {
+				#	text = "carnx_selling_slaves_is_illegal"
+				#	scope:actor = {
+				#		NOT = { carnx_is_slavery_crime_trigger = { CHARACTER = scope:secondary_actor } }
+				#	}
+				#}
 			}
 		}
 	}

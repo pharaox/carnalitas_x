@@ -25,10 +25,10 @@ carnx_gift_slave_interaction = {
 				limit = {
 					carnx_slave_can_be_sold_trigger = yes
 					carnx_slave_can_be_received_by_trigger = { CHARACTER = scope:recipient }
-					save_temporary_scope_as = slave
-					scope:actor = {
-						NOT = { carnx_is_slavery_crime_trigger = { CHARACTER = scope:slave } }
-					}
+					#save_temporary_scope_as = slave
+					#scope:actor = {
+					#	NOT = { carnx_is_slavery_crime_trigger = { CHARACTER = scope:slave } }
+					#}
 				}
 				add_to_list = characters
 			}
@@ -63,12 +63,12 @@ carnx_gift_slave_interaction = {
 			scope:secondary_recipient = {
 				carnx_slave_can_be_sold_trigger = yes
 				carnx_slave_can_be_received_by_trigger = { CHARACTER = scope:recipient }
-				custom_description = {
-					text = "carnx_gifting_slaves_is_illegal"
-					scope:actor = {
-						NOT = { carnx_is_slavery_crime_trigger = { CHARACTER = scope:secondary_recipient } }
-					}
-				}
+				#custom_description = {
+				#	text = "carnx_gifting_slaves_is_illegal"
+				#	scope:actor = {
+				#		NOT = { carnx_is_slavery_crime_trigger = { CHARACTER = scope:secondary_recipient } }
+				#	}
+				#}
 			}
 		}
 	}
@@ -176,6 +176,16 @@ carnx_gift_slave_interaction = {
 			carnx_is_slavery_shunned_trigger = { CHARACTER = scope:secondary_recipient }
 			add = carnx_ai_negative_shunned_impact_value
 			desc = carnx_owning_shunned_in_recipient_faith
+		}
+
+		# Slavery is not allowed for other reasons (culture, realm laws, etc.)
+		modifier = {
+			carnx_is_slavery_forbidden_trigger = {
+				CHARACTER = scope:secondary_recipient
+				ACTION = flag:accept_gift
+			}
+			add = carnx_ai_negative_forbidden_impact_value
+			desc = carnx_owning_forbidden_reason
 		}
 
 		# Slavery attitude
@@ -332,10 +342,23 @@ carnx_gift_slave_interaction = {
 			add = -100
 		}
 
-		# Slavery shunned by faith
+		# Slavery crime or shunned by faith
+		modifier = {
+			carnx_is_slavery_crime_trigger = { CHARACTER = scope:secondary_recipient }
+			add = carnx_ai_negative_crime_impact_value
+		}
 		modifier = {
 			carnx_is_slavery_shunned_trigger = { CHARACTER = scope:secondary_recipient }
 			add = carnx_ai_negative_shunned_impact_value
+		}
+
+		# Slavery is not allowed for other reasons (culture, realm laws, etc.)
+		modifier = {
+			carnx_is_slavery_forbidden_trigger = {
+				CHARACTER = scope:secondary_recipient
+				ACTION = flag:offer_gift
+			}
+			add = carnx_ai_negative_forbidden_impact_value
 		}
 
 		# Greed (0 to -50 depending on greed)

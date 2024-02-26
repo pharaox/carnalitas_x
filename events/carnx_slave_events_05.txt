@@ -143,7 +143,7 @@ carnx_slave.0005 = {
 		}
 
 		add_dread = carnx_free_slave_dread_loss
-		add_piety = carnx_free_slave_piety_gain
+		add_piety = carnx_slavery_piety_gain
 
 		stress_impact = {
 			zealous = medium_stress_impact_loss

@@ -5,5 +5,5 @@
 }
 
 carnx_slavery_intolerant_opinion = {
-	opinion = -15
+	opinion = -10
 }

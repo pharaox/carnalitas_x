@@ -319,14 +319,28 @@ carnx_enslave_effect = {
 				add_dread = carnx_enslave_minor_dread_gain
 			}
 
-			# Piety (similar to execution but toned down one level)
+			# Remove piety
+			if = {
+				limit = { carnx_is_slavery_crime_trigger = { CHARACTER = scope:slave } }
+				add_piety_level = -1
+			}
+			else_if = {
+				limit = { carnx_is_slavery_shunned_trigger = { CHARACTER = scope:slave } }
+				add_piety = carnx_slavery_piety_loss
+			}
+
+			# Add faith slaver trait
 			if = {
 				limit = {
-					NOT = {
-						carnx_is_slavery_accepted_trigger = { CHARACTER = scope:slave }
-					}
+					NOT = { carnx_is_slavery_accepted_trigger = { CHARACTER = scope:slave } }
 				}
-				add_piety = carnx_enslave_piety_loss
+				carnx_add_faith_slaver_trait_effect = { CHARACTER = scope:slave }
+			}
+
+			# Other consequences
+			carnx_apply_slavery_consequences_effect = {
+				CHARACTER = scope:slave
+				ACTION = flag:enslave
 			}
 
 			# Stress (similar to execution but toned down one level)
@@ -837,7 +851,7 @@ carnx_free_slave_actual_effect = {
 						carnx_is_slavery_accepted_trigger = { CHARACTER = scope:slave }
 					}
 				}
-				add_piety = carnx_free_slave_piety_gain
+				add_piety = carnx_slavery_piety_gain
 			}
 
 			# Add / remove stress
@@ -845,6 +859,12 @@ carnx_free_slave_actual_effect = {
 				compassionate = medium_stress_impact_loss
 				sadistic = medium_stress_impact_gain
 				callous = minor_stress_impact_gain
+			}
+
+			# Other consequences
+			carnx_apply_slavery_consequences_effect = {
+				CHARACTER = scope:slave
+				ACTION = flag:free
 			}
 
 			hidden_effect = {
@@ -968,7 +988,7 @@ carnx_ransom_slave_actual_effect = {
 			limit = {
 				carnx_is_slavery_crime_trigger = { CHARACTER = scope:slave }
 			}
-			add_piety = carnx_ransom_slave_piety_gain
+			add_piety = carnx_slavery_minor_piety_gain
 		}
 
 		# Add / remove stress
@@ -1000,6 +1020,12 @@ carnx_ransom_slave_actual_effect = {
 	}
 
 	scope:owner = {
+		# Other consequences
+		carnx_apply_slavery_consequences_effect = {
+			CHARACTER = scope:slave
+			ACTION = flag:demand_ransom
+		}
+
 		# Add hook to owner
 		if = {
 			limit = {
@@ -1120,12 +1146,18 @@ carnx_buy_slave_effect = {
 
 		# Remove piety
 		if = {
-			limit = {
-				NOT = {
-					carnx_is_slavery_accepted_trigger = { CHARACTER = scope:slave }
-				}
-			}
-			add_piety = carnx_enslave_piety_loss
+			limit = { carnx_is_slavery_crime_trigger = { CHARACTER = scope:slave } }
+			add_piety = carnx_slavery_major_piety_loss
+		}
+		else_if = {
+			limit = { carnx_is_slavery_shunned_trigger = { CHARACTER = scope:slave } }
+			add_piety = carnx_slavery_piety_loss
+		}
+
+		# Other consequences
+		carnx_apply_slavery_consequences_effect = {
+			CHARACTER = scope:slave
+			ACTION = flag:buy
 		}
 
 		hidden_effect = {
@@ -1142,12 +1174,18 @@ carnx_buy_slave_effect = {
 	scope:seller = {
 		# Remove piety
 		if = {
-			limit = {
-				NOT = {
-					carnx_is_slavery_accepted_trigger = { CHARACTER = scope:slave }
-				}
-			}
-			add_piety = carnx_enslave_piety_loss
+			limit = { carnx_is_slavery_crime_trigger = { CHARACTER = scope:slave } }
+			add_piety = carnx_slavery_major_piety_loss
+		}
+		else_if = {
+			limit = { carnx_is_slavery_shunned_trigger = { CHARACTER = scope:slave } }
+			add_piety = carnx_slavery_piety_loss
+		}
+
+		# Other consequences
+		carnx_apply_slavery_consequences_effect = {
+			CHARACTER = scope:slave
+			ACTION = flag:sell
 		}
 
 		hidden_effect = {
@@ -1276,12 +1314,18 @@ carnx_seize_slave_effect = {
 
 		# Remove piety
 		if = {
-			limit = {
-				NOT = {
-					carnx_is_slavery_accepted_trigger = { CHARACTER = scope:slave }
-				}
-			}
-			add_piety = carnx_enslave_piety_loss
+			limit = { carnx_is_slavery_crime_trigger = { CHARACTER = scope:slave } }
+			add_piety = carnx_slavery_major_piety_loss
+		}
+		else_if = {
+			limit = { carnx_is_slavery_shunned_trigger = { CHARACTER = scope:slave } }
+			add_piety = carnx_slavery_piety_loss
+		}
+
+		# Other consequences
+		carnx_apply_slavery_consequences_effect = {
+			CHARACTER = scope:slave
+			ACTION = flag:seize
 		}
 
 		hidden_effect = {
@@ -1372,12 +1416,30 @@ carnx_gift_slave_effect = {
 
 		# Remove piety
 		if = {
-			limit = {
-				NOT = {
-					carnx_is_slavery_accepted_trigger = { CHARACTER = scope:slave }
+			limit = { carnx_is_slavery_crime_trigger = { CHARACTER = scope:slave } }
+			add_piety = carnx_slavery_major_piety_loss
+		}
+		else_if = {
+			limit = { carnx_is_slavery_shunned_trigger = { CHARACTER = scope:slave } }
+			add_piety = carnx_slavery_piety_loss
+		}
+
+		# Other consequences
+		carnx_apply_slavery_consequences_effect = {
+			CHARACTER = scope:slave
+			ACTION = flag:offer_gift
+		}
+
+		hidden_effect = {
+			# Potentially acquire slaver trait if scope:slave enslaved by scope:former_owner
+			if = {
+				limit = {
+					scope:slave = {
+						carnx_was_enslaved_by_character_trigger = { CHARACTER = scope:former_owner }
+					}
 				}
+				carnx_potentially_acquire_slaver_trait_effect = yes
 			}
-			add_piety = carnx_enslave_piety_loss
 		}
 	}
 
@@ -1394,12 +1456,18 @@ carnx_gift_slave_effect = {
 
 		# Remove piety
 		if = {
-			limit = {
-				NOT = {
-					carnx_is_slavery_accepted_trigger = { CHARACTER = scope:slave }
-				}
-			}
-			add_piety = carnx_enslave_piety_loss
+			limit = { carnx_is_slavery_crime_trigger = { CHARACTER = scope:slave } }
+			add_piety = carnx_slavery_major_piety_loss
+		}
+		else_if = {
+			limit = { carnx_is_slavery_shunned_trigger = { CHARACTER = scope:slave } }
+			add_piety = carnx_slavery_piety_loss
+		}
+
+		# Other consequences
+		carnx_apply_slavery_consequences_effect = {
+			CHARACTER = scope:slave
+			ACTION = flag:accept_gift
 		}
 
 		hidden_effect = {
@@ -1757,7 +1825,43 @@ carnx_potentially_acquire_liberator_trait_effect = {
 	}
 }
 
+carnx_add_faith_slaver_trait_effect = {
+	$CHARACTER$ = { save_temporary_scope_as = other }
+	if = {
+		limit = {
+			faith = {
+				faith_hostility_level = {
+					target = scope:other.faith
+					value < faith_hostile_level
+				}
+			}
+		}
+		if = {
+			limit = { has_trait = carnx_other_faith_slaver }
+			remove_trait = carnx_other_faith_slaver
+		}
+		add_trait = carnx_same_faith_slaver
+		carnx_debug_log_effect = { MSG = carnx_debug_msg_character_acquired_same_faith_slaver_trait }
+	}
+	else_if = {
+		limit = {
+			NOT = { has_trait = carnx_same_faith_slaver }
+		}
+		add_trait = carnx_other_faith_slaver
+		carnx_debug_log_effect = { MSG = carnx_debug_msg_character_acquired_other_faith_slaver_trait }
+	}
+}
+
 # carnx_add_courtier_effect allows compatibility mods to prevent conversion mods (e.g. AGOT) from redirecting courtiers.
 carnx_add_courtier_effect = {
 	add_courtier = $SLAVE$
+}
+
+carnx_apply_slavery_consequences_effect = {
+	if = {
+		limit = {
+			exists = $CHARACTER$
+			$ACTION$ = flag:none
+		}
+	}
 }

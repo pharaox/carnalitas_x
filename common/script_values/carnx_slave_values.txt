@@ -587,7 +587,7 @@ carnx_enslave_tyranny_gain = {
 	}
 }
 
-carnx_enslave_piety_loss = {
+carnx_slavery_piety_loss = {
 	if = {
 		limit = {
 			scope:slave = {
@@ -601,7 +601,21 @@ carnx_enslave_piety_loss = {
 	}
 }
 
-carnx_free_slave_piety_gain = {
+carnx_slavery_major_piety_loss = {
+	if = {
+		limit = {
+			scope:slave = {
+				has_no_particular_noble_roots_trigger = yes
+			}
+		}
+		value = medium_piety_loss
+	}
+	else = {
+		value = major_piety_loss
+	}
+}
+
+carnx_slavery_piety_gain = {
 	if = {
 		limit = {
 			scope:slave = {
@@ -615,7 +629,7 @@ carnx_free_slave_piety_gain = {
 	}
 }
 
-carnx_ransom_slave_piety_gain = {
+carnx_slavery_minor_piety_gain = {
 	if = {
 		limit = {
 			scope:slave = {

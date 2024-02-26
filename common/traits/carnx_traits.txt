@@ -16,17 +16,6 @@
 	opposite_opinion = -10
 	same_opinion = 10
 
-	triggered_opinion = {
-		parameter = other_slavery_illegal
-		opinion_modifier = carnx_slavery_crime_opinion
-		ignore_opinion_value_if_same_trait = yes
-	}
-	triggered_opinion = {
-		parameter = other_slavery_shunned
-		opinion_modifier = carnx_slavery_intolerant_opinion
-		ignore_opinion_value_if_same_trait = yes
-	}
-
 	desc = {
 		first_valid = {
 			triggered_desc = {
@@ -94,5 +83,71 @@ carnx_liberator = {
 		compassionate = @pos_compat_low
 		callous = @neg_compat_low
 		sadistic = @neg_compat_low
+	}
+}
+
+carnx_same_faith_slaver = {
+	category = fame
+
+	shown_in_ruler_designer = no
+
+	same_opinion = 10
+
+	triggered_opinion = {
+		parameter = same_slavery_illegal
+		opinion_modifier = carnx_slavery_crime_opinion
+		ignore_opinion_value_if_same_trait = yes
+		same_faith = yes
+	}
+	triggered_opinion = {
+		parameter = same_slavery_shunned
+		opinion_modifier = carnx_slavery_intolerant_opinion
+		ignore_opinion_value_if_same_trait = yes
+		same_faith = yes
+	}
+
+	desc = {
+		first_valid = {
+			triggered_desc = {
+				trigger = {
+					NOT = { exists = this }
+				}
+				desc = trait_carnx_same_faith_slaver_desc
+			}
+			desc = trait_carnx_same_faith_slaver_character_desc
+		}
+	}
+}
+
+carnx_other_faith_slaver = {
+	category = fame
+
+	shown_in_ruler_designer = no
+
+	same_opinion = 10
+
+	triggered_opinion = {
+		parameter = other_slavery_illegal
+		opinion_modifier = carnx_slavery_crime_opinion
+		ignore_opinion_value_if_same_trait = yes
+		same_faith = yes
+	}
+	triggered_opinion = {
+		parameter = other_slavery_shunned
+		opinion_modifier = carnx_slavery_intolerant_opinion
+		ignore_opinion_value_if_same_trait = yes
+		same_faith = yes
+	}
+
+	desc = {
+		first_valid = {
+			triggered_desc = {
+				trigger = {
+					NOT = { exists = this }
+				}
+				desc = trait_carnx_other_faith_slaver_desc
+			}
+			desc = trait_carnx_other_faith_slaver_character_desc
+		}
 	}
 }

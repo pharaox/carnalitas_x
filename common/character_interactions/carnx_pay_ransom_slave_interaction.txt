@@ -294,6 +294,16 @@ carnx_pay_ransom_slave_interaction = {
 			desc = carnx_owning_shunned_in_recipient_faith
 		}
 
+		# Slavery is not allowed for other reasons (culture, realm laws, etc.)
+		modifier = {
+			carnx_is_slavery_forbidden_trigger = {
+				CHARACTER = scope:secondary_recipient
+				ACTION = flag:demand_ransom
+			}
+			add = carnx_ai_positive_forbidden_impact_reduced_value
+			desc = carnx_owning_forbidden_reason
+		}
+
 		# Slavery attitude
 		# Liberators more likely to demand ransom, slavers less likely
 		modifier = {
