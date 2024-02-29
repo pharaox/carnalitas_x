@@ -122,13 +122,10 @@ carn_seize_slave_interaction = {
 			add = carnx_ai_negative_shunned_impact_value
 		}
 
-		# Slavery is not allowed for other reasons (culture, realm laws, etc.)
-		modifier = {
-			carnx_is_slavery_forbidden_trigger = {
-				CHARACTER = scope:recipient
-				ACTION = flag:seize
-			}
-			add = carnx_ai_negative_forbidden_impact_value
+		# Additional slavery impact (laws, culture, etc.)
+		carnx_slavery_modifier = {
+			SLAVE = scope:recipient
+			ACTION = flag:seize
 		}
 
 		# Slavery attitude

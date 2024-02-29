@@ -538,6 +538,16 @@ carnx_execute_reason_modifier = {
 	}
 }
 
+# Override in compatibility mods
+carnx_slavery_modifier = {
+	modifier = {
+		exists = $SLAVE$
+		$ACTION$ = flag:none
+		always = no
+		add = 0
+	}
+}
+
 carnx_capture_chance_modifier = {
 	modifier = {
 		add = 40

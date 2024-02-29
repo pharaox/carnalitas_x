@@ -152,7 +152,8 @@ echo "Character acquired employer modifier: $(grep -a "Character acquired employ
 echo
 
 # Slavery trait events
-echo "Character acquired Slaver trait: $(grep -a "Character acquired Slaver trait" debug.log | wc -l)"
+echo "Character acquired Slaver 1 trait: $(grep -a "Character acquired Slaver 1 trait" debug.log | wc -l)"
+echo "Character acquired Slaver 2 trait: $(grep -a "Character acquired Slaver 2 trait" debug.log | wc -l)"
 echo "Character acquired Infamous Slaver trait: $(grep -a "Character acquired Infamous Slaver trait" debug.log | wc -l)"
 echo "Character acquired Famous Liberator trait: $(grep -a "Character acquired Famous Liberator trait" debug.log | wc -l)"
 echo

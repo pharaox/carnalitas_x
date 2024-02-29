@@ -334,7 +334,12 @@ carnx_enslave_effect = {
 				limit = {
 					NOT = { carnx_is_slavery_accepted_trigger = { CHARACTER = scope:slave } }
 				}
-				carnx_add_faith_slaver_trait_effect = { CHARACTER = scope:slave }
+				carnx_acquire_faith_slaver_trait_effect = { CHARACTER = scope:slave }
+			}
+
+			hidden_effect = {
+				# Potentially acquire slaver trait if scope:slave enslaved by scope:seller
+				carnx_potentially_acquire_slaver_trait_effect = yes
 			}
 
 			# Other consequences
@@ -1187,18 +1192,6 @@ carnx_buy_slave_effect = {
 			CHARACTER = scope:slave
 			ACTION = flag:sell
 		}
-
-		hidden_effect = {
-			# Potentially acquire slaver trait if scope:slave enslaved by scope:seller
-			if = {
-				limit = {
-					scope:slave = {
-						carnx_was_enslaved_by_character_trigger = { CHARACTER = scope:seller }
-					}
-				}
-				carnx_potentially_acquire_slaver_trait_effect = yes
-			}
-		}
 	}
 
 	scope:slave = {
@@ -1428,18 +1421,6 @@ carnx_gift_slave_effect = {
 		carnx_apply_slavery_consequences_effect = {
 			CHARACTER = scope:slave
 			ACTION = flag:offer_gift
-		}
-
-		hidden_effect = {
-			# Potentially acquire slaver trait if scope:slave enslaved by scope:former_owner
-			if = {
-				limit = {
-					scope:slave = {
-						carnx_was_enslaved_by_character_trigger = { CHARACTER = scope:former_owner }
-					}
-				}
-				carnx_potentially_acquire_slaver_trait_effect = yes
-			}
 		}
 	}
 
@@ -1825,38 +1806,32 @@ carnx_potentially_acquire_liberator_trait_effect = {
 	}
 }
 
-carnx_add_faith_slaver_trait_effect = {
+carnx_acquire_faith_slaver_trait_effect = {
 	$CHARACTER$ = { save_temporary_scope_as = other }
 	if = {
 		limit = {
 			faith = {
 				faith_hostility_level = {
 					target = scope:other.faith
-					value < faith_hostile_level
+					value >= faith_hostile_level
 				}
 			}
 		}
-		if = {
-			limit = { has_trait = carnx_other_faith_slaver }
-			remove_trait = carnx_other_faith_slaver
-		}
-		add_trait = carnx_same_faith_slaver
-		carnx_debug_log_effect = { MSG = carnx_debug_msg_character_acquired_same_faith_slaver_trait }
+		add_trait = carnx_faith_slaver_1
+		carnx_debug_log_effect = { MSG = carnx_debug_msg_character_acquired_faith_slaver_1_trait }
 	}
-	else_if = {
-		limit = {
-			NOT = { has_trait = carnx_same_faith_slaver }
-		}
-		add_trait = carnx_other_faith_slaver
-		carnx_debug_log_effect = { MSG = carnx_debug_msg_character_acquired_other_faith_slaver_trait }
+	else = {
+		add_trait = carnx_faith_slaver_2
+		carnx_debug_log_effect = { MSG = carnx_debug_msg_character_acquired_faith_slaver_2_trait }
 	}
 }
 
-# carnx_add_courtier_effect allows compatibility mods to prevent conversion mods (e.g. AGOT) from redirecting courtiers.
+# Override in compatibility mods to prevent conversion mods (e.g. AGOT) from redirecting courtiers.
 carnx_add_courtier_effect = {
 	add_courtier = $SLAVE$
 }
 
+# Override in compatibility mods to apply additional slavery consequences
 carnx_apply_slavery_consequences_effect = {
 	if = {
 		limit = {

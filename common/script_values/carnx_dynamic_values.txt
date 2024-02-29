@@ -1,0 +1,31 @@
+﻿carnx_ai_negative_crime_impact_value = {
+	value = carnx_ai_negative_crime_impact_base_value
+	multiply = carnx_ai_zeal_impact_multiplier
+}
+
+carnx_ai_negative_shunned_impact_value = {
+	value = carnx_ai_negative_shunned_impact_base_value
+	multiply = carnx_ai_zeal_impact_multiplier
+}
+
+carnx_ai_positive_crime_impact_reduced_value = {
+	value = carnx_ai_positive_crime_impact_reduced_base_value
+	multiply = carnx_ai_zeal_impact_multiplier
+}
+
+carnx_ai_positive_shunned_impact_reduced_value = {
+	value = carnx_ai_positive_shunned_impact_reduced_base_value
+	multiply = carnx_ai_zeal_impact_multiplier
+}
+
+carnx_ai_zeal_impact_multiplier = {
+	value = ai_zeal
+	multiply = 0.005
+	add = 1
+}
+
+carnx_ai_honor_impact_multiplier = {
+	value = ai_honor
+	multiply = 0.005
+	add = 1
+}

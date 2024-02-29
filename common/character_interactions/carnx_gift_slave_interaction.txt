@@ -178,14 +178,10 @@ carnx_gift_slave_interaction = {
 			desc = carnx_owning_shunned_in_recipient_faith
 		}
 
-		# Slavery is not allowed for other reasons (culture, realm laws, etc.)
-		modifier = {
-			carnx_is_slavery_forbidden_trigger = {
-				CHARACTER = scope:secondary_recipient
-				ACTION = flag:accept_gift
-			}
-			add = carnx_ai_negative_forbidden_impact_value
-			desc = carnx_owning_forbidden_reason
+		# Additional slavery impact (laws, culture, etc.)
+		carnx_slavery_modifier = {
+			SLAVE = scope:secondary_recipient
+			ACTION = flag:accept_gift
 		}
 
 		# Slavery attitude
@@ -352,13 +348,10 @@ carnx_gift_slave_interaction = {
 			add = carnx_ai_negative_shunned_impact_value
 		}
 
-		# Slavery is not allowed for other reasons (culture, realm laws, etc.)
-		modifier = {
-			carnx_is_slavery_forbidden_trigger = {
-				CHARACTER = scope:secondary_recipient
-				ACTION = flag:offer_gift
-			}
-			add = carnx_ai_negative_forbidden_impact_value
+		# Additional slavery impact (laws, culture, etc.)
+		carnx_slavery_modifier = {
+			SLAVE = scope:secondary_recipient
+			ACTION = flag:offer_gift
 		}
 
 		# Greed (0 to -50 depending on greed)
