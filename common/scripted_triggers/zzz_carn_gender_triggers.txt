@@ -1,4 +1,12 @@
-﻿# Overridden from Carnalitas.
+﻿carn_gender_can_impregnate_trigger = {
+	OR = {
+		is_male = yes
+		carn_is_futa_trigger = yes
+	}
+	NOT = { has_trait = eunuch }
+}
+
+# Overridden from Carnalitas.
 carn_possible_pregnancy_after_sex_with_character_trigger = {
 	trigger_if = {
 		limit = {
