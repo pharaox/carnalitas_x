@@ -128,6 +128,22 @@ carnx_soldier_character_template = {
 		athletic = { weight = { base = 5 } }
 		tourney_participant = { weight = { base = 10 } }
 	}
+	random_traits_list = {
+		count = { 0 1 }
+		# Commander traits
+		aggressive_attacker = {}
+		flexible_leader = {}
+		forder = {}
+		holy_warrior = {}
+		logistician = {}
+		military_engineer = {}
+		organizer = {}
+		reaver = {}
+		unyielding_defender = {}
+		cautious_leader = {}
+		reckless = {}
+		open_terrain_expert = {}
+	}
 	dynasty = none
 	after_creation = {
 		random = {
