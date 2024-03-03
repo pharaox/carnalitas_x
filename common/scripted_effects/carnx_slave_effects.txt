@@ -1,90 +1,6 @@
 ﻿# Enslaves scope:slave to scope:new_owner, also incurs opinion, dread, tyranny, piety, and stress
 # effects if DRAMA is true.
 carnx_enslave_effect = {
-	scope:slave = {
-		if = {
-			limit = { is_ruler = yes }
-			every_character_war = {
-				if = {
-					limit = {
-						primary_attacker = scope:slave
-					}
-					end_war = invalidated
-				}
-				else_if = {
-					limit = {
-						primary_defender = scope:slave
-					}
-					if = {
-						limit = { primary_attacker = scope:new_owner }
-						end_war = attacker
-					}
-					else = {
-						end_war = invalidated
-					}
-				}
-				else = {
-					remove_participant = scope:slave
-				}
-			}
-			depose = yes
-		}
-		hidden_effect = {
-			remove_trait = former_slave
-			add_trait = slave
-			if = {
-				limit = { is_married = yes }
-				every_spouse = {
-					divorce = scope:slave
-				}
-			}
-			if = {
-				limit = { exists = betrothed }
-				break_betrothal = betrothed
-			}
-			if = {
-				limit = {
-					number_of_concubines > 0
-				}
-				every_concubine = {
-					scope:slave = {
-						remove_concubine = prev
-					}
-				}
-			}
-			if = {
-				limit = { is_concubine = yes }
-				this.concubinist = {
-					remove_concubine = scope:slave
-				}
-			}
-			every_relation = {
-				type = guardian
-				remove_relation_ward = prev
-			}
-			if = {
-				# By default, randomly generated peasant leaders will disappear if captured in battle
-				limit = {
-					has_character_flag =  peasant_faction_random_peasant
-				}
-				add_character_flag = peasant_revolt_do_not_kill
-			}
-		}
-	}
-
-	scope:new_owner = {
-		set_relation_slave = scope:slave
-		if = {
-			limit = {
-				NOT = { has_character_flag = carnx_slave_0001_seller }
-				scope:slave = { NOT = { is_courtier_of = scope:new_owner } }
-			}
-			hidden_effect = {
-				carnx_add_courtier_effect = { SLAVE = scope:slave }
-			}
-		}
-	}
-
 	if = {
 		limit = { $DRAMA$ = yes }
 
@@ -559,6 +475,90 @@ carnx_enslave_effect = {
 					has_execute_reason = scope:slave
 				}
 				consume_execute_reasons = scope:slave
+			}
+		}
+	}
+
+	scope:slave = {
+		if = {
+			limit = { is_ruler = yes }
+			every_character_war = {
+				if = {
+					limit = {
+						primary_attacker = scope:slave
+					}
+					end_war = invalidated
+				}
+				else_if = {
+					limit = {
+						primary_defender = scope:slave
+					}
+					if = {
+						limit = { primary_attacker = scope:new_owner }
+						end_war = attacker
+					}
+					else = {
+						end_war = invalidated
+					}
+				}
+				else = {
+					remove_participant = scope:slave
+				}
+			}
+			depose = yes
+		}
+		hidden_effect = {
+			remove_trait = former_slave
+			add_trait = slave
+			if = {
+				limit = { is_married = yes }
+				every_spouse = {
+					divorce = scope:slave
+				}
+			}
+			if = {
+				limit = { exists = betrothed }
+				break_betrothal = betrothed
+			}
+			if = {
+				limit = {
+					number_of_concubines > 0
+				}
+				every_concubine = {
+					scope:slave = {
+						remove_concubine = prev
+					}
+				}
+			}
+			if = {
+				limit = { is_concubine = yes }
+				this.concubinist = {
+					remove_concubine = scope:slave
+				}
+			}
+			every_relation = {
+				type = guardian
+				remove_relation_ward = prev
+			}
+			if = {
+				# By default, randomly generated peasant leaders will disappear if captured in battle
+				limit = {
+					has_character_flag =  peasant_faction_random_peasant
+				}
+				add_character_flag = peasant_revolt_do_not_kill
+			}
+		}
+	}
+
+	scope:new_owner = {
+		set_relation_slave = scope:slave
+		if = {
+			limit = {
+				NOT = { has_character_flag = carnx_slave_0001_seller }
+				scope:slave = { NOT = { is_courtier_of = scope:new_owner } }
+			}
+			hidden_effect = {
+				carnx_add_courtier_effect = { SLAVE = scope:slave }
 			}
 		}
 	}
