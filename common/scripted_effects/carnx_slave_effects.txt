@@ -453,18 +453,17 @@ carnx_enslave_effect = {
 					}
 				}
 			}
-			else = {
-				if = {
-					limit = {
-						scope:slave.liege = {
-							NOT = { this = scope:slave }
-						}
+			else_if = {
+				limit = {
+					scope:slave = {
+						exists = liege
+						NOT = { liege = scope:slave }
 					}
-					scope:slave.liege = {
-						add_opinion = {
-							target = prev
-							modifier = carn_enslaved_my_countryman_opinion
-						}
+				}
+				scope:slave.liege = {
+					add_opinion = {
+						target = prev
+						modifier = carn_enslaved_my_countryman_opinion
 					}
 				}
 			}
