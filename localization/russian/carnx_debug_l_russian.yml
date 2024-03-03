@@ -97,8 +97,11 @@
 
  carnx_debug_msg_character_became_enslavers_rival: "$carnx_debug_prefix$: Character became their enslaver's rival"
 
- carnx_debug_msg_character_acquired_slaver_trait: "$carnx_debug_prefix$: Character acquired Slaver trait"
- carnx_debug_msg_character_acquired_liberator_trait: "$carnx_debug_prefix$: Character acquired Liberator trait"
+ carnx_debug_msg_character_acquired_slaver_trait: "$carnx_debug_prefix$: Character acquired Infamous Slaver trait"
+ carnx_debug_msg_character_acquired_liberator_trait: "$carnx_debug_prefix$: Character acquired Famous Liberator trait"
+
+ carnx_debug_msg_character_acquired_faith_slaver_1_trait: "$carnx_debug_prefix$: Character acquired Slaver 1 trait"
+ carnx_debug_msg_character_acquired_faith_slaver_2_trait: "$carnx_debug_prefix$: Character acquired Slaver 2 trait"
 
  carnx_debug_msg_character_acquired_slaver_modifier: "$carnx_debug_prefix$: Character acquired slaver modifier"
  carnx_debug_msg_character_acquired_liberator_modifier: "$carnx_debug_prefix$: Character acquired liberator modifier"

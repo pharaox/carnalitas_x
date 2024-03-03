@@ -1,11 +1,20 @@
 ﻿l_russian:
- trait_carnx_slaver:0 "Поработитель"
- trait_carnx_slaver_desc:0 "Этот персонаж продал многих людей в рабство."
- trait_carnx_slaver_character_desc:0 "[ROOT.GetCharacter.GetFirstNameNoTooltip] продал многих людей в рабство."
+ trait_carnx_slaver:0 "Печально известный поработитель"
+ trait_carnx_slaver_desc:0 "Этот персонаж поработил многих людей."
+ trait_carnx_slaver_character_desc:0 "[ROOT.GetCharacter.GetFirstNameNoTooltip] [Select_CString(ROOT.GetCharacter.IsFemale, 'поработила', 'поработил')] многих людей."
 
- trait_carnx_liberator:0 "Освободитель"
+ trait_carnx_liberator:0 "Знаменитый освободитель"
  trait_carnx_liberator_desc:0 "Этот персонаж освободил многих людей от рабства."
  trait_carnx_liberator_character_desc:0 "[ROOT.GetCharacter.GetFirstNameNoTooltip] освободил многих людей от рабства."
+
+
+ trait_carnx_faith_slaver_1: "Поработитель (врагов)"
+ trait_carnx_faith_slaver_1_desc: "Этот персонаж поработил приверженцев враждебных или злых вероисповеданий в нарушение доктрин своей веры."
+ trait_carnx_faith_slaver_1_character_desc: "[ROOT.GetCharacter.GetFirstNameNoTooltip] [Select_CString(ROOT.GetCharacter.IsFemale, 'поработила', 'поработил')] приверженцев враждебных или злых вероисповеданий в нарушение доктрин своей веры."
+
+ trait_carnx_faith_slaver_2: "Поработитель (праведников)"
+ trait_carnx_faith_slaver_2_desc: "Этот персонаж поработил приверженцев праведных или заблудших вероисповеданий в нарушение доктрин своей веры."
+ trait_carnx_faith_slaver_2_character_desc: "[ROOT.GetCharacter.GetFirstNameNoTooltip] [Select_CString(ROOT.GetCharacter.IsFemale, 'поработила', 'поработил')] приверженцев праведных или заблудших вероисповеданий в нарушение доктрин своей веры."
 
  carnx_slavery_crime_opinion:0 "Известный [GetTrait('carnx_slaver').GetName( GetNullCharacter )]"
  carnx_slavery_intolerant_opinion:0 "Известный [GetTrait('carnx_slaver').GetName( GetNullCharacter )]"
