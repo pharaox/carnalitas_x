@@ -1,5 +1,32 @@
 # Changelog
 
+## Version 0.18.0
+
+### Interactions
+
+* Changed impact of slavery doctrines:
+  * Slavery being a crime no longer prevents rulers from initiating or accepting slave interactions.
+  * Instead, enslaving such characters is penalized by gaining one of the leveled *Slaver* traits, as well as losing a level of fame, while initiating or accepting other interactions is penalized by losing piety.
+* Renamed former *Slaver* and *Liberator* traits to *Infamous Slaver* and *Famous Liberator* to avoid confusion with the new *Slaver* traits.
+* The *Infamous Slaver* trait is now acquired after enslaving a certain number of people, not after selling people you have enslaved.
+* The impact of an action being a crime or shunned on AI willingness is now dynamic depending on AI zeal.
+
+### Miscellaneous
+
+* Players can now always choose all slavery attitudes
+
+### Compatibility
+
+* Added checks if councillors can be actually appointed by their liege when evaluating slaves for councillor positions (needed by the AGOT compatibility mod).
+* Added more triggers, effects, and modifiers that can be overridden in compatibility mods (needed by the AGOT compatibility mod).
+
+### Bug Fixes
+
+* Fixed issues with tyranny, opinions, and other consequences of enslaving.
+* Eunuchs can no longer impregnate or get Carnalitas body part traits (Carnalitas bug)
+* Fixed minor issues in condition checks for councillor and court positions (and made them consistent with Active Courtiers).
+* Added commander traits to the slave soldier character template used by the *Buy Foreign Slaves* interaction.
+
 ## Version 0.17.2
 
 ### Interactions

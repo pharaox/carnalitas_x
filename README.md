@@ -13,7 +13,7 @@ The latest version is compatible with CK3 1.11.x and Carnalitas 2.2. If you are 
 In particular:
 
 * Slave prices don't correspond well to other aspects of the game, they are way to high with claims and way to low otherwise.
-* The reasons behind the AI accepting or initiating slave interactions are not convincing, and the AI never initiates some of them.
+* The reasons behind the AI accepting or initiating slavery interactions are not convincing, and the AI never initiates some of them.
 * It's not exactly easy for the player to find rulers willing to buy or sell slaves, and there are rather few slaves owned by the AI to begin with.
 * *Enslave* is possible on free courtiers, which doesn't make much sense.
 * Once a prisoner is converted to a slave, it's no longer possible to ransom him or her.
@@ -21,7 +21,7 @@ In particular:
 
 In a nutshell, what you can do as a player is easily enslave a lot of people, sell any you don't need to the AI, and buy any you may fancy from the AI, while the AI mostly passively obliges. With mods such as [Carnalitas Slavery Expansion](https://www.loverslab.com/files/file/21651-carnalitas-slavery-expansion/) you can also assign them "professions" for additional benefits. However, these are also human-only, the AI never assigns them. All of this undermines the realism and immersion, and makes the game both a lot easier and less interesting than it could be.
 
-This mod introduces a redesigned slavery system, one aiming to better integrate slavery with other aspects of the game, make interacting with slaves and other rulers more interesting and rewarding, achieve a better game balance, enable more roleplaying options, and maintain a reasonable challenge for the player. It does this by reworking most of the slave interactions, introducing some new ones, making slaves more desirable for council and court positions, adding slavery attitudes and slave-related events, and rebalancing or fixing many of the original effects and outcomes, while still maintaining compatibility with other Carnalitas features and other mods based on Carnalitas.
+This mod introduces a redesigned slavery system, one aiming to better integrate slavery with other aspects of the game, make interacting with slaves and other rulers more interesting and rewarding, achieve a better game balance, enable more roleplaying options, and maintain a reasonable challenge for the player. It does this by reworking most of the slavery interactions, introducing some new ones, making slaves more desirable for council and court positions, adding slavery attitudes and slave-related events, and rebalancing or fixing many of the original effects and outcomes, while still maintaining compatibility with other Carnalitas features and other mods based on Carnalitas.
 
 With this mod:
 
@@ -34,7 +34,7 @@ With this mod:
 * You can choose a **slavery attitude**, one of *Slaver*, *Liberator*, *Slave Trader*, or *Slave Employer* to get a minor modifier and a unique slavery-related perk. This unlocks additional roleplaying options for players and results in actual "human trafficking" when used by the AI.
 * **Additional slaves** fit for specific occupations are spawned into the world via events. Useful characters are more likely to be captured (and then enslaved) instead of killed during raids and sieges.
 * There are **slavery-related flavor events**, such as a slave running away, demands for a slave's freedom, etc. There are also hidden events for AI rulers to interact with their slaves in ways that were previously only available to the player, e.g. have sex with them.
-* There are **fame traits** that add roleplaying flavor, such as the negative *Slaver* trait and the positive *Liberator* trait.
+* There are **fame traits** that add roleplaying flavor, such as the negative *Infamous Slaver* trait and the positive *Famous Liberator* trait.
 
 All taken together, slaves are now genuinely useful to their owners, there is an actual demand for them conditioned by religion and culture, and this demand is satisfied by warfare, raiding, slave trade, and slave-related events. As a player, you can choose between many different ways to interact with the system to either roleplay or use it to your advantage, and it's more challenging and hopefully more interesting to do this.
 
@@ -51,7 +51,7 @@ This mod should be compatible with all mods based on Carnalitas that don't modif
 * [Character Body Overhaul](https://www.loverslab.com/files/file/16683-character-body-overhaul/)
 * [Physical Attributes](https://www.loverslab.com/files/file/16927-physical-attributes/)
 
-This mod may not be compatible with all other mods that modify the slavery system. However, it should still be compatible with mods that don't change the original Carnalitas slave interactions, modifiers, or effects. Compatibility with the following mods has been explicitly verified:
+This mod may not be compatible with all other mods that modify the slavery system. However, it should still be compatible with mods that don't change the original Carnalitas slavery interactions, modifiers, or effects. Compatibility with the following mods has been explicitly verified:
 
 * [Carnalitas Slavery Expansion](https://www.loverslab.com/files/file/21651-carnalitas-slavery-expansion/).
 
@@ -59,7 +59,9 @@ This mod may not be compatible with all other mods that modify the slavery syste
 
 Due to its changes to vanilla files, this mod may conflict with changes done by total conversion mods. This is also true for Carnalitas itself. For best experience, such mods require compatibility patches for both Carnalitas and CSR.
 
-If you still want to try using CSR with a total conversion mod, be prepared that some features might be broken. To make the best of it, follow these recommendations:
+CSR is now fully compatible with [A Game of Thrones](https://steamcommunity.com/sharedfiles/filedetails/?id=2962333032) with [Carnalitas AGOT Compatibility](?) and a CSR AGOT compatibility patch available as a separate download.
+
+If you still want to try using CSR with a different conversion mod, be prepared that some features might be broken. To make the best of it, follow these recommendations:
 
 * Load Carnalitas and CSR **before** the total conversion mod. They overwrite a few vanilla files entirely, and if there are conflicts you would rather want the conversion mod overwrites, not the Carnalitas / CSR ones. Note that they also overwrite some specific vanilla objects, and will always do so, no matter the order.
 * Change the *Universe* CSR game rule to *Fantasy*. This avoids errors for historical religions, cultures, and titles that may have been removed by the conversion mod. Note that there may still be errors for other removed vanilla objects that can't be clearly identified as "historical".
@@ -149,7 +151,7 @@ When deciding to initiate freeing, liberating, demanding ransom, or offering ran
 
 Note that the cost of freeing, liberating, or ransoming a slave is not their slave price, but their usual [ransom cost](https://ck3.paradoxwikis.com/Court#Ransom_cost).
 
-If you enslaved a prisoner instead of ransoming them, you may not be able to sell them to a relative since relatives get additional negative modifiers to their willingness to buy, and this may also be [forbidden by slavery doctrines](#impact-of-slavery-doctrines), but you would still be able to demand ransom from one of their relatives. Similarly, if someone enslaved one of your relatives, you may not be able to buy them, but you would still be able to offer ransom to their owner.
+If you enslaved a prisoner instead of ransoming them, you may not be able to sell them to a relative since relatives get additional negative modifiers to their willingness to buy, and this may also be [penalized by slavery doctrines](#impact-of-slavery-doctrines), but you would still be able to demand ransom from one of their relatives. Similarly, if someone enslaved one of your relatives, you may not be able to buy them, but you would still be able to offer ransom to their owner.
 
 #### Convenience Interactions for the Player
 
@@ -178,17 +180,22 @@ For the purposes of acquiring the *Liberator* trait, the slaves freed by the *De
 
 ### Impact of Slavery Doctrines
 
-Carnalitas introduces the *Slavery Crime* and *Slavery Shunned* religious doctrines that determine whether owning slaves of certain faiths is considered a crime, shunned, or accepted, depending on the faith's hostility level. However, in Carnalitas these doctrines are not followed consistently when determining if someone can be enslaved, sold, bought, or seized, the AI acceptance of slave interactions, or the AI decisions to initiate them. This mod attempts to correct this by rebalancing the impact of slavery doctrines on all slave interactions:
+Carnalitas introduces the *Slavery Crime* and *Slavery Shunned* religious doctrines that determine whether owning slaves of certain faiths is considered a crime, shunned, or accepted, depending on the faith's hostility level. However, in Carnalitas these doctrines are not followed consistently when determining the consequences of slavery interactions, or the AI willingness to initiate or accept them. This mod attempts to correct this by rebalancing the impact of slavery doctrines on all slavery interactions:
 
 * If owning slaves of a certain faith is a crime, for adherents of this faith:
-  * It is not possible to enslave, seize, sell, buy, or gift them for the player. The AI will not initiate such interactions at all.
-  * The AI will not accept sell, buy, or gift interactions for them.
+  * Although it is possible to enslave them, this is penalized by gaining one of the [leveled *Slaver* traits](#leveled-slaver-traits), as well as losing a level of fame.
+  * Initiating or accepting most interactions (except freeing or ransoming) has a piety cost.
+  * The AI will be very unwilling to initiate enslave, seize, sell, buy, or gift interactions for them.
+  * The AI will also be very unwilling to accept sell, buy, or gift interactions for them.
   * The AI will be quite willing to free, liberate, demand ransom, or offer ransom for them.
 * If owning slaves of a certain faith is shunned, for adherents of this faith:
-  * The AI will be quite unwilling to enslave, seize, sell, buy, or gift them.
-  * The AI will be quite unwilling to accept sell, buy, or gift interactions for them.
-  * The AI will be somewhat more willing to free, liberate, demand ransom, or offer ransom for them.
+  * Although it is possible to enslave them, this is penalized by gaining one of the [leveled *Slaver* traits](#leveled-slaver-traits), as well as losing piety.
   * Initiating or accepting most interactions (except freeing or ransoming) has a piety cost.
+  * The AI will be quite unwilling to initiate enslave, seize, sell, buy, or gift interactions for them.
+  * The AI will be also be quite unwilling to accept sell, buy, or gift interactions for them.
+  * The AI will be somewhat more willing to free, liberate, demand ransom, or offer ransom for them.
+
+The actual impact of slavery doctrines on the AI willingness to initiate or slavery accept interactions also depends on the AI zeal, ranging from 150% for very zealous characters to 50% for very cynical ones.
 
 In addition, owning slaves against religious doctrines leads to yearly [piety loss](#piety-loss-from-slaves).
 
@@ -254,12 +261,18 @@ One intended and historically accurate outcome of this is that it results in act
 
 ### Traits
 
-Starting with version 0.9.0, this mod adds two new fame traits, *Slaver* and *Liberator*.
+#### Slaver and Liberator Fame Traits
 
-* *Slaver* is a fame trait that adds negative diplomacy, prestige, MAA maintenance, and general opinion, and positive dread multipliers. It is acquired via an [event](#trait-events) after enslaving and then selling a certain number of people, usually between 20 and 30.
-* *Liberator* is a fame trait that adds positive diplomacy, prestige, MAA maintenance, and general opinion, and negative dread multipliers. It is acquired via an [event](#trait-events) after freeing or ransoming a certain number of people, usually between 20 and 30.
+Starting with version 0.9.0, this mod adds two new fame traits, *Infamous Slaver* and *Famous Liberator*.
+
+* *Infamous Slaver* is a fame trait that adds negative diplomacy, prestige, MAA maintenance, and general opinion, and positive dread multipliers. It is acquired via an [event](#trait-events) after enslaving a certain number of people, usually between 20 and 30.
+* *Famous Liberator* is a fame trait that adds positive diplomacy, prestige, MAA maintenance, and general opinion, and negative dread multipliers. It is acquired via an [event](#trait-events) after freeing, liberating, or ransoming a certain number of people, usually between 20 and 30.
 
 These traits represent consequences of "bad" and "good" behavior towards slaves. They are intended to further improve the balance and add some roleplaying flavor for the player. Although the AI also actively enslaves, frees, sells, and buys slaves, it is very unlikely to reach the numbers required for acquiring one of these traits. They are independent of the [slavery attitudes](#slavery-attitudes) described above, but choosing the *Slaver* or *Liberator* attitude certainly makes acquiring the corresponding trait easier.
+
+#### Leveled Slaver Traits
+
+Starting with version 0.18.0, this mod adds a leveled *Slaver* fame trait. The 2 levels are *Slaver (Hostile Faith)* and *Slaver (Righteous Faith)*. They are acquired automatically after enslaving someone against [slavery doctrines](#impact-of-slavery-doctrines) depending on whether their faith is considered hostile / evil or righteous / astray. They add negative opinion to all adherents of the enslaver's faith, and may add an imprisonment reason as well if owning such characters as slaves is considered a crime.
 
 ### Slavery Events
 
@@ -296,8 +309,8 @@ Once a year rulers may lose piety for any slaves owned against religious doctrin
 
 #### Trait Events
 
-* Every time you sell someone originally enslaved by you, you may acquire the [*Slaver* trait](#traits) via the *Infamous Slaver* event. The chance is 5% after 10 times, 10% after 20, and so on.
-* Every time you free or ransom someone not originally enslaved by you, you may acquire the [*Liberator* trait](#traits) via the *Famous Liberator* event. The chance is 5% after 10 times, 10% after 20, and so on.
+* Every time you enslave someone, you may acquire the [*Infamous Slaver* trait](#traits) via the *Infamous Slaver* event. The chance is 5% after 10 times, 10% after 20, and so on.
+* Every time you free or ransom someone not originally enslaved by you, you may acquire the [*Famous Liberator* trait](#traits) via the *Famous Liberator* event. The chance is 5% after 10 times, 10% after 20, and so on.
 
 ### Slave Memories
 
@@ -376,6 +389,7 @@ The sections below list the changes made to existing vanilla objects in somewhat
 * `court_position_does_not_already_have_a_job_trigger`: Added *Slave Eunuch* and *Mameluke Captain* court positions to the list of "jobs".
 * `can_recruit_character_to_court_trigger`: Disabled the *Invite to Court* interaction for slaves.
 * `kick_from_court_validity_trigger`: Disabled the *Dismiss* interaction for slaves.
+* `carn_gender_can_impregnate_trigger`: Prevented eunuchs from impregnating, and also from getting Carnalitas DT traits.
 
 ### Effects (`scripted_effects`)
 
