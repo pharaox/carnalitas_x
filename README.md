@@ -59,7 +59,7 @@ This mod may not be compatible with all other mods that modify the slavery syste
 
 Due to its changes to vanilla files, this mod may conflict with changes done by total conversion mods. This is also true for Carnalitas itself. For best experience, such mods require compatibility patches for both Carnalitas and CSR.
 
-CSR is now fully compatible with [A Game of Thrones](https://steamcommunity.com/sharedfiles/filedetails/?id=2962333032) with [Carnalitas AGOT Compatibility](?) and a CSR AGOT compatibility patch available as a separate download.
+CSR is now fully compatible with [A Game of Thrones](https://steamcommunity.com/sharedfiles/filedetails/?id=2962333032) with [Carnalitas AGOT Compatibility](https://www.loverslab.com/files/file/32307-carnalitas-agot-compatibility/) and a CSR AGOT compatibility patch available as a separate download.
 
 If you still want to try using CSR with a different conversion mod, be prepared that some features might be broken. To make the best of it, follow these recommendations:
 
