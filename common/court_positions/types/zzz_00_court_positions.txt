@@ -7757,7 +7757,7 @@ chronicler_court_position = {
 	}
 
 	opinion = {
-		value = regular_court_position_opinion
+		value = carnx_regular_court_position_opinion
 	}
 
 	# How high the aptitude has to be to reach the 5 different modifier levels
@@ -7821,7 +7821,6 @@ chronicler_court_position = {
 		scope:employee = {
 			is_imprisoned = no
 			is_adult = yes
-			NOT = { carnx_is_slave_trigger = yes }
 		}
 	}
 
@@ -7858,7 +7857,7 @@ chronicler_court_position = {
 	salary = {
 		round = no
 		gold = {
-			value = minor_court_position_salary
+			value = carnx_court_position_chronicler_salary # minor_court_position_salary
 			# Set to 0 with Dynasty Perk Inner Circle
 			if = {
 				limit = {
@@ -7931,13 +7930,13 @@ chronicler_court_position = {
 	}
 
 	on_court_position_received = {
-		basic_gained_court_position_effect = yes
+		carnx_chronicler_title_accepted_effect = yes
 	}
 	on_court_position_revoked = {
-		basic_revoked_court_position_effect = yes
+		carnx_chronicler_title_revoked_effect = yes
 	}
 	on_court_position_invalidated = {
-		basic_invalidated_court_position_effect = yes
+		carnx_chronicler_title_invalidated_effect = yes
 	}
 	# Scripted value to determine whether an AI will hire/fire a position or not. Hires over 0, fires under -50. Look in _court_positions.info for more extensive documentation!
 	candidate_score = {
@@ -7977,6 +7976,7 @@ chronicler_court_position = {
 			}
 		}
 		add = court_position_debt_considerations_value
+		add = carnx_court_position_candidate_slave_value
 	}
 }
 

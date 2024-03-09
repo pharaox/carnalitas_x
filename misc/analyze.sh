@@ -111,6 +111,10 @@ echo "Master Assassin court position received: $(grep -a "Master Assassin court 
 echo "Master Assassin court position revoked: $(grep -a "Master Assassin court position revoked" debug.log | wc -l)"
 echo "Master Assassin court position invalidated: $(grep -a "Master Assassin court position invalidated" debug.log | wc -l)"
 echo
+echo "Chronicler court position received: $(grep -a "Chronicler court position received" debug.log | wc -l)"
+echo "Chronicler court position revoked: $(grep -a "Chronicler court position revoked" debug.log | wc -l)"
+echo "Chronicler court position invalidated: $(grep -a "Chronicler court position invalidated" debug.log | wc -l)"
+echo
 echo "Slave Concubine court position received: $(grep -a "Slave Concubine court position received" debug.log | wc -l)"
 echo "Slave Concubine court position revoked: $(grep -a "Slave Concubine court position revoked" debug.log | wc -l)"
 echo "Slave Concubine court position invalidated: $(grep -a "Slave Concubine court position invalidated" debug.log | wc -l)"
