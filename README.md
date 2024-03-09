@@ -2,9 +2,13 @@
 
 [Download from LoversLab](https://www.loverslab.com/files/file/25565-carnalitas-slavery-reimagined/)
 
-A comprehensive rework of the Carnalitas slavery system aiming at improved balance and better integration with other aspects of the game.
+A comprehensive rework of the Carnalitas slavery system aiming at improved balance and better integration with other aspects of the game. Now also compatible with AGOT via a compatibility mod.
 
-The latest version is compatible with CK3 1.11.x and Carnalitas 2.2. If you are still on CK3 1.10.x, download version 0.16.x instead, and use it with Carnalitas 2.1.
+The latest version is compatible with CK3 1.12.x and Carnalitas 2.3. If you are still on CK3 1.11.x, use [version 0.18.0](https://github.com/pharaox/carnalitas_x/releases/download/0.18.0/carnalitas_slavery_reimagined-0.18.0.zip) instead with Carnalitas 2.2.
+
+The latest version of the CSR AGOT compatibility mod is compatible with CK3 1.11.x, Carnalitas 2.2, CSR 0.18.0, and AGOT 0.2.x.
+
+**Note:** The latest version of Carnalitas introduces incompatible changes that break all existing mods based on it. While this mod is now adapted to these changes, other mods you may be using, including [Carnalitas Love Reimagined](https://www.loverslab.com/files/file/29200-carnalitas-love-reimagined/) (for the time being) are not. Don't use other Carnalitas mods with this version unless their authors have updated them.
 
 ## Overview
 
@@ -100,7 +104,7 @@ Characters with the [*Slave Trader* attitude](#slavery-attitudes) get more favor
 
 When buying slaves, the AI acceptance is influenced by a comprehensive estimation of the slave's usefulness based on factors such as:
 
-* Is the slave better than other options available to the buyer as a councillor, court position (any of 14 existing and 2 new specific to slaves), knight, or commander, and how much better exactly.
+* Is the slave better than other options available to the buyer as a councillor, court position (any of 17 existing and 3 new specific to slaves), knight, or commander, and how much better exactly.
 * Does the slave have any useful claims on neighboring realms.
 * Is the buyer attracted to the sex of the slave, and if yes the slave's attraction.
 * Is the slave a visibly fertile female.
@@ -219,7 +223,7 @@ Note that only slaves, but not former slaves, can be appointed to slave court po
 
 This mod divides the existing council and court positions into ones that are available to slaves (always or only for certain government forms), and ones that are not available to slaves at all.
 
-The following 16 court positions are available to slaves: *Court Physician*, *Antiquarian*, *Court Gardener*, *Wet Nurse*, *Court Tutor*, *Food Taster*, *Seneschal*, *Cupbearer*, *Chief Eunuch*, *Court Jester*, *Court Poet*, *Court Musician*, *Bodyguard*, *Personal Champion*, *Executioner* and *Master Assassin*. The rest of the court positions are not available to slaves, because they are considered either ceremonial (reserved for vassals to make them happy) or religious, or are subject to certain game limitations.
+The following 17 court positions are available to slaves: *Court Physician*, *Antiquarian*, *Court Gardener*, *Wet Nurse*, *Court Tutor*, *Food Taster*, *Seneschal*, *Cupbearer*, *Chief Eunuch*, *Court Jester*, *Court Poet*, *Court Musician*, *Bodyguard*, *Personal Champion*, *Executioner*, *Master Assassin*, and *Chronicler*. The rest of the court positions are not available to slaves, because they are considered either ceremonial (reserved for vassals to make them happy) or religious, or are subject to certain game limitations.
 
 The following 4 council positions are available to slaves: *Chancellor*, *Steward*, *Marshal*, and *Spymaster*. The *Court Chaplain* council position is not available to slaves, since it is considered religious. The *Vizier* council position (added in CK3 1.11) is also not available to slaves, since it is reserved for diarchs and spouses. Note that *Chancellor*, *Steward*, and *Marshal* are only available to slaves if your government is clan or tribal, to reflect the fact that historically such important roles were held by slaves only if they were considered more loyal than other available options, which was the case in certain Muslim and tribal societies. They are also available to characters with the [*Slave Employer* attitude](#slavery-attitudes).
 
@@ -296,7 +300,7 @@ This event fires approximately every 2 years for every ruler that owns eligible 
 
 #### AI Rulers Having Sex with Their Slaves
 
-AI rulers may have sex with one of their slaves (or former slaves who are also *Slave Concubines*) once a year if they are attracted to them, via a hidden event. The chance of pregnancy is dynamic if [Carnalitas Love Reimagined](https://www.loverslab.com/files/file/29200-carnalitas-love-reimagined/) is installed, or hardcoded at 10% otherwise.
+AI rulers may have sex with one of their slaves (or former slaves who are also *Slave Concubines*) once a year if they are attracted to them, via a hidden event. The chance of pregnancy is dynamic with an average of 20%.
 
 This event will fire also for the player if the *Make Love* interaction is disabled. If the *Make Love* interaction is enabled, the event will not fire, since the player is then expected to make love to their slaves and *Slave Concubines*. The chance of pregnancy for the *Make Love* interaction is hardcoded at 30%, as in the original Carnalitas.
 
@@ -348,6 +352,7 @@ The sections below list the changes made to existing Carnalitas objects in somew
 
 * `carn_possible_pregnancy_after_sex_with_character_trigger`: Changed usages of `effective_age` to `carnx_age_value` to make sure that the age can be properly overridden by compatibility submods.
 * `carn_relationship_allows_free_sex_trigger`: Enabled free sex with former slaves that are also your *Slave Concubines*.
+* `carn_gender_can_impregnate_trigger`: Prevented eunuchs from impregnating, and also from getting Carnalitas DT traits.
 
 ### Effects (`scripted_effects`)
 
@@ -389,7 +394,6 @@ The sections below list the changes made to existing vanilla objects in somewhat
 * `court_position_does_not_already_have_a_job_trigger`: Added *Slave Eunuch* and *Mameluke Captain* court positions to the list of "jobs".
 * `can_recruit_character_to_court_trigger`: Disabled the *Invite to Court* interaction for slaves.
 * `kick_from_court_validity_trigger`: Disabled the *Dismiss* interaction for slaves.
-* `carn_gender_can_impregnate_trigger`: Prevented eunuchs from impregnating, and also from getting Carnalitas DT traits.
 
 ### Effects (`scripted_effects`)
 

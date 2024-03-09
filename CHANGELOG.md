@@ -1,5 +1,15 @@
 # Changelog
 
+## Version 0.19.0
+
+### Compatibility
+
+* Adapted to CK3 1.12.2.1 and Carnalitas 2.3.
+
+### Court Positions
+
+* Enabled *Chronicler* court position to be assigned to slaves.
+
 ## Version 0.18.0
 
 ### Interactions
