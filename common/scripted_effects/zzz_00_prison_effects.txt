@@ -121,5 +121,14 @@ imprison_tyranny_effect = {
 
 	else = {
 		add_tyranny = imprisonment_tyranny_gain
+		if = {
+			limit = {
+				scope:recipient = {
+					is_landed = yes
+					is_alive = yes
+				}
+			}
+			scope:actor = { add_legitimacy = miniscule_legitimacy_loss }
+		}
 	}
 }

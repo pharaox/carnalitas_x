@@ -29,6 +29,7 @@
 # court_cave_hermit_position - No [religious]
 # master_assassin_court_position - Yes
 # court_scholar_court_position - No [ceremonial]
+# chronicler_court_position - No [TBD]
 
 # CSR Court Positions
 

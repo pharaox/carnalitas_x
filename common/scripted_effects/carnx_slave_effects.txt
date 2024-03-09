@@ -426,6 +426,7 @@ carnx_enslave_effect = {
 					scope:slave = { target_is_liege_or_above = prev }
 				}
 				add_tyranny = carnx_enslave_tyranny_gain
+				add_legitimacy = miniscule_legitimacy_loss
 			}
 			else_if = {
 				limit = {
@@ -616,7 +617,7 @@ carn_free_slave_effect = {
 		type = slave_owner
 		remove_relation_slave = prev
 		hidden_effect = {
-			carn_add_mutual_former_slave_or_slave_owner_opinion_effect = { CHARACTER = prev }
+			carnx_add_mutual_former_slave_or_slave_owner_opinion_effect = { CHARACTER = prev }
 		}
 		save_scope_as = former_owner
 	}
@@ -1113,7 +1114,7 @@ carnx_buy_slave_effect = {
 			every_relation = {
 				type = slave_owner
 				remove_relation_slave = prev
-				carn_add_mutual_former_slave_or_slave_owner_opinion_effect = { CHARACTER = prev }
+				carnx_add_mutual_former_slave_or_slave_owner_opinion_effect = { CHARACTER = prev }
 			}
 		}
 
@@ -1282,7 +1283,7 @@ carnx_seize_slave_effect = {
 			every_relation = {
 				type = slave_owner
 				remove_relation_slave = prev
-				carn_add_mutual_former_slave_or_slave_owner_opinion_effect = { CHARACTER = prev }
+				carnx_add_mutual_former_slave_or_slave_owner_opinion_effect = { CHARACTER = prev }
 				save_scope_as = former_owner
 			}
 		}
@@ -1388,7 +1389,7 @@ carnx_gift_slave_effect = {
 			every_relation = {
 				type = slave_owner
 				remove_relation_slave = prev
-				carn_add_mutual_former_slave_or_slave_owner_opinion_effect = { CHARACTER = prev }
+				carnx_add_mutual_former_slave_or_slave_owner_opinion_effect = { CHARACTER = prev }
 			}
 		}
 
@@ -1654,8 +1655,7 @@ carnx_remove_gift_slave_variables_effect = {
 }
 
 # Add carn_former_slave_or_slave_owner_opinion from CHARACTER to the scoped character.
-# Use carn prefix to avoid "carnx" errors.
-carn_add_former_slave_or_slave_owner_opinion_effect = {
+carnx_add_former_slave_or_slave_owner_opinion_effect = {
 	reverse_add_opinion = {
 		target = $CHARACTER$
 		modifier = carn_former_slave_or_slave_owner_opinion
@@ -1663,8 +1663,7 @@ carn_add_former_slave_or_slave_owner_opinion_effect = {
 }
 
 # Add carn_former_slave_or_slave_owner_opinion mutually for CHARACTER and the scoped character.
-# Use carn prefix to avoid "carnx" errors.
-carn_add_mutual_former_slave_or_slave_owner_opinion_effect = {
+carnx_add_mutual_former_slave_or_slave_owner_opinion_effect = {
 	add_opinion = {
 		target = $CHARACTER$
 		modifier = carn_former_slave_or_slave_owner_opinion
