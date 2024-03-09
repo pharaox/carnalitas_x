@@ -64,6 +64,8 @@
  carnx_lacking_bodyguard_reason: "[recipient.GetShortUIName|U]缺少一个好的$bodyguard_court_position$：$VALUE|=+0$"
  carnx_lacking_champion_reason: "[recipient.GetShortUIName|U]缺少一个好的$champion_court_position$：$VALUE|=+0$"
  carnx_lacking_executioner_reason: "[recipient.GetShortUIName|U]缺少一个好的$executioner_court_position$：$VALUE|=+0$"
+ carnx_lacking_master_assassin_reason: "[recipient.GetShortUIName|U]缺少一个好的$master_assassin_court_position$:$VALUE|=+0$"
+ carnx_lacking_chronicler_reason: "[recipient.GetShortUIName|U]缺少一个好的$chronicler_court_position$:$VALUE|=+0$"
  carnx_lacking_slave_concubine_reason: "[recipient.GetShortUIName|U]缺少一个好的$carnx_slave_concubine_court_position$：$VALUE|=+0$"
  carnx_lacking_slave_captain_reason: "[recipient.GetShortUIName|U]可以使用一个好的 $carnx_slave_captain_court_position$: $VALUE|=+0$"
  carnx_lacking_slave_eunuch_reason: "[recipient.GetShortUIName|U]可以使用一个好的$carnx_slave_eunuch_court_position$ : $VALUE|=+0$"
