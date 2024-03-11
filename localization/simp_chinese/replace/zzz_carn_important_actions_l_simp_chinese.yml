@@ -1,9 +1,0 @@
-﻿l_simp_chinese:
- action_carn_can_demand_free_illegal_slaves_interaction: "@carnx_broken_chain_icon!你可以$carn_demand_free_illegal_slaves_interaction$"
- action_carn_can_demand_free_illegal_slaves_interaction_label: "向[recipient.GetUINameNoTooltip]$action_carn_can_demand_free_illegal_slaves_interaction$"
- action_carn_can_demand_free_illegal_slaves_interaction_desc: "你可以要求[recipient.GetUIName]释放[recipient.GetSheHe]非法拥有的[slaves|E]。"
- action_carn_can_demand_free_illegal_slaves_interaction_click: "#I 点击以$carn_demand_free_illegal_slaves_interaction$#!"
- action_carn_can_demand_free_illegal_slaves_interaction_combined_group_label: "$action_carn_can_demand_free_illegal_slaves_interaction$"
- action_carn_can_demand_free_illegal_slaves_interaction_combined_group_name: "$action_carn_can_demand_free_illegal_slaves_interaction$"
- action_carn_can_demand_free_illegal_slaves_interaction_combined_group_description: "你可以要求你的封臣们解放所有他们非法拥有的[slaves|E]。"
- action_carn_can_demand_free_illegal_slaves_interaction_combined_label: "来自[recipient.GetUINameNoTooltip]"
