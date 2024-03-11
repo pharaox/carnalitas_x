@@ -140,4 +140,4 @@ carnx_slave_0003_challenge_multiplier = 1.5
 
 # Pregnancy chances
 # Overridden by CLR script value
-carnx_pregnancy_chance_value = 20
+carnx_pregnancy_chance_value = 10

@@ -4,11 +4,11 @@
 
 A comprehensive rework of the Carnalitas slavery system aiming at improved balance and better integration with other aspects of the game. Now also compatible with AGOT via a compatibility mod.
 
-The latest version is compatible with CK3 1.12.x and Carnalitas 2.3. If you are still on CK3 1.11.x, use [version 0.18.0](https://github.com/pharaox/carnalitas_x/releases/download/0.18.0/carnalitas_slavery_reimagined-0.18.0.zip) instead with Carnalitas 2.2.
+The latest version is compatible with CK3 1.12.x and Carnalitas 2.4. If you are still on CK3 1.11.x, use [version 0.18.0](https://github.com/pharaox/carnalitas_x/releases/download/0.18.0/carnalitas_slavery_reimagined-0.18.0.zip) instead with Carnalitas 2.2.
 
 The latest version of the CSR AGOT compatibility mod is compatible with CK3 1.11.x, Carnalitas 2.2, CSR 0.18.0, and AGOT 0.2.x.
 
-**Note:** The latest version of Carnalitas introduces incompatible changes that break all existing mods based on it. While this mod is now adapted to these changes, other mods you may be using, including [Carnalitas Love Reimagined](https://www.loverslab.com/files/file/29200-carnalitas-love-reimagined/) (for the time being) are not. Don't use other Carnalitas mods with this version unless their authors have updated them.
+**Note:** Don't use Carnalitas 2.3 as it introduces incompatible changes that break most existing mods based on it. This has been fixed in Carnalitas 2.4.
 
 ## Overview
 

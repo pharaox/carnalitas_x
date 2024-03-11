@@ -111,9 +111,13 @@ carnx_slave.0002 = {
 
 			carnx_debug_log_effect = { MSG = carnx_debug_msg_character_had_sex_with_slave }
 
-			carnx_had_sex_with_slave_effect = {
-				PARTNER = scope:slave
-				PREGNANCY_CHANCE = carnx_pregnancy_chance_value
+			carn_had_sex_with_effect = {
+				CHARACTER_1 = root
+				CHARACTER_2 = scope:slave
+				C1_PREGNANCY_CHANCE = carnx_pregnancy_chance_value
+				C2_PREGNANCY_CHANCE = carnx_pregnancy_chance_value
+				STRESS_EFFECTS = no
+				DRAMA = yes
 			}
 		}
 	}
