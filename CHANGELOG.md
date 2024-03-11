@@ -1,5 +1,11 @@
 # Changelog
 
+## Version 0.19.1
+
+### Compatibility
+
+* Adapted to Carnalitas 2.4.
+
 ## Version 0.19.0
 
 ### Compatibility
