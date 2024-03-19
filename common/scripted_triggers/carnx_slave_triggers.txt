@@ -469,6 +469,24 @@ carnx_is_slavery_never_accepted_trigger = {
 	}
 }
 
+carnx_is_slavery_always_crime_trigger = {
+	faith = {
+		AND = {
+			has_doctrine = carn_doctrine_same_slavery_crime
+			has_doctrine = carn_doctrine_other_slavery_crime
+		}
+	}
+}
+
+carnx_is_slavery_never_crime_trigger = {
+	faith = {
+		NOR = {
+			has_doctrine = carn_doctrine_same_slavery_crime
+			has_doctrine = carn_doctrine_other_slavery_crime
+		}
+	}
+}
+
 carnx_can_serve_as_chancellor_trigger = {
 	carnx_can_serve_as_councillor_trigger = {
 		TYPE = councillor_chancellor
