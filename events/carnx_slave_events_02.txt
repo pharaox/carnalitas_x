@@ -111,6 +111,7 @@ carnx_slave.0002 = {
 
 			carnx_debug_log_effect = { MSG = carnx_debug_msg_character_had_sex_with_slave }
 
+			carn_sex_scene_no_memory_effect = yes
 			carn_had_sex_with_effect = {
 				CHARACTER_1 = root
 				CHARACTER_2 = scope:slave
