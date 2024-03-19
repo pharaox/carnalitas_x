@@ -16,6 +16,7 @@ carn_seize_slave_interaction = {
 	is_shown = {
 		NOT = { has_game_rule = carn_slavery_content_disabled }
 		scope:actor = {
+			carnx_can_be_slave_owner_trigger = yes
 			NOT = { has_relation_slave = scope:recipient }
 		}
 		scope:recipient = {

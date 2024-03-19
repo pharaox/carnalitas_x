@@ -2,6 +2,7 @@
 
 scripted_trigger carnx_slave_0001_valid_liege_trigger = {
 	is_available_adult = yes
+	carnx_can_be_slave_owner_trigger = yes
 	exists = capital_province
 }
 

@@ -44,6 +44,10 @@ carnx_can_start_interaction_trigger = {
 	is_imprisoned = no
 }
 
+carnx_can_be_slave_owner_trigger = {
+	always = yes
+}
+
 carnx_slave_can_be_sold_trigger = {
 	carn_slave_can_be_sold_trigger = yes
 	is_travelling = no
