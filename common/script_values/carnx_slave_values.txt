@@ -8,25 +8,25 @@ carnx_slave_base_price_value = {
 		limit = {
 			any_claim = { tier = tier_empire }
 		}
-		add = 100
+		add = 50
 	}
 	else_if = {
 		limit = {
 			any_claim = { tier = tier_kingdom }
 		}
-		add = 75
+		add = 37
 	}
 	else_if = {
 		limit = {
 			any_claim = { tier = tier_duchy }
 		}
-		add = 50
+		add = 25
 	}
 	else_if = {
 		limit = {
 			any_claim = { tier = tier_county }
 		}
-		add = 25
+		add = 12
 	}
 
 	# Dynasty (5 for each dynasty prestige level, reduced compared to guests 15 -> 5)
@@ -594,10 +594,10 @@ carnx_slavery_piety_loss = {
 				has_no_particular_noble_roots_trigger = yes
 			}
 		}
-		value = minor_piety_loss
+		value = medium_piety_loss
 	}
 	else = {
-		value = medium_piety_loss
+		value = major_piety_loss
 	}
 }
 
@@ -608,10 +608,10 @@ carnx_slavery_major_piety_loss = {
 				has_no_particular_noble_roots_trigger = yes
 			}
 		}
-		value = medium_piety_loss
+		value = major_piety_loss
 	}
 	else = {
-		value = major_piety_loss
+		value = massive_piety_loss
 	}
 }
 

@@ -242,7 +242,7 @@ carnx_enslave_effect = {
 			}
 			else_if = {
 				limit = { carnx_is_slavery_shunned_trigger = { CHARACTER = scope:slave } }
-				add_piety = carnx_slavery_piety_loss
+				add_piety = carnx_slavery_major_piety_loss
 			}
 
 			# Add faith slaver trait
@@ -866,12 +866,6 @@ carnx_free_slave_actual_effect = {
 				callous = minor_stress_impact_gain
 			}
 
-			# Other consequences
-			carnx_apply_slavery_consequences_effect = {
-				CHARACTER = scope:slave
-				ACTION = flag:free
-			}
-
 			hidden_effect = {
 				# Potentially acquire liberator trait if scope:slave not enslaved by $EMANCIPATOR$
 				if = {
@@ -883,6 +877,12 @@ carnx_free_slave_actual_effect = {
 					carnx_potentially_acquire_liberator_trait_effect = yes
 				}
 			}
+		}
+
+		# Other consequences
+		carnx_apply_slavery_consequences_effect = {
+			CHARACTER = scope:slave
+			ACTION = flag:free
 		}
 
 		# Add opinion from former owner if different from emancipator
