@@ -562,52 +562,18 @@ carnx_slavery_modifier = {
 
 carnx_capture_chance_modifier = {
 	modifier = {
-		add = 40
-		NOT = {
-			any_claim = {
-				useful_courtier_or_guest_claim_trigger = { RULER = $RULER$ }
-			}
+		$WINNER$ = {
+			carnx_is_slavery_accepted_trigger = { CHARACTER = prev }
 		}
+		add = carnx_slave_base_price_value
 	}
 	modifier = {
-		add = 10
-		NAND = {
-			can_be_chancellor_trigger = { COURT_OWNER = $RULER$ }
-			diplomacy >= high_skill_rating
+		$WINNER$ = {
+			carnx_is_slavery_shunned_trigger = { CHARACTER = prev }
 		}
-	}
-	modifier = {
-		add = 10
-		NAND = {
-			can_be_marshal_trigger = { COURT_OWNER = $RULER$ }
-			martial >= high_skill_rating
+		add = {
+			value = carnx_slave_base_price_value
+			divide = 2
 		}
-	}
-	modifier = {
-		add = 10
-		NAND = {
-			can_be_steward_trigger = { COURT_OWNER = $RULER$ }
-			stewardship >= high_skill_rating
-		}
-	}
-	modifier = {
-		add = 10
-		NAND = {
-			can_be_spymaster_trigger = { COURT_OWNER = $RULER$ }
-			intrigue >= high_skill_rating
-		}
-	}
-	modifier = {
-		add = 10
-		NOT = { learning >= high_skill_rating }
-	}
-	modifier = {
-		add = 10
-		NOT = {	prowess >= high_skill_rating }
-	}
-	modifier = {
-		add = 40
-		is_female = yes
-		is_visibly_fertile = yes
 	}
 }
