@@ -898,7 +898,12 @@ carnx_free_slave_actual_effect = {
 
 		if = {
 			limit = {
-				scope:slave = { NOT = { is_courtier_of = $EMANCIPATOR$ } }
+				scope:slave = {
+					NOR = {
+						is_courtier_of = $EMANCIPATOR$
+						has_character_flag = carnx_block_add_courtier
+					}
+				}
 			}
 			hidden_effect = {
 				carnx_add_courtier_effect = { SLAVE = scope:slave }
@@ -1007,7 +1012,12 @@ carnx_ransom_slave_actual_effect = {
 			# Add slave to payer's court
 			if = {
 				limit = {
-					scope:slave = { NOT = { is_courtier_of = scope:payer } }
+					scope:slave = {
+						NOR = {
+							is_courtier_of = scope:payer
+							has_character_flag = carnx_block_add_courtier
+						}
+					}
 				}
 				carnx_add_courtier_effect = { SLAVE = scope:slave }
 			}
