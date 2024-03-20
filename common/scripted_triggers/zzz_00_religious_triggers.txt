@@ -1,0 +1,9 @@
+﻿can_take_religious_vows_disregard_marriage_trigger = {
+	is_available_ai = yes
+	faith = scope:actor.faith
+	is_ruler = no
+	NOT = { has_trait = excommunicated }
+	NOT = { has_character_flag = holy_order_member_requested_return_home }
+	# CSR: Disable Take Vows for slaves since they will be returned automatically
+	NOT = { carnx_is_slave_trigger = yes }
+}

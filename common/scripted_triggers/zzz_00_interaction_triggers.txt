@@ -23,8 +23,6 @@ kick_from_court_validity_trigger = {
 			any_consort = { is_diarch = yes }
 		}
 		# CSR: Disable Dismiss for slaves since they will be returned automatically
-		scope:actor = {
-			has_relation_slave = prev
-		}
+		carnx_is_slave_trigger = yes
 	}
 }
