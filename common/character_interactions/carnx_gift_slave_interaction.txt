@@ -293,7 +293,7 @@ carnx_gift_slave_interaction = {
 							}
 						}
 					}
-					add = 100
+					add = 50
 				}
 			}
 		}
@@ -480,7 +480,7 @@ carnx_gift_slave_interaction = {
 							}
 						}
 					}
-					add = 100
+					add = 50
 				}
 			}
 		}
