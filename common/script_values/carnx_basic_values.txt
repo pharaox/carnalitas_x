@@ -62,7 +62,9 @@ carnx_ai_positive_shunned_impact_reduced_base_value = 25
 carnx_buy_sell_slave_ai_opinion_multiplier = 0.1
 
 # Multiplier for the slave base price
-carnx_slave_base_price_multiplier = 0.75
+carnx_slave_base_price_multiplier = {
+	value = 0.75
+}
 
 # Multiplier for the opinion gain from gifting a slave
 carnx_gift_slave_opinion_multiplier = 1.25
