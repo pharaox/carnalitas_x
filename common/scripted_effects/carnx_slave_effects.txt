@@ -240,10 +240,12 @@ carnx_enslave_effect = {
 				limit = { carnx_is_slavery_crime_trigger = { CHARACTER = scope:slave } }
 				add_piety_level = -1
 				add_piety = carnx_slavery_major_piety_loss
+				carnx_slavery_doctrines_stress_impact_effect = yes
 			}
 			else_if = {
 				limit = { carnx_is_slavery_shunned_trigger = { CHARACTER = scope:slave } }
 				add_piety = carnx_slavery_piety_loss
+				carnx_slavery_doctrines_minor_stress_impact_effect = yes
 			}
 
 			# Add faith slaver trait
@@ -858,6 +860,7 @@ carnx_free_slave_actual_effect = {
 					}
 				}
 				add_piety = carnx_slavery_piety_gain
+				carnx_slavery_doctrines_reverse_stress_impact_effect = yes
 			}
 
 			# Add / remove stress
@@ -1000,6 +1003,7 @@ carnx_ransom_slave_actual_effect = {
 				carnx_is_slavery_crime_trigger = { CHARACTER = scope:slave }
 			}
 			add_piety = carnx_slavery_minor_piety_gain
+			carnx_slavery_doctrines_reverse_minor_stress_impact_effect = yes
 		}
 
 		# Add / remove stress
@@ -1164,10 +1168,12 @@ carnx_buy_slave_effect = {
 		if = {
 			limit = { carnx_is_slavery_crime_trigger = { CHARACTER = scope:slave } }
 			add_piety = carnx_slavery_major_piety_loss
+			carnx_slavery_doctrines_stress_impact_effect = yes
 		}
 		else_if = {
 			limit = { carnx_is_slavery_shunned_trigger = { CHARACTER = scope:slave } }
 			add_piety = carnx_slavery_piety_loss
+			carnx_slavery_doctrines_minor_stress_impact_effect = yes
 		}
 
 		# Other consequences
@@ -1192,10 +1198,12 @@ carnx_buy_slave_effect = {
 		if = {
 			limit = { carnx_is_slavery_crime_trigger = { CHARACTER = scope:slave } }
 			add_piety = carnx_slavery_major_piety_loss
+			carnx_slavery_doctrines_stress_impact_effect = yes
 		}
 		else_if = {
 			limit = { carnx_is_slavery_shunned_trigger = { CHARACTER = scope:slave } }
 			add_piety = carnx_slavery_piety_loss
+			carnx_slavery_doctrines_minor_stress_impact_effect = yes
 		}
 
 		# Other consequences
@@ -1320,10 +1328,12 @@ carnx_seize_slave_effect = {
 		if = {
 			limit = { carnx_is_slavery_crime_trigger = { CHARACTER = scope:slave } }
 			add_piety = carnx_slavery_major_piety_loss
+			carnx_slavery_doctrines_stress_impact_effect = yes
 		}
 		else_if = {
 			limit = { carnx_is_slavery_shunned_trigger = { CHARACTER = scope:slave } }
 			add_piety = carnx_slavery_piety_loss
+			carnx_slavery_doctrines_minor_stress_impact_effect = yes
 		}
 
 		# Other consequences
@@ -1422,10 +1432,12 @@ carnx_gift_slave_effect = {
 		if = {
 			limit = { carnx_is_slavery_crime_trigger = { CHARACTER = scope:slave } }
 			add_piety = carnx_slavery_major_piety_loss
+			carnx_slavery_doctrines_stress_impact_effect = yes
 		}
 		else_if = {
 			limit = { carnx_is_slavery_shunned_trigger = { CHARACTER = scope:slave } }
 			add_piety = carnx_slavery_piety_loss
+			carnx_slavery_doctrines_minor_stress_impact_effect = yes
 		}
 
 		# Other consequences
@@ -1450,10 +1462,12 @@ carnx_gift_slave_effect = {
 		if = {
 			limit = { carnx_is_slavery_crime_trigger = { CHARACTER = scope:slave } }
 			add_piety = carnx_slavery_major_piety_loss
+			carnx_slavery_doctrines_stress_impact_effect = yes
 		}
 		else_if = {
 			limit = { carnx_is_slavery_shunned_trigger = { CHARACTER = scope:slave } }
 			add_piety = carnx_slavery_piety_loss
+			carnx_slavery_doctrines_minor_stress_impact_effect = yes
 		}
 
 		# Other consequences
@@ -1847,5 +1861,33 @@ carnx_apply_slavery_consequences_effect = {
 			exists = $CHARACTER$
 			$ACTION$ = flag:none
 		}
+	}
+}
+
+carnx_slavery_doctrines_stress_impact_effect = {
+	stress_impact = {
+		zealous = medium_stress_impact_gain # 40
+		cynical = minor_stress_impact_loss # -15
+	}
+}
+
+carnx_slavery_doctrines_minor_stress_impact_effect = {
+	stress_impact = {
+		zealous = minor_stress_impact_gain # 20
+		cynical = miniscule_stress_impact_loss # -5
+	}
+}
+
+carnx_slavery_doctrines_reverse_stress_impact_effect = {
+	stress_impact = {
+		zealous = medium_stress_impact_loss # -30
+		cynical = minor_stress_impact_gain # 20
+	}
+}
+
+carnx_slavery_doctrines_reverse_minor_stress_impact_effect = {
+	stress_impact = {
+		zealous = minor_stress_impact_loss # -15
+		cynical = miniscule_stress_impact_gain # 10
 	}
 }
