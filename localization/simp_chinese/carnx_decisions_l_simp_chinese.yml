@@ -1,6 +1,6 @@
 ﻿l_simp_chinese:
  carnx_choose_slavery_attitude_decision:0 "选择对待奴隶态度"
  carnx_choose_slavery_attitude_decision_desc:0 "我可以选择对奴隶制的态度以从中获利"
- carnx_choose_slavery_attitude_decision_tooltip:0 "你将能够选择你对[slavery|E]的态度，$carnx_slavery_attitude_slaver_modifier$，$carnx_slavery_attitude_liberator_modifier$，$carnx_slavery_attitude_trader_modifier$，或者$carnx_slavery_attitude_employer_modifier$其中之一。每种态度都会给你一个修正和独特的奴隶技能。"
+ carnx_choose_slavery_attitude_decision_tooltip:0 "你可以选择你对[slavery|E]的态度，$carnx_slavery_attitude_slaver_modifier$，$carnx_slavery_attitude_liberator_modifier$，$carnx_slavery_attitude_trader_modifier$或$carnx_slavery_attitude_employer_modifier$。每种态度都会给你一个修正和独特的奴隶制增益。"
  carnx_choose_slavery_attitude_decision.tt:0 "$carnx_choose_slavery_attitude_decision_tooltip$"
  carnx_choose_slavery_attitude_decision_confirm:0 "选择对待奴隶态度"
