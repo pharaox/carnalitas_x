@@ -594,10 +594,10 @@ carnx_slavery_piety_loss = {
 				has_no_particular_noble_roots_trigger = yes
 			}
 		}
-		value = medium_piety_loss
+		value = minor_piety_loss
 	}
 	else = {
-		value = major_piety_loss
+		value = medium_piety_loss
 	}
 }
 

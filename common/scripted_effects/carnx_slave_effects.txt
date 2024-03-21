@@ -239,10 +239,11 @@ carnx_enslave_effect = {
 			if = {
 				limit = { carnx_is_slavery_crime_trigger = { CHARACTER = scope:slave } }
 				add_piety_level = -1
+				add_piety = carnx_slavery_major_piety_loss
 			}
 			else_if = {
 				limit = { carnx_is_slavery_shunned_trigger = { CHARACTER = scope:slave } }
-				add_piety = carnx_slavery_major_piety_loss
+				add_piety = carnx_slavery_piety_loss
 			}
 
 			# Add faith slaver trait
