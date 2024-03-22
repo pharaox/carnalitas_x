@@ -290,7 +290,7 @@ carn_free_slave_interaction = {
 	}
 
 	ai_targets = {
-		ai_recipients = courtiers
+		ai_recipients = scripted_relations
 	}
 
 	ai_frequency = 24

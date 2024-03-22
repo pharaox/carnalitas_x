@@ -434,8 +434,6 @@ carnx_pay_ransom_slave_interaction = {
 		ai_recipients = vassals
 		ai_recipients = peer_vassals
 		ai_recipients = neighboring_rulers
-		ai_recipients = family
-		ai_recipients = scripted_relations
 	}
 
 	ai_frequency = 24

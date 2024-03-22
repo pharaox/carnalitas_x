@@ -48,6 +48,27 @@ carnx_gift_slave_interaction = {
 				carnx_is_slave_owner_trigger = yes
 			}
 		}
+		trigger_if = {
+			limit = {
+				scope:actor = { is_ai = yes }
+			}
+			scope:recipient = {
+				# Basic filtering
+				carnx_gift_slave_recipient_trigger = yes
+
+				NOR = {
+					# Do not send double-gifts
+					has_opinion_modifier = {
+						target = scope:actor
+						modifier = gift_opinion
+					}
+
+					# Don't gift anything to rivals / nemesises
+					has_relation_rival = scope:actor
+					has_relation_nemesis = scope:actor
+				}
+			}
+		}
 		# Performance: AI should not attempt unlikely interactions
 		scope:actor = {
 			trigger_if = {
@@ -317,16 +338,19 @@ carnx_gift_slave_interaction = {
 
 	ai_targets = {
 		ai_recipients = liege
-		ai_recipients = vassals
-		ai_recipients = peer_vassals
-		ai_recipients = neighboring_rulers
-		ai_recipients = scripted_relations
 	}
 	ai_targets = {
-		ai_recipients = children
-		ai_recipients = family
-		ai_recipients = dynasty
-		max = 20
+		ai_recipients = vassals
+		max = 10
+	}
+	ai_targets = {
+		ai_recipients = peer_vassals
+		ai_recipients = neighboring_rulers
+		max = 5
+	}
+	ai_targets = {
+		ai_recipients = scripted_relations
+		max = 5
 	}
 	ai_target_quick_trigger = {
 		adult = yes
@@ -501,36 +525,6 @@ carnx_gift_slave_interaction = {
 					add = 50
 				}
 			}
-		}
-
-		# Do not send double-gifts
-		modifier = {
-			scope:recipient = {
-				has_opinion_modifier = {
-					target = scope:actor
-					modifier = gift_opinion
-				}
-			}
-			factor = 0
-		}
-
-		# Basic filtering
-		modifier = {
-			scope:recipient = {
-				NOT = { carnx_gift_slave_recipient_trigger = yes }
-			}
-			factor = 0
-		}
-
-		# Don't gift anything to rivals / nemesises
-		modifier = {
-			scope:recipient = {
-				OR = {
-					has_relation_rival = scope:actor
-					has_relation_nemesis = scope:actor
-				}
-			}
-			factor = 0
 		}
 
 		# More likely to gift the human player
