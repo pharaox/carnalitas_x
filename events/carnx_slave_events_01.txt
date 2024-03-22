@@ -2,7 +2,12 @@
 
 scripted_trigger carnx_slave_0001_valid_liege_trigger = {
 	is_available_adult = yes
+	highest_held_title_tier >= tier_county
 	carnx_can_be_slave_owner_trigger = yes
+	NOR = {
+		carnx_is_slavery_always_crime_trigger = yes
+		carnx_is_slavery_always_forbidden_trigger = { ACTION = flag:buy }
+	}
 	exists = capital_province
 }
 
