@@ -15,37 +15,6 @@ carn_sell_slave_interaction = {
 	ai_min_reply_days = 4
 	ai_max_reply_days = 9
 
-	redirect = {
-		# If the recipient is a slave of scope:actor that they are likely to sell,
-		# redirect to a random valid buyer who is likely to buy the slave
-		scope:recipient = {
-			if = {
-				limit = {
-					has_trait = slave
-					has_relation_slave_owner = scope:actor
-					carnx_slave_can_be_sold_trigger = yes
-					carnx_slave_has_pending_transaction = no
-					scope:actor = {
-						is_ai = yes
-						carnx_is_likely_to_sell_slave_trigger = { SLAVE = scope:recipient }
-					}
-				}
-				save_scope_as = secondary_recipient
-				random_ruler = {
-					limit = {
-						is_ai = yes
-						carnx_valid_buyer_or_seller_trigger = { PARTY = scope:actor }
-						carnx_can_sell_slave_to_trigger = { PARTY = scope:actor }
-						carnx_is_likely_to_buy_slave_trigger = { SLAVE = scope:secondary_recipient }
-						save_temporary_scope_as = buyer
-						short_term_gold >= scope:secondary_recipient.carnx_slave_bid_price_value
-					}
-					save_scope_as = recipient
-				}
-			}
-		}
-	}
-
 	populate_recipient_list = {
 		scope:actor = {
 			every_relation = {
@@ -365,7 +334,6 @@ carn_sell_slave_interaction = {
 		ai_recipients = vassals
 		ai_recipients = peer_vassals
 		ai_recipients = neighboring_rulers
-		ai_recipients = scripted_relations
 	}
 
 	ai_frequency = 24
