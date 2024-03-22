@@ -26,9 +26,6 @@ carn_buy_slave_directly_interaction = {
 				}
 			}
 		}
-
-		# TODO If the recipient is the ruler themselves
-		# redirect to a random ruler within trading range who is likely to sell a slave
 	}
 
 	populate_recipient_list = {
@@ -38,10 +35,6 @@ carn_buy_slave_directly_interaction = {
 				limit = {
 					carnx_slave_can_be_sold_trigger = yes
 					carnx_slave_can_be_bought_by_trigger = { CHARACTER = scope:actor }
-					#save_temporary_scope_as = slave
-					#scope:actor = {
-					#	NOT = { carnx_is_slavery_crime_trigger = { CHARACTER = scope:slave } }
-					#}
 				}
 				add_to_list = characters
 			}
@@ -77,6 +70,32 @@ carn_buy_slave_directly_interaction = {
 			scope:actor = { is_ai = yes }
 			scope:recipient = { is_ai = no }
 		}
+		# Performance: AI should not attempt unlikely interactions
+		scope:actor = {
+			trigger_if = {
+				limit = { is_ai = yes }
+				trigger_if = {
+					limit = { exists = scope:secondary_recipient }
+					NOR = {
+						carnx_should_ai_avoid_slavery_trigger = {
+							CHARACTER = scope:secondary_recipient
+							ACTION = flag:buy
+						}
+						scope:recipient = {
+							carnx_should_ai_avoid_slavery_trigger = {
+								CHARACTER = scope:secondary_recipient
+								ACTION = flag:sell
+							}
+						}
+					}
+				}
+				trigger_else = {
+					scope:recipient = {
+						NOT = { carnx_should_ai_always_avoid_slavery_trigger = { ACTION = flag:sell } }
+					}
+				}
+			}
+		}
 	}
 
 	is_valid_showing_failures_only = {
@@ -91,12 +110,6 @@ carn_buy_slave_directly_interaction = {
 			scope:secondary_recipient = {
 				carnx_slave_can_be_sold_trigger = yes
 				carnx_slave_can_be_bought_by_trigger = { CHARACTER = scope:actor }
-				#custom_description = {
-				#	text = "carnx_buying_slaves_is_illegal"
-				#	scope:actor = {
-				#		NOT = { carnx_is_slavery_crime_trigger = { CHARACTER = scope:secondary_recipient } }
-				#	}
-				#}
 			}
 		}
 	}
@@ -359,6 +372,8 @@ carn_buy_slave_directly_interaction = {
 
 	ai_potential = {
 		short_term_gold >= medium_gold_value
+		# Performance: AI should not consider unlikely interactions
+		NOT = { carnx_should_ai_always_avoid_slavery_trigger = { ACTION = flag:buy } }
 	}
 
 	ai_will_do = {

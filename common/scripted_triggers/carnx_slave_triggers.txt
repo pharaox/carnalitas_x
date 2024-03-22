@@ -491,6 +491,33 @@ carnx_is_slavery_never_crime_trigger = {
 	}
 }
 
+carnx_should_ai_avoid_slavery_trigger = {
+	OR = {
+		carnx_is_slavery_crime_trigger = { CHARACTER = $CHARACTER$ }
+		carnx_is_slavery_forbidden_trigger = {
+			CHARACTER = $CHARACTER$
+			ACTION = $ACTION$
+		}
+	}
+}
+
+carnx_should_ai_always_avoid_slavery_trigger = {
+	OR = {
+		carnx_is_slavery_always_crime_trigger = yes
+		carnx_is_slavery_always_forbidden_trigger = { ACTION = $ACTION$ }
+	}
+}
+
+carnx_is_slavery_forbidden_trigger = {
+	exists = $CHARACTER$
+	carnx_is_slavery_always_forbidden_trigger = { ACTION = $ACTION$ }
+}
+
+carnx_is_slavery_always_forbidden_trigger = {
+	$ACTION$ = flag:none
+	always = no
+}
+
 carnx_can_serve_as_chancellor_trigger = {
 	carnx_can_serve_as_councillor_trigger = {
 		TYPE = councillor_chancellor

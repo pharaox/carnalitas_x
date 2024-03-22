@@ -53,10 +53,6 @@ carn_sell_slave_interaction = {
 				limit = {
 					carnx_slave_can_be_sold_trigger = yes
 					carnx_slave_can_be_bought_by_trigger = { CHARACTER = scope:recipient }
-					#save_temporary_scope_as = slave
-					#scope:actor = {
-					#	NOT = { carnx_is_slavery_crime_trigger = { CHARACTER = scope:slave } }
-					#}
 				}
 				add_to_list = characters
 			}
@@ -92,6 +88,32 @@ carn_sell_slave_interaction = {
 			scope:actor = { is_ai = yes }
 			scope:recipient = { is_ai = no }
 		}
+		# Performance: AI should not attempt unlikely interactions
+		scope:actor = {
+			trigger_if = {
+				limit = { is_ai = yes }
+				trigger_if = {
+					limit = { exists = scope:secondary_recipient }
+					NOR = {
+						carnx_should_ai_avoid_slavery_trigger = {
+							CHARACTER = scope:secondary_recipient
+							ACTION = flag:sell
+						}
+						scope:recipient = {
+							carnx_should_ai_avoid_slavery_trigger = {
+								CHARACTER = scope:secondary_recipient
+								ACTION = flag:buy
+							}
+						}
+					}
+				}
+				trigger_else = {
+					scope:recipient = {
+						NOT = { carnx_should_ai_always_avoid_slavery_trigger = { ACTION = flag:buy } }
+					}
+				}
+			}
+		}
 	}
 
 	is_valid_showing_failures_only = {
@@ -106,12 +128,6 @@ carn_sell_slave_interaction = {
 			scope:secondary_recipient = {
 				carnx_slave_can_be_sold_trigger = yes
 				carnx_slave_can_be_bought_by_trigger = { CHARACTER = scope:recipient }
-				#custom_description = {
-				#	text = "carnx_selling_slaves_is_illegal"
-				#	scope:actor = {
-				#		NOT = { carnx_is_slavery_crime_trigger = { CHARACTER = scope:secondary_recipient } }
-				#	}
-				#}
 			}
 		}
 	}
@@ -355,7 +371,8 @@ carn_sell_slave_interaction = {
 	ai_frequency = 24
 
 	ai_potential = {
-		always = yes
+		# Performance: AI should not consider unlikely interactions
+		NOT = { carnx_should_ai_always_avoid_slavery_trigger = { ACTION = flag:sell } }
 	}
 
 	ai_will_do = {
