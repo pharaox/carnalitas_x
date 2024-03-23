@@ -4,11 +4,9 @@
 
 A comprehensive rework of the Carnalitas slavery system aiming at improved balance and better integration with other aspects of the game. Now also compatible with AGOT via a compatibility mod.
 
-The latest version is compatible with CK3 1.12.x and Carnalitas 2.4. If you are still on CK3 1.11.x, use [version 0.18.0](https://github.com/pharaox/carnalitas_x/releases/download/0.18.0/carnalitas_slavery_reimagined-0.18.0.zip) instead with Carnalitas 2.2.
+The latest version is compatible with CK3 1.12.x and Carnalitas 2.5. If you are still on CK3 1.11.x, use [version 0.18.0](https://github.com/pharaox/carnalitas_x/releases/download/0.18.0/carnalitas_slavery_reimagined-0.18.0.zip) instead with Carnalitas 2.2.
 
-The latest version of the CSR AGOT compatibility mod is compatible with CK3 1.11.x, Carnalitas 2.2, CSR 0.18.0, and AGOT 0.2.x.
-
-**Note:** Don't use Carnalitas 2.3 as it introduces incompatible changes that break most existing mods based on it. This has been fixed in Carnalitas 2.4.
+The latest version of the CSR AGOT compatibility mod is compatible with CK3 1.12.x, Carnalitas 2.5, CSR 0.20.x, and AGOT 0.2.3. Use it with [Carnalitas AGOT Compatibility](https://www.loverslab.com/files/file/32307-carnalitas-agot-compatibility/).
 
 ## Overview
 
@@ -188,13 +186,13 @@ Carnalitas introduces the *Slavery Crime* and *Slavery Shunned* religious doctri
 
 * If owning slaves of a certain faith is a crime, for adherents of this faith:
   * Although it is possible to enslave them, this is penalized by gaining one of the [leveled *Slaver* traits](#leveled-slaver-traits), as well as losing a level of fame.
-  * Initiating or accepting most interactions (except freeing or ransoming) has a piety cost.
+  * Initiating or accepting most interactions (except freeing or ransoming) has a major piety cost.
   * The AI will be very unwilling to initiate enslave, seize, sell, buy, or gift interactions for them.
   * The AI will also be very unwilling to accept sell, buy, or gift interactions for them.
   * The AI will be quite willing to free, liberate, demand ransom, or offer ransom for them.
 * If owning slaves of a certain faith is shunned, for adherents of this faith:
   * Although it is possible to enslave them, this is penalized by gaining one of the [leveled *Slaver* traits](#leveled-slaver-traits), as well as losing piety.
-  * Initiating or accepting most interactions (except freeing or ransoming) has a piety cost.
+  * Initiating or accepting most interactions (except freeing or ransoming) has a minor piety cost.
   * The AI will be quite unwilling to initiate enslave, seize, sell, buy, or gift interactions for them.
   * The AI will be also be quite unwilling to accept sell, buy, or gift interactions for them.
   * The AI will be somewhat more willing to free, liberate, demand ransom, or offer ransom for them.
@@ -331,7 +329,7 @@ The following bugs present in Carnalitas have been fixed in this mod:
 
 ## Vanilla Changes
 
-* The *Invite to Court* and *Dismiss* vanilla interactions, as well as the *Banish* option of the *Negotiate Release* interaction are not available on slaves since they are returned automatically to their owners court. To dismiss or banish a slave, they should be freed first.
+* The *Invite to Court*, *Take Vows*, and *Dismiss* vanilla interactions, as well as the *Banish*, *Take Vows*, and *Recruit* options of the *Negotiate Release* interaction are not available on slaves since they are returned automatically to their owners court. To dismiss or banish a slave, they should be freed first.
 * The *Demand Payment* vanilla interaction is no longer available on slaves since using it on slaves can be considered an exploit.
 * Slaves can be imprisoned without incurring tyranny, and can also be released from prison without losing dread.
 * Slaves are less likely to be converted to their owner's faith compared to other courtiers. This is mostly to prevent them to be freed too quickly as a result of the rebalanced impact of slavery doctrines.
