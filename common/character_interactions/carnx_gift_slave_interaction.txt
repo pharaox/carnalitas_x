@@ -25,6 +25,16 @@ carnx_gift_slave_interaction = {
 				limit = {
 					carnx_slave_can_be_sold_trigger = yes
 					carnx_slave_can_be_received_by_trigger = { CHARACTER = scope:recipient }
+					# Performance: AI should not attempt unlikely interactions
+					trigger_if = {
+						limit = {
+							scope:actor = { is_ai = yes }
+						}
+						save_temporary_scope_as = slave
+						scope:recipient = {
+							NOT = { carnx_is_slavery_crime_trigger = { CHARACTER = scope:slave } }
+						}
+					}
 				}
 				add_to_list = characters
 			}
@@ -48,6 +58,20 @@ carnx_gift_slave_interaction = {
 				carnx_is_slave_owner_trigger = yes
 			}
 		}
+		# Performance: AI should not attempt unlikely interactions
+		trigger_if = {
+			limit = {
+				scope:actor = { is_ai = yes }
+				NOT = { exists = scope:secondary_recipient }
+			}
+			scope:recipient = {
+				NOR = {
+					carnx_is_slavery_always_crime_trigger = yes
+					carnx_is_slavery_always_forbidden_trigger = { ACTION = flag:accept_gift }
+				}
+			}
+		}
+		# Filter potential recipients for AI
 		trigger_if = {
 			limit = {
 				scope:actor = { is_ai = yes }
@@ -66,32 +90,6 @@ carnx_gift_slave_interaction = {
 					# Don't gift anything to rivals / nemesises
 					has_relation_rival = scope:actor
 					has_relation_nemesis = scope:actor
-				}
-			}
-		}
-		# Performance: AI should not attempt unlikely interactions
-		scope:actor = {
-			trigger_if = {
-				limit = { is_ai = yes }
-				trigger_if = {
-					limit = { exists = scope:secondary_recipient }
-					NOR = {
-						carnx_should_ai_avoid_slavery_trigger = {
-							CHARACTER = scope:secondary_recipient
-							ACTION = flag:offer_gift
-						}
-						scope:recipient = {
-							carnx_should_ai_avoid_slavery_trigger = {
-								CHARACTER = scope:secondary_recipient
-								ACTION = flag:accept_gift
-							}
-						}
-					}
-				}
-				trigger_else = {
-					scope:recipient = {
-						NOT = { carnx_should_ai_always_avoid_slavery_trigger = { ACTION = flag:accept_gift } }
-					}
 				}
 			}
 		}
@@ -366,7 +364,10 @@ carnx_gift_slave_interaction = {
 			has_trait = greedy
 		}
 		# Performance: AI should not consider unlikely interactions
-		NOT = { carnx_should_ai_always_avoid_slavery_trigger = { ACTION = flag:offer_gift } }
+		NOR = {
+			carnx_is_slavery_always_crime_trigger = yes
+			carnx_is_slavery_always_forbidden_trigger = { ACTION = flag:offer_gift }
+		}
 	}
 
 	ai_will_do = {

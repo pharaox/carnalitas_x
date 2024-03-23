@@ -28,15 +28,12 @@ carn_enslave_interaction = {
 			}
 		}
 		# Performance: AI should not attempt unlikely interactions
-		scope:actor = {
-			trigger_if = {
-				limit = { is_ai = yes }
-				NOT = {
-					carnx_should_ai_avoid_slavery_trigger = {
-						CHARACTER = scope:recipient
-						ACTION = flag:enslave
-					}
-				}
+		trigger_if = {
+			limit = {
+				scope:actor = { is_ai = yes }
+			}
+			scope:actor = {
+				NOT = { carnx_is_slavery_crime_trigger = { CHARACTER = scope:recipient } }
 			}
 		}
 	}
@@ -82,7 +79,10 @@ carn_enslave_interaction = {
 	ai_potential = {
 		is_at_war = no
 		# Performance: AI should not consider unlikely interactions
-		NOT = { carnx_should_ai_always_avoid_slavery_trigger = { ACTION = flag:enslave } }
+		NOR = {
+			carnx_is_slavery_always_crime_trigger = yes
+			carnx_is_slavery_always_forbidden_trigger = { ACTION = flag:enslave }
+		}
 	}
 
 	ai_will_do = {
