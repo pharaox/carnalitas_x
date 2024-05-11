@@ -1,5 +1,15 @@
 # Changelog
 
+## Version 0.20.1
+
+### Compatibility
+
+* Adapted to CK3 1.12.5.
+
+### Bug Fixes
+
+* Added some missing localization texts and icons.
+
 ## Version 0.20.0
 
 ### Interactions
