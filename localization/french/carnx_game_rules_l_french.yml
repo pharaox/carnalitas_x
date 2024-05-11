@@ -1,4 +1,6 @@
 ﻿l_french:
+ game_rule_category_carnx_carnalitas_x: "Carnalitas Slavery Reimagined"
+
  rule_carnx_valid_trading_partners: "#X CSR:#! Acheteurs ou vendeurs valides"
  setting_carnx_valid_trading_partners_same_and_neighboring_realms: "Le même royaume et les royaumes voisins"
  setting_carnx_valid_trading_partners_same_and_neighboring_realms_desc: "Dirigeants du même royaume et des royaumes voisins."

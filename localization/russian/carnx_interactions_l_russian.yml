@@ -1,8 +1,10 @@
 ﻿l_russian:
  # carn_buy_slave_directly_interaction (original)
+ carn_buy_slave_directly_interaction_extra_icon: "$hook_extra_icon$"
 
  # carn_sell_slave_interaction (some original, some overriden)
  carnx_sell_slave_interaction_desc: "Продать [slave|E] за [gold|E]"
+ carn_sell_slave_interaction_extra_icon: "$hook_extra_icon$"
 
  # carnx_buy_slaves_interaction (new)
  carnx_buy_slaves_interaction: "Купить рабов"

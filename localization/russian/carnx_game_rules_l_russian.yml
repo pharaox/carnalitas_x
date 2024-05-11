@@ -1,4 +1,6 @@
 ﻿l_russian:
+ game_rule_category_carnx_carnalitas_x: "Carnalitas Slavery Reimagined"
+
  rule_carnx_valid_trading_partners: "#X CSR:#! Актуальные покупатели или продавцы"
  setting_carnx_valid_trading_partners_same_and_neighboring_realms: "В том же и соседних королевствах"
  setting_carnx_valid_trading_partners_same_and_neighboring_realms_desc: "Правители в том же и соседних королевствах."
