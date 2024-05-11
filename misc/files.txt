@@ -1,0 +1,14 @@
+common/character_interaction_categories\00_character_interaction_categories.txt
+common/character_interactions/00_perk_interactions.txt
+common/character_interactions/00_prison_interactions.txt
+common/character_interactions/00_religious_interactions.txt
+common/council_positions/00_council_positions.txt
+common/court_positions/types/00_court_positions.txt
+common/on_action/child_birth_on_actions.txt
+common/script_values/00_war_values.txt
+common/scripted_effects/00_prison_effects.txt
+common/scripted_modifiers/00_hostile_scheme_scripted_modifiers.txt
+common/scripted_triggers/00_court_position_triggers.txt
+common/scripted_triggers/00_courtier_guest_management_triggers.txt
+common/scripted_triggers/00_interaction_triggers.txt
+common/scripted_triggers/00_war_and_peace_triggers.txt

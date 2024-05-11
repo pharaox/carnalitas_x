@@ -1,40 +1,53 @@
-# Notes
+# Files
 
-## Compatibility
+## Vanilla Files and Objects
 
-### Vanilla Files and Objects
+### Explicit
 
 * `common/character_interaction_categories\00_character_interaction_categories.txt`
-* `common/character_interactions/zzz_00_perk_interactions.txt`
+  * Entire file
+* `common/character_interactions/00_perk_interactions.txt`
   * `demand_payment_interaction`
-* `common/character_interactions/zzz_00_prison_interactions.txt`
+* `common/character_interactions/00_prison_interactions.txt`
   * `release_from_prison_interaction`
-* `common/character_interactions/zzz_00_religious_interactions.txt`
+* `common/character_interactions/00_religious_interactions.txt`
   * `ask_for_conversion_courtier_interaction`
-* `common/council_positions/zzz_00_council_positions.txt`
-* `common/court_positions/types/zzz_00_court_positions.txt`
-* `common/script_values/zzz_00_war_values.txt`
+* `common/council_positions/00_council_positions.txt`
+  * Entire file
+* `common/court_positions/types/00_court_positions.txt`
+  * Entire file
+* `common/script_values/00_war_values.txt`
   * `raid_base_capture_chance`
-* `common/scripted_effects/zzz_00_prison_effects.txt`
+* `common/scripted_effects/00_prison_effects.txt`
   * `prisoner_of_war_capture_effect`
   * `imprison_tyranny_effect`
-* `common/scripted_modifiers/zzz_00_hostile_scheme_scripted_modifiers.txt`
+* `common/scripted_modifiers/00_hostile_scheme_scripted_modifiers.txt`
   * `hostile_murder_agent_base_join_chance_modifier`
-* `common/scripted_triggers/zzz_00_court_position_triggers.txt`
+* `common/scripted_triggers/00_court_position_triggers.txt`
   * `court_position_does_not_already_have_a_job_trigger`
-* `common/scripted_triggers/zzz_00_courtier_guest_management_triggers.txt`
+* `common/scripted_triggers/00_courtier_guest_management_triggers.txt`
   * `can_recruit_character_to_court_trigger`
-* `common/scripted_triggers/zzz_00_interaction_triggers.txt`
+* `common/scripted_triggers/00_interaction_triggers.txt`
   * `kick_from_court_validity_trigger`
-* `common/scripted_triggers/zzz_00_war_and_peace_triggers.txt`
+* `common/scripted_triggers/00_war_and_peace_triggers.txt`
   * `desirable_for_capture_trigger`
 
-* `common/on_action/child_birth_on_actions.txt`
-  * `on_birth_child` => `carnx_child_birth_effects.txt`
-* `common/scripted_effects/zzz_00_prison_effects.txt`
-  * `execute_prisoner_effect` => `carnx_enslave_effect`
+### Implicit
 
-### Carnalitas Files and Objects
+* `common/court_positions/types/00_court_positions.txt`
+  * Entire file, `is_shown_character` / `valid_character` sections
+    * => `common/scripted_triggers/carnx_court_position_triggers.txt`
+* `common/on_action/child_birth_on_actions.txt`
+  * `on_birth_child`
+    * => `common/scripted_effects/carnx_child_birth_effects.txt`
+* `common/scripted_effects/00_prison_effects.txt`
+  * `execute_prisoner_effect`
+    * => `common/scripted_effects/carnx_slave_effects.txt`
+      * `carnx_enslave_effect`
+
+## Carnalitas Files and Objects
+
+### Explicit
 
 * `common/character_interactions/*.txt`
   * `carn_buy_slave_directly_interaction`
@@ -44,7 +57,9 @@
   * `carn_seize_slave_interaction`
   * `carn_sell_slave_interaction`
 * `common/important_actions/action_carn_can_demand_free_illegal_slaves_interaction.txt`
+  * Entire file
 * `common/on_action/carn_slave_on_actions.txt`
+  * Entire file
 * `common/script_values/carn_slave_values.txt`
   * `carn_scope_buyer_current_gold_value`
 * `common/script_values/carn_sex_pregnancy_chance.txt`
@@ -60,6 +75,8 @@
   * `carn_possible_pregnancy_after_sex_with_character_trigger`
 * `common/scripted_triggers/carn_sex_interaction_triggers.txt`
   * `carn_relationship_allows_free_sex_trigger`
+
+## Miscellaneous
 
 ### Court Positions
 
