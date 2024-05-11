@@ -512,9 +512,6 @@ carnx_slave_ransom_cost_value = {
 		limit = { exists = scope:recipient }
 		scope:recipient = { save_temporary_scope_as = party }
 	}
-	else = {
-		root = { save_temporary_scope_as = party }
-	}
 
 	value = 0
 
@@ -877,7 +874,10 @@ carn_scope_buyer_current_gold_value = {
 carnx_scope_secondary_recipient_slave_ransom_cost_value = {
 	value = 0
 	if = {
-		limit = { exists = scope:secondary_recipient }
+		limit = { 
+			exists = scope:secondary_recipient
+			exists = scope:recipient
+		}
 		add = scope:secondary_recipient.carnx_slave_ransom_cost_value
 	}
 }
