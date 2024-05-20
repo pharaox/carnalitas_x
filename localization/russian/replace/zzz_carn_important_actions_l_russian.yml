@@ -7,3 +7,5 @@
  action_carn_can_demand_free_illegal_slaves_interaction_combined_group_name: "$action_carn_can_demand_free_illegal_slaves_interaction$"
  action_carn_can_demand_free_illegal_slaves_interaction_combined_group_description: "Вы можете потребовать, чтобы один из ваших вассалов освободил всех незаконных рабов, которыми он владеет."
  action_carn_can_demand_free_illegal_slaves_interaction_combined_label: "От [recipient.GetUINameNoTooltip]"
+ action_carn_can_demand_free_illegal_slaves_interaction_unimportant: "@warning_icon! #X [recipient.GetSheHe|U] не важный вассал#!"
+ action_carn_can_demand_free_illegal_slaves_interaction_combined_unimportant: "@warning_icon! #X Эти вассалы не являются важными вассалами.#!"

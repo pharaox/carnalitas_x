@@ -1,5 +1,45 @@
 # Changelog
 
+## Version 0.20.1
+
+### Compatibility
+
+* Adapted to CK3 1.12.5.
+
+### Bug Fixes
+
+* Added some missing localization texts and icons.
+
+## Version 0.20.0
+
+### Interactions
+
+* Disabled *Banish*, *Take Vows*, and *Recruit* options of the *Negotiate Release* interaction, as well as the *Take Vows* interaction for slaves.
+* Increased piety loss from slavery actions if slavery is considered a crime.
+* Added stress impact from slavery actions for *Zealous* and *Cynical* characters.
+* Reduced AI willingness to give or accept slaves as gifts due to struggle motives.
+
+### UI
+
+* Added icons for slave court positions.
+
+### Miscellaneous
+
+* Reduced claims impact on slave prices.
+* Disabled memories from sex with slaves.
+
+### Performance
+
+* Improved performance of slavery interactions.
+
+### Compatibility
+
+* Added more triggers, effects, and modifiers to be used or overridden in compatibility mods (needed by the AGOT compatibility mod).
+
+### Localization
+
+* Updated Chinese translation (by **@ljingqi**)
+
 ## Version 0.19.1
 
 ### Compatibility

@@ -4,3 +4,39 @@
 		debug_log = $MSG$
 	}
 }
+
+carnx_debug_log_1_effect = {
+	if = {
+		limit = { debug_only = yes }
+
+		carnx_debug_set_scope_variable_effect = { NAME = $NAME1$ TYPE = $TYPE1$ }
+
+		debug_log = $MSG$
+
+		carnx_debug_remove_scope_variable_effect = { NAME = $NAME1$ TYPE = $TYPE1$ }
+	}
+}
+
+carnx_debug_set_scope_variable_effect = {
+	if = {
+		limit = {
+			NOT = { $TYPE$ = flag:variable }
+			exists = scope:$NAME$
+			trigger_if = {
+				limit = { $TYPE$ = flag:boolean }
+				scope:$NAME$ = yes
+			}
+		}
+		set_variable = { name = $NAME$ value = scope:$NAME$ }
+	}
+}
+
+carnx_debug_remove_scope_variable_effect = {
+	if = {
+		limit = {
+			NOT = { $TYPE$ = flag:variable }
+			has_variable = $NAME$
+		}
+		remove_variable = $NAME$
+	}
+}

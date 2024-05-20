@@ -1,88 +1,83 @@
 ﻿carnx_capture_potential_slaves_effect = {
-	save_temporary_scope_as = loser
-	every_courtier_or_guest = {
-		add_to_list = potential_captives_list
-	}
-	random_in_list = {	# Always try to grab a first person.
-		list = potential_captives_list
+	# Always try to grab at least 2 people
+	random_courtier_or_guest = {
 		limit = {
-			NOT = { is_in_list = definite_captives_list }
+			NOT = { is_in_list = captives }
 		}
 		weight = {
 			base = 1
-			carnx_capture_chance_modifier = { RULER = scope:loser }
+			carnx_capture_chance_modifier = { WINNER = $WINNER$ }
 		}
-		add_to_list = definite_captives_list
-		save_temporary_scope_as = captive
-		$WINNER$ = {
-			imprison = {
-				target = scope:captive
-				type = dungeon
-			}
-		}
+		add_to_list = captives
 	}
-	random_in_list = {	# Always try to grab a second person.
-		list = potential_captives_list
+	random_courtier_or_guest = {
 		limit = {
-			NOT = { is_in_list = definite_captives_list }
+			NOT = { is_in_list = captives }
 		}
 		weight = {
 			base = 1
-			carnx_capture_chance_modifier = { RULER = scope:loser }
+			carnx_capture_chance_modifier = { WINNER = $WINNER$ }
 		}
-		add_to_list = definite_captives_list
-		save_temporary_scope_as = captive
-		$WINNER$ = {
-			imprison = {
-				target = scope:captive
-				type = dungeon
-			}
-		}
+		add_to_list = captives
 	}
-	if = {	# If at least duchy-tier, try to grab a third person.
+	# If the loser is at least duchy-tier, try to grab a third person
+	if = {
 		limit = { primary_title.tier >= tier_duchy }
-		random_in_list = {
-			list = potential_captives_list
+		random_courtier_or_guest = {
 			limit = {
-				NOT = { is_in_list = definite_captives_list }
+				NOT = { is_in_list = captives }
 			}
 			weight = {
 				base = 1
-				carnx_capture_chance_modifier = { RULER = scope:loser }
+				carnx_capture_chance_modifier = { WINNER = $WINNER$ }
 			}
-			add_to_list = definite_captives_list
-			save_temporary_scope_as = captive
-			$WINNER$ = {
-				imprison = {
-					target = scope:captive
-					type = dungeon
-				}
-			}
+			add_to_list = captives
 		}
 	}
-	if = {	# If at least kingdom-tier, try to grab a fourth person.
+	# If the loser is at least kingdom-tier, try to grab a fourth person
+	if = {
 		limit = { primary_title.tier >= tier_kingdom }
-		random_in_list = {
-			list = potential_captives_list
+		random_courtier_or_guest = {
 			limit = {
-				NOT = { is_in_list = definite_captives_list }
+				NOT = { is_in_list = captives }
 			}
 			weight = {
 				base = 1
-				carnx_capture_chance_modifier = { RULER = scope:loser }
+				carnx_capture_chance_modifier = { WINNER = $WINNER$ }
 			}
-			add_to_list = definite_captives_list
-			save_temporary_scope_as = captive
-			$WINNER$ = {
-				imprison = {
-					target = scope:captive
-					type = dungeon
-				}
-			}
+			add_to_list = captives
 		}
 	}
+	# If the winner is a slaver, try to grab yet another person
+	if = {
+		limit = {
+			$WINNER$ = {
+				has_character_modifier = carnx_slavery_attitude_slaver_modifier
+			}
+		}
+		random_courtier_or_guest = {
+			limit = {
+				NOT = { is_in_list = captives }
+			}
+			weight = {
+				base = 1
+				carnx_capture_chance_modifier = { WINNER = $WINNER$ }
+			}
+			add_to_list = captives
+		}
+	}
+
+	# Imprison all captives and mark them for enslavement
 	every_in_list = {
-		list = definite_captives_list
+		list = captives
+		carnx_debug_log_effect = { MSG = carnx_debug_msg_char_captured_as_potential_slave }
+		save_temporary_scope_as = captive
+		$WINNER$ = {
+			imprison = {
+				target = scope:captive
+				type = dungeon
+			}
+		}
 		add_character_modifier = {
 			modifier = carnx_marked_for_enslavement_modifier
 			years = 2

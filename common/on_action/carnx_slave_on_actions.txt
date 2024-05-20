@@ -113,10 +113,15 @@ carnx_on_leave_court = {
 			if = {
 				limit = {
 					exists = scope:owner
-					scope:owner = { is_ruler = yes }
+					scope:owner = {
+						is_ruler = yes
+						carnx_can_be_slave_owner_trigger = yes
+					}
 				}
 				if = {
-					limit = { NOT = { is_courtier_of = scope:owner } }
+					limit = {
+						NOT = { is_courtier_of = scope:owner }
+					}
 					carnx_debug_log_effect = { MSG = carnx_debug_msg_moving_slave }
 					save_temporary_scope_as = slave
 					scope:owner = {
@@ -143,7 +148,10 @@ on_title_gain_inheritance = {
 carnx_on_title_gain_inheritance = {
 	effect = {
 		if = {
-			limit = { is_ruler = yes }
+			limit = {
+				is_ruler = yes
+				carnx_can_be_slave_owner_trigger = yes
+			}
 			every_relation = {
 				type = slave
 				limit = {
@@ -153,6 +161,13 @@ carnx_on_title_gain_inheritance = {
 				root = {
 					carnx_add_courtier_effect = { SLAVE = scope:slave }
 				}
+			}
+		}
+		else = {
+			every_relation = {
+				type = slave
+				carnx_debug_log_effect = { MSG = carnx_debug_msg_freeing_slave }
+				carn_free_slave_effect = yes
 			}
 		}
 	}
@@ -177,9 +192,14 @@ carnx_on_title_lost = {
 			every_relation = {
 				type = slave
 				if = {
-					limit = { exists = scope:new_holder }
+					limit = {
+						exists = scope:new_holder
+						scope:new_holder = {
+							carnx_can_be_slave_owner_trigger = yes
+						}
+					}
 					scope:new_holder = { save_scope_as = new_owner }
-					this = { save_scope_as = slave }
+					save_scope_as = slave
 					carnx_debug_log_effect = { MSG = carnx_debug_msg_seizing_slave }
 					carnx_seize_slave_effect = yes
 				}

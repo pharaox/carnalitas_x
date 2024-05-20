@@ -742,10 +742,8 @@ release_from_prison_interaction = {
 				}
 			}
 			# CSR: Disable Banish for slaves since they will be returned automatically
-			NOT = {
-				scope:actor = {
-					has_relation_slave = scope:recipient
-				}
+			scope:recipient = {
+				NOT = { carnx_is_slave_trigger = yes }
 			}
 			#scope:recipient = {
 			#	trigger_if = {
@@ -799,6 +797,10 @@ release_from_prison_interaction = {
 		is_shown = {
 			scope:actor.faith = {
 				has_doctrine_parameter = take_vows_active
+			}
+			# CSR: Disable Take Vows for slaves since they will be returned automatically
+			scope:recipient = {
+				NOT = { carnx_is_slave_trigger = yes }
 			}
 		}
 		is_valid = {
@@ -974,6 +976,10 @@ release_from_prison_interaction = {
 						}
 					}
 				}
+			}
+			# CSR: Disable Recruit for slaves since they will be returned automatically
+			scope:recipient = {
+				NOT = { carnx_is_slave_trigger = yes }
 			}
 		}
 	}

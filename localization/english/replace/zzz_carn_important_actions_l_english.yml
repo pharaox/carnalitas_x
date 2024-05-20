@@ -7,3 +7,5 @@
  action_carn_can_demand_free_illegal_slaves_interaction_combined_group_name: "$action_carn_can_demand_free_illegal_slaves_interaction$"
  action_carn_can_demand_free_illegal_slaves_interaction_combined_group_description: "You can demand that one of your vassals frees all illegal [slaves|E] they own."
  action_carn_can_demand_free_illegal_slaves_interaction_combined_label: "From [recipient.GetUINameNoTooltip]"
+ action_carn_can_demand_free_illegal_slaves_interaction_unimportant: "@warning_icon! #X [recipient.GetSheHe|U] is not an important vassal#!"
+ action_carn_can_demand_free_illegal_slaves_interaction_combined_unimportant: "@warning_icon! #X These vassals are not important vassals#!"

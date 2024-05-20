@@ -44,6 +44,10 @@ carnx_can_start_interaction_trigger = {
 	is_imprisoned = no
 }
 
+carnx_can_be_slave_owner_trigger = {
+	always = yes
+}
+
 carnx_slave_can_be_sold_trigger = {
 	carn_slave_can_be_sold_trigger = yes
 	is_travelling = no
@@ -467,6 +471,29 @@ carnx_is_slavery_never_accepted_trigger = {
 			has_doctrine = carn_doctrine_other_slavery_accepted
 		}
 	}
+}
+
+carnx_is_slavery_always_crime_trigger = {
+	faith = {
+		AND = {
+			has_doctrine = carn_doctrine_same_slavery_crime
+			has_doctrine = carn_doctrine_other_slavery_crime
+		}
+	}
+}
+
+carnx_is_slavery_never_crime_trigger = {
+	faith = {
+		NOR = {
+			has_doctrine = carn_doctrine_same_slavery_crime
+			has_doctrine = carn_doctrine_other_slavery_crime
+		}
+	}
+}
+
+carnx_is_slavery_always_forbidden_trigger = {
+	$ACTION$ = flag:none
+	always = no
 }
 
 carnx_can_serve_as_chancellor_trigger = {
@@ -935,111 +962,6 @@ carnx_was_enslaved_by_character_trigger = {
 		has_opinion_modifier = {
 			target = $CHARACTER$
 			modifier = carn_enslaved_me_crime_opinion
-		}
-	}
-}
-
-carnx_is_likely_to_buy_slave_trigger = {
-	save_temporary_scope_as = liege
-	NOR = {
-		is_at_war = yes
-		carnx_is_slavery_crime_trigger = { CHARACTER = $SLAVE$ }
-		carnx_is_slavery_shunned_trigger = { CHARACTER = $SLAVE$ }
-		has_character_modifier = carnx_slavery_attitude_slaver_modifier
-		has_character_modifier = carnx_slavery_attitude_liberator_modifier
-		$SLAVE$ = {
-			carnx_is_family_or_positive_relation_trigger = { CHARACTER = scope:liege }
-		}
-	}
-	OR = {
-		has_character_modifier = carnx_slavery_attitude_trader_modifier
-		has_character_modifier = carnx_slavery_attitude_employer_modifier
-		$SLAVE$ = {
-			carnx_is_useful_above_threshold_to_future_liege_trigger = yes
-		}
-	}
-}
-
-carnx_is_likely_to_sell_slave_trigger = {
-	save_temporary_scope_as = liege
-	NOR = {
-		$SLAVE$ = { has_character_flag = carnx_slave_recently_bought }
-		carnx_is_slavery_crime_trigger = { CHARACTER = $SLAVE$ }
-		carnx_is_slavery_shunned_trigger = { CHARACTER = $SLAVE$ }
-		has_character_modifier = carnx_slavery_attitude_liberator_modifier
-		has_character_modifier = carnx_slavery_attitude_employer_modifier
-		$SLAVE$ = {
-			carnx_is_family_or_positive_relation_trigger = { CHARACTER = scope:liege }
-		}
-	}
-	OR = {
-		has_character_modifier = carnx_slavery_attitude_slaver_modifier
-		has_character_modifier = carnx_slavery_attitude_trader_modifier
-		$SLAVE$ = {
-			carnx_is_useful_above_threshold_to_current_liege_trigger = no
-		}
-	}
-}
-
-carnx_is_likely_to_ransom_slave_trigger = {
-	save_temporary_scope_as = liege
-	NOR = {
-		$SLAVE$ = { has_character_flag = carnx_slave_recently_bought }
-		has_character_modifier = carnx_slavery_attitude_slaver_modifier
-		$SLAVE$ = {
-			carnx_is_family_or_positive_relation_trigger = { CHARACTER = scope:liege }
-		}
-		carnx_has_execute_reason_slave_trigger = { CHARACTER = $SLAVE$ RULER = scope:liege }
-	}
-	OR = {
-		carnx_is_slavery_crime_trigger = { CHARACTER = $SLAVE$ }
-		carnx_is_slavery_shunned_trigger = { CHARACTER = $SLAVE$ }
-		has_character_modifier = carnx_slavery_attitude_liberator_modifier
-	}
-}
-
-carnx_is_likely_to_pay_ransom_slave_trigger = {
-	save_temporary_scope_as = liege
-	NOR = {
-		has_character_modifier = carnx_slavery_attitude_slaver_modifier
-		carnx_has_execute_reason_slave_trigger = { CHARACTER = $SLAVE$ RULER = scope:liege }
-	}
-	OR = {
-		has_character_modifier = carnx_slavery_attitude_liberator_modifier
-		$SLAVE$ = {
-			carnx_is_family_or_positive_relation_trigger = { CHARACTER = scope:liege }
-		}
-	}
-}
-
-carnx_is_useful_above_threshold_to_future_liege_trigger = {
-	OR = {
-		carnx_max_councillor_skill_difference_value >= 5
-		carnx_max_aptitude_difference_value >= 1
-		carnx_knight_skill_difference_value >= 8
-		carnx_commander_skill_difference_value >= 8
-		carnx_has_useful_claims_trigger = { RULER = scope:liege }
-		AND = {
-			carnx_is_attractive_to_character_trigger = { CHARACTER = scope:liege }
-			attraction >= 30
-		}
-	}
-}
-
-carnx_is_useful_above_threshold_to_current_liege_trigger = {
-	OR = {
-		is_councillor_of = scope:liege
-		AND = {
-			has_any_court_position = yes
-			any_court_position_employer = { this = scope:liege }
-		}
-		is_knight_of = scope:liege
-		is_commanding_army = yes
-		carnx_has_important_role_trigger = { RULER = scope:liege }
-		carnx_has_useful_claims_trigger = { RULER = scope:liege }
-		AND = {
-			carnx_is_attractive_to_character_trigger = { CHARACTER = scope:liege }
-			attraction >= 30
 		}
 	}
 }

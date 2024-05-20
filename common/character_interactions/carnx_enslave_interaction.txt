@@ -16,6 +16,7 @@ carn_enslave_interaction = {
 	is_shown = {
 		NOT = { has_game_rule = carn_slavery_content_disabled }
 		scope:actor = {
+			carnx_can_be_slave_owner_trigger = yes
 			NOT = { has_relation_slave = scope:recipient }
 		}
 		scope:recipient = {
@@ -24,6 +25,15 @@ carn_enslave_interaction = {
 				carnx_is_slave_trigger = yes
 				has_character_flag = carn_cannot_be_enslaved
 				has_trait_with_flag = carn_cannot_be_enslaved
+			}
+		}
+		# Performance: AI should not attempt unlikely interactions
+		trigger_if = {
+			limit = {
+				scope:actor = { is_ai = yes }
+			}
+			scope:actor = {
+				NOT = { carnx_is_slavery_crime_trigger = { CHARACTER = scope:recipient } }
 			}
 		}
 	}
@@ -38,12 +48,6 @@ carn_enslave_interaction = {
 				text = "currently_being_tortured"
 				NOT = { has_character_flag = is_being_tortured }
 			}
-			#custom_description = {
-			#	text = "carn_slavery_is_illegal"
-			#	scope:actor = {
-			#		NOT = { carnx_is_slavery_crime_trigger = { CHARACTER = scope:recipient } }
-			#	}
-			#}
 		}
 	}
 
@@ -74,6 +78,11 @@ carn_enslave_interaction = {
 
 	ai_potential = {
 		is_at_war = no
+		# Performance: AI should not consider unlikely interactions
+		NOR = {
+			carnx_is_slavery_always_crime_trigger = yes
+			carnx_is_slavery_always_forbidden_trigger = { ACTION = flag:enslave }
+		}
 	}
 
 	ai_will_do = {

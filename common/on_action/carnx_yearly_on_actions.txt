@@ -4,11 +4,6 @@ yearly_playable_pulse = {
 	events = {
 		carnx_slave.0004 # Piety Loss From Slaves
 	}
-}
-
-# Called from code once a year for all "playable" characters, at a random point that year (individually for each character).
-# Root is the character
-random_yearly_playable_pulse = {
 	on_actions = {
 		delay = { days = { 8 288 } }
 		carnx_yearly_playable_pulse

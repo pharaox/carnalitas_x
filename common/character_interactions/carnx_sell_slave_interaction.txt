@@ -15,37 +15,6 @@ carn_sell_slave_interaction = {
 	ai_min_reply_days = 4
 	ai_max_reply_days = 9
 
-	redirect = {
-		# If the recipient is a slave of scope:actor that they are likely to sell,
-		# redirect to a random valid buyer who is likely to buy the slave
-		scope:recipient = {
-			if = {
-				limit = {
-					has_trait = slave
-					has_relation_slave_owner = scope:actor
-					carnx_slave_can_be_sold_trigger = yes
-					carnx_slave_has_pending_transaction = no
-					scope:actor = {
-						is_ai = yes
-						carnx_is_likely_to_sell_slave_trigger = { SLAVE = scope:recipient }
-					}
-				}
-				save_scope_as = secondary_recipient
-				random_ruler = {
-					limit = {
-						is_ai = yes
-						carnx_valid_buyer_or_seller_trigger = { PARTY = scope:actor }
-						carnx_can_sell_slave_to_trigger = { PARTY = scope:actor }
-						carnx_is_likely_to_buy_slave_trigger = { SLAVE = scope:secondary_recipient }
-						save_temporary_scope_as = buyer
-						short_term_gold >= scope:secondary_recipient.carnx_slave_bid_price_value
-					}
-					save_scope_as = recipient
-				}
-			}
-		}
-	}
-
 	populate_recipient_list = {
 		scope:actor = {
 			every_relation = {
@@ -53,10 +22,16 @@ carn_sell_slave_interaction = {
 				limit = {
 					carnx_slave_can_be_sold_trigger = yes
 					carnx_slave_can_be_bought_by_trigger = { CHARACTER = scope:recipient }
-					#save_temporary_scope_as = slave
-					#scope:actor = {
-					#	NOT = { carnx_is_slavery_crime_trigger = { CHARACTER = scope:slave } }
-					#}
+					# Performance: AI should not attempt unlikely interactions
+					trigger_if = {
+						limit = {
+							scope:actor = { is_ai = yes }
+						}
+						save_temporary_scope_as = slave
+						scope:recipient = {
+							NOT = { carnx_is_slavery_crime_trigger = { CHARACTER = scope:slave } }
+						}
+					}
 				}
 				add_to_list = characters
 			}
@@ -66,6 +41,9 @@ carn_sell_slave_interaction = {
 	is_shown = {
 		NOT = { has_game_rule = carn_slavery_content_disabled }
 		NOT = { scope:actor = scope:recipient }
+		scope:recipient = {
+			carnx_can_be_slave_owner_trigger = yes
+		}
 		trigger_if = {
 			limit = {
 				scope:actor = { is_ai = no }
@@ -89,6 +67,19 @@ carn_sell_slave_interaction = {
 			scope:actor = { is_ai = yes }
 			scope:recipient = { is_ai = no }
 		}
+		# Performance: AI should not attempt unlikely interactions
+		trigger_if = {
+			limit = {
+				scope:actor = { is_ai = yes }
+				NOT = { exists = scope:secondary_recipient }
+			}
+			scope:recipient = {
+				NOR = {
+					carnx_is_slavery_always_crime_trigger = yes
+					carnx_is_slavery_always_forbidden_trigger = { ACTION = flag:buy }
+				}
+			}
+		}
 	}
 
 	is_valid_showing_failures_only = {
@@ -103,12 +94,6 @@ carn_sell_slave_interaction = {
 			scope:secondary_recipient = {
 				carnx_slave_can_be_sold_trigger = yes
 				carnx_slave_can_be_bought_by_trigger = { CHARACTER = scope:recipient }
-				#custom_description = {
-				#	text = "carnx_selling_slaves_is_illegal"
-				#	scope:actor = {
-				#		NOT = { carnx_is_slavery_crime_trigger = { CHARACTER = scope:secondary_recipient } }
-				#	}
-				#}
 			}
 		}
 	}
@@ -346,13 +331,16 @@ carn_sell_slave_interaction = {
 		ai_recipients = vassals
 		ai_recipients = peer_vassals
 		ai_recipients = neighboring_rulers
-		ai_recipients = scripted_relations
 	}
 
 	ai_frequency = 24
 
 	ai_potential = {
-		always = yes
+		# Performance: AI should not consider unlikely interactions
+		NOR = {
+			carnx_is_slavery_always_crime_trigger = yes
+			carnx_is_slavery_always_forbidden_trigger = { ACTION = flag:sell }
+		}
 	}
 
 	ai_will_do = {

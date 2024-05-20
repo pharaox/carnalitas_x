@@ -15,37 +15,6 @@ carnx_ransom_slave_interaction = {
 	ai_min_reply_days = 4
 	ai_max_reply_days = 9
 
-	redirect = {
-		# If the recipient is a slave of scope:actor that they are likely to ransom,
-		# redirect to a random ruler who is a family or relation of the slave and is likely to pay their ransom
-		scope:recipient = {
-			if = {
-				limit = {
-					has_trait = slave
-					has_relation_slave_owner = scope:actor
-					carnx_slave_can_be_freed_trigger = yes
-					carnx_slave_has_pending_transaction = no
-					scope:actor = {
-						is_ai = yes
-						carnx_is_likely_to_ransom_slave_trigger = { SLAVE = scope:recipient }
-					}
-				}
-				save_scope_as = secondary_recipient
-				random_ruler = {
-					limit = {
-						save_temporary_scope_as = ruler
-						carnx_can_demand_ransom_slave_from_trigger = { PARTY = scope:actor }
-						scope:secondary_recipient = {
-							carnx_character_can_ransom_slave_trigger = { CHARACTER = scope:ruler }
-						}
-						carnx_is_likely_to_pay_ransom_slave_trigger = { SLAVE = scope:secondary_recipient }
-					}
-					save_scope_as = recipient
-				}
-			}
-		}
-	}
-
 	populate_recipient_list = {
 		scope:actor = {
 			every_relation = {
@@ -377,7 +346,6 @@ carnx_ransom_slave_interaction = {
 		ai_recipients = vassals
 		ai_recipients = peer_vassals
 		ai_recipients = neighboring_rulers
-		ai_recipients = scripted_relations
 	}
 
 	ai_frequency = 24

@@ -21,6 +21,7 @@
  carnx_debug_msg_slave_converted: "$carnx_debug_prefix$: Slave converted to owner's faith"
 
  carnx_debug_msg_char_marked_for_enslavement: "$carnx_debug_prefix$: Character marked for enslavement"
+ carnx_debug_msg_char_captured_as_potential_slave: "$carnx_debug_prefix$: Character captured as potential slave"
 
  carnx_debug_msg_chancellor_received: "$carnx_debug_prefix$: Chancellor council position received"
  carnx_debug_msg_chancellor_revoked: "$carnx_debug_prefix$: Chancellor council position revoked"

@@ -115,6 +115,7 @@ echo "Chronicler court position received: $(grep -a "Chronicler court position r
 echo "Chronicler court position revoked: $(grep -a "Chronicler court position revoked" debug.log | wc -l)"
 echo "Chronicler court position invalidated: $(grep -a "Chronicler court position invalidated" debug.log | wc -l)"
 echo
+# CSR
 echo "Slave Concubine court position received: $(grep -a "Slave Concubine court position received" debug.log | wc -l)"
 echo "Slave Concubine court position revoked: $(grep -a "Slave Concubine court position revoked" debug.log | wc -l)"
 echo "Slave Concubine court position invalidated: $(grep -a "Slave Concubine court position invalidated" debug.log | wc -l)"
@@ -126,6 +127,10 @@ echo
 echo "Slave Eunuch court position received: $(grep -a "Slave Eunuch court position received" debug.log | wc -l)"
 echo "Slave Eunuch court position revoked: $(grep -a "Slave Eunuch court position revoked" debug.log | wc -l)"
 echo "Slave Eunuch court position invalidated: $(grep -a "Slave Eunuch court position invalidated" debug.log | wc -l)"
+echo
+
+# Maintenance events
+echo "Moving slave to owner's court: $(grep -a "Moving slave to owner's court" debug.log | wc -l)"
 echo
 
 # Prison events
@@ -144,6 +149,7 @@ echo
 
 # Slavery misc events
 echo "Character marked for enslavement: $(grep -a "Character marked for enslavement" debug.log | wc -l)"
+echo "Character captured as potential slave: $(grep -a "Character captured as potential slave" debug.log | wc -l)"
 echo "Character lost piety from slaves: $(grep -a "Character lost piety from slaves" debug.log | wc -l)"
 echo "Character became their enslaver's rival: $(grep -a "Character became their enslaver's rival" debug.log | wc -l)"
 echo
