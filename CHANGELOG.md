@@ -1,5 +1,11 @@
 # Changelog
 
+## Version 0.20.2
+
+### Localization
+
+* Updated Chinese translation (by **@ljingqi**)
+
 ## Version 0.20.1
 
 ### Compatibility
