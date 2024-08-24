@@ -7,8 +7,12 @@
  carnx_slavery_is_never_accepted: "Вы можете выбрать Поработитель, Работорговец, или Рабовладелец, только если ваша вера принимает $carn_doctrine_same_slavery_name$ или $carn_doctrine_other_slavery_name$."
 
  carnx_is_slave_trigger: "[CHARACTER.GetShortUIName|U] - раб"
+ NOT_carnx_is_slave_trigger: "[CHARACTER.GetShortUIName|U] не раб"
 
  carnx_has_relation_slave: "[TARGET_CHARACTER.GetShortUIName] - раб [CHARACTER.GetShortUIName]"
  carnx_has_relation_slave_owner: "[TARGET_CHARACTER.GetShortUIName] - владелец [CHARACTER.GetShortUIName]"
  carnx_num_of_relation_slave: "Количество рабов $COMPARATOR$ $NUM|V0$"
  carnx_num_of_relation_slave_owner: "Количество владельцев $COMPARATOR$ $NUM|V0$"
+
+ carnx_valid_buyer_or_seller: "[CHARACTER.GetShortUIName|U] слишком далеко, чтобы покупать или продавать рабов"
+ carnx_valid_payer_or_owner: "[CHARACTER.GetShortUIName|U] слишком далеко, чтобы предлагать или требовать выкуп за рабов"

@@ -13,3 +13,6 @@
  carnx_has_relation_slave_owner: "[TARGET_CHARACTER.GetShortUIName] est le propriétaire de [CHARACTER.GetShortUIName]"
  carnx_num_of_relation_slave: "Le nombre d’esclaves est $COMPARATOR$ $NUM|V0$"
  carnx_num_of_relation_slave_owner: "Le nombre de propriétaires est $COMPARATOR$ $NUM|V0$"
+
+ carnx_valid_buyer_or_seller: "[CHARACTER.GetShortUIName|U] est trop loin pour acheter ou vendre des esclaves"
+ carnx_valid_payer_or_owner: "[CHARACTER.GetShortUIName|U] est trop loin pour offrir ou demander une rançon pour les esclaves"

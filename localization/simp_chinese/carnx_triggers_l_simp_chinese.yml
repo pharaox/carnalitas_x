@@ -9,3 +9,6 @@
  carnx_has_relation_slave_owner: "[TARGET_CHARACTER.GetShortUIName]是[CHARACTER.GetShortUINamePossessive]的主人"
  carnx_num_of_relation_slave: "奴隶数量为$COMPARATOR$$NUM|V0$"
  carnx_num_of_relation_slave_owner: "奴隶主数量为$COMPARATOR$$NUM|V0$"
+
+ carnx_valid_buyer_or_seller: "[CHARACTER.GetShortUIName|U] is too far away to buy or sell slaves"
+ carnx_valid_payer_or_owner: "[CHARACTER.GetShortUIName|U] is too far away to offer or demand ransom for slaves"
