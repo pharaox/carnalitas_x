@@ -1,5 +1,19 @@
 # Changelog
 
+## Version 0.20.3
+
+### Miscellaneous
+
+* Added a "too far away" tooltip for characters outside the trading range.
+
+### Compatibility
+
+* Added more triggers to be used or overridden in compatibility mods (needed by the AGOT compatibility mod).
+
+### Localization
+
+* Updated Chinese translation (by **@ljingqi**)
+
 ## Version 0.20.2
 
 ### Localization
