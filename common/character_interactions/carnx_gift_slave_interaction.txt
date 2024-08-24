@@ -45,6 +45,7 @@ carnx_gift_slave_interaction = {
 		NOT = { has_game_rule = carn_slavery_content_disabled }
 		NOT = { scope:actor = scope:recipient }
 		scope:recipient = {
+			is_ruler = yes
 			carnx_can_be_slave_owner_trigger = yes
 		}
 		trigger_if = {

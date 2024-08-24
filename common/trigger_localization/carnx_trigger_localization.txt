@@ -42,3 +42,13 @@ has_relation_slave_owner = {
 num_of_relation_slave_owner = {
 	global = carnx_num_of_relation_slave_owner
 }
+
+carnx_valid_buyer_or_seller = {
+	first_not = carnx_valid_buyer_or_seller
+	third_not = carnx_valid_buyer_or_seller
+}
+
+carnx_valid_payer_or_owner = {
+	first_not = carnx_valid_payer_or_owner
+	third_not = carnx_valid_payer_or_owner
+}

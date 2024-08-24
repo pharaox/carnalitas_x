@@ -58,14 +58,6 @@ carn_buy_slave_directly_interaction = {
 			carnx_can_be_slave_owner_trigger = yes
 		}
 		trigger_if = {
-			limit = {
-				scope:actor = { is_ai = no }
-			}
-			scope:recipient = {
-				carnx_valid_buyer_or_seller_trigger = { PARTY = scope:actor }
-			}
-		}
-		trigger_if = {
 			limit = { exists = scope:secondary_recipient }
 			scope:recipient = {
 				has_relation_slave = scope:secondary_recipient
@@ -101,6 +93,15 @@ carn_buy_slave_directly_interaction = {
 		}
 		scope:recipient = {
 			carnx_can_buy_slave_from_trigger = { PARTY = scope:actor }
+			trigger_if = {
+				limit = {
+					scope:actor = { is_ai = no }
+				}
+				custom_description = {
+					text = "carnx_valid_buyer_or_seller"
+					carnx_valid_buyer_or_seller_trigger = { PARTY = scope:actor }
+				}
+			}
 		}
 		trigger_if = {
 			limit = { exists = scope:secondary_recipient }

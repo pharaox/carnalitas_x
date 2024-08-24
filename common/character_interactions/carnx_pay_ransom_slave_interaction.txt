@@ -46,14 +46,6 @@ carnx_pay_ransom_slave_interaction = {
 		NOT = { has_game_rule = carn_slavery_content_disabled }
 		NOT = { scope:actor = scope:recipient }
 		trigger_if = {
-			limit = {
-				scope:actor = { is_ai = no }
-			}
-			scope:recipient = {
-				carnx_valid_payer_or_owner_trigger = { PARTY = scope:actor }
-			}
-		}
-		trigger_if = {
 			limit = { exists = scope:secondary_recipient }
 			scope:recipient = {
 				has_relation_slave = scope:secondary_recipient
@@ -78,6 +70,15 @@ carnx_pay_ransom_slave_interaction = {
 		}
 		scope:recipient = {
 			carnx_can_offer_ransom_slave_to_trigger = { PARTY = scope:actor }
+			trigger_if = {
+				limit = {
+					scope:actor = { is_ai = no }
+				}
+				custom_description = {
+					text = "carnx_valid_payer_or_owner"
+					carnx_valid_payer_or_owner_trigger = { PARTY = scope:actor }
+				}
+			}
 		}
 		trigger_if = {
 			limit = { exists = scope:secondary_recipient }
