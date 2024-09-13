@@ -1,0 +1,22 @@
+﻿l_korean:
+ carnx_slave_salary_mod:0 "[slave|E]"
+ carnx_slave_salary_employer_mod:0 "$carnx_slavery_attitude_employer_modifier$에 고용된 [slave|E]"
+
+ carnx_court_position_skill_attraction:0 "[attraction|E]"
+ carnx_court_position_beauty_good_3_trait:0 "[GetTrait('beauty_good_3').GetName( ROOT.Char )]"
+ carnx_court_position_beauty_good_2_trait:0 "[GetTrait('beauty_good_2').GetName( ROOT.Char )]"
+ carnx_court_position_beauty_good_1_trait:0 "[GetTrait('beauty_good_1').GetName( ROOT.Char )]"
+ carnx_court_position_schemer_trait:0 "[GetTrait('schemer').GetName( ROOT.Char )]"
+ carnx_court_position_milk_production:0 "[milk_production|E]"
+
+ carnx_slave_concubine_court_position:0 "노예 후궁"
+ carnx_slave_concubine_court_position_desc:0 "$carnx_slave_concubine_court_position$은(는) 노예 또는 전 노예 신분의 하급 후궁이다."
+ carnx_slave_concubine_employer_custom_effect_description:0 "당신이 남성이라면 모든 자녀의 아버지가 될 것이며, 여성이라면 보유자가 될 것이다. 또한 자녀들은 당신의 왕조, 신앙, 문화를 따를 것이다."
+
+ carnx_slave_captain_court_position:0 "맘루크 대장"
+ carnx_slave_captain_court_position_desc:0 "$carnx_slave_captain_court_position$은(는) 노예 또는 전 노예 신분의 고위 군인이다."
+
+ carnx_slave_eunuch_court_position:0 "노예 내시"
+ carnx_slave_eunuch_court_position_desc:0 "$carnx_slave_eunuch_court_position$는 노예 또는 전 노예 신분의 영향력 있는 궁정 관리이다."
+
+ hunt_can_hunt_parameter_tt:0 "[culture|E]가 사냥을 할 수 있다"

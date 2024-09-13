@@ -1,0 +1,135 @@
+﻿l_korean:
+ # carn_buy_slave_directly_interaction (original)
+ carn_buy_slave_directly_interaction_extra_icon:0 "$hook_extra_icon$"
+
+ # carn_sell_slave_interaction (some original, some overriden)
+ carnx_sell_slave_interaction_desc:0 "[gold|E]을 받고 [slave|E]를 판매합니다"
+ carn_sell_slave_interaction_extra_icon:0 "$hook_extra_icon$"
+
+ # carnx_buy_slaves_interaction (new)
+ carnx_buy_slaves_interaction:0 "노예 구매"
+ carnx_buy_slaves_interaction_desc:0 "판매 의사가 있는 통치자로부터 [slaves|E]를 구매합니다"
+ actor_secondary_carnx_buy_slaves_interaction:0 "노예"
+ recipient_secondary_carnx_buy_slaves_interaction:0 "판매자"
+
+ # carnx_sell_slaves_interaction (new)
+ carnx_sell_slaves_interaction:0 "노예 판매"
+ carnx_sell_slaves_interaction_desc:0 "구매 의사가 있는 통치자에게 [slaves|E]를 판매합니다"
+ actor_secondary_carnx_sell_slaves_interaction:0 "노예"
+ recipient_secondary_carnx_sell_slaves_interaction:0 "구매자"
+
+ # carn_enslave_interaction (original)
+
+ # carn_free_slave_interaction (original)
+
+ # carn_seize_slave_interaction (original)
+
+ # carnx_ransom_slave_interaction
+ carnx_ransom_slave_interaction:0 "노예 몸값 요구"
+ carnx_ransom_slave_interaction_desc:0 "[slave|E]에 대한 몸값을 요구합니다"
+ recipient_secondary_carnx_ransom_slave_interaction:0 "노예"
+
+ # carnx_pay_ransom_slave_interaction
+ carnx_pay_ransom_slave_interaction:0 "노예 몸값 제안"
+ carnx_pay_ransom_slave_interaction_desc:0 "[slave|E]에 대한 몸값을 제안합니다"
+ recipient_secondary_carnx_pay_ransom_slave_interaction:0 "노예"
+
+ # carnx_ransom_slaves_interaction (new)
+ carnx_ransom_slaves_interaction:0 "노예들에 대한 몸값 요구"
+ carnx_ransom_slaves_interaction_desc:0 "몸값을 지불할 의사와 능력이 있는 통치자들에게 [slaves|E]에 대한 몸값을 요구합니다"
+ actor_secondary_carnx_ransom_slaves_interaction:0 "노예"
+ recipient_secondary_carnx_ransom_slaves_interaction:0 "지불자"
+
+ # carnx_pay_ransom_slaves_interaction (new)
+ carnx_pay_ransom_slaves_interaction:0 "노예들에 대한 몸값 제안"
+ carnx_pay_ransom_slaves_interaction_desc:0 "몸값을 받을 의사가 있는 통치자들에게 [slaves|E]에 대한 몸값을 제안합니다"
+ actor_secondary_carnx_pay_ransom_slaves_interaction:0 "노예"
+ recipient_secondary_carnx_pay_ransom_slaves_interaction:0 "소유자"
+
+ # carnx_gift_slave_interaction
+ carnx_gift_slave_interaction:0 "노예 선물"
+ carnx_gift_slave_interaction_desc:0 "[recipient.GetShortUINameNoTooltip]의 당신에 대한 호감도를 높이기 위해 [slave|E]를 선물합니다"
+ recipient_secondary_carnx_gift_slave_interaction:0 "노예"
+ carnx_gift_slave_proposal:0 "이 노예를 선물로 받아주십시오. [secondary_recipient.GetSheHe] 당신을 잘 섬길 것입니다."
+ carnx_gift_slave_accept:0 "수락"
+ carnx_gift_slave_reject:0 "거절"
+
+ # carnx_liberate_slave_interaction
+ carnx_liberate_slave_interaction:0 "노예 해방"
+ carnx_liberate_slave_interaction_desc:0 "[recipient.GetShortUINameNoTooltip]을(를) [slavery|E]에서 해방시킵니다"
+ carnx_liberate_slave_offer:0 "내 선의로, 당신을 노예 상태에서 해방시키겠습니다."
+ carnx_liberate_slave_offer_conditional:0 "당신을 노예 상태에서 해방시킬 의향이 있지만, 무조건적이진 않습니다..."
+
+ # carn_demand_free_illegal_slaves_interaction
+ carnx_demand_free_illegal_slaves_refused:0 "[recipient.GetShortUIName|U]이(가) 불법 노예를 해방하지 않습니다"
+ carn_demand_free_illegal_slaves_interaction_extra_icon:0 "$hook_extra_icon$"
+
+ # Modifier reasons
+ carnx_secondary_recipient_has_court_position_reason:0 "[secondary_recipient.GetShortUIName|U]이(가) [court|E] 직위를 가지고 있습니다: $VALUE|=+0$"
+ carnx_secondary_recipient_has_important_role_reason:0 "[secondary_recipient.GetShortUIName|U]이(가) 교육자이거나 교육받고 있습니다: $VALUE|=+0$"
+ carnx_secondary_recipient_claims_reason:0 "[secondary_recipient.GetShortUIName|U]이(가) [recipient.GetShortUIName|U]에게 유용한 영토 주장을 가지고 있습니다: $VALUE|=+0$"
+ carnx_secondary_recipient_attraction_reason:0 "[secondary_recipient.GetShortUIName|U]이(가) [recipient.GetShortUIName|U]에게 매력적입니다: $VALUE|=+0$"
+ carnx_secondary_recipient_female_reason:0 "[secondary_recipient.GetShortUIName|U]이(가) 가임기의 여성입니다: $VALUE|=+0$"
+ carnx_secondary_recipient_age_reason:0 "[secondary_recipient.GetShortUIName|U]의 나이 고려: $VALUE|=+0$"
+ carnx_secondary_recipient_expensive_reason:0 "[secondary_recipient.GetShortUIName|U]이(가) 꽤 비쌉니다: $VALUE|=+0$"
+ carnx_secondary_recipient_cheap_reason:0 "[secondary_recipient.GetShortUIName|U]이(가) 꽤 싸습니다: $VALUE|=+0$"
+ carnx_secondary_recipient_criminal_reason:0 "[secondary_recipient.GetShortUIName|U]이(가) 범죄자이거나 내 라이벌입니다: $VALUE|=+0$"
+ carnx_lacking_chancellor_reason:0 "[recipient.GetShortUIName|U]에게 좋은 $councillor_chancellor$가 부족합니다: $VALUE|=+0$"
+ carnx_lacking_marshal_reason:0 "[recipient.GetShortUIName|U]에게 좋은 $councillor_marshal$이 부족합니다: $VALUE|=+0$"
+ carnx_lacking_steward_reason:0 "[recipient.GetShortUIName|U]에게 좋은 $councillor_steward$가 부족합니다: $VALUE|=+0$"
+ carnx_lacking_spymaster_reason:0 "[recipient.GetShortUIName|U]에게 좋은 $councillor_spymaster$가 부족합니다: $VALUE|=+0$"
+ carnx_lacking_court_physician_reason:0 "[recipient.GetShortUIName|U]에게 좋은 $court_physician_court_position$이 부족합니다: $VALUE|=+0$"
+ carnx_lacking_antiquarian_reason:0 "[recipient.GetShortUIName|U]에게 좋은 $antiquarian_court_position$이 부족합니다: $VALUE|=+0$"
+ carnx_lacking_court_gardener_reason:0 "[recipient.GetShortUIName|U]에게 좋은 $court_gardener_court_position$가 부족합니다: $VALUE|=+0$"
+ carnx_lacking_wet_nurse_reason:0 "[recipient.GetShortUIName|U]에게 좋은 $wet_nurse_court_position$가 부족합니다: $VALUE|=+0$"
+ carnx_lacking_court_tutor_reason:0 "[recipient.GetShortUIName|U]에게 좋은 $court_tutor_court_position$가 부족합니다: $VALUE|=+0$"
+ carnx_lacking_food_taster_reason:0 "[recipient.GetShortUIName|U]에게 좋은 $food_taster_court_position$가 부족합니다: $VALUE|=+0$"
+ carnx_lacking_seneschal_reason:0 "[recipient.GetShortUIName|U]에게 좋은 $seneschal_court_position$이 부족합니다: $VALUE|=+0$"
+ carnx_lacking_cupbearer_reason:0 "[recipient.GetShortUIName|U]에게 좋은 $cupbearer_court_position$가 부족합니다: $VALUE|=+0$"
+ carnx_lacking_chief_eunuch_reason:0 "[recipient.GetShortUIName|U]에게 좋은 $chief_eunuch_court_position$이 부족합니다: $VALUE|=+0$"
+ carnx_lacking_court_jester_reason:0 "[recipient.GetShortUIName|U]에게 좋은 $court_jester_court_position$가 부족합니다: $VALUE|=+0$"
+ carnx_lacking_court_poet_reason:0 "[recipient.GetShortUIName|U]에게 좋은 $court_poet_court_position$가 부족합니다: $VALUE|=+0$"
+ carnx_lacking_court_musician_reason:0 "[recipient.GetShortUIName|U]에게 좋은 $court_musician_court_position$이 부족합니다: $VALUE|=+0$"
+ carnx_lacking_bodyguard_reason:0 "[recipient.GetShortUIName|U]에게 좋은 $bodyguard_court_position$가 필요할 수 있습니다: $VALUE|=+0$"
+ carnx_lacking_champion_reason:0 "[recipient.GetShortUIName|U]에게 좋은 $champion_court_position$이 부족합니다: $VALUE|=+0$"
+ carnx_lacking_executioner_reason:0 "[recipient.GetShortUIName|U]에게 좋은 $executioner_court_position$가 부족합니다: $VALUE|=+0$"
+ carnx_lacking_master_assassin_reason:0 "[recipient.GetShortUIName|U]에게 좋은 $master_assassin_court_position$이 부족합니다: $VALUE|=+0$"
+ carnx_lacking_chronicler_reason:0 "[recipient.GetShortUIName|U]에게 좋은 $chronicler_court_position$가 부족합니다: $VALUE|=+0$"
+ carnx_lacking_slave_concubine_reason:0 "[recipient.GetShortUIName|U]에게 좋은 $carnx_slave_concubine_court_position$가 필요할 수 있습니다: $VALUE|=+0$"
+ carnx_lacking_slave_captain_reason:0 "[recipient.GetShortUIName|U]에게 좋은 $carnx_slave_captain_court_position$이 필요할 수 있습니다: $VALUE|=+0$"
+ carnx_lacking_slave_eunuch_reason:0 "[recipient.GetShortUIName|U]에게 좋은 $carnx_slave_eunuch_court_position$이 필요할 수 있습니다: $VALUE|=+0$"
+ carnx_lacking_knights_reason:0 "[recipient.GetShortUIName|U]에게 좋은 $knight_culture_player$가 필요할 수 있습니다: $VALUE|=+0$"
+ carnx_lacking_commanders_reason:0 "[recipient.GetShortUIName|U]에게 좋은 지휘관이 필요할 수 있습니다: $VALUE|=+0$"
+ carnx_not_enough_gold_reason:0 "[actor.GetShortUIName|U]이(가) 가격을 감당할 수 없습니다: $VALUE|=+0$"
+ carnx_slave_recently_bought_reason:0 "[recipient.GetShortUIName|U]이(가) 최근 [secondary_recipient.GetShortUIName|U]을(를) 구매했고 [secondary_recipient.GetHerHim]을(를) 유지하고 싶어 합니다: $VALUE|=+0$"
+ carnx_reluctant_to_spend_gold_reason:0 "[recipient.GetSheHe|U]이(가) [gold|E]를 쓰기를 꺼립니다: $VALUE|=+0$"
+ carnx_recipient_poor_reason:0 "[recipient.GetShortUIName|U]이(가) [recipient.GetHerselfHimself]을(를) 가난하다고 여깁니다: $VALUE|=+0$"
+ carnx_recipient_rich_reason:0 "[recipient.GetShortUIName|U]이(가) [recipient.GetHerselfHimself]을(를) 부유하다고 여깁니다: $VALUE|=+0$"
+ carnx_slave_reason:0 "노예는 유용하고 가치 있을 수 있습니다: $VALUE|=+0$"
+ carnx_nothing_offered_reason:0 "[actor.GetShortUIName|U]이(가) 무언가를 제안해야 합니다: $VALUE|=+0$"
+ carnx_slavery_attitude_reason:0 "[recipient.GetShortUIName|U]의 노예제에 대한 태도: $VALUE|=+0$"
+ carnx_declining_to_free_illegal_slaves_is_crime_reason:0 "불법 노예 해방을 거부하는 것은 범죄입니다: $VALUE|=+0$"
+
+ carnx_selling_crime_in_recipient_faith:0 "[secondary_recipient.GetFaith.GetAdherentNamePluralNoTooltip|U]을(를) 노예로 판매하는 것은 [recipient.GetShortUIName|U]의 [faith|E]에서 [criminal|E]입니다: $VALUE|=+0$"
+ carnx_selling_shunned_in_recipient_faith:0 "[secondary_recipient.GetFaith.GetAdherentNamePluralNoTooltip|U]을(를) 노예로 판매하는 것은 [recipient.GetShortUIName|U]의 [faith|E]에서 [shunned|E]입니다: $VALUE|=+0$"
+ carnx_owning_crime_in_recipient_faith:0 "[secondary_recipient.GetFaith.GetAdherentNamePluralNoTooltip|U]을(를) 노예로 소유하는 것은 [recipient.GetShortUIName|U]의 [faith|E]에서 [criminal|E]입니다: $VALUE|=+0$"
+ carnx_owning_shunned_in_recipient_faith:0 "[secondary_recipient.GetFaith.GetAdherentNamePluralNoTooltip|U]을(를) 노예로 소유하는 것은 [recipient.GetShortUIName|U]의 [faith|E]에서 [shunned|E]입니다: $VALUE|=+0$"
+
+ # Effect descriptions
+ carnx_buyer_not_enough_gold_for_slave_price_tooltip:0 "[seller.GetShortUINameNoTooltip]에게 #high [gold_i][SCOPE.ScriptValue('carn_scope_buyer_current_gold_value')|0]#!을(를) 지불합니다 #weak (전체 가격 [gold_i][SCOPE.ScriptValue('carn_scope_slave_price_value')|0]이(가) 단기 예산을 초과합니다)#!"
+ carnx_is_allowed_to_imprison_slave_desc:0 "[recipient.GetShortUIName]은(는) 당신의 [slave|E]이므로, [tyrant|E]로 간주되지 않고 [recipient.GetShortUIName]을(를) 투옥할 수 있습니다"
+
+ # Message titles
+ carnx_msg_slave_bought:0 "노예 구매됨"
+ carnx_msg_slave_sold:0 "노예 판매됨"
+ carnx_msg_slave_ransomed:0 "노예 몸값 지불됨"
+ carnx_msg_slave_gifted:0 "노예 선물됨"
+ carnx_msg_slave_escaped:0 "노예 탈출함"
+ carnx_msg_slave_seized:0 "노예 압류됨"
+ carnx_msg_slave_liberated:0 "노예 해방됨"
+
+ # Interaction categories
+ carnx_interaction_category_slavery:0 "노예제"
+
+ # Interaction category descriptions
+ CARNX_SLAVERY_ACTIONS:0 "노예제 행동"

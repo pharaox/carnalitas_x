@@ -1,0 +1,6 @@
+﻿l_korean:
+ carnx_choose_slavery_attitude_decision:0 "노예제에 대한 태도 선택"
+ carnx_choose_slavery_attitude_decision_desc:0 "노예제를 더 잘 활용하기 위해 내 태도를 선택할 수 있다."
+ carnx_choose_slavery_attitude_decision_tooltip:0 "[slavery|E]에 대한 당신의 태도를 $carnx_slavery_attitude_slaver_modifier$, $carnx_slavery_attitude_liberator_modifier$, $carnx_slavery_attitude_trader_modifier$, 또는 $carnx_slavery_attitude_employer_modifier$ 중 하나로 선택할 수 있습니다. 각 태도는 작은 수정자와 노예제 관련 고유한 특권을 제공합니다."
+ carnx_choose_slavery_attitude_decision.tt:0 "$carnx_choose_slavery_attitude_decision_tooltip$"
+ carnx_choose_slavery_attitude_decision_confirm:0 "노예제에 대한 태도 선택"

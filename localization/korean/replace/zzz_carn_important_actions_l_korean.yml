@@ -1,0 +1,11 @@
+﻿l_korean:
+ action_carn_can_demand_free_illegal_slaves_interaction: "@carnx_broken_chain_icon! 당신은 $carn_demand_free_illegal_slaves_interaction$할 수 있습니다"
+ action_carn_can_demand_free_illegal_slaves_interaction_label: "[recipient.GetUINameNoTooltip]에게 $carn_demand_free_illegal_slaves_interaction$"
+ action_carn_can_demand_free_illegal_slaves_interaction_desc: "당신은 [recipient.GetUIName]에게 [recipient.GetSheHe]가 소유한 모든 불법 [slaves|E]를 해방하도록 요구할 수 있습니다."
+ action_carn_can_demand_free_illegal_slaves_interaction_click: "#I 클릭하여 $carn_demand_free_illegal_slaves_interaction$#!"
+ action_carn_can_demand_free_illegal_slaves_interaction_combined_group_label: "$action_carn_can_demand_free_illegal_slaves_interaction$"
+ action_carn_can_demand_free_illegal_slaves_interaction_combined_group_name: "$action_carn_can_demand_free_illegal_slaves_interaction$"
+ action_carn_can_demand_free_illegal_slaves_interaction_combined_group_description: "당신은 당신의 봉신 중 한 명에게 그들이 소유한 모든 불법 [slaves|E]를 해방하도록 요구할 수 있습니다."
+ action_carn_can_demand_free_illegal_slaves_interaction_combined_label: "[recipient.GetUINameNoTooltip]로부터"
+ action_carn_can_demand_free_illegal_slaves_interaction_unimportant: "@warning_icon! #X [recipient.GetSheHe|U]은(는) 중요한 봉신이 아닙니다#!"
+ action_carn_can_demand_free_illegal_slaves_interaction_combined_unimportant: "@warning_icon! #X 이 봉신들은 중요한 봉신들이 아닙니다#!"

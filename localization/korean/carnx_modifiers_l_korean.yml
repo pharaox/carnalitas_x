@@ -1,0 +1,10 @@
+﻿l_korean:
+ carnx_marked_for_enslavement_modifier:0 "노예화 대상으로 표시됨"
+ carnx_slavery_attitude_slaver_modifier:0 "노예상"
+ carnx_slavery_attitude_slaver_modifier_desc:0 "이 인물은 포로들을 노예로 만들어 기꺼이 사려는 구매자들에게 판매하는 것을 좋아합니다.\n$EFFECT_LIST_BULLET$ 공성전과 습격 중 인물들을 죽이기보다는 포획할 가능성이 더 높습니다"
+ carnx_slavery_attitude_liberator_modifier:0 "해방자"
+ carnx_slavery_attitude_liberator_modifier_desc:0 "이 인물은 노예들을 해방시키고, 자유롭게 하며, 몸값을 치르고 풀어주는 것을 좋아합니다.\n$EFFECT_LIST_BULLET$ 친족이 아니더라도 같은 신앙을 가진 노예들의 몸값을 지불할 수 있습니다"
+ carnx_slavery_attitude_trader_modifier:0 "노예 상인"
+ carnx_slavery_attitude_trader_modifier_desc:0 "이 인물은 노예를 사고 팔아 이익을 얻으려고 노력합니다.\n$EFFECT_LIST_BULLET$ 노예를 사고 팔 때 더 유리한 가격을 얻습니다"
+ carnx_slavery_attitude_employer_modifier:0 "노예 고용주"
+ carnx_slavery_attitude_employer_modifier_desc:0 "이 인물은 노예들이 더 충성스럽다고 여기기 때문에 그들을 고용하는 것을 좋아합니다.\n$EFFECT_LIST_BULLET$ 노예들을 추가적인 직업에 고용할 수 있고 더 낮은 급여로 고용할 수 있습니다"

@@ -1,0 +1,7 @@
+﻿l_korean:
+ carnx_rival_slave_scapegoat:0 "[CHARACTER.GetShortUIName|U]이(가) 노예 손실에 대해 [TARGET_CHARACTER.GetShortUIName]을(를) 희생양으로 삼았다."
+ carnx_rival_slave_scapegoat_corresponding:0 "[TARGET_CHARACTER.GetShortUIName|U]이(가) 노예 손실에 대해 [CHARACTER.GetShortUIName]을(를) 희생양으로 삼았다."
+ carnx_rival_enslaved:0 "[TARGET_CHARACTER.GetShortUIName|U]이(가) [CHARACTER.GetShortUIName]을(를) 노예로 만들었다."
+ carnx_rival_enslaved_corresponding:0 "[CHARACTER.GetShortUIName|U]이(가) [TARGET_CHARACTER.GetShortUIName]을(를) 노예로 만들었다."
+ carnx_rival_sold_into_slavery:0 "[TARGET_CHARACTER.GetShortUIName|U]이(가) [CHARACTER.GetShortUIName]을(를) 노예로 팔았다."
+ carnx_rival_sold_into_slavery_corresponding:0 "[CHARACTER.GetShortUIName|U]이(가) [TARGET_CHARACTER.GetShortUIName]을(를) 노예로 팔았다."
