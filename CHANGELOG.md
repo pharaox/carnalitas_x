@@ -1,5 +1,11 @@
 # Changelog
 
+## Version 0.20.4
+
+### Localization
+
+* Add Korean translation (by **@ipni20**)
+
 ## Version 0.20.3
 
 ### Miscellaneous
