@@ -819,7 +819,7 @@ carnx_vanilla_court_position_traits_character_value = {
 	if = {
 		limit = { # 50 (or prerequisite)
 			OR = {
-				has_trait = eunuch # Chief Eunuch, Court Eunuch
+				is_eunuch_trigger = yes # Chief Eunuch, Court Eunuch
 				has_trait = poet # Court Poet
 			}
 		}

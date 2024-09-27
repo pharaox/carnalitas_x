@@ -3,7 +3,7 @@
 		is_male = yes
 		carn_is_futa_trigger = yes
 	}
-	NOT = { has_trait = eunuch }
+	NOT = { is_eunuch_trigger = yes }
 }
 
 # Overridden from Carnalitas.

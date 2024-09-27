@@ -9,7 +9,7 @@ prisoner_of_war_capture_effect = {
 			scope:new_target = {
 				exists = liege
 				OR = {
-					is_landed = yes
+					is_playable_character = yes
 					is_close_or_extended_family_of = liege
 					is_spouse_of = liege
 				}
@@ -128,7 +128,12 @@ imprison_tyranny_effect = {
 					is_alive = yes
 				}
 			}
-			scope:actor = { add_legitimacy = miniscule_legitimacy_loss }
+			scope:actor = {
+				if = {
+					limit = { has_legitimacy = yes }
+					add_legitimacy = miniscule_legitimacy_loss
+				}
+			}
 		}
 	}
 }

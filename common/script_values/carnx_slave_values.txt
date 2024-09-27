@@ -650,8 +650,8 @@ carnx_root_faith_dominant_gender_adjusted_female_chance = {
 
 carnx_mark_for_enslavement_chance = {
 	if = {
-		# Don't mark for enslavement landed characters or their family
-		limit = { carnx_is_landed_or_family_trigger = yes }
+		# Don't mark for enslavement playable characters or their family
+		limit = { carnx_is_playable_or_family_trigger = yes }
 		value = 0
 	}
 	else_if = {

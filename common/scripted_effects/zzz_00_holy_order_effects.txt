@@ -1,0 +1,14 @@
+﻿release_as_executioner_effect = {
+	scope:actor = {
+		court_position_grant_effect = {
+			EMPLOYER = scope:actor
+			POS = executioner
+			CANDIDATE = scope:recipient
+		}
+		save_scope_as = liege
+	}
+	scope:recipient = {
+		save_scope_as = employee
+		executioner_title_accepted_effect = yes
+	}
+}

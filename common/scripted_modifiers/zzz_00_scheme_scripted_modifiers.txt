@@ -1,0 +1,849 @@
+﻿# Overridden from vanilla.
+# Would an agent join a scheme to do something like seduce the target?
+ai_agent_join_chance_hostile_taboo_modifier = {
+	ai_agent_join_chance_hostile_general_suite_modifier = yes
+
+	# Opinion
+	## How much does the Agent like the Target? Modified by ai_honor
+	### Positive honor multiplier: Ranges -1 to -5
+	### Negative honor multiplier: Ranges -1 to -0.2
+	### Then multiplied by 1.5
+	opinion_modifier = {
+		trigger = {
+			NOT = { this = scope:target }
+			opinion = {
+				target = scope:target
+				value >= low_positive_opinion
+			}
+		}
+		who = this
+		opinion_target = scope:target
+		multiplier = {
+			value = -1
+			if = {
+				limit = { this.ai_honor >= 0 }
+				subtract = {
+					value = this.ai_honor
+					multiply = 0.025
+				}
+			}
+			else = {
+				subtract = {
+					value = this.ai_honor
+					multiply = 0.008
+				}
+			}
+			multiply = 1.5
+		}
+		desc = SCHEME_MY_OPINION_OF_TARGET
+	}
+	# Faith
+	## Stance on your adultery.
+	### Shunned.
+	modifier = {
+		trigger = {
+			NOR = {
+				has_trait = cynical
+				scope:owner = { is_spouse_of = scope:target }
+				AND = {
+					faith = { has_doctrine = doctrine_concubines }
+					OR = {
+						scope:owner = { is_concubine_of = scope:target }
+						scope:target = { is_concubine_of = scope:owner }
+					}
+				}
+			}
+			OR = {
+				AND = {
+					scope:owner = { is_male = yes }
+					faith = { has_doctrine_parameter = adultery_male_crime }
+				}
+				AND = {
+					scope:owner = { is_female = yes }
+					faith = { has_doctrine_parameter = adultery_female_crime }
+				}
+			}
+		}
+		add = -5
+		desc = ai_opinion.reason.faith.adultery_shunned.owner
+	}
+	### Criminal.
+	modifier = {
+		trigger = {
+			NOR = {
+				has_trait = cynical
+				scope:owner = { is_spouse_of = scope:target }
+				AND = {
+					faith = { has_doctrine = doctrine_concubines }
+					OR = {
+						scope:owner = { is_concubine_of = scope:target }
+						scope:target = { is_concubine_of = scope:owner }
+					}
+				}
+			}
+			OR = {
+				AND = {
+					scope:owner = { is_male = yes }
+					faith = { has_doctrine_parameter = adultery_male_crime }
+				}
+				AND = {
+					scope:owner = { is_female = yes }
+					faith = { has_doctrine_parameter = adultery_female_crime }
+				}
+			}
+		}
+		add = -15
+		desc = ai_opinion.reason.faith.adultery_criminal.owner
+	}
+	## Stance on their adultery.
+	### Shunned.
+	modifier = {
+		trigger = {
+			NOR = {
+				has_trait = cynical
+				scope:owner = { is_spouse_of = scope:target }
+				AND = {
+					faith = { has_doctrine = doctrine_concubines }
+					OR = {
+						scope:owner = { is_concubine_of = scope:target }
+						scope:target = { is_concubine_of = scope:owner }
+					}
+				}
+			}
+			OR = {
+				AND = {
+					scope:owner = { is_male = yes }
+					faith = { has_doctrine_parameter = adultery_male_crime }
+				}
+				AND = {
+					scope:owner = { is_female = yes }
+					faith = { has_doctrine_parameter = adultery_female_crime }
+				}
+			}
+		}
+		add = -5
+		desc = ai_opinion.reason.faith.adultery_shunned.target
+	}
+	### Criminal.
+	modifier = {
+		trigger = {
+			NOR = {
+				has_trait = cynical
+				scope:owner = { is_spouse_of = scope:target }
+				AND = {
+					faith = { has_doctrine = doctrine_concubines }
+					OR = {
+						scope:owner = { is_concubine_of = scope:target }
+						scope:target = { is_concubine_of = scope:owner }
+					}
+				}
+			}
+			OR = {
+				AND = {
+					scope:owner = { is_male = yes }
+					faith = { has_doctrine_parameter = adultery_male_crime }
+				}
+				AND = {
+					scope:owner = { is_female = yes }
+					faith = { has_doctrine_parameter = adultery_female_crime }
+				}
+			}
+		}
+		add = -15
+		desc = ai_opinion.reason.faith.adultery_criminal.target
+	}
+	## Lust is a sin.
+	modifier = {
+		trigger = {
+			faith = { trait_is_sin = lustful }
+		}
+		add = -5
+		desc = ai_opinion.reason.trait_is_sinful.lustful
+	}
+	## Lust is a virtue.
+	modifier = {
+		trigger = {
+			faith = { trait_is_virtue = lustful }
+		}
+		add = 10
+		desc = ai_opinion.reason.trait_is_virtuous.lustful
+	}
+	## Chaste is a sin.
+	modifier = {
+		trigger = {
+			faith = { trait_is_sin = chaste }
+		}
+		add = 10
+		desc = ai_opinion.reason.trait_is_sinful.chaste
+	}
+	## Chaste is a virtue.
+	modifier = {
+		trigger = {
+			faith = { trait_is_virtue = chaste }
+		}
+		add = -5
+		desc = ai_opinion.reason.trait_is_virtuous.chaste
+	}
+	# AI Personality
+	## Compassion (general)
+	modifier = {
+		trigger = {
+			ai_compassion > 0
+			NOT = { this = scope:target }
+		}
+		add = {
+			value = ai_compassion
+			multiply = -1
+			divide = 2.5
+		}
+		desc = COMPASSIONATE_REASON
+	}
+	## Compassion (sadism)
+	modifier = {
+		trigger = {
+			ai_compassion < high_negative_ai_value
+			NOT = { this = scope:target }
+		}
+		add = {
+			value = ai_compassion
+			multiply = -1
+			divide = 10
+		}
+		desc = COMPASSIONATE_NEGATIVE_REASON
+	}
+	## Vengefulness (and the prospective agent has been wronged by scope:target)
+	modifier = {
+		trigger = {
+			ai_vengefulness > 0
+			NOT = { this = scope:target }
+			opinion = {
+				target = scope:target
+				value <= 0
+			}
+			OR = {
+				has_opinion_modifier = {
+					modifier = murdered_close_family_crime
+					target = scope:target
+				}
+				has_opinion_modifier = {
+					modifier = attempted_murder_close_family_crime
+					target = scope:target
+				}
+				has_opinion_modifier = {
+					modifier = executed_close_family
+					target = scope:target
+				}
+				has_opinion_modifier = {
+					modifier = slept_with_spouse_discovered_opinion
+					target = scope:target
+				}
+				has_opinion_modifier = {
+					modifier = slept_with_spouse_exposed_opinion
+					target = scope:target
+				}
+				has_opinion_modifier = {
+					modifier = unfaithful_spouse_discovered_opinion
+					target = scope:target
+				}
+				has_opinion_modifier = {
+					modifier = unfaithful_spouse_exposed_opinion
+					target = scope:target
+				}
+				has_opinion_modifier = {
+					modifier = refused_to_renounce_lover_opinion
+					target = scope:target
+				}
+				has_opinion_modifier = {
+					modifier = betrayed_our_promise
+					target = scope:target
+				}
+				has_opinion_modifier = {
+					modifier = botched_my_treatment_crime_opinion
+					target = scope:target
+				}
+				has_opinion_modifier = {
+					modifier = botched_treatment_of_kin_crime_opinion
+					target = scope:target
+				}
+				has_opinion_modifier = {
+					modifier = smeared_opinion
+					target = scope:target
+				}
+				has_opinion_modifier = {
+					modifier = insulted_opinion
+					target = scope:target
+				}
+				has_opinion_modifier = {
+					modifier = mocked_me_in_time_of_need
+					target = scope:target
+				}
+				has_opinion_modifier = {
+					modifier = loved_one_dungeon_death
+					target = scope:target
+				}
+				has_opinion_modifier = {
+					modifier = abandoned_me_opinion
+					target = scope:target
+				}
+				has_opinion_modifier = {
+					modifier = reason_child_died
+					target = scope:target
+				}
+				has_opinion_modifier = {
+					modifier = falsely_accused
+					target = scope:target
+				}
+
+				# CSR: Vengeance for being enslaved by target
+				has_opinion_modifier = {
+					modifier = carn_enslaved_me_crime_opinion
+					target = scope:target
+				}
+				has_opinion_modifier = {
+					modifier = carn_enslaved_close_family_crime_opinion
+					target = scope:target
+				}
+			}
+		}
+		add = {
+			value = ai_vengefulness
+			multiply = 2
+		}
+		desc = SCHEME_I_MUST_TAKE_VENGEANCE
+	}
+	## Cowardice
+	modifier = {
+		trigger = { ai_boldness < 0 }
+		add = ai_boldness
+		desc = SCHEME_I_AM_A_COWARD
+	}
+	modifier = {
+		trigger = { ai_boldness > 0 }
+		add = ai_boldness
+		desc = SCHEME_I_AM_BOLD
+	}
+	# Realm Drama
+	## Scope:target spouse has caused internal strife in the realm
+	character_hates_scope_spouse_due_to_strife_plus_desc_modifier = { TARGET = scope:target }
+	## Family Feud
+	house_feud_hostile_scheme_agent_modifier = yes
+	modifier = {
+		trigger = {
+			exists = house.house_head
+			exists = scope:target.house
+			house.house_head = {
+				any_owned_story = {
+					story_type = story_cycle_house_feud
+					exists = var:house_feud_house
+					var:house_feud_house = scope:target.house
+				}
+			}
+		}
+		add = {
+			value = 50
+		}
+		desc = SCHEME_TARGET_IS_FEUD_TARGET
+	}
+	# Other
+	## Nothing to be gained for the prospective agent
+	modifier = {
+		trigger = {
+			NAND = { # Greedy agents find that Gold is, indeed, something they stand to gain!
+				OR = {
+					AND = {
+						exists = scope:gift
+						always = scope:gift
+					}
+					AND = {
+						exists = scope:gift_significant
+						always = scope:gift_significant
+					}
+				}
+				ai_greed > 0
+			}
+			NOR = {
+				scope:target = {
+					is_ruler = yes
+					any_held_title = {
+						place_in_line_of_succession = {
+							target = root
+							value <=10
+						}
+					}
+				}
+				opinion = {
+					target = scope:target
+					value <= medium_negative_opinion
+				}
+			}
+			NAND = {
+				exists = house.house_head
+				exists = scope:target.house
+				house.house_head = {
+					any_owned_story = {
+						story_type = story_cycle_house_feud
+						exists = var:house_feud_house
+						var:house_feud_house = scope:target.house
+					}
+				}
+			}
+		}
+		add = {
+			value = -10
+			if = {
+				limit = {
+					ai_greed > 0
+				}
+				subtract = {
+					value = ai_greed
+					multiply = 0.25
+				}
+			}
+		}
+		desc = SCHEME_NOTHING_TO_GAIN
+	}
+}
+
+# Overridden from vanilla.
+# Would an agent join a scheme to do something like kidnap or murder the target?
+ai_agent_join_chance_hostile_grievous_modifier = {
+	ai_agent_join_chance_hostile_general_suite_modifier = yes
+
+	# Opinion
+	## How much does the Agent like the Target? Modified by ai_honor
+	### Positive honor multiplier: Ranges -1 to -5
+	### Negative honor multiplier: Ranges -1 to -0.2
+	### Then multiplied by 1.5
+	opinion_modifier = {
+		trigger = {
+			NOT = { this = scope:target }
+			opinion = {
+				target = scope:target
+				value >= low_positive_opinion
+			}
+		}
+		who = this
+		opinion_target = scope:target
+		multiplier = {
+			value = -1
+			if = {
+				limit = { this.ai_honor >= 0 }
+				subtract = {
+					value = this.ai_honor
+					multiply = 0.025
+				}
+			}
+			else = {
+				subtract = {
+					value = this.ai_honor
+					multiply = 0.008
+				}
+			}
+			multiply = 1.5
+		}
+		desc = SCHEME_I_LIKE_TARGET
+	}
+	# Relations
+	## Don't murder descendants
+	modifier = {
+		add = -100
+		OR = {
+			is_great_grandparent_of = scope:target
+			is_grandparent_of = scope:target
+			is_parent_of = scope:target
+		}
+		desc = SCHEME_NOT_AGAINST_DESCENDANTS
+	}
+	## Lovers (with Mortal Adoration lifestyle perk)
+	modifier = {
+		add = -25
+		scope:target = { has_perk = mortal_adoration_perk }
+		has_relation_lover = scope:target
+		desc = MORTAL_ADORATION_REDUCED_HOSTILE_SCHEME_JOIN_CHANCE
+	}
+	## A spiteful spouse will want to murder you
+	modifier = {
+		add = 10
+		trigger = {
+			ai_compassion < 0
+			is_consort_of = scope:target
+		}
+		opinion = {
+			target = scope:target
+			value < low_negative_opinion
+		}
+		desc = SCHEME_AGAINST_SPOUSE_POSITIVE
+	}
+	# AI Personality
+	## Compassion (general)
+	modifier = {
+		trigger = {
+			ai_compassion > 0
+			NOT = { this = scope:target }
+		}
+		add = {
+			value = ai_compassion
+			multiply = -1
+			divide = 2.5
+		}
+		desc = COMPASSIONATE_REASON
+	}
+	## Compassion (general towards children)
+	modifier = {
+		trigger = {
+			ai_compassion > 0
+			scope:target = { is_adult = no }
+		}
+		add = {
+			value = ai_compassion
+			multiply = -1
+		}
+		desc = SCHEME_COMPASSIONATE_NOT_MURDER_CHILDREN
+	}
+	## Compassion (sadism)
+	modifier = {
+		trigger = {
+			ai_compassion < high_negative_ai_value
+			NOT = { this = scope:target }
+		}
+		add = {
+			value = ai_compassion
+			multiply = -1
+			divide = 10
+		}
+		desc = COMPASSIONATE_NEGATIVE_REASON
+	}
+	## Vengefulness (and the prospective agent has been wronged by scope:target)
+	modifier = {
+		trigger = {
+			ai_vengefulness > 0
+			NOT = { this = scope:target }
+			opinion = {
+				target = scope:target
+				value <= 0
+			}
+			OR = {
+				has_opinion_modifier = {
+					modifier = murdered_close_family_crime
+					target = scope:target
+				}
+				has_opinion_modifier = {
+					modifier = attempted_murder_close_family_crime
+					target = scope:target
+				}
+				has_opinion_modifier = {
+					modifier = executed_close_family
+					target = scope:target
+				}
+				has_opinion_modifier = {
+					modifier = slept_with_spouse_discovered_opinion
+					target = scope:target
+				}
+				has_opinion_modifier = {
+					modifier = slept_with_spouse_exposed_opinion
+					target = scope:target
+				}
+				has_opinion_modifier = {
+					modifier = unfaithful_spouse_discovered_opinion
+					target = scope:target
+				}
+				has_opinion_modifier = {
+					modifier = unfaithful_spouse_exposed_opinion
+					target = scope:target
+				}
+				has_opinion_modifier = {
+					modifier = refused_to_renounce_lover_opinion
+					target = scope:target
+				}
+				has_opinion_modifier = {
+					modifier = betrayed_our_promise
+					target = scope:target
+				}
+				has_opinion_modifier = {
+					modifier = botched_my_treatment_crime_opinion
+					target = scope:target
+				}
+				has_opinion_modifier = {
+					modifier = botched_treatment_of_kin_crime_opinion
+					target = scope:target
+				}
+				has_opinion_modifier = {
+					modifier = smeared_opinion
+					target = scope:target
+				}
+				has_opinion_modifier = {
+					modifier = insulted_opinion
+					target = scope:target
+				}
+				has_opinion_modifier = {
+					modifier = mocked_me_in_time_of_need
+					target = scope:target
+				}
+				has_opinion_modifier = {
+					modifier = loved_one_dungeon_death
+					target = scope:target
+				}
+				has_opinion_modifier = {
+					modifier = abandoned_me_opinion
+					target = scope:target
+				}
+				has_opinion_modifier = {
+					modifier = reason_child_died
+					target = scope:target
+				}
+				has_opinion_modifier = {
+					modifier = falsely_accused
+					target = scope:target
+				}
+
+				# CSR: Vengeance for being enslaved by target
+				has_opinion_modifier = {
+					modifier = carn_enslaved_me_crime_opinion
+					target = scope:target
+				}
+				has_opinion_modifier = {
+					modifier = carn_enslaved_close_family_crime_opinion
+					target = scope:target
+				}
+			}
+		}
+		add = {
+			value = ai_vengefulness
+			multiply = 2
+		}
+		desc = SCHEME_I_MUST_TAKE_VENGEANCE
+	}
+	## Cowardice
+	modifier = {
+		trigger = { ai_boldness < 0 }
+		add = ai_boldness
+		desc = SCHEME_I_AM_A_COWARD
+	}
+	## Greed (and the prospective agent holds titles that scope:target claims)
+	modifier = {
+		trigger = {
+			is_ruler = yes
+			ai_greed > 0
+			opinion = {
+				target = scope:target
+				value <= low_negative_opinion
+			}
+			any_held_title = {
+				scope:target = { has_claim_on = prev }
+			}
+			NOR = {
+				is_great_grandparent_of = scope:target
+				is_grandparent_of = scope:target
+				is_parent_of = scope:target
+			}
+		}
+		add = {
+			value = ai_greed
+			divide = 2
+		}
+		desc = SCHEME_GET_RID_OF_UNRULY_CLAIMANT
+	}
+	## Greed (and the prospective agent MIGHT gain a title if scope:target bites the dust)
+	modifier = {
+		trigger = {
+			ai_greed > 0
+			scope:target = {
+				any_held_title = {
+					place_in_line_of_succession = {
+						target = root
+						value <= 3
+					}
+				}
+			}
+		}
+		add = {
+			value = ai_greed
+			divide = 2
+		}
+		desc = SCHEME_MOVES_ME_UP_THE_SUCCESSION
+	}
+	## Zeal (and scope:target is a faith to be zealous against)
+	modifier = {
+		trigger = {
+			ai_zeal > 10
+			NOT = {
+				faith = {
+					faith_hostility_level = {
+						target = scope:target.faith
+						value = faith_fully_accepted_level
+					}
+				}
+			}
+		}
+		add = {
+			value = ai_zeal
+			if = {
+				limit = {
+					faith = {
+						faith_hostility_level = {
+							target = scope:target.faith
+							value = faith_astray_level
+						}
+					}
+				}
+				multiply = 0.25
+			}
+			else = {
+				multiply = 0.5
+			}
+		}
+		desc = SCHEME_ZEALOUS_AGAINST_HEATHEN
+	}
+	# Event Content
+	## Murder Couples
+	modifier = {
+		add = 50
+		has_opinion_modifier = {
+			target = scope:owner
+			modifier = murder_partner_opinion
+		}
+		desc = "SCHEME_MURDER_COUPLE"
+	}
+	modifier = {
+		add = -1000
+		# Sometimes characters will die before they reply, so we have to check for this.
+		is_alive = yes
+		# Then the variable.
+		var:murder_scheme_disinterest ?= scope:target
+		desc = "SCHEME_MURDER_DISINTERESTED"
+	}
+	# Realm Drama
+	## Scope:target has caused internal strife in the realm
+	character_hates_scope_due_to_strife_plus_desc_modifier = { TARGET = scope:target }
+	## Family Feud
+	house_feud_hostile_scheme_agent_modifier = yes
+	modifier = {
+		trigger = {
+			exists = house.house_head
+			exists = scope:target.house
+			house.house_head = {
+				any_owned_story = {
+					story_type = story_cycle_house_feud
+					exists = var:house_feud_house
+					var:house_feud_house = scope:target.house
+				}
+			}
+		}
+		add = {
+			value = 50
+		}
+		desc = SCHEME_TARGET_IS_FEUD_TARGET
+	}
+	### Admin Eunuch
+	modifier = {
+		trigger = {
+			top_liege ?= scope:target
+			scope:target = { ep3_story_cycle_admin_eunuch_valid_story_trigger = yes }
+			scope:eunuch_temp ?= this
+			OR = {
+				has_character_modifier = admin_eunuch_eunuch_1_modifier
+				has_character_modifier = admin_eunuch_eunuch_2_modifier
+				has_character_modifier = admin_eunuch_eunuch_3_modifier
+			}
+		}
+		add = {
+			value = 50
+			if = {
+				limit = { has_character_modifier = admin_eunuch_eunuch_2_modifier }
+				add = 50
+			}
+			else_if = {
+				limit = { has_character_modifier = admin_eunuch_eunuch_3_modifier }
+				add = 100
+			}
+			if = {
+				limit = { scope:story_temp.var:eunuch_score < 0 }
+				multiply = {
+					value = {
+						value = scope:story_temp.var:eunuch_score
+						add = 1
+						abs = yes
+						min = 1
+					}
+				}
+			}
+		}
+		desc = SCHEME_TARGET_IS_ADMIN_EUNUCH_TARGET
+	}
+	modifier = {
+		trigger = {
+			top_liege ?= {
+				ep3_story_cycle_admin_eunuch_valid_story_trigger = yes
+				scope:eunuch_temp ?= scope:target
+				scope:story_temp ?= {
+					is_target_in_variable_list = {
+						name = upset_courtiers
+						target = root
+
+					}
+				}
+			}
+		}
+		add = 100
+		desc = SCHEME_TARGET_IS_ADMIN_EUNUCH_UPSET_COURTIER
+	}
+	# Other
+	## Nothing to be gained for the prospective agent
+	modifier = {
+		trigger = {
+			NAND = { # Greedy agents find that Gold is, indeed, something they stand to gain!
+				OR = {
+					AND = {
+						exists = scope:gift
+						always = scope:gift
+					}
+					AND = {
+						exists = scope:gift_significant
+						always = scope:gift_significant
+					}
+				}
+				ai_greed > 0
+			}
+			NOR = {
+				scope:target = {
+					is_ruler = yes
+					any_held_title = {
+						place_in_line_of_succession = {
+							target = root
+							value <=10
+						}
+					}
+				}
+				opinion = {
+					target = scope:target
+					value <= medium_negative_opinion
+				}
+			}
+			NAND = {
+				exists = house.house_head
+				exists = scope:target.house
+				house.house_head = {
+					any_owned_story = {
+						story_type = story_cycle_house_feud
+						exists = var:house_feud_house
+						var:house_feud_house = scope:target.house
+					}
+				}
+			}
+		}
+		add = {
+			value = -10
+			if = {
+				limit = {
+					ai_greed > 0
+				}
+				subtract = {
+					value = ai_greed
+					multiply = 0.25
+				}
+			}
+		}
+		desc = SCHEME_NOTHING_TO_GAIN
+	}
+}
+

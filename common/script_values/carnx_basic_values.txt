@@ -120,7 +120,6 @@ carnx_slave_captain_aptitude_threshold = 2 # average_effectiveness
 carnx_slave_eunuch_aptitude_threshold = 1 # poor_effectiveness
 
 # Capture and enslavement chances
-carnx_base_raid_capture_chance = 20
 carnx_base_raid_mark_for_enslavement_chance = 50
 carnx_base_siege_mark_for_enslavement_chance = 0
 

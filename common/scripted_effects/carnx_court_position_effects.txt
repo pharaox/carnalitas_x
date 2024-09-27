@@ -26,7 +26,7 @@
 # champion_court_position - Yes
 # executioner_court_position - Yes
 # court_artificer_court_position - No [multiple] [ceremonial] [TBD]
-# court_cave_hermit_position - No [religious]
+# cave_hermit_court_position - No [religious]
 # master_assassin_court_position - Yes
 # court_scholar_court_position - No [ceremonial]
 # chronicler_court_position - Yes

@@ -52,8 +52,10 @@
 				desc = carnx_court_position_beauty_good_1_trait
 			}
 		}
+		add = court_position_aptitude_traveling_friends_value
 		add = court_position_aptitude_family_business_value
 		add = court_position_aptitude_high_penalty_value
+		# TODO Add event for bonus aptitude similar to court.8311
 	}
 
 	# Is this position even visible for usage? Root scope is the liege character.
@@ -112,26 +114,39 @@
 		prestige =  {
 			value = minor_court_position_prestige_revoke_cost
 
-			# Set to 0 with Dynasty Perk Inner Circle
+			# Set to 0 via obligation hook
 			if = {
 				limit = {
-					exists = dynasty
-					dynasty = { has_dynasty_perk = fp2_coterie_legacy_1 }
-					employs_court_position = carnx_slave_concubine_court_position
-					any_court_position_holder = {
-				        type = carnx_slave_concubine_court_position
-						exists = dynasty
-						house = prev.house
+					court_position_obligation_hook_salary_trigger = {
+						POS = carnx_slave_concubine
+						LIEGE = root
 					}
 				}
 				multiply = 0
 			}
+			# Avoid AI prestige issues
 			if = {
 				limit = {
 					exists = this
 					is_ai = yes
 				}
 				multiply = 0
+			}
+			# Special case for events
+			if = {
+				limit = {
+					exists = this
+					has_character_flag = free_revoke_cost
+				}
+				multiply = 0
+			}
+			#Lowering for LAAMPS, to match Camp Officer revoke cost
+			if = {
+				limit = { 
+					exists = this
+					is_landless_adventurer = yes
+				}
+				value = minor_court_position_prestige_revoke_cost
 			}
 		}
 	}
@@ -144,43 +159,44 @@
 
 			# Set to 0 with Dynasty Perk Inner Circle
 			if = {
-				limit = {
-					scope:liege = {
-						exists = dynasty
-						dynasty = { has_dynasty_perk = fp2_coterie_legacy_1 }
-						employs_court_position = carnx_slave_concubine_court_position
-						any_court_position_holder = {
-					        type = carnx_slave_concubine_court_position
-							exists = dynasty
-							house = prev.house
-						}
-					}
-				}
+				limit = { court_position_inner_circle_salary_trigger = { POS = carnx_slave_concubine } }
 				multiply = {
 					value = 0.0
 					desc = inner_circle_salary_mod
 					format = "BASE_VALUE_FORMAT_DECIMALS_MINUS_POSITIVE"
 				}
 			}
-			if = {
+			# Halved with obligation hook
+			else_if = {
 				limit = {
-					scope:liege = {
-						employs_court_position = carnx_slave_concubine_court_position
-						any_court_position_holder = {
-							type = carnx_slave_concubine_court_position
-							scope:liege = {
-								has_hook_of_type = {
-									type = obligation_hook
-									target = prev
-								}
-							}
-						}
+					court_position_obligation_hook_salary_trigger = {
+						POS = carnx_slave_concubine
+						LIEGE = scope:liege
 					}
 				}
 				multiply = {
 					value = 0.5
 					desc = obligation_hook_salary
+					format = "BASE_VALUE_FORMAT_DECIMALS_MINUS_POSITIVE"
 				}
+			}
+			# Halved salary
+			if = {
+				limit = {
+					court_position_halved_salary_trigger = { POS = carnx_slave_concubine }
+				}
+				multiply = {
+					value = 0.5
+					desc = court_position_halved_salary
+					format = "BASE_VALUE_FORMAT_DECIMALS_MINUS_POSITIVE"
+				}
+			}
+			#You're working with LAAMPS now
+			if = {
+				limit = { 
+					scope:liege ?= { is_landless_adventurer = yes }
+				}
+				multiply = 0
 			}
 		}
 	}
@@ -355,8 +371,10 @@ carnx_slave_captain_court_position = {
 				desc = court_position_craven_trait
 			}
 		}
+		add = court_position_aptitude_traveling_friends_value
 		add = court_position_aptitude_family_business_value
 		add = court_position_aptitude_high_penalty_value
+		# TODO Add event for bonus aptitude similar to court.8311
 	}
 
 	# Is this position even visible for usage? Root scope is the liege character.
@@ -406,26 +424,39 @@ carnx_slave_captain_court_position = {
 		prestige =  {
 			value = minor_court_position_prestige_revoke_cost
 
-			# Set to 0 with Dynasty Perk Inner Circle
+			# Set to 0 via obligation hook
 			if = {
 				limit = {
-					exists = dynasty
-					dynasty = { has_dynasty_perk = fp2_coterie_legacy_1 }
-					employs_court_position = carnx_slave_captain_court_position
-					any_court_position_holder = {
-				        type = carnx_slave_captain_court_position
-						exists = dynasty
-						house = prev.house
+					court_position_obligation_hook_salary_trigger = {
+						POS = carnx_slave_captain
+						LIEGE = root
 					}
 				}
 				multiply = 0
 			}
+			# Avoid AI prestige issues
 			if = {
 				limit = {
 					exists = this
 					is_ai = yes
 				}
 				multiply = 0
+			}
+			# Special case for events
+			if = {
+				limit = {
+					exists = this
+					has_character_flag = free_revoke_cost
+				}
+				multiply = 0
+			}
+			#Lowering for LAAMPS, to match Camp Officer revoke cost
+			if = {
+				limit = { 
+					exists = this
+					is_landless_adventurer = yes
+				}
+				value = minor_court_position_prestige_revoke_cost
 			}
 		}
 	}
@@ -438,43 +469,44 @@ carnx_slave_captain_court_position = {
 
 			# Set to 0 with Dynasty Perk Inner Circle
 			if = {
-				limit = {
-					scope:liege = {
-						exists = dynasty
-						dynasty = { has_dynasty_perk = fp2_coterie_legacy_1 }
-						employs_court_position = carnx_slave_captain_court_position
-						any_court_position_holder = {
-					        type = carnx_slave_captain_court_position
-							exists = dynasty
-							house = prev.house
-						}
-					}
-				}
+				limit = { court_position_inner_circle_salary_trigger = { POS = carnx_slave_captain } }
 				multiply = {
 					value = 0.0
 					desc = inner_circle_salary_mod
 					format = "BASE_VALUE_FORMAT_DECIMALS_MINUS_POSITIVE"
 				}
 			}
-			if = {
+			# Halved with obligation hook
+			else_if = {
 				limit = {
-					scope:liege = {
-						employs_court_position = carnx_slave_captain_court_position
-						any_court_position_holder = {
-							type = carnx_slave_captain_court_position
-							scope:liege = {
-								has_hook_of_type = {
-									type = obligation_hook
-									target = prev
-								}
-							}
-						}
+					court_position_obligation_hook_salary_trigger = {
+						POS = carnx_slave_captain
+						LIEGE = scope:liege
 					}
 				}
 				multiply = {
 					value = 0.5
 					desc = obligation_hook_salary
+					format = "BASE_VALUE_FORMAT_DECIMALS_MINUS_POSITIVE"
 				}
+			}
+			# Halved salary
+			if = {
+				limit = {
+					court_position_halved_salary_trigger = { POS = carnx_slave_captain }
+				}
+				multiply = {
+					value = 0.5
+					desc = court_position_halved_salary
+					format = "BASE_VALUE_FORMAT_DECIMALS_MINUS_POSITIVE"
+				}
+			}
+			#You're working with LAAMPS now
+			if = {
+				limit = { 
+					scope:liege ?= { is_landless_adventurer = yes }
+				}
+				multiply = 0
 			}
 		}
 	}
@@ -595,8 +627,10 @@ carnx_slave_eunuch_court_position = {
 				desc = carnx_court_position_schemer_trait
 			}
 		}
+		add = court_position_aptitude_traveling_friends_value
 		add = court_position_aptitude_family_business_value
 		add = court_position_aptitude_low_penalty_value
+		# TODO Add event for bonus aptitude similar to court.8311
 	}
 
 	# Is this position even visible for usage? Root scope is the liege character.
@@ -646,26 +680,39 @@ carnx_slave_eunuch_court_position = {
 		prestige =  {
 			value = minor_court_position_prestige_revoke_cost
 
-			# Set to 0 with Dynasty Perk Inner Circle
+			# Set to 0 via obligation hook
 			if = {
 				limit = {
-					exists = dynasty
-					dynasty = { has_dynasty_perk = fp2_coterie_legacy_1 }
-					employs_court_position = carnx_slave_eunuch_court_position
-					any_court_position_holder = {
-				        type = carnx_slave_eunuch_court_position
-						exists = dynasty
-						house = prev.house
+					court_position_obligation_hook_salary_trigger = {
+						POS = carnx_slave_eunuch
+						LIEGE = root
 					}
 				}
 				multiply = 0
 			}
+			# Avoid AI prestige issues
 			if = {
 				limit = {
 					exists = this
 					is_ai = yes
 				}
 				multiply = 0
+			}
+			# Special case for events
+			if = {
+				limit = {
+					exists = this
+					has_character_flag = free_revoke_cost
+				}
+				multiply = 0
+			}
+			#Lowering for LAAMPS, to match Camp Officer revoke cost
+			if = {
+				limit = { 
+					exists = this
+					is_landless_adventurer = yes
+				}
+				value = minor_court_position_prestige_revoke_cost
 			}
 		}
 	}
@@ -678,43 +725,44 @@ carnx_slave_eunuch_court_position = {
 
 			# Set to 0 with Dynasty Perk Inner Circle
 			if = {
-				limit = {
-					scope:liege = {
-						exists = dynasty
-						dynasty = { has_dynasty_perk = fp2_coterie_legacy_1 }
-						employs_court_position = carnx_slave_eunuch_court_position
-						any_court_position_holder = {
-					        type = carnx_slave_eunuch_court_position
-							exists = dynasty
-							house = prev.house
-						}
-					}
-				}
+				limit = { court_position_inner_circle_salary_trigger = { POS = carnx_slave_eunuch } }
 				multiply = {
 					value = 0.0
 					desc = inner_circle_salary_mod
 					format = "BASE_VALUE_FORMAT_DECIMALS_MINUS_POSITIVE"
 				}
 			}
-			if = {
+			# Halved with obligation hook
+			else_if = {
 				limit = {
-					scope:liege = {
-						employs_court_position = carnx_slave_eunuch_court_position
-						any_court_position_holder = {
-							type = carnx_slave_eunuch_court_position
-							scope:liege = {
-								has_hook_of_type = {
-									type = obligation_hook
-									target = prev
-								}
-							}
-						}
+					court_position_obligation_hook_salary_trigger = {
+						POS = carnx_slave_eunuch
+						LIEGE = scope:liege
 					}
 				}
 				multiply = {
 					value = 0.5
 					desc = obligation_hook_salary
+					format = "BASE_VALUE_FORMAT_DECIMALS_MINUS_POSITIVE"
 				}
+			}
+			# Halved salary
+			if = {
+				limit = {
+					court_position_halved_salary_trigger = { POS = carnx_slave_eunuch }
+				}
+				multiply = {
+					value = 0.5
+					desc = court_position_halved_salary
+					format = "BASE_VALUE_FORMAT_DECIMALS_MINUS_POSITIVE"
+				}
+			}
+			#You're working with LAAMPS now
+			if = {
+				limit = { 
+					scope:liege ?= { is_landless_adventurer = yes }
+				}
+				multiply = 0
 			}
 		}
 	}
@@ -723,27 +771,27 @@ carnx_slave_eunuch_court_position = {
 	scaling_employer_modifiers = {
 		terrible = {
 			monthly_court_grandeur_change_mult = 0.01
-			hostile_scheme_resistance_mult = 0.01
+			enemy_hostile_scheme_phase_duration_add = 0.5
 		}
 		poor = {
 			monthly_court_grandeur_change_mult = 0.02
 			character_capital_county_monthly_development_growth_add = 0.05
-			hostile_scheme_resistance_mult = 0.02
+			enemy_hostile_scheme_phase_duration_add = 1
 		}
 		average = {
 			monthly_court_grandeur_change_mult = 0.03
 			character_capital_county_monthly_development_growth_add = 0.1
-			hostile_scheme_resistance_mult = 0.04
+			enemy_hostile_scheme_phase_duration_add = 2
 		}
 		good = {
 			monthly_court_grandeur_change_mult = 0.04
 			character_capital_county_monthly_development_growth_add = 0.2
-			hostile_scheme_resistance_mult = 0.08
+			enemy_hostile_scheme_phase_duration_add = 4
 		}
 		excellent = {
 			monthly_court_grandeur_change_mult = 0.05
 			character_capital_county_monthly_development_growth_add = 0.4
-			hostile_scheme_resistance_mult = 0.16
+			enemy_hostile_scheme_phase_duration_add = 8
 		}
 	}
 

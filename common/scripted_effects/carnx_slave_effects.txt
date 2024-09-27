@@ -411,7 +411,7 @@ carnx_enslave_effect = {
 				limit = {
 					scope:slave = {
 						OR = {
-							is_landed = no
+							is_playable_character = no
 							NOT = { is_of_major_or_minor_interest_trigger = { CHARACTER = scope:new_owner } }
 						}
 					}
@@ -427,9 +427,13 @@ carnx_enslave_effect = {
 			else_if = {
 				limit = {
 					scope:slave = { target_is_liege_or_above = prev }
+					NOT = { exists = scope:suppress_legitimacy_from_crime }
 				}
 				add_tyranny = carnx_enslave_tyranny_gain
-				add_legitimacy = miniscule_legitimacy_loss
+				if = {
+					limit = { has_legitimacy = yes}
+					add_legitimacy = miniscule_legitimacy_loss
+				}
 			}
 			else_if = {
 				limit = {

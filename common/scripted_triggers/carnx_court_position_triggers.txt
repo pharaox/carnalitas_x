@@ -21,6 +21,8 @@ carnx_can_be_wet_nurse_trigger = {
 	carnx_age_value <= 45
 	is_female = yes
 	has_no_particular_noble_roots_trigger = yes
+	# Nuns cannot be wet nurses
+	NOT = { has_trait = devoted }
 }
 
 carnx_can_be_court_tutor_trigger = {
@@ -60,13 +62,14 @@ carnx_can_be_cupbearer_trigger = {
 
 carnx_can_be_chief_eunuch_trigger = {
 	is_capable_adult = yes
-	has_trait = eunuch
+	is_eunuch_trigger = yes
 	exists = $LIEGE$
 }
 
 carnx_can_be_court_jester_trigger = {
 	is_capable_adult = yes
 	exists = $LIEGE$
+	# From candidate_score
 	NOR = {
 		is_close_family_of = $LIEGE$
 		is_consort_of = $LIEGE$
@@ -91,11 +94,19 @@ carnx_can_be_court_musician_trigger = {
 carnx_can_be_bodyguard_trigger = {
 	is_capable_adult = yes
 	NOT = { is_spouse_of = $LIEGE$ }
+	NOR = {
+		has_trait = blind
+		has_trait = infirm
+	}
 	can_be_combatant_based_on_gender_trigger = { ARMY_OWNER = $LIEGE$ }
 }
 
 carnx_can_be_champion_trigger = {
 	is_capable_adult = yes
+	NOR = {
+		has_trait = blind
+		has_trait = infirm
+	}
 	can_be_combatant_based_on_gender_trigger = { ARMY_OWNER = $LIEGE$ }
 }
 
@@ -115,7 +126,6 @@ carnx_can_be_master_assassin_trigger = {
 	is_capable_adult = yes
 	has_no_particular_noble_roots_trigger = yes
 	NOT = { is_spouse_of = $LIEGE$ }
-	is_landed = no
 	faith = {
 		has_doctrine = tenet_fp3_fedayeen
 		NOR = {
@@ -123,22 +133,7 @@ carnx_can_be_master_assassin_trigger = {
 			has_doctrine = tenet_dharmic_pacifism
 		}
 	}
-	trigger_if = {
-		limit = {
-			$LIEGE$.faith = {
-				has_doctrine = doctrine_gender_male_dominated
-			}
-		}
-		is_male = yes
-	}
-	trigger_if = {
-		limit = {
-			$LIEGE$.faith = {
-				has_doctrine = doctrine_gender_female_dominated
-			}
-		}
-		is_female = yes
-	}
+	can_be_combatant_based_on_gender_trigger = { ARMY_OWNER = $LIEGE$ }
 }
 
 carnx_can_be_chronicler_trigger = {
@@ -179,7 +174,7 @@ carnx_can_be_slave_eunuch_trigger = {
 		intrigue >= low_skill_rating
 	}
 	is_male = yes
-	has_trait = eunuch
+	is_eunuch_trigger = yes
 	exists = $LIEGE$
 }
 

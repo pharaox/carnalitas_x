@@ -15,6 +15,9 @@ can_recruit_character_to_court_trigger = {
 					NOT = { is_close_or_extended_family_of = scope:recruiter }
 				}
 			}
+			# Carnalitas: does not have slave trait, or any other similar trait or flag
+			has_character_flag = carn_blocked_from_leaving
+			has_trait_with_flag = can_not_leave_court_voluntarily
 			is_imprisoned = yes
 			is_theocratic_lessee = yes
 			is_diarch = yes
@@ -69,6 +72,28 @@ can_recruit_character_to_court_trigger = {
 					}
 				}
 				any_court_position_employer = { this = scope:recruitee.host }
+			}
+			trigger_if = {
+				limit = {
+					scope:recruiter = { is_landless_adventurer = yes }
+				}
+				custom_tooltip = {
+					text = can_recruit_character_to_court_trigger.tt.laamps_invitation_restrictions
+					NOR = {
+						is_player_heir_of = scope:recruiter
+						has_relation_soulmate = scope:recruiter
+						has_relation_best_friend = scope:recruiter
+						is_consort_of = scope:recruiter
+						AND = {
+							is_pool_character = yes
+							OR = {
+								has_relation_friend = scope:recruiter
+								has_relation_lover = scope:recruiter
+								is_close_family_of = scope:recruiter
+							}
+						}
+					}
+				}
 			}
 
 			#Do they have the "wrong" marriage type and the spouse is employed?
@@ -187,4 +212,3 @@ can_recruit_character_to_court_trigger = {
 		}
 	}
 }
-

@@ -12,7 +12,7 @@ scripted_trigger carnx_slave_0001_valid_liege_trigger = {
 }
 
 scripted_trigger carnx_slave_0001_valid_foreign_ruler_trigger = {
-	is_landed = yes
+	exists = capital_province
 	NOR = {
 		faith = root.faith
 		culture = root.culture
@@ -245,7 +245,7 @@ carnx_slave.0001 = {
 			exists = scope:valuable_option
 			exists = scope:valuable_option_ai_accept_value
 			short_term_gold >= scope:valuable_option_price
-			is_landed = yes # Extra check to make sure they haven't lost their status
+			is_playable_character = yes # Extra check to make sure they haven't lost their status
 		}
 		show_as_unavailable = { exists = scope:valuable_option }
 
@@ -280,7 +280,7 @@ carnx_slave.0001 = {
 			exists = scope:common_option
 			exists = scope:common_option_ai_accept_value
 			short_term_gold >= scope:common_option_price
-			is_landed = yes # Extra check to make sure they haven't lost their status
+			is_playable_character = yes # Extra check to make sure they haven't lost their status
 		}
 		show_as_unavailable = { exists = scope:common_option }
 
@@ -316,7 +316,7 @@ carnx_slave.0001 = {
 			exists = scope:valuable_option
 			exists = scope:common_option
 			short_term_gold >= scope:both_price
-			is_landed = yes # Extra check to make sure they haven't lost their status
+			is_playable_character = yes # Extra check to make sure they haven't lost their status
 		}
 		show_as_unavailable = {
 			exists = scope:valuable_option

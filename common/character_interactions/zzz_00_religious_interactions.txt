@@ -63,6 +63,7 @@ ask_for_conversion_courtier_interaction = {
 			object = scope:recipient
 			scope:hook = yes
 			scope:actor = { has_strong_hook = scope:recipient }
+			NOT = { scope:recipient = { has_character_flag = ai_will_not_convert } }
 		}
 	}
 
@@ -74,6 +75,7 @@ ask_for_conversion_courtier_interaction = {
 		hidden_effect = {
 			scope:actor = {
 				send_interface_message = {
+					type = event_religious_good
 					title = ask_for_conversion_courtier_interaction.tt
 					left_icon = scope:recipient
 					scope:recipient = {
@@ -116,6 +118,9 @@ ask_for_conversion_courtier_interaction = {
 
 		# If we're a clan this interaction affects unity
 		accept_faith_conversion_add_clan_unity_effect = yes
+
+		# If character is converting to the state faith, we add influence
+		state_faith_conversion_add_piety_effect = yes
 
 		scope:actor = {
 			if = {
@@ -163,6 +168,7 @@ ask_for_conversion_courtier_interaction = {
 		}
 		scope:actor = {
 			send_interface_toast = {
+				type = event_toast_effect_bad
 				title = ask_for_conversion_decline_notification
 				left_icon = scope:recipient
 			}
@@ -170,6 +176,19 @@ ask_for_conversion_courtier_interaction = {
 
 		# If we're a clan this interaction affects unity
 		refuse_faith_conversion_add_clan_unity_effect = yes
+
+		state_faith_refuse_conversion_add_piety_effect = yes
+	}
+
+	cost = {
+		influence = {
+			value = 0
+			if = {
+				limit = { scope:influence_send_option = yes }
+				add = scope:actor.medium_influence_value
+				desc = INFLUENCE_INTERACTION_ACCEPTANCE_SEND_OPTION
+			}
+		}
 	}
 
 	# Use hook
@@ -189,6 +208,25 @@ ask_for_conversion_courtier_interaction = {
 		scope:actor = { has_usable_hook = scope:recipient }
 	}
 	extra_icon = "gfx/interface/icons/character_interactions/hook_icon.dds"
+
+	send_option = { # EP3 Influence
+		is_shown = { # Actor must have a government that uses influence 
+			scope:actor = {
+				government_has_flag = government_has_influence
+			}
+		}
+		is_valid = {
+			# Actor has enough influence
+			scope:actor = { influence >= medium_influence_value }
+			# Both characters are within the same top realm
+			custom_tooltip = {
+				text = not_same_realm_tt
+				scope:recipient.top_liege = scope:actor.top_liege
+			}
+		}
+		flag = influence_send_option
+		localization = TRADE_INFLUENCE_FOR_BETTER_AI_ACCEPTANCE
+	}
 	send_options_exclusive = no
 
 
@@ -214,7 +252,6 @@ ask_for_conversion_courtier_interaction = {
 
 		modifier = { # The AI doesn't really want to convert Diasporic culture courtiers
 			scope:recipient = {
-				always = no
 				culture = {
 					has_cultural_tradition = tradition_diasporic
 				}
@@ -296,6 +333,19 @@ ask_for_conversion_courtier_interaction = {
 			NOT = {
 				scope:recipient = {
 					is_close_family_of = scope:actor
+				}
+			}
+		}
+
+		modifier = { # Rulers with State Faith won't try to convert people with faiths that are astray or better
+			factor = 0
+			scope:actor = {
+				government_allows = state_faith
+				primary_title.state_faith ?= {
+					faith_hostility_level = {
+						target = scope:recipient.faith
+						value <= faith_astray_level
+					}
 				}
 			}
 		}

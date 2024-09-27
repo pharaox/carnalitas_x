@@ -186,7 +186,7 @@ carnx_on_title_lost = {
 		# If a character becomes unlanded the new holder seizes their slaves
 		if = {
 			limit = {
-				is_landed = no
+				is_playable_character = no
 				carnx_is_slave_owner_trigger = yes
 			}
 			every_relation = {

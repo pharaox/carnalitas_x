@@ -321,7 +321,11 @@ carnx_eunuch_character_template = {
 		# seducer = { weight = { base = 5 } } # Not applicable to eunuchs
 		lifestyle_herbalist = { weight = { base = 5 } }
 	}
-	trait = eunuch
+	random_traits_list = {
+		count = 1
+		eunuch_1 = {}
+		beardless_eunuch = {}
+	}
 	dynasty = none
 	after_creation = {
 		random = {
