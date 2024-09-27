@@ -16,13 +16,14 @@
   * Entire file
 * `common/court_positions/types/00_court_positions.txt`
   * Entire file
-* `common/script_values/00_war_values.txt`
-  * `raid_base_capture_chance`
+* `common/scripted_effects/00_holy_order_effects.txt`
+  * `release_as_executioner_effect`
 * `common/scripted_effects/00_prison_effects.txt`
   * `prisoner_of_war_capture_effect`
   * `imprison_tyranny_effect`
-* `common/scripted_modifiers/00_hostile_scheme_scripted_modifiers.txt`
-  * `hostile_murder_agent_base_join_chance_modifier`
+* `common/scripted_modifiers/00_scheme_scripted_modifiers.txt`
+  * `ai_agent_join_chance_hostile_taboo_modifier`
+  * `ai_agent_join_chance_hostile_grievous_modifier`
 * `common/scripted_triggers/00_court_position_triggers.txt`
   * `court_position_does_not_already_have_a_job_trigger`
 * `common/scripted_triggers/00_courtier_guest_management_triggers.txt`
@@ -34,8 +35,8 @@
 
 ### Implicit
 
-* `common/court_positions/types/00_court_positions.txt`
-  * Entire file, `is_shown_character` / `valid_character` sections
+* `common/scripted_triggers/00_court_position_triggers.txt`
+  * Court position validity triggers
     * => `common/scripted_triggers/carnx_court_position_triggers.txt`
 * `common/on_action/child_birth_on_actions.txt`
   * `on_birth_child`
