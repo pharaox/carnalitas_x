@@ -4,9 +4,9 @@
 
 A comprehensive rework of the Carnalitas slavery system aiming at improved balance and better integration with other aspects of the game. Now also compatible with AGOT via a compatibility mod.
 
-The latest version is compatible with CK3 1.12.x and Carnalitas 2.6. If you are still on CK3 1.11.x, use [version 0.18.0](https://github.com/pharaox/carnalitas_x/releases/download/0.18.0/carnalitas_slavery_reimagined-0.18.0.zip) instead with Carnalitas 2.2.
+The latest version is compatible with CK3 1.13.x and Carnalitas 2.7. If you are still on CK3 1.12.x, use [version 0.20.4](https://github.com/pharaox/carnalitas_x/releases/download/0.20.4/carnalitas_slavery_reimagined-0.20.4.zip) instead with Carnalitas 2.6.
 
-The latest version of the CSR AGOT compatibility mod is compatible with CK3 1.12.x, Carnalitas 2.5, CSR 0.20.x, and AGOT 0.2.x. Use it with [Carnalitas AGOT Compatibility](https://www.loverslab.com/files/file/32307-carnalitas-agot-compatibility/).
+The latest version of the CSR AGOT compatibility mod is compatible with CK3 1.12.x, Carnalitas 2.6, CSR 0.21.x, and AGOT 0.3.x. Use it with [Carnalitas AGOT Compatibility](https://www.loverslab.com/files/file/32307-carnalitas-agot-compatibility/).
 
 ## Overview
 
@@ -231,6 +231,8 @@ When evaluating slaves for buying, selling, enslaving, etc., the AI considers th
 
 In addition, if Carnalitas lactation is enabled, the milk production amount is taken into account for the *Wet Nurse* court position aptitude.
 
+**Note:** The new "camp officer" court positions introduced in CK3 1.13 (only valid for landless adventurers) are all available to slaves, but there are no benefits of assigning a slave to one of them. This may change in future versions of this mod.
+
 ### Capturing Slaves during Raids and Sieges
 
 With this mod, characters who can be enslaved and have a base price higher than a threshold are now captured instead of killed during raids and sieges. This threshold is lower for characters with the [*Slaver* attitude](#slavery-attitudes). In addition, characters captured during a raid have 50% chance of getting the "marked for enslavement" modifier, which makes enslavement by the AI more likely. This increases the number of characters enslaved as a result of warfare or raiding.
@@ -397,11 +399,8 @@ The sections below list the changes made to existing vanilla objects in somewhat
 
 * `prisoner_of_war_capture_effect`: Added marking a certain percentage of characters captured during raids with a special modifier that increases their chance to be enslaved by the AI.
 * `imprison_tyranny_effect`: Ensured slaves can be imprisoned without gaining tyranny.
+* `release_as_executioner_effect`: Fixed a vanilla scopes issue.
 
 ### Modifiers (`scripted_modifiers`)
 
-* `hostile_murder_agent_base_join_chance_modifier`: Made vengeful characters more willing to join schemes against the person who originally enslaved them.
-
-### Values (`script_values`)
-
-* `raid_base_capture_chance`: Changed the scope for checking traits and dynasty perks from the character being captured to the army commander (vanilla bug).
+* `ai_agent_join_chance_hostile_taboo_modifier`, `ai_agent_join_chance_hostile_grievous_modifier`: Made vengeful characters more willing to join schemes against the person who originally enslaved them.
