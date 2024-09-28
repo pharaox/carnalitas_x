@@ -1,5 +1,18 @@
 # Changelog
 
+## Version 0.21.1
+
+### Interactions
+
+* Enabled spending influence in order to increase acceptance in slave trading interactions.
+* Enabled gaining influence by gifting slaves, if both rulers are within an administrative realm.
+* AI will now also target nearby domicile owners in slavery interactions.
+
+### Miscellaneous
+
+* Reduced the dynamic slave trading range for landless rulers.
+* Integrated new government types introduced in CK3 1.13.
+
 ## Version 0.21.0
 
 ### Compatibility
