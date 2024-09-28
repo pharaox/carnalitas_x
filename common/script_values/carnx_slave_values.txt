@@ -285,6 +285,129 @@ carnx_gift_slave_opinion = {
 	max = 50
 }
 
+# Influence gain from gifting a slave. Calculated by multiplying the slave base price (carnx_slave_base_price_value)
+# by the "influence per gold" ratio from sending money as a gift by scope:actor to scope:recipient
+# (carnx_send_gift_influence_value divided by gift_value).
+carnx_gift_slave_influence_value = {
+	value = carnx_slave_base_price_value
+	multiply = carnx_slave_price_tribal_multiplier
+	multiply = carnx_send_gift_influence_value
+	divide = gift_value
+	floor = yes
+	min = miniscule_influence_value # 10
+	max = {
+		value = miniscule_influence_value
+		multiply = 8
+	}
+}
+
+# Influence gain between admin rulers from sending a gift.
+# See gift_interaction.
+carnx_send_gift_influence_value = {
+	value = 0
+	if = {
+		limit = {
+			scope:actor = {
+				is_ruler = yes
+				government_allows = administrative
+			}
+			scope:recipient = {
+				is_ruler = yes
+				government_allows = administrative
+				any_held_title = {
+					is_noble_family_title = yes
+				}
+			}
+		}
+		value = miniscule_influence_gain
+		if = {
+			limit = {
+				scope:recipient = {
+					OR = {
+						house = { is_dominant_family = yes }
+						this = scope:actor.top_liege
+					}
+					influence_level >= 5
+				}
+			}
+			multiply = 8
+		}
+		else_if = {
+			limit = {
+				scope:recipient = {
+					OR = {
+						house = { is_dominant_family = yes }
+						this = scope:actor.top_liege
+					}
+					influence_level >= 3
+				}
+			}
+			multiply = 7
+		}
+		else_if = {
+			limit = {
+				scope:recipient = {
+					OR = {
+						house = { is_dominant_family = yes }
+						this = scope:actor.top_liege
+					}
+				}
+			}
+			multiply = 6
+		}
+		else_if = {
+			limit = {
+				scope:recipient = {
+					OR = {
+						house = { is_powerful_family = yes }
+						this = scope:actor.top_liege
+					}
+					influence_level >= 5
+				}
+			}
+			multiply = 6
+		}
+		else_if = {
+			limit = {
+				scope:recipient = {
+					OR = {
+						house = { is_powerful_family = yes }
+						this = scope:actor.top_liege
+					}
+					influence_level >= 3
+				}
+			}
+			multiply = 5
+		}
+		else_if = {
+			limit = {
+				scope:recipient = {
+					OR = {
+						house = { is_powerful_family = yes }
+						this = scope:actor.top_liege
+					}
+				}
+			}
+			multiply = 4
+		}
+		else_if = {
+			limit = {
+				scope:recipient = { influence_level >= 5 }
+			}
+			multiply = 3
+		}
+		else_if = {
+			limit = {
+				scope:recipient = { influence_level >= 3 }
+			}
+			multiply = 2
+		}
+		else = {
+			multiply = 1
+		}
+	}
+}
+
 carnx_slave_price_tribal_multiplier = {
 	if = {
 		limit = { exists = scope:actor }
@@ -328,16 +451,16 @@ carnx_slave_price_tribal_multiplier = {
 		}
 		if = {
 			limit = {
-				scope:party1 = { has_government = tribal_government }
-				scope:party2 = { has_government = tribal_government }
+				scope:party1 = { government_has_flag = government_is_tribal }
+				scope:party2 = { government_has_flag = government_is_tribal }
 			}
 			value = 0.5
 		}
 		else_if = {
 			limit = {
 				OR = {
-					scope:party1 = { has_government = tribal_government }
-					scope:party2 = { has_government = tribal_government }
+					scope:party1 = { government_has_flag = government_is_tribal }
+					scope:party2 = { government_has_flag = government_is_tribal }
 				}
 			}
 			value = 0.75
@@ -352,7 +475,7 @@ carnx_slave_price_tribal_multiplier = {
 		}
 		if = {
 			limit = {
-				scope:party1 = { has_government = tribal_government }
+				scope:party1 = { government_has_flag = government_is_tribal }
 			}
 			value = 0.5
 		}
@@ -796,6 +919,24 @@ carnx_slave_trading_range_value = {
 	}
 	else_if = {
 		limit = { highest_held_title_tier = tier_county }
+		value = squared_distance_medium
+	}
+	else = {
+		value = squared_distance_small
+	}
+}
+
+carnx_slave_trading_range_landless_value = {
+	if = {
+		limit = { highest_held_title_tier = tier_empire }
+		value = squared_distance_huge
+	}
+	else_if = {
+		limit = { highest_held_title_tier = tier_kingdom }
+		value = squared_distance_large
+	}
+	else_if = {
+		limit = { highest_held_title_tier = tier_duchy }
 		value = squared_distance_medium
 	}
 	else = {

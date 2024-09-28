@@ -180,6 +180,7 @@ carnx_gift_slave_interaction = {
 		scope:recipient = { save_scope_as = new_owner }
 		carnx_gift_slave_interaction_effect = {
 			OPINION = scope:slave.carnx_gift_slave_opinion
+			INFLUENCE = scope:slave.carnx_gift_slave_influence_value
 		}
 		scope:slave = {
 			carnx_remove_gift_slave_variables_effect = yes
@@ -345,6 +346,7 @@ carnx_gift_slave_interaction = {
 	ai_targets = {
 		ai_recipients = peer_vassals
 		ai_recipients = neighboring_rulers
+		ai_recipients = nearby_domicile_owners
 		max = 5
 	}
 	ai_targets = {

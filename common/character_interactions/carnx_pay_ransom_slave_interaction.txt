@@ -435,6 +435,7 @@ carnx_pay_ransom_slave_interaction = {
 		ai_recipients = vassals
 		ai_recipients = peer_vassals
 		ai_recipients = neighboring_rulers
+		ai_recipients = nearby_domicile_owners
 		ai_recipients = family
 		ai_recipients = scripted_relations
 	}

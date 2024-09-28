@@ -1432,6 +1432,12 @@ carnx_gift_slave_effect = {
 			generous = medium_stress_impact_loss
 		}
 
+		# Add influence if government has influence
+		if = {
+			limit = { government_has_flag = government_has_influence }
+			change_influence = scope:gift_slave_influence
+		}
+
 		# Remove piety
 		if = {
 			limit = { carnx_is_slavery_crime_trigger = { CHARACTER = scope:slave } }
@@ -1513,6 +1519,10 @@ carnx_gift_slave_interaction_effect = {
 	save_scope_value_as = {
 		name = gift_slave_opinion
 		value = $OPINION$
+	}
+	save_scope_value_as = {
+		name = gift_slave_influence
+		value = $INFLUENCE$
 	}
 
 	scope:new_owner = {
