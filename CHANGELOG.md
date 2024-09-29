@@ -1,10 +1,16 @@
 # Changelog
 
+## Version 0.21.2
+
+### Miscellaneous
+
+* Further reduced the dynamic slave trading range for landless adventurers to match the vanilla restrictions.
+
 ## Version 0.21.1
 
 ### Interactions
 
-* Enabled spending influence in order to increase acceptance in slave trading interactions.
+* Enabled spending influence in order to increase acceptance in some slavery interactions.
 * Enabled gaining influence by gifting slaves, if both rulers are within an administrative realm.
 * AI will now also target nearby domicile owners in slavery interactions.
 
