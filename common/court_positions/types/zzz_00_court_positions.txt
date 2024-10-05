@@ -2703,7 +2703,7 @@ court_gardener_court_position = {
 
 	valid_character = {
 		scope:employee = {
-			court_artificer_validity_trigger = { EMPLOYER = scope:liege }
+			court_gardener_validity_trigger = { EMPLOYER = scope:liege }
 		}
 	}
 
