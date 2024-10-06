@@ -5112,7 +5112,8 @@ master_of_horse_court_position = {
 
 	valid_character = {
 		scope:employee = {
-			master_of_hunt_validity_trigger = { EMPLOYER = scope:liege }
+			# CSR: Use correct validity trigger
+			master_of_horse_validity_trigger = { EMPLOYER = scope:liege }
 			NOT = { carnx_is_slave_trigger = yes }
 		}
 	}
