@@ -381,7 +381,11 @@ court_physician_court_position = {
 				limit = { 
 					scope:liege ?= { is_landless_adventurer = yes }
 				}
-				multiply = 0
+				multiply = {
+					value = 0
+					desc = court_position_laamps_free
+					format = "BASE_VALUE_FORMAT_DECIMALS_MINUS_POSITIVE"
+				}
 			}
 		}
 		round = no
@@ -858,7 +862,11 @@ charioteer_court_position = {
 				limit = { 
 					scope:liege ?= { is_landless_adventurer = yes }
 				}
-				multiply = 0
+				multiply = {
+					value = 0
+					desc = court_position_laamps_free
+					format = "BASE_VALUE_FORMAT_DECIMALS_MINUS_POSITIVE"
+				}
 			}
 		}
 	}
@@ -988,7 +996,7 @@ bookmaker_court_position = {
 
 	# How good is this character in this position? root scope is the holder of the court position
 	aptitude = {
-		value = 25
+		value = 15
 		add = {
 			value = stewardship
 			multiply = 2.5
@@ -998,7 +1006,6 @@ bookmaker_court_position = {
 		add = {
 			value = intrigue
 			divide = 2
-			min = 1
 			desc = court_position_skill_intrigue
 		}
 		if = {
@@ -1522,7 +1529,11 @@ akolouthos_court_position = {
 				limit = { 
 					scope:liege ?= { is_landless_adventurer = yes }
 				}
-				multiply = 0
+				multiply = {
+					value = 0
+					desc = court_position_laamps_free
+					format = "BASE_VALUE_FORMAT_DECIMALS_MINUS_POSITIVE"
+				}
 			}
 		}
 	}
@@ -1774,7 +1785,11 @@ cultural_emissary_court_position = {
 				limit = { 
 					scope:liege ?= { is_landless_adventurer = yes }
 				}
-				multiply = 0
+				multiply = {
+					value = 0
+					desc = court_position_laamps_free
+					format = "BASE_VALUE_FORMAT_DECIMALS_MINUS_POSITIVE"
+				}
 			}
 		}
 	}
@@ -2008,7 +2023,11 @@ keeper_of_swans_court_position = {
 				limit = { 
 					scope:liege ?= { is_landless_adventurer = yes }
 				}
-				multiply = 0
+				multiply = {
+					value = 0
+					desc = court_position_laamps_free
+					format = "BASE_VALUE_FORMAT_DECIMALS_MINUS_POSITIVE"
+				}
 			}
 		}
 	}
@@ -2274,7 +2293,11 @@ chief_qadi_court_position = {
 				limit = { 
 					scope:liege ?= { is_landless_adventurer = yes }
 				}
-				multiply = 0
+				multiply = {
+					value = 0
+					desc = court_position_laamps_free
+					format = "BASE_VALUE_FORMAT_DECIMALS_MINUS_POSITIVE"
+				}
 			}
 		}
 	}
@@ -2523,7 +2546,11 @@ garuda_court_position = {
 				limit = { 
 					scope:liege ?= { is_landless_adventurer = yes }
 				}
-				multiply = 0
+				multiply = {
+					value = 0
+					desc = court_position_laamps_free
+					format = "BASE_VALUE_FORMAT_DECIMALS_MINUS_POSITIVE"
+				}
 			}
 		}
 	}
@@ -2703,6 +2730,7 @@ court_gardener_court_position = {
 
 	valid_character = {
 		scope:employee = {
+			# CSR Use correct validity trigger
 			court_gardener_validity_trigger = { EMPLOYER = scope:liege }
 		}
 	}
@@ -2790,7 +2818,11 @@ court_gardener_court_position = {
 				limit = { 
 					scope:liege ?= { is_landless_adventurer = yes }
 				}
-				multiply = 0
+				multiply = {
+					value = 0
+					desc = court_position_laamps_free
+					format = "BASE_VALUE_FORMAT_DECIMALS_MINUS_POSITIVE"
+				}
 			}
 		}
 	}
@@ -3019,7 +3051,11 @@ lady_in_waiting_court_position = {
 				limit = { 
 					scope:liege ?= { is_landless_adventurer = yes }
 				}
-				multiply = 0
+				multiply = {
+					value = 0
+					desc = court_position_laamps_free
+					format = "BASE_VALUE_FORMAT_DECIMALS_MINUS_POSITIVE"
+				}
 			}
 		}
 	}
@@ -3385,7 +3421,11 @@ antiquarian_court_position = {
 				limit = { 
 					scope:liege ?= { is_landless_adventurer = yes }
 				}
-				multiply = 0
+				multiply = {
+					value = 0
+					desc = court_position_laamps_free
+					format = "BASE_VALUE_FORMAT_DECIMALS_MINUS_POSITIVE"
+				}
 			}
 		}
 	}
@@ -3891,7 +3931,11 @@ travel_leader_court_position = {
 				limit = { 
 					scope:liege ?= { is_landless_adventurer = yes }
 				}
-				multiply = 0
+				multiply = {
+					value = 0
+					desc = court_position_laamps_free
+					format = "BASE_VALUE_FORMAT_DECIMALS_MINUS_POSITIVE"
+				}
 			}
 		}
 	}
@@ -4256,7 +4300,11 @@ wet_nurse_court_position = {
 				limit = { 
 					scope:liege ?= { is_landless_adventurer = yes }
 				}
-				multiply = 0
+				multiply = {
+					value = 0
+					desc = court_position_laamps_free
+					format = "BASE_VALUE_FORMAT_DECIMALS_MINUS_POSITIVE"
+				}
 			}
 		}
 	}
@@ -4686,7 +4734,11 @@ court_tutor_court_position = {
 				limit = { 
 					scope:liege ?= { is_landless_adventurer = yes }
 				}
-				multiply = 0
+				multiply = {
+					value = 0
+					desc = court_position_laamps_free
+					format = "BASE_VALUE_FORMAT_DECIMALS_MINUS_POSITIVE"
+				}
 			}
 		}
 	}
@@ -4968,7 +5020,11 @@ food_taster_court_position = {
 				limit = { 
 					scope:liege ?= { is_landless_adventurer = yes }
 				}
-				multiply = 0
+				multiply = {
+					value = 0
+					desc = court_position_laamps_free
+					format = "BASE_VALUE_FORMAT_DECIMALS_MINUS_POSITIVE"
+				}
 			}
 		}
 	}
@@ -5201,7 +5257,11 @@ master_of_horse_court_position = {
 				limit = { 
 					scope:liege ?= { is_landless_adventurer = yes }
 				}
-				multiply = 0
+				multiply = {
+					value = 0
+					desc = court_position_laamps_free
+					format = "BASE_VALUE_FORMAT_DECIMALS_MINUS_POSITIVE"
+				}
 			}
 		}
 	}
@@ -5496,7 +5556,11 @@ master_of_hunt_court_position = {
 				limit = { 
 					scope:liege ?= { is_landless_adventurer = yes }
 				}
-				multiply = 0
+				multiply = {
+					value = 0
+					desc = court_position_laamps_free
+					format = "BASE_VALUE_FORMAT_DECIMALS_MINUS_POSITIVE"
+				}
 			}
 		}
 	}
@@ -5750,7 +5814,11 @@ royal_architect_court_position = {
 				limit = { 
 					scope:liege ?= { is_landless_adventurer = yes }
 				}
-				multiply = 0
+				multiply = {
+					value = 0
+					desc = court_position_laamps_free
+					format = "BASE_VALUE_FORMAT_DECIMALS_MINUS_POSITIVE"
+				}
 			}
 		}
 	}
@@ -6248,7 +6316,11 @@ seneschal_court_position = {
 				limit = { 
 					scope:liege ?= { is_landless_adventurer = yes }
 				}
-				multiply = 0
+				multiply = {
+					value = 0
+					desc = court_position_laamps_free
+					format = "BASE_VALUE_FORMAT_DECIMALS_MINUS_POSITIVE"
+				}
 			}
 		}
 	}
@@ -6502,7 +6574,11 @@ cupbearer_court_position = {
 				limit = { 
 					scope:liege ?= { is_landless_adventurer = yes }
 				}
-				multiply = 0
+				multiply = {
+					value = 0
+					desc = court_position_laamps_free
+					format = "BASE_VALUE_FORMAT_DECIMALS_MINUS_POSITIVE"
+				}
 			}
 		}
 	}
@@ -6731,7 +6807,11 @@ chief_eunuch_court_position = {
 				limit = { 
 					scope:liege ?= { is_landless_adventurer = yes }
 				}
-				multiply = 0
+				multiply = {
+					value = 0
+					desc = court_position_laamps_free
+					format = "BASE_VALUE_FORMAT_DECIMALS_MINUS_POSITIVE"
+				}
 			}
 		}
 	}
@@ -7052,7 +7132,11 @@ court_jester_court_position = {
 				limit = { 
 					scope:liege ?= { is_landless_adventurer = yes }
 				}
-				multiply = 0
+				multiply = {
+					value = 0
+					desc = court_position_laamps_free
+					format = "BASE_VALUE_FORMAT_DECIMALS_MINUS_POSITIVE"
+				}
 			}
 		}
 	}
@@ -7281,7 +7365,6 @@ court_poet_court_position = {
 		}
 	}
 
-
 	salary = {
 		round = no
 		gold = {
@@ -7325,7 +7408,11 @@ court_poet_court_position = {
 				limit = { 
 					scope:liege ?= { is_landless_adventurer = yes }
 				}
-				multiply = 0
+				multiply = {
+					value = 0
+					desc = court_position_laamps_free
+					format = "BASE_VALUE_FORMAT_DECIMALS_MINUS_POSITIVE"
+				}
 			}
 		}
 	}
@@ -7613,7 +7700,11 @@ court_musician_court_position = {
 				limit = { 
 					scope:liege ?= { is_landless_adventurer = yes }
 				}
-				multiply = 0
+				multiply = {
+					value = 0
+					desc = court_position_laamps_free
+					format = "BASE_VALUE_FORMAT_DECIMALS_MINUS_POSITIVE"
+				}
 			}
 		}
 	}
@@ -8112,7 +8203,11 @@ bodyguard_court_position = {
 				limit = { 
 					scope:liege ?= { is_landless_adventurer = yes }
 				}
-				multiply = 0
+				multiply = {
+					value = 0
+					desc = court_position_laamps_free
+					format = "BASE_VALUE_FORMAT_DECIMALS_MINUS_POSITIVE"
+				}
 			}
 		}
 	}
@@ -8470,7 +8565,11 @@ champion_court_position = {
 				limit = { 
 					scope:liege ?= { is_landless_adventurer = yes }
 				}
-				multiply = 0
+				multiply = {
+					value = 0
+					desc = court_position_laamps_free
+					format = "BASE_VALUE_FORMAT_DECIMALS_MINUS_POSITIVE"
+				}
 			}
 		}
 	}
@@ -8715,7 +8814,11 @@ executioner_court_position = {
 				limit = { 
 					scope:liege ?= { is_landless_adventurer = yes }
 				}
-				multiply = 0
+				multiply = {
+					value = 0
+					desc = court_position_laamps_free
+					format = "BASE_VALUE_FORMAT_DECIMALS_MINUS_POSITIVE"
+				}
 			}
 		}
 	}
@@ -8987,7 +9090,11 @@ court_artificer_court_position = {
 				limit = { 
 					scope:liege ?= { is_landless_adventurer = yes }
 				}
-				multiply = 0
+				multiply = {
+					value = 0
+					desc = court_position_laamps_free
+					format = "BASE_VALUE_FORMAT_DECIMALS_MINUS_POSITIVE"
+				}
 			}
 		}
 	}
@@ -9280,7 +9387,11 @@ cave_hermit_court_position = {
 				limit = { 
 					scope:liege ?= { is_landless_adventurer = yes }
 				}
-				multiply = 0
+				multiply = {
+					value = 0
+					desc = court_position_laamps_free
+					format = "BASE_VALUE_FORMAT_DECIMALS_MINUS_POSITIVE"
+				}
 			}
 		}
 	}
@@ -9564,7 +9675,6 @@ master_assassin_court_position = {
 		}
 	}
 
-
 	revoke_cost = { # root is the liege, no other scopes are passed here!
 		prestige =  {
 			value = major_court_position_prestige_revoke_cost
@@ -9648,7 +9758,11 @@ master_assassin_court_position = {
 				limit = { 
 					scope:liege ?= { is_landless_adventurer = yes }
 				}
-				multiply = 0
+				multiply = {
+					value = 0
+					desc = court_position_laamps_free
+					format = "BASE_VALUE_FORMAT_DECIMALS_MINUS_POSITIVE"
+				}
 			}
 		}
 	}
@@ -9982,7 +10096,11 @@ court_scholar_court_position = {
 				limit = { 
 					scope:liege ?= { is_landless_adventurer = yes }
 				}
-				multiply = 0
+				multiply = {
+					value = 0
+					desc = court_position_laamps_free
+					format = "BASE_VALUE_FORMAT_DECIMALS_MINUS_POSITIVE"
+				}
 			}
 		}
 	}
@@ -10222,7 +10340,6 @@ chronicler_court_position = {
 		}
 	}
 
-
 	salary = {
 		round = no
 		gold = {
@@ -10266,7 +10383,11 @@ chronicler_court_position = {
 				limit = { 
 					scope:liege ?= { is_landless_adventurer = yes }
 				}
-				multiply = 0
+				multiply = {
+					value = 0
+					desc = court_position_laamps_free
+					format = "BASE_VALUE_FORMAT_DECIMALS_MINUS_POSITIVE"
+				}
 			}
 		}
 	}
