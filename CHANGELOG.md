@@ -1,5 +1,15 @@
 # Changelog
 
+## Version 0.21.3
+
+### Compatibility
+
+* Adapted to CK3 1.13.1.
+
+### Bug Fixes
+
+* Fixed incorrect vanilla validity triggers for some court positions.
+
 ## Version 0.21.2
 
 ### Miscellaneous
