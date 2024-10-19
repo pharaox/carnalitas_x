@@ -10,4 +10,5 @@ common/scripted_modifiers/00_scheme_scripted_modifiers.txt
 common/scripted_triggers/00_court_position_triggers.txt
 common/scripted_triggers/00_courtier_guest_management_triggers.txt
 common/scripted_triggers/00_interaction_triggers.txt
+common/scripted_triggers/00_secret_type_triggers.txt
 common/scripted_triggers/00_war_and_peace_triggers.txt

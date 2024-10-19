@@ -28,6 +28,8 @@
   * `can_recruit_character_to_court_trigger`
 * `common/scripted_triggers/00_interaction_triggers.txt`
   * `kick_from_court_validity_trigger`
+* `common/scripted_triggers/00_secret_type_triggers.txt`
+  * `secret_lover_is_valid_trigger`
 * `common/scripted_triggers/00_war_and_peace_triggers.txt`
   * `desirable_for_capture_trigger`
 
