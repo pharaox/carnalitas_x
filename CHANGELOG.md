@@ -1,5 +1,15 @@
 # Changelog
 
+## Version 0.21.4
+
+### Compatibility
+
+* Removed "Slavery" interaction category to prevent crashes with other mods that add interaction categories. Slavery interactions are now "Uncategorized".
+
+### Bug Fixes
+
+* Rulers becoming lovers with their Slave Concubines would no longer result in a Lover secret.
+
 ## Version 0.21.3
 
 ### Compatibility
