@@ -4,8 +4,6 @@
 
 ### Explicit
 
-* `common/character_interaction_categories\00_character_interaction_categories.txt`
-  * Entire file
 * `common/character_interactions/00_perk_interactions.txt`
   * `demand_payment_interaction`
 * `common/character_interactions/00_prison_interactions.txt`

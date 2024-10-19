@@ -2,7 +2,7 @@
 # Scopes: actor / recipient is the slave owner, secondary_recipient is the payer, seconary_actor is the slave.
 # Human player only.
 carnx_ransom_slaves_interaction = {
-	category = carnx_interaction_category_slavery
+	category = interaction_category_uncategorized
 	desc = carnx_ransom_slaves_interaction_desc
 	interface_priority = 20
 	common_interaction = yes

@@ -93,5 +93,3 @@
  carnx_msg_slave_escaped: "奴隶逃跑"
  carnx_msg_slave_seized: "已抓捕奴隶"
  carnx_msg_slave_liberated: "被解放奴隶"
- carnx_interaction_category_slavery:0 "奴隶制"
- CARNX_SLAVERY_ACTIONS:0 "奴役行为"

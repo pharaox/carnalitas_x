@@ -127,9 +127,3 @@
  carnx_msg_slave_escaped: "Esclave échappé"
  carnx_msg_slave_seized: "Esclave saisi"
  carnx_msg_slave_liberated: "Esclave libéré"
-
- # Interaction categories
- carnx_interaction_category_slavery:0 "Esclavage"
-
- # Interaction category descriptions
- CARNX_SLAVERY_ACTIONS:0 "actions d’esclavage"

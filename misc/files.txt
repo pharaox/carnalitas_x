@@ -1,4 +1,3 @@
-common/character_interaction_categories\00_character_interaction_categories.txt
 common/character_interactions/00_perk_interactions.txt
 common/character_interactions/00_prison_interactions.txt
 common/character_interactions/00_religious_interactions.txt

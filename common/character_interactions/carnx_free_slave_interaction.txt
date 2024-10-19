@@ -2,7 +2,7 @@
 # Scopes: actor is the slave owner, recipient is the slave.
 # Overridden from Carnalitas.
 carn_free_slave_interaction = {
-	category = carnx_interaction_category_slavery
+	category = interaction_category_uncategorized
 	desc = carn_free_slave_interaction_desc
 	interface_priority = 100
 	common_interaction = yes

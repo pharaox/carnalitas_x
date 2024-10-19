@@ -1,7 +1,7 @@
 ﻿# Demand ransom for one of your slaves from another ruler who is their relative.
 # Scopes: actor is the slave owner, recipient is the payer, seconary_recipient is the slave.
 carnx_ransom_slave_interaction = {
-	category = carnx_interaction_category_slavery
+	category = interaction_category_uncategorized
 	desc = carnx_ransom_slave_interaction_desc
 	interface_priority = 20
 	common_interaction = yes
