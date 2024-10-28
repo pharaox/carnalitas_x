@@ -14,8 +14,6 @@
   * Entire file
 * `common/court_positions/types/00_court_positions.txt`
   * Entire file
-* `common/scripted_effects/00_holy_order_effects.txt`
-  * `release_as_executioner_effect`
 * `common/scripted_effects/00_prison_effects.txt`
   * `prisoner_of_war_capture_effect`
   * `imprison_tyranny_effect`

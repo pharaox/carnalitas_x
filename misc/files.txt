@@ -4,7 +4,6 @@ common/character_interactions/00_religious_interactions.txt
 common/council_positions/00_council_positions.txt
 common/court_positions/types/00_court_positions.txt
 common/on_action/child_birth_on_actions.txt
-common/scripted_effects/00_holy_order_effects.txt
 common/scripted_effects/00_prison_effects.txt
 common/scripted_modifiers/00_scheme_scripted_modifiers.txt
 common/scripted_triggers/00_court_position_triggers.txt

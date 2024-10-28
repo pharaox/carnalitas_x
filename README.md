@@ -399,7 +399,6 @@ The sections below list the changes made to existing vanilla objects in somewhat
 
 * `prisoner_of_war_capture_effect`: Added marking a certain percentage of characters captured during raids with a special modifier that increases their chance to be enslaved by the AI.
 * `imprison_tyranny_effect`: Ensured slaves can be imprisoned without gaining tyranny.
-* `release_as_executioner_effect`: Fixed a vanilla scopes issue.
 
 ### Modifiers (`scripted_modifiers`)
 
