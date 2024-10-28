@@ -1,5 +1,11 @@
 # Changelog
 
+## Version 0.21.5
+
+### Compatibility
+
+* Adapted to CK3 1.13.2.
+
 ## Version 0.21.4
 
 ### Compatibility
