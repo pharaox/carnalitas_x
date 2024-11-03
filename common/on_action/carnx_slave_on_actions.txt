@@ -298,3 +298,41 @@ carnx_on_set_relation_rival = {
 		}
 	}
 }
+
+# Fires when a character joins a court. Not fired for just generated characters
+# Root is the character
+# scope:new_employer is their new employer
+# scope:old_employer is their old employer (if they had one; otherwise unset)
+on_join_court = {
+	on_actions = { carnx_on_join_court }
+}
+
+carnx_on_join_court = {
+	trigger = {
+		has_trait = slave
+		any_relation = {
+			type = slave_owner
+			NOT = { this = scope:new_employer }
+		}
+	}
+	effect = {
+		carnx_debug_log_effect = { MSG = carnx_debug_msg_slave_joined_wrong_court }
+	}
+}
+
+# Called when a pool character has appeared at the court. See guest_management in common/courtier_guest_management.
+# root, scope:guest: the guest
+# host: their host (owner of the court)
+# characters: list of all characters moving together. Includes the root character.
+on_guest_arrived_from_pool = {
+	on_actions = { carnx_on_guest_arrived_from_pool }
+}
+
+carnx_on_guest_arrived_from_pool = {
+	trigger = {
+		has_trait = slave
+	}
+	effect = {
+		carnx_debug_log_effect = { MSG = carnx_debug_msg_slave_arrived_from_pool }
+	}
+}

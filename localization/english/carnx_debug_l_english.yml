@@ -104,6 +104,9 @@
 
  carnx_debug_msg_character_became_enslavers_rival: "$carnx_debug_prefix$: Character became their enslaver's rival"
 
+ carnx_debug_msg_slave_joined_wrong_court: "$carnx_debug_prefix$: Slave joined the wrong court"
+ carnx_debug_msg_slave_arrived_from_pool: "$carnx_debug_prefix$: Slave arrived from pool as guest"
+
  carnx_debug_msg_character_acquired_slaver_trait: "$carnx_debug_prefix$: Character acquired Infamous Slaver trait"
  carnx_debug_msg_character_acquired_liberator_trait: "$carnx_debug_prefix$: Character acquired Famous Liberator trait"
 
