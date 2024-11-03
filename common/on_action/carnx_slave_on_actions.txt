@@ -30,7 +30,20 @@ carnx_on_slave_bought = {
 				buyer = scope:buyer
 			}
 		}
-		carnx_debug_log_effect = { MSG = carnx_debug_msg_slave_bought }
+		if = {
+			limit = { exists = scope:recipient }
+			save_temporary_scope_value_as = { name = source value = flag:interaction }
+		}
+		else = {
+			save_temporary_scope_value_as = { name = source value = flag:event }
+		}
+		carnx_debug_log_4_effect = {
+			MSG = carnx_debug_msg_slave_bought
+			NAME1 = buyer TYPE1 = flag:character
+			NAME2 = seller TYPE2 = flag:character
+			NAME3 = slave_price TYPE3 = flag:value
+			NAME4 = source TYPE4 = flag:flag
+		}
 	}
 }
 
