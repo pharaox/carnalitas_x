@@ -36,7 +36,7 @@ carnx_can_demand_free_illegal_slaves_trigger = {
 carnx_can_start_interaction_trigger = {
 	trigger_if = {
 		limit = {
-			NOT = { has_character_flag = carnx_slave_0001_seller }
+			is_ruler = yes
 		}
 		highest_held_title_tier >= tier_county
 	}
@@ -197,7 +197,7 @@ carnx_is_playable_character_within_trading_range_trigger = {
 	exists = capital_province
 	$PARTY$ = { exists = capital_province }
 	trigger_if = {
-		limit = { 
+		limit = {
 			$PARTY$ = { is_landed = yes }
 		}
 		capital_province = {
