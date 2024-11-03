@@ -1,0 +1,40 @@
+﻿vls_decision_slot_2_prepare_effect = {
+	carnx_debug_log_effect = { MSG = carnx_debug_msg_visiting_holding }
+
+	save_scope_as = first_pass
+
+	# Build list of options
+	add_to_variable_list = {
+		name = list_of_options
+		target = flag:has_tavern_option
+	}
+	if = {
+		limit = {
+			location = { vls_has_church_like_holding_trigger = yes }
+		}
+		add_to_variable_list = {
+			name = list_of_options
+			target = flag:has_church_option
+		}
+	}
+	if = {
+		limit = {
+			location = { vls_has_castle_like_holding_trigger = yes }
+		}
+		add_to_variable_list = {
+			name = list_of_options
+			target = flag:has_castle_option
+		}
+	}
+
+	# Find visiting partner
+	vls_get_visiting_partner_effect = { CHARACTER = root }
+}
+
+vls_decision_slot_2_main_effect = {
+	carnx_debug_log_effect = { MSG = carnx_debug_msg_visiting_holding_to_trade_slaves }
+
+	custom_tooltip = vls_decision_slot_2_tt
+	set_variable = ep3_laamp_decision_1000_is_visiting
+	trigger_event =  carnx_decision_events.1000
+}

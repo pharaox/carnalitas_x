@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+LOGFILE=debug.log
+
 # Slavery events
 echo "Slave enslaved: $(grep -a "Slave enslaved" debug.log | wc -l)"
 echo "Slave freed: $(grep -a "Slave freed" debug.log | wc -l)"
@@ -7,6 +9,10 @@ echo "- Freeing slave: $(grep -a "Freeing slave" debug.log | wc -l)"
 echo "- Freeing illegal slave: $(grep -a "Freeing illegal slave" debug.log | wc -l)"
 echo "Slave ransomed: $(grep -a "Slave ransomed" debug.log | wc -l)"
 echo "Slave bought: $(grep -a "Slave bought" debug.log | wc -l)"
+echo "- concubine_merchant: $(grep -a "Slave bought,.*concubine_merchant" $LOGFILE| wc -l)"
+echo "- soldier_merchant: $(grep -a "Slave bought,.*soldier_merchant" $LOGFILE | wc -l)"
+echo "- servant_merchant: $(grep -a "Slave bought,.*servant_merchant" $LOGFILE | wc -l)"
+echo "- slave_trader: $(grep -a "Slave bought,.*slave_trader" $LOGFILE | wc -l)"
 echo "Slave seized: $(grep -a "Slave seized" debug.log | wc -l)"
 echo "- Seizing slave: $(grep -a "Seizing slave" debug.log | wc -l)"
 echo "Slave liberated: $(grep -a "Slave liberated" debug.log | wc -l)"
@@ -170,4 +176,17 @@ echo "Character acquired Slaver 1 trait: $(grep -a "Character acquired Slaver 1 
 echo "Character acquired Slaver 2 trait: $(grep -a "Character acquired Slaver 2 trait" debug.log | wc -l)"
 echo "Character acquired Infamous Slaver trait: $(grep -a "Character acquired Infamous Slaver trait" debug.log | wc -l)"
 echo "Character acquired Famous Liberator trait: $(grep -a "Character acquired Famous Liberator trait" debug.log | wc -l)"
+echo
+
+echo "Visiting holding: $(grep -a "Visiting holding," $LOGFILE | wc -l)"
+echo "Visiting holding to trade slaves: $(grep -a "Visiting holding to trade slaves," $LOGFILE | wc -l)"
+echo
+echo "Attempting slave haggle: $(grep -a "Attempting slave haggle" $LOGFILE | wc -l)"
+echo "Selling slave via outraged partner: $(grep -a "Selling slave via outraged partner" $LOGFILE | wc -l)"
+echo
+echo "Creating slave: $(grep -a "Creating slave" $LOGFILE | wc -l)"
+echo "Killing slave: $(grep -a "Killing slave" $LOGFILE | wc -l)"
+echo
+echo "Slave joined the wrong court: $(grep -a "Slave joined the wrong court" $LOGFILE | wc -l)"
+echo "Slave arrived from pool as guest: $(grep -a "Slave arrived from pool as guest" $LOGFILE | wc -l)"
 echo

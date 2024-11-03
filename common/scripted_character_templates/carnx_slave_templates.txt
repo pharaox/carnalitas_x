@@ -353,3 +353,43 @@ carnx_eunuch_character_template = {
 		}
 	}
 }
+
+carnx_slave_merchant_template = {
+	gender_female_chance = root_faith_dominant_gender_adjusted_female_chance
+	age = { 25 65 }
+	random_traits = yes
+	culture = root.culture
+	faith = root.faith
+	stewardship = { min_template_decent_skill max_template_decent_skill }
+	random_traits_list = {
+		count = 1
+		education_stewardship_1 = {}
+		education_stewardship_2 = {}
+		education_stewardship_3 = {}
+		education_stewardship_4 = {}
+	}
+	random_traits_list = {
+		count = { 1 2 }
+		# Bad
+		wrathful = { weight = { base = 5 } }
+		lustful = { weight = { base = 10 } }
+		vengeful = { weight = { base = 5 } }
+		greedy = { weight = { base = 10 } }
+		deceitful = { weight = { base = 5 } }
+		arrogant = { weight = { base = 5 } }
+		arbitrary = { weight = { base = 5 } }
+		gluttonous = { weight = { base = 5 } }
+		paranoid = { weight = { base = 5 } }
+		cynical = { weight = { base = 5 } }
+		callous = { weight = { base = 10 } }
+		sadistic = { weight = { base = 10 } }
+	}
+	random_traits_list = {
+		count = { 0 1 }
+		# Stewardship
+		stubborn = { weight = { base = 10 } }
+		overseer = { weight = { base = 5 } }
+		avaricious = { weight = { base = 5 } }
+	}
+	dynasty = none
+}

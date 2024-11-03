@@ -1,0 +1,37 @@
+﻿carnx_province_has_slave_market_trigger = {
+	OR = {
+		vls_has_tribal_like_holding_trigger = yes
+		vls_has_castle_like_holding_trigger = yes
+		vls_has_city_like_holding_trigger = yes
+	}
+	OR = {
+		county.development_level >= 10 # TODO
+		# Economy
+		has_building_or_higher = common_tradeport_01
+		has_building_or_higher = caravanserai_01
+		# Tribal
+		has_building_or_higher = market_villages_01
+		# Special
+		has_special_building = yes
+	}
+}
+
+carnx_is_valid_template_character_trigger = {
+	exists = capital_province
+	NOR = {
+		faith = $CHARACTER$.faith
+		culture = $CHARACTER$.culture
+	}
+	$CHARACTER$ = {
+		NOT = { carnx_is_slavery_crime_trigger = { CHARACTER = prev } }
+	}
+}
+
+carnx_is_employed_trigger = {
+	OR = {
+		is_councillor_of = $RULER$
+		any_court_position_employer = { this = $RULER$ }
+		is_knight_of = $RULER$
+		carnx_has_important_role_trigger = { RULER = $RULER$ }
+	}
+}

@@ -1,0 +1,1110 @@
+﻿namespace = carnx_decision_events
+
+scripted_effect carnx_1020_sell_slave_effect = {
+	# Save permanent scopes for carn_buy_slave_effect
+	save_scope_as = actor
+	save_scope_as = seller
+	$MERCHANT$ = { save_scope_as = buyer }
+	$SLAVE$ = { save_scope_as = slave }
+
+	carn_buy_slave_effect = {
+		SLAVE_PRICE = scope:slave.carnx_slave_bid_price_value
+	}
+
+	# Clear permanent scopes
+	clear_saved_scope = actor
+	clear_saved_scope = seller
+	clear_saved_scope = buyer
+	clear_saved_scope = slave
+}
+
+scripted_trigger carnx_1020_ai_will_sell_slave_trigger = {
+	save_temporary_scope_as = seller
+	$MERCHANT$ = { save_temporary_scope_as = buyer }
+	$SLAVE$ = { save_temporary_scope_as = slave }
+	scope:buyer = {
+		is_character_interaction_potentially_accepted = {
+			interaction = carn_buy_slave_directly_interaction
+			recipient = scope:seller
+			secondary_recipient = scope:slave
+		}
+	}
+}
+
+scripted_effect carnx_1020_cleanup_effect = {
+	# Remove vanilla slave variables
+	scope:first_slave = {
+		carnx_1020_remove_price_variables_effect = yes
+		carnx_1020_remove_bid_price_multiplier_effect = yes
+	}
+	scope:second_slave ?= {
+		carnx_1020_remove_price_variables_effect = yes
+		carnx_1020_remove_bid_price_multiplier_effect = yes
+	}
+	scope:third_slave ?= {
+		carnx_1020_remove_price_variables_effect = yes
+		carnx_1020_remove_bid_price_multiplier_effect = yes
+	}
+}
+
+scripted_effect carnx_1020_set_price_variables_effect = {
+	root = { save_temporary_scope_as = actor }
+	root = { save_temporary_scope_as = seller }
+	$MERCHANT$ = { save_temporary_scope_as = buyer }
+	save_temporary_scope_as = slave
+
+	remove_variable = carnx_bid_price_multiplier
+	set_variable = {
+		name = 1020_slave_price
+		value = {
+			value = scope:slave.carnx_slave_bid_price_value
+			max = $MERCHANT$.short_term_gold
+		}
+	}
+	set_variable = { name = carnx_bid_price_multiplier value = 1.2 }
+	set_variable = {
+		name = 1020_increased_slave_price
+		value = {
+			value = scope:slave.carnx_slave_bid_price_value
+			max = $MERCHANT$.short_term_gold
+		}
+		days = 1
+	}
+	set_variable = { name = carnx_bid_price_multiplier value = 0.8 }
+	set_variable = {
+		name = 1020_decreased_slave_price
+		value = {
+			value = scope:slave.carnx_slave_bid_price_value
+			max = $MERCHANT$.short_term_gold
+		}
+		days = 1
+	}
+	remove_variable = carnx_bid_price_multiplier
+}
+
+scripted_effect carnx_1020_remove_price_variables_effect = {
+	remove_variable = 1020_slave_price
+	remove_variable = 1020_increased_slave_price
+	remove_variable = 1020_decreased_slave_price
+}
+
+scripted_effect carnx_1020_set_bid_price_multiplier_effect = {
+	if = {
+		limit = { scope:attempted_slave_haggle ?= flag:success }
+		set_variable = { name = carnx_bid_price_multiplier value = 1.2 }
+	}
+	else_if = {
+		limit = { scope:attempted_slave_haggle ?= flag:failure }
+		set_variable = { name = carnx_bid_price_multiplier value = 0.8 }
+	}
+	else = {
+		remove_variable = carnx_bid_price_multiplier
+	}
+}
+
+scripted_effect carnx_1020_remove_bid_price_multiplier_effect = {
+	remove_variable = carnx_bid_price_multiplier
+}
+
+# Visiting Location: No Questions Asked
+# Needs scopes:
+# * visiting_location
+# * visting_partner
+# * been_to_slave_trader_sell_screen - If set, use for loc
+# Sets scopes:
+# * slave_trader - Merchant
+# * first_slave, second_slave, third_slave - slaves to sell
+# * outraged_partner - Visiting partner if better stewardship than root
+# * recurring_slave_trader - Merchant if already visited before
+# * attempted_slave_haggle - Set to flag:success if a haggle was a success, flag:failure if not
+# * been_to_slave_trader - Set to yes (to specify that any of the slave_trader events has already been triggered)
+# * finished_slave_trader - Set to yes if an slave has been sold
+# * last_location - Set to flag:slave_trader
+#
+carnx_decision_events.1020 = {
+	type = character_event
+	title = carnx_decision_events.1020.t
+	window = visit_settlement_window
+
+	desc = {
+		# Intro
+		first_valid = {
+			triggered_desc = {
+				trigger = {
+					NOT = { exists = scope:been_to_slave_trader }
+					exists = scope:recurring_slave_trader
+				}
+				desc = carnx_decision_events.1020.desc_intro_reused_slave_trader
+			}
+			triggered_desc = {
+				trigger = {
+					NOT = { exists = scope:been_to_slave_trader }
+					scope:visiting_location = { vls_has_city_like_holding_trigger = yes }
+				}
+				desc = carnx_decision_events.1020.desc_intro_posh_stalls
+			}
+			random_valid = {
+				triggered_desc = {
+					trigger = {
+						NOT = { exists = scope:been_to_slave_trader }
+					}
+					desc = carnx_decision_events.1020.desc_intro_new_01
+				}
+				triggered_desc = {
+					trigger = {
+						NOT = { exists = scope:been_to_slave_trader }
+					}
+					desc = carnx_decision_events.1020.desc_intro_new_02
+				}
+			}
+			random_valid = {
+				triggered_desc = {
+					trigger = {
+						NOT = { exists = scope:been_to_slave_trader_sell_screen }
+					}
+					desc = carnx_decision_events.1020.desc_intro_returned_01
+				}
+				triggered_desc = {
+					trigger = {
+						NOT = { exists = scope:been_to_slave_trader_sell_screen }
+					}
+					desc = carnx_decision_events.1020.desc_intro_returned_02
+				}
+			}
+			random_valid = {
+				triggered_desc = {
+					desc = carnx_decision_events.1020.desc_intro_intermediate_returned_01
+				}
+				triggered_desc = {
+					desc = carnx_decision_events.1020.desc_intro_intermediate_returned_02
+				}
+			}
+		}
+
+		# slave flavor
+		first_valid = {
+			# One slave
+			random_valid = {
+				triggered_desc = {
+					trigger = {
+						NOT = { exists = scope:been_to_slave_trader }
+						exists = scope:first_slave
+						NOT = { exists = scope:second_slave }
+						NOT = { exists = scope:third_slave }
+					}
+					desc = carnx_decision_events.1020.desc_one_slave_new_01
+				}
+				triggered_desc = {
+					trigger = {
+						NOT = { exists = scope:been_to_slave_trader }
+						exists = scope:first_slave
+						NOT = { exists = scope:second_slave }
+						NOT = { exists = scope:third_slave }
+					}
+					desc = carnx_decision_events.1020.desc_one_slave_new_02
+				}
+			}
+			# Two slaves
+			random_valid = {
+				triggered_desc = {
+					trigger = {
+						NOT = { exists = scope:been_to_slave_trader }
+						exists = scope:first_slave
+						exists = scope:second_slave
+						NOT = { exists = scope:third_slave }
+					}
+					desc = carnx_decision_events.1020.desc_two_slaves_new_01
+				}
+				triggered_desc = {
+					trigger = {
+						NOT = { exists = scope:been_to_slave_trader }
+						exists = scope:first_slave
+						exists = scope:second_slave
+						NOT = { exists = scope:third_slave }
+					}
+					desc = carnx_decision_events.1020.desc_two_slaves_new_02
+				}
+			}
+			# Three slaves
+			random_valid = {
+				triggered_desc = {
+					trigger = {
+						NOT = { exists = scope:been_to_slave_trader }
+						exists = scope:first_slave
+						exists = scope:second_slave
+						exists = scope:third_slave
+					}
+					desc = carnx_decision_events.1020.desc_three_slaves_new_01
+				}
+				triggered_desc = {
+					trigger = {
+						NOT = { exists = scope:been_to_slave_trader }
+						exists = scope:first_slave
+						exists = scope:second_slave
+						exists = scope:third_slave
+					}
+					desc = carnx_decision_events.1020.desc_three_slaves_new_02
+				}
+			}
+		}
+
+		# Visiting partner flavor
+		first_valid = {
+			triggered_desc = {
+				trigger = {
+					exists = scope:been_to_slave_trader
+					exists = scope:outraged_partner
+				}
+				desc = carnx_decision_events.1020.desc_outraged_partner_returned
+			}
+			triggered_desc = {
+				trigger = { exists = scope:outraged_partner }
+				desc = carnx_decision_events.1020.desc_outraged_partner_new
+			}
+		}
+	}
+
+	theme = stewardship
+	override_background = { reference = ep2_village_festival }
+
+	# Visiting partner
+	left_portrait = {
+		trigger = { exists = scope:visiting_partner }
+		character = scope:visiting_partner
+		triggered_animation = {
+			trigger = { exists = scope:outraged_partner }
+			animation = rage
+		}
+		triggered_animation = {
+			trigger = {
+				scope:visiting_partner = { vls_has_friendly_traits_trigger = yes }
+			}
+			animation = personality_forgiving
+		}
+		triggered_animation = {
+			trigger = {
+				scope:visiting_partner = { vls_has_commerce_traits_trigger = yes }
+			}
+			animation = personality_greedy
+		}
+		triggered_animation = {
+			trigger = {
+				scope:visiting_partner = { vls_has_uninterested_traits_trigger = yes }
+			}
+			animation = personality_cynical
+		}
+		triggered_animation = {
+			trigger = {
+				scope:visiting_partner = { vls_has_irrational_traits_trigger = yes }
+			}
+			animation = personality_irrational
+		}
+		triggered_animation = {
+			trigger = {
+				scope:visiting_partner = { vls_has_standoffish_traits_trigger = yes }
+			}
+			animation = personality_coward
+		}
+		animation = personality_compassionate
+	}
+
+	# Root
+	center_portrait = {
+		character = root
+		animation = thinking
+	}
+
+	# Slave trader
+	right_portrait = {
+		character = scope:slave_trader
+		triggered_animation = {
+			trigger = {
+				scope:slave_trader = { vls_has_friendly_traits_trigger = yes }
+			}
+			animation = personality_compassionate
+		}
+		triggered_animation = {
+			trigger = {
+				scope:slave_trader = { vls_has_uninterested_traits_trigger = yes }
+			}
+			animation = personality_callous
+		}
+		triggered_animation = {
+			trigger = {
+				scope:slave_trader = { vls_has_commerce_traits_trigger = yes }
+			}
+			animation = admiration
+		}
+		triggered_animation = {
+			trigger = {
+				scope:slave_trader = { vls_has_standoffish_traits_trigger = yes }
+			}
+			animation = personality_coward
+		}
+		triggered_animation = {
+			trigger = {
+				scope:slave_trader = { vls_has_irrational_traits_trigger = yes }
+			}
+			animation = personality_irrational
+		}
+		animation = personality_forgiving
+	}
+
+	# Slaves
+	lower_left_portrait = {
+		trigger = { exists = scope:first_slave }
+		character = scope:first_slave
+	}
+	lower_center_portrait = {
+		trigger = { exists = scope:second_slave }
+		character = scope:second_slave
+	}
+	lower_right_portrait = {
+		trigger = { exists = scope:third_slave }
+		character = scope:third_slave
+	}
+
+	immediate = {
+		# If visiting partner is better at stewardship, make them outraged
+		if = {
+			limit = {
+				NOT = { exists = scope:outraged_partner }
+				scope:visiting_partner ?= {
+					stewardship > root.stewardship
+					stewardship >= average_skill_rating
+				}
+			}
+			save_scope_as = outraged_partner
+		}
+
+		# Find slave trader
+		if = {
+			limit = {
+				NOT = { exists = scope:slave_trader }
+			}
+			carnx_get_merchant_effect = {
+				TYPE = slave_trader
+				LOCATION = scope:visiting_location
+				CHARACTER = root
+				MERCHANT = slave_trader
+			}
+			if = {
+				limit = {
+					NOT = { exists = scope:recurring_slave_trader }
+				}
+				hidden_effect = {
+					scope:slave_trader = {
+						carnx_add_merchant_gold_effect = { LOCATION = scope:visiting_location }
+					}
+				}
+			}
+		}
+
+		# Remember the slave trader as quartermaster
+		vls_remember_merchant_character_effect = {
+			TYPE = quartermaster
+			CHARACTER = scope:slave_trader
+		}
+
+		# Find slaves to sell
+		if = {
+			limit = {
+				NOR = {
+					exists = scope:first_slave
+					exists = scope:second_slave
+					exists = scope:third_slave
+				}
+			}
+
+			# Get slave list
+			every_relation = {
+				type = slave
+				limit = { carnx_slave_can_be_sold_trigger = yes }
+				add_to_temporary_list = slaves_to_sell
+			}
+
+			# Save slave scopes
+			# Prefer unequipped and marked slaves, over just unequipped, over others
+			random_in_list = {
+				list = slaves_to_sell
+				limit = {
+					has_variable = carnx_slave_to_sell
+					NOT = { carnx_is_employed_trigger = { RULER = root } }
+				}
+				alternative_limit = {
+					NOT = { carnx_is_employed_trigger = { RULER = root } }
+				}
+				alternative_limit = {
+				}
+				set_variable = {
+					name = carnx_slave_to_sell
+					days = visit_settlement_cooldown_days
+				}
+				save_scope_as = first_slave
+			}
+			if = {
+				limit = {
+					any_in_list = {
+						list = slaves_to_sell
+						NOT = { this = scope:first_slave }
+					}
+				}
+				random_in_list = {
+					list = slaves_to_sell
+					limit = {
+						NOT = { this = scope:first_slave }
+						has_variable = carnx_slave_to_sell
+						NOT = { carnx_is_employed_trigger = { RULER = root } }
+					}
+					alternative_limit = {
+						NOT = { this = scope:first_slave }
+						NOT = { carnx_is_employed_trigger = { RULER = root } }
+					}
+					alternative_limit = {
+						NOT = { this = scope:first_slave }
+					}
+					set_variable = {
+						name = carnx_slave_to_sell
+						days = visit_settlement_cooldown_days
+					}
+					save_scope_as = second_slave
+				}
+			}
+			if = {
+				limit = {
+					any_in_list = {
+						list = slaves_to_sell
+						NOR = {
+							this = scope:first_slave
+							this = scope:second_slave
+						}
+					}
+				}
+				random_in_list = {
+					list = slaves_to_sell
+					limit = {
+						NOR = {
+							this = scope:first_slave
+							this = scope:second_slave
+						}
+						has_variable = carnx_slave_to_sell
+						NOT = { carnx_is_employed_trigger = { RULER = root } }
+					}
+					alternative_limit = {
+						NOR = {
+							this = scope:first_slave
+							this = scope:second_slave
+						}
+						NOT = { carnx_is_employed_trigger = { RULER = root } }
+					}
+					alternative_limit = {
+						NOR = {
+							this = scope:first_slave
+							this = scope:second_slave
+						}
+					}
+					set_variable = {
+						name = carnx_slave_to_sell
+						days = visit_settlement_cooldown_days
+					}
+					save_scope_as = third_slave
+				}
+			}
+		}
+
+		# Save price variables for localization
+		scope:first_slave = {
+			carnx_1020_set_price_variables_effect = { MERCHANT = scope:slave_trader }
+		}
+		scope:second_slave ?= {
+			carnx_1020_set_price_variables_effect = { MERCHANT = scope:slave_trader }
+		}
+		scope:third_slave ?= {
+			carnx_1020_set_price_variables_effect = { MERCHANT = scope:slave_trader }
+		}
+
+		# Determine slave outraged partner wants to sell
+		if = {
+			limit = { exists = scope:outraged_partner }
+			random_list = {
+				50 = {
+					scope:first_slave = { save_scope_as = outraged_partner_slave }
+				}
+				50 = {
+					trigger = { exists = scope:second_slave }
+					scope:second_slave = { save_scope_as = outraged_partner_slave }
+				}
+				50 = {
+					trigger = { exists = scope:third_slave }
+					scope:third_slave = { save_scope_as = outraged_partner_slave }
+				}
+			}
+			scope:outraged_partner_slave = {
+				set_variable = { name = carnx_bid_price_multiplier value = 1.2 }
+			}
+		}
+	}
+
+	# Proceed to sell screen
+	option = {
+		name = carnx_decision_events.1020.a
+		custom_tooltip = carnx_decision_events.1020.a.tt
+
+		# Show default slave prices
+		custom_tooltip = carnx_decision_events.1020.a.first_slave.tt
+		if = {
+			limit = { exists = scope:second_slave }
+			custom_tooltip = carnx_decision_events.1020.a.second_slave.tt
+		}
+		if = {
+			limit = { exists = scope:third_slave }
+			custom_tooltip = carnx_decision_events.1020.a.third_slave.tt
+		}
+
+		# Go to sell screen
+		trigger_event = carnx_decision_events.1021
+
+		ai_chance = {
+			base = 0
+			modifier = {
+				OR = {
+					carnx_1020_ai_will_sell_slave_trigger = {
+						MERCHANT = scope:slave_trader
+						SLAVE = scope:first_slave
+					}
+					AND = {
+						exists = scope:second_slave
+						carnx_1020_ai_will_sell_slave_trigger = {
+							MERCHANT = scope:slave_trader
+							SLAVE = scope:second_slave
+						}
+					}
+					AND = {
+						exists = scope:third_slave
+						carnx_1020_ai_will_sell_slave_trigger = {
+							MERCHANT = scope:slave_trader
+							SLAVE = scope:third_slave
+						}
+					}
+				}
+				add = 100
+			}
+		}
+	}
+
+	# Attempt a haggle
+	option = {
+		name = carnx_decision_events.1020.b
+
+		trigger = {
+			custom_tooltip = {
+				text = carnx_decision_events.1020.b.cooldown.tt
+				NOT = { has_variable = 1020_has_haggled_recently }
+			}
+		}
+
+		carnx_debug_log_effect = { MSG = carnx_debug_msg_attempting_slave_haggle }
+
+		duel = {
+			skill = stewardship
+			target = scope:slave_trader
+			50 = {
+				compare_modifier = {
+					value = scope:duel_value
+					multiplier = 3.5
+					min = -49
+				}
+				desc = carnx_decision_events.1020.b.success
+				send_interface_toast = {
+					title = carnx_decision_events.1020.b.success
+					left_icon = root
+					right_icon = scope:slave_trader
+
+					# Show higher slave prices
+					custom_tooltip = carnx_decision_events.1020.b.success.first_slave.tt
+					if = {
+						limit = { exists = scope:second_slave }
+						custom_tooltip = carnx_decision_events.1020.b.success.second_slave.tt
+					}
+					if = {
+						limit = { exists = scope:third_slave }
+						custom_tooltip = carnx_decision_events.1020.b.success.third_slave.tt
+					}
+
+					save_scope_value_as = { name = attempted_slave_haggle value = flag:success }
+					if = {
+						limit = { has_lifestyle = stewardship_lifestyle }
+						add_stewardship_lifestyle_xp = medium_lifestyle_xp
+					}
+					stress_impact = {
+						greedy = minor_stress_impact_loss
+						ambitious = minor_stress_impact_loss
+					}
+
+					# Go to sell screen
+					trigger_event = carnx_decision_events.1021
+				}
+			}
+			50 = {
+				compare_modifier = {
+					value = scope:duel_value
+					multiplier = -3.5
+					min = -20
+				}
+				desc = carnx_decision_events.1020.b.failure
+				send_interface_toast = {
+					title = carnx_decision_events.1020.b.failure
+					left_icon = root
+					right_icon = scope:slave_trader
+
+					# Show lower slave prices
+					custom_tooltip = carnx_decision_events.1020.b.failure.first_slave.tt
+					if = {
+						limit = { exists = scope:second_slave }
+						custom_tooltip = carnx_decision_events.1020.b.failure.second_slave.tt
+					}
+					if = {
+						limit = { exists = scope:third_slave }
+						custom_tooltip = carnx_decision_events.1020.b.failure.third_slave.tt
+					}
+
+					save_scope_value_as = { name = attempted_slave_haggle value = flag:failure }
+					stress_impact = {
+						base = minor_stress_impact_gain
+						greedy = minor_stress_impact_gain
+					}
+
+					# Go to sell screen
+					trigger_event = carnx_decision_events.1021
+				}
+			}
+		}
+
+		set_variable = {
+			name = 1020_has_haggled_recently
+			days = visit_settlement_minimum_cooldown_days
+		}
+
+		ai_chance = {
+			base = 100
+			modifier = {
+				factor = {
+					value = stewardship
+					divide = {
+						value = scope:slave_trader.stewardship
+						min = 1
+					}
+				}
+			}
+		}
+	}
+
+	# Sell random slave at a higher price via outraged partner
+	option = {
+		name = carnx_decision_events.1020.c
+
+		trigger = {
+			exists = scope:outraged_partner
+		}
+
+		carnx_debug_log_effect = { MSG = carnx_debug_msg_selling_slave_via_outraged_partner }
+
+		# Sell random slave at higher price
+		if = {
+			limit = { scope:first_slave = scope:outraged_partner_slave }
+			custom_tooltip = carnx_decision_events.1020.c.first_slave
+		}
+		else_if = {
+			limit = { scope:second_slave ?= scope:outraged_partner_slave }
+			custom_tooltip = carnx_decision_events.1020.c.second_slave
+		}
+		else_if = {
+			limit = { scope:third_slave ?= scope:outraged_partner_slave }
+			custom_tooltip = carnx_decision_events.1020.c.third_slave
+		}
+		carnx_1020_sell_slave_effect = {
+			MERCHANT = scope:slave_trader
+			SLAVE = scope:outraged_partner_slave
+		}
+
+		# Cleanup variables and update scopes
+		carnx_1020_cleanup_effect = yes
+		save_scope_value_as = { name = finished_slave_trader value = yes }
+		save_scope_value_as = { name = been_to_slave_trader value = yes }
+		save_scope_value_as = { name = last_location value = flag:slave_trader }
+
+		stress_impact = {
+			diligent = minor_stress_impact_gain
+			lazy = minor_stress_impact_loss
+		}
+
+		# Go back to main square
+		custom_tooltip = ep3_laamp_decision_event.return.tt
+		trigger_event = carnx_decision_events.1000
+
+		ai_chance = {
+			base = 0
+			modifier = {
+				carnx_1020_ai_will_sell_slave_trigger = {
+					MERCHANT = scope:slave_trader
+					SLAVE = scope:outraged_partner_slave
+				}
+				add = 200
+			}
+			modifier = {
+				has_trait = diligent
+				factor = 0.5
+			}
+			modifier = {
+				has_trait = lazy
+				factor = 2
+			}
+		}
+	}
+
+	# Do something else
+	option = {
+		name = carnx_decision_events.1020.d
+
+		# Cleanup variables and update scopes
+		carnx_1020_cleanup_effect = yes
+		save_scope_value_as = { name = been_to_slave_trader value = yes }
+		save_scope_value_as = { name = last_location value = flag:slave_trader }
+
+		# Go back to main square
+		custom_tooltip = ep3_laamp_decision_event.return.tt
+		trigger_event = carnx_decision_events.1000
+
+		ai_chance = { base = 50 }
+	}
+}
+
+# Visiting Location: Parting Time
+# Needs scopes:
+# * visiting_location
+# * visting_partner
+# * slave_trader - Merchant
+# * first_slave, second_slave, third_slave - slaves to sell
+# * outraged_partner - Visiting partner if better stewardship than root
+# * attempted_slave_haggle - If set, use for loc and prices
+# Sets scopes:
+# * been_to_slave_trader - Set to yes (to specify that any of the slave_trader events has already been triggered)
+# * been_to_slave_trader_sell_screen - Set to yes (to specify that the event has already been triggered)
+# * finished_slave_trader - Set to yes if an slave has been sold
+# * last_location - Set to flag:slave_trader
+#
+carnx_decision_events.1021 = {
+	type = character_event
+	window = visit_settlement_window
+
+	title = {
+		first_valid = {
+			triggered_desc = {
+				trigger = {
+					scope:attempted_slave_haggle ?= flag:success
+				}
+				desc = carnx_decision_events.1021.t_success
+			}
+			triggered_desc = {
+				trigger = {
+					scope:attempted_slave_haggle ?= flag:failure
+				}
+				desc = carnx_decision_events.1021.t_failure
+			}
+			desc = carnx_decision_events.1021.t
+		}
+	}
+
+	desc = {
+		first_valid = {
+			triggered_desc = {
+				trigger = {
+					NOT = { exists = scope:been_to_slave_trader }
+					scope:attempted_slave_haggle ?= flag:success
+				}
+				desc = carnx_decision_events.1021.desc_success
+			}
+			triggered_desc = {
+				trigger = {
+					NOT = { exists = scope:been_to_slave_trader }
+					scope:attempted_slave_haggle ?= flag:failure
+				}
+				desc = carnx_decision_events.1021.desc_failure
+			}
+			random_valid = {
+				triggered_desc = {
+					trigger = {
+						NOT = { exists = scope:been_to_slave_trader }
+					}
+					desc = carnx_decision_events.1021.desc_moment_of_purchase_01
+				}
+				triggered_desc = {
+					trigger = {
+						NOT = { exists = scope:been_to_slave_trader }
+					}
+					desc = carnx_decision_events.1021.desc_moment_of_purchase_02
+				}
+			}
+			random_valid = {
+				triggered_desc = {
+					trigger = {
+						NOT = { exists = scope:been_to_slave_trader_sell_screen }
+					}
+					desc = carnx_decision_events.1020.desc_intro_returned_01
+				}
+				triggered_desc = {
+					trigger = {
+						NOT = { exists = scope:been_to_slave_trader_sell_screen }
+					}
+					desc = carnx_decision_events.1020.desc_intro_returned_02
+				}
+			}
+			random_valid = {
+				triggered_desc = {
+					desc = carnx_decision_events.1020.desc_intro_intermediate_returned_01
+				}
+				triggered_desc = {
+					desc = carnx_decision_events.1020.desc_intro_intermediate_returned_02
+				}
+			}
+		}
+	}
+
+	theme = stewardship
+	override_background = { reference = ep2_village_festival }
+
+	# Visiting partner
+	left_portrait = {
+		trigger = { exists = scope:visiting_partner }
+		character = scope:visiting_partner
+		triggered_animation = {
+			trigger = { exists = scope:outraged_partner }
+			animation = rage
+		}
+		triggered_animation = {
+			trigger = {
+				scope:visiting_partner = { vls_has_friendly_traits_trigger = yes }
+			}
+			animation = personality_forgiving
+		}
+		triggered_animation = {
+			trigger = {
+				scope:visiting_partner = { vls_has_commerce_traits_trigger = yes }
+			}
+			animation = personality_greedy
+		}
+		triggered_animation = {
+			trigger = {
+				scope:visiting_partner = { vls_has_uninterested_traits_trigger = yes }
+			}
+			animation = personality_cynical
+		}
+		triggered_animation = {
+			trigger = {
+				scope:visiting_partner = { vls_has_irrational_traits_trigger = yes }
+			}
+			animation = personality_irrational
+		}
+		triggered_animation = {
+			trigger = {
+				scope:visiting_partner = { vls_has_standoffish_traits_trigger = yes }
+			}
+			animation = personality_coward
+		}
+		animation = personality_compassionate
+	}
+
+	# Root
+	center_portrait = {
+		character = root
+		triggered_animation = {
+			trigger = {
+				scope:attempted_slave_haggle ?= flag:failure
+			}
+			animation = shame
+		}
+		animation = thinking
+	}
+
+	# Slave trader
+	right_portrait = {
+		character = scope:slave_trader
+		triggered_animation = {
+			trigger = { exists = scope:attempted_slave_haggle }
+			animation = disapproval
+		}
+		animation = steward
+	}
+
+	# Slaves
+	lower_left_portrait = {
+		trigger = { exists = scope:first_slave }
+		character = scope:first_slave
+	}
+	lower_center_portrait = {
+		trigger = { exists = scope:second_slave }
+		character = scope:second_slave
+	}
+	lower_right_portrait = {
+		trigger = { exists = scope:third_slave }
+		character = scope:third_slave
+	}
+
+	immediate = {
+		scope:first_slave = {
+			carnx_1020_set_bid_price_multiplier_effect = yes
+		}
+		scope:second_slave ?= {
+			carnx_1020_set_bid_price_multiplier_effect = yes
+		}
+		scope:third_slave ?= {
+			carnx_1020_set_bid_price_multiplier_effect = yes
+		}
+	}
+
+	# Sell first slave
+	option = {
+		name = carnx_decision_events.1021.a
+
+		# Actually sell the slave
+		carnx_1020_sell_slave_effect = {
+			MERCHANT = scope:slave_trader
+			SLAVE = scope:first_slave
+		}
+
+		# Cleanup variables and update scopes
+		carnx_1020_cleanup_effect = yes
+		save_scope_value_as = { name = finished_slave_trader value = yes }
+		save_scope_value_as = { name = been_to_slave_trader value = yes }
+		save_scope_value_as = { name = been_to_slave_trader_sell_screen value = yes }
+		save_scope_value_as = { name = last_location value = flag:slave_trader }
+
+		# Go back to main square
+		custom_tooltip = ep3_laamp_decision_event.return.tt
+		trigger_event = carnx_decision_events.1000
+
+		ai_chance = {
+			base = 0
+			modifier = {
+				carnx_1020_ai_will_sell_slave_trigger = {
+					MERCHANT = scope:slave_trader
+					SLAVE = scope:first_slave
+				}
+				add = 100
+			}
+		}
+	}
+
+	# Sell second slave
+	option = {
+		name = carnx_decision_events.1021.b
+
+		trigger = {
+			exists = scope:second_slave
+		}
+
+		# Actually sell the slave
+		carnx_1020_sell_slave_effect = {
+			MERCHANT = scope:slave_trader
+			SLAVE = scope:second_slave
+		}
+
+		# Cleanup variables and update scopes
+		carnx_1020_cleanup_effect = yes
+		save_scope_value_as = { name = finished_slave_trader value = yes }
+		save_scope_value_as = { name = been_to_slave_trader value = yes }
+		save_scope_value_as = { name = been_to_slave_trader_sell_screen value = yes }
+		save_scope_value_as = { name = last_location value = flag:slave_trader }
+
+		# Go back to main square
+		custom_tooltip = ep3_laamp_decision_event.return.tt
+		trigger_event = carnx_decision_events.1000
+
+		ai_chance = {
+			base = 0
+			modifier = {
+				carnx_1020_ai_will_sell_slave_trigger = {
+					MERCHANT = scope:slave_trader
+					SLAVE = scope:second_slave
+				}
+				add = 100
+			}
+		}
+	}
+
+	# Sell third slave
+	option = {
+		name = carnx_decision_events.1021.c
+
+		trigger = {
+			exists = scope:third_slave
+		}
+
+		# Actually sell the slave
+		carnx_1020_sell_slave_effect = {
+			MERCHANT = scope:slave_trader
+			SLAVE = scope:third_slave
+		}
+
+		# Cleanup variables and update scopes
+		carnx_1020_cleanup_effect = yes
+		save_scope_value_as = { name = finished_slave_trader value = yes }
+		save_scope_value_as = { name = been_to_slave_trader value = yes }
+		save_scope_value_as = { name = been_to_slave_trader_sell_screen value = yes }
+		save_scope_value_as = { name = last_location value = flag:slave_trader }
+
+		# Go back to main square
+		custom_tooltip = ep3_laamp_decision_event.return.tt
+		trigger_event = carnx_decision_events.1000
+
+		ai_chance = {
+			base = 0
+			modifier = {
+				carnx_1020_ai_will_sell_slave_trigger = {
+					MERCHANT = scope:slave_trader
+					SLAVE = scope:third_slave
+				}
+				add = 100
+			}
+		}
+	}
+
+	# Do something else
+	option = {
+		name = {
+			text = {
+				first_valid = {
+					triggered_desc = {
+						trigger = { exists = scope:attempted_slave_haggle }
+						desc = carnx_decision_events.1020.d
+					}
+					desc = carnx_decision_events.1021.d
+				}
+			}
+		}
+
+		# Cleanup variables and update scopes
+		carnx_1020_cleanup_effect = yes
+		save_scope_value_as = { name = been_to_slave_trader value = yes }
+		save_scope_value_as = { name = been_to_slave_trader_sell_screen value = yes }
+		save_scope_value_as = { name = last_location value = flag:slave_trader }
+
+		# Go back to main square or previous screen
+		if = {
+			limit = { exists = scope:attempted_slave_haggle }
+			custom_tooltip = ep3_laamp_decision_event.return.tt
+			trigger_event = carnx_decision_events.1000
+		}
+		else = {
+			trigger_event = carnx_decision_events.1020
+		}
+
+		ai_chance = {
+			base = 50
+			modifier = {
+				has_trait = greedy
+				factor = 0.5
+			}
+		}
+	}
+}

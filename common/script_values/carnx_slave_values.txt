@@ -771,6 +771,14 @@ carnx_root_faith_dominant_gender_adjusted_female_chance = {
 	max = 100
 }
 
+carnx_scope_value_target_faith_dominant_gender_adjusted_female_chance = {
+	value = scope_value_target_faith_dominant_gender_adjusted_female_chance
+	add = carnx_create_character_female_chance
+	subtract = 50
+	min = 0
+	max = 100
+}
+
 carnx_mark_for_enslavement_chance = {
 	if = {
 		# Don't mark for enslavement playable characters or their family
@@ -1019,7 +1027,7 @@ carn_scope_buyer_current_gold_value = {
 carnx_scope_secondary_recipient_slave_ransom_cost_value = {
 	value = 0
 	if = {
-		limit = { 
+		limit = {
 			exists = scope:secondary_recipient
 			exists = scope:recipient
 		}
