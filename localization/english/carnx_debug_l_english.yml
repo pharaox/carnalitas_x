@@ -3,7 +3,7 @@
 
  carnx_debug_msg_slave_enslaved: "$carnx_debug_prefix$: Slave enslaved"
  carnx_debug_msg_slave_freed: "$carnx_debug_prefix$: Slave freed"
- carnx_debug_msg_slave_bought: "$carnx_debug_prefix$: Slave bought"
+ carnx_debug_msg_slave_bought: "$carnx_debug_prefix$: Slave bought, buyer: $carnx_buyer$, seller: $carnx_seller$, price: $carnx_slave_price$, source: $carnx_source$"
  carnx_debug_msg_slave_seized: "$carnx_debug_prefix$: Slave seized"
  carnx_debug_msg_slave_ransomed: "$carnx_debug_prefix$: Slave ransomed"
  carnx_debug_msg_slave_gifted: "$carnx_debug_prefix$: Slave gifted"
@@ -133,3 +133,11 @@
  carnx_debug_msg_travel_requested: "$carnx_debug_prefix$: Travel requested, but Travelers mod is not available"
 
  carnx_debug_msg_debug_character: "$carnx_debug_prefix$: Debug character"
+
+ carnx_buyer: "[THIS.Var('buyer').Char.GetFullNameNoTooltip] ([THIS.Var('buyer').Char.GetID]$carnx_buyer_merchant_type$)"
+ carnx_seller: "[THIS.Var('seller').Char.GetFullNameNoTooltip] ([THIS.Var('seller').Char.GetID]$carnx_seller_merchant_type$)"
+ carnx_slave_price: "[THIS.Var('slave_price').GetValue]"
+ carnx_source: "[THIS.Var('source').GetFlagName]"
+
+ carnx_buyer_merchant_type: "[Select_CString(THIS.Var('buyer').Var('at_merchant_type').IsSet, Concatenate(', ', THIS.Var('buyer').Var('at_merchant_type').GetFlagName), '')]"
+ carnx_seller_merchant_type: "[Select_CString(THIS.Var('seller').Var('at_merchant_type').IsSet, Concatenate(', ', THIS.Var('seller').Var('at_merchant_type').GetFlagName), '')]"
