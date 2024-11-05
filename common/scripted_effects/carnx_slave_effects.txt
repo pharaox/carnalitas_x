@@ -559,10 +559,14 @@ carnx_enslave_effect = {
 
 	scope:new_owner = {
 		set_relation_slave = scope:slave
-
-		hidden_effect = {
-			# Add slave to new owner's court
-			carnx_add_courtier_effect = { SLAVE = scope:slave }
+		if = {
+			limit = {
+				NOT = { has_character_flag = carnx_slave_0001_seller }
+				scope:slave = { NOT = { is_courtier_of = scope:new_owner } }
+			}
+			hidden_effect = {
+				carnx_add_courtier_effect = { SLAVE = scope:slave }
+			}
 		}
 	}
 
@@ -584,7 +588,7 @@ carnx_enslave_effect = {
 			if = {
 				limit = {
 					scope:new_owner = {
-						is_ruler = yes
+						NOT = { has_character_flag = carnx_slave_0001_seller }
 					}
 				}
 				trigger_event = {
@@ -900,20 +904,17 @@ carnx_free_slave_actual_effect = {
 			}
 		}
 
-		hidden_effect = {
-			# Add slave to emancipator's court
-			carnx_add_courtier_effect = { SLAVE = scope:slave }
-		}
-	}
-
-	scope:former_owner = {
-		hidden_effect = {
-			# Remove slave from former owner's court if different from emancipator
-			if = {
-				limit = {
-					NOT = { scope:former_owner ?= $EMANCIPATOR$ }
+		if = {
+			limit = {
+				scope:slave = {
+					NOR = {
+						is_courtier_of = $EMANCIPATOR$
+						has_character_flag = carnx_block_add_courtier
+					}
 				}
-				carnx_remove_courtier_effect = { SLAVE = scope:slave }
+			}
+			hidden_effect = {
+				carnx_add_courtier_effect = { SLAVE = scope:slave }
 			}
 		}
 	}
@@ -1018,7 +1019,17 @@ carnx_ransom_slave_actual_effect = {
 
 		hidden_effect = {
 			# Add slave to payer's court
-			carnx_add_courtier_effect = { SLAVE = scope:slave }
+			if = {
+				limit = {
+					scope:slave = {
+						NOR = {
+							is_courtier_of = scope:payer
+							has_character_flag = carnx_block_add_courtier
+						}
+					}
+				}
+				carnx_add_courtier_effect = { SLAVE = scope:slave }
+			}
 
 			# Potentially acquire liberator trait if scope:slave not enslaved by scope:payer
 			if = {
@@ -1052,11 +1063,6 @@ carnx_ransom_slave_actual_effect = {
 				target = scope:payer
 				type = favor_hook
 			}
-		}
-
-		hidden_effect = {
-			# Remove slave from owner's court
-			carnx_remove_courtier_effect = { SLAVE = scope:slave }
 		}
 	}
 }
@@ -1181,8 +1187,13 @@ carnx_buy_slave_effect = {
 		}
 
 		hidden_effect = {
-			# Add slave to buyer's court
-			carnx_add_courtier_effect = { SLAVE = scope:slave }
+			# Add slave to new owner's court
+			if = {
+				limit = {
+					scope:slave = { NOT = { is_courtier_of = scope:buyer } }
+				}
+				carnx_add_courtier_effect = { SLAVE = scope:slave }
+			}
 		}
 	}
 
@@ -1203,11 +1214,6 @@ carnx_buy_slave_effect = {
 		carnx_apply_slavery_consequences_effect = {
 			CHARACTER = scope:slave
 			ACTION = flag:sell
-		}
-
-		hidden_effect = {
-			# Remove slave from seller's court
-			carnx_remove_courtier_effect = { SLAVE = scope:slave }
 		}
 	}
 
@@ -1342,14 +1348,12 @@ carnx_seize_slave_effect = {
 
 		hidden_effect = {
 			# Add slave to new owner's court
-			carnx_add_courtier_effect = { SLAVE = scope:slave }
-		}
-	}
-
-	scope:former_owner = {
-		hidden_effect = {
-			# Remove slave from former owner's court
-			carnx_remove_courtier_effect = { SLAVE = scope:slave }
+			if = {
+				limit = {
+					scope:slave = { NOT = { is_courtier_of = scope:new_owner } }
+				}
+				carnx_add_courtier_effect = { SLAVE = scope:slave }
+			}
 		}
 	}
 
@@ -1484,14 +1488,12 @@ carnx_gift_slave_effect = {
 
 		hidden_effect = {
 			# Add slave to new owner's court
-			carnx_add_courtier_effect = { SLAVE = scope:slave }
-		}
-	}
-
-	scope:former_owner = {
-		hidden_effect = {
-			# Remove slave from former owner's court
-			carnx_remove_courtier_effect = { SLAVE = scope:slave }
+			if = {
+				limit = {
+					scope:slave = { NOT = { is_courtier_of = scope:new_owner } }
+				}
+				carnx_add_courtier_effect = { SLAVE = scope:slave }
+			}
 		}
 	}
 
@@ -1863,28 +1865,7 @@ carnx_acquire_faith_slaver_trait_effect = {
 
 # Override in compatibility mods to prevent conversion mods (e.g. AGOT) from redirecting courtiers.
 carnx_add_courtier_effect = {
-	if = {
-		limit = {
-			is_ruler = yes
-			$SLAVE$ = {
-				NOT = { is_courtier_of = prev }
-			}
-		}
-		add_courtier = $SLAVE$
-	}
-}
-
-# Override in compatibility mods to prevent conversion mods (e.g. AGOT) from redirecting courtiers.
-carnx_remove_courtier_effect = {
-	if = {
-		limit = {
-			is_ruler = yes
-			$SLAVE$ = {
-				is_courtier_of = prev
-			}
-		}
-		remove_courtier_or_guest = $SLAVE$
-	}
+	add_courtier = $SLAVE$
 }
 
 # Override in compatibility mods to apply additional slavery consequences
