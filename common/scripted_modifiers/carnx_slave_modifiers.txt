@@ -259,6 +259,18 @@ carnx_lacking_court_positions_modifier = {
 		}
 		modifier = {
 			carnx_has_max_aptitude_difference_trigger = {
+				NAME = court_brewmaster
+				RULER = $RULER$
+				SLAVE = $SLAVE$
+			}
+			add = {
+				value = scope:max_aptitude_difference
+				multiply = $SCALE$
+			}
+			desc = carnx_lacking_court_brewmaster_reason
+		}
+		modifier = {
+			carnx_has_max_aptitude_difference_trigger = {
 				NAME = slave_concubine
 				RULER = $RULER$
 				SLAVE = $SLAVE$

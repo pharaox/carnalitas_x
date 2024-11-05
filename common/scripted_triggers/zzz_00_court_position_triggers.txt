@@ -26,6 +26,7 @@ court_position_does_not_already_have_a_job_trigger = {
 			has_court_position = charioteer_court_position
 			has_court_position = bookmaker_court_position
 			has_court_position = akolouthos_court_position
+			has_court_position = court_brewmaster_court_position
 			has_court_position = carnx_slave_captain_court_position
 			has_court_position = carnx_slave_eunuch_court_position
 

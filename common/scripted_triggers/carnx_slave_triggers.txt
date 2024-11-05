@@ -779,6 +779,14 @@ carnx_can_serve_as_chronicler_trigger = {
 	}
 }
 
+carnx_can_serve_as_court_brewmaster_trigger = {
+	carnx_can_serve_as_court_position_trigger = {
+		TYPE = court_brewmaster_court_position
+		NAME = court_brewmaster
+		LIEGE = $RULER$
+	}
+}
+
 carnx_can_serve_as_slave_concubine_trigger = {
 	carnx_can_serve_as_multi_court_position_trigger = {
 		TYPE = carnx_slave_concubine_court_position

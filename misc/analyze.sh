@@ -115,6 +115,10 @@ echo "Chronicler court position received: $(grep -a "Chronicler court position r
 echo "Chronicler court position revoked: $(grep -a "Chronicler court position revoked" debug.log | wc -l)"
 echo "Chronicler court position invalidated: $(grep -a "Chronicler court position invalidated" debug.log | wc -l)"
 echo
+echo "Court Brewmaster court position received: $(grep -a "Court Brewmaster court position received" debug.log | wc -l)"
+echo "Court Brewmaster court position revoked: $(grep -a "Court Brewmaster court position revoked" debug.log | wc -l)"
+echo "Court Brewmaster court position invalidated: $(grep -a "Court Brewmaster court position invalidated" debug.log | wc -l)"
+echo
 # CSR
 echo "Slave Concubine court position received: $(grep -a "Slave Concubine court position received" debug.log | wc -l)"
 echo "Slave Concubine court position revoked: $(grep -a "Slave Concubine court position revoked" debug.log | wc -l)"

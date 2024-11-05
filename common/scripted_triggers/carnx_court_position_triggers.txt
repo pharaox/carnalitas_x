@@ -12,6 +12,12 @@ carnx_can_be_court_gardener_trigger = {
 
 carnx_can_be_antiquarian_trigger = {
 	is_capable_adult = yes
+	trigger_if = {
+		limit = {
+			$LIEGE$ = { is_ai = yes }
+		}
+		$LIEGE$ = { has_any_artifact = yes }
+	}
 	NOT = { is_spouse_of = $LIEGE$ }
 }
 
@@ -139,6 +145,17 @@ carnx_can_be_master_assassin_trigger = {
 carnx_can_be_chronicler_trigger = {
 	is_capable_adult = yes
 	exists = $LIEGE$
+}
+
+carnx_can_be_court_brewmaster_trigger = {
+	is_capable_adult = yes
+	exists = $LIEGE$
+	OR = {
+		learning >= 12
+		has_trait = lifestyle_reveler
+		has_trait = diligent
+		has_trait = patient
+	}
 }
 
 # CSR Court Positions

@@ -30,6 +30,7 @@
 # master_assassin_court_position - Yes
 # court_scholar_court_position - No [ceremonial]
 # chronicler_court_position - Yes
+# court_brewmaster_court_position - Yes
 
 # CSR Court Positions
 
@@ -324,6 +325,23 @@ carnx_chronicler_title_revoked_effect = {
 carnx_chronicler_title_invalidated_effect = {
 	basic_invalidated_court_position_effect = yes
 	carnx_debug_log_title_invalidated_slave_effect = { NAME = chronicler }
+}
+
+# COURT BREWMASTER
+
+carnx_court_brewmaster_title_accepted_effect = {
+	court_brewmaster_title_accepted_effect = yes
+	carnx_debug_log_title_received_slave_effect = { NAME = court_brewmaster }
+}
+
+carnx_court_brewmaster_title_revoked_effect = {
+	court_brewmaster_title_revoked_effect = yes
+	carnx_debug_log_title_revoked_slave_effect = { NAME = court_brewmaster }
+}
+
+carnx_court_brewmaster_title_invalidated_effect = {
+	court_brewmaster_title_invalidated_effect = yes
+	carnx_debug_log_title_invalidated_slave_effect = { NAME = court_brewmaster }
 }
 
 # SLAVE CONCUBINE
