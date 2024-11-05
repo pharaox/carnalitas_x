@@ -1,5 +1,15 @@
 # Changelog
 
+## Version 0.22.0
+
+### Compatibility
+
+* Adapted to CK3 1.14.0.1.
+
+### Court Positions
+
+* Enabled *Court Brewmaster* court position to be assigned to slaves.
+
 ## Version 0.21.5
 
 ### Compatibility
