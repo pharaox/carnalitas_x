@@ -1,4 +1,43 @@
-﻿
+﻿guest_allowed_to_arrive_trigger = {
+	trigger_if = {
+		limit = { exists = var:last_visited_ruler }
+		NOT = { var:last_visited_ruler = $HOST$ }
+	}
+	trigger_if = { # Make sure that they're not trying to go back to where they are right now
+		limit = { exists = host }
+		NOT = { host = $HOST$ }
+	}
+	has_epidemic_disease_trigger = no
+	NOT = { has_relation_rival = $HOST$ }
+	#Compatible faiths
+	faith = {
+		save_temporary_scope_as = potential_guest_faith
+		faith_hostility_level = {
+			target = $HOST$.faith
+			value < faith_evil_level
+		}
+	}
+	$HOST$.faith = {
+		faith_hostility_level = {
+			target = scope:potential_guest_faith
+			value < faith_evil_level
+		}
+	}
+
+	#Isn't too good for host
+	NAND = {
+		OR = {
+			any_claim = { tier = tier_empire }
+			any_close_family_member = { highest_held_title_tier = tier_empire }
+		}
+		$HOST$ = { highest_held_title_tier <= tier_county }
+	}
+
+	# CSR: Prevent slaves and slave owners from arrving as guests
+	carnx_is_slave_trigger = no
+	carnx_is_slave_owner_trigger = no
+} #Note: this trigger used to contain opinion triggers but then some awful rulers could never get guests because everyone hates them
+
 #This is a localized trigger for checking that a character do not have a spouse that's employed or has some other circumstance blocking them from being recruited to a court
 # Overridden from vanilla.
 can_recruit_character_to_court_trigger = {

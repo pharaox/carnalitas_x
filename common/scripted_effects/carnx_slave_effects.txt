@@ -487,8 +487,19 @@ carnx_enslave_effect = {
 	}
 
 	scope:slave = {
+		# Ensure their slaves are properly inherited
+		every_relation = {
+			type = slave
+			save_temporary_scope_as = owned_slave
+			scope:slave = {
+				carnx_inherit_slave_effect = { CHARACTER = scope:owned_slave }
+			}
+		}
+
 		if = {
 			limit = { is_ruler = yes }
+
+			# End wars
 			every_character_war = {
 				if = {
 					limit = {
@@ -512,11 +523,16 @@ carnx_enslave_effect = {
 					remove_participant = scope:slave
 				}
 			}
+
+			# Depose
 			depose = yes
 		}
+
 		hidden_effect = {
 			remove_trait = former_slave
 			add_trait = slave
+
+			# Divorse, break betrhotals, remove concubines
 			if = {
 				limit = { is_married = yes }
 				every_spouse = {
@@ -539,16 +555,23 @@ carnx_enslave_effect = {
 			}
 			if = {
 				limit = { is_concubine = yes }
-				this.concubinist = {
+				concubinist = {
 					remove_concubine = scope:slave
 				}
 			}
+
+			# Remove guardians and wards
 			every_relation = {
 				type = guardian
 				remove_relation_ward = prev
 			}
+			every_relation = {
+				type = ward
+				remove_relation_guardian = prev
+			}
+
+			# Prevent peasant leaders from disappearing
 			if = {
-				# By default, randomly generated peasant leaders will disappear if captured in battle
 				limit = {
 					has_character_flag =  peasant_faction_random_peasant
 				}
@@ -576,20 +599,17 @@ carnx_enslave_effect = {
 		hidden_effect = {
 			# Add / remove modifiers and flags
 			if = {
+				limit = { has_variable = at_merchant_type }
+				remove_variable = at_merchant_type
+			}
+			if = {
 				limit = { has_character_modifier = carnx_marked_for_enslavement_modifier }
 				remove_character_modifier = carnx_marked_for_enslavement_modifier
 			}
 
 			# Trigger event
-			if = {
-				limit = {
-					scope:new_owner = {
-						is_ruler = yes
-					}
-				}
-				trigger_event = {
-					on_action = carn_on_slave_enslaved
-				}
+			trigger_event = {
+				on_action = carn_on_slave_enslaved
 			}
 		}
 	}
@@ -615,14 +635,17 @@ carn_enslave_effect = {
 # Frees the scoped character from slavery if they are a slave.
 # Does not have any additional effects. Overriden from Carnalitas.
 carn_free_slave_effect = {
-	every_relation = {
-		# Remove former owner
+	random_relation = {
 		type = slave_owner
+		save_scope_as = former_owner
+	}
+
+	# Remove former owner
+	scope:former_owner ?= {
 		remove_relation_slave = prev
 		hidden_effect = {
 			carnx_add_mutual_former_slave_or_slave_owner_opinion_effect = { CHARACTER = prev }
 		}
-		save_scope_as = former_owner
 	}
 
 	# To prevent errors in carn_on_slave_freed, check if scope:former_owner exists
@@ -672,6 +695,28 @@ carn_free_slave_effect = {
 			}
 		}
 	}
+}
+
+carnx_sell_off_slave_effect = {
+	random_relation = {
+		type = slave_owner
+		save_scope_as = former_owner
+	}
+
+	# Add gold to former owner
+	scope:former_owner ?= {
+		add_gold = prev.carnx_slave_base_price_value
+	}
+
+	hidden_effect = {
+		# Trigger event
+		trigger_event = {
+			on_action = carnx_on_slave_sold_off
+		}
+	}
+
+	# Disappear
+	silent_disappearance_effect = yes
 }
 
 # Frees all slaves owned by scope:recipient against slavery doctrines from slavery.
@@ -1922,5 +1967,115 @@ carnx_slavery_doctrines_reverse_minor_stress_impact_effect = {
 	stress_impact = {
 		zealous = minor_stress_impact_loss # -15
 		cynical = miniscule_stress_impact_gain # 10
+	}
+}
+
+carnx_inherit_slave_effect = {
+	carnx_add_former_slave_or_slave_owner_opinion_effect = { CHARACTER = $CHARACTER$ }
+	if = {
+		limit = {
+			exists = primary_heir
+			primary_heir = {
+				carnx_can_be_slave_owner_trigger = yes
+			}
+		}
+		$CHARACTER$ = {
+			carnx_debug_log_effect = { MSG = carnx_debug_msg_inheriting_slave }
+		}
+		remove_relation_slave = $CHARACTER$
+		primary_heir = {
+			set_relation_slave = $CHARACTER$
+		}
+	}
+	else = {
+		$CHARACTER$ = {
+			carnx_debug_log_effect = { MSG = carnx_debug_msg_freeing_slave }
+			carn_free_slave_effect = yes
+		}
+	}
+}
+
+carnx_return_slave_to_owner_effect = {
+	save_temporary_scope_as = slave
+	random_relation = {
+		type = slave_owner
+		save_temporary_scope_as = owner
+	}
+
+	if = {
+		limit = {
+			scope:owner = {
+				is_ruler = yes
+				carnx_can_be_slave_owner_trigger = yes
+			}
+		}
+		if = {
+			limit = {
+				NOT = { is_courtier_of = scope:owner }
+			}
+			# If owner is ruler and slave is not their courtier, move slave to owner's court
+			carnx_debug_log_effect = { MSG = carnx_debug_msg_moving_slave_to_court }
+			scope:owner = {
+				carnx_add_courtier_effect = { SLAVE = scope:slave }
+			}
+		}
+	}
+	else_if = {
+		limit = {
+			scope:owner = {
+				is_pool_character = yes
+				carnx_can_be_slave_owner_trigger = yes
+			}
+		}
+		if = {
+			limit = { is_pool_character = no }
+			# If owner is pool character and slave is not, move slave pool
+			carnx_debug_log_effect = { MSG = carnx_debug_msg_moving_slave_to_pool }
+			move_to_pool = yes
+		}
+		if = {
+			limit = {
+				NOT = { location = scope:owner.location }
+				is_imprisoned = no
+				scope:owner = {
+					is_imprisoned = no
+				}
+			}
+			# If both are pool characters but slave is at a different location, move slave to owner's location
+			carnx_debug_log_effect = { MSG = carnx_debug_msg_moving_slave_to_location }
+			set_location = scope:owner.location
+		}
+	}
+	else = {
+		carnx_sell_off_or_free_slave_effect = yes
+	}
+}
+
+carnx_sell_off_or_free_slave_effect = {
+	random_relation = {
+		type = slave_owner
+		save_temporary_scope_as = owner
+	}
+
+	random_list = {
+		50 = {
+			modifier = {
+				scope:owner = {
+					has_variable = at_merchant_type
+				}
+				add = 50
+			}
+			ai_value_modifier = {
+				who = scope:owner
+				ai_greed = 0.5
+				ai_compassion = -0.5
+			}
+			carnx_debug_log_effect = { MSG = carnx_debug_msg_selling_off_slave }
+			carnx_sell_off_slave_effect = yes
+		}
+		50 = {
+			carnx_debug_log_effect = { MSG = carnx_debug_msg_freeing_slave }
+			carn_free_slave_effect = yes
+		}
 	}
 }

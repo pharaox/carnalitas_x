@@ -558,13 +558,6 @@ carnx_decision_events.1011 = {
 			SLAVE = scope:first_concubine
 		}
 
-		# Kill a random slave who wasn't bought
-		scope:concubine_merchant = {
-			hidden_effect = {
-				carnx_kill_random_slave_effect = yes
-			}
-		}
-
 		# Update scopes
 		save_scope_value_as = { name = bought_concubine value = yes }
 		save_scope_value_as = { name = been_to_concubine_merchant value = yes }
@@ -602,13 +595,6 @@ carnx_decision_events.1011 = {
 		carnx_1010_buy_slave_effect = {
 			MERCHANT = scope:concubine_merchant
 			SLAVE = scope:second_concubine
-		}
-
-		# Kill a random slave who wasn't bought
-		scope:concubine_merchant = {
-			hidden_effect = {
-				carnx_kill_random_slave_effect = yes
-			}
 		}
 
 		# Update scopes
@@ -788,13 +774,6 @@ carnx_decision_events.1013 = {
 			SLAVE = scope:first_soldier
 		}
 
-		# Kill a random slave who wasn't bought
-		scope:soldier_merchant = {
-			hidden_effect = {
-				carnx_kill_random_slave_effect = yes
-			}
-		}
-
 		# Update scopes
 		save_scope_value_as = { name = bought_soldier value = yes }
 		save_scope_value_as = { name = been_to_soldier_merchant value = yes }
@@ -832,13 +811,6 @@ carnx_decision_events.1013 = {
 		carnx_1010_buy_slave_effect = {
 			MERCHANT = scope:soldier_merchant
 			SLAVE = scope:second_soldier
-		}
-
-		# Kill a random slave who wasn't bought
-		scope:soldier_merchant = {
-			hidden_effect = {
-				carnx_kill_random_slave_effect = yes
-			}
 		}
 
 		# Update scopes
@@ -1018,13 +990,6 @@ carnx_decision_events.1015 = {
 			SLAVE = scope:first_servant
 		}
 
-		# Kill a random slave who wasn't bought
-		scope:servant_merchant = {
-			hidden_effect = {
-				carnx_kill_random_slave_effect = yes
-			}
-		}
-
 		# Update scopes
 		save_scope_value_as = { name = bought_servant value = yes }
 		save_scope_value_as = { name = been_to_servant_merchant value = yes }
@@ -1062,13 +1027,6 @@ carnx_decision_events.1015 = {
 		carnx_1010_buy_slave_effect = {
 			MERCHANT = scope:servant_merchant
 			SLAVE = scope:second_servant
-		}
-
-		# Kill a random slave who wasn't bought
-		scope:servant_merchant = {
-			hidden_effect = {
-				carnx_kill_random_slave_effect = yes
-			}
 		}
 
 		# Update scopes

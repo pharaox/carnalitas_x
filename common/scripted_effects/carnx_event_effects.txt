@@ -105,29 +105,28 @@ carnx_get_merchant_effect = {
 }
 
 carnx_get_slaves_effect = {
+	# Ensure slaves are in the same location as their owner
+	every_relation = {
+		type = slave
+		carnx_return_slave_to_owner_effect = yes
+	}
+
 	# Find existing slaves for sale
 	if = {
 		limit = {
 			any_relation = {
 				type = slave
 				var:carnx_slave_type ?= flag:$TYPE$
+				carnx_slave_can_be_sold_trigger = yes
 			}
 		}
 		every_relation = {
 			type = slave
 			limit = {
 				var:carnx_slave_type ?= flag:$TYPE$
+				carnx_slave_can_be_sold_trigger = yes
 			}
 			add_to_temporary_list = slaves
-
-			# Ensure slaves are in the same location as their owner
-			if = {
-				limit = { is_pool_character = no }
-				move_to_pool_at = $LOCATION$
-			}
-			else = {
-				set_location = $LOCATION$
-			}
 		}
 	}
 
@@ -137,7 +136,6 @@ carnx_get_slaves_effect = {
 			list_size = { name = slaves value < 2 }
 		}
 
-		carnx_debug_log_effect = { MSG = carnx_debug_msg_creating_slave }
 		carnx_create_slave_effect = {
 			TYPE = $TYPE$
 			LOCATION = $LOCATION$
@@ -145,6 +143,7 @@ carnx_get_slaves_effect = {
 			TEMPLATE_CHARACTER = $TEMPLATE_CHARACTER$
 		}
 		scope:new_character = {
+			carnx_debug_log_effect = { MSG = carnx_debug_msg_creating_slave }
 			set_variable = { name = carnx_slave_type value = flag:$TYPE$ }
 			add_to_temporary_list = slaves
 		}
@@ -535,27 +534,5 @@ carnx_add_merchant_gold_effect = {
 		add = { -10 10 }
 		subtract = gold
 		min = 1
-	}
-}
-
-carnx_kill_random_slave_effect = {
-	if = {
-		limit = { carnx_is_slave_owner_trigger = yes }
-		random_relation = {
-			type = slave
-			weight = {
-				base = 50
-				modifier = {
-					carnx_slave_base_price_value >= 50
-					factor = 0.5
-				}
-			}
-			save_temporary_scope_as = killed_slave
-		}
-		carnx_debug_log_effect = { MSG = carnx_debug_msg_killing_slave }
-		add_gold = scope:killed_slave.carnx_slave_base_price_value
-		scope:killed_slave = {
-			silent_disappearance_effect = yes
-		}
 	}
 }

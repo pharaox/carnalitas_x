@@ -45,26 +45,7 @@ on_remove_relation_slave = {
 
 on_death_relation_slave = { # fired for the slaveowner when they die
 	effect = {
-		# inheritance of slaves
-		carnx_add_former_slave_or_slave_owner_opinion_effect = { CHARACTER = scope:target }
-		if = {
-			limit = {
-				exists = primary_heir
-				primary_heir = {
-					carnx_can_be_slave_owner_trigger = yes
-				}
-			}
-			remove_relation_slave = scope:target
-			primary_heir = {
-				set_relation_slave = scope:target
-			}
-		}
-		else = {
-			scope:target = {
-				carnx_debug_log_effect = { MSG = carnx_debug_msg_freeing_slave }
-				carn_free_slave_effect = yes
-			}
-		}
+		carnx_inherit_slave_effect = { CHARACTER = scope:target }
 	}
 }
 

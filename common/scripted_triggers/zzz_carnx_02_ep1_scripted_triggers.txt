@@ -1,0 +1,24 @@
+﻿# ep1_is_valid_character_for_inspiration_trigger 	- Is the character valid to be used within the inspiration system? Character movement may break if these conditions are not true.
+
+ep1_is_valid_character_for_inspiration_trigger = {
+	is_adult = yes
+	is_imprisoned = no
+	NOT = { exists = inspiration }
+
+	trigger_if = {
+		limit = {
+			OR = {
+				is_pool_guest = yes
+				is_in_pool_at = location
+			}
+		}
+		# For simplicity, inspired characters travel solo for now.
+		any_traveling_family_member = {
+			count = 1
+		}
+	}
+
+	# CSR: Prevent slaves and slave owners from becoming inspired
+	carnx_is_slave_trigger = no
+	carnx_is_slave_owner_trigger = no
+}

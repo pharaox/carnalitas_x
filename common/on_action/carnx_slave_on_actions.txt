@@ -107,6 +107,39 @@ carnx_on_slave_liberated = {
 	}
 }
 
+carnx_on_slave_sold_off = {
+	effect = {
+		carnx_debug_log_effect = { MSG = carnx_debug_msg_slave_sold_off }
+	}
+}
+
+# Fires when a character joins a court. Not fired for just generated characters
+# Root is the character
+# scope:new_employer is their new employer
+# scope:old_employer is their old employer (if they had one; otherwise unset)
+on_join_court = {
+	on_actions = { carnx_on_join_court }
+}
+
+carnx_on_join_court = {
+	effect = {
+		#carnx_debug_log_effect = { MSG = carnx_debug_msg_character_joined_court }
+
+		# Return slaves to their owners, sell off or free slaves owned by courtiers
+		if = {
+			limit = { carnx_is_slave_trigger = yes }
+			carnx_return_slave_to_owner_effect = yes
+		}
+		else_if = {
+			limit = { carnx_is_slave_owner_trigger = yes }
+			every_relation = {
+				type = slave
+				carnx_sell_off_or_free_slave_effect = yes
+			}
+		}
+	}
+}
+
 # Fires when a character leaves a court. Not fired when leaving due to death or similar
 # Will still fire even if on_join_court is firing (fires just before it)
 # Root is the character
@@ -117,71 +150,59 @@ on_leave_court = {
 
 carnx_on_leave_court = {
 	effect = {
+		#carnx_debug_log_effect = { MSG = carnx_debug_msg_character_left_court }
+
+		# Return slaves to their owners
 		if = {
-			limit = { has_trait = slave }
+			limit = { carnx_is_slave_trigger = yes }
+			carnx_return_slave_to_owner_effect = yes
+		}
+	}
+}
+
+# Called when a pool character has appeared at the court. See guest_management in common/courtier_guest_management.
+# root, scope:guest: the guest
+# host: their host (owner of the court)
+# characters: list of all characters moving together. Includes the root character.
+on_guest_arrived_from_pool = {
+	on_actions = { carnx_on_guest_arrived_from_pool }
+}
+
+carnx_on_guest_arrived_from_pool = {
+	effect = {
+		#carnx_debug_log_effect = { MSG = carnx_debug_msg_guest_arrived_from_pool }
+
+		# Return slaves to their owners, sell off or free slaves owned by guests
+		if = {
+			limit = { carnx_is_slave_trigger = yes }
+			carnx_return_slave_to_owner_effect = yes
+		}
+		else_if = {
+			limit = { carnx_is_slave_owner_trigger = yes }
 			every_relation = {
-				type = slave_owner
-				save_scope_as = owner
-			}
-			if = {
-				limit = {
-					exists = scope:owner
-					scope:owner = {
-						is_ruler = yes
-						carnx_can_be_slave_owner_trigger = yes
-					}
-				}
-				if = {
-					limit = {
-						NOT = { is_courtier_of = scope:owner }
-					}
-					carnx_debug_log_effect = { MSG = carnx_debug_msg_moving_slave }
-					save_temporary_scope_as = slave
-					scope:owner = {
-						carnx_add_courtier_effect = { SLAVE = scope:slave }
-					}
-				}
-			}
-			else = {
-				carnx_debug_log_effect = { MSG = carnx_debug_msg_freeing_slave }
-				carn_free_slave_effect = yes
+				type = slave
+				carnx_sell_off_or_free_slave_effect = yes
 			}
 		}
 	}
 }
 
-# A title is inherited by a character
+# A title is transferred to a new character
 # root = the new holder
 # scope:title = the title that changes hands
-# scope:previous_holder = previous holder. Should be dead
-on_title_gain_inheritance = {
-	on_actions = { carnx_on_title_gain_inheritance }
+# scope:previous_holder = previous holder. Might be dead
+on_title_gain = {
+	on_actions = { carnx_on_title_gain }
 }
 
-carnx_on_title_gain_inheritance = {
+carnx_on_title_gain = {
 	effect = {
-		if = {
-			limit = {
-				is_ruler = yes
-				carnx_can_be_slave_owner_trigger = yes
-			}
-			every_relation = {
-				type = slave
-				limit = {
-					NOT = { is_courtier_of = root }
-				}
-				save_temporary_scope_as = slave
-				root = {
-					carnx_add_courtier_effect = { SLAVE = scope:slave }
-				}
-			}
-		}
-		else = {
-			every_relation = {
-				type = slave
-				carnx_debug_log_effect = { MSG = carnx_debug_msg_freeing_slave }
-				carn_free_slave_effect = yes
-			}
+		#carnx_debug_log_effect = { MSG = carnx_debug_msg_character_gained_title }
+
+		# Ensure slaves join their owner's court
+		every_relation = {
+			type = slave
+			carnx_return_slave_to_owner_effect = yes
 		}
 	}
 }
@@ -196,31 +217,12 @@ on_title_lost = {
 
 carnx_on_title_lost = {
 	effect = {
-		# If a character becomes unlanded the new holder seizes their slaves
-		if = {
-			limit = {
-				is_playable_character = no
-				carnx_is_slave_owner_trigger = yes
-			}
-			every_relation = {
-				type = slave
-				if = {
-					limit = {
-						exists = scope:new_holder
-						scope:new_holder = {
-							carnx_can_be_slave_owner_trigger = yes
-						}
-					}
-					scope:new_holder = { save_scope_as = new_owner }
-					save_scope_as = slave
-					carnx_debug_log_effect = { MSG = carnx_debug_msg_seizing_slave }
-					carnx_seize_slave_effect = yes
-				}
-				else = {
-					carnx_debug_log_effect = { MSG = carnx_debug_msg_freeing_slave }
-					carn_free_slave_effect = yes
-				}
-			}
+		#carnx_debug_log_effect = { MSG = carnx_debug_msg_character_lost_title }
+
+		# Ensure slaves follow their owner
+		every_relation = {
+			type = slave
+			carnx_return_slave_to_owner_effect = yes
 		}
 	}
 }
@@ -239,6 +241,19 @@ carnx_on_imprison = {
 			}
 			carnx_debug_log_effect = { MSG = carnx_debug_msg_non_slave_imprisoned }
 		}
+
+		# Return slaves to their owners
+		if = {
+			limit = { carnx_is_slave_trigger = yes }
+			carnx_return_slave_to_owner_effect = yes
+		}
+		else_if = {
+			limit = { carnx_is_slave_owner_trigger = yes }
+			every_relation = {
+				type = slave
+				carnx_return_slave_to_owner_effect = yes
+			}
+		}
 	}
 }
 
@@ -255,6 +270,85 @@ carnx_on_release_from_prison = {
 				NOT = { has_trait = slave }
 			}
 			carnx_debug_log_effect = { MSG = carnx_debug_msg_non_slave_released_from_prison }
+		}
+
+		# Return slaves to their owners
+		if = {
+			limit = { carnx_is_slave_trigger = yes }
+			carnx_return_slave_to_owner_effect = yes
+		}
+		else_if = {
+			limit = { carnx_is_slave_owner_trigger = yes }
+			every_relation = {
+				type = slave
+				carnx_return_slave_to_owner_effect = yes
+			}
+		}
+	}
+}
+
+# Called from code once a year for all characters, at a random point that year (individually for each character)
+# Root is the character
+random_yearly_everyone_pulse = {
+	on_actions = { carnx_random_yearly_everyone_pulse }
+}
+
+carnx_random_yearly_everyone_pulse = {
+	effect = {
+		#carnx_debug_log_effect = { MSG = carnx_debug_msg_character_yearly_pulse }
+
+		# Return slaves to their owners
+		if = {
+			limit = { carnx_is_slave_trigger = yes }
+			carnx_return_slave_to_owner_effect = yes
+		}
+		else_if = {
+			limit = { carnx_is_slave_owner_trigger = yes }
+			every_relation = {
+				type = slave
+				carnx_return_slave_to_owner_effect = yes
+			}
+		}
+
+		# Sell off random slave if merchant
+		if = {
+			limit = {
+				is_alive = yes
+				has_variable = at_merchant_type
+			}
+			random = {
+				chance = 50
+				random_relation = {
+					type = slave
+					carnx_debug_log_effect = { MSG = carnx_debug_msg_selling_off_slave }
+					carnx_sell_off_slave_effect = yes
+				}
+			}
+		}
+	}
+}
+
+# Called every Jan 1st
+# Root does not exist
+yearly_global_pulse = {
+	on_actions = { carnx_yearly_global_pulse }
+}
+
+carnx_yearly_global_pulse = {
+	trigger = {
+		debug_only = yes
+	}
+	effect = {
+		every_living_character = {
+			limit = { has_trait = slave }
+			if = {
+				limit = { carnx_is_valid_slave_trigger = no }
+				carnx_debug_log_effect = { MSG = carnx_debug_msg_invalid_slave_detected }
+			}
+			if = {
+				limit = { carnx_is_slave_owner_trigger = yes }
+				carnx_debug_log_effect = { MSG = carnx_debug_msg_slave_owning_slaves_detected }
+			}
 		}
 	}
 }
@@ -296,43 +390,5 @@ carnx_on_set_relation_rival = {
 			}
 			carnx_debug_log_effect = { MSG = carnx_debug_msg_character_became_enslavers_rival }
 		}
-	}
-}
-
-# Fires when a character joins a court. Not fired for just generated characters
-# Root is the character
-# scope:new_employer is their new employer
-# scope:old_employer is their old employer (if they had one; otherwise unset)
-on_join_court = {
-	on_actions = { carnx_on_join_court }
-}
-
-carnx_on_join_court = {
-	trigger = {
-		has_trait = slave
-		any_relation = {
-			type = slave_owner
-			NOT = { this = scope:new_employer }
-		}
-	}
-	effect = {
-		carnx_debug_log_effect = { MSG = carnx_debug_msg_slave_joined_wrong_court }
-	}
-}
-
-# Called when a pool character has appeared at the court. See guest_management in common/courtier_guest_management.
-# root, scope:guest: the guest
-# host: their host (owner of the court)
-# characters: list of all characters moving together. Includes the root character.
-on_guest_arrived_from_pool = {
-	on_actions = { carnx_on_guest_arrived_from_pool }
-}
-
-carnx_on_guest_arrived_from_pool = {
-	trigger = {
-		has_trait = slave
-	}
-	effect = {
-		carnx_debug_log_effect = { MSG = carnx_debug_msg_slave_arrived_from_pool }
 	}
 }

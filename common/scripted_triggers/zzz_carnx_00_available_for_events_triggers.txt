@@ -1,0 +1,14 @@
+﻿is_capable_adult = {
+	is_adult = yes
+	is_incapable = no
+
+	# CSR: Prevent pool slaves and slave owners from being selected by pool character selectors
+	trigger_if = {
+		limit = {
+			is_pool_character = yes
+			exists = scope:base
+		}
+		carnx_is_slave_trigger = no
+		carnx_is_slave_owner_trigger = no
+	}
+}

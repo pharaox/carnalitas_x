@@ -48,7 +48,7 @@ carnx_slave.0001 = {
 
 			# Find slave trader
 			carnx_get_merchant_effect = {
-				TYPE = slave_trader
+				TYPE = servant_merchant
 				LOCATION = root.capital_province
 				CHARACTER = root
 				MERCHANT = seller
@@ -302,7 +302,14 @@ carnx_slave.0001 = {
 	after = {
 		hidden_effect = {
 			scope:seller = {
-				carnx_kill_random_slave_effect = yes
+				random = {
+					chance = 50
+					random_relation = {
+						type = slave
+						carnx_debug_log_effect = { MSG = carnx_debug_msg_selling_off_slave }
+						carnx_sell_off_slave_effect = yes
+					}
+				}
 			}
 		}
 	}

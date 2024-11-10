@@ -9,11 +9,23 @@
  carnx_debug_msg_slave_gifted: "$carnx_debug_prefix$: Slave gifted"
  carnx_debug_msg_slave_escaped: "$carnx_debug_prefix$: Slave escaped"
  carnx_debug_msg_slave_liberated: "$carnx_debug_prefix$: Slave liberated"
+ carnx_debug_msg_slave_sold_off: "$carnx_debug_prefix$: Slave sold off"
 
- carnx_debug_msg_moving_slave: "$carnx_debug_prefix$: Moving slave to owner's court"
+ carnx_debug_msg_moving_slave_to_court: "$carnx_debug_prefix$: Moving slave to owner's court"
+ carnx_debug_msg_moving_slave_to_pool: "$carnx_debug_prefix$: Moving slave to pool"
+ carnx_debug_msg_moving_slave_to_location: "$carnx_debug_prefix$: Moving slave to owner's location"
+ carnx_debug_msg_inheriting_slave: "$carnx_debug_prefix$: Inheriting slave"
  carnx_debug_msg_freeing_slave: "$carnx_debug_prefix$: Freeing slave"
  carnx_debug_msg_freeing_illegal_slave: "$carnx_debug_prefix$: Freeing illegal slave"
- carnx_debug_msg_seizing_slave: "$carnx_debug_prefix$: Seizing slave by the new title holder"
+ carnx_debug_msg_creating_slave: "$carnx_debug_prefix$: Creating slave"
+ carnx_debug_msg_selling_off_slave: "$carnx_debug_prefix$: Selling off slave"
+
+ carnx_debug_msg_character_joined_court: "$carnx_debug_prefix$: Character joined court"
+ carnx_debug_msg_character_left_court: "$carnx_debug_prefix$: Character left court"
+ carnx_debug_msg_guest_arrived_from_pool: "$carnx_debug_prefix$: Guest arrived from pool"
+ carnx_debug_msg_character_gained_title: "$carnx_debug_prefix$: Character gained title"
+ carnx_debug_msg_character_lost_title: "$carnx_debug_prefix$: Character lost title"
+ carnx_debug_msg_character_yearly_pulse: "$carnx_debug_prefix$: Character yearly pulse"
 
  carnx_debug_msg_non_slave_imprisoned: "$carnx_debug_prefix$: Non-slave character imprisoned"
  carnx_debug_msg_non_slave_released_from_prison: "$carnx_debug_prefix$: Non-slave character released from prison"
@@ -104,9 +116,6 @@
 
  carnx_debug_msg_character_became_enslavers_rival: "$carnx_debug_prefix$: Character became their enslaver's rival"
 
- carnx_debug_msg_slave_joined_wrong_court: "$carnx_debug_prefix$: Slave joined the wrong court"
- carnx_debug_msg_slave_arrived_from_pool: "$carnx_debug_prefix$: Slave arrived from pool as guest"
-
  carnx_debug_msg_character_acquired_slaver_trait: "$carnx_debug_prefix$: Character acquired Infamous Slaver trait"
  carnx_debug_msg_character_acquired_liberator_trait: "$carnx_debug_prefix$: Character acquired Famous Liberator trait"
 
@@ -136,18 +145,15 @@
  carnx_debug_msg_slave_0005_option_b_chosen: "$carnx_debug_prefix$: Freedom for a Slave option b chosen"
  carnx_debug_msg_slave_0005_option_c_chosen: "$carnx_debug_prefix$: Freedom for a Slave option c chosen"
 
- carnx_debug_msg_travel_requested: "$carnx_debug_prefix$: Travel requested, but Travelers mod is not available"
-
  carnx_debug_msg_debug_character: "$carnx_debug_prefix$: Debug character"
+
+ carnx_debug_msg_invalid_slave_detected: "$carnx_debug_prefix$: Invalid slave detected"
+ carnx_debug_msg_slave_owning_slaves_detected: "$carnx_debug_prefix$: Slave owning slaves detected"
 
  carnx_debug_msg_visiting_holding: "$carnx_debug_prefix$: Visiting holding, location: $carnx_location$, holding type: $carnx_holding_type$"
  carnx_debug_msg_visiting_holding_to_trade_slaves: "$carnx_debug_prefix$: Visiting holding to trade slaves, location: $carnx_location$, holding type: $carnx_holding_type$"
-
  carnx_debug_msg_attempting_slave_haggle: "$carnx_debug_prefix$: Attempting slave haggle"
  carnx_debug_msg_selling_slave_via_outraged_partner: "$carnx_debug_prefix$: Selling slave via outraged partner"
-
- carnx_debug_msg_creating_slave: "$carnx_debug_prefix$: Creating slave"
- carnx_debug_msg_killing_slave: "$carnx_debug_prefix$: Killing slave"
 
  carnx_debug_msg_cleaning_up_after_ep3_laamp_decision_1000: "$carnx_debug_prefix$: Cleaning up after ep3_laamp_decision_event.1000"
 

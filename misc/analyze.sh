@@ -4,9 +4,12 @@ LOGFILE=debug.log
 
 # Slavery events
 echo "Slave enslaved: $(grep -a "Slave enslaved" debug.log | wc -l)"
+echo "- Creating slave: $(grep -a "Creating slave" $LOGFILE | wc -l)"
 echo "Slave freed: $(grep -a "Slave freed" debug.log | wc -l)"
 echo "- Freeing slave: $(grep -a "Freeing slave" debug.log | wc -l)"
 echo "- Freeing illegal slave: $(grep -a "Freeing illegal slave" debug.log | wc -l)"
+echo "Slave sold off: $(grep -a "Slave sold off" debug.log | wc -l)"
+echo "- Selling off slave: $(grep -a "Selling off slave" debug.log | wc -l)"
 echo "Slave ransomed: $(grep -a "Slave ransomed" debug.log | wc -l)"
 echo "Slave bought: $(grep -a "Slave bought" debug.log | wc -l)"
 echo "- concubine_merchant: $(grep -a "Slave bought,.*concubine_merchant" $LOGFILE| wc -l)"
@@ -14,7 +17,6 @@ echo "- soldier_merchant: $(grep -a "Slave bought,.*soldier_merchant" $LOGFILE |
 echo "- servant_merchant: $(grep -a "Slave bought,.*servant_merchant" $LOGFILE | wc -l)"
 echo "- slave_trader: $(grep -a "Slave bought,.*slave_trader" $LOGFILE | wc -l)"
 echo "Slave seized: $(grep -a "Slave seized" debug.log | wc -l)"
-echo "- Seizing slave: $(grep -a "Seizing slave" debug.log | wc -l)"
 echo "Slave liberated: $(grep -a "Slave liberated" debug.log | wc -l)"
 echo "Slave gifted: $(grep -a "Slave gifted" debug.log | wc -l)"
 echo "Slave escaped: $(grep -a "Slave escaped" debug.log | wc -l)"
@@ -141,6 +143,9 @@ echo
 
 # Maintenance events
 echo "Moving slave to owner's court: $(grep -a "Moving slave to owner's court" debug.log | wc -l)"
+echo "Moving slave to pool: $(grep -a "Moving slave to pool" debug.log | wc -l)"
+echo "Moving slave to owner's location: $(grep -a "Moving slave to owner's location" debug.log | wc -l)"
+echo "Inheriting slave: $(grep -a "Inheriting slave" debug.log | wc -l)"
 echo
 
 # Prison events
@@ -178,15 +183,14 @@ echo "Character acquired Infamous Slaver trait: $(grep -a "Character acquired In
 echo "Character acquired Famous Liberator trait: $(grep -a "Character acquired Famous Liberator trait" debug.log | wc -l)"
 echo
 
+# Visit Holding events
 echo "Visiting holding: $(grep -a "Visiting holding," $LOGFILE | wc -l)"
 echo "Visiting holding to trade slaves: $(grep -a "Visiting holding to trade slaves," $LOGFILE | wc -l)"
-echo
 echo "Attempting slave haggle: $(grep -a "Attempting slave haggle" $LOGFILE | wc -l)"
 echo "Selling slave via outraged partner: $(grep -a "Selling slave via outraged partner" $LOGFILE | wc -l)"
 echo
-echo "Creating slave: $(grep -a "Creating slave" $LOGFILE | wc -l)"
-echo "Killing slave: $(grep -a "Killing slave" $LOGFILE | wc -l)"
-echo
-echo "Slave joined the wrong court: $(grep -a "Slave joined the wrong court" $LOGFILE | wc -l)"
-echo "Slave arrived from pool as guest: $(grep -a "Slave arrived from pool as guest" $LOGFILE | wc -l)"
+
+# Errors
+echo "Invalid slave detected: $(grep -a "Invalid slave detected" debug.log | wc -l)"
+echo "Slave owning slaves detected: $(grep -a "Slave owning slaves detected" debug.log | wc -l)"
 echo
