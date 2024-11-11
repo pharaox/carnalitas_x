@@ -251,6 +251,13 @@ carnx_slave_bid_price_value = {
 		}
 	}
 
+	if = {
+		limit = { has_variable = carnx_bid_price_multiplier }
+		multiply = {
+			value = var:carnx_bid_price_multiplier
+		}
+	}
+
 	# Traders get better prices
 	if = {
 		limit = {
@@ -1044,5 +1051,17 @@ carnx_scope_secondary_recipient_slave_pay_ransom_cost_value = {
 			scope:actor = { save_temporary_scope_as = payer }
 		}
 		add = scope:secondary_recipient.carnx_slave_ransom_cost_value
+	}
+}
+
+carnx_attempted_artifact_haggle_multiplier = {
+	value = 1
+	if = {
+		limit = { scope:attempted_slave_haggle ?= flag:success }
+		value = 2
+	}
+	else_if = {
+		limit = { scope:attempted_slave_haggle ?= flag:failure }
+		value = 0.5
 	}
 }

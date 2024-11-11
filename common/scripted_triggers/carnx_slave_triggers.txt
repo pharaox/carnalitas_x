@@ -1,10 +1,10 @@
 ﻿carnx_can_interact_with_trigger = {
 	NOT = { this = $PARTY$ }
-	highest_held_title_tier >= tier_county
 	is_busy_in_events_localised = yes
 	in_diplomatic_range = $PARTY$
 	NOT = { is_at_war_with = $PARTY$ }
 	is_imprisoned = no
+	NOT = { has_trait = slave }
 }
 
 carnx_can_sell_slave_to_trigger = {
@@ -34,12 +34,6 @@ carnx_can_demand_free_illegal_slaves_trigger = {
 }
 
 carnx_can_start_interaction_trigger = {
-	trigger_if = {
-		limit = {
-			is_ruler = yes
-		}
-		highest_held_title_tier >= tier_county
-	}
 	is_busy_in_events_localised = yes
 	is_imprisoned = no
 }
@@ -133,7 +127,6 @@ carnx_slave_has_pending_transaction = {
 carnx_valid_buyer_or_seller_trigger = {
 	NOT = { this = $PARTY$ }
 	in_diplomatic_range = $PARTY$
-	is_ruler = yes
 	trigger_if = {
 		limit = {
 			has_game_rule = carnx_valid_trading_partners_same_and_neighboring_realms
@@ -150,7 +143,7 @@ carnx_valid_buyer_or_seller_trigger = {
 		OR = {
 			carnx_is_same_realm_character_trigger = { PARTY = $PARTY$ }
 			carnx_is_neighboring_realm_character_trigger = { PARTY = $PARTY$ }
-			carnx_is_playable_character_within_trading_range_trigger = { PARTY = $PARTY$ }
+			carnx_is_character_within_trading_range_trigger = { PARTY = $PARTY$ }
 		}
 	}
 	trigger_else = {
@@ -193,14 +186,14 @@ carnx_is_neighboring_realm_character_trigger = {
 	}
 }
 
-carnx_is_playable_character_within_trading_range_trigger = {
-	exists = capital_province
+carnx_is_character_within_trading_range_trigger = {
 	$PARTY$ = { exists = capital_province }
+	carnx_get_capital_province_trigger = yes
 	trigger_if = {
 		limit = {
 			$PARTY$ = { is_landed = yes }
 		}
-		capital_province = {
+		scope:capital_province = {
 			squared_distance = {
 				target = $PARTY$.capital_province
 				value <= $PARTY$.carnx_slave_trading_range_value
@@ -208,12 +201,26 @@ carnx_is_playable_character_within_trading_range_trigger = {
 		}
 	}
 	trigger_else = {
-		capital_province = {
+		scope:capital_province = {
 			squared_distance = {
 				target = $PARTY$.capital_province
 				value <= $PARTY$.carnx_slave_trading_range_landless_value
 			}
 		}
+	}
+}
+
+carnx_get_capital_province_trigger = {
+	trigger_if = {
+		limit = { exists = capital_province }
+		capital_province = { save_temporary_scope_as = capital_province }
+	}
+	trigger_else_if = {
+		limit = { exists = host }
+		host.capital_province ?= { save_temporary_scope_as = capital_province }
+	}
+	trigger_else = {
+		location ?= { save_temporary_scope_as = capital_province }
 	}
 }
 
