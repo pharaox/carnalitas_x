@@ -32,7 +32,7 @@ carnx_ai_positive_attitude_impact_value = 15
 carnx_ai_negative_attitude_impact_value = -15
 
 carnx_ai_positive_laamp_impact_value = 25
-carnx_ai_positive_merchant_impact_value = 100
+carnx_ai_positive_merchant_impact_value = 50
 
 # AI impact halved values
 carnx_ai_positive_skill_impact_halved_value = 2
@@ -66,7 +66,7 @@ carnx_buy_sell_slave_ai_opinion_multiplier = 0.1
 
 # Multiplier for the slave base price
 carnx_slave_base_price_multiplier = {
-	value = 0.75
+	value = 1.0
 }
 
 # Multiplier for the opinion gain from gifting a slave
@@ -85,12 +85,12 @@ carnx_free_slave_dread_loss = -5
 carnx_enslave_basic_tyranny_gain = 10
 
 # Slave price multipliers for the player
-carnx_slave_ask_price_player_multiplier = 1.2
-carnx_slave_bid_price_player_multiplier = 0.8
+carnx_slave_ask_price_player_multiplier = 1.0
+carnx_slave_bid_price_player_multiplier = 0.67
 
 # Slave price multipliers for trader characters
 carnx_slave_price_trader_buyer_multiplier = 0.9
-carnx_slave_price_trader_seller_multiplier = 1.11
+carnx_slave_price_trader_seller_multiplier = 1.1
 
 # Multiplier for the court position salary if held by a slave
 carnx_court_position_salary_slave_regular_multiplier = 0.5

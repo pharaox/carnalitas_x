@@ -1204,6 +1204,8 @@ carnx_buy_slave_effect = {
 			}
 		}
 
+		custom_tooltip = carnx_slave_price_breakdown_tooltip
+
 		# Set buyer as new owner
 		set_relation_slave = scope:slave
 

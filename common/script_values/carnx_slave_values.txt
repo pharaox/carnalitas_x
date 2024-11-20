@@ -1,32 +1,40 @@
 ﻿# Slave base price. Based on individual_recruit_guest_interaction_cost.
 carnx_slave_base_price_value = {
 	# Base (reduced compared to guests 20 -> 10)
-	add = 10
+	add = {
+		value = 10
+		desc = carnx_slave_price_base_desc
+	}
 
-	# Claims (25 to 100 depending on tier, reduced compared to guests)
-	if = {
-		limit = {
-			any_claim = { tier = tier_empire }
+	# Claims (10 to 40 depending on tier, reduced compared to guests)
+	add = {
+		value = {
+			if = {
+				limit = {
+					any_claim = { tier = tier_empire }
+				}
+				add = 40
+			}
+			else_if = {
+				limit = {
+					any_claim = { tier = tier_kingdom }
+				}
+				add = 30
+			}
+			else_if = {
+				limit = {
+					any_claim = { tier = tier_duchy }
+				}
+				add = 20
+			}
+			else_if = {
+				limit = {
+					any_claim = { tier = tier_county }
+				}
+				add = 10
+			}
 		}
-		add = 50
-	}
-	else_if = {
-		limit = {
-			any_claim = { tier = tier_kingdom }
-		}
-		add = 37
-	}
-	else_if = {
-		limit = {
-			any_claim = { tier = tier_duchy }
-		}
-		add = 25
-	}
-	else_if = {
-		limit = {
-			any_claim = { tier = tier_county }
-		}
-		add = 12
+		desc = carnx_slave_price_claims_desc
 	}
 
 	# Dynasty (5 for each dynasty prestige level, reduced compared to guests 15 -> 5)
@@ -37,100 +45,110 @@ carnx_slave_base_price_value = {
 		add = {
 			value = dynasty.dynasty_prestige_level # 0-10
 			multiply = 5 # Max 50
+			desc = carnx_slave_price_dynasty_desc
 		}
 	}
 
-	# Genetic traits (genetic character value multiplied by 5, same as guests)
 	add = {
-		value = carnx_genetic_character_value
-		multiply = 5
-	}
+		value = {
+			# Genetic traits (genetic character value multiplied by 5, same as guests)
+			add = {
+				value = carnx_genetic_character_value
+				multiply = 5
+			}
 
-	# Commander traits (10 for each commander trait, reduced compared to guests 15 -> 10)
-	if = {
-		limit = {
-			number_of_commander_traits >= 1
-		}
-		add = {
-			value = number_of_commander_traits
-			multiply = 10
-		}
-	}
+			# Commander traits (5 for each commander trait, reduced compared to guests 15 -> 5)
+			if = {
+				limit = {
+					number_of_commander_traits >= 1
+				}
+				add = {
+					value = number_of_commander_traits
+					multiply = 5
+				}
+			}
 
-	# Court Position traits (court position traits character value multiplied by 5,
-	# reduced compared to guests but covering all relevant court positions)
-	add = {
-		value = carnx_court_position_traits_character_value
-		multiply = 5
+			# Court Position traits (court position traits character value multiplied by 5,
+			# reduced compared to guests but covering all relevant court positions)
+			add = {
+				value = carnx_court_position_traits_character_value
+				multiply = 5
+			}
+		}
+		desc = carnx_slave_price_traits_desc
 	}
 
 	# Skills (5 for each skill point above 12, same as guests)
-	if = {
-		limit = {
-			diplomacy >= decent_skill_rating
+	add = {
+		value = {
+			if = {
+				limit = {
+					diplomacy >= decent_skill_rating
+				}
+				add = {
+					value = diplomacy
+					subtract = decent_skill_rating
+					multiply = 5
+				}
+			}
+			if = {
+				limit = {
+					martial >= decent_skill_rating
+				}
+				add = {
+					value = martial
+					subtract = decent_skill_rating
+					multiply = 5
+				}
+			}
+			if = {
+				limit = {
+					stewardship >= decent_skill_rating
+				}
+				add = {
+					value = stewardship
+					subtract = decent_skill_rating
+					multiply = 5
+				}
+			}
+			if = {
+				limit = {
+					intrigue >= decent_skill_rating
+				}
+				add = {
+					value = intrigue
+					subtract = decent_skill_rating
+					multiply = 5
+				}
+			}
+			if = {
+				limit = {
+					learning >= decent_skill_rating
+				}
+				add = {
+					value = learning
+					subtract = decent_skill_rating
+					multiply = 5
+				}
+			}
+			if = {
+				limit = {
+					prowess >= decent_skill_rating
+				}
+				add = {
+					value = prowess
+					subtract = decent_skill_rating
+					multiply = 3 # Reduced compared to guests
+				}
+			}
 		}
-		add = {
-			value = diplomacy
-			subtract = decent_skill_rating
-			multiply = 5
-		}
-	}
-	if = {
-		limit = {
-			martial >= decent_skill_rating
-		}
-		add = {
-			value = martial
-			subtract = decent_skill_rating
-			multiply = 5
-		}
-	}
-	if = {
-		limit = {
-			stewardship >= decent_skill_rating
-		}
-		add = {
-			value = stewardship
-			subtract = decent_skill_rating
-			multiply = 5
-		}
-	}
-	if = {
-		limit = {
-			intrigue >= decent_skill_rating
-		}
-		add = {
-			value = intrigue
-			subtract = decent_skill_rating
-			multiply = 5
-		}
-	}
-	if = {
-		limit = {
-			learning >= decent_skill_rating
-		}
-		add = {
-			value = learning
-			subtract = decent_skill_rating
-			multiply = 5
-		}
-	}
-	if = {
-		limit = {
-			prowess >= decent_skill_rating
-		}
-		add = {
-			value = prowess
-			subtract = decent_skill_rating
-			multiply = 3 # Reduced compared to guests
-		}
+		desc = carnx_slave_price_skills_desc
 	}
 
-	# Attraction (-25 to 25 depending on attraction, new compared to guests)
+	# Attraction (-30 to 30 depending on attraction, new compared to guests)
 	add = {
 		value = attraction
-		divide = high_positive_attraction
-		multiply = 25
+		desc = carnx_slave_price_attraction_desc
 	}
 
 	# Female (20 if a visibly fertile female, new compared to guests)
@@ -139,44 +157,55 @@ carnx_slave_base_price_value = {
 			is_female = yes
 			is_visibly_fertile = yes
 		}
-		add = 15
+		add = {
+			value = 15
+			desc = carnx_slave_price_visibly_fertile_female_desc
+		}
 	}
 
 	# Age (up to -10 depending on age, new compared to guests)
 	add = {
-		value = 0
-		if = {
-			limit = { carnx_age_value < carnx_prime_age_min_value }
-			add = {
-				value = carnx_prime_age_min_value
-				subtract = carnx_age_value
-				divide = {
+		value = {
+			if = {
+				limit = { carnx_age_value < carnx_prime_age_min_value }
+				add = {
 					value = carnx_prime_age_min_value
-					subtract = carnx_young_zero_age_value
+					subtract = carnx_age_value
+					divide = {
+						value = carnx_prime_age_min_value
+						subtract = carnx_young_zero_age_value
+					}
+					multiply = -10
 				}
-				multiply = -10
 			}
-		}
-		else_if = {
-			limit = { carnx_age_value > carnx_prime_age_max_value }
-			add = {
-				value = carnx_age_value
-				subtract = carnx_prime_age_max_value
-				divide = {
-					value = carnx_old_zero_age_value
+			else_if = {
+				limit = { carnx_age_value > carnx_prime_age_max_value }
+				add = {
+					value = carnx_age_value
 					subtract = carnx_prime_age_max_value
+					divide = {
+						value = carnx_old_zero_age_value
+						subtract = carnx_prime_age_max_value
+					}
+					multiply = -10
 				}
-				multiply = -10
 			}
+			max = 0
 		}
-		min = 0
+		desc = carnx_slave_price_age_desc
 	}
 
 	# Apply a correction factor to get the final price
-	multiply = carnx_slave_base_price_multiplier
+	multiply = {
+		value = carnx_slave_base_price_multiplier
+		desc = carnx_slave_price_multiplier_desc
+	}
 
 	floor = yes
-	min = 5
+	min = {
+		value = 5
+		desc = carnx_slave_price_min_desc
+	}
 }
 
 carnx_slave_ask_price_value = {
@@ -188,20 +217,27 @@ carnx_slave_ask_price_value = {
 			exists = scope:actor
 			scope:actor = { is_ai = no }
 		}
-		multiply = carnx_slave_ask_price_player_multiplier
+		multiply = {
+			value = carnx_slave_ask_price_player_multiplier
+			desc = carnx_slave_price_player_desc
+		}
 	}
 
 	# Adjust price for tribal rulers
-	multiply = carnx_slave_price_tribal_multiplier
+	multiply = {
+		value = carnx_slave_price_tribal_multiplier
+		desc = carnx_slave_price_tribal_desc
+	}
 
-	# Seller personality multiplier (0.83 to 1.17 based on ai_greed)
-	# Chosen so that 0.83 * 1.2 = 1
+	# Seller personality multiplier (0.8 to 1.2 based on ai_greed)
+	# Chosen so that 0.67 * 1.2 = 0.8
 	if = {
 		limit = { exists = scope:seller }
 		multiply = {
 			value = scope:seller.ai_greed
-			multiply = 0.0017
+			multiply = 0.002
 			add = 1
+			desc = carnx_slave_price_seller_greed_desc
 		}
 	}
 
@@ -211,18 +247,27 @@ carnx_slave_ask_price_value = {
 			exists = scope:actor
 			scope:actor = { has_character_modifier = carnx_slavery_attitude_trader_modifier }
 		}
-		multiply = carnx_slave_price_trader_buyer_multiplier
+		multiply = {
+			value = carnx_slave_price_trader_buyer_multiplier
+			desc = carnx_slave_price_buyer_attitude_desc
+		}
 	}
 	if = {
 		limit = {
 			exists = scope:seller
 			scope:seller = { has_character_modifier = carnx_slavery_attitude_trader_modifier }
 		}
-		multiply = carnx_slave_price_trader_seller_multiplier
+		multiply = {
+			value = carnx_slave_price_trader_seller_multiplier
+			desc = carnx_slave_price_seller_attitude_desc
+		}
 	}
 
 	round = yes
-	min = 5
+	min = {
+		value = 5
+		desc = carnx_slave_price_min_desc
+	}
 }
 
 carnx_slave_bid_price_value = {
@@ -234,20 +279,27 @@ carnx_slave_bid_price_value = {
 			exists = scope:actor
 			scope:actor = { is_ai = no }
 		}
-		multiply = carnx_slave_bid_price_player_multiplier
+		multiply = {
+			value = carnx_slave_bid_price_player_multiplier
+			desc = carnx_slave_price_player_desc
+		}
 	}
 
 	# Adjust price for tribal rulers
-	multiply = carnx_slave_price_tribal_multiplier
+	multiply = {
+		value = carnx_slave_price_tribal_multiplier
+		desc = carnx_slave_price_tribal_desc
+	}
 
-	# Buyer personality multiplier (0.75 to 1.25 based on ai_greed)
-	# Chosen so that 1.25 * 0.8 = 1
+	# Buyer personality multiplier (0.8 to 1.2 based on ai_greed)
+	# Chosen so that 0.67 * 1.2 = 0.8
 	if = {
 		limit = { exists = scope:buyer }
 		multiply = {
 			value = scope:buyer.ai_greed
-			multiply = -0.0025
+			multiply = -0.002
 			add = 1
+			desc = carnx_slave_price_buyer_greed_desc
 		}
 	}
 
@@ -255,6 +307,7 @@ carnx_slave_bid_price_value = {
 		limit = { has_variable = carnx_bid_price_multiplier }
 		multiply = {
 			value = var:carnx_bid_price_multiplier
+			desc = carnx_slave_bid_price_multiplier_desc
 		}
 	}
 
@@ -264,18 +317,27 @@ carnx_slave_bid_price_value = {
 			exists = scope:actor
 			scope:actor = { has_character_modifier = carnx_slavery_attitude_trader_modifier }
 		}
-		multiply = carnx_slave_price_trader_seller_multiplier
+		multiply = {
+			value = carnx_slave_price_trader_seller_multiplier
+			desc = carnx_slave_price_seller_attitude_desc
+		}
 	}
 	if = {
 		limit = {
 			exists = scope:buyer
 			scope:buyer = { has_character_modifier = carnx_slavery_attitude_trader_modifier }
 		}
-		multiply = carnx_slave_price_trader_buyer_multiplier
+		multiply = {
+			value = carnx_slave_price_trader_buyer_multiplier
+			desc = carnx_slave_price_buyer_attitude_desc
+		}
 	}
 
 	round = yes
-	min = 5
+	min = {
+		value = 5
+		desc = carnx_slave_price_min_desc
+	}
 }
 
 # Opinion gain from gifting a slave. Calculated by multiplying the slave base price (carnx_slave_base_price_value)
@@ -416,79 +478,63 @@ carnx_send_gift_influence_value = {
 }
 
 carnx_slave_price_tribal_multiplier = {
+	# Determine party (buyer, seller, or recipient)
 	if = {
-		limit = { exists = scope:actor }
-		scope:actor = { save_temporary_scope_as = party1 }
-	}
-	else_if = {
-		limit = { exists = scope:buyer }
-		scope:buyer = { save_temporary_scope_as = party1 }
-	}
-	else_if = {
-		limit = { exists = scope:seller }
-		scope:seller = { save_temporary_scope_as = party1 }
-	}
-
-	if = {
-		limit = {
-			exists = scope:recipient
-			NOT = { scope:recipient = scope:party1 }
-		}
-		scope:recipient = { save_temporary_scope_as = party2 }
-	}
-	else_if = {
 		limit = {
 			exists = scope:buyer
-			NOT = { scope:buyer = scope:party1 }
+			NOT = { scope:buyer = scope:actor }
 		}
-		scope:buyer = { save_temporary_scope_as = party2 }
+		scope:buyer = { save_temporary_scope_as = party }
 	}
 	else_if = {
 		limit = {
 			exists = scope:seller
-			NOT = { scope:seller = scope:party1 }
+			NOT = { scope:seller = scope:actor }
 		}
-		scope:seller = { save_temporary_scope_as = party2 }
+		scope:seller = { save_temporary_scope_as = party }
+	}
+	else = {
+		scope:recipient ?= { save_temporary_scope_as = party }
+	}
+
+	# Change party to liege, host, or county holder if not ruler
+	scope:party ?= {
+		if = {
+			limit = { is_ruler = yes }
+			# Do nothing
+		}
+		else_if = {
+			limit = { exists = liege }
+			liege = { save_temporary_scope_as = party }
+		}
+		else_if = {
+			limit = { exists = host }
+			host = { save_temporary_scope_as = party }
+		}
+		else_if = {
+			limit = {
+				exists = location
+				exists = location.county
+			}
+			location.county.holder ?= { save_temporary_scope_as = party }
+		}
 	}
 
 	if = {
 		limit = {
-			exists = scope:party1
-			exists = scope:party2
+			scope:actor = { government_has_flag = government_is_tribal }
+			scope:party ?= { government_has_flag = government_is_tribal }
 		}
-		if = {
-			limit = {
-				scope:party1 = { government_has_flag = government_is_tribal }
-				scope:party2 = { government_has_flag = government_is_tribal }
-			}
-			value = 0.5
-		}
-		else_if = {
-			limit = {
-				OR = {
-					scope:party1 = { government_has_flag = government_is_tribal }
-					scope:party2 = { government_has_flag = government_is_tribal }
-				}
-			}
-			value = 0.75
-		}
-		else = {
-			value = 1
-		}
+		value = 0.6
 	}
 	else_if = {
 		limit = {
-			exists = scope:party1
-		}
-		if = {
-			limit = {
-				scope:party1 = { government_has_flag = government_is_tribal }
+			OR = {
+				scope:actor = { government_has_flag = government_is_tribal }
+				scope:party ?= { government_has_flag = government_is_tribal }
 			}
-			value = 0.5
 		}
-		else = {
-			value = 1
-		}
+		value = 0.8
 	}
 	else = {
 		value = 1
@@ -1029,6 +1075,16 @@ carnx_demand_free_illegal_slaves_bribe_size = {
 
 carn_scope_buyer_current_gold_value = {
 	value = scope:buyer_short_term_gold
+}
+
+carnx_slave_actual_price_value = {
+	if = {
+		limit = { scope:actor = scope:buyer }
+		value = carnx_slave_ask_price_value
+	}
+	else = {
+		value = carnx_slave_bid_price_value
+	}
 }
 
 carnx_scope_secondary_recipient_slave_ransom_cost_value = {
