@@ -533,6 +533,13 @@ carnx_decision_events.1011 = {
 			}
 		}
 
+		scope:first_concubine ?= {
+			carnx_undress_effect = yes
+		}
+		scope:second_concubine ?= {
+			carnx_undress_effect = yes
+		}
+
 		# Remember the concubine merchant as quartermaster
 		vls_remember_merchant_character_effect = {
 			TYPE = quartermaster
@@ -636,6 +643,15 @@ carnx_decision_events.1011 = {
 				has_trait = greedy
 				factor = 2
 			}
+		}
+	}
+
+	after = {
+		scope:first_concubine = {
+			carnx_dress_effect = yes
+		}
+		scope:second_concubine = {
+			carnx_dress_effect = yes
 		}
 	}
 }
@@ -749,6 +765,13 @@ carnx_decision_events.1013 = {
 			}
 		}
 
+		scope:first_soldier ?= {
+			carnx_undress_effect = yes
+		}
+		scope:second_soldier ?= {
+			carnx_undress_effect = yes
+		}
+
 		# Remember the soldier merchant as quartermaster
 		vls_remember_merchant_character_effect = {
 			TYPE = quartermaster
@@ -852,6 +875,15 @@ carnx_decision_events.1013 = {
 				has_trait = greedy
 				factor = 2
 			}
+		}
+	}
+
+	after = {
+		scope:first_soldier = {
+			carnx_dress_effect = yes
+		}
+		scope:second_soldier = {
+			carnx_dress_effect = yes
 		}
 	}
 }
@@ -965,6 +997,13 @@ carnx_decision_events.1015 = {
 			}
 		}
 
+		scope:first_servant ?= {
+			carnx_undress_effect = yes
+		}
+		scope:second_servant ?= {
+			carnx_undress_effect = yes
+		}
+
 		# Remember the servant merchant as quartermaster
 		vls_remember_merchant_character_effect = {
 			TYPE = servant_merchant
@@ -1068,6 +1107,15 @@ carnx_decision_events.1015 = {
 				has_trait = greedy
 				factor = 2
 			}
+		}
+	}
+
+	after = {
+		scope:first_servant = {
+			carnx_dress_effect = yes
+		}
+		scope:second_servant = {
+			carnx_dress_effect = yes
 		}
 	}
 }

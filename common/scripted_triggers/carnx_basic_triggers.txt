@@ -1,4 +1,0 @@
-﻿# Enable nudity in slavery related events
-carnx_enable_nudity = {
-	always = no
-}

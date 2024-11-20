@@ -92,10 +92,7 @@ carnx_slave.0001 = {
 			if = {
 				limit = { exists = scope:valuable_option }
 				scope:valuable_option = {
-					if = {
-						limit = { carnx_enable_nudity = yes }
-						add_character_flag = is_naked
-					}
+					carnx_undress_effect = yes
 					save_scope_value_as = {
 						name = valuable_option_price
 						value = {
@@ -132,10 +129,7 @@ carnx_slave.0001 = {
 			if = {
 				limit = { exists = scope:common_option }
 				scope:common_option = {
-					if = {
-						limit = { carnx_enable_nudity = yes }
-						add_character_flag = is_naked
-					}
+					carnx_undress_effect = yes
 					save_scope_value_as = {
 						name = common_option_price
 						value = {
@@ -205,10 +199,6 @@ carnx_slave.0001 = {
 		}
 
 		hidden_effect = {
-			if = {
-				limit = { carnx_enable_nudity = yes }
-				scope:valuable_option = { remove_character_flag = is_naked }
-			}
 			carnx_debug_log_effect = { MSG = carnx_debug_msg_slave_0001_option_a_chosen }
 		}
 
@@ -235,10 +225,6 @@ carnx_slave.0001 = {
 		}
 
 		hidden_effect = {
-			if = {
-				limit = { carnx_enable_nudity = yes }
-				scope:common_option = { remove_character_flag = is_naked }
-			}
 			carnx_debug_log_effect = { MSG = carnx_debug_msg_slave_0001_option_b_chosen }
 		}
 
@@ -273,11 +259,6 @@ carnx_slave.0001 = {
 		}
 
 		hidden_effect = {
-			if = {
-				limit = { carnx_enable_nudity = yes }
-				scope:valuable_option = { remove_character_flag = is_naked }
-				scope:common_option = { remove_character_flag = is_naked }
-			}
 			carnx_debug_log_effect = { MSG = carnx_debug_msg_slave_0001_option_c_chosen }
 		}
 
@@ -301,6 +282,13 @@ carnx_slave.0001 = {
 
 	after = {
 		hidden_effect = {
+			scope:valuable_option ?= {
+				carnx_dress_effect = yes
+			}
+			scope:common_option ?= {
+				carnx_dress_effect = yes
+			}
+
 			scope:seller = {
 				random = {
 					chance = 50

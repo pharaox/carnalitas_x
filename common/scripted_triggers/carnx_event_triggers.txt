@@ -35,3 +35,7 @@ carnx_is_employed_trigger = {
 		carnx_has_important_role_trigger = { RULER = $RULER$ }
 	}
 }
+
+carnx_enable_nudity_trigger = {
+	always = yes
+}
