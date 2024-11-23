@@ -44,8 +44,21 @@ carnx_get_merchant_effect = {
 	random_pool_character = {
 		province = $LOCATION$
 		limit = {
+			NOT = { is_in_list = $BLACKLIST$ }
 			vls_can_be_merchant_trigger = { CHARACTER = $CHARACTER$ }
-			var:at_merchant_type ?= flag:$TYPE$
+			# TODO
+			trigger_if = {
+				limit = { flag:$TYPE$ = flag:slave_merchant }
+				OR = {
+					var:at_merchant_type ?= flag:$TYPE$
+					var:at_merchant_type ?= flag:concubine_merchant
+					var:at_merchant_type ?= flag:soldier_merchant
+					var:at_merchant_type ?= flag:servant_merchant
+				}
+			}
+			trigger_else = {
+				var:at_merchant_type ?= flag:$TYPE$
+			}
 		}
 		save_scope_as = $MERCHANT$
 		save_scope_as = recurring_$MERCHANT$
@@ -58,12 +71,11 @@ carnx_get_merchant_effect = {
 		random_pool_character = {
 			province = $LOCATION$
 			limit = {
+				NOT = { is_in_list = $BLACKLIST$ }
 				vls_can_be_merchant_trigger = { CHARACTER = $CHARACTER$ }
 				NOR = {
 					has_variable = at_merchant_type
 					vls_is_saved_vanilla_merchant_trigger = { CHARACTER = $CHARACTER$ }
-				}
-				NOT = {
 					is_wrong_gender_in_faith_trigger = { FAITH = $LOCATION$.faith }
 				}
 				stewardship >= low_skill_rating
@@ -87,13 +99,9 @@ carnx_get_merchant_effect = {
 			NOT = { exists = scope:$MERCHANT$ }
 		}
 		# Create a new merchant character
-		create_character = {
-			template = carnx_slave_merchant_template
-			location = $LOCATION$
-			gender_female_chance = location_faith_dominant_gender_female_chance
-			dynasty = none
-			culture = $LOCATION$.culture
-			faith = $LOCATION$.faith
+		carnx_create_merchant_character_effect = { LOCATION = $LOCATION$ }
+		scope:new_character = {
+			carnx_debug_log_effect = { MSG = carnx_debug_msg_creating_merchant }
 			save_scope_as = $MERCHANT$
 		}
 	}
@@ -111,116 +119,52 @@ carnx_get_slaves_effect = {
 		carnx_return_slave_to_owner_effect = yes
 	}
 
-	# Find existing slaves for sale
-	if = {
+	# Find existing slaves
+	every_relation = {
+		type = slave
 		limit = {
-			any_relation = {
-				type = slave
-				var:carnx_slave_type ?= flag:$TYPE$
-				carnx_slave_can_be_sold_trigger = yes
-			}
+			carnx_slave_can_be_sold_trigger = yes
+			list_size:slaves < 2
 		}
-		every_relation = {
-			type = slave
-			limit = {
-				var:carnx_slave_type ?= flag:$TYPE$
-				carnx_slave_can_be_sold_trigger = yes
-			}
-			add_to_temporary_list = slaves
-		}
+		add_to_temporary_list = slaves
 	}
 
-	# Create new slaves for sale
+	# Create new slaves
 	while = {
-		limit = {
-			list_size = { name = slaves value < 2 }
-		}
+		limit = { list_size:slaves < 2 }
 
 		carnx_create_slave_effect = {
-			TYPE = $TYPE$
 			LOCATION = $LOCATION$
 			CHARACTER = $CHARACTER$
 			TEMPLATE_CHARACTER = $TEMPLATE_CHARACTER$
 		}
 		scope:new_character = {
 			carnx_debug_log_effect = { MSG = carnx_debug_msg_creating_slave }
-			set_variable = { name = carnx_slave_type value = flag:$TYPE$ }
 			add_to_temporary_list = slaves
 		}
-		clear_saved_scope = new_character
 	}
 }
 
 carnx_create_slave_effect = {
 	save_temporary_scope_as = merchant
 
-	if = {
-		limit = { flag:$TYPE$ = flag:concubine }
-		random_list = {
-			50 = {
-				carnx_create_concubine_character_effect = {
-					LOCATION = $LOCATION$
-					CHARACTER = $CHARACTER$
-					TEMPLATE_CHARACTER = $TEMPLATE_CHARACTER$
-				}
-			}
-			50 = {
-				create_character = {
-					location = $LOCATION$
-					template_character = $TEMPLATE_CHARACTER$
-					gender_female_chance = $CHARACTER$.marriage_gender_adjusted_female_chance
-					age = { 16 40 }
-					dynasty = none
-					random_traits = yes
-					save_scope_as = new_character
-				}
+	random_list = {
+		50 = {
+			carnx_create_character_effect = {
+				LOCATION = $LOCATION$
+				CHARACTER = $CHARACTER$
+				TEMPLATE_CHARACTER = $TEMPLATE_CHARACTER$
 			}
 		}
-	}
-	else_if = {
-		limit = { flag:$TYPE$ = flag:soldier }
-		random_list = {
-			50 = {
-				carnx_create_captain_character_effect = {
-					LOCATION = $LOCATION$
-					CHARACTER = $CHARACTER$
-					TEMPLATE_CHARACTER = $TEMPLATE_CHARACTER$
-				}
-			}
-			50 = {
-				$CHARACTER$ = { save_temporary_scope_as = value_target }
-				create_character = {
-					location = $LOCATION$
-					template_character = $TEMPLATE_CHARACTER$
-					gender_female_chance = scope_value_target_soldier_female_chance
-					age = { 16 40 }
-					dynasty = none
-					random_traits = yes
-					save_scope_as = new_character
-				}
-			}
-		}
-	}
-	else_if = {
-		limit = { flag:$TYPE$ = flag:servant }
-		random_list = {
-			50 = {
-				carnx_create_character_effect = {
-					LOCATION = $LOCATION$
-					CHARACTER = $CHARACTER$
-					TEMPLATE_CHARACTER = $TEMPLATE_CHARACTER$
-				}
-			}
-			50 = {
-				create_character = {
-					location = $LOCATION$
-					template_character = $TEMPLATE_CHARACTER$
-					gender_female_chance = carnx_create_character_female_chance
-					age = { 16 40 }
-					dynasty = none
-					random_traits = yes
-					save_scope_as = new_character
-				}
+		50 = {
+			create_character = {
+				location = $LOCATION$
+				template_character = $TEMPLATE_CHARACTER$
+				gender_female_chance = carnx_create_character_female_chance
+				age = { 16 40 }
+				dynasty = none
+				random_traits = yes
+				save_temporary_scope_as = new_character
 			}
 		}
 	}
@@ -346,7 +290,7 @@ carnx_create_diplomacy_character_effect = {
 		}
 		gender_female_chance = carnx_scope_value_target_faith_dominant_gender_adjusted_female_chance
 		dynasty = none
-		save_scope_as = new_character
+		save_temporary_scope_as = new_character
 	}
 }
 
@@ -377,7 +321,7 @@ carnx_create_martial_character_effect = {
 		}
 		gender_female_chance = scope_value_target_faith_dominant_gender_adjusted_female_chance
 		dynasty = none
-		save_scope_as = new_character
+		save_temporary_scope_as = new_character
 	}
 }
 
@@ -403,7 +347,7 @@ carnx_create_stewardship_character_effect = {
 		}
 		gender_female_chance = carnx_scope_value_target_faith_dominant_gender_adjusted_female_chance
 		dynasty = none
-		save_scope_as = new_character
+		save_temporary_scope_as = new_character
 	}
 }
 
@@ -428,7 +372,7 @@ carnx_create_intrigue_character_effect = {
 		}
 		gender_female_chance = carnx_create_character_female_chance
 		dynasty = none
-		save_scope_as = new_character
+		save_temporary_scope_as = new_character
 	}
 }
 
@@ -460,7 +404,7 @@ carnx_create_learning_character_effect = {
 		}
 		gender_female_chance = carnx_create_character_female_chance
 		dynasty = none
-		save_scope_as = new_character
+		save_temporary_scope_as = new_character
 	}
 }
 
@@ -475,7 +419,7 @@ carnx_create_prowess_character_effect = {
 		prowess = { min_template_average_skill max_template_decent_skill }
 		gender_female_chance = scope_value_target_soldier_female_chance
 		dynasty = none
-		save_scope_as = new_character
+		save_temporary_scope_as = new_character
 	}
 }
 
@@ -488,7 +432,7 @@ carnx_create_eunuch_character_effect = {
 		culture = $TEMPLATE_CHARACTER$.culture
 		faith = $TEMPLATE_CHARACTER$.faith
 		dynasty = none
-		save_scope_as = new_character
+		save_temporary_scope_as = new_character
 	}
 }
 
@@ -501,7 +445,7 @@ carnx_create_concubine_character_effect = {
 		culture = $TEMPLATE_CHARACTER$.culture
 		faith = $TEMPLATE_CHARACTER$.faith
 		dynasty = none
-		save_scope_as = new_character
+		save_temporary_scope_as = new_character
 	}
 }
 
@@ -515,7 +459,19 @@ carnx_create_captain_character_effect = {
 		culture = $TEMPLATE_CHARACTER$.culture
 		faith = $TEMPLATE_CHARACTER$.faith
 		dynasty = none
-		save_scope_as = new_character
+		save_temporary_scope_as = new_character
+	}
+}
+
+carnx_create_merchant_character_effect = {
+	create_character = {
+		template = carnx_slave_merchant_template
+		location = $LOCATION$
+		gender_female_chance = location_faith_dominant_gender_female_chance
+		dynasty = none
+		culture = $LOCATION$.culture
+		faith = $LOCATION$.faith
+		save_temporary_scope_as = new_character
 	}
 }
 

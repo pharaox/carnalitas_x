@@ -386,6 +386,7 @@ carnx_decision_events.1020 = {
 				TYPE = slave_trader
 				LOCATION = scope:visiting_location
 				CHARACTER = root
+				BLACKLIST = none
 				MERCHANT = slave_trader
 			}
 			if = {

@@ -46,18 +46,18 @@ carnx_slave.0001 = {
 				TEMPLATE_CHARACTER = template_character
 			}
 
-			# Find slave trader
+			# Find slave merchant
 			carnx_get_merchant_effect = {
-				TYPE = servant_merchant
+				TYPE = slave_merchant
 				LOCATION = root.capital_province
 				CHARACTER = root
+				BLACKLIST = none
 				MERCHANT = seller
 			}
 
 			scope:seller = {
 				# Get slaves
 				carnx_get_slaves_effect = {
-					TYPE = servant
 					LOCATION = root.capital_province
 					CHARACTER = root
 					TEMPLATE_CHARACTER = scope:template_character
@@ -69,11 +69,12 @@ carnx_slave.0001 = {
 					order_by = carnx_slave_base_price_value
 					save_scope_as = valuable_option
 				}
-				random_in_list = {
+				ordered_in_list = {
 					list = slaves
 					limit = {
 						NOT = { this = scope:valuable_option }
 					}
+					order_by = carnx_slave_base_price_value
 					save_scope_as = common_option
 				}
 			}

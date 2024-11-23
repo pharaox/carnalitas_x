@@ -17,10 +17,11 @@
 
  carnx_decision_events.1010.desc_returned_01: "The sun is high above the slave market as I return to a plethora of sounds, sights and smells."
  carnx_decision_events.1010.desc_returned_02: "A cloud is softening the light across the slave market, and I return to an aggressive smell, as I realize I strayed too close to a filthy slave pen on my way back."
- carnx_decision_events.1010.desc_returned_from_concubine_merchant: "Coming back from the sex slave merchant, the various slave merchants and their henchmen are still in full swing pushing unfortunate slaves back and forth."
- carnx_decision_events.1010.desc_returned_from_soldier_merchant: "The sweat from the soldier merchant's barracks is slowly trickling down my back and I am awarded with a cool breeze as I return to the slave market."
- carnx_decision_events.1010.desc_returned_from_servant_merchant: "I squint at the overwhelming brightness of the plaza as I step out of the servant merchant's abode and into the plaza of the slave market."
- carnx_decision_events.1010.desc: "In [visiting_location.GetBaronyNameExplicitly]'s slave market, all relevant merchants are present — sex slave merchant [concubine_merchant.GetFirstName] in a lavish tent over by the brothel, soldier merchant [soldier_merchant.GetFirstName] in [soldier_merchant.GetHerHis] heavily guarded barracks and [servant_merchant.GetFirstName], the servant merchant, further up ahead."
+ carnx_decision_events.1010.desc_returned_from_slave_merchant_01: "Coming back from the last merchant, the other slave merchants and their henchmen are still in full swing pushing unfortunate slaves back and forth."
+ carnx_decision_events.1010.desc_returned_from_slave_merchant_02: "I squint at the overwhelming brightness of the plaza as I step out of the last merchant's premises and into the plaza of the slave market."
+ carnx_decision_events.1010.desc_01: "In [visiting_location.GetBaronyNameExplicitly]'s slave market there is only one merchant worth visiting — [first_slave_merchant.GetFirstName] in a small tent over by the tavern."
+ carnx_decision_events.1010.desc_02: "In [visiting_location.GetBaronyNameExplicitly]'s slave market there are a few merchants worth visiting, among them [first_slave_merchant.GetFirstName] in a large tent over by the brothel, and [second_slave_merchant.GetFirstName] in a guarded enclosure."
+ carnx_decision_events.1010.desc_03: "In [visiting_location.GetBaronyNameExplicitly]'s slave market there are many merchants worth visiting, among them [first_slave_merchant.GetFirstName] in a lavish tent surrounded by a few smaller ones, [second_slave_merchant.GetFirstName] in [second_slave_merchant.GetHerHis] heavily guarded slave pen, and [third_slave_merchant.GetFirstName] further up ahead."
  carnx_decision_events.1010.desc_outro_partner: "$ep3_laamp_decision_event.1060.desc_outro_partner$"
  carnx_decision_events.1010.desc_outro: "$ep3_laamp_decision_event.1040.desc_outro$"
  carnx_decision_events.1010.desc_outro_return_partner_finished: "$ep3_laamp_decision_event.1040.desc_outro_return_partner_finished$"
@@ -32,61 +33,35 @@
  carnx_decision_events.1010.desc_outro_return_02: "$ep3_laamp_decision_event.1060.desc_outro_return_02$"
  carnx_decision_events.1010.desc_outro_return_03: "$ep3_laamp_decision_event.1060.desc_outro_return_03$"
 
- carnx_decision_events.1010.a: "Concubines are what I desire right now."
- carnx_decision_events.1010.a_second: "Those sex slaves looked intriguing."
- carnx_decision_events.1010.a.tt: "Go to the sex slave merchant's tent"
- carnx_decision_events.1010.a.cooldown.tt: "You have already purchased a sex [slave|E] this visit"
- carnx_decision_events.1010.b: "My army could use some reinforcements."
- carnx_decision_events.1010.b_second: "The soldier merchant had some relevant slaves."
- carnx_decision_events.1010.b.tt: "Go to the soldier merchant's barracks"
- carnx_decision_events.1010.b.cooldown.tt: "You have already purchased a soldier [slave|E] this visit"
- carnx_decision_events.1010.c: "I am in the market for skilled servants."
- carnx_decision_events.1010.c_second: "I need a second look at those servants."
- carnx_decision_events.1010.c.tt: "Go to the servant merchant's abode"
- carnx_decision_events.1010.c.cooldown.tt: "You have already purchased a servant [slave|E] this visit"
+ carnx_decision_events.1010.a: "Let's see [first_slave_merchant.GetFirstNamePossessive] slaves"
+ carnx_decision_events.1010.a_second: "[first_slave_merchant.GetFirstNamePossessive] slaves looked intriguing."
+ carnx_decision_events.1010.a.tt: "Go to [first_slave_merchant.GetFirstNamePossessive] booth"
+ carnx_decision_events.1010.a.cooldown.tt: "You have already purchased a [slave|E] from this merchant this visit"
+ carnx_decision_events.1010.b: "I wonder what [second_slave_merchant.GetFirstName] has to offer"
+ carnx_decision_events.1010.b_second: "[second_slave_merchant.GetFirstName] had some relevant slaves."
+ carnx_decision_events.1010.b.tt: "Go to [second_slave_merchant.GetFirstNamePossessive] booth"
+ carnx_decision_events.1010.b.cooldown.tt: "$carnx_decision_events.1010.a.cooldown.tt$"
+ carnx_decision_events.1010.c: "Perhaps I should visit [third_slave_merchant.GetFirstName]"
+ carnx_decision_events.1010.c_second: "I should visit [third_slave_merchant.GetFirstName] again."
+ carnx_decision_events.1010.c.tt: "Go to [third_slave_merchant.GetFirstNamePossessive] booth"
+ carnx_decision_events.1010.c.cooldown.tt: "$carnx_decision_events.1010.a.cooldown.tt$"
  carnx_decision_events.1010.d: "$ep3_laamp_decision_event.1010.e$"
  carnx_decision_events.1010.d_second: "$ep3_laamp_decision_event.1040.e_second$"
 
  # Visiting Location: the Sex Slave Merchant
- carnx_decision_events.1011.t: "[visiting_location.GetBaronyNameExplicitlyNoTooltip]: the Sex Slave Merchant"
+ carnx_decision_events.1011.t: "[visiting_location.GetBaronyNameExplicitlyNoTooltip]: the Slave Merchant"
 
- carnx_decision_events.1011.desc_intro: "Sex slave merchant [concubine_merchant.GetFirstName], idly chatting with some nearby servants, is standing in a lavish tent over by the brothel."
- carnx_decision_events.1011.desc: "$carnx_decision_events.1011.desc_intro$\n\n[concubine_merchant.GetSheHe|U] shoots me a look, promptly ends [concubine_merchant.GetHerHis] conversation, and then turns to address me as [concubine_merchant.GetSheHe] points to the slaves on display: "These be the sweeties I have for sale."\n\n"All trained in the lovemaking arts," [concubine_merchant.GetSheHe] adds, a tone of pride in [concubine_merchant.GetHerHis] voice."
- carnx_decision_events.1011.desc_reused_concubine_merchant: "$carnx_decision_events.1011.desc_intro$\n\n[concubine_merchant.GetSheHe|U] shoots me a recognizing look, raises an eyebrow and takes a few steps towards me: "Well then, ain't every day ye be seeing a returning customer!"\n\n"Please, have a look at my offerings," [concubine_merchant.GetSheHe] says, and attempts a smile."
- carnx_decision_events.1011.desc_returned_01: "Back at the brothel, sex slave merchant [concubine_merchant.GetFirstName] is still standing besides [concubine_merchant.GetHerHis] merchandise, now rudely groping one of the slaves with one hand.\n\n[concubine_merchant.GetSheHe|U] hums to [concubine_merchant.GetHerselfHimself] while doing so, but promptly stops upon my arrival. "Need someone to screw, after all?" [concubine_merchant.GetSheHe] says, without a trace of chumminess."
- carnx_decision_events.1011.desc_returned_02: "As I return to the sex slave merchant, [concubine_merchant.GetFirstName] has brought out a morsel from a satchel in [concubine_merchant.GetHerHis] belt and is appreciatively ingesting it in small chunks.\n\nNoticing me, [concubine_merchant.GetSheHe] carefully brushes crumbs off [concubine_merchant.GetHerHis] cloak, stands up and gives me an inscrutable look: "Changed yer mind?""
+ carnx_decision_events.1011.desc_intro: "Slave merchant [slave_merchant.GetFirstName], idly chatting with some nearby servants, is standing in his booth."
+ carnx_decision_events.1011.desc: "$carnx_decision_events.1011.desc_intro$\n\n[slave_merchant.GetSheHe|U] shoots me a look, promptly ends [slave_merchant.GetHerHis] conversation, and then turns to address me as [slave_merchant.GetSheHe] points to the slaves on display: "These be the slaves I have for sale."\n\n"All in perfect condition," [slave_merchant.GetSheHe] adds, a tone of pride in [slave_merchant.GetHerHis] voice."
+ carnx_decision_events.1011.desc_reused_slave_merchant: "$carnx_decision_events.1011.desc_intro$\n\n[slave_merchant.GetSheHe|U] shoots me a recognizing look, raises an eyebrow and takes a few steps towards me: "Well then, ain't every day ye be seeing a returning customer!"\n\n"Please, have a look at my offerings," [slave_merchant.GetSheHe] says, and attempts a smile."
+ carnx_decision_events.1011.desc_returned_01: "In his booth, [slave_merchant.GetFirstName] is still standing besides [slave_merchant.GetHerHis] merchandise, now rudely groping one of the slaves with one hand.\n\n[slave_merchant.GetSheHe|U] hums to [slave_merchant.GetHerselfHimself] while doing so, but promptly stops upon my arrival. "Need someone  after all?" [slave_merchant.GetSheHe] says, without a trace of chumminess."
+ carnx_decision_events.1011.desc_returned_02: "As I return to [slave_merchant.GetHerHim], [slave_merchant.GetFirstName] has brought out a morsel from a satchel in [slave_merchant.GetHerHis] belt and is appreciatively ingesting it in small chunks.\n\nNoticing me, [slave_merchant.GetSheHe] carefully brushes crumbs off [slave_merchant.GetHerHis] cloak, stands up and gives me an inscrutable look: "Changed yer mind?""
 
- carnx_decision_events.1011.a: ""I'll say, [first_concubine.GetFirstNameNoTooltip] looks like a fine choice.""
- carnx_decision_events.1011.b: ""I'd rather prefer [second_concubine.GetFirstNameNoTooltip].""
+ carnx_decision_events.1011.a: ""I'll say, [first_merchant_slave.GetFirstNameNoTooltip] looks like a fine choice.""
+ carnx_decision_events.1011.b: ""I'd rather prefer [second_merchant_slave.GetFirstNameNoTooltip].""
  carnx_decision_events.1011.c: "$carnx_decision_events.1021.d$"
 
  carnx_decision_events.1011.return.tt: "You return to the slave market"
-
- # Visiting Location: the Soldier Merchant
- carnx_decision_events.1013.t: "[visiting_location.GetBaronyNameExplicitlyNoTooltip]: the Slave Soldier Merchant"
-
- # TODO
- carnx_decision_events.1013.desc: "The smell of sweaty bodies permeates the soldier merchant [soldier_merchant.GetFirstNamePossessive] barracks, and the air is thick to breathe.\n\n[soldier_merchant.GetSheHe|U] shoots me a brief glance, checks the defensive posture of a muscular young slave, then walks over and wipes [soldier_merchant.GetHerHis] hands.\n\n"Yer can see what I have for sale there," [soldier_merchant.GetFirstNameNoTooltip] says, motioning to a group of slaves lined up in the middle of the room."
- carnx_decision_events.1013.desc_reused_soldier_merchant: "[soldier_merchant.GetFirstNamePossessive] barracks is just as I remember them. My gaze immediately goes to the middle of the room, where [soldier_merchant.GetSheHe] has lined up [soldier_merchant.GetHerHis] slaves for sale.\n\n[soldier_merchant.GetFirstNamePossessiveNoTooltip] eyes turn bemused as [soldier_merchant.GetSheHe] looks up and recognizes me: "A returning customer! Find someone that ye like?""
- carnx_decision_events.1013.desc_returned_01: "[soldier_merchant.GetFirstName] is taking a break from lining up and training his slaves. [soldier_merchant.GetSheHe|U] walks around the barracks, seemingly looking for something: "Training swords," [soldier_merchant.GetSheHe] grunts, "never where ye leave 'em."\n\nThen [soldier_merchant.GetFirstNameNoTooltip] turns [soldier_merchant.GetHerHis] attention to me and nods towards the slaves lined up for sale: "Well, then?""
- carnx_decision_events.1013.desc_returned_02: "The barracks are slightly less smelly this time as [soldier_merchant.GetFirstName] is training a different slave, rudely yelling at him.\n\nCareful not to disturb [soldier_merchant.GetHerHis] process, I walk over to continue inspecting the slaves lined up for sale.\n\n"Need some soldiers after all, I gather?" [soldier_merchant.GetFirstNameNoTooltip] remarks, with an amused tone."
-
- carnx_decision_events.1013.a: "[first_soldier.GetFirstNameNoTooltip] is the one I'm looking for."
- carnx_decision_events.1013.b: "It would only make sense to get [second_soldier.GetFirstNameNoTooltip]."
- carnx_decision_events.1013.c: "$carnx_decision_events.1021.d$"
-
- # Visiting Location: the Servant Merchant
- carnx_decision_events.1015.t: "[visiting_location.GetBaronyNameExplicitlyNoTooltip]: the Servant Merchant"
-
- # TODO
- carnx_decision_events.1015.desc: "In the dim light of the servant merchant's abode, [servant_merchant.GetFirstName] is supervising [first_servant.GetFirstName] as [first_servant.GetSheHe] is gracefully weaving a piece of cloth.\n\nIntrigued, I watch [first_servant.GetHerHis] delicate work for a moment, before clearing my throat.\n\n[servant_merchant.GetSheHe|U] acknowledges my presence, straightens up and contemplatively says: "In the market for a cook? A weaver? A musician, perhaps?" as [servant_merchant.GetSheHe] points at [servant_merchant.GetHerHis] slaves for sale."
- carnx_decision_events.1015.desc_reused_servant_merchant: "Servant merchant [servant_merchant.GetFirstName] is in the middle of inspecting the work of [second_servant.GetFirstName], a small figurine made of [visiting_location.Custom('GetRandomRegionalWood')], when I enter the dusky abode.\n\n[servant_merchant.GetSheHe|U] looks up, scrutinizes me, then hums in appreciation: "A returning customer. How #EMP precious!#!"\n\nStill wielding the small figurine, [servant_merchant.GetFirstNameNoTooltip] points towards the slaves arranged for sale: "What might you be interested in this time?""
- carnx_decision_events.1015.desc_returned_01: "In the servant merchant's abode, [servant_merchant.GetFirstName] is leaned over a young slave with a large [visiting_location.Custom('get_region_flower_type')] tattoo. When I listen closely, I can hear [servant_merchant.GetHerHis] passionate whispers: "My precious flower, indeed..."\n\nI hurriedly take a step forward to make one of the floorboards creak, and [servant_merchant.GetSheHe] becomes aware of my presence.\n\nStartled, [servant_merchant.GetFirstNameNoTooltip] quickly finds [servant_merchant.GetHerHis] bearings and proclaims: "You again! My word — did you change your mind?"
- carnx_decision_events.1015.desc_returned_02: "Upon my return, [servant_merchant.GetFirstName], holding a [ROOT.Char.Custom('WritingInstrument')], is currently examining [servant_merchant.GetHerHis] slaves while promptly taking inventory in a torn journal.\n\nAwarding me a brief look, [servant_merchant.GetSheHe] says "Back again, then? Which one did you want?" and then moves over to inspect the rest of the slaves."
-
- carnx_decision_events.1015.a: ""I'd prefer [first_servant.GetFirstNameNoTooltip].""
- carnx_decision_events.1015.b: ""[second_servant.GetFirstNameNoTooltip] — now #EMP this#! is someone for me.""
- carnx_decision_events.1015.c: "$carnx_decision_events.1021.d$"
 
  # Visiting Location: No Questions Asked
  carnx_decision_events.1020.t: "[visiting_location.GetBaronyNameExplicitlyNoTooltip]: No Questions Asked"

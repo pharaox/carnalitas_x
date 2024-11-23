@@ -17,8 +17,10 @@
  carnx_debug_msg_inheriting_slave: "$carnx_debug_prefix$: Inheriting slave"
  carnx_debug_msg_freeing_slave: "$carnx_debug_prefix$: Freeing slave"
  carnx_debug_msg_freeing_illegal_slave: "$carnx_debug_prefix$: Freeing illegal slave"
- carnx_debug_msg_creating_slave: "$carnx_debug_prefix$: Creating slave"
  carnx_debug_msg_selling_off_slave: "$carnx_debug_prefix$: Selling off slave"
+
+ carnx_debug_msg_creating_merchant: "$carnx_debug_prefix$: Creating merchant"
+ carnx_debug_msg_creating_slave: "$carnx_debug_prefix$: Creating slave"
 
  carnx_debug_msg_character_joined_court: "$carnx_debug_prefix$: Character joined court"
  carnx_debug_msg_character_left_court: "$carnx_debug_prefix$: Character left court"

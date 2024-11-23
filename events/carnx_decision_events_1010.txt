@@ -40,9 +40,7 @@ scripted_trigger carnx_1010_ai_will_buy_slave_trigger = {
 }
 
 scripted_trigger carnx_1010_done_with_slave_market_trigger = {
-	exists = scope:bought_concubine
-	exists = scope:bought_soldier
-	exists = scope:bought_servant
+	list_size:bought_from_slave_merchants = list_size:slave_merchants
 }
 
 scripted_effect carnx_1010_finish_slave_market_effect = {
@@ -53,10 +51,10 @@ scripted_effect carnx_1010_finish_slave_market_effect = {
 # Needs scopes:
 # * visiting_location
 # * visting_partner
-# * bought_concubine, bought_soldier, bought_servant - If set, disable corresponding merchants
-# * been_to_concubine_merchant, been_to_soldier_merchant, been_to_servant_merchant - If set, use for loc
+# * been_to_slave_merchants - List of visited slave merchants, use for loc
+# * bought_from_slave_merchants - List of slave merchants from whom a slave has been bought, use to disable
 # Sets scopes:
-# * concubine_merchant, soldier_merchant, servant_merchant - Merchants
+# * first_slave_merchant, second_slave_merchant, third_slave_merchant - Merchants
 # * been_to_slave_market - Set to yes (to specify that the event has already been triggered)
 # * finished_slave_market - Set to yes if slaves of every type have been bought
 # * last_location - Set to flag:slave_market
@@ -71,9 +69,28 @@ carnx_decision_events.1010 = {
 		first_valid = {
 			triggered_desc = {
 				trigger = {
+					NOR = {
+						exists = scope:been_to_slave_market
+						exists = scope:second_slave_merchant
+						exists = scope:third_slave_merchant
+					}
+				}
+				desc = carnx_decision_events.1010.desc_01
+			}
+			triggered_desc = {
+				trigger = {
+					NOR = {
+						exists = scope:been_to_slave_market
+						exists = scope:third_slave_merchant
+					}
+				}
+				desc = carnx_decision_events.1010.desc_02
+			}
+			triggered_desc = {
+				trigger = {
 					NOT = { exists = scope:been_to_slave_market }
 				}
-				desc = carnx_decision_events.1010.desc
+				desc = carnx_decision_events.1010.desc_03
 			}
 			random_valid = {
 				triggered_desc = {
@@ -89,23 +106,19 @@ carnx_decision_events.1010 = {
 					desc = carnx_decision_events.1010.desc_returned_02
 				}
 			}
-			triggered_desc = {
-				trigger = {
-					scope:last_location ?= flag:concubine_merchant
+			random_valid = {
+				triggered_desc = {
+					trigger = {
+						scope:last_location ?= flag:slave_merchant
+					}
+					desc = carnx_decision_events.1010.desc_returned_from_slave_merchant_01
 				}
-				desc = carnx_decision_events.1010.desc_returned_from_concubine_merchant
-			}
-			triggered_desc = {
-				trigger = {
-					scope:last_location ?= flag:soldier_merchant
+				triggered_desc = {
+					trigger = {
+						scope:last_location ?= flag:slave_merchant
+					}
+					desc = carnx_decision_events.1010.desc_returned_from_slave_merchant_02
 				}
-				desc = carnx_decision_events.1010.desc_returned_from_soldier_merchant
-			}
-			triggered_desc = {
-				trigger = {
-					scope:last_location ?= flag:servant_merchant
-				}
-				desc = carnx_decision_events.1010.desc_returned_from_servant_merchant
 			}
 		}
 		# Outro
@@ -195,84 +208,94 @@ carnx_decision_events.1010 = {
 	# The merchants, if they are available
 	lower_left_portrait = {
 		trigger = {
-			NOT = { scope:1010_fourth_character = root }
+			scope:first_slave_merchant = {
+				NOT = { is_in_list = bought_from_slave_merchants }
+			}
 		}
-		character = scope:1010_fourth_character
+		character = scope:first_slave_merchant
 	}
 	lower_center_portrait = {
 		trigger = {
-			NOT = { scope:1010_fifth_character = root }
+			scope:second_slave_merchant ?= {
+				NOT = { is_in_list = bought_from_slave_merchants }
+			}
 		}
-		character = scope:1010_fifth_character
+		character = scope:second_slave_merchant
 	}
 	lower_right_portrait = {
 		trigger = {
-			NOT = { scope:1010_sixth_character = root }
+			scope:third_slave_merchant ?= {
+				NOT = { is_in_list = bought_from_slave_merchants }
+			}
 		}
-		character = scope:1010_sixth_character
+		character = scope:third_slave_merchant
 	}
 
 	immediate = {
 		# Find merchants
 		if = {
-			limit = {
-				NOT = { exists = scope:concubine_merchant }
-			}
-			carnx_get_merchant_effect = {
-				TYPE = concubine_merchant
-				LOCATION = scope:visiting_location
-				CHARACTER = root
-				MERCHANT = concubine_merchant
-			}
-		}
-		if = {
-			limit = {
-				NOT = { exists = scope:soldier_merchant }
-			}
-			carnx_get_merchant_effect = {
-				TYPE = soldier_merchant
-				LOCATION = scope:visiting_location
-				CHARACTER = root
-				MERCHANT = soldier_merchant
-			}
-		}
-		if = {
-			limit = {
-				NOT = { exists = scope:servant_merchant }
-			}
-			carnx_get_merchant_effect = {
-				TYPE = servant_merchant
-				LOCATION = scope:visiting_location
-				CHARACTER = root
-				MERCHANT = servant_merchant
-			}
-		}
+			limit = { list_size:slave_merchants = 0 }
 
-		# Initialize portrait scopes
-		scope:concubine_merchant = { save_scope_as = 1010_fourth_character }
-		if = {
-			limit = { exists = scope:bought_concubine }
-			save_scope_as = 1010_fourth_character
-		}
-		scope:soldier_merchant = { save_scope_as = 1010_fifth_character }
-		if = {
-			limit = { exists = scope:bought_soldier }
-			save_scope_as = 1010_fifth_character
-		}
-		scope:servant_merchant = { save_scope_as = 1010_sixth_character }
-		if = {
-			limit = { exists = scope:bought_servant }
-			save_scope_as = 1010_sixth_character
+			# Get merchants
+			save_temporary_scope_value_as = {
+				name = num_slave_merchants
+				value = scope:visiting_location.carnx_num_merchants_value
+			}
+			while = {
+				limit = { list_size:slave_merchants < scope:num_slave_merchants }
+				carnx_get_merchant_effect = {
+					TYPE = slave_merchant
+					LOCATION = scope:visiting_location
+					CHARACTER = root
+					BLACKLIST = slave_merchants
+					MERCHANT = slave_merchant
+				}
+				scope:slave_merchant = {
+					add_to_list = slave_merchants
+				}
+				scope:recurring_slave_merchant ?= {
+					add_to_list = recurring_slave_merchants
+				}
+				clear_saved_scope = slave_merchant
+				clear_saved_scope = recurring_slave_merchant
+			}
+
+			# Save merchant scopes
+			ordered_in_list = {
+				list = slave_merchants
+				position = 0
+				save_scope_as = first_slave_merchant
+			}
+			if = {
+				limit = { list_size:slave_merchants > 1 }
+				ordered_in_list = {
+					list = slave_merchants
+					position = 1
+					save_scope_as = second_slave_merchant
+				}
+			}
+			if = {
+				limit = { list_size:slave_merchants > 2 }
+				ordered_in_list = {
+					list = slave_merchants
+					position = 2
+					save_scope_as = third_slave_merchant
+				}
+			}
 		}
 	}
 
-	# Visit concubine merchant
+	# Visit first slave merchant
 	option = {
 		name = {
 			text = {
 				first_valid = {
 					triggered_desc = {
-						trigger = { exists = scope:been_to_concubine_merchant }
+						trigger = {
+							scope:first_slave_merchant = {
+								is_in_list = been_to_slave_merchants
+							}
+						}
 						desc = carnx_decision_events.1010.a_second
 					}
 					desc = carnx_decision_events.1010.a
@@ -283,37 +306,46 @@ carnx_decision_events.1010 = {
 		trigger = {
 			custom_tooltip = {
 				text = carnx_decision_events.1010.a.cooldown.tt
-				NOT = { exists = scope:bought_concubine }
+				scope:first_slave_merchant = {
+					NOT = { is_in_list = bought_from_slave_merchants }
+				}
 			}
 		}
 		show_as_unavailable = { always = yes }
 
-		reason = visit_concubine_merchant
-		highlight_portrait = scope:concubine_merchant
+		reason = visit_slave_merchant
+		highlight_portrait = scope:first_slave_merchant
 
 		save_scope_value_as = { name = been_to_slave_market value = yes }
 		save_scope_value_as = { name = last_location value = flag:slave_market }
 
-		# Go to concubine_merchant
+		# Go to first_slave_merchant
+		scope:first_slave_merchant = { save_scope_as = slave_merchant }
 		custom_tooltip = carnx_decision_events.1010.a.tt
 		trigger_event = carnx_decision_events.1011
 
 		ai_chance = {
 			base = 100
 			modifier = {
-				exists = scope:been_to_concubine_merchant
+				scope:first_slave_merchant = {
+					is_in_list = been_to_slave_merchants
+				}
 				factor = 0.5
 			}
 		}
 	}
 
-	# Visit soldier merchant
+	# Visit second slave merchant
 	option = {
 		name = {
 			text = {
 				first_valid = {
 					triggered_desc = {
-						trigger = { exists = scope:been_to_soldier_merchant }
+						trigger = {
+							scope:second_slave_merchant = {
+								is_in_list = been_to_slave_merchants
+							}
+						}
 						desc = carnx_decision_events.1010.b_second
 					}
 					desc = carnx_decision_events.1010.b
@@ -322,39 +354,51 @@ carnx_decision_events.1010 = {
 		}
 
 		trigger = {
+			exists = scope:second_slave_merchant
 			custom_tooltip = {
 				text = carnx_decision_events.1010.b.cooldown.tt
-				NOT = { exists = scope:bought_soldier }
+				scope:second_slave_merchant = {
+					NOT = { is_in_list = bought_from_slave_merchants }
+				}
 			}
 		}
-		show_as_unavailable = { always = yes }
+		show_as_unavailable = {
+			exists = scope:second_slave_merchant
+		}
 
-		reason = visit_soldier_merchant
-		highlight_portrait = scope:soldier_merchant
+		reason = visit_slave_merchant
+		highlight_portrait = scope:second_slave_merchant
 
 		save_scope_value_as = { name = been_to_slave_market value = yes }
 		save_scope_value_as = { name = last_location value = flag:slave_market }
 
-		# Go to soldier_merchant
+		# Go to second_slave_merchant
+		scope:second_slave_merchant = { save_scope_as = slave_merchant }
 		custom_tooltip = carnx_decision_events.1010.b.tt
-		trigger_event = carnx_decision_events.1013
+		trigger_event = carnx_decision_events.1011
 
 		ai_chance = {
 			base = 100
 			modifier = {
-				exists = scope:been_to_soldier_merchant
+				scope:second_slave_merchant = {
+					is_in_list = been_to_slave_merchants
+				}
 				factor = 0.5
 			}
 		}
 	}
 
-	# Visit servant merchant
+	# Visit third slave merchant
 	option = {
 		name = {
 			text = {
 				first_valid = {
 					triggered_desc = {
-						trigger = { exists = scope:been_to_servant_merchant }
+						trigger = {
+							scope:third_slave_merchant = {
+								is_in_list = been_to_slave_merchants
+							}
+						}
 						desc = carnx_decision_events.1010.c_second
 					}
 					desc = carnx_decision_events.1010.c
@@ -363,27 +407,35 @@ carnx_decision_events.1010 = {
 		}
 
 		trigger = {
+			exists = scope:third_slave_merchant
 			custom_tooltip = {
 				text = carnx_decision_events.1010.c.cooldown.tt
-				NOT = { exists = scope:bought_servant }
+				scope:third_slave_merchant = {
+					NOT = { is_in_list = bought_from_slave_merchants }
+				}
 			}
 		}
-		show_as_unavailable = { always = yes }
+		show_as_unavailable = {
+			exists = scope:third_slave_merchant
+		}
 
-		reason = visit_servant_merchant
-		highlight_portrait = scope:servant_merchant
+		reason = visit_slave_merchant
+		highlight_portrait = scope:third_slave_merchant
 
 		save_scope_value_as = { name = been_to_slave_market value = yes }
 		save_scope_value_as = { name = last_location value = flag:slave_market }
 
-		# Go to servant_merchant
+		# Go to third_slave_merchant
+		scope:third_slave_merchant = { save_scope_as = slave_merchant }
 		custom_tooltip = carnx_decision_events.1010.c.tt
-		trigger_event = carnx_decision_events.1015
+		trigger_event = carnx_decision_events.1011
 
 		ai_chance = {
 			base = 100
 			modifier = {
-				exists = scope:been_to_servant_merchant
+				scope:third_slave_merchant = {
+					is_in_list = been_to_slave_merchants
+				}
 				factor = 0.5
 			}
 		}
@@ -424,16 +476,16 @@ carnx_decision_events.1010 = {
 	}
 }
 
-# Visiting Location: the Sex Slave Merchant
+# Visiting Location: the Slave Merchant
 # Needs scopes:
 # * visiting_location
 # * visting_partner
-# * concubine_merchant - The concubine merchant
+# * slave_merchant - The slave merchant
 # Sets scopes:
-# * first_concubine, second_concubine, third_concubine - slaves for sale
-# * been_to_concubine_merchant - Set to yes (to specify that the event has already been triggered)
-# * bought_concubine - Set to yes if a concubine has been bought
-# * last_location - Set to flag:concubine_merchant
+# * first_merchant_slave, second_merchant_slave - Slaves for sale
+# * been_to_slave_merchants - List of visited slave merchants (to specify that the event has already been triggered)
+# * bought_from_slave_merchants - List of slave merchants from whom a slave has been bought
+# * last_location - Set to flag:slave_merchant
 #
 carnx_decision_events.1011 = {
 	type = character_event
@@ -444,14 +496,18 @@ carnx_decision_events.1011 = {
 		first_valid = {
 			triggered_desc = {
 				trigger = {
-					NOT = { exists = scope:been_to_concubine_merchant }
-					exists = scope:recurring_concubine_merchant
+					scope:slave_merchant = {
+						NOT = { is_in_list = been_to_slave_merchants }
+						is_in_list = recurring_slave_merchants
+					}
 				}
-				desc = carnx_decision_events.1011.desc_reused_concubine_merchant
+				desc = carnx_decision_events.1011.desc_reused_slave_merchant
 			}
 			triggered_desc = {
 				trigger = {
-					NOT = { exists = scope:been_to_concubine_merchant }
+					scope:slave_merchant = {
+						NOT = { is_in_list = been_to_slave_merchants }
+					}
 				}
 				desc = carnx_decision_events.1011.desc
 			}
@@ -468,20 +524,20 @@ carnx_decision_events.1011 = {
 
 	theme = stewardship
 	override_sound = { reference = "event:/SFX/Events/Themes/sfx_event_theme_type_generic" }
-	override_background = { reference = bedchamber }
+	override_background = { reference = market }
 
 	left_portrait = {
-		trigger = { exists = scope:first_concubine }
-		character = scope:first_concubine
-		animation = shame
+		trigger = { exists = scope:first_merchant_slave }
+		character = scope:first_merchant_slave
+		animation = sadness
 	}
 	center_portrait = {
-		trigger = { exists = scope:second_concubine }
-		character = scope:second_concubine
+		trigger = { exists = scope:second_merchant_slave }
+		character = scope:second_merchant_slave
 		animation = shame
 	}
 	right_portrait = {
-		character = scope:concubine_merchant
+		character = scope:slave_merchant
 		camera = camera_event_scheme_far_right
 		animation = chess_cocky
 	}
@@ -491,59 +547,47 @@ carnx_decision_events.1011 = {
 		location.province_owner = { save_scope_as = bg_override_char }
 
 		# Find template character
-		if = {
-			limit = {
-				NOT = { exists = scope:concubine_template_character }
-			}
-			carnx_get_template_character_effect = {
-				CHARACTER = scope:county_holder
-				TEMPLATE_CHARACTER = concubine_template_character
-			}
+		carnx_get_template_character_effect = {
+			CHARACTER = scope:county_holder
+			TEMPLATE_CHARACTER = template_character
 		}
 
 		# Find slaves for sale
-		if = {
-			limit = {
-				NOR = {
-					exists = scope:first_concubine
-					exists = scope:second_concubine
-				}
+		scope:slave_merchant = {
+			# Get slaves
+			carnx_get_slaves_effect = {
+				LOCATION = scope:visiting_location
+				CHARACTER = root
+				TEMPLATE_CHARACTER = scope:template_character
 			}
-			scope:concubine_merchant = {
-				# Get slaves
-				carnx_get_slaves_effect = {
-					TYPE = concubine
-					LOCATION = scope:visiting_location
-					CHARACTER = root
-					TEMPLATE_CHARACTER = scope:concubine_template_character
-				}
 
-				# Save slave scopes
-				random_in_list = {
-					list = slaves
-					save_scope_as = first_concubine
+			# Save slave scopes
+			ordered_in_list = {
+				list = slaves
+				order_by = carnx_slave_base_price_value
+				save_scope_as = first_merchant_slave
+			}
+			ordered_in_list = {
+				list = slaves
+				limit = {
+					NOT = { this = scope:first_merchant_slave }
 				}
-				random_in_list = {
-					list = slaves
-					limit = {
-						NOT = { this = scope:first_concubine }
-					}
-					save_scope_as = second_concubine
-				}
+				order_by = carnx_slave_base_price_value
+				save_scope_as = second_merchant_slave
 			}
 		}
 
-		scope:first_concubine ?= {
+		scope:first_merchant_slave ?= {
 			carnx_undress_effect = yes
 		}
-		scope:second_concubine ?= {
+		scope:second_merchant_slave ?= {
 			carnx_undress_effect = yes
 		}
 
-		# Remember the concubine merchant as quartermaster
+		# Remember the slave merchant as quartermaster
 		vls_remember_merchant_character_effect = {
 			TYPE = quartermaster
-			CHARACTER = scope:concubine_merchant
+			CHARACTER = scope:slave_merchant
 		}
 	}
 
@@ -553,22 +597,24 @@ carnx_decision_events.1011 = {
 
 		trigger = {
 			carnx_1010_can_buy_slave_trigger = {
-				MERCHANT = scope:concubine_merchant
-				SLAVE = scope:first_concubine
+				MERCHANT = scope:slave_merchant
+				SLAVE = scope:first_merchant_slave
 			}
 		}
 		show_as_unavailable = { always = yes }
 
 		# Actually buy the slave
 		carnx_1010_buy_slave_effect = {
-			MERCHANT = scope:concubine_merchant
-			SLAVE = scope:first_concubine
+			MERCHANT = scope:slave_merchant
+			SLAVE = scope:first_merchant_slave
 		}
 
 		# Update scopes
-		save_scope_value_as = { name = bought_concubine value = yes }
-		save_scope_value_as = { name = been_to_concubine_merchant value = yes }
-		save_scope_value_as = { name = last_location value = flag:concubine_merchant }
+		scope:slave_merchant = {
+			add_to_list = bought_from_slave_merchants
+			add_to_list = been_to_slave_merchants
+		}
+		save_scope_value_as = { name = last_location value = flag:slave_merchant }
 
 		# Go back to slave market
 		custom_tooltip = carnx_decision_events.1011.return.tt
@@ -578,8 +624,8 @@ carnx_decision_events.1011 = {
 			base = 0
 			modifier = {
 				carnx_1010_ai_will_buy_slave_trigger = {
-					MERCHANT = scope:concubine_merchant
-					SLAVE = scope:first_concubine
+					MERCHANT = scope:slave_merchant
+					SLAVE = scope:first_merchant_slave
 				}
 				add = 100
 			}
@@ -592,22 +638,24 @@ carnx_decision_events.1011 = {
 
 		trigger = {
 			carnx_1010_can_buy_slave_trigger = {
-				MERCHANT = scope:concubine_merchant
-				SLAVE = scope:second_concubine
+				MERCHANT = scope:slave_merchant
+				SLAVE = scope:second_merchant_slave
 			}
 		}
 		show_as_unavailable = { always = yes }
 
 		# Actually buy the slave
 		carnx_1010_buy_slave_effect = {
-			MERCHANT = scope:concubine_merchant
-			SLAVE = scope:second_concubine
+			MERCHANT = scope:slave_merchant
+			SLAVE = scope:second_merchant_slave
 		}
 
 		# Update scopes
-		save_scope_value_as = { name = bought_concubine value = yes }
-		save_scope_value_as = { name = been_to_concubine_merchant value = yes }
-		save_scope_value_as = { name = last_location value = flag:concubine_merchant }
+		scope:slave_merchant = {
+			add_to_list = bought_from_slave_merchants
+			add_to_list = been_to_slave_merchants
+		}
+		save_scope_value_as = { name = last_location value = flag:slave_merchant }
 
 		# Go back to slave market
 		custom_tooltip = carnx_decision_events.1011.return.tt
@@ -617,8 +665,8 @@ carnx_decision_events.1011 = {
 			base = 0
 			modifier = {
 				carnx_1010_ai_will_buy_slave_trigger = {
-					MERCHANT = scope:concubine_merchant
-					SLAVE = scope:second_concubine
+					MERCHANT = scope:slave_merchant
+					SLAVE = scope:second_merchant_slave
 				}
 				add = 100
 			}
@@ -630,8 +678,10 @@ carnx_decision_events.1011 = {
 		name = carnx_decision_events.1011.c
 
 		# Update scopes
-		save_scope_value_as = { name = been_to_concubine_merchant value = yes }
-		save_scope_value_as = { name = last_location value = flag:concubine_merchant }
+		scope:slave_merchant = {
+			add_to_list = been_to_slave_merchants
+		}
+		save_scope_value_as = { name = last_location value = flag:slave_merchant }
 
 		# Go back to slave market
 		custom_tooltip = carnx_decision_events.1011.return.tt
@@ -647,474 +697,10 @@ carnx_decision_events.1011 = {
 	}
 
 	after = {
-		scope:first_concubine = {
+		scope:first_merchant_slave = {
 			carnx_dress_effect = yes
 		}
-		scope:second_concubine = {
-			carnx_dress_effect = yes
-		}
-	}
-}
-
-# Visiting Location: the Soldier Merchant
-# Needs scopes:
-# * visiting_location
-# * visting_partner
-# * soldier_merchant - The soldier merchant
-# Sets scopes:
-# * first_soldier, second_soldier, third_soldier - slaves for sale
-# * been_to_soldier_merchant - Set to yes (to specify that the event has already been triggered)
-# * bought_soldier - Set to yes if a soldier has been bought
-# * last_location - Set to flag:soldier_merchant
-#
-carnx_decision_events.1013 = {
-	type = character_event
-	title = carnx_decision_events.1013.t
-	window = visit_settlement_window
-
-	desc = {
-		first_valid = {
-			triggered_desc = {
-				trigger = {
-					NOT = { exists = scope:been_to_soldier_merchant }
-					exists = scope:recurring_soldier_merchant
-				}
-				desc = carnx_decision_events.1013.desc_reused_soldier_merchant
-			}
-			triggered_desc = {
-				trigger = {
-					NOT = { exists = scope:been_to_soldier_merchant }
-				}
-				desc = carnx_decision_events.1013.desc
-			}
-			random_valid = {
-				triggered_desc = {
-					desc = carnx_decision_events.1013.desc_returned_01
-				}
-				triggered_desc = {
-					desc = carnx_decision_events.1013.desc_returned_02
-				}
-			}
-		}
-	}
-
-	theme = stewardship
-	override_sound = { reference = "event:/SFX/Events/Themes/sfx_event_theme_type_generic" }
-	override_background = { reference = armory }
-
-	left_portrait = {
-		trigger = { exists = scope:first_soldier }
-		character = scope:first_soldier
-		animation = sadness
-	}
-	center_portrait = {
-		trigger = { exists = scope:second_soldier }
-		character = scope:second_soldier
-		animation = sadness
-	}
-	right_portrait = {
-		character = scope:soldier_merchant
-		camera = camera_event_scheme_far_right
-		animation = personality_bold
-	}
-
-	immediate = {
-		# Override background
-		location.province_owner = { save_scope_as = bg_override_char }
-
-		# Find template character
-		if = {
-			limit = {
-				NOT = { exists = scope:soldier_template_character }
-			}
-			carnx_get_template_character_effect = {
-				CHARACTER = scope:county_holder
-				TEMPLATE_CHARACTER = soldier_template_character
-			}
-		}
-
-		# Find slaves for sale
-		if = {
-			limit = {
-				NOR = {
-					exists = scope:first_soldier
-					exists = scope:second_soldier
-				}
-			}
-			scope:soldier_merchant = {
-				# Get slaves
-				carnx_get_slaves_effect = {
-					TYPE = soldier
-					LOCATION = scope:visiting_location
-					CHARACTER = root
-					TEMPLATE_CHARACTER = scope:soldier_template_character
-				}
-
-				# Save slave scopes
-				random_in_list = {
-					list = slaves
-					save_scope_as = first_soldier
-				}
-				random_in_list = {
-					list = slaves
-					limit = {
-						NOT = { this = scope:first_soldier }
-					}
-					save_scope_as = second_soldier
-				}
-			}
-		}
-
-		scope:first_soldier ?= {
-			carnx_undress_effect = yes
-		}
-		scope:second_soldier ?= {
-			carnx_undress_effect = yes
-		}
-
-		# Remember the soldier merchant as quartermaster
-		vls_remember_merchant_character_effect = {
-			TYPE = quartermaster
-			CHARACTER = scope:soldier_merchant
-		}
-	}
-
-	# Buy first slave
-	option = {
-		name = carnx_decision_events.1013.a
-
-		trigger = {
-			carnx_1010_can_buy_slave_trigger = {
-				MERCHANT = scope:soldier_merchant
-				SLAVE = scope:first_soldier
-			}
-		}
-		show_as_unavailable = { always = yes }
-
-		# Actually buy the slave
-		carnx_1010_buy_slave_effect = {
-			MERCHANT = scope:soldier_merchant
-			SLAVE = scope:first_soldier
-		}
-
-		# Update scopes
-		save_scope_value_as = { name = bought_soldier value = yes }
-		save_scope_value_as = { name = been_to_soldier_merchant value = yes }
-		save_scope_value_as = { name = last_location value = flag:soldier_merchant }
-
-		# Go back to slave market
-		custom_tooltip = carnx_decision_events.1011.return.tt
-		trigger_event = carnx_decision_events.1010
-
-		ai_chance = {
-			base = 0
-			modifier = {
-				carnx_1010_ai_will_buy_slave_trigger = {
-					MERCHANT = scope:soldier_merchant
-					SLAVE = scope:first_soldier
-				}
-				add = 100
-			}
-		}
-	}
-
-	# Buy second slave
-	option = {
-		name = carnx_decision_events.1013.b
-
-		trigger = {
-			carnx_1010_can_buy_slave_trigger = {
-				MERCHANT = scope:soldier_merchant
-				SLAVE = scope:second_soldier
-			}
-		}
-		show_as_unavailable = { always = yes }
-
-		# Actually buy the slave
-		carnx_1010_buy_slave_effect = {
-			MERCHANT = scope:soldier_merchant
-			SLAVE = scope:second_soldier
-		}
-
-		# Update scopes
-		save_scope_value_as = { name = bought_soldier value = yes }
-		save_scope_value_as = { name = been_to_soldier_merchant value = yes }
-		save_scope_value_as = { name = last_location value = flag:soldier_merchant }
-
-		# Go back to slave market
-		custom_tooltip = carnx_decision_events.1011.return.tt
-		trigger_event = carnx_decision_events.1010
-
-		ai_chance = {
-			base = 0
-			modifier = {
-				carnx_1010_ai_will_buy_slave_trigger = {
-					MERCHANT = scope:soldier_merchant
-					SLAVE = scope:second_soldier
-				}
-				add = 100
-			}
-		}
-	}
-
-	# Do something else
-	option = {
-		name = carnx_decision_events.1013.c
-
-		# Update scopes
-		save_scope_value_as = { name = been_to_soldier_merchant value = yes }
-		save_scope_value_as = { name = last_location value = flag:soldier_merchant }
-
-		# Go back to slave market
-		custom_tooltip = carnx_decision_events.1011.return.tt
-		trigger_event = carnx_decision_events.1010
-
-		ai_chance = {
-			base = 50
-			modifier = {
-				has_trait = greedy
-				factor = 2
-			}
-		}
-	}
-
-	after = {
-		scope:first_soldier = {
-			carnx_dress_effect = yes
-		}
-		scope:second_soldier = {
-			carnx_dress_effect = yes
-		}
-	}
-}
-
-# Visiting Location: the Servant Merchant
-# Needs scopes:
-# * visiting_location
-# * visting_partner
-# * servant_merchant - The servant merchant
-# Sets scopes:
-# * first_servant, second_servant, third_servant - slaves for sale
-# * been_to_servant_merchant - Set to yes (to specify that the event has already been triggered)
-# * bought_servant - Set to yes if a servant has been bought
-# * last_location - Set to flag:servant_merchant
-#
-carnx_decision_events.1015 = {
-	type = character_event
-	title = carnx_decision_events.1015.t
-	window = visit_settlement_window
-
-	desc = {
-		first_valid = {
-			triggered_desc = {
-				trigger = {
-					NOT = { exists = scope:been_to_servant_merchant }
-					exists = scope:recurring_servant_merchant
-				}
-				desc = carnx_decision_events.1015.desc_reused_servant_merchant
-			}
-			triggered_desc = {
-				trigger = {
-					NOT = { exists = scope:been_to_servant_merchant }
-				}
-				desc = carnx_decision_events.1015.desc
-			}
-			random_valid = {
-				triggered_desc = {
-					desc = carnx_decision_events.1015.desc_returned_01
-				}
-				triggered_desc = {
-					desc = carnx_decision_events.1015.desc_returned_02
-				}
-			}
-		}
-	}
-
-	theme = stewardship
-	override_sound = { reference = "event:/SFX/Events/Themes/sfx_event_theme_type_generic" }
-	override_background = { reference = relaxing_room }
-
-	left_portrait = {
-		trigger = { exists = scope:first_servant }
-		character = scope:first_servant
-		animation = sadness
-	}
-	center_portrait = {
-		trigger = { exists = scope:second_servant }
-		character = scope:second_servant
-		animation = shame
-	}
-	right_portrait = {
-		character = scope:servant_merchant
-		camera = camera_event_scheme_far_right
-		animation = chess_cocky
-	}
-
-	immediate = {
-		# Override background
-		location.province_owner = { save_scope_as = bg_override_char }
-
-		# Find template character
-		if = {
-			limit = {
-				NOT = { exists = scope:servant_template_character }
-			}
-			carnx_get_template_character_effect = {
-				CHARACTER = scope:county_holder
-				TEMPLATE_CHARACTER = servant_template_character
-			}
-		}
-
-		# Find slaves for sale
-		if = {
-			limit = {
-				NOR = {
-					exists = scope:first_servant
-					exists = scope:second_servant
-				}
-			}
-			scope:servant_merchant = {
-				# Get slaves
-				carnx_get_slaves_effect = {
-					TYPE = servant
-					LOCATION = scope:visiting_location
-					CHARACTER = root
-					TEMPLATE_CHARACTER = scope:servant_template_character
-				}
-
-				# Save slave scopes
-				random_in_list = {
-					list = slaves
-					save_scope_as = first_servant
-				}
-				random_in_list = {
-					list = slaves
-					limit = {
-						NOT = { this = scope:first_servant }
-					}
-					save_scope_as = second_servant
-				}
-			}
-		}
-
-		scope:first_servant ?= {
-			carnx_undress_effect = yes
-		}
-		scope:second_servant ?= {
-			carnx_undress_effect = yes
-		}
-
-		# Remember the servant merchant as quartermaster
-		vls_remember_merchant_character_effect = {
-			TYPE = servant_merchant
-			CHARACTER = scope:servant_merchant
-		}
-	}
-
-	# Buy first slave
-	option = {
-		name = carnx_decision_events.1015.a
-
-		trigger = {
-			carnx_1010_can_buy_slave_trigger = {
-				MERCHANT = scope:servant_merchant
-				SLAVE = scope:first_servant
-			}
-		}
-		show_as_unavailable = { always = yes }
-
-		# Actually buy the slave
-		carnx_1010_buy_slave_effect = {
-			MERCHANT = scope:servant_merchant
-			SLAVE = scope:first_servant
-		}
-
-		# Update scopes
-		save_scope_value_as = { name = bought_servant value = yes }
-		save_scope_value_as = { name = been_to_servant_merchant value = yes }
-		save_scope_value_as = { name = last_location value = flag:servant_merchant }
-
-		# Go back to slave market
-		custom_tooltip = carnx_decision_events.1011.return.tt
-		trigger_event = carnx_decision_events.1010
-
-		ai_chance = {
-			base = 0
-			modifier = {
-				carnx_1010_ai_will_buy_slave_trigger = {
-					MERCHANT = scope:servant_merchant
-					SLAVE = scope:first_servant
-				}
-				add = 100
-			}
-		}
-	}
-
-	# Buy second slave
-	option = {
-		name = carnx_decision_events.1015.b
-
-		trigger = {
-			carnx_1010_can_buy_slave_trigger = {
-				MERCHANT = scope:servant_merchant
-				SLAVE = scope:second_servant
-			}
-		}
-		show_as_unavailable = { always = yes }
-
-		# Actually buy the slave
-		carnx_1010_buy_slave_effect = {
-			MERCHANT = scope:servant_merchant
-			SLAVE = scope:second_servant
-		}
-
-		# Update scopes
-		save_scope_value_as = { name = bought_servant value = yes }
-		save_scope_value_as = { name = been_to_servant_merchant value = yes }
-		save_scope_value_as = { name = last_location value = flag:servant_merchant }
-
-		# Go back to slave market
-		custom_tooltip = carnx_decision_events.1011.return.tt
-		trigger_event = carnx_decision_events.1010
-
-		ai_chance = {
-			base = 0
-			modifier = {
-				carnx_1010_ai_will_buy_slave_trigger = {
-					MERCHANT = scope:servant_merchant
-					SLAVE = scope:second_servant
-				}
-				add = 100
-			}
-		}
-	}
-
-	# Do something else
-	option = {
-		name = carnx_decision_events.1015.c
-
-		# Update scopes
-		save_scope_value_as = { name = been_to_servant_merchant value = yes }
-		save_scope_value_as = { name = last_location value = flag:servant_merchant }
-
-		# Go back to slave market
-		custom_tooltip = carnx_decision_events.1011.return.tt
-		trigger_event = carnx_decision_events.1010
-
-		ai_chance = {
-			base = 50
-			modifier = {
-				has_trait = greedy
-				factor = 2
-			}
-		}
-	}
-
-	after = {
-		scope:first_servant = {
-			carnx_dress_effect = yes
-		}
-		scope:second_servant = {
+		scope:second_merchant_slave = {
 			carnx_dress_effect = yes
 		}
 	}
