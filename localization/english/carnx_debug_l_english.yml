@@ -149,6 +149,7 @@
 
  carnx_debug_msg_debug_character: "$carnx_debug_prefix$: Debug character"
 
+ carnx_debug_msg_checking_slaves: "[GetCurrentDate.GetStringShort]: Checking slaves"
  carnx_debug_msg_invalid_slave_detected: "$carnx_debug_prefix$: Invalid slave detected"
  carnx_debug_msg_slave_owning_slaves_detected: "$carnx_debug_prefix$: Slave owning slaves detected"
 

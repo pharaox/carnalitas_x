@@ -102,6 +102,7 @@ carnx_get_merchant_effect = {
 		carnx_create_merchant_character_effect = { LOCATION = $LOCATION$ }
 		scope:new_character = {
 			carnx_debug_log_effect = { MSG = carnx_debug_msg_creating_merchant }
+			set_variable = { name = last_visited_ruler value = dummy_female days = 3650 } # Prevent pruning
 			save_scope_as = $MERCHANT$
 		}
 	}
@@ -140,6 +141,7 @@ carnx_get_slaves_effect = {
 		}
 		scope:new_character = {
 			carnx_debug_log_effect = { MSG = carnx_debug_msg_creating_slave }
+			set_variable = { name = last_visited_ruler value = dummy_female days = 3650 } # Prevent pruning
 			add_to_temporary_list = slaves
 		}
 	}

@@ -12,3 +12,14 @@
 		carnx_is_slave_owner_trigger = no
 	}
 }
+
+is_available = {
+	is_travelling = no
+	is_available_allow_travelling = yes
+
+	# CSR: Prevent pool slaves from being selected in events
+	trigger_if = {
+		limit = { is_pool_character = yes }
+		carnx_is_slave_trigger = no
+	}
+}

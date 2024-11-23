@@ -1982,6 +1982,7 @@ carnx_inherit_slave_effect = {
 		limit = {
 			exists = primary_heir
 			primary_heir = {
+				is_alive = yes
 				carnx_can_be_slave_owner_trigger = yes
 			}
 		}
@@ -2043,8 +2044,10 @@ carnx_return_slave_to_owner_effect = {
 			limit = {
 				NOT = { location = scope:owner.location }
 				is_imprisoned = no
+				is_travelling = no
 				scope:owner = {
 					is_imprisoned = no
+					is_travelling = no
 				}
 			}
 			# If both are pool characters but slave is at a different location, move slave to owner's location

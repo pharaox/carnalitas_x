@@ -339,8 +339,9 @@ carnx_yearly_global_pulse = {
 		debug_only = yes
 	}
 	effect = {
+		carnx_debug_log_effect = { MSG = carnx_debug_msg_checking_slaves }
 		every_living_character = {
-			limit = { has_trait = slave }
+			limit = { carnx_is_slave_trigger = yes }
 			if = {
 				limit = { carnx_is_valid_slave_trigger = no }
 				carnx_debug_log_effect = { MSG = carnx_debug_msg_invalid_slave_detected }
