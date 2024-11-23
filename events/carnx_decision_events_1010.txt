@@ -518,6 +518,9 @@ carnx_decision_events.1011 = {
 				triggered_desc = {
 					desc = carnx_decision_events.1011.desc_returned_02
 				}
+				triggered_desc = {
+					desc = carnx_decision_events.1011.desc_returned_03
+				}
 			}
 		}
 	}

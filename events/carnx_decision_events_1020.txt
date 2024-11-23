@@ -139,9 +139,9 @@ carnx_decision_events.1020 = {
 			triggered_desc = {
 				trigger = {
 					NOT = { exists = scope:been_to_slave_trader }
-					scope:visiting_location = { vls_has_city_like_holding_trigger = yes }
+					scope:visiting_location.carnx_num_merchants_value = 3
 				}
-				desc = carnx_decision_events.1020.desc_intro_posh_stalls
+				desc = carnx_decision_events.1020.desc_intro_many_merchants
 			}
 			random_valid = {
 				triggered_desc = {
