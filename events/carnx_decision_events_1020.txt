@@ -114,7 +114,7 @@ scripted_effect carnx_1020_remove_bid_price_multiplier_effect = {
 # Sets scopes:
 # * slave_trader - Merchant
 # * first_slave, second_slave, third_slave - slaves to sell
-# * outraged_partner - Visiting partner if better stewardship than root
+# * outraged_partner - Visiting partner if outraged
 # * recurring_slave_trader - Merchant if already visited before
 # * attempted_slave_haggle - Set to flag:success if a haggle was a success, flag:failure if not
 # * been_to_slave_trader - Set to yes (to specify that any of the slave_trader events has already been triggered)
@@ -365,16 +365,23 @@ carnx_decision_events.1020 = {
 	}
 
 	immediate = {
-		# If visiting partner is better at stewardship, make them outraged
+		# If visiting partner is compassionate or zealous, make them outraged
 		if = {
 			limit = {
 				NOT = { exists = scope:outraged_partner }
 				scope:visiting_partner ?= {
-					stewardship > root.stewardship
-					stewardship >= average_skill_rating
+					OR = {
+						ai_compassion > 0
+						AND = {
+							carnx_is_slavery_never_accepted_trigger = yes
+							ai_zeal > 0
+						}
+					}
 				}
 			}
-			save_scope_as = outraged_partner
+			scope:visiting_partner = {
+				save_scope_as = outraged_partner
+			}
 		}
 
 		# Find slave trader
@@ -523,33 +530,17 @@ carnx_decision_events.1020 = {
 		scope:third_slave ?= {
 			carnx_1020_set_price_variables_effect = { MERCHANT = scope:slave_trader }
 		}
-
-		# Determine slave outraged partner wants to sell
-		if = {
-			limit = { exists = scope:outraged_partner }
-			random_list = {
-				50 = {
-					scope:first_slave = { save_scope_as = outraged_partner_slave }
-				}
-				50 = {
-					trigger = { exists = scope:second_slave }
-					scope:second_slave = { save_scope_as = outraged_partner_slave }
-				}
-				50 = {
-					trigger = { exists = scope:third_slave }
-					scope:third_slave = { save_scope_as = outraged_partner_slave }
-				}
-			}
-			scope:outraged_partner_slave = {
-				set_variable = { name = carnx_bid_price_multiplier value = 1.2 }
-			}
-		}
 	}
 
 	# Proceed to sell screen
 	option = {
 		name = carnx_decision_events.1020.a
 		custom_tooltip = carnx_decision_events.1020.a.tt
+
+		trigger = {
+			NOT = { has_trait = carnx_liberator }
+		}
+		show_as_unavailable = { always = yes }
 
 		# Show default slave prices
 		custom_tooltip = carnx_decision_events.1020.a.first_slave.tt
@@ -602,7 +593,9 @@ carnx_decision_events.1020 = {
 				text = carnx_decision_events.1020.b.cooldown.tt
 				NOT = { has_variable = 1020_has_haggled_recently }
 			}
+			NOT = { has_trait = carnx_liberator }
 		}
+		show_as_unavailable = { always = yes }
 
 		carnx_debug_log_effect = { MSG = carnx_debug_msg_attempting_slave_haggle }
 
@@ -700,32 +693,35 @@ carnx_decision_events.1020 = {
 		}
 	}
 
-	# Sell random slave at a higher price via outraged partner
+	# Refuse to take part
 	option = {
 		name = carnx_decision_events.1020.c
 
 		trigger = {
-			exists = scope:outraged_partner
+			NOT = { has_trait = carnx_slaver }
 		}
+		show_as_unavailable = { always = yes }
 
-		carnx_debug_log_effect = { MSG = carnx_debug_msg_selling_slave_via_outraged_partner }
-
-		# Sell random slave at higher price
+		# Add piety
 		if = {
-			limit = { scope:first_slave = scope:outraged_partner_slave }
-			custom_tooltip = carnx_decision_events.1020.c.first_slave
+			limit = { carnx_is_slavery_never_accepted_trigger = yes }
+			add_piety = miniscule_piety_gain
 		}
-		else_if = {
-			limit = { scope:second_slave ?= scope:outraged_partner_slave }
-			custom_tooltip = carnx_decision_events.1020.c.second_slave
+
+		# Stress
+		stress_impact = {
+			compassionate = miniscule_stress_impact_loss
+			callous = miniscule_stress_impact_gain
+			sadistic = miniscule_stress_impact_gain
 		}
-		else_if = {
-			limit = { scope:third_slave ?= scope:outraged_partner_slave }
-			custom_tooltip = carnx_decision_events.1020.c.third_slave
-		}
-		carnx_1020_sell_slave_effect = {
-			MERCHANT = scope:slave_trader
-			SLAVE = scope:outraged_partner_slave
+
+		# Opinion with outraged partner
+		scope:outraged_partner ?= {
+			add_opinion = {
+				target = root
+				modifier = respect_opinion
+				opinion = 20
+			}
 		}
 
 		# Cleanup variables and update scopes
@@ -734,9 +730,9 @@ carnx_decision_events.1020 = {
 		save_scope_value_as = { name = been_to_slave_trader value = yes }
 		save_scope_value_as = { name = last_location value = flag:slave_trader }
 
-		stress_impact = {
-			diligent = minor_stress_impact_gain
-			lazy = minor_stress_impact_loss
+		set_variable = {
+			name = carnx_1000_outraged_recently
+			days = visit_settlement_minimum_cooldown_days
 		}
 
 		# Go back to main square
@@ -745,20 +741,20 @@ carnx_decision_events.1020 = {
 
 		ai_chance = {
 			base = 0
+			ai_value_modifier = {
+				ai_compassion = 0.5
+			}
 			modifier = {
-				carnx_1020_ai_will_sell_slave_trigger = {
-					MERCHANT = scope:slave_trader
-					SLAVE = scope:outraged_partner_slave
+				OR = {
+					has_character_modifier = carnx_slavery_attitude_slaver_modifier
+					has_character_modifier = carnx_slavery_attitude_trader_modifier
+					has_character_modifier = carnx_slavery_attitude_employer_modifier
 				}
-				add = 200
+				add = -50
 			}
 			modifier = {
-				has_trait = diligent
-				factor = 0.5
-			}
-			modifier = {
-				has_trait = lazy
-				factor = 2
+				has_character_modifier = carnx_slavery_attitude_liberator_modifier
+				add = 50
 			}
 		}
 	}
@@ -786,7 +782,7 @@ carnx_decision_events.1020 = {
 # * visting_partner
 # * slave_trader - Merchant
 # * first_slave, second_slave, third_slave - slaves to sell
-# * outraged_partner - Visiting partner if better stewardship than root
+# * outraged_partner - Visiting partner if outraged
 # * attempted_slave_haggle - If set, use for loc and prices
 # Sets scopes:
 # * been_to_slave_trader - Set to yes (to specify that any of the slave_trader events has already been triggered)
@@ -967,10 +963,24 @@ carnx_decision_events.1021 = {
 	option = {
 		name = carnx_decision_events.1021.a
 
+		trigger = {
+			NOT = { has_trait = carnx_liberator }
+		}
+		show_as_unavailable = { always = yes }
+
 		# Actually sell the slave
 		carnx_1020_sell_slave_effect = {
 			MERCHANT = scope:slave_trader
 			SLAVE = scope:first_slave
+		}
+
+		# Opinion with outraged partner
+		scope:outraged_partner ?= {
+			add_opinion = {
+				target = root
+				modifier = respect_opinion
+				opinion = -20
+			}
 		}
 
 		# Cleanup variables and update scopes
@@ -1002,12 +1012,25 @@ carnx_decision_events.1021 = {
 
 		trigger = {
 			exists = scope:second_slave
+			NOT = { has_trait = carnx_liberator }
+		}
+		show_as_unavailable = {
+			exists = scope:second_slave
 		}
 
 		# Actually sell the slave
 		carnx_1020_sell_slave_effect = {
 			MERCHANT = scope:slave_trader
 			SLAVE = scope:second_slave
+		}
+
+		# Opinion with outraged partner
+		scope:outraged_partner ?= {
+			add_opinion = {
+				target = root
+				modifier = respect_opinion
+				opinion = -20
+			}
 		}
 
 		# Cleanup variables and update scopes
@@ -1039,12 +1062,25 @@ carnx_decision_events.1021 = {
 
 		trigger = {
 			exists = scope:third_slave
+			NOT = { has_trait = carnx_liberator }
+		}
+		show_as_unavailable = {
+			exists = scope:third_slave
 		}
 
 		# Actually sell the slave
 		carnx_1020_sell_slave_effect = {
 			MERCHANT = scope:slave_trader
 			SLAVE = scope:third_slave
+		}
+
+		# Opinion with outraged partner
+		scope:outraged_partner ?= {
+			add_opinion = {
+				target = root
+				modifier = respect_opinion
+				opinion = -20
+			}
 		}
 
 		# Cleanup variables and update scopes
@@ -1101,11 +1137,7 @@ carnx_decision_events.1021 = {
 		}
 
 		ai_chance = {
-			base = 50
-			modifier = {
-				has_trait = greedy
-				factor = 0.5
-			}
+			base = 1
 		}
 	}
 }

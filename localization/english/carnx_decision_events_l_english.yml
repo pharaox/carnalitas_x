@@ -12,26 +12,30 @@
 
  already_sold_slave.tt: "You have already sold a [slave|E] this visit"
 
+ carnx_decision_events.1000.outraged.tt: "You have recently refused to take part in the slave trade, try again on [GetCurrentDateWithDiff(GetVarTimeRemaining(THIS.Char.MakeScope, 'carnx_1000_outraged_recently'))]"
+
  # Visiting Location: the Slave Market
  carnx_decision_events.1010.t: "[visiting_location.GetBaronyNameExplicitlyNoTooltip]: the Slave Market"
 
  carnx_decision_events.1010.desc_returned_01: "The sun is high above the slave market as I return to a plethora of sounds, sights and smells."
- carnx_decision_events.1010.desc_returned_02: "A cloud is softening the light across the slave market, and I return to an aggressive smell, as I realize I strayed too close to a filthy slave pen on my way back."
+ carnx_decision_events.1010.desc_returned_02: "A cloud is softening the light across the slave market, as I return to its loud sounds and gloomy sights."
  carnx_decision_events.1010.desc_returned_from_slave_merchant_01: "Coming back from the last merchant, the other slave merchants and their henchmen are still in full swing pushing unfortunate slaves back and forth."
  carnx_decision_events.1010.desc_returned_from_slave_merchant_02: "I squint at the overwhelming brightness of the plaza as I step out of the last merchant's premises and into the plaza of the slave market."
- carnx_decision_events.1010.desc_01: "In [visiting_location.GetBaronyNameExplicitly]'s slave market there is only one merchant worth visiting — [first_slave_merchant.GetFirstName] in a small tent over by the tavern."
- carnx_decision_events.1010.desc_02: "In [visiting_location.GetBaronyNameExplicitly]'s slave market there are a few merchants worth visiting, among them [first_slave_merchant.GetFirstName] in a large tent over by the brothel, and [second_slave_merchant.GetFirstName] in a guarded enclosure."
- carnx_decision_events.1010.desc_03: "In [visiting_location.GetBaronyNameExplicitly]'s slave market there are many merchants worth visiting, among them [first_slave_merchant.GetFirstName] in a lavish tent, [second_slave_merchant.GetFirstName] in a heavily guarded enclosure, and [third_slave_merchant.GetFirstName] further up ahead."
- carnx_decision_events.1010.desc_outro_partner: "$ep3_laamp_decision_event.1060.desc_outro_partner$"
+ carnx_decision_events.1010.desc_01: "In [visiting_location.GetBaronyNameExplicitly]'s slave market there is only one merchant worth visiting — [first_slave_merchant.GetFirstName] in a small tent over by the tavern. There seem to be only a few customers, and even fewer chained and labeled slaves on sale."
+ carnx_decision_events.1010.desc_02: "In [visiting_location.GetBaronyNameExplicitly]'s slave market there are a few merchants worth visiting, among them [first_slave_merchant.GetFirstName] in a large tent over by the brothel, and [second_slave_merchant.GetFirstName] in a guarded enclosure. Some auctioneers loudly extoll the virtues of the slaves on sale to the gathered crowd."
+ carnx_decision_events.1010.desc_03: "In [visiting_location.GetBaronyNameExplicitly]'s slave market there are many merchants worth visiting, among them [first_slave_merchant.GetFirstName] in a lavish tent, [second_slave_merchant.GetFirstName] in a heavily guarded enclosure, and [third_slave_merchant.GetFirstName] further up ahead. The plaza is swarming with people haggling over slaves of all kinds."
+ carnx_decision_events.1010.desc_outro_outraged_partner: "\n\nSuddenly, I can hear my [ROOT.Char.Custom2('RelationToMe', SCOPE.sC('visiting_partner'))], [visiting_partner.GetFirstNamePossessive], outraged voice in my ear: "Do you really need to dabble in this disgusting trade? #EMP Let's get out of here!#"
+ carnx_decision_events.1010.desc_outro_partner: "\n\n[visiting_partner.GetFirstName] follows my lead, leisurely wandering down the street and commenting on the slaves on sale. [visiting_partner.GetSheHe|U] looks at me as I pause, trying to determine where to go next."
  carnx_decision_events.1010.desc_outro: "$ep3_laamp_decision_event.1040.desc_outro$"
+ carnx_decision_events.1010.desc_outro_return_outraged_partner_finished: "\n\n[visiting_partner.GetFirstName], who's starting to look a bit weary, says with an angry voice: "Surely we are done here now, [visiting_partner.Custom2('RelationToMe', ROOT.Char)]?""
  carnx_decision_events.1010.desc_outro_return_partner_finished: "$ep3_laamp_decision_event.1040.desc_outro_return_partner_finished$"
  carnx_decision_events.1010.desc_outro_return_finished: "\n\nMy feet sore and stomach growling, I find myself looking around for the fastest way back to the main square."
+ carnx_decision_events.1010.desc_outro_return_outraged_partner_01: "\n\n[visiting_partner.GetFirstName], still outraged, is briskly moving over the plaza in an effort to keep an even pace with me. [visiting_partner.GetSheHe|U] catches up as I pause for a brief second, considering what to do next."
+ carnx_decision_events.1010.desc_outro_return_outraged_partner_02: "\n\n[visiting_partner.GetFirstName] deliberately bumps into a man who is herding a group of slaves across the plaza, their feet shacked. Absentmindedly observing them, I ponder what to do next."
  carnx_decision_events.1010.desc_outro_return_partner_01: "$ep3_laamp_decision_event.1060.desc_outro_return_partner_01$"
- carnx_decision_events.1010.desc_outro_return_partner_02: "$ep3_laamp_decision_event.1060.desc_outro_return_partner_02$"
- carnx_decision_events.1010.desc_outro_return_partner_03: "$ep3_laamp_decision_event.1060.desc_outro_return_partner_03$"
+ carnx_decision_events.1010.desc_outro_return_partner_02: "\n\n[visiting_partner.GetFirstName] steps aside to avoid bumping into a man who is herding a group of slaves across the plaza, their feet shacked. Absentmindedly observing them, I ponder what to do next."
  carnx_decision_events.1010.desc_outro_return_01: "$ep3_laamp_decision_event.1060.desc_outro_return_01$"
  carnx_decision_events.1010.desc_outro_return_02: "\n\nA procession of slaves for sale is passing through the marketplace, headed by their owner and accompanied by armed guards. I casually observe them while considering my next move."
- carnx_decision_events.1010.desc_outro_return_03: "\n\nA man is herding a group of slaves across the plaza, their feet shacked. I peer at them as I carefully consider my next order of business."
 
  carnx_decision_events.1010.a: "Let's see [first_slave_merchant.GetFirstNamePossessive] slaves"
  carnx_decision_events.1010.a_second: "[first_slave_merchant.GetFirstNamePossessive] slaves looked intriguing."
@@ -45,10 +49,11 @@
  carnx_decision_events.1010.c_second: "I should visit [third_slave_merchant.GetFirstName] again."
  carnx_decision_events.1010.c.tt: "Go to [third_slave_merchant.GetFirstNamePossessive] booth"
  carnx_decision_events.1010.c.cooldown.tt: "$carnx_decision_events.1010.a.cooldown.tt$"
- carnx_decision_events.1010.d: "$ep3_laamp_decision_event.1010.e$"
- carnx_decision_events.1010.d_second: "$ep3_laamp_decision_event.1040.e_second$"
+ carnx_decision_events.1010.d: "I refuse to take part in this abominable trade!"
+ carnx_decision_events.1010.e: "$ep3_laamp_decision_event.1010.e$"
+ carnx_decision_events.1010.e_second: "$ep3_laamp_decision_event.1040.e_second$"
 
- # Visiting Location: the Sex Slave Merchant
+ # Visiting Location: the Slave Merchant
  carnx_decision_events.1011.t: "[visiting_location.GetBaronyNameExplicitlyNoTooltip]: the Slave Merchant"
 
  carnx_decision_events.1011.desc_intro: "Upon entering, I see a line of slaves, colorfully dressed and bejeweled, and arranged according to their gender and age. Slave merchant [slave_merchant.GetFirstName] is standing in front of them, idly chatting with a nearby servant. A few more servants, armed with swords and spears, stand guard on each side."
@@ -81,8 +86,8 @@
  carnx_decision_events.1020.desc_two_slaves_new_02: "\n\n[slave_trader.GetSheHe|U] approaches [first_slave.GetFirstName], carefully examining the [first_slave.GetWomanMan], then [slave_trader.GetSheHe] closely inspects [second_slave.GetFirstName], seemingly displeased with something."
  carnx_decision_events.1020.desc_three_slaves_new_01: "\n\nExamining my slaves, [slave_trader.GetSheHe] scrutinizes every detail — be it the teeth of [first_slave.GetFirstName], [second_slave.GetFirstName]'s muscles, or [third_slave.GetFirstName]'s rear parts."
  carnx_decision_events.1020.desc_three_slaves_new_02: "\n\n[slave_trader.GetSheHe|U] has, before I know it, thoroughly inspected [first_slave.GetFirstName] and [second_slave.GetFirstName]. [slave_trader.GetHerHis|U] hands move across [third_slave.GetFirstName]'s body, looking for flaws."
- carnx_decision_events.1020.desc_outraged_partner_new: "$ep3_laamp_decision_event.1020.desc_outraged_partner_new$"
- carnx_decision_events.1020.desc_outraged_partner_returned: "\n\nOut of the corner of my eye, I notice [visiting_partner.GetFirstName], still seething at [slave_trader.GetFirstNamePossessiveNoTooltip] cheap offerings."
+ carnx_decision_events.1020.desc_outraged_partner_new: "\n\nSuddenly, I can hear my [ROOT.Char.Custom2('RelationToMe', SCOPE.sC('visiting_partner'))], [visiting_partner.GetFirstNamePossessive], outraged voice in my ear: "Do you really want to sell our comrades to this scoundrel? #EMP Let's get out of here!#"
+ carnx_decision_events.1020.desc_outraged_partner_returned: "\n\nOut of the corner of my eye, I notice [visiting_partner.GetFirstName], still seething at my callousness."
 
  carnx_decision_events.1020.a: "$ep3_laamp_decision_event.1020.a$"
  carnx_decision_events.1020.a.tt: "You get to choose which slave to sell"
@@ -99,10 +104,7 @@
  carnx_decision_events.1020.b.failure.second_slave.tt: "[second_slave.GetFirstName]'s #N decreased#! offer: [gold_i] [second_slave.MakeScope.Var('1020_decreased_slave_price').GetValue|0]"
  carnx_decision_events.1020.b.failure.third_slave.tt: "[third_slave.GetFirstName]'s #N decreased#! offer: [gold_i] [third_slave.MakeScope.Var('1020_decreased_slave_price').GetValue|0]"
  carnx_decision_events.1020.b.cooldown.tt: "$ep3_laamp_decision_event.1020.b.cooldown.tt$"
- carnx_decision_events.1020.c: "$ep3_laamp_decision_event.1020.c$"
- carnx_decision_events.1020.c.first_slave: "[visiting_partner.GetFirstName] sells the [first_slave.GetFirstName]"
- carnx_decision_events.1020.c.second_slave: "[visiting_partner.GetFirstName] sells the [second_slave.GetFirstName]"
- carnx_decision_events.1020.c.third_slave: "[visiting_partner.GetFirstName] sells the [third_slave.GetFirstName]"
+ carnx_decision_events.1020.c: "$carnx_decision_events.1010.d$"
  carnx_decision_events.1020.d: "$ep3_laamp_decision_event.1010.e$"
 
  # Visiting Location: Parting Time

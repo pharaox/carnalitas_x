@@ -26,6 +26,7 @@ echo "- Buy Foreign Slaves option a chosen: $(grep -a "Buy Foreign Slaves option
 echo "- Buy Foreign Slaves option b chosen: $(grep -a "Buy Foreign Slaves option b chosen" debug.log | wc -l)"
 echo "- Buy Foreign Slaves option c chosen: $(grep -a "Buy Foreign Slaves option c chosen" debug.log | wc -l)"
 echo "- Buy Foreign Slaves option d chosen: $(grep -a "Buy Foreign Slaves option d chosen" debug.log | wc -l)"
+echo "- Buy Foreign Slaves option e chosen: $(grep -a "Buy Foreign Slaves option e chosen" debug.log | wc -l)"
 echo "Runaway Slave event fired: $(grep -a "Runaway Slave event fired" debug.log | wc -l)"
 echo "- Runaway Slave option a chosen: $(grep -a "Runaway Slave option a chosen" debug.log | wc -l)"
 echo "- Runaway Slave option b chosen: $(grep -a "Runaway Slave option b chosen" debug.log | wc -l)"

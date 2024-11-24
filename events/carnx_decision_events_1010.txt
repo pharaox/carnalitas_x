@@ -55,6 +55,7 @@ scripted_effect carnx_1010_finish_slave_market_effect = {
 # * bought_from_slave_merchants - List of slave merchants from whom a slave has been bought, use to disable
 # Sets scopes:
 # * first_slave_merchant, second_slave_merchant, third_slave_merchant - Merchants
+# * outraged_partner - Visiting partner if outraged
 # * been_to_slave_market - Set to yes (to specify that the event has already been triggered)
 # * finished_slave_market - Set to yes if slaves of every type have been bought
 # * last_location - Set to flag:slave_market
@@ -125,6 +126,13 @@ carnx_decision_events.1010 = {
 		first_valid = {
 			triggered_desc = {
 				trigger = {
+					exists = scope:outraged_partner
+					NOT = { exists = scope:been_to_slave_market }
+				}
+				desc = carnx_decision_events.1010.desc_outro_outraged_partner
+			}
+			triggered_desc = {
+				trigger = {
 					exists = scope:visiting_partner
 					NOT = { exists = scope:been_to_slave_market }
 				}
@@ -135,6 +143,13 @@ carnx_decision_events.1010 = {
 					NOT = { exists = scope:been_to_slave_market }
 				}
 				desc = carnx_decision_events.1010.desc_outro
+			}
+			triggered_desc = {
+				trigger = {
+					exists = scope:outraged_partner
+					carnx_1010_done_with_slave_market_trigger = yes
+				}
+				desc = carnx_decision_events.1010.desc_outro_return_outraged_partner_finished
 			}
 			triggered_desc = {
 				trigger = {
@@ -152,6 +167,20 @@ carnx_decision_events.1010 = {
 			random_valid = {
 				triggered_desc = {
 					trigger = {
+						exists = scope:outraged_partner
+					}
+					desc = carnx_decision_events.1010.desc_outro_return_outraged_partner_01
+				}
+				triggered_desc = {
+					trigger = {
+						exists = scope:outraged_partner
+					}
+					desc = carnx_decision_events.1010.desc_outro_return_outraged_partner_02
+				}
+			}
+			random_valid = {
+				triggered_desc = {
+					trigger = {
 						exists = scope:visiting_partner
 					}
 					desc = carnx_decision_events.1010.desc_outro_return_partner_01
@@ -162,12 +191,6 @@ carnx_decision_events.1010 = {
 					}
 					desc = carnx_decision_events.1010.desc_outro_return_partner_02
 				}
-				triggered_desc = {
-					trigger = {
-						exists = scope:visiting_partner
-					}
-					desc = carnx_decision_events.1010.desc_outro_return_partner_03
-				}
 			}
 			random_valid = {
 				triggered_desc = {
@@ -175,9 +198,6 @@ carnx_decision_events.1010 = {
 				}
 				triggered_desc = {
 					desc = carnx_decision_events.1010.desc_outro_return_02
-				}
-				triggered_desc = {
-					desc = carnx_decision_events.1010.desc_outro_return_03
 				}
 			}
 		}
@@ -190,6 +210,10 @@ carnx_decision_events.1010 = {
 	left_portrait = {
 		trigger = { exists = scope:visiting_partner }
 		character = scope:visiting_partner
+		triggered_animation = {
+			trigger = { exists = scope:outraged_partner }
+			animation = rage
+		}
 		triggered_animation = {
 			trigger = { carnx_1010_done_with_slave_market_trigger = yes }
 			animation = boredom
@@ -232,6 +256,25 @@ carnx_decision_events.1010 = {
 	}
 
 	immediate = {
+		# If visiting partner is compassionate or zealous, make them outraged
+		if = {
+			limit = {
+				NOT = { exists = scope:outraged_partner }
+				scope:visiting_partner ?= {
+					OR = {
+						ai_compassion > 0
+						AND = {
+							carnx_is_slavery_never_accepted_trigger = yes
+							ai_zeal > 0
+						}
+					}
+				}
+			}
+			scope:visiting_partner = {
+				save_scope_as = outraged_partner
+			}
+		}
+
 		# Find merchants
 		if = {
 			limit = { list_size:slave_merchants = 0 }
@@ -441,6 +484,71 @@ carnx_decision_events.1010 = {
 		}
 	}
 
+	# Refuse to take part
+	option = {
+		name = carnx_decision_events.1010.d
+
+		trigger = {
+			NOT = { has_trait = carnx_slaver }
+		}
+		show_as_unavailable = { always = yes }
+
+		# Add piety
+		if = {
+			limit = { carnx_is_slavery_never_accepted_trigger = yes }
+			add_piety = miniscule_piety_gain
+		}
+
+		# Stress
+		stress_impact = {
+			compassionate = miniscule_stress_impact_loss
+			callous = miniscule_stress_impact_gain
+			sadistic = miniscule_stress_impact_gain
+		}
+
+		# Opinion with outraged partner
+		scope:outraged_partner ?= {
+			add_opinion = {
+				target = root
+				modifier = respect_opinion
+				opinion = 20
+			}
+		}
+
+		# Update scopes
+		carnx_1010_finish_slave_market_effect = yes
+		save_scope_value_as = { name = been_to_slave_market value = yes }
+		save_scope_value_as = { name = last_location value = flag:slave_market }
+
+		set_variable = {
+			name = carnx_1000_outraged_recently
+			days = visit_settlement_minimum_cooldown_days
+		}
+
+		# Go back to main square
+		custom_tooltip = ep3_laamp_decision_event.return.tt
+		trigger_event = carnx_decision_events.1000
+
+		ai_chance = {
+			base = 0
+			ai_value_modifier = {
+				ai_compassion = 0.5
+			}
+			modifier = {
+				OR = {
+					has_character_modifier = carnx_slavery_attitude_slaver_modifier
+					has_character_modifier = carnx_slavery_attitude_trader_modifier
+					has_character_modifier = carnx_slavery_attitude_employer_modifier
+				}
+				add = -50
+			}
+			modifier = {
+				has_character_modifier = carnx_slavery_attitude_liberator_modifier
+				add = 50
+			}
+		}
+	}
+
 	# Do something else
 	option = {
 		name = {
@@ -448,9 +556,9 @@ carnx_decision_events.1010 = {
 				first_valid = {
 					triggered_desc = {
 						trigger = { carnx_1010_done_with_slave_market_trigger = yes }
-						desc = carnx_decision_events.1010.d_second
+						desc = carnx_decision_events.1010.e_second
 					}
-					desc = carnx_decision_events.1010.d
+					desc = carnx_decision_events.1010.e
 				}
 			}
 		}
@@ -468,10 +576,6 @@ carnx_decision_events.1010 = {
 
 		ai_chance = {
 			base = 50
-			modifier = {
-				has_trait = greedy
-				factor = 2
-			}
 		}
 	}
 }
@@ -483,6 +587,7 @@ carnx_decision_events.1010 = {
 # * slave_merchant - The slave merchant
 # Sets scopes:
 # * first_merchant_slave, second_merchant_slave - Slaves for sale
+# * outraged_partner - Visiting partner if outraged
 # * been_to_slave_merchants - List of visited slave merchants (to specify that the event has already been triggered)
 # * bought_from_slave_merchants - List of slave merchants from whom a slave has been bought
 # * last_location - Set to flag:slave_merchant
@@ -603,6 +708,7 @@ carnx_decision_events.1011 = {
 				MERCHANT = scope:slave_merchant
 				SLAVE = scope:first_merchant_slave
 			}
+			NOT = { has_trait = carnx_liberator }
 		}
 		show_as_unavailable = { always = yes }
 
@@ -610,6 +716,15 @@ carnx_decision_events.1011 = {
 		carnx_1010_buy_slave_effect = {
 			MERCHANT = scope:slave_merchant
 			SLAVE = scope:first_merchant_slave
+		}
+
+		# Opinion with outraged partner
+		scope:outraged_partner ?= {
+			add_opinion = {
+				target = root
+				modifier = respect_opinion
+				opinion = -20
+			}
 		}
 
 		# Update scopes
@@ -644,6 +759,7 @@ carnx_decision_events.1011 = {
 				MERCHANT = scope:slave_merchant
 				SLAVE = scope:second_merchant_slave
 			}
+			NOT = { has_trait = carnx_liberator }
 		}
 		show_as_unavailable = { always = yes }
 
@@ -651,6 +767,15 @@ carnx_decision_events.1011 = {
 		carnx_1010_buy_slave_effect = {
 			MERCHANT = scope:slave_merchant
 			SLAVE = scope:second_merchant_slave
+		}
+
+		# Opinion with outraged partner
+		scope:outraged_partner ?= {
+			add_opinion = {
+				target = root
+				modifier = respect_opinion
+				opinion = -20
+			}
 		}
 
 		# Update scopes
@@ -691,11 +816,7 @@ carnx_decision_events.1011 = {
 		trigger_event = carnx_decision_events.1010
 
 		ai_chance = {
-			base = 50
-			modifier = {
-				has_trait = greedy
-				factor = 2
-			}
+			base = 1
 		}
 	}
 

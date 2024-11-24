@@ -7,6 +7,7 @@ scripted_trigger carnx_slave_0001_valid_liege_trigger = {
 	NOR = {
 		carnx_is_slavery_always_crime_trigger = yes
 		carnx_is_slavery_always_forbidden_trigger = { ACTION = flag:buy }
+		has_variable = carnx_1000_outraged_recently
 	}
 	exists = capital_province
 }
@@ -109,14 +110,12 @@ carnx_slave.0001 = {
 				}
 				if = {
 					limit = {
-						OR = {
-							is_ai = no
-							scope:seller = {
-								is_character_interaction_potentially_accepted = {
-									interaction = carn_sell_slave_interaction
-									recipient = root
-									secondary_recipient = scope:slave
-								}
+						is_ai = yes
+						scope:seller = {
+							is_character_interaction_potentially_accepted = {
+								interaction = carn_sell_slave_interaction
+								recipient = root
+								secondary_recipient = scope:slave
 							}
 						}
 					}
@@ -146,14 +145,12 @@ carnx_slave.0001 = {
 				}
 				if = {
 					limit = {
-						OR = {
-							is_ai = no
-							scope:seller = {
-								is_character_interaction_potentially_accepted = {
-									interaction = carn_sell_slave_interaction
-									recipient = root
-									secondary_recipient = scope:slave
-								}
+						is_ai = yes
+						scope:seller = {
+							is_character_interaction_potentially_accepted = {
+								interaction = carn_sell_slave_interaction
+								recipient = root
+								secondary_recipient = scope:slave
 							}
 						}
 					}
@@ -188,9 +185,9 @@ carnx_slave.0001 = {
 
 		trigger = {
 			exists = scope:valuable_option
-			exists = scope:valuable_option_ai_accept_value
 			short_term_gold >= scope:valuable_option_price
 			is_playable_character = yes # Extra check to make sure they haven't lost their status
+			NOT = { has_trait = carnx_liberator }
 		}
 		show_as_unavailable = { exists = scope:valuable_option }
 
@@ -204,7 +201,11 @@ carnx_slave.0001 = {
 		}
 
 		ai_chance = {
-			base = 50
+			base = 0
+			modifier = {
+				exists = scope:valuable_option_ai_accept_value
+				add = 100
+			}
 		}
 	}
 
@@ -214,9 +215,9 @@ carnx_slave.0001 = {
 
 		trigger = {
 			exists = scope:common_option
-			exists = scope:common_option_ai_accept_value
 			short_term_gold >= scope:common_option_price
 			is_playable_character = yes # Extra check to make sure they haven't lost their status
+			NOT = { has_trait = carnx_liberator }
 		}
 		show_as_unavailable = { exists = scope:common_option }
 
@@ -230,7 +231,11 @@ carnx_slave.0001 = {
 		}
 
 		ai_chance = {
-			base = 50
+			base = 0
+			modifier = {
+				exists = scope:common_option_ai_accept_value
+				add = 100
+			}
 		}
 	}
 
@@ -244,6 +249,7 @@ carnx_slave.0001 = {
 			exists = scope:common_option
 			short_term_gold >= scope:both_price
 			is_playable_character = yes # Extra check to make sure they haven't lost their status
+			NOT = { has_trait = carnx_liberator }
 		}
 		show_as_unavailable = {
 			exists = scope:valuable_option
@@ -278,6 +284,66 @@ carnx_slave.0001 = {
 
 		ai_chance = {
 			base = 1
+		}
+	}
+
+	# Refuse to take part
+	option = {
+		name = carnx_slave.0001.e
+
+		trigger = {
+			OR = {
+				exists = scope:valuable_option
+				exists = scope:common_option
+			}
+			NOT = { has_trait = carnx_slaver }
+		}
+		show_as_unavailable = {
+			OR = {
+				exists = scope:valuable_option
+				exists = scope:common_option
+			}
+		}
+
+		# Add piety
+		if = {
+			limit = { carnx_is_slavery_never_accepted_trigger = yes }
+			add_piety = miniscule_piety_gain
+		}
+
+		# Stress
+		stress_impact = {
+			compassionate = miniscule_stress_impact_loss
+			callous = miniscule_stress_impact_gain
+			sadistic = miniscule_stress_impact_gain
+		}
+
+		set_variable = {
+			name = carnx_1000_outraged_recently
+			days = 90 # visit_settlement_minimum_cooldown_days
+		}
+
+		hidden_effect = {
+			carnx_debug_log_effect = { MSG = carnx_debug_msg_slave_0001_option_e_chosen }
+		}
+
+		ai_chance = {
+			base = 0
+			ai_value_modifier = {
+				ai_compassion = 0.5
+			}
+			modifier = {
+				OR = {
+					has_character_modifier = carnx_slavery_attitude_slaver_modifier
+					has_character_modifier = carnx_slavery_attitude_trader_modifier
+					has_character_modifier = carnx_slavery_attitude_employer_modifier
+				}
+				add = -50
+			}
+			modifier = {
+				has_character_modifier = carnx_slavery_attitude_liberator_modifier
+				add = 50
+			}
 		}
 	}
 

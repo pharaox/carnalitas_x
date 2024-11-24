@@ -134,6 +134,7 @@
  carnx_debug_msg_slave_0001_option_b_chosen: "$carnx_debug_prefix$: Buy Foreign Slaves option b chosen"
  carnx_debug_msg_slave_0001_option_c_chosen: "$carnx_debug_prefix$: Buy Foreign Slaves option c chosen"
  carnx_debug_msg_slave_0001_option_d_chosen: "$carnx_debug_prefix$: Buy Foreign Slaves option d chosen"
+ carnx_debug_msg_slave_0001_option_e_chosen: "$carnx_debug_prefix$: Buy Foreign Slaves option e chosen"
 
  carnx_debug_msg_slave_0003_fired: "$carnx_debug_prefix$: Runaway Slave event fired"
  carnx_debug_msg_slave_0003_option_a_chosen: "$carnx_debug_prefix$: Runaway Slave option a chosen"
@@ -156,7 +157,6 @@
  carnx_debug_msg_visiting_holding: "$carnx_debug_prefix$: Visiting holding, location: $carnx_location$, holding type: $carnx_holding_type$"
  carnx_debug_msg_visiting_holding_to_trade_slaves: "$carnx_debug_prefix$: Visiting holding to trade slaves, location: $carnx_location$, holding type: $carnx_holding_type$"
  carnx_debug_msg_attempting_slave_haggle: "$carnx_debug_prefix$: Attempting slave haggle"
- carnx_debug_msg_selling_slave_via_outraged_partner: "$carnx_debug_prefix$: Selling slave via outraged partner"
 
  carnx_debug_msg_cleaning_up_after_ep3_laamp_decision_1000: "$carnx_debug_prefix$: Cleaning up after ep3_laamp_decision_event.1000"
 

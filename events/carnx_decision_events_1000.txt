@@ -916,10 +916,16 @@ carnx_decision_events.1000 = {
 				text = tapped_out.tt
 				NOT = { exists = scope:finished_slave_market }
 			}
+			custom_tooltip = {
+				text = carnx_decision_events.1000.outraged.tt
+				NOT = { has_variable = carnx_1000_outraged_recently }
+			}
 		}
-
 		show_as_unavailable = {
-			exists = scope:finished_slave_market
+			is_target_in_variable_list = {
+				name = carnx_event_options
+				target = flag:slave_market_option
+			}
 			carnx_1000_finished_trigger = no
 		}
 
@@ -962,9 +968,16 @@ carnx_decision_events.1000 = {
 				text = already_sold_slave.tt
 				NOT = { exists = scope:finished_slave_trader }
 			}
+			custom_tooltip = {
+				text = carnx_decision_events.1000.outraged.tt
+				NOT = { has_variable = carnx_1000_outraged_recently }
+			}
 		}
 		show_as_unavailable = {
-			exists = scope:finished_slave_trader
+			is_target_in_variable_list = {
+				name = carnx_event_options
+				target = flag:slave_trader_option
+			}
 			carnx_1000_finished_trigger = no
 		}
 
