@@ -264,8 +264,7 @@ carnx_decision_events.1020 = {
 		}
 	}
 
-	theme = stewardship
-	override_background = { reference = ep2_village_festival }
+	theme = carnx_slave_market
 
 	# Visiting partner
 	left_portrait = {
@@ -867,8 +866,7 @@ carnx_decision_events.1021 = {
 		}
 	}
 
-	theme = stewardship
-	override_background = { reference = ep2_village_festival }
+	theme = carnx_slave_market
 
 	# Visiting partner
 	left_portrait = {

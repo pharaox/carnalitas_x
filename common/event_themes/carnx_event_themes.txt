@@ -1,0 +1,14 @@
+﻿carnx_slave_market = {
+	icon = {
+		reference = "gfx/interface/icons/character_interactions/carnx_chain.dds"
+	}
+	header_background = {
+		reference = "gfx/interface/window_event/event_header_green.dds"
+	}
+	sound = {
+		reference = "event:/SFX/Events/Themes/sfx_event_theme_type_stewardship"
+	}
+	background = {
+		reference = market
+	}
+}

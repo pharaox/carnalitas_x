@@ -203,8 +203,7 @@ carnx_decision_events.1010 = {
 		}
 	}
 
-	theme = stewardship
-	override_background = { reference = market }
+	theme = carnx_slave_market
 
 	# Root and their partner
 	left_portrait = {
@@ -630,9 +629,7 @@ carnx_decision_events.1011 = {
 		}
 	}
 
-	theme = stewardship
-	override_sound = { reference = "event:/SFX/Events/Themes/sfx_event_theme_type_generic" }
-	override_background = { reference = market }
+	theme = carnx_slave_market
 
 	left_portrait = {
 		trigger = { exists = scope:first_merchant_slave }
@@ -651,9 +648,6 @@ carnx_decision_events.1011 = {
 	}
 
 	immediate = {
-		# Override background
-		location.province_owner = { save_scope_as = bg_override_char }
-
 		# Find template character
 		carnx_get_template_character_effect = {
 			CHARACTER = scope:county_holder
