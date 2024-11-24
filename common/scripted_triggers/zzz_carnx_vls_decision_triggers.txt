@@ -1,5 +1,6 @@
 ﻿vls_decision_slot_2_is_shown_trigger = {
 	NOT = { has_game_rule = carn_slavery_content_disabled }
+	has_game_rule = carnx_improved_vls_decision_enabled
 }
 
 vls_decision_slot_2_is_valid_trigger = {

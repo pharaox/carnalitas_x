@@ -1,4 +1,40 @@
-﻿carnx_valid_trading_partners = {
+﻿carnx_improved_vls_decision = {
+	categories = {
+		carnx_carnalitas_x
+	}
+
+	default = carnx_improved_vls_decision_enabled
+
+	carnx_improved_vls_decision_disabled = {
+		flag = GG_can_change_rule
+	}
+
+	carnx_improved_vls_decision_enabled = {
+		flag = GG_can_change_rule
+	}
+}
+
+carnx_slave_market_holdings = {
+	categories = {
+		carnx_carnalitas_x
+	}
+
+	default = carnx_slave_market_holdings_all_10
+
+	carnx_slave_market_holdings_all = {
+		flag = GG_can_change_rule
+	}
+
+	carnx_slave_market_holdings_all_10 = {
+		flag = GG_can_change_rule
+	}
+
+	carnx_slave_market_holdings_all_20 = {
+		flag = GG_can_change_rule
+	}
+}
+
+carnx_valid_trading_partners = {
 	categories = {
 		carnx_carnalitas_x
 	}
@@ -50,6 +86,22 @@ carnx_number_of_potential_buyers = {
 	}
 
 	carnx_number_of_potential_buyers_all = {
+		flag = GG_can_change_rule
+	}
+}
+
+carnx_nudity = {
+	categories = {
+		carnx_carnalitas_x
+	}
+
+	default = carnx_nudity_disabled
+
+	carnx_nudity_disabled = {
+		flag = GG_can_change_rule
+	}
+
+	carnx_nudity_enabled = {
 		flag = GG_can_change_rule
 	}
 }

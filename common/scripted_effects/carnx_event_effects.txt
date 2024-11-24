@@ -498,14 +498,14 @@ carnx_add_merchant_gold_effect = {
 
 carnx_undress_effect = {
 	if = {
-		limit = { carnx_enable_nudity_trigger = yes }
+		limit = { has_game_rule = carnx_nudity_enabled }
 		add_character_flag = is_naked
 	}
 }
 
 carnx_dress_effect = {
 	if = {
-		limit = { carnx_enable_nudity_trigger = yes }
+		limit = { has_game_rule = carnx_nudity_enabled }
 		remove_character_flag = is_naked
 	}
 }

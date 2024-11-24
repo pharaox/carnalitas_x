@@ -5,7 +5,7 @@
 		vls_has_city_like_holding_trigger = yes
 	}
 	OR = {
-		county.development_level >= 10 # TODO
+		county.development_level >= carnx_slave_markets_min_development_level_value
 		# Economy
 		has_building_or_higher = common_tradeport_01
 		has_building_or_higher = caravanserai_01
@@ -14,6 +14,7 @@
 		# Special
 		has_special_building = yes
 	}
+	carnx_is_slavery_always_crime_trigger = no
 }
 
 carnx_is_valid_template_character_trigger = {
@@ -34,8 +35,4 @@ carnx_is_employed_trigger = {
 		is_knight_of = $RULER$
 		carnx_has_important_role_trigger = { RULER = $RULER$ }
 	}
-}
-
-carnx_enable_nudity_trigger = {
-	always = yes
 }
