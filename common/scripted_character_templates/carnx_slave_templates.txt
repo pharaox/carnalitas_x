@@ -1,6 +1,6 @@
 ﻿carnx_concubine_character_template = {
 	gender_female_chance = root.marriage_gender_adjusted_female_chance
-	age = { 16 26 }
+	age = { 18 30 }
 	random_traits = yes
 	culture = root.culture
 	faith = root.faith
@@ -87,7 +87,7 @@
 
 carnx_soldier_character_template = {
 	gender_female_chance = root_soldier_female_chance
-	age = { 16 26 }
+	age = { 18 30 }
 	random_traits = yes
 	culture = root.culture
 	faith = root.faith
@@ -251,7 +251,7 @@ carnx_soldier_character_template = {
 
 carnx_eunuch_character_template = {
 	gender = male
-	age = { 16 26 }
+	age = { 18 30 }
 	random_traits = yes
 	culture = root.culture
 	faith = root.faith

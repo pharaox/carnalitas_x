@@ -125,6 +125,7 @@ carnx_get_slaves_effect = {
 		type = slave
 		limit = {
 			carnx_slave_can_be_sold_trigger = yes
+			age >= 18
 			list_size:slaves < 2
 		}
 		add_to_temporary_list = slaves
@@ -163,7 +164,7 @@ carnx_create_slave_effect = {
 				location = $LOCATION$
 				template_character = $TEMPLATE_CHARACTER$
 				gender_female_chance = carnx_create_character_female_chance
-				age = { 16 40 }
+				age = { 18 36 }
 				dynasty = none
 				random_traits = yes
 				save_temporary_scope_as = new_character
