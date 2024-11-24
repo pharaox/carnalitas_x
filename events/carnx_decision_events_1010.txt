@@ -225,7 +225,7 @@ carnx_decision_events.1010 = {
 			trigger = { has_trait = greedy }
 			animation = stress
 		}
-		animation = personality_forgiving
+		animation = personality_callous
 	}
 
 	# The merchants, if they are available
@@ -644,7 +644,7 @@ carnx_decision_events.1011 = {
 	right_portrait = {
 		character = scope:slave_merchant
 		camera = camera_event_scheme_far_right
-		animation = chess_cocky
+		animation = personality_callous
 	}
 
 	immediate = {

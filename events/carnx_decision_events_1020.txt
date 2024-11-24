@@ -332,7 +332,7 @@ carnx_decision_events.1020 = {
 			trigger = {
 				scope:slave_trader = { vls_has_commerce_traits_trigger = yes }
 			}
-			animation = admiration
+			animation = personality_greedy
 		}
 		triggered_animation = {
 			trigger = {
