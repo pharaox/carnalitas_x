@@ -14,22 +14,32 @@
   * Entire file
 * `common/court_positions/types/00_court_positions.txt`
   * Entire file
+* `common/decisions/dlc_decisions/ep_3/06_ep3_laamp_decisions.txt`
+  * `visit_local_settlement_decision`
 * `common/scripted_effects/00_prison_effects.txt`
   * `prisoner_of_war_capture_effect`
   * `imprison_tyranny_effect`
 * `common/scripted_modifiers/00_scheme_scripted_modifiers.txt`
   * `ai_agent_join_chance_hostile_taboo_modifier`
   * `ai_agent_join_chance_hostile_grievous_modifier`
+* `common/scripted_triggers/00_available_for_events_triggers.txt`
+  * `is_capable_adult`
+  * `is_available`
 * `common/scripted_triggers/00_court_position_triggers.txt`
   * `court_position_does_not_already_have_a_job_trigger`
 * `common/scripted_triggers/00_courtier_guest_management_triggers.txt`
+  * `guest_allowed_to_arrive_trigger`
   * `can_recruit_character_to_court_trigger`
 * `common/scripted_triggers/00_interaction_triggers.txt`
   * `kick_from_court_validity_trigger`
+* `common/scripted_triggers/00_religious_triggers.txt`
+  * `can_take_religious_vows_disregard_marriage_trigger`
 * `common/scripted_triggers/00_secret_type_triggers.txt`
   * `secret_lover_is_valid_trigger`
 * `common/scripted_triggers/00_war_and_peace_triggers.txt`
   * `desirable_for_capture_trigger`
+* `common/scripted_triggers/02_ep1_scripted_triggers.txt`
+  * `ep1_is_valid_character_for_inspiration_trigger`
 
 ### Implicit
 

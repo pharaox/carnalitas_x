@@ -1,4 +1,32 @@
-﻿carnx_ai_negative_crime_impact_value = {
+﻿scope_value_target_faith_dominant_gender_female_chance = {
+	if = {
+		limit = { scope:value_target.faith = { has_doctrine = doctrine_gender_male_dominated } }
+		add = 0
+	}
+	else_if = {
+		limit = { scope:value_target.faith = { has_doctrine = doctrine_gender_female_dominated } }
+		add = 100
+	}
+	else = {
+		add = 50
+	}
+}
+
+scope_value_target_faith_dominant_gender_adjusted_female_chance = {
+	if = {
+		limit = { scope:value_target.faith = { has_doctrine = doctrine_gender_male_dominated } }
+		add = 20
+	}
+	else_if = {
+		limit = { scope:value_target.faith = { has_doctrine = doctrine_gender_female_dominated } }
+		add = 80
+	}
+	else = {
+		add = 50
+	}
+}
+
+carnx_ai_negative_crime_impact_value = {
 	value = carnx_ai_negative_crime_impact_base_value
 	multiply = carnx_ai_zeal_impact_multiplier
 }
