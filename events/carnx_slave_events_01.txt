@@ -39,12 +39,6 @@ carnx_slave.0001 = {
 
 	immediate = {
 		hidden_effect = {
-			# Get template character
-			carnx_get_template_character_effect = {
-				CHARACTER = root
-				TEMPLATE_CHARACTER = template_character
-			}
-
 			# Find slave merchant
 			carnx_get_merchant_effect = {
 				TYPE = slave_merchant
@@ -52,6 +46,13 @@ carnx_slave.0001 = {
 				CHARACTER = root
 				BLACKLIST = none
 				MERCHANT = seller
+			}
+
+			# Get template character
+			carnx_get_template_character_effect = {
+				CHARACTER = root
+				CHARACTER2 = scope:seller
+				TEMPLATE_CHARACTER = template_character
 			}
 
 			scope:seller = {

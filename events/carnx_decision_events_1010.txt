@@ -651,6 +651,7 @@ carnx_decision_events.1011 = {
 		# Find template character
 		carnx_get_template_character_effect = {
 			CHARACTER = scope:county_holder
+			CHARACTER2 = scope:slave_merchant
 			TEMPLATE_CHARACTER = template_character
 		}
 

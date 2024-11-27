@@ -2,6 +2,10 @@
 	random_independent_ruler = {
 		limit = {
 			carnx_is_valid_template_character_trigger = { CHARACTER = $CHARACTER$ }
+			carnx_is_valid_template_character_trigger = { CHARACTER = $CHARACTER2$ }
+		}
+		alternative_limit = {
+			carnx_is_valid_template_character_trigger = { CHARACTER = $CHARACTER$ }
 		}
 		weight = {
 			# Nearby rulers more likely
