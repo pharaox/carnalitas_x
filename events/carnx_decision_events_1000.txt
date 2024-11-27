@@ -922,8 +922,6 @@ carnx_decision_events.1000 = {
 			carnx_1000_finished_trigger = no
 		}
 
-		reason = buy_slaves
-
 		save_scope_value_as = { name = last_location value = flag:main_square }
 
 		custom_tooltip = carnx_decision_events.1000.a.tt
@@ -973,8 +971,6 @@ carnx_decision_events.1000 = {
 			}
 			carnx_1000_finished_trigger = no
 		}
-
-		reason = sell_slaves
 
 		save_scope_value_as = { name = last_location value = flag:main_square }
 

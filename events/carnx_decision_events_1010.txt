@@ -355,7 +355,6 @@ carnx_decision_events.1010 = {
 		}
 		show_as_unavailable = { always = yes }
 
-		reason = visit_slave_merchant
 		highlight_portrait = scope:first_slave_merchant
 
 		save_scope_value_as = { name = been_to_slave_market value = yes }
@@ -408,7 +407,6 @@ carnx_decision_events.1010 = {
 			exists = scope:second_slave_merchant
 		}
 
-		reason = visit_slave_merchant
 		highlight_portrait = scope:second_slave_merchant
 
 		save_scope_value_as = { name = been_to_slave_market value = yes }
@@ -461,7 +459,6 @@ carnx_decision_events.1010 = {
 			exists = scope:third_slave_merchant
 		}
 
-		reason = visit_slave_merchant
 		highlight_portrait = scope:third_slave_merchant
 
 		save_scope_value_as = { name = been_to_slave_market value = yes }
