@@ -4,5 +4,10 @@
 }
 
 vls_decision_slot_2_is_valid_trigger = {
-	always = yes
+	custom_description = {
+		text = "carnx_no_slave_market"
+		root.location = {
+			carnx_province_has_slave_market_trigger = yes
+		}
+	}
 }

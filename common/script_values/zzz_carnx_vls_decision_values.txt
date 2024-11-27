@@ -3,12 +3,7 @@
 	if = {
 		limit = {
 			OR = {
-				AND = {
-					location = {
-						carnx_province_has_slave_market_trigger = yes
-					}
-					short_term_gold >= 75
-				}
+				short_term_gold >= 75
 				any_relation = {
 					type = slave
 					carnx_slave_can_be_sold_trigger = yes

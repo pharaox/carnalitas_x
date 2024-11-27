@@ -1,9 +1,12 @@
 ﻿carnx_province_has_slave_market_trigger = {
+	# Has tribal, castle, or city holding
 	OR = {
 		vls_has_tribal_like_holding_trigger = yes
 		vls_has_castle_like_holding_trigger = yes
 		vls_has_city_like_holding_trigger = yes
 	}
+
+	# Has the minimum development level, or a relevant building
 	OR = {
 		county.development_level >= carnx_slave_markets_min_development_level_value
 		# Economy
@@ -14,12 +17,24 @@
 		# Special
 		has_special_building = yes
 	}
-	carnx_is_slavery_always_crime_trigger = no
+
+	# Slavery is not always criminal for the county holder
+	# and an appropriate template character exists
+	county.holder = { save_temporary_scope_as = county_holder }
+	scope:county_holder = {
+		NOR = {
+			carnx_is_slavery_always_crime_trigger = yes
+			carnx_is_slavery_always_forbidden_trigger = { ACTION = flag:buy }
+		}
+	}
+	any_independent_ruler = {
+		carnx_is_valid_template_character_trigger = { CHARACTER = scope:county_holder }
+	}
 }
 
 carnx_is_valid_template_character_trigger = {
 	exists = capital_province
-	NOR = {
+	NAND = {
 		faith = $CHARACTER$.faith
 		culture = $CHARACTER$.culture
 	}

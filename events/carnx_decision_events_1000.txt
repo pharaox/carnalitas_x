@@ -862,16 +862,9 @@ carnx_decision_events.1000 = {
 			}
 
 			# Determine list of options
-			if = {
-				limit = {
-					scope:visiting_location = {
-						carnx_province_has_slave_market_trigger = yes
-					}
-				}
-				add_to_variable_list = {
-					name = carnx_event_options
-					target = flag:slave_market_option
-				}
+			add_to_variable_list = {
+				name = carnx_event_options
+				target = flag:slave_market_option
 			}
 			if = {
 				limit = {

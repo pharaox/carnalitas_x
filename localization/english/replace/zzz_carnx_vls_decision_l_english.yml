@@ -8,3 +8,4 @@
  visit_local_settlement_effect_buy_slaves: "\n$EFFECT_LIST_BULLET$Buy [slaves|E] from the slave market of [THIS.Char.GetCurrentLocation.GetBaronyNameExplicitlyNoTooltip]"
  visit_local_settlement_effect_sell_slaves: "\n$EFFECT_LIST_BULLET$Sell [slaves|E] to slave traders"
 
+ carnx_no_slave_market: "There is no slave market in this holding"

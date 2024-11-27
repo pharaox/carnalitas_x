@@ -52,3 +52,7 @@ carnx_valid_payer_or_owner = {
 	first_not = carnx_valid_payer_or_owner
 	third_not = carnx_valid_payer_or_owner
 }
+
+carnx_no_slave_market = {
+	first_not = carnx_no_slave_market
+}
