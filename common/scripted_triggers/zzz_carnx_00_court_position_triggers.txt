@@ -19,17 +19,20 @@ court_position_does_not_already_have_a_job_trigger = {
 			has_court_position = court_gardener_court_position
 			has_court_position = travel_leader_court_position
 			has_court_position = wet_nurse_court_position
+			has_court_position = akolouthos_court_position
+
+			#Unop: Missing entries for court positions:
 			has_court_position = court_artificer_court_position
 			has_court_position = cave_hermit_court_position
 			has_court_position = master_assassin_court_position
 			has_court_position = court_scholar_court_position
 			has_court_position = charioteer_court_position
 			has_court_position = bookmaker_court_position
-			has_court_position = akolouthos_court_position
 			has_court_position = court_brewmaster_court_position
 			has_court_position = carnx_slave_captain_court_position
 			has_court_position = carnx_slave_eunuch_court_position
 
+			#Unop: Missing entries for officer positions:
 			has_court_position = second_camp_officer
 			has_court_position = quartermaster_camp_officer
 			has_court_position = armorer_camp_officer
@@ -56,8 +59,8 @@ court_position_does_not_already_have_a_job_trigger = {
 			has_court_position = light_infantry_captain_camp_officer
 			has_court_position = pike_captain_camp_officer
 			has_court_position = master_of_spoils_camp_officer
-			has_court_position = laureate_camp_officer
 			has_court_position = camp_priest_camp_officer
+			has_court_position = laureate_camp_officer
 
 			is_councillor = yes
 			is_tax_collector = yes
