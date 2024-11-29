@@ -730,7 +730,7 @@ carnx_decision_events.1020 = {
 		save_scope_value_as = { name = last_location value = flag:slave_trader }
 
 		set_variable = {
-			name = carnx_1000_outraged_recently
+			name = carnx_1000_refused_recently
 			days = visit_settlement_minimum_cooldown_days
 		}
 

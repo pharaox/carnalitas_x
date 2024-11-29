@@ -12,7 +12,7 @@
 
  already_sold_slave.tt: "You have already sold a [slave|E] this visit"
 
- carnx_decision_events.1000.outraged.tt: "You have recently refused to take part in the slave trade, try again on [GetCurrentDateWithDiff(GetVarTimeRemaining(THIS.Char.MakeScope, 'carnx_1000_outraged_recently'))]"
+ carnx_decision_events.1000.refused.tt: "You have recently refused to take part in the slave trade, try again on [GetCurrentDateWithDiff(GetVarTimeRemaining(THIS.Char.MakeScope, 'carnx_1000_refused_recently'))]"
 
  # Visiting Location: the Slave Market
  carnx_decision_events.1010.t: "[visiting_location.GetBaronyNameExplicitlyNoTooltip]: the Slave Market"

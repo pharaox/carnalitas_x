@@ -910,8 +910,8 @@ carnx_decision_events.1000 = {
 				NOT = { exists = scope:finished_slave_market }
 			}
 			custom_tooltip = {
-				text = carnx_decision_events.1000.outraged.tt
-				NOT = { has_variable = carnx_1000_outraged_recently }
+				text = carnx_decision_events.1000.refused.tt
+				NOT = { has_variable = carnx_1000_refused_recently }
 			}
 		}
 		show_as_unavailable = {
@@ -960,8 +960,8 @@ carnx_decision_events.1000 = {
 				NOT = { exists = scope:finished_slave_trader }
 			}
 			custom_tooltip = {
-				text = carnx_decision_events.1000.outraged.tt
-				NOT = { has_variable = carnx_1000_outraged_recently }
+				text = carnx_decision_events.1000.refused.tt
+				NOT = { has_variable = carnx_1000_refused_recently }
 			}
 		}
 		show_as_unavailable = {

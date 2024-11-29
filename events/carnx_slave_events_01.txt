@@ -7,7 +7,7 @@ scripted_trigger carnx_slave_0001_valid_liege_trigger = {
 	NOR = {
 		carnx_is_slavery_always_crime_trigger = yes
 		carnx_is_slavery_always_forbidden_trigger = { ACTION = flag:buy }
-		has_variable = carnx_1000_outraged_recently
+		has_variable = carnx_1000_refused_recently
 	}
 	exists = capital_province
 }
@@ -318,7 +318,7 @@ carnx_slave.0001 = {
 		}
 
 		set_variable = {
-			name = carnx_1000_outraged_recently
+			name = carnx_1000_refused_recently
 			days = 90 # visit_settlement_minimum_cooldown_days
 		}
 

@@ -43,10 +43,6 @@ scripted_trigger carnx_1010_done_with_slave_market_trigger = {
 	list_size:bought_from_slave_merchants = list_size:slave_merchants
 }
 
-scripted_effect carnx_1010_finish_slave_market_effect = {
-	save_scope_value_as = { name = finished_slave_market value = yes }
-}
-
 # Visiting Location: the Slave Market
 # Needs scopes:
 # * visiting_location
@@ -512,12 +508,12 @@ carnx_decision_events.1010 = {
 		}
 
 		# Update scopes
-		carnx_1010_finish_slave_market_effect = yes
+		save_scope_value_as = { name = finished_slave_market value = yes }
 		save_scope_value_as = { name = been_to_slave_market value = yes }
 		save_scope_value_as = { name = last_location value = flag:slave_market }
 
 		set_variable = {
-			name = carnx_1000_outraged_recently
+			name = carnx_1000_refused_recently
 			days = visit_settlement_minimum_cooldown_days
 		}
 
@@ -561,7 +557,7 @@ carnx_decision_events.1010 = {
 
 		if = {
 			limit = { carnx_1010_done_with_slave_market_trigger = yes }
-			carnx_1010_finish_slave_market_effect = yes
+			save_scope_value_as = { name = finished_slave_market value = yes }
 		}
 		save_scope_value_as = { name = been_to_slave_market value = yes }
 		save_scope_value_as = { name = last_location value = flag:slave_market }
