@@ -14,13 +14,13 @@
 	age >= 10
 }
 
-#vls_can_be_merchant_trigger = {
-#	NOT = {
-#		has_any_bad_relationship_with_character_trigger = { CHARACTER = $CHARACTER$ }
-#	}
-#	is_available_adult = yes
-#	NOT = { has_trait = devoted }
-#}
+vls_can_be_merchant_trigger = {
+	NOT = {
+		has_any_bad_relationship_with_character_trigger = { CHARACTER = $CHARACTER$ }
+	}
+	is_available_adult = yes
+	NOT = { has_trait = devoted }
+}
 
 vls_is_saved_vanilla_merchant_trigger = {
 	OR = {

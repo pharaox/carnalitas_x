@@ -50,19 +50,7 @@ carnx_get_merchant_effect = {
 		limit = {
 			NOT = { is_in_list = $BLACKLIST$ }
 			vls_can_be_merchant_trigger = { CHARACTER = $CHARACTER$ }
-			# TODO
-			trigger_if = {
-				limit = { flag:$TYPE$ = flag:slave_merchant }
-				OR = {
-					var:at_merchant_type ?= flag:$TYPE$
-					var:at_merchant_type ?= flag:concubine_merchant
-					var:at_merchant_type ?= flag:soldier_merchant
-					var:at_merchant_type ?= flag:servant_merchant
-				}
-			}
-			trigger_else = {
-				var:at_merchant_type ?= flag:$TYPE$
-			}
+			var:at_merchant_type ?= flag:$TYPE$
 		}
 		save_scope_as = $MERCHANT$
 		save_scope_as = recurring_$MERCHANT$
