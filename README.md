@@ -340,7 +340,6 @@ The following bugs present in Carnalitas have been fixed in this mod:
 
 * Slaves can no longer leave their owner's court to become wanderers. If a slave leaves their owners court for whatever reason, they are returned automatically.
 * If a slave owner dies and their heir doesn't inherit their court (e.g. because they have their own court), slaves don't just wander off similarly to other courtiers, but are instead added to the court of their new owner.
-* If a slave owner stops being a ruler, their slaves are seized by the new title holder of their last title. Non-rulers owning slaves is problematic because they are not under AI control and their slaves can never be freed, ransomed, or traded.
 * Enslaved concubines are properly "divorced".
 
 ## Vanilla Changes
