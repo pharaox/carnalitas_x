@@ -17,11 +17,11 @@
 
  rule_carnx_valid_trading_partners: "#X CSR:#! Valid Buyers or Sellers"
  setting_carnx_valid_trading_partners_same_and_neighboring_realms: "#high Same and Neighboring Realms#!"
- setting_carnx_valid_trading_partners_same_and_neighboring_realms_desc: "Rulers in the same and neighboring realms."
+ setting_carnx_valid_trading_partners_same_and_neighboring_realms_desc: "Rulers and wandering characters in the same and neighboring realms."
  setting_carnx_valid_trading_partners_within_trading_range: "Within Trading Range"
- setting_carnx_valid_trading_partners_within_trading_range_desc: "Rulers in the same and neighboring realms, and rulers within a dynamic trading range depending on rank."
- setting_carnx_valid_trading_partners_all: "#high All Rulers#!"
- setting_carnx_valid_trading_partners_all_desc: "All rulers within diplomatic range."
+ setting_carnx_valid_trading_partners_within_trading_range_desc: "Rulers and wandering characters in the same and neighboring realms, or within a dynamic trading range depending on rank."
+ setting_carnx_valid_trading_partners_all: "#high All Characters #!"
+ setting_carnx_valid_trading_partners_all_desc: "All rulers and wandering characters within diplomatic range."
 
  rule_carnx_number_of_potential_buyers: "#X CSR:#! Number of Potential Buyers"
  setting_carnx_number_of_potential_buyers_01: "#high 1#!"
