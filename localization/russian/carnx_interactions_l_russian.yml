@@ -110,6 +110,7 @@
  carnx_nothing_offered_reason: "[actor.GetShortUIName|U] должен предложить что-то: $VALUE|=+0$"
  carnx_slavery_attitude_reason: "[recipient.GetShortUIName|U] отношение к рабству: $VALUE|=+0$"
  carnx_declining_to_free_illegal_slaves_is_crime_reason: "Отказ от освобождения нелегальных рабов является преступлением: $VALUE|=+0$"
+ carnx_recipient_merchant_reason: "[recipient.GetShortUIName|U] — торговец: $VALUE|=+0$"
 
  carnx_selling_crime_in_recipient_faith: "Продажа [secondary_recipient.GetFaith.GetAdherentNamePluralNoTooltip|U] в качестве раба является [criminal|E] в [recipient.GetShortUIName|U]'s [faith|E]: $VALUE|=+0$"
  carnx_selling_shunned_in_recipient_faith: "Продажа [secondary_recipient.GetFaith.GetAdherentNamePluralNoTooltip|U] в качестве раба [shunned|E] в [recipient.GetShortUIName|U]'s [faith|E]: $VALUE|=+0$"
@@ -119,6 +120,8 @@
  # Effect descriptions
  carnx_buyer_not_enough_gold_for_slave_price_tooltip: "Платит #high [gold_i][SCOPE.ScriptValue('carn_scope_buyer_current_gold_value')|0]#! to [seller.GetShortUINameNoTooltip] #weak (полная стоимость [gold_i][SCOPE.ScriptValue('carn_scope_slave_price_value')|0] превышает краткосрочный бюджет)#!"
  carnx_is_allowed_to_imprison_slave_desc: "[recipient.GetShortUIName] эта ваша [slave|E], позволяя вам заключить себя в тюрьму [recipient.GetShortUIName] не будучи рассмотренным как [tyrant|E]"
+
+ carnx_slave_price_breakdown_tooltip: "Разбивка цены:\n[GuiScope.SetRoot(slave.MakeScope).AddScope('actor', actor.MakeScope).AddScope('buyer', buyer.MakeScope).AddScope('seller', seller.MakeScope).GetScriptValueDesc('carnx_slave_actual_price_value')]"
 
  # Message titles
  carnx_msg_slave_bought: "Купленный раб"

@@ -1,0 +1,11 @@
+﻿l_french:
+ # Visit Local Settlement Slot 1
+ vls_decision_slot_2: "$visit_local_settlement_decision$: Acheter et vendre des esclaves"
+ vls_decision_slot_2_desc: "$visit_local_settlement_decision_desc$"
+ vls_decision_slot_2_tooltip: "$vls_decision_tooltip$"
+ vls_decision_slot_2_tt: "$visit_local_settlement_effect_intro$$visit_local_settlement_effect_buy_slaves$$visit_local_settlement_effect_sell_slaves$"
+
+ visit_local_settlement_effect_buy_slaves: "\n$EFFECT_LIST_BULLET$Acheter des esclaves au marché aux esclaves de [THIS.Char.GetCurrentLocation.GetBaronyNameExplicitlyNoTooltip]"
+ visit_local_settlement_effect_sell_slaves: "\n$EFFECT_LIST_BULLET$Vendre des esclaves à des marchands d'esclaves"
+
+ carnx_no_slave_market: "Il n'y a pas de marché aux esclaves dans cette propriété"

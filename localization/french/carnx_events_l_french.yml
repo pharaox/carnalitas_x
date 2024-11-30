@@ -5,6 +5,7 @@
  carnx_slave.0001.b:0 "[common_option.GetFirstNameNoTooltip] semble être une meilleure affaire."
  carnx_slave.0001.c:0 "Je les achèterai tou[Select_CString(And(valuable_option.IsFemale, common_option.IsFemale), 'te', '')]s les deux !"
  carnx_slave.0001.d:0 "Aucun[Select_CString(And(valuable_option.IsFemale, common_option.IsFemale), 'e', '')] ne m’impressionne."
+ carnx_slave.0001.e:0 "Je refuse de prendre part à ce commerce abominable!"
 
  carnx_slave.0002.t:0 "Sexe avec une esclave"
  carnx_slave.0002.desc:0 "Je viens de coucher avec [slave.GetFirstNameNoTooltip]."

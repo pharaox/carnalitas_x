@@ -5,6 +5,7 @@
  carnx_slave.0001.b:0 "[common_option.GetFirstNameNoTooltip]이(가) 더 나은 거래 같다."
  carnx_slave.0001.c:0 "둘 다 사겠다!"
  carnx_slave.0001.d:0 "둘 다 인상적이지 않다."
+ carnx_slave.0001.e:0 "I refuse to take part in this abominable trade!"
 
  carnx_slave.0002.t:0 "노예와의 성관계"
  carnx_slave.0002.desc:0 "나는 방금 [slave.GetFirstNameNoTooltip]와(과) 성관계를 가졌다."

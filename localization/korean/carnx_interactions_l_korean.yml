@@ -110,6 +110,7 @@
  carnx_nothing_offered_reason:0 "[actor.GetShortUIName|U]이(가) 무언가를 제안해야 합니다: $VALUE|=+0$"
  carnx_slavery_attitude_reason:0 "[recipient.GetShortUIName|U]의 노예제에 대한 태도: $VALUE|=+0$"
  carnx_declining_to_free_illegal_slaves_is_crime_reason:0 "불법 노예 해방을 거부하는 것은 범죄입니다: $VALUE|=+0$"
+ carnx_recipient_merchant_reason: "[recipient.GetShortUIName|U] is a merchant: $VALUE|=+0$"
 
  carnx_selling_crime_in_recipient_faith:0 "[secondary_recipient.GetFaith.GetAdherentNamePluralNoTooltip|U]을(를) 노예로 판매하는 것은 [recipient.GetShortUIName|U]의 [faith|E]에서 [criminal|E]입니다: $VALUE|=+0$"
  carnx_selling_shunned_in_recipient_faith:0 "[secondary_recipient.GetFaith.GetAdherentNamePluralNoTooltip|U]을(를) 노예로 판매하는 것은 [recipient.GetShortUIName|U]의 [faith|E]에서 [shunned|E]입니다: $VALUE|=+0$"
@@ -119,6 +120,8 @@
  # Effect descriptions
  carnx_buyer_not_enough_gold_for_slave_price_tooltip:0 "[seller.GetShortUINameNoTooltip]에게 #high [gold_i][SCOPE.ScriptValue('carn_scope_buyer_current_gold_value')|0]#!을(를) 지불합니다 #weak (전체 가격 [gold_i][SCOPE.ScriptValue('carn_scope_slave_price_value')|0]이(가) 단기 예산을 초과합니다)#!"
  carnx_is_allowed_to_imprison_slave_desc:0 "[recipient.GetShortUIName]은(는) 당신의 [slave|E]이므로, [tyrant|E]로 간주되지 않고 [recipient.GetShortUIName]을(를) 투옥할 수 있습니다"
+
+ carnx_slave_price_breakdown_tooltip: "Price breakdown:\n[GuiScope.SetRoot(slave.MakeScope).AddScope('actor', actor.MakeScope).AddScope('buyer', buyer.MakeScope).AddScope('seller', seller.MakeScope).GetScriptValueDesc('carnx_slave_actual_price_value')]"
 
  # Message titles
  carnx_msg_slave_bought:0 "노예 구매됨"

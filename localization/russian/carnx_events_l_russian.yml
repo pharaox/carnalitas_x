@@ -5,6 +5,7 @@
  carnx_slave.0001.b:0 "[common_option.GetFirstNameNoTooltip] похоже, это более выгодная сделка."
  carnx_slave.0001.c:0 "Я куплю их обоих!"
  carnx_slave.0001.d:0 "Они оба не производят на меня впечатления."
+ carnx_slave.0001.e:0 "Я отказываюсь участвовать в этой отвратительной торговле!"
 
  carnx_slave.0002.t:0 "Sex With a Slave"
  carnx_slave.0002.desc:0 "I just had sex with [slave.GetFirstNameNoTooltip]."

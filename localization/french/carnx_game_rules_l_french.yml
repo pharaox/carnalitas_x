@@ -1,6 +1,20 @@
 ﻿l_french:
  game_rule_category_carnx_carnalitas_x: "Carnalitas Slavery Reimagined"
 
+ rule_carnx_improved_vls_decision: "#X CSR:#! Visit Holding Improvements"
+ setting_carnx_improved_vls_decision_disabled: "#high Disabled#!"
+ setting_carnx_improved_vls_decision_disabled_desc: "Visit Holding improvements are disabled."
+ setting_carnx_improved_vls_decision_enabled: "Enabled"
+ setting_carnx_improved_vls_decision_enabled_desc: "Visit Holding improvements are enabled."
+
+ rule_carnx_slave_market_holdings: "#X CSR:#! Slave Market Availability"
+ setting_carnx_slave_market_holdings_all: "#high All Non-Temple#!"
+ setting_carnx_slave_market_holdings_all_desc: "Slave markets are available in all non-temple holdings."
+ setting_carnx_slave_market_holdings_all_10: "All Non-Temple, Min 10 Dev"
+ setting_carnx_slave_market_holdings_all_10_desc: "Slave markets are available in non-temple holdings with at least 10 development or certain buildings."
+ setting_carnx_slave_market_holdings_all_20: "#high All Non-Temple, Min 20 Dev#!"
+ setting_carnx_slave_market_holdings_all_20_desc: "Slave markets are available in non-temple holdings with at least 20 development or certain buildings."
+
  rule_carnx_valid_trading_partners: "#X CSR:#! Acheteurs ou vendeurs valides"
  setting_carnx_valid_trading_partners_same_and_neighboring_realms: "Le même royaume et les royaumes voisins"
  setting_carnx_valid_trading_partners_same_and_neighboring_realms_desc: "Dirigeants du même royaume et des royaumes voisins."
@@ -24,6 +38,12 @@
  setting_carnx_number_of_potential_buyers_50_desc: "Limiter à 50 acheteurs offrant le meilleur prix."
  setting_carnx_number_of_potential_buyers_all: "Tous"
  setting_carnx_number_of_potential_buyers_all_desc: "Aucune limite, montrer tous les acheteurs."
+
+ rule_carnx_nudity: "#X CSR:#! Nudity"
+ setting_carnx_nudity_disabled: "Disabled"
+ setting_carnx_nudity_disabled_desc: "Nudity is disabled."
+ setting_carnx_nudity_enabled: "#high Enabled#!"
+ setting_carnx_nudity_enabled_desc: "Nudity is enabled."
 
  rule_carnx_universe: "#X CSR:#! Univers"
  setting_carnx_universe_historical: "Historique"

@@ -5,6 +5,7 @@
  carnx_slave.0001.b:0 "[common_option.GetFirstNameNoTooltip]似乎更便宜。"
  carnx_slave.0001.c:0 "我会把他们都买下！"
  carnx_slave.0001.d:0 "他们两个都没能打动我。"
+ carnx_slave.0001.e:0 "I refuse to take part in this abominable trade!"
  carnx_slave.0002.t:0 "和奴隶做爱"
  carnx_slave.0002.desc:0 "我和[slave.GetFirstNameNoTooltip]共赴巫山。"
  carnx_slave.0002.a:0 "好的"
