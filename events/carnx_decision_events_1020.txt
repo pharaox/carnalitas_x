@@ -60,6 +60,7 @@ scripted_effect carnx_1020_set_price_variables_effect = {
 			value = scope:slave.carnx_slave_bid_price_value
 			max = $MERCHANT$.short_term_gold
 		}
+		days = 1
 	}
 	set_variable = { name = carnx_bid_price_multiplier value = 1.2 }
 	set_variable = {
@@ -109,7 +110,7 @@ scripted_effect carnx_1020_remove_bid_price_multiplier_effect = {
 # Visiting Location: No Questions Asked
 # Needs scopes:
 # * visiting_location
-# * visting_partner
+# * visiting_partner
 # * been_to_slave_trader_sell_screen - If set, use for loc
 # Sets scopes:
 # * slave_trader - Merchant
@@ -778,7 +779,7 @@ carnx_decision_events.1020 = {
 # Visiting Location: Parting Time
 # Needs scopes:
 # * visiting_location
-# * visting_partner
+# * visiting_partner
 # * slave_trader - Merchant
 # * first_slave, second_slave, third_slave - slaves to sell
 # * outraged_partner - Visiting partner if outraged

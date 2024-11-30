@@ -46,7 +46,7 @@ scripted_trigger carnx_1010_done_with_slave_market_trigger = {
 # Visiting Location: the Slave Market
 # Needs scopes:
 # * visiting_location
-# * visting_partner
+# * visiting_partner
 # * been_to_slave_merchants - List of visited slave merchants, use for loc
 # * bought_from_slave_merchants - List of slave merchants from whom a slave has been bought, use to disable
 # Sets scopes:
@@ -575,7 +575,7 @@ carnx_decision_events.1010 = {
 # Visiting Location: the Slave Merchant
 # Needs scopes:
 # * visiting_location
-# * visting_partner
+# * visiting_partner
 # * slave_merchant - The slave merchant
 # Sets scopes:
 # * first_merchant_slave, second_merchant_slave - Slaves for sale
