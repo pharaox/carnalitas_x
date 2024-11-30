@@ -38,6 +38,8 @@ With this mod:
 * There are **slavery-related flavor events**, such as a slave running away, demands for a slave's freedom, etc. There are also hidden events for AI rulers to interact with their slaves in ways that were previously only available to the player, e.g. have sex with them.
 * There are **fame traits** that add roleplaying flavor, such as the negative *Infamous Slaver* trait and the positive *Famous Liberator* trait.
 
+This mod also adds a new *Buy & Sell Slaves* event chain to the *Visit Holding* decision for landless adventurers to allow them to buy and sell slaves while visiting holdings, similarly to buying and selling artifacts introduced in the "Roads to Power" DLC.
+
 All taken together, slaves are now genuinely useful to their owners, there is an actual demand for them conditioned by religion and culture, and this demand is satisfied by warfare, raiding, slave trade, and slave-related events. As a player, you can choose between many different ways to interact with the system to either roleplay or use it to your advantage, and it's more challenging and hopefully more interesting to do this.
 
 ## Compatibility
@@ -92,9 +94,9 @@ As in Carnalitas, slaves can be bought or sold via the *Buy Slave* and *Sell Sla
 
 #### Slave Prices
 
-In this mod, slaves are bought and sold at prices that better correspond to the cost of recruiting guests. Most of the factors influencing the base price of a slave are the same as those influencing the cost of recruiting a guest, with similar impact, such as base, claims, dynasty prestige level, genetic, commander, and other traits, and skills. There are also some unique factors, such as attraction, visibly fertile female, and age. At the very end, a correction multiplier is applied to calculate the final base price, intended to prevent the player from making too much money from selling slaves.
+In this mod, slaves are bought and sold at prices that better correspond to the cost of recruiting guests. Most of the factors influencing the base price of a slave are the same as those influencing the cost of recruiting a guest, with similar impact, such as base, claims, dynasty prestige level, genetic, commander, and other traits, and skills. There are also some unique factors, such as attraction, visibly fertile female, and age.
 
-Actual buy and sell transactions are settled at the *bid price* (buyer's price) if the initiating party is the seller, and the *ask price* (seller's price), if the initiating party is the buyer. These prices are calculated by multiplying the base price by a factor depending on AI greed, and an additional factor of 0.8 (for the bid price) or 1.2 (for the ask price) if the initiating party is the player. As a result, the player always buys at higher and sells at lower prices compared to the AI. This is done to prevent exploits, and to make it a bit more challenging for the player to use the trading system to their advantage.
+Actual buy and sell transactions are settled at the *bid price* (buyer's price) if the initiating party is the seller, and the *ask price* (seller's price), if the initiating party is the buyer. These prices are calculated by multiplying the base price by a factor depending on AI greed, and an additional factor of 0.67 for the bid price if the initiating party is the player. As a result, the player always sells at lower prices compared to the AI. This is done to prevent exploits, and to make it a bit more challenging for the player to use the trading system to their advantage.
 
 Characters with the [*Slave Trader* attitude](#slavery-attitudes) get more favorable prices when buying and selling slaves. Currently, these prices are 10% lower when buying and 10% higher when selling.
 
@@ -127,11 +129,23 @@ While it is possible to initiate buying or selling of slaves by right-clicking o
 
 For added realism and also to improve performance on lower-end machines, whether a character is considered to be a valid buyer or seller is determined by the *Valid Buyers or Sellers* game rule. It has the following settings:
 
-* *Same and Neighboring Realms*: Rulers in the same and neighboring realms (less buyers or sellers, better performance and realism).
-* *Within Trading Range*: Rulers in the same and neighboring realms, and foreign rulers within a dynamic trading range depending on rank (smallest for counts, largest for emperors), measured as the distance between capitals. This is the default setting.
-* *All Rulers*: All rulers within diplomatic range (more buyers or sellers, worse performance and realism).
+* *Same and Neighboring Realms*: Rulers and wandering characters in the same and neighboring realms (less buyers or sellers, better performance and realism).
+* *Within Trading Range*: Rulers and wandering characters in the same and neighboring realms, or within a dynamic trading range depending on rank (smallest for counts, largest for emperors), measured as the distance between capitals. This is the default setting.
+* *All Rulers*: All rulers and wandering characters within diplomatic range (more buyers or sellers, worse performance and realism).
 
-The AI uses a slightly different version of the above due to engine limitations. Starting with version 0.5.0, AI rulers will attempt to precision target one valid buyer or seller per slave when selling slaves, to improve their chances to find a buyer.
+The AI uses a slightly different version of the above due to engine limitations.
+
+#### Buying and Selling Slaves While Visiting Holdings
+
+Starting with version 0.23.0, this mod also a new *Buy & Sell Slaves* event chain to the *Visit Holding* decision for landless adventurers to allow them to buy and sell slaves while visiting holdings, similarly to buying and selling artifacts introduced in the "Roads to Power" DLC. This is enabled by default but can be disabled via the *Visit Holding Improvements* game rule.
+
+Slave markets are available in all non-temple holdings above certain development level, configurable via the *Slave Market Availability* game rule. They are also available in holdings having trade-related economy buildings, or special buildings.
+
+In addition to buying and selling slaves, the adventurer may also refuse to participate in the slave trade outright. This disables the corresponding options for a certain cooldown period. The adventurer's partner may also object to trading slaves if they are compassionate or pious enough.
+
+The slave prices are consistent and based on the criteria used by the mod, although the adventurer may haggle for a better price when selling. Slaves that are not bought will be sold off (disappear) or freed after some time.
+
+AI landless adventurers will regularly buy and sell slaves as well.
 
 ### Enslaving and Seizing Prisoners
 
@@ -282,7 +296,7 @@ Starting with version 0.18.0, this mod adds a leveled *Slaver* fame trait. The 2
 
 #### Buy Foreign Slaves
 
-Slave traders bring two slaves for sale and you can buy one of them. The slaves are of faith and culture that is different from yours, and never of faith that falls under the *Slavery Crime* doctrine. One of the slaves has skills / traits that make him or her a better fit for a particular occupation, for the other one they are generated completely at random.
+Slave traders bring two slaves for sale and you can buy one of them. The slaves are of faith and culture that is different from yours, and never of faith that falls under the *Slavery Crime* doctrine.
 
 Besides adding flavor, this event also spawns more slaves than would normally exist if the only way to create them was to enslave prisoners. It fires approximately every 5 years for every ruler of rank count and above. The AI will mostly not buy, unless it considers one of the slaves really useful according to the factors described in [AI Willingness to Buy or Sell](#ai-willingness-to-buy-or-sell).
 
@@ -388,12 +402,22 @@ The sections below list the changes made to existing vanilla objects in somewhat
 
 * `00_court_positions.txt`: Changed conditions, effects, salaries, and aptitudes for may court positions, as described in [Changes to Existing Council and Court Positions](#changes-to-existing-council-and-court-positions).
 
+### Decisions (`decisions`)
+
+* `visit_local_settlement_decision`: Enabling buying and selling slaves while visiting holdings as described in [Buying And Selling Slaves While Visiting Holdings](#buying-and-selling-slaves-while-visiting-holdings).
+
 ### Triggers (`scripted_triggers`)
 
 * `desirable_for_capture_trigger`: Made characters with a slave price above a certain threshold desirable for capture, ensuring that they are captured instead of killed during sieges and raids.
 * `court_position_does_not_already_have_a_job_trigger`: Added *Slave Eunuch* and *Mameluke Captain* court positions to the list of "jobs".
 * `can_recruit_character_to_court_trigger`: Disabled the *Invite to Court* interaction for slaves.
 * `kick_from_court_validity_trigger`: Disabled the *Dismiss* interaction for slaves.
+* `can_take_religious_vows_disregard_marriage_trigger`: Disabled the *Take Vows* interaction for slaves.
+* `is_available`: Prevented pool slaves from being selected in events.
+* `is_capable_adult`: Prevented pool slaves and slave owners from being selected by pool character selectors.
+* `ep1_is_valid_character_for_inspiration_trigger`: Prevented pool slaves and slave owners from becoming inspired.
+* `guest_allowed_to_arrive_trigger`: Prevented pool slaves and slave owners from arriving as guests.
+* `secret_lover_is_valid_trigger`: Prevented lover secrets with slave concubines.
 
 ### Effects (`scripted_effects`)
 

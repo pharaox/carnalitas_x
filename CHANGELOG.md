@@ -1,5 +1,46 @@
 # Changelog
 
+## Version 0.23.0
+
+### Decisions
+
+* Added a new *Buy & Sell Slaves* event chain to the *Visit Holding* decision for landless adventurers to allow them to buy and sell slaves in holdings, similarly to artifacts.
+  * Slave markets are available in all non-temple holding types above certain development level, or having certain buildings.
+  * The adventurer may also refuse to participate in the slave trade outright.
+  * The adventurer's partner may also object to trading slaves if they are compassionate or pious enough.
+  * Slave prices are consistent and based on the criteria used by the mod.
+  * Slaves that are not bought will be sold off (disappear) or freed after some time.
+  * AI landless adventurers will regularly buy and sell slaves as well.
+
+### Character Interactions
+
+* Pool characters can now be targeted by *Buy Slave* and *Sell Slave* interactions.
+* Interactions and events now show a detailed breakdown of the slave price.
+* AI landless adventurers are now somewhat more willing to trade slaves via interactions.
+* Rebalanced slave prices slightly and removed the balancing multiplier.
+
+### Events
+
+* Reworked the *Buy Foreign Slaves* event for consistency with *Visit Holding* slave market events.
+  * An existing slave merchant and their slaves will be used, if available.
+  * The merchant and slaves will not disappear immediately after the event.
+  * The ruler may also refuse to participate in the slave trade outright.
+
+### Game Rules
+
+* Added the *Visit Holding Improvements* game rule to enable or disable the *Visit Holding* decision changes.
+* Added the *Slave Market Availability* game rule to allow configuring the development level required for slave markets to be available.
+* Added the *Nudity* game rule to allow configuring nudity in slave market events.
+
+### Bug Fixes
+
+* Fixed a [vanilla issue](https://forum.paradoxplaza.com/forum/threads/ai-landless-adventurers-are-not-visiting-settlements-if-you-switch-to-any-of-them-you-cant-as-well.1712826/) that prevents AI landless adventurers from visiting holdings.
+* Fixed an issue with slave inheritance that left slaves without an owner if their previous owner's primary heir is also dead.
+
+### Miscellaneous
+
+* Enhanced debug logging when buying and selling slaves.
+
 ## Version 0.22.0
 
 ### Compatibility
