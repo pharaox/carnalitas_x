@@ -44,7 +44,10 @@ carn_sell_slave_interaction = {
 		scope:recipient = {
 			OR = {
 				is_ruler = yes
-				is_pool_character = yes
+				AND = {
+					is_pool_character = yes
+					var:at_merchant_type ?= flag:slave_trader
+				}
 			}
 			carnx_can_be_slave_owner_trigger = yes
 			carnx_is_slave_trigger = no
