@@ -141,7 +141,7 @@ Starting with version 0.23.0, this mod also a new *Buy & Sell Slaves* event chai
 
 Slave markets are available in all non-temple holdings above certain development level, configurable via the *Slave Market Availability* game rule. They are also available in holdings having trade-related economy buildings, or special buildings.
 
-In addition to buying and selling slaves, the adventurer may also refuse to participate in the slave trade outright. This disables the corresponding options for a certain cooldown period. The adventurer's partner may also object to trading slaves if they are compassionate or pious enough.
+In addition to buying and selling slaves, the adventurer may also refuse to participate in the slave trade outright. This disables the corresponding options for a certain cooldown period (currently 1 year). The adventurer's partner may also object to trading slaves if they are compassionate or pious enough.
 
 The slave prices are consistent and based on the criteria used by the mod, although the adventurer may haggle for a better price when selling. Slaves that are not bought will be sold off (disappear) or freed after some time.
 
@@ -298,7 +298,7 @@ Starting with version 0.18.0, this mod adds a leveled *Slaver* fame trait. The 2
 
 Slave traders bring two slaves for sale and you can buy one of them. The slaves are of faith and culture that is different from yours, and never of faith that falls under the *Slavery Crime* doctrine.
 
-Besides adding flavor, this event also spawns more slaves than would normally exist if the only way to create them was to enslave prisoners. It fires approximately every 5 years for every ruler of rank count and above. The AI will mostly not buy, unless it considers one of the slaves really useful according to the factors described in [AI Willingness to Buy or Sell](#ai-willingness-to-buy-or-sell).
+Besides adding flavor, this event also spawns more slaves than would normally exist if the only way to create them was to enslave prisoners. For players, it fires approximately every 3 years by default, and its frequency can be adjusted via the *Buy Foreign Slaves Event Frequency for Players* game rule. For AI, it fires every 1 to 5 years depending on rank. The AI will mostly not buy, unless it considers one of the slaves really useful according to the factors described in [AI Willingness to Buy or Sell](#ai-willingness-to-buy-or-sell).
 
 #### Runaway Slave
 

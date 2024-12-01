@@ -1,5 +1,16 @@
 # Changelog
 
+## Version 0.23.1
+
+### Game Rules
+
+* Added the *Buy Foreign Slaves Event Frequency for Players* game rule to allow configuring the frequency for these events.
+
+### Balance
+
+* It is no longer possible to sell slaves to pool characters who are not slave traders.
+* Increased the cooldown from refusing to participate in the slave trade to 1 year.
+
 ## Version 0.23.0
 
 ### Decisions
