@@ -514,7 +514,7 @@ carnx_decision_events.1010 = {
 
 		set_variable = {
 			name = carnx_1000_refused_recently
-			days = visit_settlement_minimum_cooldown_days
+			days = 365
 		}
 
 		# Go back to main square

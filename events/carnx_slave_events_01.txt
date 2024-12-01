@@ -5,6 +5,7 @@ scripted_trigger carnx_slave_0001_valid_liege_trigger = {
 	highest_held_title_tier >= tier_county
 	carnx_can_be_slave_owner_trigger = yes
 	NOR = {
+		is_landless_adventurer = yes
 		carnx_is_slavery_always_crime_trigger = yes
 		carnx_is_slavery_always_forbidden_trigger = { ACTION = flag:buy }
 		has_variable = carnx_1000_refused_recently
@@ -319,7 +320,7 @@ carnx_slave.0001 = {
 
 		set_variable = {
 			name = carnx_1000_refused_recently
-			days = 90 # visit_settlement_minimum_cooldown_days
+			days = 1825 # 5 years
 		}
 
 		hidden_effect = {
