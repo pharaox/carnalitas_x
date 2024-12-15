@@ -15,15 +15,14 @@
 carnx_num_merchants_value = {
 	if = {
 		limit = {
-			OR = {
-				county.development_level >= 40
-				has_special_building = yes
-			}
+			county ?= { development_level >= 40 }
 		}
 		value = 3
 	}
 	else_if = {
-		limit = { county.development_level >= 20 }
+		limit = { 
+			county ?= { development_level >= 20 }
+		}
 		value = 2
 	}
 	else = {

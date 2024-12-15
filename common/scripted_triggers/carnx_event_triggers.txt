@@ -8,7 +8,7 @@
 
 	# Has the minimum development level, or a relevant building
 	OR = {
-		county.development_level >= carnx_slave_markets_min_development_level_value
+		county ?= { development_level >= carnx_slave_markets_min_development_level_value }
 		# Economy
 		has_building_or_higher = common_tradeport_01
 		has_building_or_higher = caravanserai_01
