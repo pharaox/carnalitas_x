@@ -33,6 +33,7 @@ carnx_ai_negative_attitude_impact_value = -15
 
 carnx_ai_positive_laamp_impact_value = 25
 carnx_ai_positive_merchant_impact_value = 50
+carnx_ai_negative_merchant_impact_value = -50
 
 # AI impact halved values
 carnx_ai_positive_skill_impact_halved_value = 2

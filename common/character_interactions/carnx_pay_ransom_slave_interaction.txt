@@ -388,6 +388,13 @@ carnx_pay_ransom_slave_interaction = {
 			SCALE = -75
 		}
 
+		# Merchants are less willing to accept ransom
+		modifier = {
+			has_variable = at_merchant_type
+			add = carnx_ai_negative_merchant_impact_value
+			desc = carnx_recipient_merchant_reason
+		}
+
 		# Opinion of actor
 		opinion_modifier = {
 			trigger = {
@@ -554,6 +561,12 @@ carnx_pay_ransom_slave_interaction = {
 			RULER = scope:actor
 			SLAVE = scope:secondary_recipient
 			SCALE = -75
+		}
+
+		# Merchants are less willing to offer ransom
+		modifier = {
+			has_variable = at_merchant_type
+			add = carnx_ai_negative_merchant_impact_value
 		}
 
 		# Avoid doing business with rivals or nemesises

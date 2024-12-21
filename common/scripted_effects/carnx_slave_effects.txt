@@ -239,12 +239,12 @@ carnx_enslave_effect = {
 			if = {
 				limit = { carnx_is_slavery_crime_trigger = { CHARACTER = scope:slave } }
 				add_piety_level = -1
-				add_piety = carnx_slavery_major_piety_loss
+				add_piety = carnx_slavery_massive_piety_loss
 				carnx_slavery_doctrines_stress_impact_effect = yes
 			}
 			else_if = {
 				limit = { carnx_is_slavery_shunned_trigger = { CHARACTER = scope:slave } }
-				add_piety = carnx_slavery_piety_loss
+				add_piety = carnx_slavery_major_piety_loss
 				carnx_slavery_doctrines_minor_stress_impact_effect = yes
 			}
 
@@ -899,13 +899,14 @@ carnx_free_slave_actual_effect = {
 
 			# Add piety
 			if = {
-				limit = {
-					NOT = {
-						carnx_is_slavery_accepted_trigger = { CHARACTER = scope:slave }
-					}
-				}
+				limit = { carnx_is_slavery_crime_trigger = { CHARACTER = scope:slave } }
 				add_piety = carnx_slavery_piety_gain
 				carnx_slavery_doctrines_reverse_stress_impact_effect = yes
+			}
+			else_if = {
+				limit = { carnx_is_slavery_shunned_trigger = { CHARACTER = scope:slave } }
+				add_piety = carnx_slavery_minor_piety_gain
+				carnx_slavery_doctrines_reverse_minor_stress_impact_effect = yes
 			}
 
 			# Add / remove stress
@@ -1658,8 +1659,12 @@ carnx_get_valid_buyers_or_sellers_effect = {
 
 carnx_get_valid_payers_or_owners_effect = {
 	save_temporary_scope_as = party
-	every_ruler = {
+	every_living_character = {
 		limit = {
+			OR = {
+				is_ruler = yes
+				is_pool_character = yes
+			}
 			carnx_valid_payer_or_owner_trigger = { PARTY = scope:party }
 		}
 		add_to_list = $LIST$

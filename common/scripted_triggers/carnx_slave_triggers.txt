@@ -153,8 +153,20 @@ carnx_valid_buyer_or_seller_trigger = {
 
 carnx_valid_payer_or_owner_trigger = {
 	NOT = { this = $PARTY$ }
-	in_diplomatic_range = $PARTY$
-	is_ruler = yes
+	trigger_if = {
+		limit = {
+			$PARTY$ = { is_landless_adventurer = yes }
+		}
+		save_temporary_scope_as = character1
+		#Has to be used instead of diplo range checks in laamp to landed interactions
+		ep3_laamp_diplo_range_trigger = {
+			TARGET = scope:character1
+			LAAMP = $PARTY$
+		}
+	}
+	trigger_else = {
+		in_diplomatic_range = $PARTY$
+	}
 }
 
 carnx_is_same_realm_character_trigger = {
@@ -191,12 +203,12 @@ carnx_is_character_within_trading_range_trigger = {
 	carnx_get_capital_province_trigger = yes
 	trigger_if = {
 		limit = {
-			$PARTY$ = { is_landed = yes }
+			$PARTY$ = { is_landless_adventurer = yes }
 		}
 		scope:capital_province = {
 			squared_distance = {
 				target = $PARTY$.capital_province
-				value <= $PARTY$.carnx_slave_trading_range_value
+				value <= $PARTY$.carnx_slave_trading_range_landless_value
 			}
 		}
 	}
@@ -204,7 +216,7 @@ carnx_is_character_within_trading_range_trigger = {
 		scope:capital_province = {
 			squared_distance = {
 				target = $PARTY$.capital_province
-				value <= $PARTY$.carnx_slave_trading_range_landless_value
+				value <= $PARTY$.carnx_slave_trading_range_value
 			}
 		}
 	}
