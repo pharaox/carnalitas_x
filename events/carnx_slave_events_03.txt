@@ -53,7 +53,7 @@ scripted_effect carnx_slave_0003_slave_is_caught_effect = {
 
 scripted_effect carnx_slave_0003_slave_escapes_effect = {
 	send_interface_message = {
-		type = event_generic_neutral
+		type = event_generic_bad
 		title = carnx_msg_slave_escaped
 		right_icon = scope:slave
 

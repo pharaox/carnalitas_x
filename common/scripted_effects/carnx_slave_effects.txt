@@ -623,7 +623,6 @@ carn_enslave_effect = {
 
 	scope:new_owner = {
 		send_interface_message = {
-			type = event_generic_neutral
 			title = carn_msg_enslave
 			right_icon = scope:slave
 
@@ -986,7 +985,6 @@ carn_free_slave_interaction_effect = {
 
 	scope:owner = {
 		send_interface_message = {
-			type = event_generic_neutral
 			title = carn_msg_slave_freed
 			right_icon = scope:slave
 
@@ -1140,7 +1138,6 @@ carnx_ransom_slave_interaction_effect = {
 	scope:payer = {
 		hidden_effect = {
 			send_interface_message = {
-				type = event_generic_neutral
 				title = carnx_msg_slave_ransomed
 				left_icon = scope:slave
 				right_icon = scope:owner
@@ -1154,7 +1151,6 @@ carnx_ransom_slave_interaction_effect = {
 
 	scope:owner = {
 		send_interface_message = {
-			type = event_generic_neutral
 			title = carnx_msg_slave_ransomed
 			left_icon = scope:slave
 			right_icon = scope:payer
@@ -1316,7 +1312,6 @@ carn_buy_slave_effect = {
 	scope:buyer = {
 		hidden_effect = {
 			send_interface_message = {
-				type = event_generic_neutral
 				title = carnx_msg_slave_bought
 				left_icon = scope:slave
 				right_icon = scope:seller
@@ -1330,7 +1325,6 @@ carn_buy_slave_effect = {
 
 	scope:seller = {
 		send_interface_message = {
-			type = event_generic_neutral
 			title = carnx_msg_slave_sold
 			left_icon = scope:slave
 			right_icon = scope:buyer
@@ -1426,7 +1420,6 @@ carnx_seize_slave_effect = {
 carnx_seize_slave_interaction_effect = {
 	scope:new_owner = {
 		send_interface_message = {
-			type = event_generic_neutral
 			title = carnx_msg_slave_seized
 			right_icon = scope:slave
 
@@ -1437,7 +1430,6 @@ carnx_seize_slave_interaction_effect = {
 	scope:former_owner = {
 		hidden_effect = {
 			send_interface_message = {
-				type = event_generic_neutral
 				title = carnx_msg_slave_seized
 				left_icon = scope:slave
 				right_icon = scope:new_owner
@@ -1574,7 +1566,6 @@ carnx_gift_slave_interaction_effect = {
 	scope:new_owner = {
 		hidden_effect = {
 			send_interface_message = {
-				type = event_generic_neutral
 				title = carnx_msg_slave_gifted
 				left_icon = scope:slave
 				right_icon = scope:former_owner
@@ -1588,7 +1579,6 @@ carnx_gift_slave_interaction_effect = {
 
 	scope:former_owner = {
 		send_interface_message = {
-			type = event_generic_neutral
 			title = carnx_msg_slave_gifted
 			left_icon = scope:slave
 			right_icon = scope:new_owner
@@ -1619,7 +1609,6 @@ carnx_liberate_slave_interaction_effect = {
 
 	scope:liberator = {
 		send_interface_message = {
-			type = event_generic_neutral
 			title = carnx_msg_slave_liberated
 			right_icon = scope:slave
 
@@ -1630,7 +1619,6 @@ carnx_liberate_slave_interaction_effect = {
 	scope:former_owner = {
 		hidden_effect = {
 			send_interface_message = {
-				type = event_generic_neutral
 				title = carnx_msg_slave_liberated
 				left_icon = scope:slave
 				right_icon = scope:liberator

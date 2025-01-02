@@ -38,7 +38,7 @@ carnx_slave.0004 = {
 		}
 
 		send_interface_message = {
-			type = event_generic_neutral
+			type = event_generic_bad
 			title = carnx_slave.0004.tt
 			custom_tooltip = carnx_slave.0004.piety_loss.tt
 
