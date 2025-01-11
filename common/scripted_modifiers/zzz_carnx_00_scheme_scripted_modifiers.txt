@@ -52,15 +52,16 @@ ai_agent_join_chance_hostile_taboo_modifier = {
 						scope:target = { is_concubine_of = scope:owner }
 					}
 				}
+				scope:scheme = { scheme_type = fabricate_hook } #Unop Adultery makes no sense for fabricate hook
 			}
 			OR = {
 				AND = {
 					scope:owner = { is_male = yes }
-					faith = { has_doctrine_parameter = adultery_male_crime }
+					faith = { has_doctrine_parameter = adultery_male_shunned } #Unop shunned, not criminal
 				}
 				AND = {
 					scope:owner = { is_female = yes }
-					faith = { has_doctrine_parameter = adultery_female_crime }
+					faith = { has_doctrine_parameter = adultery_female_shunned } #Unop shunned, not criminal
 				}
 			}
 		}
@@ -80,6 +81,7 @@ ai_agent_join_chance_hostile_taboo_modifier = {
 						scope:target = { is_concubine_of = scope:owner }
 					}
 				}
+				scope:scheme = { scheme_type = fabricate_hook } #Unop Adultery makes no sense for fabricate hook
 			}
 			OR = {
 				AND = {
@@ -109,15 +111,16 @@ ai_agent_join_chance_hostile_taboo_modifier = {
 						scope:target = { is_concubine_of = scope:owner }
 					}
 				}
+				scope:scheme = { scheme_type = fabricate_hook } #Unop Adultery makes no sense for fabricate hook
 			}
 			OR = {
 				AND = {
 					scope:owner = { is_male = yes }
-					faith = { has_doctrine_parameter = adultery_male_crime }
+					faith = { has_doctrine_parameter = adultery_male_shunned } #Unop shunned, not criminal
 				}
 				AND = {
 					scope:owner = { is_female = yes }
-					faith = { has_doctrine_parameter = adultery_female_crime }
+					faith = { has_doctrine_parameter = adultery_female_shunned } #Unop shunned, not criminal
 				}
 			}
 		}
@@ -137,6 +140,7 @@ ai_agent_join_chance_hostile_taboo_modifier = {
 						scope:target = { is_concubine_of = scope:owner }
 					}
 				}
+				scope:scheme = { scheme_type = fabricate_hook } #Unop Adultery makes no sense for fabricate hook
 			}
 			OR = {
 				AND = {
@@ -155,6 +159,7 @@ ai_agent_join_chance_hostile_taboo_modifier = {
 	## Lust is a sin.
 	modifier = {
 		trigger = {
+			NOT = { scope:scheme = { scheme_type = fabricate_hook } } #Unop Lustful / chaste makes no sense for fabricate hook
 			faith = { trait_is_sin = lustful }
 		}
 		add = -5
@@ -163,6 +168,7 @@ ai_agent_join_chance_hostile_taboo_modifier = {
 	## Lust is a virtue.
 	modifier = {
 		trigger = {
+			NOT = { scope:scheme = { scheme_type = fabricate_hook } } #Unop Lustful / chaste makes no sense for fabricate hook
 			faith = { trait_is_virtue = lustful }
 		}
 		add = 10
@@ -171,6 +177,7 @@ ai_agent_join_chance_hostile_taboo_modifier = {
 	## Chaste is a sin.
 	modifier = {
 		trigger = {
+			NOT = { scope:scheme = { scheme_type = fabricate_hook } } #Unop Lustful / chaste makes no sense for fabricate hook
 			faith = { trait_is_sin = chaste }
 		}
 		add = 10
@@ -179,6 +186,7 @@ ai_agent_join_chance_hostile_taboo_modifier = {
 	## Chaste is a virtue.
 	modifier = {
 		trigger = {
+			NOT = { scope:scheme = { scheme_type = fabricate_hook } } #Unop Lustful / chaste makes no sense for fabricate hook
 			faith = { trait_is_virtue = chaste }
 		}
 		add = -5

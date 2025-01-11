@@ -293,6 +293,11 @@ court_physician_court_position = {
 	revoke_cost = { # root is the liege, no other scopes are passed here!
 		prestige =  {
 			value = major_court_position_prestige_revoke_cost
+			if = { #Unop: Inner circle legacy allows revoking without cost
+				limit = { unop_court_position_inner_circle_revoke_trigger = { LIEGE = root  POS = court_physician } }
+				desc = inner_circle_salary_mod
+				multiply = 0
+			}
 			# Set to 0 via obligation hook
 			if = {
 				limit = {
@@ -772,6 +777,11 @@ charioteer_court_position = {
 	revoke_cost = { # root is the liege, no other scopes are passed here!
 		prestige =  {
 			value = major_court_position_prestige_revoke_cost
+			if = { #Unop: Inner circle legacy allows revoking without cost
+				limit = { unop_court_position_inner_circle_revoke_trigger = { LIEGE = root  POS = charioteer } }
+				desc = inner_circle_salary_mod
+				multiply = 0
+			}
 			# Set to 0 via obligation hook
 			if = {
 				limit = {
@@ -1104,6 +1114,11 @@ bookmaker_court_position = {
 	revoke_cost = { # root is the liege, no other scopes are passed here!
 		prestige =  {
 			value = major_court_position_prestige_revoke_cost
+			if = { #Unop: Inner circle legacy allows revoking without cost
+				limit = { unop_court_position_inner_circle_revoke_trigger = { LIEGE = root  POS = bookmaker } }
+				desc = inner_circle_salary_mod
+				multiply = 0
+			}
 			# Set to 0 via obligation hook
 			if = {
 				limit = {
@@ -1447,6 +1462,11 @@ akolouthos_court_position = {
 	revoke_cost = { # root is the liege, no other scopes are passed here!
 		prestige =  {
 			value = major_court_position_prestige_revoke_cost
+			if = { #Unop: Inner circle legacy allows revoking without cost
+				limit = { unop_court_position_inner_circle_revoke_trigger = { LIEGE = root  POS = akolouthos } }
+				desc = inner_circle_salary_mod
+				multiply = 0
+			}
 			# Set to 0 via obligation hook
 			if = {
 				limit = {
@@ -1732,7 +1752,12 @@ cultural_emissary_court_position = {
 	revoke_cost = { # root is the liege, no other scopes are passed here!
 		prestige =  {
 			value = major_court_position_prestige_revoke_cost
-			# Set to 0 with obligation hook
+			if = { #Unop: Inner circle legacy allows revoking without cost
+				limit = { unop_court_position_inner_circle_revoke_trigger = { LIEGE = root  POS = cultural_emissary } }
+				desc = inner_circle_salary_mod
+				multiply = 0
+			}
+			# Set to 0 via obligation hook
 			if = {
 				limit = {
 					court_position_obligation_hook_salary_trigger = {
@@ -1982,6 +2007,11 @@ keeper_of_swans_court_position = {
 	revoke_cost = { # root is the liege, no other scopes are passed here!
 		prestige =  {
 			value = major_court_position_prestige_revoke_cost
+			if = { #Unop: Inner circle legacy allows revoking without cost
+				limit = { unop_court_position_inner_circle_revoke_trigger = { LIEGE = root  POS = keeper_of_swans } }
+				desc = inner_circle_salary_mod
+				multiply = 0
+			}
 			# Set to 0 via obligation hook
 			if = {
 				limit = {
@@ -2264,6 +2294,11 @@ chief_qadi_court_position = {
 	revoke_cost = { # root is the liege, no other scopes are passed here!
 		prestige =  {
 			value = major_court_position_prestige_revoke_cost
+			if = { #Unop: Inner circle legacy allows revoking without cost
+				limit = { unop_court_position_inner_circle_revoke_trigger = { LIEGE = root  POS = chief_qadi } }
+				desc = inner_circle_salary_mod
+				multiply = 0
+			}
 			# Set to 0 via obligation hook
 			if = {
 				limit = {
@@ -2529,6 +2564,11 @@ garuda_court_position = {
 	revoke_cost = { # root is the liege, no other scopes are passed here!
 		prestige =  {
 			value = major_court_position_prestige_revoke_cost
+			if = { #Unop: Inner circle legacy allows revoking without cost
+				limit = { unop_court_position_inner_circle_revoke_trigger = { LIEGE = root  POS = garuda } }
+				desc = inner_circle_salary_mod
+				multiply = 0
+			}
 			# Set to 0 via obligation hook
 			if = {
 				limit = {
@@ -2820,6 +2860,11 @@ court_gardener_court_position = {
 	revoke_cost = { # root is the liege, no other scopes are passed here!
 		prestige =  {
 			value = major_court_position_prestige_revoke_cost
+			if = { #Unop: Inner circle legacy allows revoking without cost
+				limit = { unop_court_position_inner_circle_revoke_trigger = { LIEGE = root  POS = court_gardener } }
+				desc = inner_circle_salary_mod
+				multiply = 0
+			}
 			# Set to 0 via obligation hook
 			if = {
 				limit = {
@@ -3065,6 +3110,11 @@ lady_in_waiting_court_position = {
 	revoke_cost = { # root is the liege, no other scopes are passed here!
 		prestige =  {
 			value = major_court_position_prestige_revoke_cost
+			if = { #Unop: Inner circle legacy allows revoking without cost
+				limit = { unop_court_position_inner_circle_revoke_trigger = { LIEGE = root  POS = lady_in_waiting } }
+				desc = inner_circle_salary_mod
+				multiply = 0
+			}
 			# Set to 0 via obligation hook
 			if = {
 				limit = {
@@ -3463,6 +3513,11 @@ antiquarian_court_position = {
 	revoke_cost = { # root is the liege, no other scopes are passed here!
 		prestige =  {
 			value = major_court_position_prestige_revoke_cost
+			if = { #Unop: Inner circle legacy allows revoking without cost
+				limit = { unop_court_position_inner_circle_revoke_trigger = { LIEGE = root  POS = antiquarian } }
+				desc = inner_circle_salary_mod
+				multiply = 0
+			}
 			# Set to 0 via obligation hook
 			if = {
 				limit = {
@@ -4188,6 +4243,11 @@ travel_leader_court_position = {
 	revoke_cost = { # root is the liege, no other scopes are passed here!
 		prestige = {
 			value = minor_court_position_prestige_revoke_cost
+			if = { #Unop: Inner circle legacy allows revoking without cost
+				limit = { unop_court_position_inner_circle_revoke_trigger = { LIEGE = root  POS = travel_leader } }
+				desc = inner_circle_salary_mod
+				multiply = 0
+			}
 			# Set to 0 via obligation hook
 			if = {
 				limit = {
@@ -4480,6 +4540,11 @@ wet_nurse_court_position = {
 	revoke_cost = { # root is the liege, no other scopes are passed here!
 		prestige =  {
 			value = minor_court_position_prestige_revoke_cost
+			if = { #Unop: Inner circle legacy allows revoking without cost
+				limit = { unop_court_position_inner_circle_revoke_trigger = { LIEGE = root  POS = wet_nurse } }
+				desc = inner_circle_salary_mod
+				multiply = 0
+			}
 			# Set to 0 via obligation hook
 			if = {
 				limit = {
@@ -4923,6 +4988,11 @@ court_tutor_court_position = {
 	revoke_cost = { # root is the liege, no other scopes are passed here!
 		prestige =  {
 			value = major_court_position_prestige_revoke_cost
+			if = { #Unop: Inner circle legacy allows revoking without cost
+				limit = { unop_court_position_inner_circle_revoke_trigger = { LIEGE = root  POS = court_tutor } }
+				desc = inner_circle_salary_mod
+				multiply = 0
+			}
 			# Set to 0 via obligation hook
 			if = {
 				limit = {
@@ -5252,6 +5322,11 @@ food_taster_court_position = {
 	revoke_cost = { # root is the liege, no other scopes are passed here!
 		prestige =  {
 			value = major_court_position_prestige_revoke_cost
+			if = { #Unop: Inner circle legacy allows revoking without cost
+				limit = { unop_court_position_inner_circle_revoke_trigger = { LIEGE = root  POS = food_taster } }
+				desc = inner_circle_salary_mod
+				multiply = 0
+			}
 			# Set to 0 via obligation hook
 			if = {
 				limit = {
@@ -5508,8 +5583,7 @@ master_of_horse_court_position = {
 
 	valid_character = {
 		scope:employee = {
-			# CSR: Use correct validity trigger
-			master_of_horse_validity_trigger = { EMPLOYER = scope:liege }
+			master_of_horse_validity_trigger  = { EMPLOYER = scope:liege } #Unop: This was checking for the master_of_hunt
 			NOT = { carnx_is_slave_trigger = yes }
 		}
 	}
@@ -5517,6 +5591,11 @@ master_of_horse_court_position = {
 	revoke_cost = { # root is the liege, no other scopes are passed here!
 		prestige =  {
 			value = major_court_position_prestige_revoke_cost
+			if = { #Unop: Inner circle legacy allows revoking without cost
+				limit = { unop_court_position_inner_circle_revoke_trigger = { LIEGE = root  POS = master_of_horse } }
+				desc = inner_circle_salary_mod
+				multiply = 0
+			}
 			# Set to 0 via obligation hook
 			if = {
 				limit = {
@@ -5843,6 +5922,11 @@ master_of_hunt_court_position = {
 	revoke_cost = { # root is the liege, no other scopes are passed here!
 		prestige =  {
 			value = major_court_position_prestige_revoke_cost
+			if = { #Unop: Inner circle legacy allows revoking without cost
+				limit = { unop_court_position_inner_circle_revoke_trigger = { LIEGE = root  POS = master_of_hunt } }
+				desc = inner_circle_salary_mod
+				multiply = 0
+			}
 			# Set to 0 via obligation hook
 			if = {
 				limit = {
@@ -6097,6 +6181,11 @@ royal_architect_court_position = {
 	revoke_cost = { # root is the liege, no other scopes are passed here!
 		prestige =  {
 			value = major_court_position_prestige_revoke_cost
+			if = { #Unop: Inner circle legacy allows revoking without cost
+				limit = { unop_court_position_inner_circle_revoke_trigger = { LIEGE = root  POS = royal_architect } }
+				desc = inner_circle_salary_mod
+				multiply = 0
+			}
 			# Set to 0 via obligation hook
 			if = {
 				limit = {
@@ -6175,6 +6264,7 @@ royal_architect_court_position = {
 				multiply = {
 					value = 0.5
 					desc = trainee_salary_mod
+					format = "BASE_VALUE_FORMAT_DECIMALS_MINUS_POSITIVE" #Unop: To properly show the discount (Will show -0 if not present)
 				}
 			}
 			# Halved salary
@@ -6416,6 +6506,11 @@ high_almoner_court_position = {
 	revoke_cost = { # root is the liege, no other scopes are passed here!
 		prestige =  {
 			value = major_court_position_prestige_revoke_cost
+			if = { #Unop: Inner circle legacy allows revoking without cost
+				limit = { unop_court_position_inner_circle_revoke_trigger = { LIEGE = root  POS = high_almoner } }
+				desc = inner_circle_salary_mod
+				multiply = 0
+			}
 			# Set to 0 via obligation hook
 			if = {
 				limit = {
@@ -6646,6 +6741,11 @@ seneschal_court_position = {
 	revoke_cost = { # root is the liege, no other scopes are passed here!
 		prestige =  {
 			value = major_court_position_prestige_revoke_cost
+			if = { #Unop: Inner circle legacy allows revoking without cost
+				limit = { unop_court_position_inner_circle_revoke_trigger = { LIEGE = root  POS = seneschal } }
+				desc = inner_circle_salary_mod
+				multiply = 0
+			}
 			# Set to 0 via obligation hook
 			if = {
 				limit = {
@@ -6925,6 +7025,11 @@ cupbearer_court_position = {
 	revoke_cost = { # root is the liege, no other scopes are passed here!
 		prestige =  {
 			value = major_court_position_prestige_revoke_cost
+			if = { #Unop: Inner circle legacy allows revoking without cost
+				limit = { unop_court_position_inner_circle_revoke_trigger = { LIEGE = root  POS = cupbearer } }
+				desc = inner_circle_salary_mod
+				multiply = 0
+			}
 			# Set to 0 via obligation hook
 			if = {
 				limit = {
@@ -7178,6 +7283,11 @@ chief_eunuch_court_position = {
 	revoke_cost = { # root is the liege, no other scopes are passed here!
 		prestige =  {
 			value = major_court_position_prestige_revoke_cost
+			if = { #Unop: Inner circle legacy allows revoking without cost
+				limit = { unop_court_position_inner_circle_revoke_trigger = { LIEGE = root  POS = chief_eunuch } }
+				desc = inner_circle_salary_mod
+				multiply = 0
+			}
 			# Set to 0 via obligation hook
 			if = {
 				limit = {
@@ -7470,6 +7580,11 @@ court_jester_court_position = {
 	revoke_cost = { # root is the liege, no other scopes are passed here!
 		prestige =  {
 			value = major_court_position_prestige_revoke_cost
+			if = { #Unop: Inner circle legacy allows revoking without cost
+				limit = { unop_court_position_inner_circle_revoke_trigger = { LIEGE = root  POS = court_jester } }
+				desc = inner_circle_salary_mod
+				multiply = 0
+			}
 			# Set to 0 via obligation hook
 			if = {
 				limit = {
@@ -7562,23 +7677,25 @@ court_jester_court_position = {
 				multiply = {
 					value = 0.5
 					desc = generic_cp_discount
+					format = "BASE_VALUE_FORMAT_DECIMALS_MINUS_POSITIVE" #Unop: To properly show the discount (Will show -0 if not present)
 				}
 			}
-			if = {
-				limit = {
-					scope:liege = {
-						employs_court_position = court_jester_court_position
-						any_court_position_holder = {
-							type = court_jester_court_position
-							has_character_flag = cp_discount
-						}
-					}
-				}
-				multiply = {
-					value = 0.5
-					desc = generic_cp_discount
-				}
-			}
+			# Unop: Duplicate block just above (not removed for ease of merge when they will fix it)
+			#if = {
+			#	limit = {
+			#		scope:liege = {
+			#			employs_court_position = court_jester_court_position
+			#			any_court_position_holder = {
+			#				type = court_jester_court_position
+			#				has_character_flag = cp_discount
+			#			}
+			#		}
+			#	}
+			#	multiply = {
+			#		value = 0.5
+			#		desc = generic_cp_discount
+			#	}
+			#}
 			# Halved salary
 			if = {
 				limit = {
@@ -7821,6 +7938,11 @@ court_poet_court_position = {
 	revoke_cost = { # root is the liege, no other scopes are passed here!
 		prestige =  {
 			value = major_court_position_prestige_revoke_cost
+			if = { #Unop: Inner circle legacy allows revoking without cost
+				limit = { unop_court_position_inner_circle_revoke_trigger = { LIEGE = root  POS = court_poet } }
+				desc = inner_circle_salary_mod
+				multiply = 0
+			}
 			# Set to 0 via obligation hook
 			if = {
 				limit = {
@@ -8134,6 +8256,11 @@ court_musician_court_position = {
 	revoke_cost = { # root is the liege, no other scopes are passed here!
 		prestige =  {
 			value = major_court_position_prestige_revoke_cost
+			if = { #Unop: Inner circle legacy allows revoking without cost
+				limit = { unop_court_position_inner_circle_revoke_trigger = { LIEGE = root  POS = court_musician } }
+				desc = inner_circle_salary_mod
+				multiply = 0
+			}
 			# Set to 0 via obligation hook
 			if = {
 				limit = {
@@ -8633,6 +8760,11 @@ bodyguard_court_position = {
 	revoke_cost = { # root is the liege, no other scopes are passed here!
 		prestige =  {
 			value = major_court_position_prestige_revoke_cost
+			if = { #Unop: Inner circle legacy allows revoking without cost
+				limit = { unop_court_position_inner_circle_revoke_trigger = { LIEGE = root  POS = bodyguard } }
+				desc = inner_circle_salary_mod
+				multiply = 0
+			}
 			# Set to 0 via obligation hook
 			if = {
 				limit = {
@@ -9031,6 +9163,11 @@ champion_court_position = {
 	revoke_cost = { # root is the liege, no other scopes are passed here!
 		prestige =  {
 			value = major_court_position_prestige_revoke_cost
+			if = { #Unop: Inner circle legacy allows revoking without cost
+				limit = { unop_court_position_inner_circle_revoke_trigger = { LIEGE = root  POS = champion } }
+				desc = inner_circle_salary_mod
+				multiply = 0
+			}
 			# Set to 0 via obligation hook
 			if = {
 				limit = {
@@ -9292,6 +9429,11 @@ executioner_court_position = {
 	revoke_cost = { # root is the liege, no other scopes are passed here!
 		prestige =  {
 			value = major_court_position_prestige_revoke_cost
+			if = { #Unop: Inner circle legacy allows revoking without cost
+				limit = { unop_court_position_inner_circle_revoke_trigger = { LIEGE = root  POS = executioner } }
+				desc = inner_circle_salary_mod
+				multiply = 0
+			}
 			# Set to 0 via obligation hook
 			if = {
 				limit = {
@@ -9580,6 +9722,11 @@ court_artificer_court_position = {
 	revoke_cost = { # root is the liege, no other scopes are passed here!
 		prestige =  {
 			value = major_court_position_prestige_revoke_cost
+			if = { #Unop: Inner circle legacy allows revoking without cost
+				limit = { unop_court_position_inner_circle_revoke_trigger = { LIEGE = root  POS = court_artificer } }
+				desc = inner_circle_salary_mod
+				multiply = 0
+			}
 			# Set to 0 via obligation hook
 			if = {
 				limit = {
@@ -9870,6 +10017,11 @@ cave_hermit_court_position = {
 	revoke_cost = { # root is the liege, no other scopes are passed here!
 		prestige =  {
 			value = major_court_position_prestige_revoke_cost
+			if = { #Unop: Inner circle legacy allows revoking without cost
+				limit = { unop_court_position_inner_circle_revoke_trigger = { LIEGE = root  POS = cave_hermit } }
+				desc = inner_circle_salary_mod
+				multiply = 0
+			}
 			# Set to 0 via obligation hook
 			if = {
 				limit = {
@@ -10272,6 +10424,11 @@ master_assassin_court_position = {
 	revoke_cost = { # root is the liege, no other scopes are passed here!
 		prestige =  {
 			value = major_court_position_prestige_revoke_cost
+			if = { #Unop: Inner circle legacy allows revoking without cost
+				limit = { unop_court_position_inner_circle_revoke_trigger = { LIEGE = root  POS = master_assassin } }
+				desc = inner_circle_salary_mod
+				multiply = 0
+			}
 			# Set to 0 via obligation hook
 			if = {
 				limit = {
@@ -10624,6 +10781,11 @@ court_scholar_court_position = {
 	revoke_cost = { # root is the liege, no other scopes are passed here!
 		prestige =  {
 			value = major_court_position_prestige_revoke_cost
+			if = { #Unop: Inner circle legacy allows revoking without cost
+				limit = { unop_court_position_inner_circle_revoke_trigger = { LIEGE = root  POS = court_scholar } }
+				desc = inner_circle_salary_mod
+				multiply = 0
+			}
 			# Set to 0 via obligation hook
 			if = {
 				limit = {
@@ -10923,6 +11085,11 @@ chronicler_court_position = {
 	revoke_cost = { # root is the liege, no other scopes are passed here!
 		prestige =  {
 			value = major_court_position_prestige_revoke_cost
+			if = { #Unop: Inner circle legacy allows revoking without cost
+				limit = { unop_court_position_inner_circle_revoke_trigger = { LIEGE = root  POS = chronicler } }
+				desc = inner_circle_salary_mod
+				multiply = 0
+			}
 			# Set to 0 via obligation hook
 			if = {
 				limit = {
@@ -11248,6 +11415,11 @@ court_brewmaster_court_position = {
 	revoke_cost = { # root is the liege, no other scopes are passed here!
 		prestige =  {
 			value = major_court_position_prestige_revoke_cost
+			if = { #Unop: Inner circle legacy allows revoking without cost
+				limit = { unop_court_position_inner_circle_revoke_trigger = { LIEGE = root  POS = court_brewmaster } }
+				desc = inner_circle_salary_mod
+				multiply = 0
+			}
 			# Set to 0 via obligation hook
 			if = {
 				limit = {
