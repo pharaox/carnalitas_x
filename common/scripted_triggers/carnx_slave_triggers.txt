@@ -201,23 +201,10 @@ carnx_is_neighboring_realm_character_trigger = {
 carnx_is_character_within_trading_range_trigger = {
 	$PARTY$ = { exists = capital_province }
 	carnx_get_capital_province_trigger = yes
-	trigger_if = {
-		limit = {
-			$PARTY$ = { is_landless_adventurer = yes }
-		}
-		scope:capital_province = {
-			squared_distance = {
-				target = $PARTY$.capital_province
-				value <= $PARTY$.carnx_slave_trading_range_landless_value
-			}
-		}
-	}
-	trigger_else = {
-		scope:capital_province = {
-			squared_distance = {
-				target = $PARTY$.capital_province
-				value <= $PARTY$.carnx_slave_trading_range_value
-			}
+	scope:capital_province = {
+		squared_distance = {
+			target = $PARTY$.capital_province
+			value <= $PARTY$.carnx_slave_trading_range_value
 		}
 	}
 }
