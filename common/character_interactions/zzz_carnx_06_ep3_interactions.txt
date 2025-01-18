@@ -1,0 +1,302 @@
+﻿### Offer eunuch
+# actor = offerer
+# recipient = receiver
+# secondary_actor = eunuch
+offer_eunuch_interaction = {
+	category = interaction_category_diplomacy
+	ai_min_reply_days = 4
+	ai_max_reply_days = 9
+	popup_on_receive = yes
+	pause_on_receive = yes
+	icon = eunuch
+
+	populate_recipient_list= {
+		scope:actor = {
+			every_courtier = {
+				limit = {
+					is_eunuch_trigger = yes
+					# CSR Don't offer slave eunuchs
+					carnx_is_slave_trigger = no
+				}
+				add_to_list = characters
+			}
+		}
+	}
+
+	desc = offer_eunuch_interaction_desc
+
+	prompt = OFFER_EUNUCH_SELECT_EUNUCH_TO_TRANSFER
+
+	notification_text = OFFER_EUNUCH_PROPOSAL
+
+	cooldown_against_recipient = { years = 1 }
+
+	is_shown = {
+		# Only admin gov care about this
+		scope:actor = { government_allows = administrative }
+		scope:recipient = { government_allows = administrative }
+		# Only if you actually have any eunuchs in your court
+		scope:actor = {
+			any_courtier = {
+				is_eunuch_trigger = yes
+				# CSR Don't offer slave eunuchs
+				carnx_is_slave_trigger = no
+			}
+		}
+		# Cannot exchange eunuchs with self
+		NOT = { scope:recipient = scope:actor }
+		# Only significant rulers
+		scope:actor.highest_held_title_tier > tier_barony
+		# Target has to be a ruler and have a court
+		scope:recipient = { is_ruler = yes }
+		# Target has to be a direct vassal of the Emperor
+		scope:recipient.top_liege = scope:recipient.liege
+	}
+
+	is_valid_showing_failures_only = {
+		# Must be available
+		scope:recipient = { is_busy_in_events_localised = yes }
+		trigger_if = {
+			limit = { exists = scope:secondary_recipient }
+			scope:secondary_recipient = { is_busy_in_events_localised = yes }
+		}
+		NOT = {
+			# Must be at peace
+			scope:recipient = { is_at_war_with = scope:actor }
+		}
+		# Stop AI spamming eunuch offers
+		trigger_if = {
+			limit = {
+				scope:actor = { is_ai = yes }
+				exists = scope:secondary_recipient
+			}
+			NOT = {
+				scope:secondary_recipient = { has_character_flag = ai_should_not_offer_eunuch }
+			}
+		}
+	}
+
+	can_be_picked = {
+		# We don't want baby eunuchs, we want eunuchs who can actually do something
+		is_adult = yes
+	}
+
+	can_send = {
+		scope:recipient = {
+			trigger_if = {
+				limit = { is_ai = no }
+				NOT = {
+					scope:secondary_recipient = { has_character_flag = ai_should_not_offer_eunuch }
+				}
+			}
+		}
+	}
+
+	is_highlighted = { # We highlight this interaction so it's easier to notice, since we don't show it in the main list
+		scope:actor = {
+			any_courtier = {
+				is_eunuch_trigger = yes
+				# CSR Don't offer slave eunuchs
+				carnx_is_slave_trigger = no
+			}
+		}
+	}
+
+	cost = {}
+
+	on_send = {
+		scope:secondary_recipient = {
+			add_character_flag = {
+				flag = under_offer_as_eunuch_flag
+				months = 1
+			}
+			court_position_generator_effect = {
+				VAR = target
+				EMPLOYER = scope:recipient
+			}
+		}
+		if = {
+			limit = {
+				scope:recipient = { is_ai = no }
+			}
+			hidden_effect = {
+				scope:secondary_recipient = {
+					add_character_flag = {
+						flag = ai_should_not_offer_eunuch
+						years = 3
+					}
+				}
+			}
+		}
+	}
+
+	on_accept = {
+		# Save scopes for clarity
+		scope:actor = { save_scope_as = eunuch_sender }
+		scope:secondary_recipient = { save_scope_as = eunuch }
+		scope:recipient = { save_scope_as = eunuch_taker }
+		scope:actor = { trigger_event = char_interaction.0350 }
+		show_as_tooltip = {
+			ep3_give_eunuch_effect = {
+				EUNUCH = scope:secondary_recipient
+				TAKER = scope:recipient
+				GIVER = scope:actor
+			}
+			custom_tooltip = eunuch_will_be_given_a_position_tt
+		}
+	}
+
+	on_decline = {
+		scope:actor = {
+			trigger_event = char_interaction.0351
+		}
+		scope:secondary_recipient = { remove_character_flag = under_offer_as_eunuch_flag }
+	}
+
+	auto_accept = {
+		trigger_if = {
+			limit = {
+				scope:hook ?= yes
+				scope:actor = { has_strong_hook = scope:recipient }
+			}
+			custom_description = {
+				text = "spending_hook"
+				subject = scope:actor
+				object = scope:recipient
+				scope:hook ?= yes
+				scope:actor = { has_strong_hook = scope:recipient }
+			}
+		}
+		trigger_else = { always = no }
+	}
+
+	can_be_blocked = {
+		custom_description = { #Hook from Recipient can counteract, but only if Actor is not forcing the action via Strong Hook.
+			text = "spending_hook"
+			subject = scope:recipient
+			object = scope:actor
+			scope:recipient = { has_hook = scope:actor }
+			NAND = {
+				scope:hook = yes
+				scope:actor = { has_strong_hook = scope:recipient }
+			}
+		}
+	}
+
+	on_blocked_effect = {
+		scope:recipient = {
+			remove_hook = { target = scope:actor }
+		}
+	}
+
+	#Use hook
+	send_option = {
+		is_valid = {
+			scope:actor = { has_usable_hook = scope:recipient }
+		}
+		flag = hook
+		localization = SCHEME_HOOK
+	}
+	should_use_extra_icon = {
+		scope:actor = { has_usable_hook = scope:recipient }
+	}
+	extra_icon = "gfx/interface/icons/character_interactions/hook_icon.dds"
+
+	send_options_exclusive = no
+
+	# AI
+	ai_accept = {
+		base = -50
+		######### OPINION OF LIEGE
+		opinion_modifier = {
+			who = scope:recipient
+			opinion_target = scope:actor
+			multiplier = 0.5
+			desc = AI_OPINION_REASON
+		}
+		######### OPINION OF EUNUCH
+		opinion_modifier = {
+			who = scope:recipient
+			opinion_target = scope:secondary_recipient
+			multiplier = 0.5
+			desc = AI_OPINION_REASON
+		}
+		######## EUNUCH AGE
+		modifier = {
+			add = {
+				value = 50
+				subtract = scope:secondary_recipient.age
+			}
+			desc = AI_REASON_EUNUCH_AGE
+		}
+		######## EUNUCH SKILLS
+		modifier = {
+			add = {
+				add = scope:secondary_recipient.diplomacy
+				add = scope:secondary_recipient.intrigue
+				add = scope:secondary_recipient.stewardship
+				add = scope:secondary_recipient.martial
+				add = scope:secondary_recipient.learning
+			}
+			desc = AI_REASON_EUNUCH_SKILLS
+		}
+		######## EUNUCH SKILLS
+		modifier = {
+			scope:secondary_recipient = {
+				has_trait = beardless_eunuch
+			}
+			add = 25
+			desc = AI_REASON_BEARDLESS_EUNUCH
+		}
+	}
+
+	ai_targets = {
+		ai_recipients = liege
+	}
+
+	ai_frequency = 36
+
+	ai_potential = { highest_held_title_tier >= tier_county }
+
+	ai_will_do = {
+		base = 0
+		modifier = {
+			add = scope:actor.ai_boldness
+			add = {
+				subtract = scope:actor.ai_compassion
+			}
+		}
+		opinion_modifier = { # Opinion Factor
+			who = scope:recipient
+			opinion_target = scope:actor
+			multiplier = 0.5
+			desc = AI_OPINION_REASON
+		}
+		opinion_modifier = { # Opinion Factor
+			who = scope:actor
+			opinion_target = scope:secondary_recipient
+			multiplier = -0.5
+			desc = AI_OPINION_REASON
+		}
+		modifier = { # The AI will only use a Hook if they couldn't otherwise do this
+			scope:hook = yes
+			add = -1
+		}
+		# Cultural traditions
+		modifier = {
+			scope:actor.culture = { has_cultural_tradition = tradition_equitable }
+			add = 25
+		}
+		modifier = {
+			scope:actor.culture = { has_cultural_tradition = tradition_esteemed_hospitality }
+			add = 25
+		}
+		modifier = {
+			scope:actor = {
+				culture = { has_cultural_tradition = tradition_loyal_soldiers }
+			}
+			add = 25
+			desc = HOSTAGE_CULTURAL_TRADITION_REASON
+		}
+	}
+}
