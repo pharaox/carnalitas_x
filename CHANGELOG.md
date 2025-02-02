@@ -1,5 +1,27 @@
 # Changelog
 
+## Version 0.23.2
+
+### Interactions
+
+* Disabled *Offer Eunuch* interaction for slaves.
+* Enabled ransoming slaves owned by merchants, and made merchants less willing to offer or accept ransom.
+
+### Balance
+
+* Reduced the dynamic range for trading slaves as there are now many more slaves available.
+* Increased piety loss of enslaving against religious doctrines, rebalanced piety gain of freeing.
+* Only locations with >40 development will now have 3 slave merchants.
+
+### Bug Fixes
+
+* Fixed county scope errors reported in logs.
+
+### Miscellaneous
+
+* Adopted Unofficial Patch fixes to court positions, schemes, etc.
+* Improved slavery notification messages.
+
 ## Version 0.23.1
 
 ### Game Rules

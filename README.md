@@ -55,6 +55,8 @@ This mod should be compatible with all mods based on Carnalitas that don't modif
 * [Character Body Overhaul](https://www.loverslab.com/files/file/16683-character-body-overhaul/)
 * [Physical Attributes](https://www.loverslab.com/files/file/16927-physical-attributes/)
 
+This mod has been explicitly designed to complement [Carnalitas Love Reimagined](https://www.loverslab.com/files/file/29200-carnalitas-love-reimagined/) and [Carnalitas Prostitution Reimagined](?), so you are encouraged to use all of them. If you do this, put this mod after Carnalitas and CLR, but before CPR in the load order.
+
 This mod may not be compatible with all other mods that modify the slavery system. However, it should still be compatible with mods that don't change the original Carnalitas slavery interactions, modifiers, or effects. Compatibility with the following mods has been explicitly verified:
 
 * [Carnalitas Slavery Expansion](https://www.loverslab.com/files/file/21651-carnalitas-slavery-expansion/).
@@ -82,6 +84,7 @@ This mod is currently available in English, Russian (translated by [@Undertalk](
 If you like this mod, you may also consider my other mods:
 
 * [Carnalitas Love Reimagined](https://www.loverslab.com/files/file/29200-carnalitas-love-reimagined/), a rework of the Carnalitas *Make Love* interaction and its related effects.
+* [Carnalitas Prostitution Reimagined](?), a comprehensive rework of the Carnalitas prostitution system.
 * [Search & Trade Artifacts](https://steamcommunity.com/sharedfiles/filedetails/?id=2962238514), search for artifacts, buy them from other characters, and sell them to other characters.
 * [Travelers](https://steamcommunity.com/sharedfiles/filedetails/?id=3082182371), characters always travel to their home when it changes instead of teleporting.
 * [Active Courtiers](https://steamcommunity.com/sharedfiles/filedetails/?id=3157170996), courtiers search for spouses themselves for less micromanagement, stronger AI, and immersion.
@@ -344,7 +347,7 @@ The following bugs present in Carnalitas have been fixed in this mod:
 
 ## Vanilla Changes
 
-* The *Invite to Court*, *Take Vows*, and *Dismiss* vanilla interactions, as well as the *Banish*, *Take Vows*, and *Recruit* options of the *Negotiate Release* interaction are not available on slaves since they are returned automatically to their owners court. To dismiss or banish a slave, they should be freed first.
+* The *Invite to Court*, *Take Vows*, *Dismiss*, and *Offer Eunuch* vanilla interactions, as well as the *Banish*, *Take Vows*, and *Recruit* options of the *Negotiate Release* interaction are not available on slaves since they are returned automatically to their owners court. To dismiss or banish a slave, they should be freed first.
 * The *Demand Payment* vanilla interaction is no longer available on slaves since using it on slaves can be considered an exploit.
 * Slaves can be imprisoned without incurring tyranny, and can also be released from prison without losing dread.
 * Slaves are less likely to be converted to their owner's faith compared to other courtiers. This is mostly to prevent them to be freed too quickly as a result of the rebalanced impact of slavery doctrines.
@@ -392,6 +395,7 @@ The sections below list the changes made to existing vanilla objects in somewhat
 * `ask_for_conversion_courtier_interaction`: Reduced the chance of a slave being converted to their owner's faith to prevent freeing most slaves a few years after they were enslaved or bought.
 * `release_from_prison_interaction`: Disabled the *Banish* option, as well as dread and stress impact for slaves.
 * `demand_payment_interaction`: Disabled the *Demand Payment* interaction for slaves.
+* `offer_eunuch_interaction`: Disabled the *Offer Eunuch* interaction for slaves.
 
 ### Council Positions (`council_positions`)
 
