@@ -1,5 +1,11 @@
 # Changelog
 
+## Version 0.23.3
+
+### Localization
+
+* Updated Chinese translation by **@Dark_Crow**.
+
 ## Version 0.23.2
 
 ### Interactions
