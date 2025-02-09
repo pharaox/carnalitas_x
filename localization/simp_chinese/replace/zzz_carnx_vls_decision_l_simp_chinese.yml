@@ -1,11 +1,8 @@
 ﻿l_simp_chinese:
- # Visit Local Settlement Slot 1
- vls_decision_slot_2: "$visit_local_settlement_decision$: Buy and Sell Slaves"
+ vls_decision_slot_2: "$visit_local_settlement_decision$：奴隶交易"
  vls_decision_slot_2_desc: "$visit_local_settlement_decision_desc$"
  vls_decision_slot_2_tooltip: "$vls_decision_tooltip$"
  vls_decision_slot_2_tt: "$visit_local_settlement_effect_intro$$visit_local_settlement_effect_buy_slaves$$visit_local_settlement_effect_sell_slaves$"
-
- visit_local_settlement_effect_buy_slaves: "\n$EFFECT_LIST_BULLET$Buy [slaves|E] from the slave market of [THIS.Char.GetCurrentLocation.GetBaronyNameExplicitlyNoTooltip]"
- visit_local_settlement_effect_sell_slaves: "\n$EFFECT_LIST_BULLET$Sell [slaves|E] to slave traders"
-
- carnx_no_slave_market: "There is no slave market in this holding"
+ visit_local_settlement_effect_buy_slaves: "\n$EFFECT_LIST_BULLET$从[THIS.Char.GetCurrentLocation.GetBaronyNameExplicitlyNoTooltip]的奴隶市场中购买了[slaves|E]。"
+ visit_local_settlement_effect_sell_slaves: "\n$EFFECT_LIST_BULLET$在奴隶贩子处贩卖了[slaves|E]"
+ carnx_no_slave_market: "该地产中没有奴隶市场"
