@@ -16,6 +16,8 @@
   * Entire file
 * `common/court_positions/types/00_court_positions.txt`
   * Entire file
+* `common/court_positions/types/00_admin_court_position.txt`
+  * Entire file
 * `common/decisions/dlc_decisions/ep_3/06_ep3_laamp_decisions.txt`
   * `visit_local_settlement_decision`
 * `common/scripted_effects/00_prison_effects.txt`

@@ -1,7 +1,14 @@
-﻿carnx_slave_concubine_court_position = {
+﻿### Slave Court Positions ### ( Sort order 49 - 30 )
+
+carnx_slave_concubine_court_position = {
+	sort_order = 45
 	max_available_positions = 5
-	category = court_position_category_common
 	minimum_rank = county
+
+	court_position_asset = {
+		animation = flirtation
+		background = "gfx/interface/illustrations/event_scenes/ep2_wedding_bedroom_mena.dds"
+	}
 
 	opinion = {
 		value = carnx_regular_court_position_opinion
@@ -55,13 +62,30 @@
 		add = court_position_aptitude_traveling_friends_value
 		add = court_position_aptitude_family_business_value
 		add = court_position_aptitude_high_penalty_value
-		# TODO Add event for bonus aptitude similar to court.8311
+		# Seneschal
+		if = {
+			limit = {
+				liege.court_position:seneschal_court_position ?= {
+					has_variable = performing_improve_court
+				}
+			}
+			add = {
+				value = liege.court_position:seneschal_court_position.seneschal_improve_court_value
+				desc = seneschal_improve_court_aptitude_desc
+			}
+		}
 	}
 
 	# Is this position even visible for usage? Root scope is the liege character.
 	is_shown = {
 		NOT = { has_game_rule = carn_slavery_content_disabled }
-		carnx_slave_concubine_court_position_enabled_trigger = yes
+		trigger_if = {
+			limit = {
+				is_ai = yes
+				highest_held_title_tier <= tier_county
+			}
+			always = no
+		}
 	}
 
 	# Is this a valid position for this character to employ? Root scope is the liege character.
@@ -99,10 +123,16 @@
 	valid_character = {
 		scope:employee = {
 			OR = {
-				has_court_position = carnx_slave_concubine_court_position
-				AND = {
-					has_trait = slave
-					has_relation_slave_owner = scope:liege
+				custom_tooltip = {
+					text = none_is_employed_as_slave_concubine
+					has_court_position = carnx_slave_concubine_court_position
+				}
+				custom_tooltip = {
+					text = none_is_their_lieges_slave
+					AND = {
+						has_trait = slave
+						has_relation_slave_owner = scope:liege
+					}
 				}
 			}
 			carnx_can_be_slave_concubine_trigger = { LIEGE = scope:liege }
@@ -114,6 +144,11 @@
 		prestige =  {
 			value = minor_court_position_prestige_revoke_cost
 
+			if = { #Unop: Inner circle legacy allows revoking without cost
+				limit = { unop_court_position_inner_circle_revoke_trigger = { LIEGE = root  POS = carnx_slave_concubine } }
+				desc = inner_circle_salary_mod
+				multiply = 0
+			}
 			# Set to 0 via obligation hook
 			if = {
 				limit = {
@@ -161,7 +196,7 @@
 			if = {
 				limit = { court_position_inner_circle_salary_trigger = { POS = carnx_slave_concubine } }
 				multiply = {
-					value = 0.0
+					value = 0
 					desc = inner_circle_salary_mod
 					format = "BASE_VALUE_FORMAT_DECIMALS_MINUS_POSITIVE"
 				}
@@ -191,36 +226,108 @@
 					format = "BASE_VALUE_FORMAT_DECIMALS_MINUS_POSITIVE"
 				}
 			}
+			# Increased salary
+			if = {
+				limit = {
+					court_position_increased_salary_trigger = { POS = carnx_slave_concubine }
+				}
+				multiply = {
+					value = 1.5
+					desc = court_position_increased_salary
+					format = "BASE_VALUE_FORMAT_DECIMALS_MINUS_POSITIVE"
+				}
+			}
 			#You're working with LAAMPS now
 			if = {
 				limit = { 
-					scope:liege ?= { is_landless_adventurer = yes }
+					scope:liege ?= { government_has_flag = government_is_landless_adventurer }
 				}
-				multiply = 0
+				multiply = {
+					value = 0
+					desc = court_position_laamps_free
+					format = "BASE_VALUE_FORMAT_DECIMALS_MINUS_POSITIVE"
+				}
+			}
+		}
+		prestige = {
+			value = minor_court_position_prestige_salary # Update X_salary_tooltip if script_value is changed
+
+			# Set to 0 with Dynasty Perk Inner Circle
+			if = {
+				limit = { court_position_inner_circle_salary_trigger = { POS = carnx_slave_concubine } }
+				multiply = {
+					value = 0
+					desc = inner_circle_salary_mod
+					format = "BASE_VALUE_FORMAT_DECIMALS_MINUS_POSITIVE"
+				}
+			}
+			# Halved via obligation hook
+			else_if = {
+				limit = {
+					court_position_obligation_hook_salary_trigger = {
+						POS = carnx_slave_concubine
+						LIEGE = scope:liege
+					}
+				}
+				multiply = {
+					value = 0.5
+					desc = obligation_hook_salary
+					format = "BASE_VALUE_FORMAT_DECIMALS_MINUS_POSITIVE"
+				}
+			}
+			# Halved salary
+			if = {
+				limit = {
+					court_position_halved_salary_trigger = { POS = carnx_slave_concubine }
+				}
+				multiply = {
+					value = 0.5
+					desc = court_position_halved_salary
+					format = "BASE_VALUE_FORMAT_DECIMALS_MINUS_POSITIVE"
+				}
+			}
+			# Increased salary
+			if = {
+				limit = {
+					court_position_increased_salary_trigger = { POS = carnx_slave_concubine }
+				}
+				multiply = {
+					value = 1.5
+					desc = court_position_increased_salary
+					format = "BASE_VALUE_FORMAT_DECIMALS_MINUS_POSITIVE"
+				}
+			}
+			#You're working with LAAMPS now
+			if = {
+				limit = {
+					scope:liege ?= { government_has_flag = government_is_landless_adventurer }
+				}
+				multiply = {
+					value = 0
+					desc = court_position_laamps_free
+					format = "BASE_VALUE_FORMAT_DECIMALS_MINUS_POSITIVE"
+				}
 			}
 		}
 	}
 
+	is_powerful_agent = yes
+
 	# Scaling modifiers gained by the employer of the court position as the employee's aptitude level increases.
 	scaling_employer_modifiers = {
 		terrible = {
-			monthly_court_grandeur_change_mult = 0.01
 		}
 		poor = {
-			monthly_court_grandeur_change_mult = 0.02
-			monthly_prestige = 0.05
+			monthly_prestige = 0.025
 		}
 		average = {
-			monthly_court_grandeur_change_mult = 0.03
-			monthly_prestige = 0.1
+			monthly_prestige = 0.05
 		}
 		good = {
-			monthly_court_grandeur_change_mult = 0.04
-			monthly_prestige = 0.15
+			monthly_prestige = 0.1
 		}
 		excellent = {
-			monthly_court_grandeur_change_mult = 0.05
-			monthly_prestige = 0.2
+			monthly_prestige = 0.15
 		}
 	}
 
@@ -228,7 +335,8 @@
 
 	# Modifiers gained by the holder of the court position.
 	modifier = {
-		monthly_prestige = minor_court_position_prestige_salary
+		diplomacy = 1
+		attraction_opinion = 5
 	}
 
 	# Effects that happen when the position is appointed, revoked or invalidated.
@@ -240,6 +348,11 @@
 	}
 	on_court_position_invalidated = {
 		carnx_slave_concubine_title_invalidated_effect = yes
+	}
+	on_court_position_vacated = {
+		carnx_slave_court_position_vacated_event_effect = {
+			COURT_POSITION_TYPE = carnx_slave_concubine_court_position
+		}
 	}
 
 	# Scripted value to determine whether an AI will hire a position or not.
@@ -301,9 +414,14 @@
 }
 
 carnx_slave_captain_court_position = {
-	max_available_positions = 3
-	category = court_position_category_common
+	sort_order = 40
+	max_available_positions = 2
 	minimum_rank = county
+
+	court_position_asset = {
+		animation = throne_room_two_handed_passive_1
+		background = "gfx/interface/illustrations/event_scenes/courtyard.dds"
+	}
 
 	opinion = {
 		value = carnx_regular_court_position_opinion
@@ -374,17 +492,36 @@ carnx_slave_captain_court_position = {
 		add = court_position_aptitude_traveling_friends_value
 		add = court_position_aptitude_family_business_value
 		add = court_position_aptitude_high_penalty_value
-		# TODO Add event for bonus aptitude similar to court.8311
+		# Seneschal
+		if = {
+			limit = {
+				liege.court_position:seneschal_court_position ?= {
+					has_variable = performing_improve_court
+				}
+			}
+			add = {
+				value = liege.court_position:seneschal_court_position.seneschal_improve_court_value
+				desc = seneschal_improve_court_aptitude_desc
+			}
+		}
 	}
 
 	# Is this position even visible for usage? Root scope is the liege character.
 	is_shown = {
 		NOT = { has_game_rule = carn_slavery_content_disabled }
-		carnx_slave_captain_court_position_enabled_trigger = yes
+		is_landed_or_landless_administrative = yes
+		trigger_if = {
+			limit = {
+				is_ai = yes
+				highest_held_title_tier <= tier_county
+			}
+			always = no
+		}
 	}
 
 	# Is this a valid position for this character to employ? Root scope is the liege character.
 	valid_position = {
+		is_landed_or_landless_administrative = yes
 		carnx_slave_captain_court_position_enabled_trigger = yes
 	}
 
@@ -409,13 +546,26 @@ carnx_slave_captain_court_position = {
 	valid_character = {
 		scope:employee = {
 			OR = {
-				has_court_position = carnx_slave_captain_court_position
-				AND = {
-					has_trait = slave
-					has_relation_slave_owner = scope:liege
+				custom_tooltip = {
+					text = none_is_employed_as_slave_captain
+					has_court_position = carnx_slave_captain_court_position
+				}
+				custom_tooltip = {
+					text = none_is_their_lieges_slave
+					AND = {
+						has_trait = slave
+						has_relation_slave_owner = scope:liege
+					}
 				}
 			}
 			carnx_can_be_slave_captain_trigger = { LIEGE = scope:liege }
+			custom_tooltip = {
+				text = none_does_not_have_a_full_time_job
+				trigger_if = {
+					limit = { NOT = { has_court_position = carnx_slave_captain_court_position } }
+					court_position_does_not_already_have_a_job_trigger = yes # This positions is considered a job, and cannot be held at the same time as another similar position
+				}
+			}
 		}
 	}
 
@@ -424,6 +574,11 @@ carnx_slave_captain_court_position = {
 		prestige =  {
 			value = minor_court_position_prestige_revoke_cost
 
+			if = { #Unop: Inner circle legacy allows revoking without cost
+				limit = { unop_court_position_inner_circle_revoke_trigger = { LIEGE = root  POS = carnx_slave_captain } }
+				desc = inner_circle_salary_mod
+				multiply = 0
+			}
 			# Set to 0 via obligation hook
 			if = {
 				limit = {
@@ -471,7 +626,7 @@ carnx_slave_captain_court_position = {
 			if = {
 				limit = { court_position_inner_circle_salary_trigger = { POS = carnx_slave_captain } }
 				multiply = {
-					value = 0.0
+					value = 0
 					desc = inner_circle_salary_mod
 					format = "BASE_VALUE_FORMAT_DECIMALS_MINUS_POSITIVE"
 				}
@@ -501,12 +656,87 @@ carnx_slave_captain_court_position = {
 					format = "BASE_VALUE_FORMAT_DECIMALS_MINUS_POSITIVE"
 				}
 			}
+			# Increased salary
+			if = {
+				limit = {
+					court_position_increased_salary_trigger = { POS = carnx_slave_captain }
+				}
+				multiply = {
+					value = 1.5
+					desc = court_position_increased_salary
+					format = "BASE_VALUE_FORMAT_DECIMALS_MINUS_POSITIVE"
+				}
+			}
 			#You're working with LAAMPS now
 			if = {
 				limit = { 
-					scope:liege ?= { is_landless_adventurer = yes }
+					scope:liege ?= { government_has_flag = government_is_landless_adventurer }
 				}
-				multiply = 0
+				multiply = {
+					value = 0
+					desc = court_position_laamps_free
+					format = "BASE_VALUE_FORMAT_DECIMALS_MINUS_POSITIVE"
+				}
+			}
+		}
+		prestige = {
+			value = minor_court_position_prestige_salary # Update X_salary_tooltip if script_value is changed
+
+			# Set to 0 with Dynasty Perk Inner Circle
+			if = {
+				limit = { court_position_inner_circle_salary_trigger = { POS = carnx_slave_captain } }
+				multiply = {
+					value = 0
+					desc = inner_circle_salary_mod
+					format = "BASE_VALUE_FORMAT_DECIMALS_MINUS_POSITIVE"
+				}
+			}
+			# Halved via obligation hook
+			else_if = {
+				limit = {
+					court_position_obligation_hook_salary_trigger = {
+						POS = carnx_slave_captain
+						LIEGE = scope:liege
+					}
+				}
+				multiply = {
+					value = 0.5
+					desc = obligation_hook_salary
+					format = "BASE_VALUE_FORMAT_DECIMALS_MINUS_POSITIVE"
+				}
+			}
+			# Halved salary
+			if = {
+				limit = {
+					court_position_halved_salary_trigger = { POS = carnx_slave_captain }
+				}
+				multiply = {
+					value = 0.5
+					desc = court_position_halved_salary
+					format = "BASE_VALUE_FORMAT_DECIMALS_MINUS_POSITIVE"
+				}
+			}
+			# Increased salary
+			if = {
+				limit = {
+					court_position_increased_salary_trigger = { POS = carnx_slave_captain }
+				}
+				multiply = {
+					value = 1.5
+					desc = court_position_increased_salary
+					format = "BASE_VALUE_FORMAT_DECIMALS_MINUS_POSITIVE"
+				}
+			}
+			#You're working with LAAMPS now
+			if = {
+				limit = {
+					scope:liege ?= { government_has_flag = government_is_landless_adventurer }
+				}
+				multiply = {
+					value = 0
+					desc = court_position_laamps_free
+					format = "BASE_VALUE_FORMAT_DECIMALS_MINUS_POSITIVE"
+				}
 			}
 		}
 	}
@@ -514,28 +744,24 @@ carnx_slave_captain_court_position = {
 	# Scaling modifiers gained by the employer of the court position as the employee's aptitude level increases.
 	scaling_employer_modifiers = {
 		terrible = {
-			monthly_court_grandeur_change_mult = 0.01
 		}
 		poor = {
-			monthly_court_grandeur_change_mult = 0.02
-		}
-		average = {
-			monthly_court_grandeur_change_mult = 0.03
 			knight_effectiveness_mult = 0.01
 		}
-		good = {
-			monthly_court_grandeur_change_mult = 0.04
+		average = {
 			knight_effectiveness_mult = 0.02
 		}
+		good = {
+			knight_effectiveness_mult = 0.03
+		}
 		excellent = {
-			monthly_court_grandeur_change_mult = 0.05
 			knight_effectiveness_mult = 0.04
 		}
 	}
 
 	# Modifiers gained by the holder of the court position.
 	modifier = {
-		monthly_prestige = minor_court_position_prestige_salary
+		martial = 1
 	}
 
 	# Effects that happen when the position is appointed, revoked or invalidated.
@@ -547,6 +773,11 @@ carnx_slave_captain_court_position = {
 	}
 	on_court_position_invalidated = {
 		carnx_slave_captain_title_invalidated_effect = yes
+	}
+	on_court_position_vacated = {
+		carnx_slave_court_position_vacated_event_effect = {
+			COURT_POSITION_TYPE = carnx_slave_captain_court_position
+		}
 	}
 
 	# Scripted value to determine whether an AI will hire a position or not.
@@ -583,9 +814,14 @@ carnx_slave_captain_court_position = {
 }
 
 carnx_slave_eunuch_court_position = {
-	max_available_positions = 3
-	category = court_position_category_common
+	sort_order = 35
+	max_available_positions = 2
 	minimum_rank = county
+
+	court_position_asset = {
+		animation = scheme
+		background = "gfx/interface/illustrations/event_scenes/throneroom_mediterranean.dds"
+	}
 
 	opinion = {
 		value = carnx_regular_court_position_opinion
@@ -630,17 +866,36 @@ carnx_slave_eunuch_court_position = {
 		add = court_position_aptitude_traveling_friends_value
 		add = court_position_aptitude_family_business_value
 		add = court_position_aptitude_low_penalty_value
-		# TODO Add event for bonus aptitude similar to court.8311
+		# Seneschal
+		if = {
+			limit = {
+				liege.court_position:seneschal_court_position ?= {
+					has_variable = performing_improve_court
+				}
+			}
+			add = {
+				value = liege.court_position:seneschal_court_position.seneschal_improve_court_value
+				desc = seneschal_improve_court_aptitude_desc
+			}
+		}
 	}
 
 	# Is this position even visible for usage? Root scope is the liege character.
 	is_shown = {
 		NOT = { has_game_rule = carn_slavery_content_disabled }
-		carnx_slave_eunuch_court_position_enabled_trigger = yes
+		is_landed_or_landless_administrative = yes
+		trigger_if = {
+			limit = {
+				is_ai = yes
+				highest_held_title_tier <= tier_county
+			}
+			always = no
+		}
 	}
 
 	# Is this a valid position for this character to employ? Root scope is the liege character.
 	valid_position = {
+		is_landed_or_landless_administrative = yes
 		carnx_slave_eunuch_court_position_enabled_trigger = yes
 	}
 
@@ -665,10 +920,16 @@ carnx_slave_eunuch_court_position = {
 	valid_character = {
 		scope:employee = {
 			OR = {
-				has_court_position = carnx_slave_eunuch_court_position
-				AND = {
-					has_trait = slave
-					has_relation_slave_owner = scope:liege
+				custom_tooltip = {
+					text = none_is_employed_as_slave_eunuch
+					has_court_position = carnx_slave_eunuch_court_position
+				}
+				custom_tooltip = {
+					text = none_is_their_lieges_slave
+					AND = {
+						has_trait = slave
+						has_relation_slave_owner = scope:liege
+					}
 				}
 			}
 			carnx_can_be_slave_eunuch_trigger = { LIEGE = scope:liege }
@@ -680,6 +941,11 @@ carnx_slave_eunuch_court_position = {
 		prestige =  {
 			value = minor_court_position_prestige_revoke_cost
 
+			if = { #Unop: Inner circle legacy allows revoking without cost
+				limit = { unop_court_position_inner_circle_revoke_trigger = { LIEGE = root  POS = carnx_slave_eunuch } }
+				desc = inner_circle_salary_mod
+				multiply = 0
+			}
 			# Set to 0 via obligation hook
 			if = {
 				limit = {
@@ -727,7 +993,7 @@ carnx_slave_eunuch_court_position = {
 			if = {
 				limit = { court_position_inner_circle_salary_trigger = { POS = carnx_slave_eunuch } }
 				multiply = {
-					value = 0.0
+					value = 0
 					desc = inner_circle_salary_mod
 					format = "BASE_VALUE_FORMAT_DECIMALS_MINUS_POSITIVE"
 				}
@@ -757,12 +1023,87 @@ carnx_slave_eunuch_court_position = {
 					format = "BASE_VALUE_FORMAT_DECIMALS_MINUS_POSITIVE"
 				}
 			}
+			# Increased salary
+			if = {
+				limit = {
+					court_position_increased_salary_trigger = { POS = carnx_slave_eunuch }
+				}
+				multiply = {
+					value = 1.5
+					desc = court_position_increased_salary
+					format = "BASE_VALUE_FORMAT_DECIMALS_MINUS_POSITIVE"
+				}
+			}
 			#You're working with LAAMPS now
 			if = {
 				limit = { 
-					scope:liege ?= { is_landless_adventurer = yes }
+					scope:liege ?= { government_has_flag = government_is_landless_adventurer }
 				}
-				multiply = 0
+				multiply = {
+					value = 0
+					desc = court_position_laamps_free
+					format = "BASE_VALUE_FORMAT_DECIMALS_MINUS_POSITIVE"
+				}
+			}
+		}
+		prestige = {
+			value = minor_court_position_prestige_salary # Update X_salary_tooltip if script_value is changed
+
+			# Set to 0 with Dynasty Perk Inner Circle
+			if = {
+				limit = { court_position_inner_circle_salary_trigger = { POS = carnx_slave_eunuch } }
+				multiply = {
+					value = 0
+					desc = inner_circle_salary_mod
+					format = "BASE_VALUE_FORMAT_DECIMALS_MINUS_POSITIVE"
+				}
+			}
+			# Halved via obligation hook
+			else_if = {
+				limit = {
+					court_position_obligation_hook_salary_trigger = {
+						POS = carnx_slave_eunuch
+						LIEGE = scope:liege
+					}
+				}
+				multiply = {
+					value = 0.5
+					desc = obligation_hook_salary
+					format = "BASE_VALUE_FORMAT_DECIMALS_MINUS_POSITIVE"
+				}
+			}
+			# Halved salary
+			if = {
+				limit = {
+					court_position_halved_salary_trigger = { POS = carnx_slave_eunuch }
+				}
+				multiply = {
+					value = 0.5
+					desc = court_position_halved_salary
+					format = "BASE_VALUE_FORMAT_DECIMALS_MINUS_POSITIVE"
+				}
+			}
+			# Increased salary
+			if = {
+				limit = {
+					court_position_increased_salary_trigger = { POS = carnx_slave_eunuch }
+				}
+				multiply = {
+					value = 1.5
+					desc = court_position_increased_salary
+					format = "BASE_VALUE_FORMAT_DECIMALS_MINUS_POSITIVE"
+				}
+			}
+			#You're working with LAAMPS now
+			if = {
+				limit = {
+					scope:liege ?= { government_has_flag = government_is_landless_adventurer }
+				}
+				multiply = {
+					value = 0
+					desc = court_position_laamps_free
+					format = "BASE_VALUE_FORMAT_DECIMALS_MINUS_POSITIVE"
+				}
 			}
 		}
 	}
@@ -770,34 +1111,29 @@ carnx_slave_eunuch_court_position = {
 	# Scaling modifiers gained by the employer of the court position as the employee's aptitude level increases.
 	scaling_employer_modifiers = {
 		terrible = {
-			monthly_court_grandeur_change_mult = 0.01
 			enemy_hostile_scheme_phase_duration_add = 0.5
 		}
 		poor = {
-			monthly_court_grandeur_change_mult = 0.02
 			character_capital_county_monthly_development_growth_add = 0.05
 			enemy_hostile_scheme_phase_duration_add = 1
 		}
 		average = {
-			monthly_court_grandeur_change_mult = 0.03
 			character_capital_county_monthly_development_growth_add = 0.1
 			enemy_hostile_scheme_phase_duration_add = 2
 		}
 		good = {
-			monthly_court_grandeur_change_mult = 0.04
-			character_capital_county_monthly_development_growth_add = 0.2
+			character_capital_county_monthly_development_growth_add = 0.15
 			enemy_hostile_scheme_phase_duration_add = 4
 		}
 		excellent = {
-			monthly_court_grandeur_change_mult = 0.05
-			character_capital_county_monthly_development_growth_add = 0.4
+			character_capital_county_monthly_development_growth_add = 0.2
 			enemy_hostile_scheme_phase_duration_add = 8
 		}
 	}
 
 	# Modifiers gained by the holder of the court position.
 	modifier = {
-		monthly_prestige = minor_court_position_prestige_salary
+		intrigue = 1
 	}
 
 	# Effects that happen when the position is appointed, revoked or invalidated.
@@ -809,6 +1145,11 @@ carnx_slave_eunuch_court_position = {
 	}
 	on_court_position_invalidated = {
 		carnx_slave_eunuch_title_invalidated_effect = yes
+	}
+	on_court_position_vacated = {
+		carnx_slave_court_position_vacated_event_effect = {
+			COURT_POSITION_TYPE = carnx_slave_eunuch_court_position
+		}
 	}
 
 	# Scripted value to determine whether an AI will hire a position or not.

@@ -7,16 +7,18 @@ carnx_can_be_court_physician_trigger = {
 
 carnx_can_be_court_gardener_trigger = {
 	is_capable_adult = yes
+	OR = {
+		is_landed = no
+		stewardship >= 12
+	}
 	exists = $LIEGE$
 }
 
 carnx_can_be_antiquarian_trigger = {
 	is_capable_adult = yes
-	trigger_if = {
-		limit = {
-			$LIEGE$ = { is_ai = yes }
-		}
-		$LIEGE$ = { has_any_artifact = yes }
+	OR = {
+		is_landed = no
+		learning >= 12
 	}
 	NOT = { is_spouse_of = $LIEGE$ }
 }
@@ -33,6 +35,10 @@ carnx_can_be_wet_nurse_trigger = {
 
 carnx_can_be_court_tutor_trigger = {
 	is_capable_adult = yes
+	OR = {
+		is_landed = no
+		learning >= 12
+	}
 	NOT = { is_spouse_of = $LIEGE$ }
 }
 
@@ -52,6 +58,10 @@ carnx_can_be_food_taster_trigger = {
 
 carnx_can_be_seneschal_trigger = {
 	is_capable_adult = yes
+	OR = {
+		is_landed = no
+		stewardship >= 12
+	}
 	NOT = { is_spouse_of = $LIEGE$ }
 }
 
@@ -89,11 +99,14 @@ carnx_can_be_court_jester_trigger = {
 carnx_can_be_court_poet_trigger = {
 	is_capable_adult = yes
 	NOT = { is_spouse_of = $LIEGE$ }
-	has_trait = poet
 }
 
 carnx_can_be_court_musician_trigger = {
 	is_capable_adult = yes
+	OR = {
+		is_landed = no
+		diplomacy >= 12
+	}
 	NOT = { is_spouse_of = $LIEGE$ }
 }
 
@@ -144,11 +157,16 @@ carnx_can_be_master_assassin_trigger = {
 
 carnx_can_be_chronicler_trigger = {
 	is_capable_adult = yes
+	OR = {
+		is_landed = no
+		diplomacy >= 12
+	}
 	exists = $LIEGE$
 }
 
 carnx_can_be_court_brewmaster_trigger = {
 	is_capable_adult = yes
+	drinks_alcohol_trigger = yes
 	exists = $LIEGE$
 	OR = {
 		learning >= 12
@@ -161,31 +179,49 @@ carnx_can_be_court_brewmaster_trigger = {
 # CSR Court Positions
 
 carnx_can_be_slave_concubine_trigger = {
-	is_capable_adult = yes
+	custom_tooltip = {
+		text = none_is_capable_adult
+		is_capable_adult = yes
+	}
 	OR = {
 		diplomacy >= low_skill_rating
-		attraction > 0
+		custom_tooltip = {
+			text = none_has_positive_attraction
+			attraction > 0
+		}
 	}
 	is_visibly_fertile = yes
-	save_temporary_scope_as = can_be_slave_concubine
-	$LIEGE$ = {
-		carnx_allowed_to_marry_trigger = { CHARACTER = scope:can_be_slave_concubine }
+	custom_tooltip = {
+		text = none_liege_is_allowed_to_marry
+		save_temporary_scope_as = can_be_slave_concubine
+		$LIEGE$ = {
+			carnx_allowed_to_marry_trigger = { CHARACTER = scope:can_be_slave_concubine }
+		}
 	}
 }
 
 carnx_can_be_slave_captain_trigger = {
-	is_capable_adult = yes
+	custom_tooltip = {
+		text = none_is_capable_adult
+		is_capable_adult = yes
+	}
 	OR = {
 		martial >= low_skill_rating
 		prowess >= low_skill_rating
 	}
 	is_knight = yes
 	can_be_combatant_based_on_gender_trigger = { ARMY_OWNER = $LIEGE$ }
-	number_of_commander_traits >= 1
+	custom_tooltip = {
+		text = none_has_at_least_one_commander_trait
+		number_of_commander_traits >= 1
+	}
 }
 
 carnx_can_be_slave_eunuch_trigger = {
-	is_capable_adult = yes
+	custom_tooltip = {
+		text = none_is_capable_adult
+		is_capable_adult = yes
+	}
 	OR = {
 		stewardship >= low_skill_rating
 		intrigue >= low_skill_rating

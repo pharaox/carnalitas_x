@@ -145,7 +145,7 @@ carnx_slavery_doctrine.0003 = {
 	opening = {
 		desc = religious_interaction.1.opening
 	}
-	desc = carn_slavery_doctrine.0003.desc
+	desc = carn_slavery_doctrine.0003.default.desc
 	sender = scope:recipient
 
 	immediate = {

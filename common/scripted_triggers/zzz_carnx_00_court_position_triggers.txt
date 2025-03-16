@@ -30,7 +30,6 @@ court_position_does_not_already_have_a_job_trigger = {
 			has_court_position = bookmaker_court_position
 			has_court_position = court_brewmaster_court_position
 			has_court_position = carnx_slave_captain_court_position
-			has_court_position = carnx_slave_eunuch_court_position
 
 			#Unop: Missing entries for officer positions:
 			has_court_position = second_camp_officer
@@ -63,7 +62,6 @@ court_position_does_not_already_have_a_job_trigger = {
 			has_court_position = laureate_camp_officer
 
 			is_councillor = yes
-			is_tax_collector = yes
 		}
 	}
 }

@@ -10,13 +10,27 @@
  carnx_court_position_milk_production:0 "[milk_production|E]"
 
  carnx_slave_concubine_court_position:0 "Slave Concubine"
- carnx_slave_concubine_court_position_desc:0 "The $carnx_slave_concubine_court_position$ is a lower-rank concubine that is also a slave or former slave."
+ carnx_slave_concubine_court_position_desc:0 "The $carnx_slave_concubine_court_position$ is a lower-rank concubine who is also a slave or former slave."
  carnx_slave_concubine_employer_custom_effect_description:0 "Any children will have you as father if you are male, and the holder if you are female. They will also be of your dynasty, faith, and culture."
 
  carnx_slave_captain_court_position:0 "Mameluke Captain"
- carnx_slave_captain_court_position_desc:0 "The $carnx_slave_captain_court_position$ is a high-ranking soldier that is also a slave or former slave."
+ carnx_slave_captain_court_position_desc:0 "The $carnx_slave_captain_court_position$ is a high-ranking soldier who is also a slave or former slave."
 
  carnx_slave_eunuch_court_position:0 "Slave Eunuch"
- carnx_slave_eunuch_court_position_desc:0 "The $carnx_slave_eunuch_court_position$ is an influential court official that is also a slave or former slave."
+ carnx_slave_eunuch_court_position_desc:0 "The $carnx_slave_eunuch_court_position$ is an influential court official who is also a slave or former slave."
 
  hunt_can_hunt_parameter_tt:0 "[culture|E] is able to Hunt"
+
+ faith_or_culture_allows_polygamy_or_concubines_tt: "Your [faith|E] or [culture|E] allows polygamy or [concubines|E]"
+ faith_allows_slave_soldiers_tt: "Your [faith|E] allows recruitment of [slave|E] soldiers"
+
+ none_is_not_a_slave: "They are #bold not#! a [slave|E]"
+ none_liege_can_employ_slaves: "Their [liege|E] can employ [slaves|E] in additional court positions"
+ none_is_their_lieges_slave: "They are their [liege|E]'s [slave|E]"
+ none_is_employed_as_slave_concubine: "They are already employed as $carnx_slave_concubine_court_position$"
+ none_is_employed_as_slave_captain: "They are already employed as $carnx_slave_captain_court_position$"
+ none_is_employed_as_slave_eunuch: "They are already employed as $carnx_slave_eunuch_court_position$"
+ none_is_capable_adult: "They are a capable [adult|E]"
+ none_has_positive_attraction: "They have a positive [attraction|E]"
+ none_liege_is_allowed_to_marry: "Their [liege|E] is allowed to marry them"
+ none_has_at_least_one_commander_trait: "They have at least one [commander_trait|E]"

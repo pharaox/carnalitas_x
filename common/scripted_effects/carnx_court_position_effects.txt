@@ -395,6 +395,20 @@ carnx_slave_eunuch_title_invalidated_effect = {
 	carnx_debug_log_title_invalidated_effect = { NAME = slave_eunuch }
 }
 
+carnx_court_position_vacated_event_effect = {
+	court_position_vacated_event_effect = {
+		COURT_POSITION_TYPE = $COURT_POSITION_TYPE$
+	}
+	carnx_debug_log_title_vacated_slave_effect = { COURT_POSITION_TYPE = $COURT_POSITION_TYPE$ }
+}
+
+carnx_slave_court_position_vacated_event_effect = {
+	court_position_vacated_event_effect = {
+		COURT_POSITION_TYPE = $COURT_POSITION_TYPE$
+	}
+	carnx_debug_log_title_vacated_effect = { COURT_POSITION_TYPE = $COURT_POSITION_TYPE$ }
+}
+
 carnx_debug_log_title_received_slave_effect = {
 	scope:employee = {
 		if = {
@@ -422,6 +436,15 @@ carnx_debug_log_title_invalidated_slave_effect = {
 	}
 }
 
+carnx_debug_log_title_vacated_slave_effect = {
+	scope:employee = {
+		if = {
+			limit = { has_trait = slave }
+			carnx_debug_log_effect = { MSG = carnx_debug_msg_$COURT_POSITION_TYPE$_vacated }
+		}
+	}
+}
+
 carnx_debug_log_title_received_effect = {
 	scope:employee = {
 		carnx_debug_log_effect = { MSG = carnx_debug_msg_$NAME$_received }
@@ -437,5 +460,11 @@ carnx_debug_log_title_revoked_effect = {
 carnx_debug_log_title_invalidated_effect = {
 	scope:employee = {
 		carnx_debug_log_effect = { MSG = carnx_debug_msg_$NAME$_invalidated }
+	}
+}
+
+carnx_debug_log_title_vacated_effect = {
+	scope:employee = {
+		carnx_debug_log_effect = { MSG = carnx_debug_msg_$COURT_POSITION_TYPE$_vacated }
 	}
 }

@@ -3,12 +3,13 @@
 # recipient = receiver
 # secondary_actor = eunuch
 offer_eunuch_interaction = {
-	category = interaction_category_diplomacy
+	category = interaction_category_friendly
 	ai_min_reply_days = 4
 	ai_max_reply_days = 9
 	popup_on_receive = yes
 	pause_on_receive = yes
 	icon = eunuch
+	interface_priority = 29 #after Gift Artifact
 
 	populate_recipient_list= {
 		scope:actor = {

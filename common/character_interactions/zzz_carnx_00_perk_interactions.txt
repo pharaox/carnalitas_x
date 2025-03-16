@@ -4,11 +4,12 @@
 ###################
 # Overridden from vanilla.
 demand_payment_interaction = {
-	category = interaction_category_diplomacy
+	category = interaction_category_friendly
 	icon = icon_gold
 
 	auto_accept = yes
 	use_diplomatic_range = yes
+	interface_priority = 35
 
 	desc = demand_payment_interaction_desc
 
