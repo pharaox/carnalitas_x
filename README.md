@@ -4,9 +4,9 @@
 
 A comprehensive rework of the Carnalitas slavery system aiming at improved balance and better integration with other aspects of the game. Now also compatible with AGOT via a compatibility mod.
 
-The latest version is compatible with CK3 1.14.x and Carnalitas 2.8. If you are still on CK3 1.13.x, use [version 0.21.5](https://github.com/pharaox/carnalitas_x/releases/download/0.21.5/carnalitas_slavery_reimagined-0.21.5.zip) instead with Carnalitas 2.7.
+The latest version is compatible with CK3 1.15.x and Carnalitas 2.9. If you are still on CK3 1.14.x, use [version 0.22.3](https://github.com/pharaox/carnalitas_x/releases/download/0.22.3/carnalitas_slavery_reimagined-0.22.3.zip) instead with Carnalitas 2.8.
 
-The latest version of the CSR AGOT compatibility mod is compatible with CK3 1.13.x, Carnalitas 2.7, CSR 0.21.x, and AGOT 0.3.x. Use it with [Carnalitas AGOT Compatibility](https://www.loverslab.com/files/file/32307-carnalitas-agot-compatibility/).
+The latest version of the CSR AGOT compatibility mod is compatible with CK3 1.14.x, Carnalitas 2.8, CSR 0.23.3, and AGOT 0.3.10. Use it with [Carnalitas AGOT Compatibility](https://www.loverslab.com/files/file/32307-carnalitas-agot-compatibility/). A version compatible with CK3 1.15.x and latest AGOT will be released soon.
 
 ## Overview
 
@@ -412,7 +412,7 @@ The sections below list the changes made to existing vanilla objects in somewhat
 ### Triggers (`scripted_triggers`)
 
 * `desirable_for_capture_trigger`: Made characters with a slave price above a certain threshold desirable for capture, ensuring that they are captured instead of killed during sieges and raids.
-* `court_position_does_not_already_have_a_job_trigger`: Added *Slave Eunuch* and *Mameluke Captain* court positions to the list of "jobs".
+* `court_position_does_not_already_have_a_job_trigger`: Added *Mameluke Captain* court position to the list of "jobs".
 * `can_recruit_character_to_court_trigger`: Disabled the *Invite to Court* interaction for slaves.
 * `kick_from_court_validity_trigger`: Disabled the *Dismiss* interaction for slaves.
 * `can_take_religious_vows_disregard_marriage_trigger`: Disabled the *Take Vows* interaction for slaves.
