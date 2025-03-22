@@ -856,7 +856,7 @@ travel_leader_court_position = {
 			}
 		}
 
-		if = { # CSR Added since missing
+		if = { #Unop Added since missing
 			limit = {
 				employer ?= {
 					government_has_flag = government_is_landless_adventurer
@@ -4318,7 +4318,7 @@ chief_eunuch_court_position = {
 		add = court_position_aptitude_traveling_friends_value
 		add = court_position_aptitude_eunuch_tradition_value
 		add = court_position_aptitude_family_business_value
-		# Bonus from court.8311 # CSR Added because it was missing
+		#Unop Bonus from court.8311
 		if = {
 			limit = { var:bonus_aptitude_role ?= flag:chief_eunuch }
 			add = {
@@ -5135,7 +5135,7 @@ master_of_hunt_court_position = {
 	# Is this an available position for this court? (root is court owner)
 	valid_position = {
 		is_landed_or_landless_administrative = yes
-		# CSR: Adopted from Unofficial Patch
+		#Unop Not available if culture has cannot_hunt parameter
 		custom_tooltip = {
 			text = hunt_can_hunt_parameter_tt
 			NOT = {
@@ -5157,7 +5157,7 @@ master_of_hunt_court_position = {
 				text = none_is_not_a_slave
 				carnx_is_slave_trigger = no
 			}
-			# CSR: Adopted from Unofficial Patch
+			#Unop Not available if culture has cannot_hunt parameter
 			custom_tooltip = {
 				text = hunt_can_hunt_parameter_tt
 				NOT = {
@@ -8370,7 +8370,7 @@ champion_court_position = {
 		}
 		add = court_position_aptitude_traveling_friends_value
 		add = court_position_aptitude_family_business_value
-		# Bonus from court.8311 # CSR Added because it was missing
+		#Unop Bonus from court.8311
 		if = {
 			limit = { var:bonus_aptitude_role ?= flag:champion }
 			add = {
@@ -12213,7 +12213,7 @@ court_jester_court_position = {
 					format = "BASE_VALUE_FORMAT_DECIMALS_MINUS_POSITIVE" #Unop: To properly show the discount (Will show -0 if not present)
 				}
 			}
-			# CSR Duplicated from above
+			#Unop Duplicated from above
 			#if = {
 			#	limit = {
 			#		scope:liege = {
