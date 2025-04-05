@@ -1663,14 +1663,17 @@ carnx_add_buy_slave_variables_effect = {
 	set_variable = {
 		name = carnx_slave_price
 		value = $SLAVE_PRICE$
+		days = 30
 	}
 	set_variable = {
 		name = carnx_buyer_short_term_gold
 		value = scope:buyer.short_term_gold
+		days = 30
 	}
 	set_variable = {
 		name = carnx_buyer
 		value = scope:buyer
+		days = 30
 	}
 }
 
