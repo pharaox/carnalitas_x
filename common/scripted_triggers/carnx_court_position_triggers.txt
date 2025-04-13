@@ -26,7 +26,7 @@ carnx_can_be_antiquarian_trigger = {
 carnx_can_be_wet_nurse_trigger = {
 	is_capable_adult = yes
 	NOT = { is_close_family_of = $LIEGE$ }
-	carnx_age_value <= 45
+	age <= 45
 	is_female = yes
 	has_no_particular_noble_roots_trigger = yes
 	# Nuns cannot be wet nurses

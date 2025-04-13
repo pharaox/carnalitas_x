@@ -1,7 +1,4 @@
 ﻿l_simp_chinese:
- carnx_buying_slaves_is_illegal: "你的信仰不允许你交易[CHARACTER.GetFaith.GetAdherentNamePluralNoTooltip|U]作为奴隶"
- carnx_selling_slaves_is_illegal: "你的信仰不允许将[CHARACTER.GetFaith.GetAdherentNamePluralNoTooltip|U]作为奴隶交易"
- carnx_gifting_slaves_is_illegal: "你的信仰不允许将[CHARACTER.GetFaith.GetAdherentNamePluralNoTooltip|U]作为奴隶送出"
  carnx_slavery_is_always_accepted: "只有当你的信仰不接受 $carn_doctrine_same_slavery_name$ 或 $carn_doctrine_other_slavery_name$ 时，你才能选择 \"解放者\"特质。"
  carnx_slavery_is_never_accepted: "只有当你的信仰接受 $carn_doctrine_same_slavery_name$ 或 $carn_doctrine_other_slavery_name$ 时，你才能选择奴隶主、奴隶贩子或奴隶雇主特质。"
  carnx_is_slave_trigger: "[CHARACTER.GetShortUIName|U]是[slave|E]"

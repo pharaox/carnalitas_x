@@ -54,11 +54,11 @@ carnx_ai_negative_female_impact_halved_value = -7
 carnx_ai_positive_age_impact_halved_value = 5
 carnx_ai_negative_age_impact_halved_value = -5
 
-# AI impact of religius doctrines values
+# AI impact of religious doctrines values
 carnx_ai_negative_crime_impact_base_value = -100
 carnx_ai_negative_shunned_impact_base_value = -50
 
-# AI impact of religius doctrines reduced values
+# AI impact of religious doctrines reduced values
 carnx_ai_positive_crime_impact_reduced_base_value = 50
 carnx_ai_positive_shunned_impact_reduced_base_value = 25
 

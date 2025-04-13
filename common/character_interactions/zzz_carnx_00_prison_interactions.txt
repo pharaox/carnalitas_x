@@ -447,7 +447,7 @@ release_from_prison_interaction = {
 						scope:recipient = {
 							if = {
 								limit = {
-									carnx_age_value < 12
+									age < 12
 								}
 								ep3_child_castration_effect = yes
 							}
@@ -1084,7 +1084,7 @@ release_from_prison_interaction = {
 				scope:banish = no
 			}
 			scope:recipient = {
-				carnx_age_value >= 10
+				age >= 10
 				NOR = {
 					has_trait = excommunicated
 					has_trait = devoted

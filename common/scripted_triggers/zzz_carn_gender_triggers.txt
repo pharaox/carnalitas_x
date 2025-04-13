@@ -13,12 +13,12 @@ carn_possible_pregnancy_after_sex_with_character_trigger = {
 			carn_gender_can_impregnate_trigger = yes
 			$CHARACTER$ = { is_female = yes }
 		}
-		carnx_age_value >= define:NChildbirth|MIN_MALE_REPRODUCTION_AGE
+		age >= define:NChildbirth|MIN_MALE_REPRODUCTION_AGE
 		fertility >= 0.1
 
 		$CHARACTER$ ={
-			carnx_age_value >= define:NChildbirth|MIN_FEMALE_REPRODUCTION_AGE
-			carnx_age_value < define:NChildbirth|MAX_FEMALE_REPRODUCTION_AGE
+			age >= define:NChildbirth|MIN_FEMALE_REPRODUCTION_AGE
+			age < define:NChildbirth|MAX_FEMALE_REPRODUCTION_AGE
 			fertility >= 0.1
 			is_pregnant = no
 		}
@@ -29,13 +29,13 @@ carn_possible_pregnancy_after_sex_with_character_trigger = {
 			is_female = yes
 			$CHARACTER$ = { carn_gender_can_impregnate_trigger = yes }
 		}
-		carnx_age_value >= define:NChildbirth|MIN_FEMALE_REPRODUCTION_AGE
-		carnx_age_value < define:NChildbirth|MAX_FEMALE_REPRODUCTION_AGE
+		age >= define:NChildbirth|MIN_FEMALE_REPRODUCTION_AGE
+		age < define:NChildbirth|MAX_FEMALE_REPRODUCTION_AGE
 		fertility >= 0.1
 		is_pregnant = no
 
 		$CHARACTER$ = {
-			carnx_age_value >= define:NChildbirth|MIN_MALE_REPRODUCTION_AGE
+			age >= define:NChildbirth|MIN_MALE_REPRODUCTION_AGE
 			fertility >= 0.1
 		}
 	}

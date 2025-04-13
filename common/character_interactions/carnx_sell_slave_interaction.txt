@@ -536,7 +536,7 @@ carn_sell_slave_interaction = {
 			}
 			add = {
 				value = carnx_ai_positive_laamp_impact_value
-				multiply = carnx_attempted_artifact_haggle_multiplier
+				multiply = carnx_attempted_slave_haggle_multiplier
 			}
 		}
 

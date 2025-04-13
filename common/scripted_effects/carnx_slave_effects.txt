@@ -696,28 +696,6 @@ carn_free_slave_effect = {
 	}
 }
 
-carnx_sell_off_slave_effect = {
-	random_relation = {
-		type = slave_owner
-		save_scope_as = former_owner
-	}
-
-	# Add gold to former owner
-	scope:former_owner ?= {
-		add_gold = prev.carnx_slave_base_price_value
-	}
-
-	hidden_effect = {
-		# Trigger event
-		trigger_event = {
-			on_action = carnx_on_slave_sold_off
-		}
-	}
-
-	# Disappear
-	silent_disappearance_effect = yes
-}
-
 # Frees all slaves owned by scope:recipient against slavery doctrines from slavery.
 # Overriden from Carnalitas.
 carn_free_illegal_slaves_effect = {
@@ -2083,4 +2061,26 @@ carnx_sell_off_or_free_slave_effect = {
 			carn_free_slave_effect = yes
 		}
 	}
+}
+
+carnx_sell_off_slave_effect = {
+	random_relation = {
+		type = slave_owner
+		save_scope_as = former_owner
+	}
+
+	# Add gold to former owner
+	scope:former_owner ?= {
+		add_gold = prev.carnx_slave_base_price_value
+	}
+
+	hidden_effect = {
+		# Trigger event
+		trigger_event = {
+			on_action = carnx_on_slave_sold_off
+		}
+	}
+
+	# Disappear
+	silent_disappearance_effect = yes
 }

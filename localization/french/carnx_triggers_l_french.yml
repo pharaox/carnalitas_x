@@ -1,8 +1,4 @@
 ﻿l_french:
- carnx_buying_slaves_is_illegal: "Votre foi ne vous permet pas d’acheter [CHARACTER.GetFaith.GetAdherentNamePluralNoTooltip|U] comme esclaves"
- carnx_selling_slaves_is_illegal: "Votre foi ne vous permet pas de vendre [CHARACTER.GetFaith.GetAdherentNamePluralNoTooltip|U] comme esclaves"
- carnx_gifting_slaves_is_illegal: "Votre foi ne vous permet pas d’offrir [CHARACTER.GetFaith.GetAdherentNamePluralNoTooltip|U] comme esclaves"
-
  carnx_slavery_is_always_accepted: "Vous ne pouvez choisir Libérateur que si $carn_doctrine_same_slavery_name$ ou $carn_doctrine_other_slavery_name$ n’est pas accepté par votre foi"
  carnx_slavery_is_never_accepted: "Vous ne pouvez choisir Esclavagiste, Négociant d’esclaves, ou Employeur d’esclaves que si $carn_doctrine_same_slavery_name$ ou $carn_doctrine_other_slavery_name$ est accepté par votre foi"
 

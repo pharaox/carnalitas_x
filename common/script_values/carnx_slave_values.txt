@@ -167,10 +167,10 @@ carnx_slave_base_price_value = {
 	add = {
 		value = {
 			if = {
-				limit = { carnx_age_value < carnx_prime_age_min_value }
+				limit = { age < carnx_prime_age_min_value }
 				add = {
 					value = carnx_prime_age_min_value
-					subtract = carnx_age_value
+					subtract = age
 					divide = {
 						value = carnx_prime_age_min_value
 						subtract = carnx_young_zero_age_value
@@ -179,9 +179,9 @@ carnx_slave_base_price_value = {
 				}
 			}
 			else_if = {
-				limit = { carnx_age_value > carnx_prime_age_max_value }
+				limit = { age > carnx_prime_age_max_value }
 				add = {
-					value = carnx_age_value
+					value = age
 					subtract = carnx_prime_age_max_value
 					divide = {
 						value = carnx_old_zero_age_value
@@ -975,10 +975,6 @@ carnx_slavery_attitude_employer_chance = {
 	min = 0
 }
 
-carnx_age_value = {
-	value = age
-}
-
 carnx_slave_trading_range_value = {
 	if = {
 		limit = { is_landless_adventurer = yes }
@@ -1102,7 +1098,7 @@ carnx_scope_secondary_recipient_slave_pay_ransom_cost_value = {
 	}
 }
 
-carnx_attempted_artifact_haggle_multiplier = {
+carnx_attempted_slave_haggle_multiplier = {
 	value = 1
 	if = {
 		limit = { scope:attempted_slave_haggle ?= flag:success }

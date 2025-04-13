@@ -434,16 +434,16 @@ carnx_female_modifier = {
 carnx_age_modifier = {
 	modifier = {
 		OR = {
-			$SLAVE$.carnx_age_value < carnx_prime_age_min_value
-			$SLAVE$.carnx_age_value > carnx_prime_age_max_value
+			$SLAVE$.age < carnx_prime_age_min_value
+			$SLAVE$.age > carnx_prime_age_max_value
 		}
 		add = {
 			value = 0
 			if = {
-				limit = { $SLAVE$.carnx_age_value < carnx_prime_age_min_value }
+				limit = { $SLAVE$.age < carnx_prime_age_min_value }
 				add = {
 					value = carnx_prime_age_min_value
-					subtract = $SLAVE$.carnx_age_value
+					subtract = $SLAVE$.age
 					divide = {
 						value = carnx_prime_age_min_value
 						subtract = carnx_young_zero_age_value
@@ -453,9 +453,9 @@ carnx_age_modifier = {
 				}
 			}
 			else_if = {
-				limit = { $SLAVE$.carnx_age_value > carnx_prime_age_max_value }
+				limit = { $SLAVE$.age > carnx_prime_age_max_value }
 				add = {
-					value = $SLAVE$.carnx_age_value
+					value = $SLAVE$.age
 					subtract = carnx_prime_age_max_value
 					divide = {
 						value = carnx_old_zero_age_value
