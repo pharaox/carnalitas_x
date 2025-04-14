@@ -567,7 +567,7 @@ councillor_vizier = {
 				}
 			}
 		}
-		NOT = { carnx_is_slave_trigger = yes }
+		carnx_is_slave_trigger = no
 	}
 
 	on_get_position = {

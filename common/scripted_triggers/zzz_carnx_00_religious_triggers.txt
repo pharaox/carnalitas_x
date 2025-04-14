@@ -5,5 +5,5 @@
 	NOT = { has_trait = excommunicated }
 	NOT = { has_character_flag = holy_order_member_requested_return_home }
 	# CSR: Disable Take Vows for slaves since they will be returned automatically
-	NOT = { carnx_is_slave_trigger = yes }
+	carnx_is_slave_trigger = no
 }

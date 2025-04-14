@@ -69,7 +69,7 @@ carnx_can_be_cupbearer_trigger = {
 	is_capable_adult = yes
 	NOT = { is_spouse_of = $LIEGE$ }
 	OR = {
-		NOT = { carnx_is_slave_trigger = yes }
+		carnx_is_slave_trigger = no
 		$LIEGE$ = {
 			carnx_is_slave_employment_enabled_trigger = yes
 		}

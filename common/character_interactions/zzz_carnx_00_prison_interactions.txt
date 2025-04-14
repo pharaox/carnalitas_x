@@ -900,7 +900,7 @@ release_from_prison_interaction = {
 			}
 			# CSR: Disable Banish for slaves since they will be returned automatically
 			scope:recipient = {
-				NOT = { carnx_is_slave_trigger = yes }
+				carnx_is_slave_trigger = no
 			}
 		}
 	}
@@ -952,7 +952,7 @@ release_from_prison_interaction = {
 			}
 			# CSR: Disable Take Vows for slaves since they will be returned automatically
 			scope:recipient = {
-				NOT = { carnx_is_slave_trigger = yes }
+				carnx_is_slave_trigger = no
 			}
 		}
 		is_valid = {
@@ -1207,7 +1207,7 @@ release_from_prison_interaction = {
 			}
 			# CSR: Disable Recruit for slaves since they will be returned automatically
 			scope:recipient = {
-				NOT = { carnx_is_slave_trigger = yes }
+				carnx_is_slave_trigger = no
 			}
 		}
 	}
