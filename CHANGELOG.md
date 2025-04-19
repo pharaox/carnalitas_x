@@ -1,5 +1,16 @@
 # Changelog
 
+## Version 0.24.1
+
+### Bug Fixes
+
+* Fixed not being able to finish a buy or sell transaction if starting a travel after initiating it.
+* Fixed slaves being sold off or freed when a landless adventurer procures an estate
+
+### Housekeeping
+
+* Removed unused or obsolete code
+
 ## Version 0.24.0
 
 ### Compatibility
