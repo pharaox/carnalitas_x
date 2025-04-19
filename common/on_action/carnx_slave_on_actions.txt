@@ -131,7 +131,11 @@ carnx_on_join_court = {
 			carnx_return_slave_to_owner_effect = yes
 		}
 		else_if = {
-			limit = { carnx_is_slave_owner_trigger = yes }
+			limit = {
+				carnx_is_slave_owner_trigger = yes
+				# Don't sell off or free slaves if added to court temporarily after being destroyed as LAAMP
+				NOT = { has_variable = carnx_destroyed_laamp }
+			}
 			every_relation = {
 				type = slave
 				carnx_sell_off_or_free_slave_effect = yes

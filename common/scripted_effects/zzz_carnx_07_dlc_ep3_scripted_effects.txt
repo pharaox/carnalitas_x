@@ -1,0 +1,95 @@
+﻿destroy_laamp_effect = {
+	$ADVENTURER$ = {
+		save_scope_as = the_adventurer
+		# If we weren't an adventurer before, make us one.
+		if = {
+			limit = {
+				NOT = { has_trait = adventurer }
+			}
+			add_trait = adventurer
+		}
+		hidden_effect = {
+			every_courtier = {
+				set_variable = {
+					name = former_camp_leader
+					value = scope:the_adventurer
+				}
+				add_trait = adventurer_follower
+			}
+		}
+		custom_tooltip = {
+			text = destroy_laamp_effect.tt.domicile_liquidated
+			laamp_clear_domicile_buildings_effect = yes
+		}
+		# Contacts have opinions™ about you.
+		## Be they good.
+		every_contact = {
+			limit = {
+				opinion = {
+					target = scope:the_adventurer
+					value >= 1
+				}
+			}
+			custom = custom.every_contact_with_positive_opinion
+			add_opinion = {
+				target = scope:the_adventurer
+				modifier = pleased_former_contact_opinion
+				opinion = 30
+			}
+			hidden_effect = {
+				if = {
+					limit = {
+						can_set_relation_potential_friend_trigger = { CHARACTER = scope:the_adventurer }
+					}
+					set_relation_potential_friend = scope:the_adventurer
+				}
+			}
+		}
+		## Or bad.
+		every_contact = {
+			limit = {
+				opinion = {
+					target = scope:the_adventurer
+					value < 1
+				}
+			}
+			# And neutral but _eh_.
+			custom = custom.every_contact_with_negative_opinion
+			add_opinion = {
+				target = scope:the_adventurer
+				modifier = frustrated_former_contact_opinion
+				opinion = -30
+			}
+			hidden_effect = {
+				if = {
+					limit = {
+						can_set_relation_potential_rival_trigger = { CHARACTER = scope:the_adventurer }
+					}
+					set_relation_potential_rival = scope:the_adventurer
+				}
+			}
+		}
+		# Destroy your main title.
+		every_held_title = {
+			limit = { has_variable = adventurer_creation_reason }
+			save_scope_as = landless_adventurer_title
+			scope:the_adventurer = { destroy_title = scope:landless_adventurer_title }
+		}
+		# Ironically, we only want to use this effect if you're _not_ admin — it'll reset you nicely to the best government for you, but if you're admin, you should stay admin.
+		if = {
+			limit = {
+				NOT = { government_has_flag = government_is_administrative }
+			}
+			admin_government_reset_effect = yes
+		}
+		# Clean up story no-movement flags.
+		remove_character_flag = laamp_stay_same_kingdom
+		# CSR Mark the character as a destroyed LAAMP
+		carnx_debug_log_effect = { MSG = carnx_debug_msg_marking_character_as_destroyed_laamp }
+		set_variable = {
+			name = carnx_destroyed_laamp
+			value = yes
+			days = 1
+		}
+	}
+}

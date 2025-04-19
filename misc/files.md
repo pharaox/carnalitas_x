@@ -23,6 +23,8 @@
 * `common/scripted_effects/00_prison_effects.txt`
   * `prisoner_of_war_capture_effect`
   * `imprison_tyranny_effect`
+* `common/scripted_effects/07_dlc_ep3_scripted_effects.txt`
+  * `destroy_laamp_effect`
 * `common/scripted_modifiers/00_scheme_scripted_modifiers.txt`
   * `ai_agent_join_chance_hostile_taboo_modifier`
   * `ai_agent_join_chance_hostile_grievous_modifier`
