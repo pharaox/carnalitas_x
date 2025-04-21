@@ -1892,7 +1892,10 @@ carnx_add_courtier_effect = {
 		limit = {
 			is_ruler = yes
 			$SLAVE$ = {
-				NOT = { is_courtier_of = prev }
+				NOR = { 
+					is_courtier_of = prev
+					has_character_flag = carnx_block_add_courtier
+				}
 			}
 		}
 		add_courtier = $SLAVE$
