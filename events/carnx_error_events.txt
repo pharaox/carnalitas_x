@@ -1,0 +1,44 @@
+﻿namespace = carnx_error_events
+
+carnx_error_events.1000 = {
+	type = character_event
+	hidden = yes
+	orphan = yes
+
+	trigger = {
+		always = no
+
+		# Variables
+		has_variable = carnx_dummy_flag
+
+		# Flags
+		# Debug flags
+		exists = flag:interaction
+		exists = flag:event
+	}
+
+	immediate = {
+		# Character flags
+		add_character_flag = carnx_block_add_courtier
+		add_character_flag = peasant_faction_random_peasant # Not set in AGOT
+
+		# Scopes (event targets)
+		save_scope_value_as = { name = carn_new_trait value = flag:lustful }
+
+		# Flags
+		# Slavery action flags
+		set_variable = { name = carnx_dummy_flag value = flag:enslave }
+		set_variable = { name = carnx_dummy_flag value = flag:free }
+		set_variable = { name = carnx_dummy_flag value = flag:buy }
+		set_variable = { name = carnx_dummy_flag value = flag:sell }
+		set_variable = { name = carnx_dummy_flag value = flag:demand_ransom }
+		set_variable = { name = carnx_dummy_flag value = flag:offer_gift }
+		set_variable = { name = carnx_dummy_flag value = flag:accept_gift }
+		set_variable = { name = carnx_dummy_flag value = flag:seize }
+		# Merchant type flags
+		set_variable = { name = carnx_dummy_flag value = flag:slave_trader }
+		# Debug flags
+		set_variable = { name = carnx_dummy_flag value = flag:boolean }
+		set_variable = { name = carnx_dummy_flag value = flag:variable }
+	}
+}

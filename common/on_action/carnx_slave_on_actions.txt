@@ -42,7 +42,7 @@ carnx_on_slave_bought = {
 			NAME1 = buyer TYPE1 = flag:character
 			NAME2 = seller TYPE2 = flag:character
 			NAME3 = slave_price TYPE3 = flag:value
-			NAME4 = source TYPE4 = flag:flag
+			NAME4 = source TYPE4 = flag:variable
 		}
 	}
 }

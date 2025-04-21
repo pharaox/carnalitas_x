@@ -17,3 +17,5 @@
 
  carnx_slavery_crime_opinion:0 "Known [GetTrait('carnx_slaver').GetName( GetNullCharacter )]"
  carnx_slavery_intolerant_opinion:0 "Known [GetTrait('carnx_slaver').GetName( GetNullCharacter )]"
+
+ trait_slaver: "Slaver"
