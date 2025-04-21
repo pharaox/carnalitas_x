@@ -26,10 +26,8 @@
  setting_carnx_market_event_frequency_player_never_desc: "Events never fire for players."
 
  rule_carnx_valid_trading_partners: "#X CSR:#! Acheteurs ou vendeurs valides"
- setting_carnx_valid_trading_partners_same_and_neighboring_realms: "Le même royaume et les royaumes voisins"
- setting_carnx_valid_trading_partners_same_and_neighboring_realms_desc: "Dirigeants du même royaume et des royaumes voisins."
  setting_carnx_valid_trading_partners_within_trading_range: "À portée commerciale"
- setting_carnx_valid_trading_partners_within_trading_range_desc: "Dirigeants du même royaume et des royaumes voisins, et dirigeants dans un rayon d’action dynamique en fonction de leur rang."
+ setting_carnx_valid_trading_partners_within_trading_range_desc: "Dirigeants dans un rayon d’action dynamique en fonction de leur rang."
  setting_carnx_valid_trading_partners_all: "Tous les dirigeants"
  setting_carnx_valid_trading_partners_all_desc: "Tous les dirigeants à portée diplomatique."
 

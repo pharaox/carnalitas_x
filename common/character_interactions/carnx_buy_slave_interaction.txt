@@ -3,11 +3,22 @@
 # Overridden from Carnalitas.
 carn_buy_slave_directly_interaction = {
 	category = interaction_category_uncategorized
-	desc = carn_buy_slave_directly_interaction_desc
 	interface_priority = 30
 	common_interaction = yes
 	needs_recipient_to_open = yes
 	icon = carnx_chain
+
+	desc = {
+		desc = carn_buy_slave_directly_interaction_desc
+		triggered_desc = {
+			trigger = {
+				scope:actor = {
+					exists = current_travel_plan
+				}
+			}
+			desc = carnx_warning_reduced_range_desc
+		}
+	}
 
 	greeting = positive
 	send_name = carn_buy_slave_directly_interaction
@@ -89,7 +100,7 @@ carn_buy_slave_directly_interaction = {
 
 	is_valid_showing_failures_only = {
 		scope:actor = {
-			carnx_can_start_interaction_trigger = yes
+			carnx_can_trade_slaves_trigger = yes
 		}
 		scope:recipient = {
 			carnx_can_buy_slave_from_trigger = { PARTY = scope:actor }

@@ -981,19 +981,25 @@ carnx_slave_trading_range_value = {
 		value = define:NTaskContract|ADVENTURER_DISTANCE_RESTRICTION
 	}
 	else_if = {
-		limit = { highest_held_title_tier = tier_empire }
-		value = squared_distance_huge
-	}
-	else_if = {
-		limit = { highest_held_title_tier = tier_kingdom }
-		value = squared_distance_large
-	}
-	else_if = {
-		limit = { highest_held_title_tier = tier_duchy }
-		value = squared_distance_medium
+		limit = { exists = current_travel_plan }
+		value = carnx_squared_distance_small
 	}
 	else = {
-		value = squared_distance_small
+		if = {
+			limit = { highest_held_title_tier = tier_empire }
+			value = carnx_squared_distance_huge
+		}
+		else_if = {
+			limit = { highest_held_title_tier = tier_kingdom }
+			value = carnx_squared_distance_large
+		}
+		else_if = {
+			limit = { highest_held_title_tier = tier_duchy }
+			value = carnx_squared_distance_medium
+		}
+		else = {
+			value = carnx_squared_distance_small
+		}
 	}
 }
 

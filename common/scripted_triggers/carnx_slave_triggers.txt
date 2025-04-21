@@ -38,6 +38,11 @@ carnx_can_start_interaction_trigger = {
 	is_imprisoned = no
 }
 
+carnx_can_trade_slaves_trigger = {
+	carnx_can_start_interaction_trigger = yes
+	is_in_army = no
+}
+
 carnx_can_be_slave_owner_trigger = {
 	always = yes
 }
@@ -129,22 +134,9 @@ carnx_valid_buyer_or_seller_trigger = {
 	in_diplomatic_range = $PARTY$
 	trigger_if = {
 		limit = {
-			has_game_rule = carnx_valid_trading_partners_same_and_neighboring_realms
-		}
-		OR = {
-			carnx_is_same_realm_character_trigger = { PARTY = $PARTY$ }
-			carnx_is_neighboring_realm_character_trigger = { PARTY = $PARTY$ }
-		}
-	}
-	trigger_else_if = {
-		limit = {
 			has_game_rule = carnx_valid_trading_partners_within_trading_range
 		}
-		OR = {
-			carnx_is_same_realm_character_trigger = { PARTY = $PARTY$ }
-			carnx_is_neighboring_realm_character_trigger = { PARTY = $PARTY$ }
-			carnx_is_character_within_trading_range_trigger = { PARTY = $PARTY$ }
-		}
+		carnx_is_character_within_trading_range_trigger = { PARTY = $PARTY$ }
 	}
 	trigger_else = {
 		always = yes
@@ -169,46 +161,22 @@ carnx_valid_payer_or_owner_trigger = {
 	}
 }
 
-carnx_is_same_realm_character_trigger = {
-	trigger_if = {
-		limit = { exists = top_liege }
-		trigger_if = {
-			limit = { $PARTY$ = { exists = top_liege } }
-			$PARTY$.top_liege = top_liege
-		}
-		trigger_else = {
-			top_liege = $PARTY$
-		}
-	}
-	trigger_else = {
-		$PARTY$ = { exists = top_liege }
-		$PARTY$.top_liege = this
-	}
-}
-
-carnx_is_neighboring_realm_character_trigger = {
-	any_neighboring_and_across_water_top_liege_realm_owner = {
-		trigger_if = {
-			limit = { $PARTY$ = { exists = top_liege } }
-			$PARTY$.top_liege = this
-		}
-		trigger_else = {
-			this = $PARTY$
-		}
-	}
-}
-
 carnx_is_character_within_trading_range_trigger = {
-	$PARTY$ = { exists = capital_province }
 	carnx_get_capital_province_trigger = yes
-	scope:capital_province = {
+	$PARTY$ = {
+		carnx_get_party_capital_province_trigger = yes
+	}
+	exists = scope:party_capital_province
+	scope:capital_province ?= {
 		squared_distance = {
-			target = $PARTY$.capital_province
+			target = scope:party_capital_province
 			value <= $PARTY$.carnx_slave_trading_range_value
 		}
 	}
 }
 
+# The "character" is the receiving side (recipient), they may be a ruler or not.
+# Their "capital" is their actual capital if ruler, their host's capital if courtier or guest, or their location if pool.
 carnx_get_capital_province_trigger = {
 	trigger_if = {
 		limit = { exists = capital_province }
@@ -220,6 +188,18 @@ carnx_get_capital_province_trigger = {
 	}
 	trigger_else = {
 		location ?= { save_temporary_scope_as = capital_province }
+	}
+}
+
+# The "party" is the acting side (actor), they are always a ruler.
+# Their "capital" is their location if they are traveling, or their actual capital if not.
+carnx_get_party_capital_province_trigger = {
+	trigger_if = {
+		limit = { exists = current_travel_plan }
+		location ?= { save_temporary_scope_as = party_capital_province }
+	}
+	trigger_else = {
+		capital_province ?= { save_temporary_scope_as = party_capital_province }
 	}
 }
 

@@ -26,10 +26,8 @@
  setting_carnx_market_event_frequency_player_never_desc: "Events never fire for players."
 
  rule_carnx_valid_trading_partners: "#X CSR:#! Актуальные покупатели или продавцы"
- setting_carnx_valid_trading_partners_same_and_neighboring_realms: "В том же и соседних королевствах"
- setting_carnx_valid_trading_partners_same_and_neighboring_realms_desc: "Правители в том же и соседних королевствах."
  setting_carnx_valid_trading_partners_within_trading_range: "В пределах торгового радиуса"
- setting_carnx_valid_trading_partners_within_trading_range_desc: "Правители в том же и соседних королевствах, а также правители в динамическом торговом радиусе в зависимости от ранга."
+ setting_carnx_valid_trading_partners_within_trading_range_desc: "Правители в динамическом торговом радиусе в зависимости от ранга."
  setting_carnx_valid_trading_partners_all: "Все правители"
  setting_carnx_valid_trading_partners_all_desc: "Все правители в пределах дипломатического радиуса."
 

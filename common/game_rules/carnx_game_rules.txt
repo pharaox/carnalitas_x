@@ -65,10 +65,6 @@ carnx_valid_trading_partners = {
 
 	default = carnx_valid_trading_partners_within_trading_range
 
-	carnx_valid_trading_partners_same_and_neighboring_realms = {
-		flag = GG_can_change_rule
-	}
-
 	carnx_valid_trading_partners_within_trading_range = {
 		flag = GG_can_change_rule
 	}

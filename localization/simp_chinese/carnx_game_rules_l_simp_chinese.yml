@@ -1,8 +1,6 @@
 ﻿l_simp_chinese:
  game_rule_category_carnx_carnalitas_x: "卡纳利塔斯奴隶制重构"
  rule_carnx_valid_trading_partners: "#X 奴隶大修#! 有效交易者"
- setting_carnx_valid_trading_partners_same_and_neighboring_realms: "#high 相同和邻近领地#!"
- setting_carnx_valid_trading_partners_same_and_neighboring_realms_desc: "相同和邻近领地的统治者和流浪者。"
  setting_carnx_valid_trading_partners_within_trading_range: "在交易范围内"
  setting_carnx_valid_trading_partners_within_trading_range_desc: "相同和相邻领域的统治者和流浪者，或根据等级在动态交易范围内的统治者和流浪者。"
  setting_carnx_valid_trading_partners_all: "#high 所有角色#!"

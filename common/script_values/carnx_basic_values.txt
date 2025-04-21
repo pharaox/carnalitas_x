@@ -147,3 +147,9 @@ carnx_slave_0003_challenge_multiplier = 1.5
 # Pregnancy chances
 # Overridden by CLR script value
 carnx_pregnancy_chance_value = 10
+
+# Trading range distance values
+carnx_squared_distance_small = 22500 # 150 map-pixels, same as vanilla
+carnx_squared_distance_medium = 90000 # 300 map-pixels
+carnx_squared_distance_large = 202500 # 450 map-pixels
+carnx_squared_distance_huge = 360000 # 600 map-pixels
