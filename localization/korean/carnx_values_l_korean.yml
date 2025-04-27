@@ -15,4 +15,4 @@
  carnx_slave_price_buyer_greed_desc: "구매자 탐욕"
  carnx_slave_price_seller_attitude_desc: "판매자의 노예제 태도"
  carnx_slave_price_buyer_attitude_desc: "구매자의 노예제 태도"
- carnx_slave_bid_price_multiplier_desc: "흥정 결과" # Note: Original key name suggests this modifies the bid price, but description says "Haggle Outcome". Translating description. If it's meant as a multiplier, "입찰가 배율" might be better.
+ carnx_slave_bid_price_multiplier_desc: "흥정 결과" # Note: Original key name suggests this modifies the bid price, but description says Haggle Outcome. Translating description. If it's meant as a multiplier, 입찰가 배율 might be better.

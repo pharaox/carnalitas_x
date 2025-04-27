@@ -24,7 +24,7 @@
  carnx_decision_events.1010.desc_01: "[visiting_location.GetBaronyNameExplicitly]의 노예 시장에는 방문할 가치가 있는 상인이 단 한 명뿐이다 — 선술집 옆 작은 천막에 있는 [first_slave_merchant.GetFirstName]이다. 손님은 몇 명 없어 보이고, 사슬에 묶여 꼬리표가 달린 채 판매되는 노예는 더욱 적다." # 1인칭 '나' 시점, 해라체
  carnx_decision_events.1010.desc_02: "[visiting_location.GetBaronyNameExplicitly]의 노예 시장에는 방문할 가치가 있는 상인이 몇 명 있다. 그중에는 유곽 옆 큰 천막의 [first_slave_merchant.GetFirstName]과 경비가 삼엄한 울타리 안의 [second_slave_merchant.GetFirstName]이 있다. 몇몇 경매인들은 모인 군중에게 판매 중인 노예들의 장점을 큰 소리로 칭찬한다." # 1인칭 '나' 시점, 해라체
  carnx_decision_events.1010.desc_03: "[visiting_location.GetBaronyNameExplicitly]의 노예 시장에는 방문할 가치가 있는 상인이 많이 있다. 그중에는 호화로운 천막의 [first_slave_merchant.GetFirstName], 삼엄한 경비가 둘러싼 울타리 안의 [second_slave_merchant.GetFirstName], 그리고 저 앞쪽의 [third_slave_merchant.GetFirstName]이 있다. 광장은 온갖 종류의 노예를 두고 흥정하는 사람들로 북적인다." # 1인칭 '나' 시점, 해라체
- carnx_decision_events.1010.desc_outro_outraged_partner: "\n\n갑자기, 나의 [ROOT.Char.Custom2('RelationToMe', SCOPE.sC('visiting_partner'))]인 [visiting_partner.GetFirstNamePossessive] 격분한 목소리가 귓가에 들린다: \"정말로 이 역겨운 거래에 손을 대야겠소? #EMP 여길 벗어납시다!#\"" # 구어체 (동행인 대사)
+ carnx_decision_events.1010.desc_outro_outraged_partner: "\n\n갑자기, 나의 [ROOT.Char.Custom2('RelationToMe', SCOPE.sC('visiting_partner'))]인 [visiting_partner.GetFirstNamePossessive] 격분한 목소리가 귓가에 들린다: \"정말로 이 역겨운 거래에 손을 대야겠소? #EMP 여길 벗어납시다!# \"" # 구어체 (동행인 대사)
  carnx_decision_events.1010.desc_outro_partner: "\n\n[visiting_partner.GetFirstName]은(는) 나를 따라 거리를 한가로이 거닐며 판매 중인 노예들에 대해 논평한다. 내가 잠시 멈춰 다음에 어디로 갈지 결정하려 하자 [visiting_partner.GetSheHe|U]가 나를 본다." # 1인칭 '나' 시점, 해라체
  carnx_decision_events.1010.desc_outro: "$ep3_laamp_decision_event.1040.desc_outro$" # 변수 유지
  carnx_decision_events.1010.desc_outro_return_outraged_partner_finished: "\n\n약간 지친 기색이 역력한 [visiting_partner.GetFirstName]이(가) 화난 목소리로 말한다: \"이제 여기 볼일은 정말로 끝난 거겠죠, [visiting_partner.Custom2('RelationToMe', ROOT.Char)]?\"" # 구어체 (동행인 대사)
@@ -86,7 +86,7 @@
  carnx_decision_events.1020.desc_two_slaves_new_02: "\n\n[slave_trader.GetSheHe|U]는 [first_slave.GetFirstName]에게 다가가, 그 [first_slave.GetWomanMan]을(를) 주의 깊게 살피고 [first_slave.GetHerHis] 기술에 대해 묻는다. 그러고 나서 [slave_trader.GetSheHe]는 [second_slave.GetFirstName]을(를) 면밀히 검사하는데, 무언가 마음에 들지 않는 듯하다." # 해라체
  carnx_decision_events.1020.desc_three_slaves_new_01: "\n\n나의 노예들을 살피며, [slave_trader.GetSheHe]는 모든 세부 사항을 면밀히 조사한다 — [first_slave.GetFirstName]의 이빨이든, [second_slave.GetFirstName]의 근육이든, 또는 [third_slave.GetFirstName]의 기술이든 말이다." # 해라체
  carnx_decision_events.1020.desc_three_slaves_new_02: "\n\n내가 알기도 전에, [slave_trader.GetSheHe|U]는 [first_slave.GetFirstName]과 [second_slave.GetFirstName]을(를) 철저히 검사했다. [slave_trader.GetSheHe|U]는 결점을 찾으려는 듯 [third_slave.GetFirstName]의 성격에 대해 묻는다." # 해라체
- carnx_decision_events.1020.desc_outraged_partner_new: "\n\n갑자기, 나의 [ROOT.Char.Custom2('RelationToMe', SCOPE.sC('visiting_partner'))]인 [visiting_partner.GetFirstNamePossessive] 격분한 목소리가 귓가에 들린다: \"정말로 우리 동료들을 이 불한당에게 팔고 싶으시오? #EMP 여길 벗어납시다!#\"" # 구어체 (동행인 대사)
+ carnx_decision_events.1020.desc_outraged_partner_new: "\n\n갑자기, 나의 [ROOT.Char.Custom2('RelationToMe', SCOPE.sC('visiting_partner'))]인 [visiting_partner.GetFirstNamePossessive] 격분한 목소리가 귓가에 들린다: \"정말로 우리 동료들을 이 불한당에게 팔고 싶으시오? #EMP 여길 벗어납시다!# \"" # 구어체 (동행인 대사)
  carnx_decision_events.1020.desc_outraged_partner_returned: "\n\n곁눈질로 보니, [visiting_partner.GetFirstName]은(는) 여전히 나의 냉담함에 분노하고 있다." # 1인칭 '나' 시점, 해라체
 
  carnx_decision_events.1020.a: "$ep3_laamp_decision_event.1020.a$" # 변수 유지
