@@ -1,5 +1,16 @@
 # Changelog
 
+## Version 0.24.2
+
+## Interactions
+
+* Reduced slave trading ranges across the board, and reduced them even further for traveling characters, to account for the larger number of available slaves and slave traders in latest CSR versions. Characters in armies are no longer able to trade slaves at all.
+* Removed *Same and Neighboring Realms* setting from the *Valid Buyers or Sellers* game rule.
+
+### Bug Fixes
+
+* Removed errors reported in `error.log` on startup.
+
 ## Version 0.24.1
 
 ### Bug Fixes

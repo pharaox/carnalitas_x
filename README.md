@@ -132,9 +132,10 @@ While it is possible to initiate buying or selling of slaves by right-clicking o
 
 For added realism and also to improve performance on lower-end machines, whether a character is considered to be a valid buyer or seller is determined by the *Valid Buyers or Sellers* game rule. It has the following settings:
 
-* *Same and Neighboring Realms*: Rulers and wandering characters in the same and neighboring realms (less buyers or sellers, better performance and realism).
-* *Within Trading Range*: Rulers and wandering characters in the same and neighboring realms, or within a dynamic trading range depending on rank (smallest for counts, largest for emperors), measured as the distance between capitals. This is the default setting.
+* *Within Trading Range*: Rulers and wandering characters within a dynamic trading range depending on rank (smallest for counts, largest for emperors), measured as the distance between capitals. This is the default setting.
 * *All Rulers*: All rulers and wandering characters within diplomatic range (more buyers or sellers, worse performance and realism).
+
+Since version 0.24.2, the dynamic trading ranges have been significantly reduced compared to previous versions to account for the larger number of available slaves and slave traders in latest CSR versions. If a character is traveling, their trading range is reduced even further, and centered on their location, rather than their capital. Landless adventurers always have the *Small* trading range for consistency with other vanilla interactions, and because they can also trade slaves while visiting holdings.
 
 The AI uses a slightly different version of the above due to engine limitations.
 
