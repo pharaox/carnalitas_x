@@ -249,12 +249,7 @@ carnx_enslave_effect = {
 			}
 
 			# Add faith slaver trait
-			if = {
-				limit = {
-					NOT = { carnx_is_slavery_accepted_trigger = { CHARACTER = scope:slave } }
-				}
-				carnx_acquire_faith_slaver_trait_effect = { CHARACTER = scope:slave }
-			}
+			carnx_acquire_faith_slaver_trait_effect = { CHARACTER = scope:slave }
 
 			hidden_effect = {
 				# Potentially acquire slaver trait if scope:slave enslaved by scope:seller
@@ -1870,19 +1865,24 @@ carnx_acquire_faith_slaver_trait_effect = {
 	$CHARACTER$ = { save_temporary_scope_as = other }
 	if = {
 		limit = {
-			faith = {
-				faith_hostility_level = {
-					target = scope:other.faith
-					value >= faith_hostile_level
+			NOT = { carnx_is_slavery_accepted_trigger = { CHARACTER = scope:slave } }
+		}
+		if = {
+			limit = {
+				faith = {
+					faith_hostility_level = {
+						target = scope:other.faith
+						value >= faith_hostile_level
+					}
 				}
 			}
+			add_trait = carnx_faith_slaver_1
+			carnx_debug_log_effect = { MSG = carnx_debug_msg_character_acquired_faith_slaver_1_trait }
 		}
-		add_trait = carnx_faith_slaver_1
-		carnx_debug_log_effect = { MSG = carnx_debug_msg_character_acquired_faith_slaver_1_trait }
-	}
-	else = {
-		add_trait = carnx_faith_slaver_2
-		carnx_debug_log_effect = { MSG = carnx_debug_msg_character_acquired_faith_slaver_2_trait }
+		else = {
+			add_trait = carnx_faith_slaver_2
+			carnx_debug_log_effect = { MSG = carnx_debug_msg_character_acquired_faith_slaver_2_trait }
+		}
 	}
 }
 
