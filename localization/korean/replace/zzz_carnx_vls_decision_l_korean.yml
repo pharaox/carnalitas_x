@@ -1,11 +1,11 @@
 ﻿l_korean:
  # Visit Local Settlement Slot 1
- vls_decision_slot_2: "$visit_local_settlement_decision$: Buy and Sell Slaves"
- vls_decision_slot_2_desc: "$visit_local_settlement_decision_desc$"
- vls_decision_slot_2_tooltip: "$vls_decision_tooltip$"
- vls_decision_slot_2_tt: "$visit_local_settlement_effect_intro$$visit_local_settlement_effect_buy_slaves$$visit_local_settlement_effect_sell_slaves$"
+ vls_decision_slot_2: "$visit_local_settlement_decision$: 노예 구매 및 판매"
+ vls_decision_slot_2_desc: "$visit_local_settlement_decision_desc$" # 변수 유지
+ vls_decision_slot_2_tooltip: "$vls_decision_tooltip$" # 변수 유지
+ vls_decision_slot_2_tt: "$visit_local_settlement_effect_intro$$visit_local_settlement_effect_buy_slaves$$visit_local_settlement_effect_sell_slaves$" # 변수 유지
 
- visit_local_settlement_effect_buy_slaves: "\n$EFFECT_LIST_BULLET$Buy [slaves|E] from the slave market of [THIS.Char.GetCurrentLocation.GetBaronyNameExplicitlyNoTooltip]"
- visit_local_settlement_effect_sell_slaves: "\n$EFFECT_LIST_BULLET$Sell [slaves|E] to slave traders"
+ visit_local_settlement_effect_buy_slaves: "\n$EFFECT_LIST_BULLET$[THIS.Char.GetCurrentLocation.GetBaronyNameExplicitlyNoTooltip]의 노예 시장에서 [slaves|E] 구매" # 명사형/간결체
+ visit_local_settlement_effect_sell_slaves: "\n$EFFECT_LIST_BULLET$노예 상인에게 [slaves|E] 판매" # 명사형/간결체
 
- carnx_no_slave_market: "There is no slave market in this holding"
+ carnx_no_slave_market: "이 영지에는 노예 시장이 없음" # 명사형 종결
