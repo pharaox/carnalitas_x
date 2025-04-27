@@ -11,6 +11,10 @@
 
 * Removed errors reported in `error.log` on startup.
 
+### Localization
+
+* Updated Korean translation by **@Xelren**.
+
 ## Version 0.24.1
 
 ### Bug Fixes
