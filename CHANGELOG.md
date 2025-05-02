@@ -1,5 +1,21 @@
 # Changelog
 
+## Version 0.25.0
+
+### Compatibility
+
+* Adapted to CK3 1.16.0.1 and Carnalitas 2.10.
+
+### Court Positions
+
+* Enabled the following nomadic court positions to be assigned to slaves: *Stargazer*, *Siege Engineer*, *Yurtchi*, *Foreign Emissary*.
+* Enabled the following nomadic court positions to be assigned to slaves if your government is clan or you have the *Slave Employer* attitude: *Noyan*, *Cherbi*, *Keeper of the Horses*.
+
+### Balance
+
+* Nomadic and herder rulers trade slaves at reduced prices, similarly to tribal rulers.
+* Employing slaves in additional council and court positions is no longer enabled for tribal and administrative rulers that don't have the *Slave Employer* attitude.
+
 ## Version 0.24.2
 
 ### Interactions
