@@ -214,6 +214,78 @@ carnx_court_position_court_brewmaster_salary = {
 	}
 }
 
+carnx_court_position_boyan_salary = {
+	value = tiny_court_position_salary
+	if = {
+		limit = {
+			scope:liege = {
+				carnx_employs_slave_as_court_position_trigger = { TYPE = boyan_court_position }
+			}
+		}
+		multiply = carnx_court_position_salary_slave_multiplier
+	}
+}
+
+carnx_court_position_siege_engineer_salary = {
+	value = tiny_court_position_salary
+	if = {
+		limit = {
+			scope:liege = {
+				carnx_employs_slave_as_court_position_trigger = { TYPE = siege_engineer_court_position }
+			}
+		}
+		multiply = carnx_court_position_salary_slave_multiplier
+	}
+}
+
+carnx_court_position_yurtchi_salary = {
+	value = tiny_court_position_salary
+	if = {
+		limit = {
+			scope:liege = {
+				carnx_employs_slave_as_court_position_trigger = { TYPE = yurtchi_court_position }
+			}
+		}
+		multiply = carnx_court_position_salary_slave_multiplier
+	}
+}
+
+carnx_court_position_cherbi_salary = {
+	value = tiny_court_position_salary
+	if = {
+		limit = {
+			scope:liege = {
+				carnx_employs_slave_as_court_position_trigger = { TYPE = cherbi_court_position }
+			}
+		}
+		multiply = carnx_court_position_salary_slave_multiplier
+	}
+}
+
+carnx_court_position_foreign_emissary_salary = {
+	value = minor_court_position_salary
+	if = {
+		limit = {
+			scope:liege = {
+				carnx_employs_slave_as_court_position_trigger = { TYPE = foreign_emissary_court_position }
+			}
+		}
+		multiply = carnx_court_position_salary_slave_multiplier
+	}
+}
+
+carnx_court_position_keeper_of_the_horses_salary = {
+	value = tiny_court_position_salary
+	if = {
+		limit = {
+			scope:liege = {
+				carnx_employs_slave_as_court_position_trigger = { TYPE = keeper_of_the_horses_court_position }
+			}
+		}
+		multiply = carnx_court_position_salary_slave_multiplier
+	}
+}
+
 carnx_court_position_slave_concubine_salary = {
 	add = {
 		value = 0.1
@@ -711,6 +783,83 @@ carnx_court_brewmaster_aptitude_difference_value = {
 	}
 }
 
+carnx_court_astrologer_aptitude_difference_value = {
+	value = 0
+	if = {
+		limit = {
+			carnx_can_serve_as_court_astrologer_trigger = { RULER = scope:liege }
+		}
+		value = aptitude:court_astrologer_court_position
+		subtract = carnx_court_astrologer_aptitude_threshold
+	}
+}
+
+carnx_boyan_aptitude_difference_value = {
+	value = 0
+	if = {
+		limit = {
+			carnx_can_serve_as_boyan_trigger = { RULER = scope:liege }
+		}
+		value = aptitude:boyan_court_position
+		subtract = carnx_boyan_aptitude_threshold
+	}
+}
+
+carnx_siege_engineer_aptitude_difference_value = {
+	value = 0
+	if = {
+		limit = {
+			carnx_can_serve_as_siege_engineer_trigger = { RULER = scope:liege }
+		}
+		value = aptitude:siege_engineer_court_position
+		subtract = carnx_siege_engineer_aptitude_threshold
+	}
+}
+
+carnx_yurtchi_aptitude_difference_value = {
+	value = 0
+	if = {
+		limit = {
+			carnx_can_serve_as_yurtchi_trigger = { RULER = scope:liege }
+		}
+		value = aptitude:yurtchi_court_position
+		subtract = carnx_yurtchi_aptitude_threshold
+	}
+}
+
+carnx_cherbi_aptitude_difference_value = {
+	value = 0
+	if = {
+		limit = {
+			carnx_can_serve_as_cherbi_trigger = { RULER = scope:liege }
+		}
+		value = aptitude:cherbi_court_position
+		subtract = carnx_cherbi_aptitude_threshold
+	}
+}
+
+carnx_foreign_emissary_aptitude_difference_value = {
+	value = 0
+	if = {
+		limit = {
+			carnx_can_serve_as_foreign_emissary_trigger = { RULER = scope:liege }
+		}
+		value = aptitude:foreign_emissary_court_position
+		subtract = carnx_foreign_emissary_aptitude_threshold
+	}
+}
+
+carnx_keeper_of_the_horses_aptitude_difference_value = {
+	value = 0
+	if = {
+		limit = {
+			carnx_can_serve_as_keeper_of_the_horses_trigger = { RULER = scope:liege }
+		}
+		value = aptitude:keeper_of_the_horses_court_position
+		subtract = carnx_keeper_of_the_horses_aptitude_threshold
+	}
+}
+
 carnx_slave_concubine_aptitude_difference_value = {
 	value = 0
 	if = {
@@ -783,11 +932,32 @@ carnx_vanilla_max_aptitude_difference_value = {
 																		min = {
 																			value = carnx_court_brewmaster_aptitude_difference_value
 																			min = {
-																				value = carnx_slave_concubine_aptitude_difference_value
+																				value = carnx_court_astrologer_aptitude_difference_value
 																				min = {
-																					value = carnx_slave_captain_aptitude_difference_value
+																					value = carnx_boyan_aptitude_difference_value
 																					min = {
-																						value = carnx_slave_eunuch_aptitude_difference_value
+																						value = carnx_siege_engineer_aptitude_difference_value
+																						min = {
+																							value = carnx_yurtchi_aptitude_difference_value
+																							min = {
+																								value = carnx_cherbi_aptitude_difference_value
+																								min = {
+																									value = carnx_foreign_emissary_aptitude_difference_value
+																									min = {
+																										value = carnx_keeper_of_the_horses_aptitude_difference_value
+																										min = {
+																											value = carnx_slave_concubine_aptitude_difference_value
+																											min = {
+																												value = carnx_slave_captain_aptitude_difference_value
+																												min = {
+																													value = carnx_slave_eunuch_aptitude_difference_value
+																												}
+																											}
+																										}
+																									}
+																								}
+																							}
+																						}
 																					}
 																				}
 																			}

@@ -20,6 +20,7 @@ carnx_ransom_slave_interaction = {
 			every_relation = {
 				type = slave
 				limit = {
+					exists = scope:recipient
 					carnx_slave_can_be_freed_trigger = yes
 					carnx_slave_can_be_ransomed_by_trigger = { CHARACTER = scope:recipient }
 					carnx_character_can_ransom_slave_trigger = { CHARACTER = scope:recipient }
@@ -354,10 +355,20 @@ carnx_ransom_slave_interaction = {
 
 	ai_targets = {
 		ai_recipients = liege
+		ai_recipients = suzerain
+	}
+	ai_targets = {
 		ai_recipients = vassals
+		ai_recipients = tributaries
+		max = 10
+	}
+	ai_targets = {
 		ai_recipients = peer_vassals
 		ai_recipients = neighboring_rulers
+		ai_recipients = neighboring_rulers_including_tributary_borders
 		ai_recipients = nearby_domicile_owners
+		ai_recipients = domicile_location_neighboring_top_rulers
+		max = 10
 	}
 
 	ai_frequency = 24

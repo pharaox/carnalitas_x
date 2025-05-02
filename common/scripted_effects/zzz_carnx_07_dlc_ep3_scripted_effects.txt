@@ -78,7 +78,10 @@
 		# Ironically, we only want to use this effect if you're _not_ admin — it'll reset you nicely to the best government for you, but if you're admin, you should stay admin.
 		if = {
 			limit = {
-				NOT = { government_has_flag = government_is_administrative }
+				NOR = {
+					government_has_flag = government_is_administrative
+					government_has_flag = government_is_nomadic
+				}
 			}
 			admin_government_reset_effect = yes
 		}

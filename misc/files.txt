@@ -5,6 +5,7 @@ common/character_interactions/06_ep3_interactions.txt
 common/council_positions/00_council_positions.txt
 common/court_positions/types/00_admin_court_position.txt
 common/court_positions/types/00_court_positions.txt
+common/court_positions/types/00_mpo_court_positions.txt
 common/decisions/dlc_decisions/ep_3/06_ep3_laamp_decisions.txt
 common/on_action/child_birth_on_actions.txt
 common/scripted_effects/00_prison_effects.txt

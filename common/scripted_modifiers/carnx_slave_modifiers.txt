@@ -271,6 +271,90 @@ carnx_lacking_court_positions_modifier = {
 		}
 		modifier = {
 			carnx_has_max_aptitude_difference_trigger = {
+				NAME = court_astrologer
+				RULER = $RULER$
+				SLAVE = $SLAVE$
+			}
+			add = {
+				value = scope:max_aptitude_difference
+				multiply = $SCALE$
+			}
+			desc = carnx_lacking_court_astrologer_reason
+		}
+		modifier = {
+			carnx_has_max_aptitude_difference_trigger = {
+				NAME = boyan
+				RULER = $RULER$
+				SLAVE = $SLAVE$
+			}
+			add = {
+				value = scope:max_aptitude_difference
+				multiply = $SCALE$
+			}
+			desc = carnx_lacking_boyan_reason
+		}
+		modifier = {
+			carnx_has_max_aptitude_difference_trigger = {
+				NAME = siege_engineer
+				RULER = $RULER$
+				SLAVE = $SLAVE$
+			}
+			add = {
+				value = scope:max_aptitude_difference
+				multiply = $SCALE$
+			}
+			desc = carnx_lacking_siege_engineer_reason
+		}
+		modifier = {
+			carnx_has_max_aptitude_difference_trigger = {
+				NAME = yurtchi
+				RULER = $RULER$
+				SLAVE = $SLAVE$
+			}
+			add = {
+				value = scope:max_aptitude_difference
+				multiply = $SCALE$
+			}
+			desc = carnx_lacking_yurtchi_reason
+		}
+		modifier = {
+			carnx_has_max_aptitude_difference_trigger = {
+				NAME = cherbi
+				RULER = $RULER$
+				SLAVE = $SLAVE$
+			}
+			add = {
+				value = scope:max_aptitude_difference
+				multiply = $SCALE$
+			}
+			desc = carnx_lacking_cherbi_reason
+		}
+		modifier = {
+			carnx_has_max_aptitude_difference_trigger = {
+				NAME = foreign_emissary
+				RULER = $RULER$
+				SLAVE = $SLAVE$
+			}
+			add = {
+				value = scope:max_aptitude_difference
+				multiply = $SCALE$
+			}
+			desc = carnx_lacking_foreign_emissary_reason
+		}
+		modifier = {
+			carnx_has_max_aptitude_difference_trigger = {
+				NAME = keeper_of_the_horses
+				RULER = $RULER$
+				SLAVE = $SLAVE$
+			}
+			add = {
+				value = scope:max_aptitude_difference
+				multiply = $SCALE$
+			}
+			desc = carnx_lacking_keeper_of_the_horses_reason
+		}
+		modifier = {
+			carnx_has_max_aptitude_difference_trigger = {
 				NAME = slave_concubine
 				RULER = $RULER$
 				SLAVE = $SLAVE$

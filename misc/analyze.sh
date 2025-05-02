@@ -41,126 +41,41 @@ echo
 
 # Council position events
 echo "Chancellor council position received: $(grep -a "Chancellor council position received" debug.log | wc -l)"
-echo "Chancellor council position revoked: $(grep -a "Chancellor council position revoked" debug.log | wc -l)"
-echo
 echo "Steward council position received: $(grep -a "Steward council position received" debug.log | wc -l)"
-echo "Steward council position revoked: $(grep -a "Steward council position revoked" debug.log | wc -l)"
-echo
 echo "Marshal council position received: $(grep -a "Marshal council position received" debug.log | wc -l)"
-echo "Marshal council position revoked: $(grep -a "Marshal council position revoked" debug.log | wc -l)"
-echo
 echo "Spymaster council position received: $(grep -a "Spymaster council position received" debug.log | wc -l)"
-echo "Spymaster council position revoked: $(grep -a "Spymaster council position revoked" debug.log | wc -l)"
 echo
 
 # Court position events
 echo "Court Physician court position received: $(grep -a "Court Physician court position received" debug.log | wc -l)"
-echo "Court Physician court position revoked: $(grep -a "Court Physician court position revoked" debug.log | wc -l)"
-echo "Court Physician court position invalidated: $(grep -a "Court Physician court position invalidated" debug.log | wc -l)"
-echo
 echo "Antiquarian court position received: $(grep -a "Antiquarian court position received" debug.log | wc -l)"
-echo "Antiquarian court position revoked: $(grep -a "Antiquarian court position revoked" debug.log | wc -l)"
-echo "Antiquarian court position invalidated: $(grep -a "Antiquarian court position invalidated" debug.log | wc -l)"
-echo
 echo "Court Gardener court position received: $(grep -a "Court Gardener court position received" debug.log | wc -l)"
-echo "Court Gardener court position revoked: $(grep -a "Court Gardener court position revoked" debug.log | wc -l)"
-echo "Court Gardener court position invalidated: $(grep -a "Court Gardener court position invalidated" debug.log | wc -l)"
-echo
 echo "Wet Nurse court position received: $(grep -a "Wet Nurse court position received" debug.log | wc -l)"
-echo "Wet Nurse court position revoked: $(grep -a "Wet Nurse court position revoked" debug.log | wc -l)"
-echo "Wet Nurse court position invalidated: $(grep -a "Wet Nurse court position invalidated" debug.log | wc -l)"
-echo
 echo "Court Tutor court position received: $(grep -a "Court Tutor court position received" debug.log | wc -l)"
-echo "Court Tutor court position revoked: $(grep -a "Court Tutor court position revoked" debug.log | wc -l)"
-echo "Court Tutor court position invalidated: $(grep -a "Court Tutor court position invalidated" debug.log | wc -l)"
-echo
 echo "Food Taster court position received: $(grep -a "Food Taster court position received" debug.log | wc -l)"
-echo "Food Taster court position revoked: $(grep -a "Food Taster court position revoked" debug.log | wc -l)"
-echo "Food Taster court position invalidated: $(grep -a "Food Taster court position invalidated" debug.log | wc -l)"
-echo
 echo "Cupbearer court position received: $(grep -a "Cupbearer court position received" debug.log | wc -l)"
-echo "Cupbearer court position revoked: $(grep -a "Cupbearer court position revoked" debug.log | wc -l)"
-echo "Cupbearer court position invalidated: $(grep -a "Cupbearer court position invalidated" debug.log | wc -l)"
-echo
 echo "Seneschal court position received: $(grep -a "Seneschal court position received" debug.log | wc -l)"
-echo "Seneschal court position revoked: $(grep -a "Seneschal court position revoked" debug.log | wc -l)"
-echo "Seneschal court position invalidated: $(grep -a "Seneschal court position invalidated" debug.log | wc -l)"
-echo
 echo "Chief Eunuch court position received: $(grep -a "Chief Eunuch court position received" debug.log | wc -l)"
-echo "Chief Eunuch court position revoked: $(grep -a "Chief Eunuch court position revoked" debug.log | wc -l)"
-echo "Chief Eunuch court position invalidated: $(grep -a "Chief Eunuch court position invalidated" debug.log | wc -l)"
-echo
 echo "Court Jester court position received: $(grep -a "Court Jester court position received" debug.log | wc -l)"
-echo "Court Jester court position revoked: $(grep -a "Court Jester court position revoked" debug.log | wc -l)"
-echo "Court Jester court position invalidated: $(grep -a "Court Jester court position invalidated" debug.log | wc -l)"
-echo
 echo "Court Poet court position received: $(grep -a "Court Poet court position received" debug.log | wc -l)"
-echo "Court Poet court position revoked: $(grep -a "Court Poet court position revoked" debug.log | wc -l)"
-echo "Court Poet court position invalidated: $(grep -a "Court Poet court position invalidated" debug.log | wc -l)"
-echo
 echo "Court Musician court position received: $(grep -a "Court Musician court position received" debug.log | wc -l)"
-echo "Court Musician court position revoked: $(grep -a "Court Musician court position revoked" debug.log | wc -l)"
-echo "Court Musician court position invalidated: $(grep -a "Court Musician court position invalidated" debug.log | wc -l)"
-echo
 echo "Bodyguard court position received: $(grep -a "Bodyguard court position received" debug.log | wc -l)"
-echo "Bodyguard court position revoked: $(grep -a "Bodyguard court position revoked" debug.log | wc -l)"
-echo "Bodyguard court position invalidated: $(grep -a "Bodyguard court position invalidated" debug.log | wc -l)"
-echo
 echo "Champion court position received: $(grep -a "Champion court position received" debug.log | wc -l)"
-echo "Champion court position revoked: $(grep -a "Champion court position revoked" debug.log | wc -l)"
-echo "Champion court position invalidated: $(grep -a "Champion court position invalidated" debug.log | wc -l)"
-echo
 echo "Executioner court position received: $(grep -a "Executioner court position received" debug.log | wc -l)"
-echo "Executioner court position revoked: $(grep -a "Executioner court position revoked" debug.log | wc -l)"
-echo "Executioner court position invalidated: $(grep -a "Executioner court position invalidated" debug.log | wc -l)"
-echo
 echo "Master Assassin court position received: $(grep -a "Master Assassin court position received" debug.log | wc -l)"
-echo "Master Assassin court position revoked: $(grep -a "Master Assassin court position revoked" debug.log | wc -l)"
-echo "Master Assassin court position invalidated: $(grep -a "Master Assassin court position invalidated" debug.log | wc -l)"
-echo
 echo "Chronicler court position received: $(grep -a "Chronicler court position received" debug.log | wc -l)"
-echo "Chronicler court position revoked: $(grep -a "Chronicler court position revoked" debug.log | wc -l)"
-echo "Chronicler court position invalidated: $(grep -a "Chronicler court position invalidated" debug.log | wc -l)"
-echo
 echo "Court Brewmaster court position received: $(grep -a "Court Brewmaster court position received" debug.log | wc -l)"
-echo "Court Brewmaster court position revoked: $(grep -a "Court Brewmaster court position revoked" debug.log | wc -l)"
-echo "Court Brewmaster court position invalidated: $(grep -a "Court Brewmaster court position invalidated" debug.log | wc -l)"
-echo
+echo "Court Astrologer court position received: $(grep -a "Court Astrologer court position received" debug.log | wc -l)"
+echo "Boyan court position received: $(grep -a "Boyan court position received" debug.log | wc -l)"
+echo "Siege Engineer court position received: $(grep -a "Siege Engineer court position received" debug.log | wc -l)"
+echo "Yurtchi court position received: $(grep -a "Yurtchi court position received" debug.log | wc -l)"
+echo "Cherbi court position received: $(grep -a "Cherbi court position received" debug.log | wc -l)"
+echo "Foreign Emissary court position received: $(grep -a "Foreign Emissary court position received" debug.log | wc -l)"
+echo "Keeper of the Horses court position received: $(grep -a "Keeper of the Horses court position received" debug.log | wc -l)"
 # CSR
 echo "Slave Concubine court position received: $(grep -a "Slave Concubine court position received" debug.log | wc -l)"
-echo "Slave Concubine court position revoked: $(grep -a "Slave Concubine court position revoked" debug.log | wc -l)"
-echo "Slave Concubine court position invalidated: $(grep -a "Slave Concubine court position invalidated" debug.log | wc -l)"
-echo
 echo "Slave Captain court position received: $(grep -a "Slave Captain court position received" debug.log | wc -l)"
-echo "Slave Captain court position revoked: $(grep -a "Slave Captain court position revoked" debug.log | wc -l)"
-echo "Slave Captain court position invalidated: $(grep -a "Slave Captain court position invalidated" debug.log | wc -l)"
-echo
 echo "Slave Eunuch court position received: $(grep -a "Slave Eunuch court position received" debug.log | wc -l)"
-echo "Slave Eunuch court position revoked: $(grep -a "Slave Eunuch court position revoked" debug.log | wc -l)"
-echo "Slave Eunuch court position invalidated: $(grep -a "Slave Eunuch court position invalidated" debug.log | wc -l)"
-echo
-# Court position vacated
-echo "Court Physician court position vacated: $(grep -a "Court Physician court position vacated" debug.log | wc -l)"
-echo "Antiquarian court position vacated: $(grep -a "Antiquarian court position vacated" debug.log | wc -l)"
-echo "Court Gardener court position vacated: $(grep -a "Court Gardener court position vacated" debug.log | wc -l)"
-echo "Wet Nurse court position vacated: $(grep -a "Wet Nurse court position vacated" debug.log | wc -l)"
-echo "Court Tutor court position vacated: $(grep -a "Court Tutor court position vacated" debug.log | wc -l)"
-echo "Food Taster court position vacated: $(grep -a "Food Taster court position vacated" debug.log | wc -l)"
-echo "Cupbearer court position vacated: $(grep -a "Cupbearer court position vacated" debug.log | wc -l)"
-echo "Seneschal court position vacated: $(grep -a "Seneschal court position vacated" debug.log | wc -l)"
-echo "Chief Eunuch court position vacated: $(grep -a "Chief Eunuch court position vacated" debug.log | wc -l)"
-echo "Court Jester court position vacated: $(grep -a "Court Jester court position vacated" debug.log | wc -l)"
-echo "Court Poet court position vacated: $(grep -a "Court Poet court position vacated" debug.log | wc -l)"
-echo "Court Musician court position vacated: $(grep -a "Court Musician court position vacated" debug.log | wc -l)"
-echo "Bodyguard court position vacated: $(grep -a "Bodyguard court position vacated" debug.log | wc -l)"
-echo "Champion court position vacated: $(grep -a "Champion court position vacated" debug.log | wc -l)"
-echo "Executioner court position vacated: $(grep -a "Executioner court position vacated" debug.log | wc -l)"
-echo "Master Assassin court position vacated: $(grep -a "Master Assassin court position vacated" debug.log | wc -l)"
-echo "Chronicler court position vacated: $(grep -a "Chronicler court position vacated" debug.log | wc -l)"
-echo "Court Brewmaster court position vacated: $(grep -a "Court Brewmaster court position vacated" debug.log | wc -l)"
-echo "Slave Concubine court position vacated: $(grep -a "Slave Concubine court position vacated" debug.log | wc -l)"
-echo "Slave Captain court position vacated: $(grep -a "Slave Captain court position vacated" debug.log | wc -l)"
-echo "Slave Eunuch court position vacated: $(grep -a "Slave Eunuch court position vacated" debug.log | wc -l)"
 echo
 
 # Maintenance events

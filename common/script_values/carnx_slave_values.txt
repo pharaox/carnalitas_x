@@ -223,10 +223,10 @@ carnx_slave_ask_price_value = {
 		}
 	}
 
-	# Adjust price for tribal rulers
+	# Adjust price for rulers of certain governments
 	multiply = {
-		value = carnx_slave_price_tribal_multiplier
-		desc = carnx_slave_price_tribal_desc
+		value = carnx_slave_price_government_multiplier
+		desc = carnx_slave_price_government_desc
 	}
 
 	# Seller personality multiplier (0.8 to 1.2 based on ai_greed)
@@ -285,10 +285,10 @@ carnx_slave_bid_price_value = {
 		}
 	}
 
-	# Adjust price for tribal rulers
+	# Adjust price for rulers of certain governments
 	multiply = {
-		value = carnx_slave_price_tribal_multiplier
-		desc = carnx_slave_price_tribal_desc
+		value = carnx_slave_price_government_multiplier
+		desc = carnx_slave_price_government_desc
 	}
 
 	# Buyer personality multiplier (0.8 to 1.2 based on ai_greed)
@@ -345,7 +345,7 @@ carnx_slave_bid_price_value = {
 # (send_gift_opinion divided by gift_value).
 carnx_gift_slave_opinion = {
 	value = carnx_slave_base_price_value
-	multiply = carnx_slave_price_tribal_multiplier
+	multiply = carnx_slave_price_government_multiplier
 	multiply = send_gift_opinion
 	divide = gift_value
 	multiply = carnx_gift_slave_opinion_multiplier
@@ -359,7 +359,7 @@ carnx_gift_slave_opinion = {
 # (carnx_send_gift_influence_value divided by gift_value).
 carnx_gift_slave_influence_value = {
 	value = carnx_slave_base_price_value
-	multiply = carnx_slave_price_tribal_multiplier
+	multiply = carnx_slave_price_government_multiplier
 	multiply = carnx_send_gift_influence_value
 	divide = gift_value
 	floor = yes
@@ -477,7 +477,7 @@ carnx_send_gift_influence_value = {
 	}
 }
 
-carnx_slave_price_tribal_multiplier = {
+carnx_slave_price_government_multiplier = {
 	# Determine party (buyer, seller, or recipient)
 	if = {
 		limit = {
@@ -522,16 +522,24 @@ carnx_slave_price_tribal_multiplier = {
 
 	if = {
 		limit = {
-			scope:actor = { government_has_flag = government_is_tribal }
-			scope:party ?= { government_has_flag = government_is_tribal }
+			scope:actor = {
+				carnx_is_lower_prices_government_trigger = yes
+			}
+			scope:party ?= {
+				carnx_is_lower_prices_government_trigger = yes
+			}
 		}
 		value = 0.6
 	}
 	else_if = {
 		limit = {
 			OR = {
-				scope:actor = { government_has_flag = government_is_tribal }
-				scope:party ?= { government_has_flag = government_is_tribal }
+				scope:actor = {
+					carnx_is_lower_prices_government_trigger = yes
+				}
+				scope:party ?= {
+					carnx_is_lower_prices_government_trigger = yes
+				}
 			}
 		}
 		value = 0.8

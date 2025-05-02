@@ -773,6 +773,62 @@ carnx_can_serve_as_court_brewmaster_trigger = {
 	}
 }
 
+carnx_can_serve_as_court_astrologer_trigger = {
+	carnx_can_serve_as_court_position_trigger = {
+		TYPE = court_astrologer_court_position
+		NAME = court_astrologer
+		LIEGE = $RULER$
+	}
+}
+
+carnx_can_serve_as_boyan_trigger = {
+	carnx_can_serve_as_court_position_trigger = {
+		TYPE = boyan_court_position
+		NAME = boyan
+		LIEGE = $RULER$
+	}
+}
+
+carnx_can_serve_as_siege_engineer_trigger = {
+	carnx_can_serve_as_court_position_trigger = {
+		TYPE = siege_engineer_court_position
+		NAME = siege_engineer
+		LIEGE = $RULER$
+	}
+}
+
+carnx_can_serve_as_yurtchi_trigger = {
+	carnx_can_serve_as_court_position_trigger = {
+		TYPE = yurtchi_court_position
+		NAME = yurtchi
+		LIEGE = $RULER$
+	}
+}
+
+carnx_can_serve_as_cherbi_trigger = {
+	carnx_can_serve_as_court_position_trigger = {
+		TYPE = cherbi_court_position
+		NAME = cherbi
+		LIEGE = $RULER$
+	}
+}
+
+carnx_can_serve_as_foreign_emissary_trigger = {
+	carnx_can_serve_as_court_position_trigger = {
+		TYPE = foreign_emissary_court_position
+		NAME = foreign_emissary
+		LIEGE = $RULER$
+	}
+}
+
+carnx_can_serve_as_keeper_of_the_horses_trigger = {
+	carnx_can_serve_as_court_position_trigger = {
+		TYPE = keeper_of_the_horses_court_position
+		NAME = keeper_of_the_horses
+		LIEGE = $RULER$
+	}
+}
+
 carnx_can_serve_as_slave_concubine_trigger = {
 	carnx_can_serve_as_multi_court_position_trigger = {
 		TYPE = carnx_slave_concubine_court_position
@@ -980,6 +1036,14 @@ carnx_was_enslaved_by_character_trigger = {
 	}
 }
 
+carnx_is_lower_prices_government_trigger = {
+	OR = {
+		government_has_flag = government_is_tribal
+		government_has_flag = government_is_nomadic
+		government_has_flag = government_is_herder
+	}
+}
+
 carnx_employs_slave_as_court_position_trigger = {
 	employs_court_position = $TYPE$
 	any_court_position_holder = {
@@ -993,8 +1057,6 @@ carnx_is_slave_employment_enabled_trigger = {
 	OR = {
 		faith = { has_doctrine_parameter = carnx_slave_employment_active }
 		government_has_flag = government_is_clan
-		government_has_flag = government_is_tribal
-		government_has_flag = government_is_administrative
 		has_character_modifier = carnx_slavery_attitude_employer_modifier
 	}
 }
@@ -1003,8 +1065,8 @@ carnx_is_employed_slaves_more_loyal_enabled_trigger = {
 	OR = {
 		faith = { has_doctrine_parameter = carnx_employed_slaves_more_loyal_active }
 		government_has_flag = government_is_clan
-		government_has_flag = government_is_tribal
 		government_has_flag = government_is_administrative
+		government_has_flag = government_is_nomadic
 		has_character_modifier = carnx_slavery_attitude_employer_modifier
 	}
 }
@@ -1071,12 +1133,18 @@ carnx_is_playable_or_family_trigger = {
 }
 
 carnx_slavery_attitude_slaver_government_trigger = {
-	government_has_flag = government_is_tribal
-	government_has_flag = government_is_landless_adventurer
+	OR = {
+		government_has_flag = government_is_tribal
+		government_has_flag = government_is_landless_adventurer
+		government_has_flag = government_is_nomadic
+	}
 }
 
 carnx_slavery_attitude_liberator_government_trigger = {
-	government_has_flag = government_is_theocracy
+	OR = {
+		government_has_flag = government_is_theocracy
+		government_has_flag = government_is_herder
+	}
 }
 
 carnx_slavery_attitude_trader_government_trigger = {
@@ -1084,8 +1152,11 @@ carnx_slavery_attitude_trader_government_trigger = {
 }
 
 carnx_slavery_attitude_employer_government_trigger = {
-	government_has_flag = government_is_clan
-	government_has_flag = government_is_administrative
+	OR = {
+		government_has_flag = government_is_clan
+		government_has_flag = government_is_administrative
+		government_has_flag = government_is_nomadic
+	}
 }
 
 carnx_slavery_attitude_slaver_faith_culture_trigger = {

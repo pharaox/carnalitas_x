@@ -176,6 +176,60 @@ carnx_can_be_court_brewmaster_trigger = {
 	}
 }
 
+carnx_can_be_court_astrologer_trigger = {
+	is_capable_adult = yes
+	is_landed = no
+	OR = {
+		has_religion = religion:tengrism_religion
+		culture = { has_cultural_pillar = heritage_mongolic }
+		culture = { has_cultural_pillar = heritage_turkic }
+		has_trait = nomadic_philosophy
+		has_trait = lifestyle_mystic
+		$LIEGE$.domicile.domicile_culture ?= culture
+	}
+}
+
+carnx_can_be_boyan_trigger = {
+	is_capable_adult = yes
+	is_landed = no
+	can_be_combatant_based_on_gender_trigger = { ARMY_OWNER = $LIEGE$ }
+	martial >= 12
+}
+
+carnx_can_be_siege_engineer_trigger = {
+	is_capable_adult = yes
+	exists = $LIEGE$
+	is_landed = no
+	has_trait = military_engineer
+}
+
+carnx_can_be_yurtchi_trigger = {
+	is_capable_adult = yes
+	exists = $LIEGE$
+	is_landed = no
+	stewardship >= 12
+}
+
+carnx_can_be_cherbi_trigger = {
+	is_capable_adult = yes
+	can_be_combatant_based_on_gender_trigger = { ARMY_OWNER = $LIEGE$ }
+	is_landed = no
+	prowess >= 12
+}
+
+carnx_can_be_foreign_emissary_trigger = {
+	is_capable_adult = yes
+	is_landed = no
+	NOT = { culture = $LIEGE$.culture }
+}
+
+carnx_can_be_keeper_of_the_horses_trigger = {
+	is_capable_adult = yes
+	exists = $LIEGE$
+	is_landed = no
+	prowess >= 12
+}
+
 # CSR Court Positions
 
 carnx_can_be_slave_concubine_trigger = {

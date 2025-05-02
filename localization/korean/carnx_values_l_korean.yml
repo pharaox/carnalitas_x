@@ -10,7 +10,7 @@
  carnx_slave_price_multiplier_desc: "균형 배율"
  carnx_slave_price_min_desc: "최소 가격"
  carnx_slave_price_player_desc: "이익률"
- carnx_slave_price_tribal_desc: "부족제 정부"
+ carnx_slave_price_government_desc: "부족제 정부"
  carnx_slave_price_seller_greed_desc: "판매자 탐욕"
  carnx_slave_price_buyer_greed_desc: "구매자 탐욕"
  carnx_slave_price_seller_attitude_desc: "판매자의 노예제 태도"

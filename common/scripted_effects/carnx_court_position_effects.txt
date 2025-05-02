@@ -32,6 +32,17 @@
 # chronicler_court_position - Yes
 # court_brewmaster_court_position - Yes
 
+# eparch_court_position - No [admin]
+
+# court_astrologer_court_position - Yes
+# boyan_court_position - Yes*
+# siege_engineer_court_position - Yes
+# yurtchi_court_position - Yes
+# cherbi_court_position - Yes*
+# yeke_jarquchi_court_position - No
+# foreign_emissary_court_position - Yes
+# keeper_of_the_horses_court_position - Yes*
+
 # CSR Court Positions
 
 # carnx_slave_concubine_court_position
@@ -342,6 +353,125 @@ carnx_court_brewmaster_title_revoked_effect = {
 carnx_court_brewmaster_title_invalidated_effect = {
 	court_brewmaster_title_invalidated_effect = yes
 	carnx_debug_log_title_invalidated_slave_effect = { NAME = court_brewmaster }
+}
+
+# COURT ASTROLOGER
+
+carnx_court_astrologer_title_accepted_effect = {
+	basic_gained_court_position_effect = yes
+	carnx_debug_log_title_received_slave_effect = { NAME = court_astrologer }
+}
+
+carnx_court_astrologer_title_revoked_effect = {
+	basic_revoked_court_position_effect = yes
+	carnx_debug_log_title_revoked_slave_effect = { NAME = court_astrologer }
+}
+
+carnx_court_astrologer_title_invalidated_effect = {
+	basic_invalidated_court_position_effect = yes
+	carnx_debug_log_title_invalidated_slave_effect = { NAME = court_astrologer }
+}
+
+# BOYAN
+
+carnx_boyan_title_accepted_effect = {
+	basic_gained_court_position_effect = yes
+	carnx_debug_log_title_received_slave_effect = { NAME = boyan }
+}
+
+carnx_boyan_title_revoked_effect = {
+	basic_revoked_court_position_effect = yes
+	carnx_debug_log_title_revoked_slave_effect = { NAME = boyan }
+}
+
+carnx_boyan_title_invalidated_effect = {
+	basic_invalidated_court_position_effect = yes
+	carnx_debug_log_title_invalidated_slave_effect = { NAME = boyan }
+}
+
+# SIEGE ENGINEER
+
+carnx_siege_engineer_title_accepted_effect = {
+	basic_gained_court_position_effect = yes
+	carnx_debug_log_title_received_slave_effect = { NAME = siege_engineer }
+}
+
+carnx_siege_engineer_title_revoked_effect = {
+	basic_revoked_court_position_effect = yes
+	carnx_debug_log_title_revoked_slave_effect = { NAME = siege_engineer }
+}
+
+carnx_siege_engineer_title_invalidated_effect = {
+	basic_invalidated_court_position_effect = yes
+	carnx_debug_log_title_invalidated_slave_effect = { NAME = siege_engineer }
+}
+
+# YURTCHI
+
+carnx_yurtchi_title_accepted_effect = {
+	basic_gained_court_position_effect = yes
+	carnx_debug_log_title_received_slave_effect = { NAME = yurtchi }
+}
+
+carnx_yurtchi_title_revoked_effect = {
+	basic_revoked_court_position_effect = yes
+	carnx_debug_log_title_revoked_slave_effect = { NAME = yurtchi }
+}
+
+carnx_yurtchi_title_invalidated_effect = {
+	basic_invalidated_court_position_effect = yes
+	carnx_debug_log_title_invalidated_slave_effect = { NAME = yurtchi }
+}
+
+# CHERBI
+
+carnx_cherbi_title_accepted_effect = {
+	basic_gained_court_position_effect = yes
+	carnx_debug_log_title_received_slave_effect = { NAME = cherbi }
+}
+
+carnx_cherbi_title_revoked_effect = {
+	basic_revoked_court_position_effect = yes
+	carnx_debug_log_title_revoked_slave_effect = { NAME = cherbi }
+}
+
+carnx_cherbi_title_invalidated_effect = {
+	basic_invalidated_court_position_effect = yes
+	carnx_debug_log_title_invalidated_slave_effect = { NAME = cherbi }
+}
+
+# FOREIGN EMISSARY
+
+carnx_foreign_emissary_title_accepted_effect = {
+	basic_gained_court_position_effect = yes
+	carnx_debug_log_title_received_slave_effect = { NAME = foreign_emissary }
+}
+
+carnx_foreign_emissary_title_revoked_effect = {
+	basic_revoked_court_position_effect = yes
+	carnx_debug_log_title_revoked_slave_effect = { NAME = foreign_emissary }
+}
+
+carnx_foreign_emissary_title_invalidated_effect = {
+	basic_invalidated_court_position_effect = yes
+	carnx_debug_log_title_invalidated_slave_effect = { NAME = foreign_emissary }
+}
+
+# KEEPER OF THE HORSES
+
+carnx_keeper_of_the_horses_title_accepted_effect = {
+	basic_gained_court_position_effect = yes
+	carnx_debug_log_title_received_slave_effect = { NAME = keeper_of_the_horses }
+}
+
+carnx_keeper_of_the_horses_title_revoked_effect = {
+	basic_revoked_court_position_effect = yes
+	carnx_debug_log_title_revoked_slave_effect = { NAME = keeper_of_the_horses }
+}
+
+carnx_keeper_of_the_horses_title_invalidated_effect = {
+	basic_invalidated_court_position_effect = yes
+	carnx_debug_log_title_invalidated_slave_effect = { NAME = keeper_of_the_horses }
 }
 
 # SLAVE CONCUBINE

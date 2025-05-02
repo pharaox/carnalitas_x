@@ -10,7 +10,7 @@
  carnx_slave_price_multiplier_desc: "Balance Multiplier"
  carnx_slave_price_min_desc: "Minimum Price"
  carnx_slave_price_player_desc: "Profit Margin"
- carnx_slave_price_tribal_desc: "Tribal Government"
+ carnx_slave_price_government_desc: "Tribal or Nomadic Government"
  carnx_slave_price_seller_greed_desc: "Seller Greed"
  carnx_slave_price_buyer_greed_desc: "Buyer Greed"
  carnx_slave_price_seller_attitude_desc: "Seller Slavery Attitude"

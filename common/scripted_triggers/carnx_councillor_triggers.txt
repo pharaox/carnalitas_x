@@ -37,6 +37,16 @@ carnx_can_be_court_chaplain_trigger = {
 	carnx_is_slave_trigger = no
 }
 
+carnx_can_be_kurultai_trigger = {
+	can_be_kurultai_trigger = {
+		COURT_OWNER = $COURT_OWNER$
+		CP1 = $CP1$
+		CP2 = $CP2$
+		CP3 = $CP3$
+	}
+	carnx_is_slave_trigger = no
+}
+
 carnx_can_appoint_chancellor_trigger = {
 	always = yes
 }

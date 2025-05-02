@@ -10,7 +10,7 @@
  carnx_slave_price_multiplier_desc: "平衡系数"
  carnx_slave_price_min_desc: "最低价格"
  carnx_slave_price_player_desc: "边际利润"
- carnx_slave_price_tribal_desc: "部落制政体"
+ carnx_slave_price_government_desc: "部落制政体"
  carnx_slave_price_seller_greed_desc: "出售者贪婪"
  carnx_slave_price_buyer_greed_desc: "购买者贪婪"
  carnx_slave_price_seller_attitude_desc: "奴隶卖方态度"
