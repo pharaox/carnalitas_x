@@ -4,7 +4,7 @@
 
 ## Interactions
 
-* Enabled *Demand Manumussion* interaction for tributaries.
+* Enabled *Demand Manumission* interaction for tributaries.
 
 ### Court Positions
 
