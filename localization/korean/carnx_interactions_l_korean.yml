@@ -98,7 +98,6 @@
  carnx_lacking_master_assassin_reason:0 "[recipient.GetShortUIName|U]에게 좋은 $master_assassin_court_position$이 부족합니다: $VALUE|=+0$"
  carnx_lacking_chronicler_reason:0 "[recipient.GetShortUIName|U]에게 좋은 $chronicler_court_position$가 부족합니다: $VALUE|=+0$"
  carnx_lacking_court_brewmaster_reason:0 "[recipient.GetShortUIName|U]에게 좋은 $court_brewmaster_court_position$가 부족합니다: $VALUE|=+0$"
- carnx_lacking_court_astrologer_reason: "[recipient.GetShortUIName|U] 좋은 $court_astrologer_court_position$: $VALUE|=+0$"
  carnx_lacking_boyan_reason: "[recipient.GetShortUIName|U] 좋은 $boyan_court_position$: $VALUE|=+0$"
  carnx_lacking_siege_engineer_reason: "[recipient.GetShortUIName|U] 좋은 $siege_engineer_court_position$: $VALUE|=+0$"
  carnx_lacking_yurtchi_reason: "[recipient.GetShortUIName|U] 좋은 $yurtchi_court_position$: $VALUE|=+0$"

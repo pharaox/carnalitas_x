@@ -783,17 +783,6 @@ carnx_court_brewmaster_aptitude_difference_value = {
 	}
 }
 
-carnx_court_astrologer_aptitude_difference_value = {
-	value = 0
-	if = {
-		limit = {
-			carnx_can_serve_as_court_astrologer_trigger = { RULER = scope:liege }
-		}
-		value = aptitude:court_astrologer_court_position
-		subtract = carnx_court_astrologer_aptitude_threshold
-	}
-}
-
 carnx_boyan_aptitude_difference_value = {
 	value = 0
 	if = {
@@ -932,26 +921,23 @@ carnx_vanilla_max_aptitude_difference_value = {
 																		min = {
 																			value = carnx_court_brewmaster_aptitude_difference_value
 																			min = {
-																				value = carnx_court_astrologer_aptitude_difference_value
+																				value = carnx_boyan_aptitude_difference_value
 																				min = {
-																					value = carnx_boyan_aptitude_difference_value
+																					value = carnx_siege_engineer_aptitude_difference_value
 																					min = {
-																						value = carnx_siege_engineer_aptitude_difference_value
+																						value = carnx_yurtchi_aptitude_difference_value
 																						min = {
-																							value = carnx_yurtchi_aptitude_difference_value
+																							value = carnx_cherbi_aptitude_difference_value
 																							min = {
-																								value = carnx_cherbi_aptitude_difference_value
+																								value = carnx_foreign_emissary_aptitude_difference_value
 																								min = {
-																									value = carnx_foreign_emissary_aptitude_difference_value
+																									value = carnx_keeper_of_the_horses_aptitude_difference_value
 																									min = {
-																										value = carnx_keeper_of_the_horses_aptitude_difference_value
+																										value = carnx_slave_concubine_aptitude_difference_value
 																										min = {
-																											value = carnx_slave_concubine_aptitude_difference_value
+																											value = carnx_slave_captain_aptitude_difference_value
 																											min = {
-																												value = carnx_slave_captain_aptitude_difference_value
-																												min = {
-																													value = carnx_slave_eunuch_aptitude_difference_value
-																												}
+																												value = carnx_slave_eunuch_aptitude_difference_value
 																											}
 																										}
 																									}

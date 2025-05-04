@@ -28,7 +28,7 @@ court_astrologer_court_position = { ### MPO
 	}
 
 	opinion = {
-		value = carnx_regular_court_position_opinion
+		value = regular_court_position_opinion
 	}
 
 	# How high the aptitude has to be to reach the 5 different modifier levels
@@ -175,6 +175,10 @@ court_astrologer_court_position = { ### MPO
 		scope:employee = {
 			liege = scope:liege # To ensure invalidation if they leave court
 			court_astrologer_validity_trigger = { EMPLOYER = scope:liege }
+			custom_tooltip = {
+				text = none_is_not_a_slave
+				carnx_is_slave_trigger = no
+			}
 		}
 	}
 
@@ -300,13 +304,13 @@ court_astrologer_court_position = { ### MPO
 	}
 
 	on_court_position_received = {
-		carnx_court_astrologer_title_accepted_effect = yes
+		basic_gained_court_position_effect = yes
 	}
 	on_court_position_revoked = {
-		carnx_court_astrologer_title_revoked_effect = yes
+		basic_revoked_court_position_effect = yes
 	}
 	on_court_position_invalidated = {
-		carnx_court_astrologer_title_invalidated_effect = yes
+		basic_invalidated_court_position_effect = yes
 	}
 
 	# Scripted value to determine whether an AI will hire/fire a position or not. Hires over 0, fires under -50. Look in _court_positions.info for more extensive documentation!
@@ -325,7 +329,6 @@ court_astrologer_court_position = { ### MPO
 		}
 		
 		add = court_position_debt_considerations_value
-		add = carnx_court_position_candidate_slave_value
     }
 }
 

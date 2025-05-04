@@ -180,19 +180,6 @@ carnx_can_be_court_brewmaster_trigger = {
 	exists = $LIEGE$
 }
 
-carnx_can_be_court_astrologer_trigger = {
-	is_capable_adult = yes
-	is_landed = no
-	OR = {
-		has_religion = religion:tengrism_religion
-		culture = { has_cultural_pillar = heritage_mongolic }
-		culture = { has_cultural_pillar = heritage_turkic }
-		has_trait = nomadic_philosophy
-		has_trait = lifestyle_mystic
-		$LIEGE$.domicile.domicile_culture ?= culture
-	}
-}
-
 carnx_can_be_boyan_trigger = {
 	is_capable_adult = yes
 	is_landed = no

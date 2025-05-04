@@ -98,7 +98,6 @@
  carnx_lacking_master_assassin_reason: "[recipient.GetShortUIName|U] manque d’un bon $master_assassin_court_position$ : $VALUE|=+0$"
  carnx_lacking_chronicler_reason: "[recipient.GetShortUIName|U] manque d’un bon $chronicler_court_position$: $VALUE|=+0$"
  carnx_lacking_court_brewmaster_reason: "[recipient.GetShortUIName|U] manque d’un bon $court_brewmaster_court_position$: $VALUE|=+0$"
- carnx_lacking_court_astrologer_reason: "[recipient.GetShortUIName|U] manque d’un bon $court_astrologer_court_position$: $VALUE|=+0$"
  carnx_lacking_boyan_reason: "[recipient.GetShortUIName|U] manque d’un bon $boyan_court_position$: $VALUE|=+0$"
  carnx_lacking_siege_engineer_reason: "[recipient.GetShortUIName|U] manque d’un bon $siege_engineer_court_position$: $VALUE|=+0$"
  carnx_lacking_yurtchi_reason: "[recipient.GetShortUIName|U] manque d’un bon $yurtchi_court_position$: $VALUE|=+0$"

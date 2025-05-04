@@ -34,7 +34,7 @@
 
 # eparch_court_position - No [admin]
 
-# court_astrologer_court_position - Yes
+# court_astrologer_court_position - No
 # boyan_court_position - Yes*
 # siege_engineer_court_position - Yes
 # yurtchi_court_position - Yes
@@ -353,23 +353,6 @@ carnx_court_brewmaster_title_revoked_effect = {
 carnx_court_brewmaster_title_invalidated_effect = {
 	court_brewmaster_title_invalidated_effect = yes
 	carnx_debug_log_title_invalidated_slave_effect = { NAME = court_brewmaster }
-}
-
-# COURT ASTROLOGER
-
-carnx_court_astrologer_title_accepted_effect = {
-	basic_gained_court_position_effect = yes
-	carnx_debug_log_title_received_slave_effect = { NAME = court_astrologer }
-}
-
-carnx_court_astrologer_title_revoked_effect = {
-	basic_revoked_court_position_effect = yes
-	carnx_debug_log_title_revoked_slave_effect = { NAME = court_astrologer }
-}
-
-carnx_court_astrologer_title_invalidated_effect = {
-	basic_invalidated_court_position_effect = yes
-	carnx_debug_log_title_invalidated_slave_effect = { NAME = court_astrologer }
 }
 
 # BOYAN

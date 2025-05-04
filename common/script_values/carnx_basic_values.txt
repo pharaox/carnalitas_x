@@ -120,7 +120,6 @@ carnx_executioner_aptitude_threshold = 2 # average_effectiveness
 carnx_master_assassin_aptitude_threshold = 2 # average_effectiveness
 carnx_chronicler_aptitude_threshold = 2 # average_effectiveness
 carnx_court_brewmaster_aptitude_threshold = 2 # average_effectiveness
-carnx_court_astrologer_aptitude_threshold = 2 # average_effectiveness
 carnx_boyan_aptitude_threshold = 2 # average_effectiveness
 carnx_siege_engineer_aptitude_threshold = 2 # average_effectiveness
 carnx_yurtchi_aptitude_threshold = 2 # average_effectiveness

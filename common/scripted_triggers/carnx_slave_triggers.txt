@@ -773,14 +773,6 @@ carnx_can_serve_as_court_brewmaster_trigger = {
 	}
 }
 
-carnx_can_serve_as_court_astrologer_trigger = {
-	carnx_can_serve_as_court_position_trigger = {
-		TYPE = court_astrologer_court_position
-		NAME = court_astrologer
-		LIEGE = $RULER$
-	}
-}
-
 carnx_can_serve_as_boyan_trigger = {
 	carnx_can_serve_as_court_position_trigger = {
 		TYPE = boyan_court_position

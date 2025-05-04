@@ -65,13 +65,13 @@ echo "Executioner court position received: $(grep -a "Executioner court position
 echo "Master Assassin court position received: $(grep -a "Master Assassin court position received" debug.log | wc -l)"
 echo "Chronicler court position received: $(grep -a "Chronicler court position received" debug.log | wc -l)"
 echo "Court Brewmaster court position received: $(grep -a "Court Brewmaster court position received" debug.log | wc -l)"
-echo "Court Astrologer court position received: $(grep -a "Court Astrologer court position received" debug.log | wc -l)"
 echo "Boyan court position received: $(grep -a "Boyan court position received" debug.log | wc -l)"
 echo "Siege Engineer court position received: $(grep -a "Siege Engineer court position received" debug.log | wc -l)"
 echo "Yurtchi court position received: $(grep -a "Yurtchi court position received" debug.log | wc -l)"
 echo "Cherbi court position received: $(grep -a "Cherbi court position received" debug.log | wc -l)"
 echo "Foreign Emissary court position received: $(grep -a "Foreign Emissary court position received" debug.log | wc -l)"
 echo "Keeper of the Horses court position received: $(grep -a "Keeper of the Horses court position received" debug.log | wc -l)"
+echo
 # CSR
 echo "Slave Concubine court position received: $(grep -a "Slave Concubine court position received" debug.log | wc -l)"
 echo "Slave Captain court position received: $(grep -a "Slave Captain court position received" debug.log | wc -l)"

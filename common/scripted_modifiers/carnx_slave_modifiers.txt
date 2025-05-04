@@ -271,18 +271,6 @@ carnx_lacking_court_positions_modifier = {
 		}
 		modifier = {
 			carnx_has_max_aptitude_difference_trigger = {
-				NAME = court_astrologer
-				RULER = $RULER$
-				SLAVE = $SLAVE$
-			}
-			add = {
-				value = scope:max_aptitude_difference
-				multiply = $SCALE$
-			}
-			desc = carnx_lacking_court_astrologer_reason
-		}
-		modifier = {
-			carnx_has_max_aptitude_difference_trigger = {
 				NAME = boyan
 				RULER = $RULER$
 				SLAVE = $SLAVE$
