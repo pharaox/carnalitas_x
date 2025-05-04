@@ -10,7 +10,12 @@ carnx_can_be_court_gardener_trigger = {
 		is_landed = no
 		stewardship >= 12
 	}
-	exists = $LIEGE$
+	trigger_if = {
+		limit = { carnx_is_slave_trigger = yes }
+		$LIEGE$ = {
+			carnx_is_slave_employment_enabled_trigger = yes
+		}
+	}
 }
 
 carnx_can_be_antiquarian_trigger = {
@@ -40,6 +45,12 @@ carnx_can_be_court_tutor_trigger = {
 		learning >= 12
 	}
 	NOT = { is_spouse_of = $LIEGE$ }
+	trigger_if = {
+		limit = { carnx_is_slave_trigger = yes }
+		$LIEGE$ = {
+			carnx_is_slave_employment_enabled_trigger = yes
+		}
+	}
 }
 
 carnx_can_be_food_taster_trigger = {
@@ -130,6 +141,12 @@ carnx_can_be_champion_trigger = {
 		has_trait = infirm
 	}
 	can_be_combatant_based_on_gender_trigger = { ARMY_OWNER = $LIEGE$ }
+	trigger_if = {
+		limit = { carnx_is_slave_trigger = yes }
+		$LIEGE$ = {
+			carnx_is_slave_employment_enabled_trigger = yes
+		}
+	}
 }
 
 carnx_can_be_executioner_trigger = {

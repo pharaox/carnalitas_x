@@ -5,12 +5,12 @@
 # keeper_of_swans_court_position - No [country-specific (England)] [vassal] [ceremonial]
 # chief_qadi_court_position - No [religious] [ceremonial]
 # garuda_court_position - No [culture-specific (Kannada)] [multiple]
-# court_gardener_court_position - Yes [culture-specific (Persian)]
+# court_gardener_court_position - Yes*
 # lady_in_waiting_court_position - No [multiple] [TBD]
 # antiquarian_court_position - Yes
 # travel_leader_court_position - No
 # wet_nurse_court_position - Yes
-# court_tutor_court_position - Yes
+# court_tutor_court_position - Yes*
 # food_taster_court_position - Yes
 # master_of_horse_court_position - No [vassal] [ceremonial]
 # master_of_hunt_court_position - No [vassal] [ceremonial]
@@ -23,7 +23,7 @@
 # court_poet_court_position - Yes
 # court_musician_court_position - Yes
 # bodyguard_court_position - Yes [multiple]
-# champion_court_position - Yes
+# champion_court_position - Yes*
 # executioner_court_position - Yes
 # court_artificer_court_position - No [multiple] [ceremonial] [TBD]
 # cave_hermit_court_position - No [religious]
