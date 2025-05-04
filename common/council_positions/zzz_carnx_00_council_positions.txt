@@ -46,8 +46,20 @@
 
 	valid_character = {
 		exists = root.liege_or_court_owner
-		carnx_can_be_chancellor_trigger = { COURT_OWNER = root.liege_or_court_owner }
+		can_be_chancellor_trigger = { COURT_OWNER = root.liege_or_court_owner }
 		NOT = { this = character:528 }
+		OR = {
+			custom_tooltip = {
+				text = none_is_not_a_slave
+				carnx_is_slave_trigger = no
+			}
+			custom_tooltip = {
+				text = none_liege_can_employ_slaves
+				root.liege_or_court_owner = {
+					carnx_is_slave_employment_enabled_trigger = yes
+				}
+			}
+		}
 	}
 
 	on_get_position = {
@@ -114,8 +126,20 @@ councillor_steward = {
 
 	valid_character = {
 		exists = root.liege_or_court_owner
-		carnx_can_be_steward_trigger = { COURT_OWNER = root.liege_or_court_owner }
+		can_be_steward_trigger = { COURT_OWNER = root.liege_or_court_owner }
 		NOT = { this = character:528 }
+		OR = {
+			custom_tooltip = {
+				text = none_is_not_a_slave
+				carnx_is_slave_trigger = no
+			}
+			custom_tooltip = {
+				text = none_liege_can_employ_slaves
+				root.liege_or_court_owner = {
+					carnx_is_slave_employment_enabled_trigger = yes
+				}
+			}
+		}
 	}
 
 	on_get_position = {
@@ -182,8 +206,20 @@ councillor_marshal = {
 
 	valid_character = {
 		exists = root.liege_or_court_owner
-		carnx_can_be_marshal_trigger = { COURT_OWNER = root.liege_or_court_owner }
+		can_be_marshal_trigger = { COURT_OWNER = root.liege_or_court_owner }
 		NOT = { this = character:528 }
+		OR = {
+			custom_tooltip = {
+				text = none_is_not_a_slave
+				carnx_is_slave_trigger = no
+			}
+			custom_tooltip = {
+				text = none_liege_can_employ_slaves
+				root.liege_or_court_owner = {
+					carnx_is_slave_employment_enabled_trigger = yes
+				}
+			}
+		}
 	}
 
 	on_get_position = {
@@ -248,7 +284,7 @@ councillor_spymaster = {
 
 	valid_character = {
 		exists = root.liege_or_court_owner
-		carnx_can_be_spymaster_trigger = { COURT_OWNER = root.liege_or_court_owner }
+		can_be_spymaster_trigger = { COURT_OWNER = root.liege_or_court_owner }
 		NOT = { this = character:528 }
 	}
 
@@ -436,7 +472,11 @@ councillor_court_chaplain = {
 
 	valid_character = {
 		exists = root.liege_or_court_owner
-		carnx_can_be_court_chaplain_trigger = { COURT_OWNER = root.liege_or_court_owner }
+		can_be_court_chaplain_trigger = { COURT_OWNER = root.liege_or_court_owner }
+		custom_tooltip = {
+			text = none_is_not_a_slave
+			carnx_is_slave_trigger = no
+		}
 	}
 
 	valid_position = {
@@ -579,7 +619,10 @@ councillor_vizier = {
 				}
 			}
 		}
-		carnx_is_slave_trigger = no
+		custom_tooltip = {
+			text = none_is_not_a_slave
+			carnx_is_slave_trigger = no
+		}
 	}
 
 	on_get_position = {
@@ -613,11 +656,15 @@ councillor_kurultai_1 = {
 
 	valid_character = {
 		exists = root.liege_or_court_owner
-		carnx_can_be_kurultai_trigger = { 
+		can_be_kurultai_trigger = { 
 			COURT_OWNER = root.liege_or_court_owner 
 			CP1 = councillor_kurultai_2
 			CP2 = councillor_kurultai_3
 			CP3 = councillor_kurultai_4
+		}
+		custom_tooltip = {
+			text = none_is_not_a_slave
+			carnx_is_slave_trigger = no
 		}
 	}
 	
@@ -707,11 +754,15 @@ councillor_kurultai_2 = {
 
 	valid_character = {
 		exists = root.liege_or_court_owner
-		carnx_can_be_kurultai_trigger = { 
+		can_be_kurultai_trigger = { 
 			COURT_OWNER = root.liege_or_court_owner 
 			CP1 = councillor_kurultai_1
 			CP2 = councillor_kurultai_3
 			CP3 = councillor_kurultai_4
+		}
+		custom_tooltip = {
+			text = none_is_not_a_slave
+			carnx_is_slave_trigger = no
 		}
 	}
 	
@@ -801,11 +852,15 @@ councillor_kurultai_3 = {
 
 	valid_character = {
 		exists = root.liege_or_court_owner
-		carnx_can_be_kurultai_trigger = { 
+		can_be_kurultai_trigger = { 
 			COURT_OWNER = root.liege_or_court_owner 
 			CP1 = councillor_kurultai_1
 			CP2 = councillor_kurultai_2
 			CP3 = councillor_kurultai_4
+		}
+		custom_tooltip = {
+			text = none_is_not_a_slave
+			carnx_is_slave_trigger = no
 		}
 	}
 	
@@ -895,11 +950,15 @@ councillor_kurultai_4 = {
 
 	valid_character = {
 		exists = root.liege_or_court_owner
-		carnx_can_be_kurultai_trigger = { 
+		can_be_kurultai_trigger = { 
 			COURT_OWNER = root.liege_or_court_owner 
 			CP1 = councillor_kurultai_1
 			CP2 = councillor_kurultai_2
 			CP3 = councillor_kurultai_3
+		}
+		custom_tooltip = {
+			text = none_is_not_a_slave
+			carnx_is_slave_trigger = no
 		}
 	}
 	
