@@ -1,5 +1,20 @@
 # Changelog
 
+## Version 0.25.1
+
+## Interactions
+
+* Enabled *Demand Manumussion* interaction for tributaries.
+
+### Court Positions
+
+* Disabled the *Stargazer* court position for slaves.
+* Changed the following court positions to be enabled for slaves only if your government is clan or you have the *Slave Employer* attitude: *Court Gardener*, *Tutor*, *Personal Champion*.
+
+### Housekeeping
+
+* Improved council and court position triggers.
+
 ## Version 0.25.0
 
 ### Compatibility

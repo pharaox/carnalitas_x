@@ -255,8 +255,8 @@ In addition, if Carnalitas lactation is enabled, the milk production amount is t
 
 ##### Court Positions
 
-* The following court positions are available to slaves: *Court Physician*, *Antiquarian*, *Court Gardener*, *Wet Nurse*, *Court Tutor*, *Food Taster*, *Seneschal*, *Chief Eunuch*, *Court Jester*, *Court Poet*, *Court Musician*, *Bodyguard*, *Personal Champion*, *Executioner*, *Master Assassin*, *Chronicler*, *Court Brewmaster*, *Stargazer*, *Siege Engineer*, *Yurtchi*, *Foreign Emissary*.
-* The following court positions are available to slaves if your government is clan or you have the *Slave Employer* attitude: *Cupbearer*, *Noyan*, *Cherbi*, *Keeper of the Horses*.
+* The following court positions are available to slaves: *Court Physician*, *Antiquarian*, *Wet Nurse*, *Food Taster*, *Seneschal*, *Chief Eunuch*, *Court Jester*, *Court Poet*, *Court Musician*, *Bodyguard*, *Executioner*, *Master Assassin*, *Chronicler*, *Court Brewmaster*, *Stargazer*, *Siege Engineer*, *Yurtchi*, *Foreign Emissary*.
+* The following court positions are available to slaves if your government is clan or you have the *Slave Employer* attitude: *Court Gardener*, *Tutor*, *Cupbearer*, *Personal Champion*, *Noyan*, *Cherbi*, *Keeper of the Horses*.
 * The remaining court positions are not available to slaves, because they are considered religious or ceremonial, are otherwise incompatible with slavery, or are subject to certain game limitations.
 
 ### Capturing Slaves during Raids and Sieges
