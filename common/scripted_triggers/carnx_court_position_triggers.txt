@@ -1,7 +1,6 @@
-﻿# Vanilla Court Positions
-
-carnx_can_be_court_physician_trigger = {
+﻿carnx_can_be_court_physician_trigger = {
 	is_capable_adult = yes
+	is_landed = no
 	exists = $LIEGE$
 }
 
@@ -25,9 +24,10 @@ carnx_can_be_antiquarian_trigger = {
 
 carnx_can_be_wet_nurse_trigger = {
 	is_capable_adult = yes
-	NOT = { is_close_family_of = $LIEGE$ }
-	age <= 45
+	is_playable_character = no
 	is_female = yes
+	age <= 45
+	NOT = { is_close_family_of = $LIEGE$ }
 	has_no_particular_noble_roots_trigger = yes
 	# Nuns cannot be wet nurses
 	NOT = { has_trait = devoted }
@@ -68,8 +68,8 @@ carnx_can_be_seneschal_trigger = {
 carnx_can_be_cupbearer_trigger = {
 	is_capable_adult = yes
 	NOT = { is_spouse_of = $LIEGE$ }
-	OR = {
-		carnx_is_slave_trigger = no
+	trigger_if = {
+		limit = { carnx_is_slave_trigger = yes }
 		$LIEGE$ = {
 			carnx_is_slave_employment_enabled_trigger = yes
 		}
@@ -78,6 +78,7 @@ carnx_can_be_cupbearer_trigger = {
 
 carnx_can_be_chief_eunuch_trigger = {
 	is_capable_adult = yes
+	is_landed = no
 	is_eunuch_trigger = yes
 	exists = $LIEGE$
 }
@@ -112,6 +113,7 @@ carnx_can_be_court_musician_trigger = {
 
 carnx_can_be_bodyguard_trigger = {
 	is_capable_adult = yes
+	is_landed = no
 	NOT = { is_spouse_of = $LIEGE$ }
 	NOR = {
 		has_trait = blind
@@ -122,6 +124,7 @@ carnx_can_be_bodyguard_trigger = {
 
 carnx_can_be_champion_trigger = {
 	is_capable_adult = yes
+	is_landed = no
 	NOR = {
 		has_trait = blind
 		has_trait = infirm
@@ -131,8 +134,8 @@ carnx_can_be_champion_trigger = {
 
 carnx_can_be_executioner_trigger = {
 	is_capable_adult = yes
+	is_landed = no
 	NOT = { is_spouse_of = $LIEGE$ }
-	is_ruler = no
 	$LIEGE$ = {
 		OR = {
 			has_imprisonment_reason = prev
@@ -143,6 +146,7 @@ carnx_can_be_executioner_trigger = {
 
 carnx_can_be_master_assassin_trigger = {
 	is_capable_adult = yes
+	is_playable_character = no
 	has_no_particular_noble_roots_trigger = yes
 	NOT = { is_spouse_of = $LIEGE$ }
 	faith = {
@@ -167,13 +171,13 @@ carnx_can_be_chronicler_trigger = {
 carnx_can_be_court_brewmaster_trigger = {
 	is_capable_adult = yes
 	drinks_alcohol_trigger = yes
-	exists = $LIEGE$
 	OR = {
 		learning >= 12
 		has_trait = lifestyle_reveler
 		has_trait = diligent
 		has_trait = patient
 	}
+	exists = $LIEGE$
 }
 
 carnx_can_be_court_astrologer_trigger = {
@@ -194,27 +198,39 @@ carnx_can_be_boyan_trigger = {
 	is_landed = no
 	can_be_combatant_based_on_gender_trigger = { ARMY_OWNER = $LIEGE$ }
 	martial >= 12
+	trigger_if = {
+		limit = { carnx_is_slave_trigger = yes }
+		$LIEGE$ = {
+			carnx_is_slave_employment_enabled_trigger = yes
+		}
+	}
 }
 
 carnx_can_be_siege_engineer_trigger = {
 	is_capable_adult = yes
-	exists = $LIEGE$
 	is_landed = no
 	has_trait = military_engineer
+	exists = $LIEGE$
 }
 
 carnx_can_be_yurtchi_trigger = {
 	is_capable_adult = yes
-	exists = $LIEGE$
 	is_landed = no
 	stewardship >= 12
+	exists = $LIEGE$
 }
 
 carnx_can_be_cherbi_trigger = {
 	is_capable_adult = yes
-	can_be_combatant_based_on_gender_trigger = { ARMY_OWNER = $LIEGE$ }
 	is_landed = no
+	can_be_combatant_based_on_gender_trigger = { ARMY_OWNER = $LIEGE$ }
 	prowess >= 12
+	trigger_if = {
+		limit = { carnx_is_slave_trigger = yes }
+		$LIEGE$ = {
+			carnx_is_slave_employment_enabled_trigger = yes
+		}
+	}
 }
 
 carnx_can_be_foreign_emissary_trigger = {
@@ -225,9 +241,14 @@ carnx_can_be_foreign_emissary_trigger = {
 
 carnx_can_be_keeper_of_the_horses_trigger = {
 	is_capable_adult = yes
-	exists = $LIEGE$
 	is_landed = no
 	prowess >= 12
+	trigger_if = {
+		limit = { carnx_is_slave_trigger = yes }
+		$LIEGE$ = {
+			carnx_is_slave_employment_enabled_trigger = yes
+		}
+	}
 }
 
 # CSR Court Positions

@@ -1,7 +1,7 @@
 ﻿carnx_can_be_chancellor_trigger = {
 	can_be_chancellor_trigger = { COURT_OWNER = $COURT_OWNER$ }
-	OR = {
-		carnx_is_slave_trigger = no
+	trigger_if = {
+		limit = { carnx_is_slave_trigger = yes }
 		$COURT_OWNER$ = {
 			carnx_is_slave_employment_enabled_trigger = yes
 		}
@@ -10,8 +10,8 @@
 
 carnx_can_be_marshal_trigger = {
 	can_be_marshal_trigger = { COURT_OWNER = $COURT_OWNER$ }
-	OR = {
-		carnx_is_slave_trigger = no
+	trigger_if = {
+		limit = { carnx_is_slave_trigger = yes }
 		$COURT_OWNER$ = {
 			carnx_is_slave_employment_enabled_trigger = yes
 		}
@@ -20,8 +20,8 @@ carnx_can_be_marshal_trigger = {
 
 carnx_can_be_steward_trigger = {
 	can_be_steward_trigger = { COURT_OWNER = $COURT_OWNER$ }
-	OR = {
-		carnx_is_slave_trigger = no
+	trigger_if = {
+		limit = { carnx_is_slave_trigger = yes }
 		$COURT_OWNER$ = {
 			carnx_is_slave_employment_enabled_trigger = yes
 		}
