@@ -27,6 +27,23 @@ action_carn_can_demand_free_illegal_slaves_interaction = {
 					}
 				}
 			}
+			every_tributary = {
+				if = {
+					limit = {
+						root = {
+							is_character_interaction_valid = {
+								interaction = carn_demand_free_illegal_slaves_interaction
+								recipient = prev
+							}
+						}
+					}
+					try_create_important_action = {
+						important_action_type = action_carn_can_demand_free_illegal_slaves_interaction
+						actor = root
+						recipient = this
+					}
+				}
+			}
 		}
 	}
 

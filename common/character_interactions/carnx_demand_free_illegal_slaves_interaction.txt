@@ -35,7 +35,10 @@ carn_demand_free_illegal_slaves_interaction = {
 		scope:recipient = {
 			is_ai = yes
 			is_ruler = yes
-			target_is_liege_or_above = scope:actor
+			OR = {
+				target_is_liege_or_above = scope:actor
+				is_tributary_of = scope:actor
+			}
 			faith = scope:actor.faith
 			any_relation = {
 				type = slave
