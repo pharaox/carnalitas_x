@@ -1,0 +1,2 @@
+﻿l_english:
+  ALREADY_OFFERED_COURTIER_WARNING:0 "@warning_icon! #X You have already offered a [courtier|E] to [recipient.GetShortUIName], sending another one will #underline override#! the existing [opinion|E] modifier!#!"
