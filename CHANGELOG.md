@@ -4,6 +4,7 @@
 
 ### Interactions
 
+* Disabled *Offer Courtier* and *Demand Courtier* interactions for slaves.
 * Increased slave trading ranges slightly across the board.
 
 ### Compatibility
