@@ -159,3 +159,4 @@ carnx_squared_distance_small = 22500 # 150 map-pixels, same as vanilla
 carnx_squared_distance_medium = 90000 # 300 map-pixels
 carnx_squared_distance_large = 202500 # 450 map-pixels
 carnx_squared_distance_huge = 360000 # 600 map-pixels
+carnx_squared_distance_massive = 562500 # 750 map-pixels
