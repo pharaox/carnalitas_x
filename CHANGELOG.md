@@ -1,5 +1,15 @@
 # Changelog
 
+## Version 0.25.2
+
+### Interactions
+
+* Increased slave trading ranges slightly across the board.
+
+### Compatibility
+
+* Adapted to CK3 1.16.2.
+
 ## Version 0.25.1
 
 ## Interactions
