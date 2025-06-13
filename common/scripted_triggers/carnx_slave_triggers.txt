@@ -40,7 +40,10 @@ carnx_can_start_interaction_trigger = {
 
 carnx_can_trade_slaves_trigger = {
 	carnx_can_start_interaction_trigger = yes
-	is_in_army = no
+	OR = {
+		is_in_army = no
+		is_commanding_army = yes
+	}
 }
 
 carnx_can_be_slave_owner_trigger = {
@@ -195,7 +198,12 @@ carnx_get_capital_province_trigger = {
 # Their "capital" is their location if they are traveling, or their actual capital if not.
 carnx_get_party_capital_province_trigger = {
 	trigger_if = {
-		limit = { exists = current_travel_plan }
+		limit = {
+			OR = {
+				exists = current_travel_plan
+				is_commanding_army = yes
+			}
+		}
 		location ?= { save_temporary_scope_as = party_capital_province }
 	}
 	trigger_else = {
