@@ -15,6 +15,10 @@
  trait_carnx_faith_slaver_2_desc: "This character has enslaved adherents of [faith_righteous|E] or [faith_astray|E] faiths against the doctrines of their faith."
  trait_carnx_faith_slaver_2_character_desc: "[ROOT.GetCharacter.GetFirstNameNoTooltip] has enslaved adherents of [faith_righteous|E] or [faith_astray|E] faiths against the doctrines of [ROOT.GetCharacter.GetHerHis] faith."
 
+ trait_carnx_slave_concubine: "Slave Concubine"
+ trait_carnx_slave_concubine_desc: "This character is a lower-rank concubine who is also a slave or former slave."
+ trait_carnx_slave_concubine_character_desc: "[ROOT.GetCharacter.GetFirstNameNoTooltip] is a lower-rank concubine who is also a slave or former slave."
+
  carnx_slavery_crime_opinion:0 "Known [GetTrait('carnx_slaver').GetName( GetNullCharacter )]"
  carnx_slavery_intolerant_opinion:0 "Known [GetTrait('carnx_slaver').GetName( GetNullCharacter )]"
 

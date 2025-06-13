@@ -159,3 +159,25 @@ carnx_faith_slaver_2 = {
 		}
 	}
 }
+
+carnx_slave_concubine = {
+	flag = can_not_marry
+	flag = can_not_leave_court_voluntarily
+
+	inheritance_blocker = all
+	claim_inheritance_blocker = all
+	
+	shown_in_ruler_designer = no
+
+	desc = {
+		first_valid = {
+			triggered_desc = {
+				trigger = {
+					NOT = { exists = this }
+				}
+				desc = trait_carnx_slave_concubine_desc
+			}
+			desc = trait_carnx_slave_concubine_character_desc
+		}
+	}
+}

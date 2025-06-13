@@ -462,16 +462,25 @@ carnx_keeper_of_the_horses_title_invalidated_effect = {
 carnx_slave_concubine_title_received_effect = {
 	basic_gained_court_position_effect = yes
 	carnx_debug_log_title_received_effect = { NAME = slave_concubine }
+	scope:employee = {
+		add_trait = carnx_slave_concubine
+	}
 }
 
 carnx_slave_concubine_title_revoked_effect = {
 	basic_revoked_court_position_effect = yes
 	carnx_debug_log_title_revoked_effect = { NAME = slave_concubine }
+	scope:employee = {
+		remove_trait = carnx_slave_concubine
+	}
 }
 
 carnx_slave_concubine_title_invalidated_effect = {
 	basic_invalidated_court_position_effect = yes
 	carnx_debug_log_title_invalidated_effect = { NAME = slave_concubine}
+	scope:employee = {
+		remove_trait = carnx_slave_concubine
+	}
 }
 
 # SLAVE CAPTAIN
