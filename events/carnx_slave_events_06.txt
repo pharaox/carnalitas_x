@@ -18,6 +18,7 @@ carnx_slave.0006 = {
 			has_trait = carnx_slaver
 			has_trait = carnx_liberator
 		}
+		has_variable = carnx_slaver_counter
 	}
 
 	# Accept the trait
@@ -25,6 +26,10 @@ carnx_slave.0006 = {
 		name = carnx_slave.0006.a
 
 		add_trait = carnx_slaver
+		add_trait_xp = {
+			trait = carnx_slaver
+			value = var:carnx_slaver_counter
+		}
 
 		hidden_effect = {
 			carnx_debug_log_effect = { MSG = carnx_debug_msg_character_acquired_slaver_trait }

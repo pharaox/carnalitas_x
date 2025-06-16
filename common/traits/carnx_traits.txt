@@ -14,15 +14,41 @@ carnx_slaver = {
 
 	ruler_designer_cost = -10
 
-	diplomacy = -1
-	monthly_prestige = -0.5
-	men_at_arms_maintenance = 0.25
-	dread_gain_mult = 0.25
-	dread_decay_mult = -0.25
-
-	general_opinion = -5
 	opposite_opinion = -10
 	same_opinion = 10
+
+	track = {
+		25 = {
+			monthly_piety = -0.25
+			men_at_arms_maintenance = 0.125
+			dread_gain_mult = 0.125
+			dread_decay_mult = -0.125
+			general_opinion = -2.5
+		}
+		50 = {
+			diplomacy = -1 # wrathful, paranoid
+			monthly_piety = -0.25 # -humble
+			men_at_arms_maintenance = 0.125
+			dread_gain_mult = 0.125 # paranoid, callous
+			dread_decay_mult = -0.125 # callous
+			general_opinion = -2.5
+		}
+		75 = {
+			monthly_piety = -0.25
+			men_at_arms_maintenance = 0.125
+			dread_gain_mult = 0.125
+			dread_decay_mult = -0.125
+			general_opinion = -2.5
+		}
+		100 = {
+			diplomacy = -1 # callous, vengeful
+			monthly_piety = -0.25 # -celibate
+			men_at_arms_maintenance = 0.125 # -adventurer
+			dread_gain_mult = 0.125 # torturer
+			dread_decay_mult = -0.125
+			general_opinion = -2.5
+		}
+	}
 
 	desc = {
 		first_valid = {
@@ -58,15 +84,41 @@ carnx_liberator = {
 
 	ruler_designer_cost = 50
 
-	diplomacy = 1
-	monthly_prestige = 0.5
-	men_at_arms_maintenance = -0.25
-	dread_baseline_add = -10
-	dread_decay_mult = 0.25
-
-	general_opinion = 5
 	opposite_opinion = -10
 	same_opinion = 10
+
+	track = {
+		25 = {
+			monthly_piety = 0.25
+			men_at_arms_maintenance = -0.125
+			dread_baseline_add = -5
+			dread_decay_mult = 0.125
+			general_opinion = 2.5
+		}
+		50 = {
+			diplomacy = 1 # calm
+			monthly_piety = 0.25 # humble
+			men_at_arms_maintenance = -0.125
+			dread_baseline_add = -5
+			dread_decay_mult = 0.125 # -callous
+			general_opinion = 2.5
+		}
+		75 = {
+			monthly_piety = 0.25
+			men_at_arms_maintenance = -0.125
+			dread_baseline_add = -5 # compassionate
+			dread_decay_mult = 0.125
+			general_opinion = 2.5
+		}
+		100 = {
+			diplomacy = 1 # honest
+			monthly_piety = 0.25 # celibate
+			men_at_arms_maintenance = -0.125 # adventurer
+			dread_baseline_add = -5
+			dread_decay_mult = 0.125 # calm
+			general_opinion = 2.5
+		}
+	}
 
 	desc = {
 		first_valid = {
@@ -166,7 +218,7 @@ carnx_slave_concubine = {
 
 	inheritance_blocker = all
 	claim_inheritance_blocker = all
-	
+
 	shown_in_ruler_designer = no
 
 	desc = {

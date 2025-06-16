@@ -251,10 +251,8 @@ carnx_enslave_effect = {
 			# Add faith slaver trait
 			carnx_acquire_faith_slaver_trait_effect = { CHARACTER = scope:slave }
 
-			hidden_effect = {
-				# Potentially acquire slaver trait if scope:slave enslaved by scope:seller
-				carnx_potentially_acquire_slaver_trait_effect = yes
-			}
+			# Potentially acquire slaver trait
+			carnx_potentially_acquire_slaver_trait_effect = yes
 
 			# Other consequences
 			carnx_apply_slavery_consequences_effect = {
@@ -716,16 +714,13 @@ carn_free_illegal_slaves_effect = {
 				}
 
 				scope:emancipator = {
-					hidden_effect = {
-						# Potentially acquire liberator trait if scope:slave not enslaved by scope:emancipator
-						if = {
-							limit = {
-								scope:slave = {
-									NOT = { carnx_was_enslaved_by_character_trigger = { CHARACTER = scope:emancipator } }
-								}
+					if = {
+						limit = {
+							scope:slave = {
+								NOT = { carnx_was_enslaved_by_character_trigger = { CHARACTER = scope:emancipator } }
 							}
-							carnx_potentially_acquire_liberator_trait_effect = yes
 						}
+						carnx_potentially_acquire_liberator_trait_effect = yes
 					}
 				}
 
@@ -888,16 +883,14 @@ carnx_free_slave_actual_effect = {
 				callous = minor_stress_impact_gain
 			}
 
-			hidden_effect = {
-				# Potentially acquire liberator trait if scope:slave not enslaved by $EMANCIPATOR$
-				if = {
-					limit = {
-						scope:slave = {
-							NOT = { carnx_was_enslaved_by_character_trigger = { CHARACTER = $EMANCIPATOR$ } }
-						}
+			# Potentially acquire liberator trait if scope:slave not enslaved by $EMANCIPATOR$
+			if = {
+				limit = {
+					scope:slave = {
+						NOT = { carnx_was_enslaved_by_character_trigger = { CHARACTER = $EMANCIPATOR$ } }
 					}
-					carnx_potentially_acquire_liberator_trait_effect = yes
 				}
+				carnx_potentially_acquire_liberator_trait_effect = yes
 			}
 		}
 
@@ -1036,16 +1029,16 @@ carnx_ransom_slave_actual_effect = {
 		hidden_effect = {
 			# Add slave to payer's court
 			carnx_add_courtier_effect = { SLAVE = scope:slave }
+		}
 
-			# Potentially acquire liberator trait if scope:slave not enslaved by scope:payer
-			if = {
-				limit = {
-					scope:slave = {
-						NOT = { carnx_was_enslaved_by_character_trigger = { CHARACTER = scope:payer } }
-					}
+		# Potentially acquire liberator trait if scope:slave not enslaved by scope:payer
+		if = {
+			limit = {
+				scope:slave = {
+					NOT = { carnx_was_enslaved_by_character_trigger = { CHARACTER = scope:payer } }
 				}
-				carnx_potentially_acquire_liberator_trait_effect = yes
 			}
+			carnx_potentially_acquire_liberator_trait_effect = yes
 		}
 	}
 
@@ -1732,24 +1725,8 @@ carnx_add_mutual_former_slave_or_slave_owner_opinion_effect = {
 }
 
 carnx_potentially_acquire_slaver_trait_effect = {
-	# Increment slaver counter
-	if = {
-		limit = {
-			NOT = { has_variable = carnx_slaver_counter }
-		}
-		set_variable = {
-			name = carnx_slaver_counter
-			value = 1
-		}
-	}
-	else = {
-		change_variable = {
-			name = carnx_slaver_counter
-			add = 1
-		}
-	}
-
 	# Potentially acquire slaver trait if slaver counter >= 10
+	# or gain xp in the trait if already acquired
 	if = {
 		limit = {
 			has_variable = carnx_slaver_counter
@@ -1759,28 +1736,65 @@ carnx_potentially_acquire_slaver_trait_effect = {
 				has_trait = carnx_liberator
 			}
 		}
-		random = {
-			chance = 5
-			modifier = {
-				var:carnx_slaver_counter >= 20
-				add = 5
-			}
-			modifier = {
-				var:carnx_slaver_counter >= 30
-				add = 5
-			}
-			modifier = {
-				var:carnx_slaver_counter >= 40
-				add = 5
-			}
-			modifier = {
-				var:carnx_slaver_counter >= 50
-				add = 5
-			}
+		custom_tooltip = {
+			text = carnx_may_acquire_slaver_trait_tooltip
+			random = {
+				chance = 5
+				modifier = {
+					var:carnx_slaver_counter >= 20
+					add = 5
+				}
+				modifier = {
+					var:carnx_slaver_counter >= 30
+					add = 5
+				}
+				modifier = {
+					var:carnx_slaver_counter >= 40
+					add = 5
+				}
+				modifier = {
+					var:carnx_slaver_counter >= 50
+					add = 5
+				}
 
-			trigger_event = {
-				id = carnx_slave.0006
+				trigger_event = {
+					id = carnx_slave.0006
+				}
 			}
+		}
+	}
+	else_if = {
+		limit = {
+			has_trait = carnx_slaver
+			has_variable = carnx_slaver_counter
+			var:carnx_slaver_counter < 100
+			has_trait_xp = { trait = carnx_slaver value < 100 }
+		}
+		add_trait_xp = {
+			trait = carnx_slaver
+			value = 1
+		}
+	}
+
+	# Lose liberator trait if liberator counter = 0
+	# or lose xp in the trait otherwise
+	if = {
+		limit = {
+			has_trait = carnx_liberator
+			NOT = { has_variable = carnx_liberator_counter }
+		}
+		remove_trait = carnx_liberator
+	}
+	else_if = {
+		limit = {
+			has_trait = carnx_liberator
+			has_variable = carnx_liberator_counter
+			var:carnx_liberator_counter <= 100
+			has_trait_xp = { trait = carnx_liberator value > 0 }
+		}
+		add_trait_xp = {
+			trait = carnx_liberator
+			value = -1
 		}
 	}
 
@@ -1794,27 +1808,42 @@ carnx_potentially_acquire_slaver_trait_effect = {
 			set_nickname_effect = { NICKNAME = carnx_nick_the_slaver }
 		}
 	}
-}
 
-carnx_potentially_acquire_liberator_trait_effect = {
-	# Increment liberator counter
+	# Increment slaver / decrement liberator counters
 	if = {
 		limit = {
-			NOT = { has_variable = carnx_liberator_counter }
+			NOR = {
+				has_variable = carnx_slaver_counter
+				has_variable = carnx_liberator_counter
+			}
 		}
 		set_variable = {
-			name = carnx_liberator_counter
+			name = carnx_slaver_counter
 			value = 1
+		}
+	}
+	else_if = {
+		limit = { has_variable = carnx_slaver_counter }
+		change_variable = {
+			name = carnx_slaver_counter
+			add = 1
 		}
 	}
 	else = {
 		change_variable = {
 			name = carnx_liberator_counter
-			add = 1
+			add = -1
+		}
+		if = {
+			limit = { var:carnx_liberator_counter = 0 }
+			remove_variable = carnx_liberator_counter
 		}
 	}
+}
 
+carnx_potentially_acquire_liberator_trait_effect = {
 	# Potentially acquire liberator trait if liberator counter >= 10
+	# or gain xp in the trait if already acquired
 	if = {
 		limit = {
 			has_variable = carnx_liberator_counter
@@ -1824,28 +1853,65 @@ carnx_potentially_acquire_liberator_trait_effect = {
 				has_trait = carnx_liberator
 			}
 		}
-		random = {
-			chance = 5
-			modifier = {
-				var:carnx_liberator_counter >= 20
-				add = 5
-			}
-			modifier = {
-				var:carnx_liberator_counter >= 30
-				add = 5
-			}
-			modifier = {
-				var:carnx_liberator_counter >= 40
-				add = 5
-			}
-			modifier = {
-				var:carnx_liberator_counter >= 50
-				add = 5
-			}
+		custom_tooltip = {
+			text = carnx_may_acquire_liberator_trait_tooltip
+			random = {
+				chance = 5
+				modifier = {
+					var:carnx_liberator_counter >= 20
+					add = 5
+				}
+				modifier = {
+					var:carnx_liberator_counter >= 30
+					add = 5
+				}
+				modifier = {
+					var:carnx_liberator_counter >= 40
+					add = 5
+				}
+				modifier = {
+					var:carnx_liberator_counter >= 50
+					add = 5
+				}
 
-			trigger_event = {
-				id = carnx_slave.0007
+				trigger_event = {
+					id = carnx_slave.0007
+				}
 			}
+		}
+	}
+	else_if = {
+		limit = {
+			has_trait = carnx_liberator
+			has_variable = carnx_liberator_counter
+			var:carnx_liberator_counter < 100
+			has_trait_xp = { trait = carnx_liberator value < 100 }
+		}
+		add_trait_xp = {
+			trait = carnx_liberator
+			value = 1
+		}
+	}
+
+	# Lose slaver trait if slaver counter = 0
+	# or lose xp in the trait otherwise
+	if = {
+		limit = {
+			has_trait = carnx_slaver
+			NOT = { has_variable = carnx_slaver_counter }
+		}
+		remove_trait = carnx_slaver
+	}
+	else_if = {
+		limit = {
+			has_trait = carnx_slaver
+			has_variable = carnx_slaver_counter
+			var:carnx_slaver_counter <= 100
+			has_trait_xp = { trait = carnx_slaver value > 0 }
+		}
+		add_trait_xp = {
+			trait = carnx_slaver
+			value = -1
 		}
 	}
 
@@ -1857,6 +1923,37 @@ carnx_potentially_acquire_liberator_trait_effect = {
 		random = {
 			chance = 10
 			set_nickname_effect = { NICKNAME = carnx_nick_the_liberator }
+		}
+	}
+
+	# Increment liberator / decrement slaver counters
+	if = {
+		limit = {
+			NOR = {
+				has_variable = carnx_slaver_counter
+				has_variable = carnx_liberator_counter
+			}
+		}
+		set_variable = {
+			name = carnx_liberator_counter
+			value = 1
+		}
+	}
+	else_if = {
+		limit = { has_variable = carnx_liberator_counter }
+		change_variable = {
+			name = carnx_liberator_counter
+			add = 1
+		}
+	}
+	else = {
+		change_variable = {
+			name = carnx_slaver_counter
+			add = -1
+		}
+		if = {
+			limit = { var:carnx_slaver_counter = 0 }
+			remove_variable = carnx_slaver_counter
 		}
 	}
 }
@@ -1892,7 +1989,7 @@ carnx_add_courtier_effect = {
 		limit = {
 			is_ruler = yes
 			$SLAVE$ = {
-				NOR = { 
+				NOR = {
 					is_courtier_of = prev
 					has_character_flag = carnx_block_add_courtier
 				}
