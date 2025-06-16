@@ -1,14 +1,18 @@
 ﻿carnx_province_has_slave_market_trigger = {
-	# Has tribal, castle, or city holding
+	# Has tribal, castle, city, or nomadd holding
 	OR = {
 		vls_has_tribal_like_holding_trigger = yes
 		vls_has_castle_like_holding_trigger = yes
 		vls_has_city_like_holding_trigger = yes
+		vls_has_nomad_like_holding_trigger = yes
 	}
 
-	# Has the minimum development level, or a relevant building
+	# Has the minimum development level, or a relevant building,
+	# or a relevant domicile building, or is a capital of a kingdom or an empire
 	OR = {
 		county ?= { development_level >= carnx_slave_markets_min_development_level_value }
+
+		# Buildings
 		# Economy
 		has_building_or_higher = common_tradeport_01
 		has_building_or_higher = caravanserai_01
@@ -16,6 +20,22 @@
 		has_building_or_higher = market_villages_01
 		# Special
 		has_special_building = yes
+
+		# Domicile buildings
+		any_province_domicile = {
+			OR = {
+				# Estate
+				has_domicile_building_or_higher = market_01
+				# Yurt
+				has_domicile_building_or_higher = trade_yurt_01
+			}
+		}
+
+		# Capital of a kingdom or empire
+		county.holder = {
+			capital_province ?= prev
+			highest_held_title_tier >= tier_kingdom
+		}
 	}
 
 	# Slavery is not always criminal for the county holder
