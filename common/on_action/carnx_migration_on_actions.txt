@@ -1,0 +1,21 @@
+﻿carnx_on_join_court_migration = {
+	effect = {
+		# Add slave concubine traits
+		if = {
+			limit = {
+				NOT = { has_global_variable = carnx_slave_concubine_traits_added }
+			}
+			carnx_add_slave_concubine_traits = yes
+			set_global_variable = carnx_slave_concubine_traits_added
+		}
+
+		# Migrate slaver and liberator traits to leveled ones
+		if = {
+			limit = {
+				NOT = { has_global_variable = carnx_slaver_liberator_traits_migrated }
+			}
+			carnx_migrate_slaver_liberator_traits = yes
+			set_global_variable = carnx_slaver_liberator_traits_migrated
+		}
+	}
+}

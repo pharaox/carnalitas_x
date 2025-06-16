@@ -1,0 +1,79 @@
+﻿carnx_add_slave_concubine_traits = {
+	every_living_character = {
+		limit = { has_court_position = carnx_slave_concubine_court_position }
+		if = {
+			limit = {
+				NOT = { has_trait = carnx_slave_concubine }
+			}
+			add_trait = carnx_slave_concubine
+		}
+	}
+}
+
+carnx_migrate_slaver_liberator_traits = {
+	every_living_character = {
+		limit = {
+			has_variable = carnx_slaver_counter
+			has_variable = carnx_liberator_counter
+		}
+		if = {
+			limit = { var:carnx_slaver_counter > var:carnx_liberator_counter }
+			change_variable = {
+				name = carnx_slaver_counter
+				add = {
+					value = var:carnx_liberator_counter
+					multiply = -1
+				}
+			}
+			remove_variable = liberator_counter
+			remove_trait = carnx_liberator
+		}
+		else_if = {
+			limit = { var:carnx_liberator_counter > var:carnx_slaver_counter }
+			change_variable = {
+				name = carnx_liberator_counter
+				add = {
+					value = var:carnx_slaver_counter
+					multiply = -1
+				}
+			}
+			remove_variable = slaver_counter
+			remove_trait = carnx_slaver
+		}
+		else = {
+			remove_variable = slaver_counter
+			remove_variable = liberator_counter
+			remove_trait = carnx_slaver
+			remove_trait = carnx_liberator
+		}
+	}
+
+	every_living_character = {
+		limit = {
+			has_variable = carnx_slaver_counter
+			has_trait = carnx_slaver
+			has_trait_xp = { trait = carnx_slaver value = 0 }
+		}
+		add_trait_xp = {
+			trait = carnx_slaver
+			value = {
+				value = var:carnx_slaver_counter
+				max = 100
+			}
+		}
+	}
+	every_living_character = {
+		limit = {
+			has_variable = carnx_liberator_counter
+			has_trait = carnx_liberator
+			has_trait_xp = { trait = carnx_liberator value = 0 }
+		}
+		add_trait_xp = {
+			trait = carnx_liberator
+			value = {
+				value = var:carnx_liberator_counter
+				max = 100
+			}
+		}
+	}
+}

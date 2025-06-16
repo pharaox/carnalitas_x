@@ -118,7 +118,10 @@ carnx_on_slave_sold_off = {
 # scope:new_employer is their new employer
 # scope:old_employer is their old employer (if they had one; otherwise unset)
 on_join_court = {
-	on_actions = { carnx_on_join_court }
+	on_actions = {
+		carnx_on_join_court
+		carnx_on_join_court_migration
+	}
 }
 
 carnx_on_join_court = {
