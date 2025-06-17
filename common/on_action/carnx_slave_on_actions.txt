@@ -113,15 +113,17 @@ carnx_on_slave_sold_off = {
 	}
 }
 
+# Like on_game_start, except it is called once the host (or player, in single player) exits the lobby. Good for anything where you need to know who the players are, or what the game rules are
+on_game_start_after_lobby = {
+	on_actions = { carnx_on_migrate }
+}
+
 # Fires when a character joins a court. Not fired for just generated characters
 # Root is the character
 # scope:new_employer is their new employer
 # scope:old_employer is their old employer (if they had one; otherwise unset)
 on_join_court = {
-	on_actions = {
-		carnx_on_join_court
-		carnx_on_join_court_migration
-	}
+	on_actions = { carnx_on_join_court carnx_on_migrate }
 }
 
 carnx_on_join_court = {

@@ -1,21 +1,21 @@
-﻿carnx_add_slave_concubine_traits = {
-	every_living_character = {
-		limit = { has_court_position = carnx_slave_concubine_court_position }
-		if = {
-			limit = {
-				NOT = { has_trait = carnx_slave_concubine }
-			}
-			add_trait = carnx_slave_concubine
+﻿carnx_add_slave_concubine_trait_effect = {
+	if = {
+		limit = {
+			has_court_position = carnx_slave_concubine_court_position
+			NOT = { has_trait = carnx_slave_concubine }
 		}
+		carnx_debug_log_effect = { MSG = carnx_debug_msg_adding_slave_concubine_trait }
+		add_trait = carnx_slave_concubine
 	}
 }
 
-carnx_migrate_slaver_liberator_traits = {
-	every_living_character = {
+carnx_migrate_slaver_liberator_traits_effect = {
+	if = {
 		limit = {
 			has_variable = carnx_slaver_counter
 			has_variable = carnx_liberator_counter
 		}
+		carnx_debug_log_effect = { MSG = carnx_debug_msg_adjusting_slaver_liberator_counters }
 		if = {
 			limit = { var:carnx_slaver_counter > var:carnx_liberator_counter }
 			change_variable = {
@@ -48,30 +48,34 @@ carnx_migrate_slaver_liberator_traits = {
 		}
 	}
 
-	every_living_character = {
+	if = {
 		limit = {
 			has_variable = carnx_slaver_counter
 			has_trait = carnx_slaver
 			has_trait_xp = { trait = carnx_slaver value = 0 }
 		}
+		carnx_debug_log_effect = { MSG = carnx_debug_msg_adding_slaver_trait_xp }
 		add_trait_xp = {
 			trait = carnx_slaver
 			value = {
 				value = var:carnx_slaver_counter
+				min = 0
 				max = 100
 			}
 		}
 	}
-	every_living_character = {
+	else_if = {
 		limit = {
 			has_variable = carnx_liberator_counter
 			has_trait = carnx_liberator
 			has_trait_xp = { trait = carnx_liberator value = 0 }
 		}
+		carnx_debug_log_effect = { MSG = carnx_debug_msg_adding_liberator_trait_xp }
 		add_trait_xp = {
 			trait = carnx_liberator
 			value = {
 				value = var:carnx_liberator_counter
+				min = 0
 				max = 100
 			}
 		}

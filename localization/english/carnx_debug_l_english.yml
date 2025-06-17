@@ -1,6 +1,8 @@
 ﻿l_english:
  carnx_debug_prefix: "[GetCurrentDate.GetStringShort]: [THIS.Char.GetFullNameNoTooltip] ([THIS.Char.GetID])"
 
+ carnx_debug_msg_migrated: "[GetCurrentDate.GetStringShort]: CSR mod migrated"
+
  carnx_debug_msg_slave_enslaved: "$carnx_debug_prefix$: Slave enslaved"
  carnx_debug_msg_slave_freed: "$carnx_debug_prefix$: Slave freed"
  carnx_debug_msg_slave_bought: "$carnx_debug_prefix$: Slave bought, buyer: $carnx_buyer$, seller: $carnx_seller$, price: $carnx_slave_price$, source: $carnx_source$"
@@ -198,6 +200,11 @@
  carnx_debug_msg_attempting_slave_haggle: "$carnx_debug_prefix$: Attempting slave haggle"
 
  carnx_debug_msg_marking_character_as_destroyed_laamp: "$carnx_debug_prefix$: Marking character as destroyed LAAMP"
+
+ carnx_debug_msg_adding_slave_concubine_trait: "$carnx_debug_prefix$: Adding Slave Concubine trait"
+ carnx_debug_msg_adjusting_slaver_liberator_counters: "$carnx_debug_prefix$: Adjusting slaver and liberator counters"
+ carnx_debug_msg_adding_slaver_trait_xp: "$carnx_debug_prefix$: Adding Infamous Slaver trait XP"
+ carnx_debug_msg_adding_liberator_trait_xp: "$carnx_debug_prefix$: Adding Famous Liberator trait XP"
 
  carnx_buyer: "[THIS.Var('buyer').Char.GetFullNameNoTooltip] ([THIS.Var('buyer').Char.GetID]$carnx_buyer_merchant_type$)"
  carnx_seller: "[THIS.Var('seller').Char.GetFullNameNoTooltip] ([THIS.Var('seller').Char.GetID]$carnx_seller_merchant_type$)"

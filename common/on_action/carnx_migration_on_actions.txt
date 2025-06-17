@@ -1,11 +1,19 @@
-﻿carnx_on_join_court_migration = {
+﻿carnx_on_migrate = {
+	trigger = {
+		NAND = {
+			has_global_variable = carnx_slave_concubine_traits_added
+			has_global_variable = carnx_slaver_liberator_traits_migrated
+		}
+	}
 	effect = {
 		# Add slave concubine traits
 		if = {
 			limit = {
 				NOT = { has_global_variable = carnx_slave_concubine_traits_added }
 			}
-			carnx_add_slave_concubine_traits = yes
+			every_living_character = {
+				carnx_add_slave_concubine_trait_effect = yes
+			}
 			set_global_variable = carnx_slave_concubine_traits_added
 		}
 
@@ -14,8 +22,12 @@
 			limit = {
 				NOT = { has_global_variable = carnx_slaver_liberator_traits_migrated }
 			}
-			carnx_migrate_slaver_liberator_traits = yes
+			every_living_character = {
+				carnx_migrate_slaver_liberator_traits_effect = yes
+			}
 			set_global_variable = carnx_slaver_liberator_traits_migrated
 		}
+
+		carnx_debug_log_effect = { MSG = carnx_debug_msg_migrated }
 	}
 }
