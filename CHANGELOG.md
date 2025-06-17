@@ -1,5 +1,24 @@
 # Changelog
 
+## Version 0.26.0
+
+### Traits
+
+* Converted *Infamous Slaver* and *Famous Liberator* traits into levelled ones. Their effects now scale with XP, with their old effects corresponding to the middle of the XP range.
+* Changed *Infamous Slaver* and *Famous Liberator* traits to affect piety instead of prestige.
+* Added *Slave Concubine* trait to holders of Slave Concubine court positions to ensure they can't marry, leave court, or inherit titles while they are still slave concubines. 
+
+### Balance
+
+* Enabled characters commanding armies to trade slaves with the smallest possible range.
+* Reduced the number of slaves available for sale by traders by increasing the chances that one of them (or both) is "sold off" after the event.
+* Enabled slave markets in nomad settlements that have the *Barter Stalls* domicile building, or are capitals of kingdoms or empires, since they usually have low development and no other buildings.
+
+### Housekeeping
+
+* Added migration for newly added traits to maintain save game compatibility.
+* Adopted newly introduced Unofficial Patch improvements and fixes.
+
 ## Version 0.25.3
 
 ### Compatibility

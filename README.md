@@ -143,7 +143,7 @@ The AI uses a slightly different version of the above due to engine limitations.
 
 Starting with version 0.23.0, this mod also a new *Buy & Sell Slaves* event chain to the *Visit Holding* decision for landless adventurers to allow them to buy and sell slaves while visiting holdings, similarly to buying and selling artifacts introduced in the "Roads to Power" DLC. This is enabled by default but can be disabled via the *Visit Holding Improvements* game rule.
 
-Slave markets are available in all non-temple holdings above certain development level, configurable via the *Slave Market Availability* game rule. They are also available in holdings having trade-related economy buildings, or special buildings.
+Slave markets are available in all non-temple holdings above certain development level, configurable via the *Slave Market Availability* game rule. They are also available in holdings having trade-related economy buildings, trade-related domicile buildings, or special buildings, as well as in kingdom or empire capitals.
 
 In addition to buying and selling slaves, the adventurer may also refuse to participate in the slave trade outright. This disables the corresponding options for a certain cooldown period (currently 1 year). The adventurer's partner may also object to trading slaves if they are compassionate or pious enough.
 
@@ -235,6 +235,8 @@ Any children of *Slave Concubines* are no longer slaves and have their correct f
 
 Note that only slaves, but not former slaves, can be appointed to slave court positions. If a slave holding a court position is freed, they retain the position, however if it's revoked they can't be appointed to it again.
 
+Starting with version 0.26.0, *Slave Concubine* position holders also get the *Slave Concubine* trait to ensure they can't marry, leave court, or inherit titles while they are still slave concubines. They lose this trait automatically if the position is revoked or invalidated.
+
 #### Changes to Existing Council and Court Positions
 
 This mod divides the existing council and court positions into ones that are available to slaves, and ones that are not. Some positions are only available to slaves if your government is clan or you have the [*Slave Employer* attitude](#slavery-attitudes), to reflect the fact that historically such important roles were held by slaves only if they were considered more loyal than other available options, which was the case in certain Muslim societies.
@@ -295,10 +297,12 @@ One intended and historically accurate outcome of this is that it results in act
 
 Starting with version 0.9.0, this mod adds two new fame traits, *Infamous Slaver* and *Famous Liberator*.
 
-* *Infamous Slaver* is a fame trait that adds negative diplomacy, prestige, MAA maintenance, and general opinion, and positive dread multipliers. It is acquired via an [event](#trait-events) after enslaving a certain number of people, usually between 20 and 30.
-* *Famous Liberator* is a fame trait that adds positive diplomacy, prestige, MAA maintenance, and general opinion, and negative dread multipliers. It is acquired via an [event](#trait-events) after freeing, liberating, or ransoming a certain number of people, usually between 20 and 30.
+* *Infamous Slaver* is a fame trait that adds negative diplomacy, piety, MAA maintenance, and general opinion, and positive dread multipliers. It is acquired via an [event](#trait-events) after enslaving a certain number of people, usually between 20 and 30.
+* *Famous Liberator* is a fame trait that adds positive diplomacy, piety, MAA maintenance, and general opinion, and negative dread multipliers. It is acquired via an [event](#trait-events) after freeing, liberating, or ransoming a certain number of people, usually between 20 and 30.
 
 These traits represent consequences of "bad" and "good" behavior towards slaves. They are intended to further improve the balance and add some roleplaying flavor for the player. Although the AI also actively enslaves, frees, sells, and buys slaves, it is very unlikely to reach the numbers required for acquiring one of these traits. They are independent of the [slavery attitudes](#slavery-attitudes) described above, but choosing the *Slaver* or *Liberator* attitude certainly makes acquiring the corresponding trait easier.
+
+Starting with version 0.26.0, these 2 traits are now levelled. Their effects now scale with XP, with their old effects corresponding to the middle of the XP range. Enslaving a character adds 1 XP to the *Infamous Slaver* trait or -1 XP to the *Famous Liberator* trait, while freeing, liberating, or ransoming a character has the opposite effect. These traits can now also be lost if their XP drops below 0.
 
 #### Leveled Slaver Traits
 
