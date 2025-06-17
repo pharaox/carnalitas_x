@@ -3,12 +3,12 @@
  trait_carnx_slaver_desc:0 "This character has enslaved many people."
  trait_carnx_slaver_character_desc:0 "[ROOT.GetCharacter.GetFirstNameNoTooltip] has enslaved many people."
 
- trait_track_carnx_slaver: "$trait_carnx_slaver$"
- trait_track_carnx_slaver_desc: "#help You gain experience in this track by enslaving characters.#!"
-
  trait_carnx_liberator:0 "Famous Liberator"
  trait_carnx_liberator_desc:0 "This character has freed many people from slavery."
  trait_carnx_liberator_character_desc:0 "[ROOT.GetCharacter.GetFirstNameNoTooltip] has freed many people from slavery."
+
+ trait_track_carnx_slaver: "$trait_carnx_slaver$"
+ trait_track_carnx_slaver_desc: "#help You gain experience in this track by enslaving characters.#!"
 
  trait_track_carnx_liberator: "$trait_carnx_liberator$"
  trait_track_carnx_liberator_desc: "#help You gain experience in this track by freeing, liberating, or ransoming slaves you haven't enslaved yourself.#!"

@@ -131,6 +131,9 @@
 
  carnx_slave_price_breakdown_tooltip: "Détail des prix:\n[GuiScope.SetRoot(slave.MakeScope).AddScope('actor', actor.MakeScope).AddScope('buyer', buyer.MakeScope).AddScope('seller', seller.MakeScope).GetScriptValueDesc('carnx_slave_actual_price_value')]"
 
+ carnx_may_acquire_slaver_trait_tooltip: "May acquire [GetTrait('carnx_slaver').GetName(GetNullCharacter)] trait"
+ carnx_may_acquire_liberator_trait_tooltip: "May acquire [GetTrait('carnx_liberator').GetName(GetNullCharacter)] trait"
+
  # Message titles
  carnx_msg_slave_bought: "Esclave acheté"
  carnx_msg_slave_sold: "Esclave vendu"

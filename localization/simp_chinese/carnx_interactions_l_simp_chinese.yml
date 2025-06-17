@@ -103,3 +103,5 @@
  carnx_lacking_keeper_of_the_horses_reason: "[recipient.GetShortUIName|U] is lacking a good $keeper_of_the_horses_court_position$: $VALUE|=+0$"
  carnx_recipient_merchant_reason: "[recipient.GetShortUIName|U]是位商人：$VALUE|=+0$"
  carnx_slave_price_breakdown_tooltip: "价格明细：\n[GuiScope.SetRoot(slave.MakeScope).AddScope('actor', actor.MakeScope).AddScope('buyer', buyer.MakeScope).AddScope('seller', seller.MakeScope).GetScriptValueDesc('carnx_slave_actual_price_value')]"
+ carnx_may_acquire_slaver_trait_tooltip: "May acquire [GetTrait('carnx_slaver').GetName(GetNullCharacter)] trait"
+ carnx_may_acquire_liberator_trait_tooltip: "May acquire [GetTrait('carnx_liberator').GetName(GetNullCharacter)] trait"
