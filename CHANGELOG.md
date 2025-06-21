@@ -6,7 +6,7 @@
 
 * Converted *Infamous Slaver* and *Famous Liberator* traits into levelled ones. Their effects now scale with XP, with their old effects corresponding to the middle of the XP range.
 * Changed *Infamous Slaver* and *Famous Liberator* traits to affect piety instead of prestige.
-* Added *Slave Concubine* trait to holders of Slave Concubine court positions to ensure they can't marry, leave court, or inherit titles while they are still slave concubines. 
+* Added *Slave Concubine* trait to holders of Slave Concubine court positions to ensure they can't marry, leave court, or inherit titles while they are still slave concubines.
 
 ### Balance
 
