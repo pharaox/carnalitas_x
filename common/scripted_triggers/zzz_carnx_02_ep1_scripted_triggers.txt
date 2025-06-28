@@ -18,6 +18,9 @@ ep1_is_valid_character_for_inspiration_trigger = {
 		}
 	}
 
+	#Unop Prevent paiza merchants from becoming inspired
+	NOT = { has_variable = merchant_var }
+
 	# CSR: Prevent slaves and slave owners from becoming inspired
 	carnx_is_slave_trigger = no
 	carnx_is_slave_owner_trigger = no

@@ -33,6 +33,9 @@
 		$HOST$ = { highest_held_title_tier <= tier_county }
 	}
 
+	#Unop Prevent paiza merchants from arrving as guests
+	NOT = { has_variable = merchant_var }
+
 	# CSR: Prevent slaves and slave owners from arrving as guests
 	carnx_is_slave_trigger = no
 	carnx_is_slave_owner_trigger = no
@@ -246,6 +249,8 @@ can_recruit_character_to_court_trigger = {
 					}
 				}
 			}
+			#Unop Disable Invite to Court for paiza merchants
+			has_variable = merchant_var
 			# CSR: Disable Invite to Court for slaves since they will be returned automatically
 			carnx_is_slave_trigger = yes
 		}

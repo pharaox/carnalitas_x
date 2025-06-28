@@ -2,6 +2,17 @@
 	is_adult = yes
 	is_incapable = no
 
+	#Unop: Prevent paiza merchants from being selected by pool character selectors
+	# To avoid modifying all such selectors, this is done here as this trigger is
+	# used by all of them; checking for scope:base limits this check to these selectors only
+	trigger_if = {
+		limit = {
+			is_pool_character = yes
+			exists = scope:base
+		}
+		NOT = { has_variable = merchant_var }
+	}
+
 	# CSR: Prevent pool slaves and slave owners from being selected by pool character selectors
 	trigger_if = {
 		limit = {
