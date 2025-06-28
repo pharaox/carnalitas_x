@@ -24,6 +24,10 @@ clean:
 	rm -rf tmp
 	rm -f ck3-tiger.out
 
+.PHONY: thumbnail
+thumbnail:
+	convert images/00-the-slave-market.jpeg -crop 1348x1348+110+0 +repage -resize 1024x1024^ -gravity center -extent 1024x1024 thumbnail.png
+
 .PHONY: update-version
 update-version:
 	sed -i 's/$(VERSION)/$(NEW_VERSION)/g' descriptor.mod VERSION

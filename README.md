@@ -89,6 +89,8 @@ If you like this mod, you may also consider my other mods:
 * [Travelers](https://steamcommunity.com/sharedfiles/filedetails/?id=3082182371), characters always travel to their home when it changes instead of teleporting.
 * [Active Courtiers](https://steamcommunity.com/sharedfiles/filedetails/?id=3157170996), courtiers search for spouses themselves for less micromanagement, stronger AI, and immersion.
 
+Thumbnail Source: [*The Slave Market* by José Navarro y Llorens](https://artvee.com/dl/the-slave-market-2/)
+
 ## Features
 
 ### Buying and Selling Slaves
