@@ -41,8 +41,8 @@
 	carnx_is_slave_owner_trigger = no
 } #Note: this trigger used to contain opinion triggers but then some awful rulers could never get guests because everyone hates them
 
+
 #This is a localized trigger for checking that a character do not have a spouse that's employed or has some other circumstance blocking them from being recruited to a court
-# Overridden from vanilla.
 can_recruit_character_to_court_trigger = {
 	$RECRUITER$ = { save_temporary_scope_as = recruiter }
 	$RECRUITEE$ = { save_temporary_scope_as = recruitee }

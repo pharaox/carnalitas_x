@@ -165,6 +165,7 @@ court_astrologer_court_position = { ### MPO
 		add = court_position_aptitude_family_business_value
 		add = court_position_aptitude_low_penalty_value
 		add = court_position_aptitude_boon_voyager_trait #Unop: This one was missing ?
+
 	}
 
 	is_shown = {
@@ -366,7 +367,11 @@ boyan_court_position = { ### MPO
 
 	court_position_asset = {
 		trigger = {
-			NOT = { culture = { has_cultural_pillar = heritage_mongolic } }
+			NOT = {
+				root ?= { #Unop: We want to check the culture of the court_owner (most likely the player) not the culture of the recipient
+					culture = { has_cultural_pillar = heritage_mongolic }
+				}
+			}
 		}
 		animation = personality_bold
 		background = "gfx/interface/illustrations/event_scenes/mpo_camp_steppe.dds"
@@ -535,6 +540,7 @@ boyan_court_position = { ### MPO
 		add = court_position_aptitude_traveling_friends_value
 		add = court_position_aptitude_family_business_value
 		add = court_position_aptitude_low_penalty_value
+
 	}
 
 	is_shown = {
@@ -909,6 +915,7 @@ siege_engineer_court_position = { ### MPO
 		add = court_position_aptitude_traveling_friends_value
 		add = court_position_aptitude_family_business_value
 		add = court_position_aptitude_low_penalty_value
+
 	}
 
 	is_shown = {
@@ -1148,7 +1155,11 @@ yurtchi_court_position = { ### MPO
 
 	court_position_asset = {
 		trigger = {
-			NOT = { culture = { has_cultural_pillar = heritage_mongolic } }
+			NOT = {
+				root ?= { #Unop: We want to check the culture of the court_owner (most likely the player) not the culture of the recipient
+					culture = { has_cultural_pillar = heritage_mongolic } 
+				}
+			}
 		}
 		animation = steward
 		background = "gfx/interface/illustrations/event_scenes/mpo_tent_interior_mongol.dds"
@@ -1255,6 +1266,7 @@ yurtchi_court_position = { ### MPO
 		add = court_position_aptitude_traveling_friends_value
 		add = court_position_aptitude_family_business_value
 		add = court_position_aptitude_low_penalty_value
+
 	}
 
 	is_shown = {
@@ -1506,7 +1518,11 @@ cherbi_court_position = { ### MPO
 
 	court_position_asset = {
 		trigger = {
-			NOT = { culture = { has_cultural_pillar = heritage_mongolic } }
+			NOT = { 
+				root ?= { #Unop: We want to check the culture of the court_owner (most likely the player) not the culture of the recipient
+					culture = { has_cultural_pillar = heritage_mongolic } 
+				}
+			}
 		}
 		animation = personality_bold
 		background = "gfx/interface/illustrations/event_scenes/mpo_hunt_steppe.dds"
@@ -1683,6 +1699,7 @@ cherbi_court_position = { ### MPO
 		add = court_position_aptitude_traveling_friends_value
 		add = court_position_aptitude_family_business_value
 		add = court_position_aptitude_low_penalty_value
+
 	}
 
 	is_shown = {
@@ -1952,8 +1969,10 @@ yeke_jarquchi_court_position = { ### MPO
 	court_position_asset = {
 		trigger = {
 			NOR = {
-				culture = { has_cultural_pillar = heritage_mongolic }
-				culture = { has_cultural_pillar = heritage_turkic }
+				root ?= { #Unop: We want to check the culture of the court_owner (most likely the player) not the culture of the recipient
+					culture = { has_cultural_pillar = heritage_mongolic }
+					culture = { has_cultural_pillar = heritage_turkic }
+				}
 			}
 		}
 		animation = debating
@@ -1963,7 +1982,9 @@ yeke_jarquchi_court_position = { ### MPO
 	
 	court_position_asset = {
 		trigger = {
-			culture = { has_cultural_pillar = heritage_turkic }
+			root ?= { #Unop: We want to check the culture of the court_owner (most likely the player) not the culture of the recipient
+				culture = { has_cultural_pillar = heritage_turkic }
+			}
 		}
 		animation = debating
 		background = "gfx/interface/illustrations/event_scenes/mpo_hunt_steppe.dds"
@@ -2462,6 +2483,7 @@ foreign_emissary_court_position = { ### MPO
 		add = court_position_aptitude_traveling_friends_value
 		add = court_position_aptitude_family_business_value
 		add = court_position_aptitude_low_penalty_value
+
 	}
 
 	is_shown = {
@@ -2794,6 +2816,7 @@ keeper_of_the_horses_court_position = { ### MPO
 		add = court_position_aptitude_traveling_friends_value
 		add = court_position_aptitude_family_business_value
 		add = court_position_aptitude_low_penalty_value
+
 	}
 
 	is_shown = {

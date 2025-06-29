@@ -2,7 +2,6 @@
 # Demand Payment
 # by Petter Vilberg
 ###################
-# Overridden from vanilla.
 demand_payment_interaction = {
 	category = interaction_category_friendly
 	icon = icon_gold

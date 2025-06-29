@@ -1,5 +1,4 @@
 ﻿# A lite version of imprison_character_effect without opinion penalties or other consequences (as they were captured in war, not at your command)
-# Overridden from vanilla.
 prisoner_of_war_capture_effect = {
 	$TARGET$ = { save_temporary_scope_as = new_target }
 	$IMPRISONER$ = { save_temporary_scope_as = imprisoner }
@@ -50,7 +49,7 @@ prisoner_of_war_capture_effect = {
 	}
 }
 
-# Add tyranny if you don't have a justifiable reason. Overridden from vanilla.
+#Add tyranny if you don't have a justifiable reason
 imprison_tyranny_effect = {
 
 	# Normalize scopes for tooltip loc, because there is no god nor consistency

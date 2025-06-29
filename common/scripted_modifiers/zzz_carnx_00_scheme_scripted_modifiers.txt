@@ -1,5 +1,4 @@
-﻿# Overridden from vanilla.
-# Would an agent join a scheme to do something like seduce the target?
+﻿# Would an agent join a scheme to do something like seduce the target?
 ai_agent_join_chance_hostile_taboo_modifier = {
 	ai_agent_join_chance_hostile_general_suite_modifier = yes
 
@@ -412,7 +411,6 @@ ai_agent_join_chance_hostile_taboo_modifier = {
 	}
 }
 
-# Overridden from vanilla.
 # Would an agent join a scheme to do something like kidnap or murder the target?
 ai_agent_join_chance_hostile_grievous_modifier = {
 	ai_agent_join_chance_hostile_general_suite_modifier = yes

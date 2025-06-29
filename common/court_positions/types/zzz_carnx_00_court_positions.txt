@@ -35,7 +35,7 @@
 # charioteer_court_position
 # bookmaker_court_position
 # akolouthos_court_position
-# court_astrologer_court_position
+# court_brewmaster_court_position Unop: Was: court_astrologer_court_position
 
 ### Important Court Positions ### ( Sort order 399 - 300 )
 court_physician_court_position = {
@@ -2362,8 +2362,11 @@ court_tutor_court_position = {
 			limit = {
 				government_has_flag = government_is_nomadic
 			}
-			domicile ?= {
-				has_domicile_parameter = nomad_unlock_court_tutor
+			custom_tooltip = { #Unop: To properly display the building that you need
+				text = has_court_tutor_domicile_building
+				domicile ?= {
+					has_domicile_parameter = nomad_unlock_court_tutor
+				}
 			}
 		}
 		trigger_else = {
@@ -13471,7 +13474,9 @@ bodyguard_court_position = { # EP1
 
 	court_position_asset = {
 		trigger = {
-			culture = { has_cultural_pillar = heritage_mongolic }
+			root ?= { #Unop: We want to check the culture of the court_owner (most likely the player) not the culture of the bodyguard
+				culture = { has_cultural_pillar = heritage_mongolic }
+			}
 		}
 		animation = menacing
 		background = "gfx/interface/illustrations/event_scenes/corridor.dds"
@@ -13810,31 +13815,31 @@ bodyguard_court_position = { # EP1
 			}
 			switch = {
 				trigger = "liege.court_position:cherbi_court_position.aptitude(cherbi_court_position)"
-				1 = { 
+				0 = { #Unop: Terrible is level 0
 					add = {
 						value = 1 
 						desc = court_position_bodyguard_cherbi_modifier
 					}
 				}
-				2 = {
+				1 = { #Unop: Poor is level 1
 					add = {
 						value = 4
 						desc = court_position_bodyguard_cherbi_modifier
 					}
 				}
-				3 = { 
+				2 = { #Unop: Average is level 2
 					add = {
 						value = 7
 						desc = court_position_bodyguard_cherbi_modifier
 					}
 				}
-				4 = {
+				3 = { #Unop: Good is level 3
 					add = {
 						value = 10
 						desc = court_position_bodyguard_cherbi_modifier
 					}
 				}
-				5 = {
+				4 = { #Unop: Excellent is level 4
 					add = {
 						value = 15
 						desc = court_position_bodyguard_cherbi_modifier

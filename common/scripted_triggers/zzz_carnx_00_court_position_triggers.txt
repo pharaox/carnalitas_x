@@ -1,6 +1,5 @@
 ﻿# Used in the trigger for court positions to make sure that they don't already have a "job"
 # If a court position is considered a full time job, the character cannot hold another similar position
-# Overridden from vanilla.
 court_position_does_not_already_have_a_job_trigger = {
 	custom_tooltip = {
 		text = does_not_have_a_full_time_job
@@ -20,6 +19,7 @@ court_position_does_not_already_have_a_job_trigger = {
 			has_court_position = travel_leader_court_position
 			has_court_position = wet_nurse_court_position
 			has_court_position = akolouthos_court_position
+			is_councillor = yes
 
 			#Unop: Missing entries for court positions:
 			has_court_position = court_artificer_court_position
@@ -61,7 +61,10 @@ court_position_does_not_already_have_a_job_trigger = {
 			has_court_position = camp_priest_camp_officer
 			has_court_position = laureate_camp_officer
 
-			is_councillor = yes
+			#Unop: Should tax collector, eparch & HoF also be there ? IMHO those 3 are probably way busier & have a lot more to do than a cave hermit (disabled for now as the trigger should be updated accordingly)
+			#is_tax_collector = yes
+			#has_court_position = eparch_court_position
+			#is_head_of_faith = yes
 		}
 	}
 }

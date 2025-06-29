@@ -4,7 +4,7 @@
 
 	#Unop: Prevent paiza merchants from being selected by pool character selectors
 	# To avoid modifying all such selectors, this is done here as this trigger is
-	# used by all of them; checking for scope:base limits this check to these selectors only
+	# used by all of them; the additional checks limit it to the pool character selectors only
 	trigger_if = {
 		limit = {
 			is_pool_character = yes

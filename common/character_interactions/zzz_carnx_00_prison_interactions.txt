@@ -1,5 +1,4 @@
-﻿# Overridden from vanilla.
-release_from_prison_interaction = {
+﻿release_from_prison_interaction = {
 	interface_priority = 30
 	common_interaction = yes
 	category = interaction_category_prison
