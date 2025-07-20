@@ -206,6 +206,8 @@
  carnx_debug_msg_adding_slaver_trait_xp: "$carnx_debug_prefix$: Adding Infamous Slaver trait XP"
  carnx_debug_msg_adding_liberator_trait_xp: "$carnx_debug_prefix$: Adding Famous Liberator trait XP"
 
+ carnx_debug_msg_stats: "[GetCurrentDate.GetStringShort]: CSR statistics: [SCOPE.ScriptValue('carnx_stats_count_slaves_value')],[SCOPE.ScriptValue('carnx_stats_count_pool_slaves_value')],[SCOPE.ScriptValue('carnx_stats_count_former_slaves_value')],[SCOPE.ScriptValue('carnx_stats_count_female_slaves_value')],[SCOPE.ScriptValue('carnx_stats_count_slave_owners_value')],[SCOPE.ScriptValue('carnx_stats_count_pool_slave_owners_value')]"
+
  carnx_buyer: "[THIS.Var('buyer').Char.GetFullNameNoTooltip] ([THIS.Var('buyer').Char.GetID]$carnx_buyer_merchant_type$)"
  carnx_seller: "[THIS.Var('seller').Char.GetFullNameNoTooltip] ([THIS.Var('seller').Char.GetID]$carnx_seller_merchant_type$)"
  carnx_slave_price: "[THIS.Var('slave_price').GetValue]"

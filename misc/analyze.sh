@@ -131,3 +131,8 @@ echo
 echo "Invalid slave detected: $(grep -a "Invalid slave detected" debug.log | wc -l)"
 echo "Slave owning slaves detected: $(grep -a "Slave owning slaves detected" debug.log | wc -l)"
 echo
+
+echo "Statistics"
+echo "Year,Slaves,Pool Slaves,Former Slaves,Female Slaves,Slave Owners,Pool Slave Owners"
+pcre2grep -a -o1 -o2 --om-separator=',' "([\d]+): CSR statistics: ([\d\.\,\-]+)" $LOGFILE
+echo

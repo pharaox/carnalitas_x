@@ -1,0 +1,56 @@
+﻿carnx_stats_count_slaves_value = {
+	value = 0
+	every_living_character = {
+		limit = { has_trait = slave }
+		add = 1
+	}
+}
+
+carnx_stats_count_pool_slaves_value = {
+	value = 0
+	every_living_character = {
+		limit = { 
+			has_trait = slave
+			is_pool_character = yes
+		}
+		add = 1
+	}
+}
+
+carnx_stats_count_former_slaves_value = {
+	value = 0
+	every_living_character = {
+		limit = { has_trait = former_slave }
+		add = 1
+	}
+}
+
+carnx_stats_count_female_slaves_value = {
+	value = 0
+	every_living_character = {
+		limit = { 
+			has_trait = slave
+			is_female = yes
+		}
+		add = 1
+	}
+}
+
+carnx_stats_count_slave_owners_value = {
+	value = 0
+	every_living_character = {
+		limit = { carnx_is_slave_owner_trigger = yes }
+		add = 1
+	}
+}
+
+carnx_stats_count_pool_slave_owners_value = {
+	value = 0
+	every_living_character = {
+		limit = {
+			carnx_is_slave_owner_trigger = yes
+			is_pool_character = yes
+		}
+		add = 1
+	}
+}

@@ -356,18 +356,10 @@ carnx_slave.0001 = {
 			}
 
 			scope:seller = {
-				random = {
-					chance = 50
-					random_relation = {
-						type = slave
-						carnx_debug_log_effect = { MSG = carnx_debug_msg_selling_off_slave }
-						carnx_sell_off_slave_effect = yes
-					}
-				}
-				random = {
-					chance = 50
-					random_relation = {
-						type = slave
+				every_relation = {
+					type = slave
+					random = {
+						chance = 50
 						carnx_debug_log_effect = { MSG = carnx_debug_msg_selling_off_slave }
 						carnx_sell_off_slave_effect = yes
 					}

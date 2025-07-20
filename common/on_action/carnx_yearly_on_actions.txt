@@ -51,7 +51,7 @@ carnx_yearly_market = {
 			has_game_rule = carnx_market_event_frequency_player_1y
 		}
 		trigger_else = {
-			highest_held_title_tier >= tier_kingdom
+			always = no
 		}
 		basic_is_valid_for_yearly_events_trigger = yes
 	}
@@ -77,7 +77,7 @@ carnx_three_year_market = {
 			has_game_rule = carnx_market_event_frequency_player_3y
 		}
 		trigger_else = {
-			highest_held_title_tier = tier_duchy
+			highest_held_title_tier >= tier_duchy
 		}
 		basic_is_valid_for_yearly_events_trigger = yes
 	}
@@ -110,5 +110,20 @@ carnx_five_year_market = {
 
 	events = {
 		carnx_slave.0001 # Buy Foreign Slaves
+	}
+}
+
+# Called every Jan 1st
+# Root does not exist
+yearly_global_pulse = {
+	on_actions = { carnx_yearly_stats }
+}
+
+carnx_yearly_stats = {
+	#trigger = { debug_only = yes }
+
+	effect = {
+		carnx_debug_log_effect = { MSG = carnx_debug_msg_stats }
+		error_log = carnx_debug_msg_stats
 	}
 }
