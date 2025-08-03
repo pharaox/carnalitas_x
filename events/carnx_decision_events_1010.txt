@@ -696,7 +696,6 @@ carnx_decision_events.1011 = {
 				MERCHANT = scope:slave_merchant
 				SLAVE = scope:first_merchant_slave
 			}
-			NOT = { has_trait = carnx_liberator }
 		}
 		show_as_unavailable = { always = yes }
 
@@ -747,7 +746,6 @@ carnx_decision_events.1011 = {
 				MERCHANT = scope:slave_merchant
 				SLAVE = scope:second_merchant_slave
 			}
-			NOT = { has_trait = carnx_liberator }
 		}
 		show_as_unavailable = { always = yes }
 

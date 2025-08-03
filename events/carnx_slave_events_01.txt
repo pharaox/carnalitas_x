@@ -185,8 +185,6 @@ carnx_slave.0001 = {
 		trigger = {
 			exists = scope:valuable_option
 			short_term_gold >= scope:valuable_option_price
-			is_playable_character = yes # Extra check to make sure they haven't lost their status
-			NOT = { has_trait = carnx_liberator }
 		}
 		show_as_unavailable = { exists = scope:valuable_option }
 
@@ -215,8 +213,6 @@ carnx_slave.0001 = {
 		trigger = {
 			exists = scope:common_option
 			short_term_gold >= scope:common_option_price
-			is_playable_character = yes # Extra check to make sure they haven't lost their status
-			NOT = { has_trait = carnx_liberator }
 		}
 		show_as_unavailable = { exists = scope:common_option }
 
@@ -247,8 +243,6 @@ carnx_slave.0001 = {
 			exists = scope:valuable_option
 			exists = scope:common_option
 			short_term_gold >= scope:both_price
-			is_playable_character = yes # Extra check to make sure they haven't lost their status
-			NOT = { has_trait = carnx_liberator }
 		}
 		show_as_unavailable = {
 			exists = scope:valuable_option
