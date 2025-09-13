@@ -1,5 +1,17 @@
 # Changelog
 
+## Version 0.27.0
+
+### Balance
+
+* The slave market event is now less frequent for AI kings and emperors, so less slaves will be spawned because of it.
+* Characters with the "Famous Liberator" can now buy slaves as well (but not sell them).
+
+### Compatibility
+
+* Adapted to CK3 1.17.0 and Carnalitas 2.11.
+* Adapted to latest Unofficial Patch changes.
+
 ## Version 0.26.0
 
 ### Traits
