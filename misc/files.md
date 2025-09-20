@@ -57,9 +57,6 @@
 * `common/scripted_triggers/00_court_position_triggers.txt`
   * Court position validity triggers
     * => `common/scripted_triggers/carnx_court_position_triggers.txt`
-* `common/on_action/child_birth_on_actions.txt`
-  * `on_birth_child`
-    * => `common/scripted_effects/carnx_child_birth_effects.txt`
 * `common/scripted_effects/00_prison_effects.txt`
   * `execute_prisoner_effect`
     * => `common/scripted_effects/carnx_slave_effects.txt`
