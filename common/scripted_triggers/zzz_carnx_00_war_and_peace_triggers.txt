@@ -20,8 +20,10 @@ desirable_for_capture_trigger = {
 			}
 			OR = {
 				carnx_slave_base_price_value >= carnx_desirable_for_capture_slave_price_regular_threshold
-				scope:occupant = {
-					has_character_modifier = carnx_slavery_attitude_slaver_modifier
+				AND = {
+					scope:occupant = {
+						has_character_modifier = carnx_slavery_attitude_slaver_modifier
+					}
 					carnx_slave_base_price_value >= carnx_desirable_for_capture_slave_price_slaver_threshold
 				}
 			}

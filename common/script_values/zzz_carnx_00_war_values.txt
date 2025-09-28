@@ -1,0 +1,31 @@
+﻿raid_base_capture_chance = {
+	value = 20
+
+	if = {
+		limit = {
+			exists = root.army_commander
+		}
+		# Trait: Viking
+		if = {
+			limit = { root.army_commander = { has_trait = viking } }
+			add = 5
+		}
+		# Dynasty Perk: Practiced Kidnappers
+		if = {
+			limit = {
+				exists = root.army_commander.dynasty
+				root.army_commander.dynasty = { has_dynasty_perk = fp1_pillage_legacy_3 }
+			}
+			add = 20
+		}
+		# CSR
+		if = {
+			limit = {
+				root.army_commander = {
+					has_character_modifier = carnx_slavery_attitude_slaver_modifier
+				}
+			}
+			add = 5
+		}
+	}
+}
