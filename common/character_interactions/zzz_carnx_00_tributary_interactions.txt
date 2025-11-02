@@ -15,7 +15,14 @@
 	ai_target_quick_trigger = {
 		adult = yes
 	}
-	ai_frequency = 36
+	ai_frequency_by_tier = {
+		barony = 0
+		county = 36
+		duchy = 36
+		kingdom = 36
+		empire = 36
+		hegemony = 36
+	}
 
 	greeting = positive
 	notification_text = OFFER_COURTIER_NOTIFICATION
@@ -127,7 +134,7 @@
 
 	ai_accept = {
 		base = -10
-		
+
 		modifier = {
 			add = 100
 			scope:secondary_actor = {
@@ -177,20 +184,20 @@
 			}
 			desc = AI_INTERESTING_COURTIER_REASON
 		}
-		
+
 		modifier = {
 			add = 100
 			scope:secondary_actor.prowess >= decent_skill_rating
 			scope:recipient.number_of_knights < scope:recipient.max_number_of_knights
 			desc = AI_KNIGHT_REASON
 		}
-		
+
 		modifier = {
 			add = 100
 			exists = scope:secondary_actor.inspiration
 			desc = AI_INSPIRED_REASON
 		}
-		
+
 		modifier = {
 			add = 100
 			scope:secondary_actor = {
@@ -198,7 +205,7 @@
 			}
 			desc = AI_FAMILY_REASON
 		}
-		
+
 		modifier = {
 			add = 100
 			scope:secondary_actor = {
@@ -206,7 +213,7 @@
 			}
 			desc = AI_SPOUSE_REASON
 		}
-		
+
 		modifier = {
 			add = 100
 			scope:secondary_actor = {
@@ -214,7 +221,7 @@
 			}
 			desc = AI_FRIEND_REASON
 		}
-		
+
 		modifier = {
 			add = -200
 			scope:secondary_actor = {
@@ -222,7 +229,7 @@
 			}
 			desc = AI_RIVAL_REASON
 		}
-		
+
 		modifier = {
 			add = 100
 			scope:recipient = {
@@ -232,7 +239,7 @@
 			}
 			desc = AI_SPOUSE_OF_COURTIER_REASON
 		}
-		
+
 		modifier = {
 			add = 100
 			scope:recipient = {
@@ -258,7 +265,7 @@
 
 	ai_will_do = {
 		base = 0
-		
+
 		modifier = {
 			add = 100
 			scope:recipient = {
@@ -268,7 +275,7 @@
 				}
 			}
 		}
-		
+
 		modifier = {
 			add = 100
 			scope:recipient = {
@@ -283,7 +290,7 @@
 				}
 			}
 		}
-		
+
 		modifier = {
 			factor = 0
 			scope:secondary_actor = {
@@ -293,7 +300,7 @@
 				}
 			}
 		}
-		
+
 		modifier = {
 			factor = 0
 			scope:actor = {
@@ -306,7 +313,7 @@
 				is_close_or_extended_family_of = scope:actor
 			}
 		}
-		
+
 		modifier = { # The AI only offers really good characters
 			factor = 0
 			scope:secondary_actor = {
@@ -365,7 +372,7 @@
 			}
 		}
 	}
-	
+
 	on_accept = {
 		#Unop Warning for multiple courtier offers
 		if = {
@@ -442,7 +449,7 @@
 
 demand_courtier_interaction = {
 	category = interaction_category_vassal
-	common_interaction = yes
+	common_interaction = no
 	icon = request_courtier_interaction
 	interface_priority = 45
 
@@ -455,12 +462,19 @@ demand_courtier_interaction = {
 	ai_target_quick_trigger = {
 		adult = yes
 	}
-	ai_frequency = 12
+	ai_frequency_by_tier = {
+		barony = 0
+		county = 60
+		duchy = 12
+		kingdom = 12
+		empire = 12
+		hegemony = 12
+	}
 	cooldown_against_recipient = { years = 3 }
 
 	greeting = positive
 	notification_text = DEMAND_COURTIER_NOTIFICATION
-	
+
 	highlighted_reason = HIGHLIGHTED_SKILLED_COURTIER
 	is_highlighted = {
 		scope:recipient = {
@@ -558,12 +572,23 @@ demand_courtier_interaction = {
 				trigger_if = {
 					limit = {
 						scope:actor = {
-							government_has_flag = government_is_nomadic
+							government_allows = obedience
 						}
 					}
 					is_vassal_of = scope:actor
 				}
 				is_tributary_of = scope:actor
+				AND = { # Celestial has this available towards vassals
+					scope:actor = { government_has_flag = government_is_celestial }
+					liege = scope:actor
+				}
+				AND = { # The minister of personnel can use it against every ruler in the realm
+					scope:actor = { has_title = title:e_minister_of_personnel }
+					is_ruler = yes
+					top_liege = scope:actor.top_liege
+					# Except the top liege
+					top_liege != this
+				}
 			}
 		}
 	}
@@ -605,10 +630,37 @@ demand_courtier_interaction = {
 	}
 
 	auto_accept = no
+	
+	send_options_exclusive = no
+	
+	# Use hook
+	send_option = {
+		is_shown = { # Not available towards tributaries
+			scope:recipient = {
+				NOT = { is_tributary_of = scope:actor }
+			}
+		}
+		is_valid = {
+			scope:actor = {
+				has_usable_hook = scope:recipient
+			}
+		}
+		flag = hook
+		localization = SCHEME_HOOK
+	}
+	should_use_extra_icon = {
+		scope:actor = {
+			has_usable_hook = scope:recipient
+		}
+		scope:recipient = {
+			NOT = { is_tributary_of = scope:actor }
+		}
+	}
+	extra_icon = "gfx/interface/icons/character_interactions/hook_icon.dds"
 
 	ai_accept = {
 		base = 0
-		
+
 		modifier = {
 			add = 1000
 			scope:recipient = {
@@ -616,7 +668,7 @@ demand_courtier_interaction = {
 			}
 			desc = AI_OBEDIENT_REASON
 		}
-		
+
 		modifier = {
 			add = 25
 			scope:recipient = {
@@ -627,7 +679,7 @@ demand_courtier_interaction = {
 			}
 			desc = INTIMIDATED_REASON
 		}
-		
+
 		modifier = {
 			add = 50
 			scope:recipient = {
@@ -638,14 +690,14 @@ demand_courtier_interaction = {
 			}
 			desc = COWED_REASON
 		}
-		
+
 		opinion_modifier = { # Opinion Factor
 			who = scope:recipient
 			opinion_target = scope:actor
 			multiplier = 1.0
 			desc = AI_OPINION_REASON
 		}
-		
+
 		modifier = {
 			add = -25
 			scope:secondary_actor = {
@@ -656,7 +708,7 @@ demand_courtier_interaction = {
 			}
 			desc = AI_EMPLOYED_COURTIER_REASON
 		}
-		
+
 		modifier = {
 			add = -15
 			scope:secondary_actor = {
@@ -664,13 +716,13 @@ demand_courtier_interaction = {
 			}
 			desc = AI_IS_KNIGHT_REASON
 		}
-		
+
 		modifier = {
 			add = -50
 			exists = scope:secondary_actor.inspiration
 			desc = AI_INSPIRED_REASON
 		}
-		
+
 		modifier = {
 			add = -25
 			scope:secondary_actor = {
@@ -678,7 +730,7 @@ demand_courtier_interaction = {
 			}
 			desc = AI_FAMILY_REASON
 		}
-		
+
 		modifier = {
 			add = -50
 			scope:secondary_actor = {
@@ -687,6 +739,13 @@ demand_courtier_interaction = {
 			desc = AI_FRIEND_REASON
 		}
 		
+		# Used a hook
+		modifier = {
+			add = 100
+			scope:hook ?= yes
+			desc = SCHEME_WEAK_HOOK_USED
+		}
+
 		modifier = {
 			add = 1000
 			scope:secondary_actor = {
@@ -703,7 +762,7 @@ demand_courtier_interaction = {
 
 	ai_will_do = {
 		base = 0
-		
+
 		modifier = {
 			add = 100
 			scope:secondary_actor = {
@@ -729,7 +788,7 @@ demand_courtier_interaction = {
 					trigger_if = {
 						limit = {
 							scope:actor = {
-								government_has_flag = government_is_nomadic
+								government_allows = obedience
 							}
 						}
 						OR = {
@@ -754,7 +813,7 @@ demand_courtier_interaction = {
 				}
 			}
 		}
-		
+
 		modifier = {
 			factor = 0
 			scope:recipient = {
@@ -774,7 +833,7 @@ demand_courtier_interaction = {
 			}
 		}
 	}
-	
+
 	on_accept = {
 		scope:secondary_actor = {
 			add_opinion = {
@@ -815,6 +874,11 @@ demand_courtier_interaction = {
 					modifier = pleased_opinion
 					opinion = 20
 				}
+			}
+			# Use Hook
+			if = {
+				limit = { scope:hook = yes }
+				use_hook = scope:recipient
 			}
 		}
 		scope:recipient = {

@@ -7,7 +7,7 @@
 		limit = { exists = host }
 		NOT = { host = $HOST$ }
 	}
-	has_epidemic_disease_trigger = no
+	NOT = { has_trait_with_flag = epidemic_disease }
 	NOT = { has_relation_rival = $HOST$ }
 	#Compatible faiths
 	faith = {
@@ -64,9 +64,18 @@ can_recruit_character_to_court_trigger = {
 			trigger_if = {
 				limit = {
 					exists = host
+					host = { is_ai = no }
 					NOT = { is_player_heir_of = scope:recruiter }
 				}
 				is_player_heir_of = host
+			}
+			trigger_if = {
+				limit = {
+					exists = host
+					host = { is_ai = yes }
+					NOT = { is_player_heir_of = scope:recruiter }
+				}
+				is_primary_heir_of = host
 			}
 			trigger_if = {
 				limit = { exists = host }
@@ -115,7 +124,7 @@ can_recruit_character_to_court_trigger = {
 			}
 			trigger_if = {
 				limit = {
-					scope:recruiter = { is_landless_adventurer = yes }
+					scope:recruiter = { has_government = landless_adventurer_government }
 				}
 				custom_tooltip = {
 					text = can_recruit_character_to_court_trigger.tt.laamps_invitation_restrictions
@@ -143,8 +152,7 @@ can_recruit_character_to_court_trigger = {
 				any_spouse = {
 					is_female = yes
 					matrilinear_marriage = yes
-					exists = host
-					host = scope:recruitee.host
+					host ?= scope:recruitee.host
 					save_temporary_scope_as = spouse
 					OR = { #Is employed in some way
 						is_councillor_of = scope:recruitee.host
@@ -189,8 +197,7 @@ can_recruit_character_to_court_trigger = {
 				any_spouse = {
 					is_male = yes
 					patrilinear_marriage = yes
-					exists = host
-					host = scope:recruitee.host
+					host ?= scope:recruitee.host
 					save_temporary_scope_as = spouse
 					OR = { #Is employed in some way
 						is_councillor_of = scope:recruitee.host

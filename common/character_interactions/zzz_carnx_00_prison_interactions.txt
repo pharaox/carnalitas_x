@@ -33,7 +33,6 @@
 	}
 
 	is_valid_showing_failures_only = {
-		scope:recipient = { is_busy_in_events_localised = yes } #Prisoner
 		scope:recipient = {
 			custom_description = {
 				text = "currently_being_tortured"
@@ -333,7 +332,7 @@
 					}
 				}
 
-				# Take Vows
+				# Become Executioner
 				if = {
 					limit = { scope:become_executioner = yes }
 					release_as_executioner_effect = yes
@@ -476,6 +475,35 @@
 					}
 				}
 
+				# Demand Admin
+				if = {
+					limit = { scope:demand_admin = yes }
+					scope:recipient = {
+						change_to_administrative_effect = yes
+					}
+				}
+
+				# Shared Torture effects
+				if = {
+					limit = {
+						OR = {
+							scope:disfigure = yes
+							scope:blind = yes
+							scope:castrate = yes
+						}
+					}
+					scope:recipient.house ?= {
+						change_house_relation_effect = {
+							HOUSE = scope:actor.house
+							VALUE = house_relation_damage_medium_value
+							REASON = torture
+							CHAR = scope:actor
+							TARGET_CHAR = scope:recipient
+							TITLE = scope:dummy_gender
+						}
+					}
+				}
+
 				# No Demands Added
 				if = {
 					limit = {
@@ -489,6 +517,7 @@
 						scope:disfigure = no
 						scope:blind = no
 						scope:castrate = no
+						scope:demand_admin = no
 					}
 					# Notification to the imprisoner
 					scope:actor = {
@@ -509,17 +538,25 @@
 								}
 							}
 						}
-						scope:actor = {
-							# CSR: Disable dread and stress impact for slaves
-							if = {
-								limit = {
-									NOT = { has_relation_slave = scope:recipient }
-								}
-								add_dread = minor_dread_loss
-								stress_impact = {
-									sadistic = medium_stress_impact_gain
-									callous = minor_stress_impact_gain
-								}
+						house ?= {
+							change_house_relation_effect = {
+								HOUSE = scope:recipient.house
+								VALUE = house_relation_improve_medium_value
+								REASON = prison_released
+								CHAR = scope:actor
+								TARGET_CHAR = scope:recipient
+								TITLE = scope:dummy_gender
+							}
+						}
+						# CSR: Disable dread and stress impact for slaves
+						if = {
+							limit = {
+								NOT = { has_relation_slave = scope:recipient }
+							}
+							add_dread = minor_dread_loss
+							stress_impact = {
+								sadistic = medium_stress_impact_gain
+								callous = minor_stress_impact_gain
 							}
 						}
 						# Struggle impact
@@ -739,7 +776,7 @@
 		flag = demand_conversion
 		localization = "RELEASE_DEMAND_CONVERSION"
 		is_shown = {
-			NOT = { scope:recipient.faith = scope:actor.faith }
+			scope:recipient.faith != scope:actor.faith
 		}
 		is_valid = {
 			trigger_if = {
@@ -770,11 +807,9 @@
 			# Cannot ask Religious Heads to convert
 			custom_description = {
 				text = cannot_demand_religious_head_conversion
-				NOT = {
-					AND = {
-						exists = scope:recipient.faith.religious_head
-						scope:recipient.faith.religious_head = scope:recipient
-					}
+				NAND = {
+					exists = scope:recipient.faith.religious_head
+					scope:recipient.faith.religious_head = scope:recipient
 				}
 			}
 			# Cannot ask Holy Order Master to convert
@@ -916,10 +951,7 @@
 				scope:recipient = {
 					OR = {
 						is_vassal_of = scope:actor
-						AND = {
-							exists = liege
-							liege = scope:actor
-						}
+						liege ?= scope:actor
 					}
 				}
 			}
@@ -947,9 +979,7 @@
 		flag = take_vows
 		localization = "RELEASE_TAKE_VOWS"
 		is_shown = {
-			scope:actor.faith = {
-				has_doctrine_parameter = take_vows_active
-			}
+			scope:actor = { take_vows_available_trigger = yes }
 			# CSR: Disable Take Vows for slaves since they will be returned automatically
 			scope:recipient = {
 				carnx_is_slave_trigger = no
@@ -1068,7 +1098,7 @@
 				subject = scope:actor
 				trigger_if = {
 					limit = {
-						NOT = { scope:recipient.faith = scope:actor.faith }
+						scope:recipient.faith != scope:actor.faith
 					}
 					scope:demand_conversion = yes
 				}
@@ -1111,8 +1141,7 @@
 					custom_description = {
 						text = matrilinear_betrothal
 						subject = scope:recipient
-						exists = betrothed
-						betrothed = {
+						betrothed ?= {
 							is_female = yes
 							matrilinear_betrothal = yes
 						}
@@ -1120,8 +1149,7 @@
 					custom_description = {
 						text = patrilinear_betrothal
 						subject = scope:recipient
-						exists = betrothed
-						betrothed = {
+						betrothed ?= {
 							is_male = yes
 							patrilinear_betrothal = yes
 						}
@@ -1315,6 +1343,31 @@
 				object = scope:recipient
 				scope:disfigure = no
 				scope:blind = no
+			}
+		}
+	}
+
+	send_option = {
+		flag = demand_admin
+		localization = "RELEASE_DEMAND_ADMIN"
+		is_shown = {
+			scope:actor = { government_allows = administrative }
+			scope:actor = scope:recipient.liege
+			scope:recipient = { #Requirements match demand admin interaction
+				highest_held_title_tier >= tier_county
+				is_landed = yes
+				is_ruler = yes
+				NOT = { government_allows = administrative }
+				NOT = {
+					scope:recipient = { government_has_flag = government_is_tribal }
+				}
+				NOT = { scope:recipient ?= scope:recipient.faith.religious_head }
+				NOT = { scope:recipient ?= scope:actor.diarch }
+			}
+		}
+		is_valid = {
+			scope:recipient = {
+				NOT = { government_allows = administrative }
 			}
 		}
 	}
@@ -1805,20 +1858,9 @@
 		}
 		modifier = { # Family Feud
 			add = -50
-			exists = scope:actor.house
-			exists = scope:recipient.house
 			scope:actor = {
-				house.house_head = {
-					any_owned_story = {
-						story_type = story_cycle_house_feud
-						has_variable = house_feud_house
-						var:house_feud_house = scope:recipient.house
-					}
-				}
-				has_opinion_modifier = {
-					modifier = house_feud_opinion
-					target = scope:recipient.house.house_head
-				}
+				house_has_feud_relation_with_trigger = { TARGET = scope:recipient }
+
 			}
 		}
 		#Byz AI can shove vassals off to remote monasteries - weigh that here

@@ -7,7 +7,7 @@
 	icon = eunuch
 	interface_priority = 29 #after Gift Artifact
 
-	populate_recipient_list= {
+	populate_recipient_list = {
 		scope:actor = {
 			every_courtier = {
 				limit = {
@@ -29,8 +29,6 @@
 	cooldown_against_recipient = { years = 1 }
 
 	is_shown = {
-		# Only admin gov care about this
-		scope:actor = { government_allows = administrative }
 		scope:recipient = { government_allows = administrative }
 		# Only if you actually have any eunuchs in your court
 		scope:actor = {
@@ -41,22 +39,17 @@
 			}
 		}
 		# Cannot exchange eunuchs with self
-		NOT = { scope:recipient = scope:actor }
-		# Only significant rulers
-		scope:actor.highest_held_title_tier > tier_barony
+		scope:recipient != scope:actor
 		# Target has to be a ruler and have a court
 		scope:recipient = { is_ruler = yes }
 		# Target has to be a direct vassal of the Emperor
 		scope:recipient.top_liege = scope:recipient.liege
+		# Only admin gov care about this
+		scope:actor = { government_allows = administrative }
 	}
 
 	is_valid_showing_failures_only = {
 		# Must be available
-		scope:recipient = { is_busy_in_events_localised = yes }
-		trigger_if = {
-			limit = { exists = scope:secondary_recipient }
-			scope:secondary_recipient = { is_busy_in_events_localised = yes }
-		}
 		NOT = {
 			# Must be at peace
 			scope:recipient = { is_at_war_with = scope:actor }
@@ -251,9 +244,18 @@
 		ai_recipients = liege
 	}
 
-	ai_frequency = 36
+	ai_frequency_by_tier = {
+		barony = 0
+		county = 36
+		duchy = 36
+		kingdom = 36
+		empire = 0
+		hegemony = 0
+	}
 
-	ai_potential = { highest_held_title_tier >= tier_county }
+	ai_potential = {
+		government_allows = administrative
+	}
 
 	ai_will_do = {
 		base = 0

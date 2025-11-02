@@ -5,7 +5,7 @@
 	special_interaction = request_conversion_interaction
 	ai_maybe = yes
 	can_send_despite_rejection = yes
-	
+
 	desc = {
 		desc = ask_for_conversion_interaction_desc
 		triggered_desc = {
@@ -22,7 +22,7 @@
 			desc = demand_conversion_vassal_ruler_is_crime
 		}
 	}
-	
+
 	ai_targets = {
 		ai_recipients = courtiers
 		chance = 0.25
@@ -30,10 +30,17 @@
 	ai_target_quick_trigger = {
 		adult = yes
 	}
-	ai_frequency = 12
-	
+	ai_frequency_by_tier = {
+		barony = 0
+		county = 36
+		duchy = 12
+		kingdom = 12
+		empire = 12
+		hegemony = 12
+	}
+
 	is_shown = {
-		NOT = { scope:actor.faith = scope:recipient.faith }
+		scope:actor.faith != scope:recipient.faith
 		scope:recipient = { is_courtier_of = scope:actor }
 		scope:recipient = { is_ruler = no }
 		scope:recipient = { is_imprisoned = no }
@@ -44,7 +51,7 @@
 	is_valid_showing_failures_only = {
 		valid_demand_conversion_conditions_trigger = yes
 	}
-	
+
 	ai_accept = {
 		base = 0
 		# Increase base chance
@@ -54,7 +61,7 @@
 		}
 		religion_demand_conversion_default_modifier = yes
 	}
-	
+
 	auto_accept = {
 		custom_description = {
 			text = "spending_hook"
@@ -65,15 +72,15 @@
 			NOT = { scope:recipient = { has_character_flag = ai_will_not_convert } }
 		}
 	}
-	
+
 	ai_min_reply_days = 1
 	ai_max_reply_days = 5
-	
+
 	on_accept = {
 		demand_conversion_interaction_effect = yes
 		hidden_effect = {
 			scope:actor = {
-				send_interface_message = {	
+				send_interface_message = {
 					type = event_religious_good
 					title = ask_for_conversion_courtier_interaction.tt
 					left_icon = scope:recipient
@@ -209,7 +216,7 @@
 	extra_icon = "gfx/interface/icons/character_interactions/hook_icon.dds"
 
 	send_option = { # EP3 Influence
-		is_shown = { # Actor must have a government that uses influence 
+		is_shown = { # Actor must have a government that uses influence
 			scope:actor = {
 				government_has_flag = government_has_influence
 			}
@@ -228,11 +235,11 @@
 	}
 	send_options_exclusive = no
 
-	
+
 	ai_potential = {
 		is_adult = yes
 	}
-	
+
 	ai_will_do = {
 		base = 100
 
@@ -248,7 +255,7 @@
 			scope:hook = yes
 			add = -1
 		}
-		
+
 		modifier = { # The AI doesn't really want to convert Diasporic culture courtiers
 			scope:recipient = {
 				#faith.religion = religion:judaism_religion #CSR Commented out for better compatibility
@@ -263,16 +270,12 @@
 			factor = 0
 			scope:actor = {
 				ai_zeal < 100
+				ai_rationality > -50
 				faith = {
 					faith_hostility_level = {
 						target = scope:recipient.faith
 						value <= faith_fully_accepted_level
 					}
-				}
-			}
-			NOT = {
-				scope:recipient = {
-					is_close_family_of = scope:actor
 				}
 			}
 		}
@@ -281,7 +284,7 @@
 			factor = 0
 			scope:actor = {
 				has_tolerant_faith_or_culture_trigger = yes
-				ai_zeal < 50
+				ai_zeal < 100
 				faith = {
 					faith_hostility_level = {
 						target = scope:recipient.faith
@@ -322,7 +325,7 @@
 					faith = { has_doctrine = doctrine_pluralism_fundamentalist }
 					has_tolerant_faith_or_culture_trigger = yes
 				}
-				ai_zeal < 0
+				ai_zeal < 25
 				faith = {
 					faith_hostility_level = {
 						target = scope:recipient.faith

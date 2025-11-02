@@ -128,7 +128,10 @@ imprison_tyranny_effect = {
 			}
 			scope:actor = {
 				if = {
-					limit = { has_legitimacy = yes }
+					limit = {
+						has_legitimacy = yes
+						this = top_liege
+					}
 					add_legitimacy = miniscule_legitimacy_loss
 				}
 			}

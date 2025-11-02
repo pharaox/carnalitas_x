@@ -26,7 +26,7 @@
 		scope:recipient = {
 			is_ai = yes
 		}
-		NOT = { scope:recipient = scope:actor }
+		scope:recipient != scope:actor
 	}
 
 	is_valid_showing_failures_only = {
@@ -130,7 +130,14 @@
 		ai_recipients = hooked_characters
 	}
 	
-	ai_frequency = 36
+	ai_frequency_by_tier = {
+		barony = 0
+		county = 48
+		duchy = 36
+		kingdom = 12
+		empire = 6
+		hegemony = 6
+	}
 	
 	ai_will_do = {
 		base = 100

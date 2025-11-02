@@ -8,7 +8,7 @@
 	### Then multiplied by 1.5
 	opinion_modifier = {
 		trigger = {
-			NOT = { this = scope:target }
+			this != scope:target
 			opinion = {
 				target = scope:target
 				value >= low_positive_opinion
@@ -52,15 +52,10 @@
 				}
 				scope:scheme = { scheme_type = fabricate_hook } #Unop Adultery makes no sense for fabricate hook
 			}
-			OR = {
-				AND = {
-					scope:owner = { is_male = yes }
-					faith = { has_doctrine_parameter = adultery_male_shunned } #Unop shunned, not criminal
-				}
-				AND = {
-					scope:owner = { is_female = yes }
-					faith = { has_doctrine_parameter = adultery_female_shunned } #Unop shunned, not criminal
-				}
+			trait_is_shunned_in_faith_trigger = { #Unop shunned, not criminal
+				FAITH = faith
+				TRAIT = adulterer
+				GENDER_CHARACTER = scope:owner
 			}
 		}
 		add = -5
@@ -81,15 +76,10 @@
 				}
 				scope:scheme = { scheme_type = fabricate_hook } #Unop Adultery makes no sense for fabricate hook
 			}
-			OR = {
-				AND = {
-					scope:owner = { is_male = yes }
-					faith = { has_doctrine_parameter = adultery_male_crime }
-				}
-				AND = {
-					scope:owner = { is_female = yes }
-					faith = { has_doctrine_parameter = adultery_female_crime }
-				}
+			trait_is_criminal_in_faith_trigger = {
+				FAITH = faith
+				TRAIT = adulterer
+				GENDER_CHARACTER = scope:owner
 			}
 		}
 		add = -15
@@ -111,15 +101,10 @@
 				}
 				scope:scheme = { scheme_type = fabricate_hook } #Unop Adultery makes no sense for fabricate hook
 			}
-			OR = {
-				AND = {
-					scope:owner = { is_male = yes }
-					faith = { has_doctrine_parameter = adultery_male_shunned } #Unop shunned, not criminal
-				}
-				AND = {
-					scope:owner = { is_female = yes }
-					faith = { has_doctrine_parameter = adultery_female_shunned } #Unop shunned, not criminal
-				}
+			trait_is_shunned_in_faith_trigger = { #Unop shunned, not criminal
+				FAITH = faith
+				TRAIT = adulterer
+				GENDER_CHARACTER = scope:target #Unop "their" adultery
 			}
 		}
 		add = -5
@@ -140,15 +125,10 @@
 				}
 				scope:scheme = { scheme_type = fabricate_hook } #Unop Adultery makes no sense for fabricate hook
 			}
-			OR = {
-				AND = {
-					scope:owner = { is_male = yes }
-					faith = { has_doctrine_parameter = adultery_male_crime }
-				}
-				AND = {
-					scope:owner = { is_female = yes }
-					faith = { has_doctrine_parameter = adultery_female_crime }
-				}
+			trait_is_criminal_in_faith_trigger = {
+				FAITH = faith
+				TRAIT = adulterer
+				GENDER_CHARACTER = scope:target #Unop "their" adultery
 			}
 		}
 		add = -15
@@ -195,7 +175,7 @@
 	modifier = {
 		trigger = {
 			ai_compassion > 0
-			NOT = { this = scope:target }
+			this != scope:target
 		}
 		add = {
 			value = ai_compassion
@@ -208,7 +188,7 @@
 	modifier = {
 		trigger = {
 			ai_compassion < high_negative_ai_value
-			NOT = { this = scope:target }
+			this != scope:target
 		}
 		add = {
 			value = ai_compassion
@@ -221,7 +201,7 @@
 	modifier = {
 		trigger = {
 			ai_vengefulness > 0
-			NOT = { this = scope:target }
+			this != scope:target
 			opinion = {
 				target = scope:target
 				value <= 0
@@ -335,19 +315,9 @@
 	house_feud_hostile_scheme_agent_modifier = yes
 	modifier = {
 		trigger = {
-			exists = house.house_head
-			exists = scope:target.house
-			house.house_head = {
-				any_owned_story = {
-					story_type = story_cycle_house_feud
-					exists = var:house_feud_house
-					var:house_feud_house = scope:target.house
-				}
-			}
+			house_has_feud_relation_with_trigger = { TARGET = scope:target }
 		}
-		add = {
-			value = 50
-		}
+		add = 50
 		desc = SCHEME_TARGET_IS_FEUD_TARGET
 	}
 	# Other
@@ -373,7 +343,7 @@
 					any_held_title = {
 						place_in_line_of_succession = {
 							target = root
-							value <=10
+							value <= 10
 						}
 					}
 				}
@@ -382,16 +352,8 @@
 					value <= medium_negative_opinion
 				}
 			}
-			NAND = {
-				exists = house.house_head
-				exists = scope:target.house
-				house.house_head = {
-					any_owned_story = {
-						story_type = story_cycle_house_feud
-						exists = var:house_feud_house
-						var:house_feud_house = scope:target.house
-					}
-				}
+			NOT = {
+				house_has_feud_relation_with_trigger = { TARGET = scope:target }
 			}
 		}
 		add = {
@@ -420,7 +382,7 @@ ai_agent_join_chance_hostile_grievous_modifier = {
 	### Then multiplied by 1.5
 	opinion_modifier = {
 		trigger = {
-			NOT = { this = scope:target }
+			this != scope:target
 			opinion = {
 				target = scope:target
 				value >= low_positive_opinion
@@ -483,7 +445,7 @@ ai_agent_join_chance_hostile_grievous_modifier = {
 	modifier = {
 		trigger = {
 			ai_compassion > 0
-			NOT = { this = scope:target }
+			this != scope:target
 		}
 		add = {
 			value = ai_compassion
@@ -508,7 +470,7 @@ ai_agent_join_chance_hostile_grievous_modifier = {
 	modifier = {
 		trigger = {
 			ai_compassion < high_negative_ai_value
-			NOT = { this = scope:target }
+			this != scope:target
 		}
 		add = {
 			value = ai_compassion
@@ -521,7 +483,7 @@ ai_agent_join_chance_hostile_grievous_modifier = {
 	modifier = {
 		trigger = {
 			ai_vengefulness > 0
-			NOT = { this = scope:target }
+			this != scope:target
 			opinion = {
 				target = scope:target
 				value <= 0
@@ -722,20 +684,9 @@ ai_agent_join_chance_hostile_grievous_modifier = {
 	## Family Feud
 	house_feud_hostile_scheme_agent_modifier = yes
 	modifier = {
-		trigger = {
-			exists = house.house_head
-			exists = scope:target.house
-			house.house_head = {
-				any_owned_story = {
-					story_type = story_cycle_house_feud
-					exists = var:house_feud_house
-					var:house_feud_house = scope:target.house
-				}
-			}
-		}
-		add = {
-			value = 50
-		}
+		exists = house
+		house_has_feud_relation_with_trigger = { TARGET = scope:target }
+		add = 50
 		desc = SCHEME_TARGET_IS_FEUD_TARGET
 	}
 	### Admin Eunuch
@@ -823,16 +774,8 @@ ai_agent_join_chance_hostile_grievous_modifier = {
 					value <= medium_negative_opinion
 				}
 			}
-			NAND = {
-				exists = house.house_head
-				exists = scope:target.house
-				house.house_head = {
-					any_owned_story = {
-						story_type = story_cycle_house_feud
-						exists = var:house_feud_house
-						var:house_feud_house = scope:target.house
-					}
-				}
+			NOT = {
+				house_has_feud_relation_with_trigger = { TARGET = scope:target }
 			}
 		}
 		add = {

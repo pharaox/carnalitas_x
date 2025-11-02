@@ -1,6 +1,37 @@
 ﻿is_available = {
-	is_travelling = no
-	is_available_allow_travelling = yes
+	is_available_quick = {
+		alive = yes
+		travel = no
+		in_army = no
+		imprisoned = no
+		incapable = no
+	}
+	has_contagious_deadly_disease_trigger = no
+	custom_description = {
+		text = ALREADY_IN_ACTIVITY
+		NOR = {
+			exists = involved_activity
+			has_variable = {
+				name = homage_liege_scope
+				name = meditation_character_flag
+				name = local_shrine_rite
+				name = petition_liege_character_flag
+				name = holding_court_character_flag
+			}
+			is_being_visited_on_tour_strict = yes
+		}
+	}
+	custom_description = {
+		text = ALREADY_PLANNING_ACTIVITY
+		NOT = { has_character_flag = planning_an_activity }
+	}
+	# Variable set within the adventure inspiration events
+	NOT = { has_variable = gone_adventuring }
+	# Variable set on Mandala succession
+	custom_tooltip = {
+		text = busy_in_mandala_succession
+		NOT = { has_variable = busy_in_mandala_succession }
+	}
 
 	# CSR: Prevent pool slaves from being selected in events
 	trigger_if = {
@@ -10,8 +41,10 @@
 }
 
 is_capable_adult = {
-	is_adult = yes
-	is_incapable = no
+	is_available_quick = {
+		adult = yes
+		incapable = no
+	}
 
 	#Unop: Prevent paiza merchants from being selected by pool character selectors
 	# To avoid modifying all such selectors, this is done here as this trigger is

@@ -1,5 +1,4 @@
 ﻿kick_from_court_validity_trigger = {
-	is_busy_in_events_localised = yes
 	NOR = {
 		is_spouse_of = scope:actor
 		is_concubine_of = scope:actor
