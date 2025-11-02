@@ -23,7 +23,7 @@
 			value < faith_evil_level
 		}
 	}
-
+	
 	#Isn't too good for host
 	NAND = {
 		OR = {
@@ -39,10 +39,8 @@
 	# CSR: Prevent slaves and slave owners from arrving as guests
 	carnx_is_slave_trigger = no
 	carnx_is_slave_owner_trigger = no
-} #Note: this trigger used to contain opinion triggers but then some awful rulers could never get guests because everyone hates them
+}
 
-
-#This is a localized trigger for checking that a character do not have a spouse that's employed or has some other circumstance blocking them from being recruited to a court
 can_recruit_character_to_court_trigger = {
 	$RECRUITER$ = { save_temporary_scope_as = recruiter }
 	$RECRUITEE$ = { save_temporary_scope_as = recruitee }
@@ -137,7 +135,7 @@ can_recruit_character_to_court_trigger = {
 					}
 				}
 			}
-
+			
 			#Do they have the "wrong" marriage type and the spouse is employed?
 			custom_description = {
 				text = is_married_matrilineally_and_spouse_is_dominant_partner

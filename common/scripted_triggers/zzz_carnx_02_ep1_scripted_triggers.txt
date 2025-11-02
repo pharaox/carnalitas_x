@@ -1,6 +1,4 @@
-﻿# ep1_is_valid_character_for_inspiration_trigger 	- Is the character valid to be used within the inspiration system? Character movement may break if these conditions are not true.
-
-ep1_is_valid_character_for_inspiration_trigger = {
+﻿ep1_is_valid_character_for_inspiration_trigger = {
 	is_adult = yes
 	is_imprisoned = no
 	NOT = { exists = inspiration }

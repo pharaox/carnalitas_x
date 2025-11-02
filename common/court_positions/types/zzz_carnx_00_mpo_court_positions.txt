@@ -1,14 +1,4 @@
-﻿#court_astrologer_court_position
-#boyan_court_position
-#siege_engineer_court_position
-#yurtchi_court_position
-#cherbi_court_position
-#yeke_jarquchi_court_position
-#foreign_emissary_court_position
-#keeper_of_the_horses_court_position
-
-
-court_astrologer_court_position = { ### MPO
+﻿court_astrologer_court_position = { ### MPO
 	sort_order = {
 		value = 100
 		if = {

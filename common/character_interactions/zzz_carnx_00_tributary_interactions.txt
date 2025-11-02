@@ -1,5 +1,4 @@
-﻿# Offer Courtier
-offer_courtier_interaction = {
+﻿offer_courtier_interaction = {
 	category = interaction_category_diplomacy
 	common_interaction = no
 	icon = courtier_interaction
@@ -441,7 +440,6 @@ offer_courtier_interaction = {
 	}
 }
 
-# Demand Courtier
 demand_courtier_interaction = {
 	category = interaction_category_vassal
 	common_interaction = yes

@@ -326,7 +326,7 @@
 					#Does the AI in general go haywire with deposing prisoners?
 					else_if = {
 						limit = {
-								scope:actor = { is_ai = yes }
+							scope:actor = { is_ai = yes }
 						}
 						debug_log = debug_ai_forced_vows_on_prison_release
 						debug_log_scopes = yes

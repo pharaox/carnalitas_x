@@ -1,8 +1,7 @@
-﻿# A lite version of imprison_character_effect without opinion penalties or other consequences (as they were captured in war, not at your command)
-prisoner_of_war_capture_effect = {
+﻿prisoner_of_war_capture_effect = {
 	$TARGET$ = { save_temporary_scope_as = new_target }
 	$IMPRISONER$ = { save_temporary_scope_as = imprisoner }
-
+	
 	if = {
 		limit = {
 			scope:new_target = {
@@ -14,14 +13,14 @@ prisoner_of_war_capture_effect = {
 				}
 			}
 		}
-
+		
 		scope:imprisoner = {
 			imprison = {
 				target = scope:new_target
 				type = house_arrest
 			}
 		}
-	}
+	}		
 	else = {
 		scope:imprisoner = {
 			imprison = {
@@ -49,7 +48,6 @@ prisoner_of_war_capture_effect = {
 	}
 }
 
-#Add tyranny if you don't have a justifiable reason
 imprison_tyranny_effect = {
 
 	# Normalize scopes for tooltip loc, because there is no god nor consistency
@@ -70,14 +68,14 @@ imprison_tyranny_effect = {
 	if = {
 		limit = {
 			exists = scope:imprisonment_target
-			NOT = { exists = scope:recipient }
+			NOT = { exists = scope:recipient }	
 		}
 		scope:imprisonment_target = { save_scope_as = recipient }
 	}
 	if = {
 		limit = {
 			exists = scope:recipient
-			NOT = { exists = scope:imprisonment_target }
+			NOT = { exists = scope:imprisonment_target }	
 		}
 		scope:recipient = { save_scope_as = imprisonment_target }
 	}
@@ -99,6 +97,7 @@ imprison_tyranny_effect = {
 			scope:actor = { has_imprisonment_reason = scope:recipient }
 		}
 		custom_tooltip = IS_ALLOWED_TO_IMPRISON_DESC
+
 	}
 	# CSR: Allowed to imprison your own slaves without tyranny
 	else_if = {

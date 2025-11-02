@@ -1,6 +1,4 @@
-﻿# Used in the trigger for court positions to make sure that they don't already have a "job"
-# If a court position is considered a full time job, the character cannot hold another similar position
-court_position_does_not_already_have_a_job_trigger = {
+﻿court_position_does_not_already_have_a_job_trigger = {
 	custom_tooltip = {
 		text = does_not_have_a_full_time_job
 		NOR = {

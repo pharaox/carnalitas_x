@@ -1,5 +1,4 @@
-﻿# Determines if a character should be captured rather than killed during a raid or a siege.
-desirable_for_capture_trigger = {
+﻿desirable_for_capture_trigger = {
 	OR = {
 		is_playable_character = yes
 		any_parent = { always = yes }

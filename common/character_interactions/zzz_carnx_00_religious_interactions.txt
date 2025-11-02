@@ -1,12 +1,11 @@
-﻿# Ask a courtier to convert to the liege's faith.
-ask_for_conversion_courtier_interaction = {
+﻿ask_for_conversion_courtier_interaction = {
 	category = interaction_category_religion
 	icon = religious
 
 	special_interaction = request_conversion_interaction
 	ai_maybe = yes
 	can_send_despite_rejection = yes
-
+	
 	desc = {
 		desc = ask_for_conversion_interaction_desc
 		triggered_desc = {
@@ -23,7 +22,7 @@ ask_for_conversion_courtier_interaction = {
 			desc = demand_conversion_vassal_ruler_is_crime
 		}
 	}
-
+	
 	ai_targets = {
 		ai_recipients = courtiers
 		chance = 0.25
@@ -32,7 +31,7 @@ ask_for_conversion_courtier_interaction = {
 		adult = yes
 	}
 	ai_frequency = 12
-
+	
 	is_shown = {
 		NOT = { scope:actor.faith = scope:recipient.faith }
 		scope:recipient = { is_courtier_of = scope:actor }
@@ -45,7 +44,7 @@ ask_for_conversion_courtier_interaction = {
 	is_valid_showing_failures_only = {
 		valid_demand_conversion_conditions_trigger = yes
 	}
-
+	
 	ai_accept = {
 		base = 0
 		# Increase base chance
@@ -55,7 +54,7 @@ ask_for_conversion_courtier_interaction = {
 		}
 		religion_demand_conversion_default_modifier = yes
 	}
-
+	
 	auto_accept = {
 		custom_description = {
 			text = "spending_hook"
@@ -66,15 +65,15 @@ ask_for_conversion_courtier_interaction = {
 			NOT = { scope:recipient = { has_character_flag = ai_will_not_convert } }
 		}
 	}
-
+	
 	ai_min_reply_days = 1
 	ai_max_reply_days = 5
-
+	
 	on_accept = {
 		demand_conversion_interaction_effect = yes
 		hidden_effect = {
 			scope:actor = {
-				send_interface_message = {
+				send_interface_message = {	
 					type = event_religious_good
 					title = ask_for_conversion_courtier_interaction.tt
 					left_icon = scope:recipient
@@ -229,11 +228,11 @@ ask_for_conversion_courtier_interaction = {
 	}
 	send_options_exclusive = no
 
-
+	
 	ai_potential = {
 		is_adult = yes
 	}
-
+	
 	ai_will_do = {
 		base = 100
 
@@ -249,7 +248,7 @@ ask_for_conversion_courtier_interaction = {
 			scope:hook = yes
 			add = -1
 		}
-
+		
 		modifier = { # The AI doesn't really want to convert Diasporic culture courtiers
 			scope:recipient = {
 				#faith.religion = religion:judaism_religion #CSR Commented out for better compatibility

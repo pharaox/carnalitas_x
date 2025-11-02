@@ -1,6 +1,6 @@
 ﻿councillor_chancellor = {
 	skill = diplomacy
-
+	
 	name = councillor_chancellor
 
 	valid_position = {
@@ -80,10 +80,10 @@
 
 councillor_steward = {
 	skill = stewardship
-
+	
 	name = councillor_steward
 	tooltip = game_concept_steward_desc
-
+	
 	valid_position = {
 		NOR = { 
 			government_has_flag = government_is_landless_adventurer 
@@ -160,7 +160,7 @@ councillor_steward = {
 
 councillor_marshal = {
 	skill = martial
-
+	
 	name = councillor_marshal
 	tooltip = game_concept_marshal_desc
 
@@ -240,7 +240,7 @@ councillor_marshal = {
 
 councillor_spymaster = {
 	skill = intrigue
-
+	
 	name = councillor_spymaster
 	tooltip = game_concept_spymaster_desc
 
@@ -295,7 +295,7 @@ councillor_spymaster = {
 	on_fired_from_position = {
 		carnx_fired_from_spymaster_council_position_effect = yes
 	}
-
+	
 	use_for_scheme_phase_duration = yes
 	use_for_scheme_resistance = yes
 
@@ -331,28 +331,28 @@ councillor_court_chaplain = {
 			}
 		}
 	}
-
+	
 	can_reassign = {
 		custom_description = {
 			text = "court_chaplain_cant_reassign_doctrines"
 			OR = {
-			faith = {
+				faith = {
 					NOT = { has_doctrine_parameter = clerical_appointment_fixed }
 				}
 				NOT = { exists = cp:councillor_court_chaplain }
 			}
 		}
 	}
-
+	
 	can_change_once = {
 		faith = {
 			has_doctrine_parameter = clerical_appointment_fixed
 		}
 		exists = cp:councillor_court_chaplain
 	}
-
+	
 	inherit = no
-
+	
 	name = {
 		first_valid = {
 			triggered_desc = {
@@ -469,7 +469,7 @@ councillor_court_chaplain = {
 	}
 
 	pool_character_config = pool_court_chaplain
-
+	
 	valid_character = {
 		exists = root.liege_or_court_owner
 		can_be_court_chaplain_trigger = { COURT_OWNER = root.liege_or_court_owner }
@@ -478,7 +478,7 @@ councillor_court_chaplain = {
 			carnx_is_slave_trigger = no
 		}
 	}
-
+	
 	valid_position = {
 		NOR = { 
 			government_has_flag = government_is_landless_adventurer 
@@ -598,7 +598,7 @@ councillor_vizier = {
 	auto_fill = yes
 	can_fire = yes
 	can_reassign = yes
-
+	
 	name = councillor_vizier
 	tooltip = councillor_vizier_desc
 

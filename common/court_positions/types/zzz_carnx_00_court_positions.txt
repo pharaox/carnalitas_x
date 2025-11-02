@@ -1,44 +1,4 @@
-﻿
-# Have a look at _court_positions.info for documentation
-
-# COURT POSITIONS
-# court_physician_court_position
-# cultural_emissary_court_position
-# keeper_of_swans_court_position
-# chief_qadi_court_position
-# garuda_court_position
-# court_gardener_court_position
-# lady_in_waiting_court_position
-# antiquarian_court_position
-# travel_leader_court_position
-# wet_nurse_court_position
-# court_tutor_court_position
-# food_taster_court_position
-# master_of_horse_court_position
-# master_of_hunt_court_position
-# royal_architect_court_position
-# high_almoner_court_position
-# seneschal_court_position
-# cupbearer_court_position
-# chief_eunuch_court_position
-# court_jester_court_position
-# court_poet_court_position
-# court_musician_court_position
-# bodyguard_court_position
-# champion_court_position
-# executioner_court_position
-# court_artificer_court_position
-# master_assassin_court_position
-# cave_hermit_court_position
-# chronicler_court_position
-# court_scholar_court_position
-# charioteer_court_position
-# bookmaker_court_position
-# akolouthos_court_position
-# court_brewmaster_court_position Unop: Was: court_astrologer_court_position
-
-### Important Court Positions ### ( Sort order 399 - 300 )
-court_physician_court_position = {
+﻿court_physician_court_position = {
 	sort_order = 399
 	max_available_positions = 1
 	skill = learning
@@ -390,7 +350,7 @@ court_physician_court_position = {
 			}
 			#Lowering for LAAMPS, to match Camp Officer revoke cost
 			if = {
-				limit = {
+				limit = { 
 					exists = this
 					government_has_flag = government_is_landless_adventurer
 				}
@@ -448,7 +408,7 @@ court_physician_court_position = {
 			}
 			#You're working with LAAMPS now
 			if = {
-				limit = {
+				limit = { 
 					scope:liege ?= { government_has_flag = government_is_landless_adventurer }
 				}
 				multiply = {
@@ -544,28 +504,28 @@ court_physician_court_position = {
 
 	# Scripted value to determine whether an AI will hire/fire a position or not. Hires over 0, fires under -50. Look in _court_positions.info for more extensive documentation!
 	candidate_score = {
-		value = 150
+        value = 150
         # Always have this position if you can, regardless of monetary situation
-		add = court_position_candidate_score_base_value
-		add = court_position_candidate_aptitude_value
+        add = court_position_candidate_score_base_value
+        add = court_position_candidate_aptitude_value
 
 		# No debt considerations for Physicians, they are too important
-		# AI is less likely to fire the court physician, unless they have a better candidate.
-		if = {
-			limit = {
-				exists = scope:firing_court_position
-			}
-			add = 200
-			scope:employee = {
-				# Does the liege have a better candidate that they should be hiring instead?
-				if = {
-					limit = {
-						scope:highest_available_aptitude > scope:employee_aptitude
-					}
-					add = -150
-				}
-			}
-		}
+        # AI is less likely to fire the court physician, unless they have a better candidate.
+        if = {
+            limit = {
+                exists = scope:firing_court_position
+            }
+            add = 200
+            scope:employee = {
+                # Does the liege have a better candidate that they should be hiring instead?
+                if = {
+                    limit = {
+                        scope:highest_available_aptitude > scope:employee_aptitude
+                    }
+                    add = -150
+                }
+            }
+        }
 
 		if = {
 			limit = {
@@ -610,7 +570,7 @@ court_physician_court_position = {
 			add = 150
 		}
 
-		add = adjust_court_position_score_for_unity
+        add = adjust_court_position_score_for_unity
 
 		if = { # To stop petitioned positions immediately being fired by the AI
 			limit = {
@@ -1182,7 +1142,7 @@ travel_leader_court_position = {
 			}
 			#You're working with LAAMPS now
 			if = {
-				limit = {
+				limit = { 
 					scope:liege ?= { government_has_flag = government_is_landless_adventurer }
 				}
 				multiply = {
@@ -1287,28 +1247,28 @@ travel_leader_court_position = {
 
 	# Scripted value to determine whether an AI will hire/fire a position or not. Hires over 0, fires under -50. Look in _court_positions.info for more extensive documentation!
 	candidate_score = {
-		value = 150
+        value = 150
     	# Always have this position if you can, regardless of monetary situation
-		add = court_position_candidate_score_base_value
-		add = court_position_candidate_aptitude_value
+    	add = court_position_candidate_score_base_value
+    	add = court_position_candidate_aptitude_value
 
 		# No debt considerations for Travel Leaders, they are too important
 
-		if = {
-			limit = {
-				exists = scope:firing_court_position
-			}
-			add = 200
-			scope:employee = {
-				# Does the liege have a better candidate that they should be hiring instead?
-				if = {
-					limit = {
-						scope:highest_available_aptitude > scope:employee_aptitude
-					}
-					add = -150
-				}
-			}
-		}
+        if = {
+            limit = {
+                exists = scope:firing_court_position
+            }
+            add = 200
+            scope:employee = {
+                # Does the liege have a better candidate that they should be hiring instead?
+                if = {
+                    limit = {
+                        scope:highest_available_aptitude > scope:employee_aptitude
+                    }
+                    add = -150
+                }
+            }
+        }
 
         if = { # To stop petitioned positions immediately being fired by the AI
 			limit = {
@@ -1316,7 +1276,7 @@ travel_leader_court_position = {
 			}
 			add = 1000
 		}
-	}
+    }
 }
 
 antiquarian_court_position = {
@@ -1660,7 +1620,7 @@ antiquarian_court_position = {
 			}
 			#You're working with LAAMPS now
 			if = {
-				limit = {
+				limit = { 
 					scope:liege ?= { government_has_flag = government_is_landless_adventurer }
 				}
 				multiply = {
@@ -1743,21 +1703,21 @@ antiquarian_court_position = {
 			}
 			add = 50
 		}
-		if = {
-			limit = {
-				exists = scope:firing_court_position
-			}
-			add = 100
-			scope:employee = {
-				# Does the liege have a better candidate that they should be hiring instead?
-				if = {
-					limit = {
-						scope:highest_available_aptitude > scope:employee_aptitude
-					}
-					add = -75
-				}
-			}
-		}
+        if = {
+            limit = {
+                exists = scope:firing_court_position
+            }
+            add = 100
+            scope:employee = {
+                # Does the liege have a better candidate that they should be hiring instead?
+                if = {
+                    limit = {
+                        scope:highest_available_aptitude > scope:employee_aptitude
+                    }
+                    add = -75
+                }
+            }
+        }
         if = { # To stop petitioned positions immediately being fired by the AI
 			limit = {
 				court_position_petition_ai_weight_trigger = { ROLE = antiquarian }
@@ -1769,7 +1729,6 @@ antiquarian_court_position = {
 	}
 }
 
-### Regular Court Positions ### ( Sort order 299 - 200 )
 seneschal_court_position = {
 	sort_order = 299
 	max_available_positions = 1
@@ -1963,7 +1922,7 @@ seneschal_court_position = {
 			}
 			#You're working with LAAMPS now
 			if = {
-				limit = {
+				limit = { 
 					scope:liege ?= { government_has_flag = government_is_landless_adventurer }
 				}
 				multiply = {
@@ -2022,7 +1981,7 @@ seneschal_court_position = {
 			}
 			#You're working with LAAMPS now
 			if = {
-				limit = {
+				limit = { 
 					scope:liege ?= { government_has_flag = government_is_landless_adventurer }
 				}
 				multiply = {
@@ -2088,15 +2047,15 @@ seneschal_court_position = {
 		add = scope:base_value
 		add = court_position_candidate_score_base_value
 		add = court_position_candidate_aptitude_value
-		if = { # Having a seneschal is excellent if you have legitimacy
-			limit = {
+        if = { # Having a seneschal is excellent if you have legitimacy
+            limit = {
 				scope:liege = {
 					has_legitimacy = yes
 				}
-			}
-			add = 200
-		}
-		if = { # To stop petitioned positions immediately being fired by the AI
+            }
+            add = 200
+        }
+        if = { # To stop petitioned positions immediately being fired by the AI
 			limit = {
 				court_position_petition_ai_weight_trigger = { ROLE = seneschal }
 			}
@@ -3015,7 +2974,7 @@ wet_nurse_court_position = { # BP2
 			}
 			#You're working with LAAMPS now
 			if = {
-				limit = {
+				limit = { 
 					scope:liege ?= { government_has_flag = government_is_landless_adventurer }
 				}
 				multiply = {
@@ -3074,7 +3033,7 @@ wet_nurse_court_position = { # BP2
 			}
 			#You're working with LAAMPS now
 			if = {
-				limit = {
+				limit = { 
 					scope:liege ?= { government_has_flag = government_is_landless_adventurer }
 				}
 				multiply = {
@@ -3393,7 +3352,7 @@ charioteer_court_position = {
 				desc = trait_education_martial_prowess
 			}
 		}
-
+		
 		# Estate - Owner bonus from stables
 		if = {
 			limit = {
@@ -3505,7 +3464,7 @@ charioteer_court_position = {
 			}
 			#Lowering for LAAMPS, to match Camp Officer revoke cost
 			if = {
-				limit = {
+				limit = { 
 					exists = this
 					government_has_flag = government_is_landless_adventurer
 				}
@@ -3577,7 +3536,7 @@ charioteer_court_position = {
 			}
 			#You're working with LAAMPS now
 			if = {
-				limit = {
+				limit = { 
 					scope:liege ?= { government_has_flag = government_is_landless_adventurer }
 				}
 				multiply = {
@@ -3636,7 +3595,7 @@ charioteer_court_position = {
 			}
 			#You're working with LAAMPS now
 			if = {
-				limit = {
+				limit = { 
 					scope:liege ?= { government_has_flag = government_is_landless_adventurer }
 				}
 				multiply = {
@@ -3937,7 +3896,7 @@ bookmaker_court_position = { # EP3
 			}
 			#Lowering for LAAMPS, to match Camp Officer revoke cost
 			if = {
-				limit = {
+				limit = { 
 					exists = this
 					government_has_flag = government_is_landless_adventurer
 				}
@@ -3997,7 +3956,7 @@ bookmaker_court_position = { # EP3
 			}
 			#You're working with LAAMPS now
 			if = {
-				limit = {
+				limit = { 
 					scope:liege ?= { government_has_flag = government_is_landless_adventurer }
 				}
 				multiply = {
@@ -4034,7 +3993,7 @@ bookmaker_court_position = { # EP3
 	}
 
 	custom_employer_modifier_description = bookmaker_employer_custom_effect_description
-
+	
 	on_court_position_received = {
 		scope:employee = { add_character_flag = was_bookmaker }
 		basic_gained_court_position_effect = yes
@@ -4409,7 +4368,7 @@ akolouthos_court_position = { # EP1 & EP3
 			}
 			#Lowering for LAAMPS, to match Camp Officer revoke cost
 			if = {
-				limit = {
+				limit = { 
 					exists = this
 					government_has_flag = government_is_landless_adventurer
 				}
@@ -4469,7 +4428,7 @@ akolouthos_court_position = { # EP1 & EP3
 			}
 			#You're working with LAAMPS now
 			if = {
-				limit = {
+				limit = { 
 					scope:liege ?= { government_has_flag = government_is_landless_adventurer }
 				}
 				multiply = {
@@ -4728,7 +4687,7 @@ chief_eunuch_court_position = {
 			}
 			#Lowering for LAAMPS, to match Camp Officer revoke cost
 			if = {
-				limit = {
+				limit = { 
 					exists = this
 					government_has_flag = government_is_landless_adventurer
 				}
@@ -4788,7 +4747,7 @@ chief_eunuch_court_position = {
 			}
 			#You're working with LAAMPS now
 			if = {
-				limit = {
+				limit = { 
 					scope:liege ?= { government_has_flag = government_is_landless_adventurer }
 				}
 				multiply = {
@@ -4847,7 +4806,7 @@ chief_eunuch_court_position = {
 			}
 			#You're working with LAAMPS now
 			if = {
-				limit = {
+				limit = { 
 					scope:liege ?= { government_has_flag = government_is_landless_adventurer }
 				}
 				multiply = {
@@ -5101,7 +5060,7 @@ master_of_horse_court_position = {
 			}
 			#Lowering for LAAMPS, to match Camp Officer revoke cost
 			if = {
-				limit = {
+				limit = { 
 					exists = this
 					government_has_flag = government_is_landless_adventurer
 				}
@@ -5176,7 +5135,7 @@ master_of_horse_court_position = {
 			}
 			#You're working with LAAMPS now
 			if = {
-				limit = {
+				limit = { 
 					scope:liege ?= { government_has_flag = government_is_landless_adventurer }
 				}
 				multiply = {
@@ -5235,7 +5194,7 @@ master_of_horse_court_position = {
 			}
 			#You're working with LAAMPS now
 			if = {
-				limit = {
+				limit = { 
 					scope:liege ?= { government_has_flag = government_is_landless_adventurer }
 				}
 				multiply = {
@@ -5567,7 +5526,7 @@ master_of_hunt_court_position = {
 			}
 			#Lowering for LAAMPS, to match Camp Officer revoke cost
 			if = {
-				limit = {
+				limit = { 
 					exists = this
 					government_has_flag = government_is_landless_adventurer
 				}
@@ -5627,7 +5586,7 @@ master_of_hunt_court_position = {
 			}
 			#You're working with LAAMPS now
 			if = {
-				limit = {
+				limit = { 
 					scope:liege ?= { government_has_flag = government_is_landless_adventurer }
 				}
 				multiply = {
@@ -5686,7 +5645,7 @@ master_of_hunt_court_position = {
 			}
 			#You're working with LAAMPS now
 			if = {
-				limit = {
+				limit = { 
 					scope:liege ?= { government_has_flag = government_is_landless_adventurer }
 				}
 				multiply = {
@@ -6041,7 +6000,7 @@ master_assassin_court_position = {
 			}
 			#Lowering for LAAMPS, to match Camp Officer revoke cost
 			if = {
-				limit = {
+				limit = { 
 					exists = this
 					government_has_flag = government_is_landless_adventurer
 				}
@@ -6101,7 +6060,7 @@ master_assassin_court_position = {
 			}
 			#You're working with LAAMPS now
 			if = {
-				limit = {
+				limit = { 
 					scope:liege ?= { government_has_flag = government_is_landless_adventurer }
 				}
 				multiply = {
@@ -6160,7 +6119,7 @@ master_assassin_court_position = {
 			}
 			#You're working with LAAMPS now
 			if = {
-				limit = {
+				limit = { 
 					scope:liege ?= { government_has_flag = government_is_landless_adventurer }
 				}
 				multiply = {
@@ -6447,7 +6406,7 @@ cultural_emissary_court_position = {
 			}
 			#Lowering for LAAMPS, to match Camp Officer revoke cost
 			if = {
-				limit = {
+				limit = { 
 					exists = this
 					government_has_flag = government_is_landless_adventurer
 				}
@@ -6507,7 +6466,7 @@ cultural_emissary_court_position = {
 			}
 			#You're working with LAAMPS now
 			if = {
-				limit = {
+				limit = { 
 					scope:liege ?= { government_has_flag = government_is_landless_adventurer }
 				}
 				multiply = {
@@ -6566,7 +6525,7 @@ cultural_emissary_court_position = {
 			}
 			#You're working with LAAMPS now
 			if = {
-				limit = {
+				limit = { 
 					scope:liege ?= { government_has_flag = government_is_landless_adventurer }
 				}
 				multiply = {
@@ -6841,7 +6800,7 @@ cave_hermit_court_position = {
 			}
 			#Lowering for LAAMPS, to match Camp Officer revoke cost
 			if = {
-				limit = {
+				limit = { 
 					exists = this
 					government_has_flag = government_is_landless_adventurer
 				}
@@ -6920,7 +6879,7 @@ cave_hermit_court_position = {
 			}
 			#You're working with LAAMPS now
 			if = {
-				limit = {
+				limit = { 
 					scope:liege ?= { government_has_flag = government_is_landless_adventurer }
 				}
 				multiply = {
@@ -7229,7 +7188,7 @@ chief_qadi_court_position = {
 			}
 			#Lowering for LAAMPS, to match Camp Officer revoke cost
 			if = {
-				limit = {
+				limit = { 
 					exists = this
 					government_has_flag = government_is_landless_adventurer
 				}
@@ -7289,7 +7248,7 @@ chief_qadi_court_position = {
 			}
 			#You're working with LAAMPS now
 			if = {
-				limit = {
+				limit = { 
 					scope:liege ?= { government_has_flag = government_is_landless_adventurer }
 				}
 				multiply = {
@@ -7348,7 +7307,7 @@ chief_qadi_court_position = {
 			}
 			#You're working with LAAMPS now
 			if = {
-				limit = {
+				limit = { 
 					scope:liege ?= { government_has_flag = government_is_landless_adventurer }
 				}
 				multiply = {
@@ -7361,7 +7320,7 @@ chief_qadi_court_position = {
 	}
 
 	base_employer_modifier = {
-			}
+	}
 
 	scaling_employer_modifiers = {
 		terrible = {
@@ -7689,7 +7648,7 @@ court_gardener_court_position = {
 			}
 			#You're working with LAAMPS now
 			if = {
-				limit = {
+				limit = { 
 					scope:liege ?= { government_has_flag = government_is_landless_adventurer }
 				}
 				multiply = {
@@ -7748,7 +7707,7 @@ court_gardener_court_position = {
 			}
 			#You're working with LAAMPS now
 			if = {
-				limit = {
+				limit = { 
 					scope:liege ?= { government_has_flag = government_is_landless_adventurer }
 				}
 				multiply = {
@@ -8113,7 +8072,7 @@ court_scholar_court_position = { # FP3
 			}
 			#You're working with LAAMPS now
 			if = {
-				limit = {
+				limit = { 
 					scope:liege ?= { government_has_flag = government_is_landless_adventurer }
 				}
 				multiply = {
@@ -8172,7 +8131,7 @@ court_scholar_court_position = { # FP3
 			}
 			#You're working with LAAMPS now
 			if = {
-				limit = {
+				limit = { 
 					scope:liege ?= { government_has_flag = government_is_landless_adventurer }
 				}
 				multiply = {
@@ -8477,7 +8436,7 @@ chronicler_court_position = { # CE1
 			}
 			#Lowering for LAAMPS, to match Camp Officer revoke cost
 			if = {
-				limit = {
+				limit = { 
 					exists = this
 					government_has_flag = government_is_landless_adventurer
 				}
@@ -8537,7 +8496,7 @@ chronicler_court_position = { # CE1
 			}
 			#You're working with LAAMPS now
 			if = {
-				limit = {
+				limit = { 
 					scope:liege ?= { government_has_flag = government_is_landless_adventurer }
 				}
 				multiply = {
@@ -8596,7 +8555,7 @@ chronicler_court_position = { # CE1
 			}
 			#You're working with LAAMPS now
 			if = {
-				limit = {
+				limit = { 
 					scope:liege ?= { government_has_flag = government_is_landless_adventurer }
 				}
 				multiply = {
@@ -8982,7 +8941,7 @@ champion_court_position = { # EP1
 			}
 			#Lowering for LAAMPS, to match Camp Officer revoke cost
 			if = {
-				limit = {
+				limit = { 
 					exists = this
 					government_has_flag = government_is_landless_adventurer
 				}
@@ -9042,7 +9001,7 @@ champion_court_position = { # EP1
 			}
 			#You're working with LAAMPS now
 			if = {
-				limit = {
+				limit = { 
 					scope:liege ?= { government_has_flag = government_is_landless_adventurer }
 				}
 				multiply = {
@@ -9343,7 +9302,7 @@ court_brewmaster_court_position = {
 			}
 			#Lowering for LAAMPS, to match Camp Officer revoke cost
 			if = {
-				limit = {
+				limit = { 
 					exists = this
 					government_has_flag = government_is_landless_adventurer
 				}
@@ -9403,7 +9362,7 @@ court_brewmaster_court_position = {
 			}
 			#You're working with LAAMPS now
 			if = {
-				limit = {
+				limit = { 
 					scope:liege ?= { government_has_flag = government_is_landless_adventurer }
 				}
 				multiply = 0
@@ -9458,7 +9417,7 @@ court_brewmaster_court_position = {
 			}
 			#You're working with LAAMPS now
 			if = {
-				limit = {
+				limit = { 
 					scope:liege ?= { government_has_flag = government_is_landless_adventurer }
 				}
 				multiply = {
@@ -9693,7 +9652,7 @@ lady_in_waiting_court_position = { # EP1
 			}
 			#Lowering for LAAMPS, to match Camp Officer revoke cost
 			if = {
-				limit = {
+				limit = { 
 					exists = this
 					government_has_flag = government_is_landless_adventurer
 				}
@@ -9753,7 +9712,7 @@ lady_in_waiting_court_position = { # EP1
 			}
 			#You're working with LAAMPS now
 			if = {
-				limit = {
+				limit = { 
 					scope:liege ?= { government_has_flag = government_is_landless_adventurer }
 				}
 				multiply = {
@@ -9812,7 +9771,7 @@ lady_in_waiting_court_position = { # EP1
 			}
 			#You're working with LAAMPS now
 			if = {
-				limit = {
+				limit = { 
 					scope:liege ?= { government_has_flag = government_is_landless_adventurer }
 				}
 				multiply = {
@@ -9928,7 +9887,6 @@ lady_in_waiting_court_position = { # EP1
 	}
 }
 
-### Kingdom Tier Court Positions ### ( Sort order 199 - 100 )
 royal_architect_court_position = { # EP1
 	sort_order = 199
 	max_available_positions = 1
@@ -10093,7 +10051,7 @@ royal_architect_court_position = { # EP1
 			}
 			#Lowering for LAAMPS, to match Camp Officer revoke cost
 			if = {
-				limit = {
+				limit = { 
 					exists = this
 					government_has_flag = government_is_landless_adventurer
 				}
@@ -10170,7 +10128,7 @@ royal_architect_court_position = { # EP1
 			}
 			#You're working with LAAMPS now
 			if = {
-				limit = {
+				limit = { 
 					scope:liege ?= { government_has_flag = government_is_landless_adventurer }
 				}
 				multiply = {
@@ -10229,7 +10187,7 @@ royal_architect_court_position = { # EP1
 			}
 			#You're working with LAAMPS now
 			if = {
-				limit = {
+				limit = { 
 					scope:liege ?= { government_has_flag = government_is_landless_adventurer }
 				}
 				multiply = {
@@ -10534,7 +10492,7 @@ high_almoner_court_position = {
 			}
 			#Lowering for LAAMPS, to match Camp Officer revoke cost
 			if = {
-				limit = {
+				limit = { 
 					exists = this
 					government_has_flag = government_is_landless_adventurer
 				}
@@ -10594,7 +10552,7 @@ high_almoner_court_position = {
 			}
 			#You're working with LAAMPS now
 			if = {
-				limit = {
+				limit = { 
 					scope:liege ?= { government_has_flag = government_is_landless_adventurer }
 				}
 				multiply = {
@@ -10916,7 +10874,7 @@ court_poet_court_position = { # EP1
 			}
 			#Lowering for LAAMPS, to match Camp Officer revoke cost
 			if = {
-				limit = {
+				limit = { 
 					exists = this
 					government_has_flag = government_is_landless_adventurer
 				}
@@ -10976,7 +10934,7 @@ court_poet_court_position = { # EP1
 			}
 			#You're working with LAAMPS now
 			if = {
-				limit = {
+				limit = { 
 					scope:liege ?= { government_has_flag = government_is_landless_adventurer }
 				}
 				multiply = {
@@ -11035,7 +10993,7 @@ court_poet_court_position = { # EP1
 			}
 			#You're working with LAAMPS now
 			if = {
-				limit = {
+				limit = { 
 					scope:liege ?= { government_has_flag = government_is_landless_adventurer }
 				}
 				multiply = {
@@ -11393,7 +11351,7 @@ court_musician_court_position = {
 			}
 			#Lowering for LAAMPS, to match Camp Officer revoke cost
 			if = {
-				limit = {
+				limit = { 
 					exists = this
 					government_has_flag = government_is_landless_adventurer
 				}
@@ -11453,7 +11411,7 @@ court_musician_court_position = {
 			}
 			#You're working with LAAMPS now
 			if = {
-				limit = {
+				limit = { 
 					scope:liege ?= { government_has_flag = government_is_landless_adventurer }
 				}
 				multiply = {
@@ -11512,7 +11470,7 @@ court_musician_court_position = {
 			}
 			#You're working with LAAMPS now
 			if = {
-				limit = {
+				limit = { 
 					scope:liege ?= { government_has_flag = government_is_landless_adventurer }
 				}
 				multiply = {
@@ -11607,14 +11565,14 @@ court_musician_court_position = {
 		add = scope:base_value
 		add = court_position_candidate_score_base_value
 
-		if = { # Having a musician is good if you have legitimacy
-			limit = {
+		 if = { # Having a musician is good if you have legitimacy
+            limit = {
 				scope:liege = {
 					has_legitimacy = yes
 				}
-			}
-			add = 50
-		}
+            }
+            add = 50
+        }
 
 		if = { # To stop petitioned positions immediately being fired by the AI
 			limit = {
@@ -12103,7 +12061,7 @@ food_taster_court_position = { # EP1
 			}
 			#Lowering for LAAMPS, to match Camp Officer revoke cost
 			if = {
-				limit = {
+				limit = { 
 					exists = this
 					government_has_flag = government_is_landless_adventurer
 				}
@@ -12163,7 +12121,7 @@ food_taster_court_position = { # EP1
 			}
 			#You're working with LAAMPS now
 			if = {
-				limit = {
+				limit = { 
 					scope:liege ?= { government_has_flag = government_is_landless_adventurer }
 				}
 				multiply = {
@@ -12222,7 +12180,7 @@ food_taster_court_position = { # EP1
 			}
 			#You're working with LAAMPS now
 			if = {
-				limit = {
+				limit = { 
 					scope:liege ?= { government_has_flag = government_is_landless_adventurer }
 				}
 				multiply = {
@@ -12490,7 +12448,7 @@ keeper_of_swans_court_position = {
 			}
 			#Lowering for LAAMPS, to match Camp Officer revoke cost
 			if = {
-				limit = {
+				limit = { 
 					exists = this
 					government_has_flag = government_is_landless_adventurer
 				}
@@ -12550,7 +12508,7 @@ keeper_of_swans_court_position = {
 			}
 			#You're working with LAAMPS now
 			if = {
-				limit = {
+				limit = { 
 					scope:liege ?= { government_has_flag = government_is_landless_adventurer }
 				}
 				multiply = {
@@ -12609,7 +12567,7 @@ keeper_of_swans_court_position = {
 			}
 			#You're working with LAAMPS now
 			if = {
-				limit = {
+				limit = { 
 					scope:liege ?= { government_has_flag = government_is_landless_adventurer }
 				}
 				multiply = {
@@ -12864,7 +12822,7 @@ court_jester_court_position = {
 			}
 			#Lowering for LAAMPS, to match Camp Officer revoke cost
 			if = {
-				limit = {
+				limit = { 
 					exists = this
 					government_has_flag = government_is_landless_adventurer
 				}
@@ -12972,7 +12930,7 @@ court_jester_court_position = {
 			}
 			#You're working with LAAMPS now
 			if = {
-				limit = {
+				limit = { 
 					scope:liege ?= { government_has_flag = government_is_landless_adventurer }
 				}
 				multiply = {
@@ -13031,7 +12989,7 @@ court_jester_court_position = {
 			}
 			#You're working with LAAMPS now
 			if = {
-				limit = {
+				limit = { 
 					scope:liege ?= { government_has_flag = government_is_landless_adventurer }
 				}
 				multiply = {
@@ -13291,7 +13249,7 @@ executioner_court_position = { # EP1
 			}
 			#Lowering for LAAMPS, to match Camp Officer revoke cost
 			if = {
-				limit = {
+				limit = { 
 					exists = this
 					government_has_flag = government_is_landless_adventurer
 				}
@@ -13351,7 +13309,7 @@ executioner_court_position = { # EP1
 			}
 			#You're working with LAAMPS now
 			if = {
-				limit = {
+				limit = { 
 					scope:liege ?= { government_has_flag = government_is_landless_adventurer }
 				}
 				multiply = {
@@ -13808,7 +13766,7 @@ bodyguard_court_position = { # EP1
 				desc = court_position_bodyguard_liege_modifier
 			}
 		}
-
+		
 		if = { # Cherbi / Chief Bodyguard bonus
 			limit = {
 				exists = liege.court_position:cherbi_court_position
@@ -13954,7 +13912,7 @@ bodyguard_court_position = { # EP1
 			}
 			#Lowering for LAAMPS, to match Camp Officer revoke cost
 			if = {
-				limit = {
+				limit = { 
 					exists = this
 					government_has_flag = government_is_landless_adventurer
 				}
@@ -14030,7 +13988,7 @@ bodyguard_court_position = { # EP1
 			}
 			#You're working with LAAMPS now
 			if = {
-				limit = {
+				limit = { 
 					scope:liege ?= { government_has_flag = government_is_landless_adventurer }
 				}
 				multiply = {
@@ -14105,7 +14063,7 @@ bodyguard_court_position = { # EP1
 			}
 			#You're working with LAAMPS now
 			if = {
-				limit = {
+				limit = { 
 					scope:liege ?= { government_has_flag = government_is_landless_adventurer }
 				}
 				multiply = {
@@ -14380,7 +14338,7 @@ court_artificer_court_position = { # EP1
 			}
 			#Lowering for LAAMPS, to match Camp Officer revoke cost
 			if = {
-				limit = {
+				limit = { 
 					exists = this
 					government_has_flag = government_is_landless_adventurer
 				}
@@ -14439,7 +14397,7 @@ court_artificer_court_position = { # EP1
 				}
 			}
 			if = {
-				limit = {
+				limit = { 
 					scope:liege ?= { government_has_flag = government_is_landless_adventurer }
 				}
 				multiply = {
@@ -14498,7 +14456,7 @@ court_artificer_court_position = { # EP1
 			}
 			#You're working with LAAMPS now
 			if = {
-				limit = {
+				limit = { 
 					scope:liege ?= { government_has_flag = government_is_landless_adventurer }
 				}
 				multiply = {
@@ -14583,8 +14541,6 @@ court_artificer_court_position = { # EP1
 		add = court_position_debt_considerations_value
 	}
 }
-
-### Special Court Positions ### ( Sort order 99 - 50 )
 
 garuda_court_position = {
 	sort_order = 65
@@ -14766,7 +14722,7 @@ garuda_court_position = {
 			}
 			#Lowering for LAAMPS, to match Camp Officer revoke cost
 			if = {
-				limit = {
+				limit = { 
 					exists = this
 					government_has_flag = government_is_landless_adventurer
 				}
@@ -14826,7 +14782,7 @@ garuda_court_position = {
 			}
 			#You're working with LAAMPS now
 			if = {
-				limit = {
+				limit = { 
 					scope:liege ?= { government_has_flag = government_is_landless_adventurer }
 				}
 				multiply = {
@@ -14885,7 +14841,7 @@ garuda_court_position = {
 			}
 			#You're working with LAAMPS now
 			if = {
-				limit = {
+				limit = { 
 					scope:liege ?= { government_has_flag = government_is_landless_adventurer }
 				}
 				multiply = {
