@@ -125,6 +125,7 @@
 			custom_tooltip = {
 				text = none_liege_can_employ_slaves
 				root.liege_or_court_owner = {
+					tgp_has_access_to_ministry_trigger = no
 					carnx_is_slave_employment_enabled_trigger = yes
 				}
 			}
@@ -277,6 +278,7 @@ councillor_steward = {
 			custom_tooltip = {
 				text = none_liege_can_employ_slaves
 				root.liege_or_court_owner = {
+					tgp_has_access_to_ministry_trigger = no
 					carnx_is_slave_employment_enabled_trigger = yes
 				}
 			}
@@ -435,6 +437,7 @@ councillor_marshal = {
 			custom_tooltip = {
 				text = none_liege_can_employ_slaves
 				root.liege_or_court_owner = {
+					tgp_has_access_to_ministry_trigger = no
 					carnx_is_slave_employment_enabled_trigger = yes
 				}
 			}
@@ -608,6 +611,18 @@ councillor_spymaster = {
 		}
 		NOT = { this = character:528 }
 		tgp_is_ceremonial_liege_trigger = no
+		OR = {
+			custom_tooltip = {
+				text = none_is_not_a_slave
+				carnx_is_slave_trigger = no
+			}
+			custom_tooltip = {
+				text = none_liege_can_employ_slaves
+				root.liege_or_court_owner = {
+					tgp_has_access_to_ministry_trigger = no
+				}
+			}
+		}
 	}
 
 	on_get_position = {

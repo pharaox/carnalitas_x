@@ -14,7 +14,7 @@ carnx_ransom_slaves_interaction = {
 
 	redirect = {
 		if = {
-			limit = { NOT = { scope:actor = scope:recipient } }
+			limit = { scope:actor != scope:recipient }
 			scope:recipient = {
 				save_scope_as = secondary_actor
 			}

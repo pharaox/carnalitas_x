@@ -72,7 +72,7 @@ carnx_slave.0001 = {
 				ordered_in_list = {
 					list = slaves
 					limit = {
-						NOT = { this = scope:valuable_option }
+						this != scope:valuable_option
 					}
 					order_by = carnx_slave_base_price_value
 					save_scope_as = common_option

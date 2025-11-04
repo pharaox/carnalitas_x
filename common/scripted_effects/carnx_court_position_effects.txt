@@ -43,6 +43,18 @@
 # foreign_emissary_court_position - Yes
 # keeper_of_the_horses_court_position - Yes*
 
+# grand_preceptor - No
+# grand_mentor - No
+# grand_guardian - No
+# fire_dragon_engineer - No
+# keeper_of_the_harem - Yes*
+# favored_minister - No
+# minister_bureaucrat - No
+
+# court_guru - No
+# court_brahmin - No
+# khlon_glan - Yes*
+
 # CSR Court Positions
 
 # carnx_slave_concubine_court_position
@@ -455,6 +467,40 @@ carnx_keeper_of_the_horses_title_revoked_effect = {
 carnx_keeper_of_the_horses_title_invalidated_effect = {
 	basic_invalidated_court_position_effect = yes
 	carnx_debug_log_title_invalidated_slave_effect = { NAME = keeper_of_the_horses }
+}
+
+# KEEPER OF THE HAREM
+
+carnx_keeper_of_the_harem_title_accepted_effect = {
+	basic_gained_court_position_effect = yes
+	carnx_debug_log_title_received_slave_effect = { NAME = keeper_of_the_harem }
+}
+
+carnx_keeper_of_the_harem_title_revoked_effect = {
+	basic_revoked_court_position_effect = yes
+	carnx_debug_log_title_revoked_slave_effect = { NAME = keeper_of_the_harem }
+}
+
+carnx_keeper_of_the_harem_title_invalidated_effect = {
+	basic_invalidated_court_position_effect = yes
+	carnx_debug_log_title_invalidated_slave_effect = { NAME = keeper_of_the_harem }
+}
+
+# KHLON GLAN
+
+carnx_khlon_glan_title_accepted_effect = {
+	basic_gained_court_position_effect = yes
+	carnx_debug_log_title_received_slave_effect = { NAME = khlon_glan }
+}
+
+carnx_khlon_glan_title_revoked_effect = {
+	basic_revoked_court_position_effect = yes
+	carnx_debug_log_title_revoked_slave_effect = { NAME = khlon_glan }
+}
+
+carnx_khlon_glan_title_invalidated_effect = {
+	basic_invalidated_court_position_effect = yes
+	carnx_debug_log_title_invalidated_slave_effect = { NAME = khlon_glan }
 }
 
 # SLAVE CONCUBINE

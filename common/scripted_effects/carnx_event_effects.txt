@@ -280,7 +280,7 @@ carnx_create_diplomacy_character_effect = {
 			gregarious = {}
 			stubborn = {}
 			shrewd = {}
-			poet = {}
+			lifestyle_poet = {}
 			athletic = {}
 		}
 		gender_female_chance = carnx_scope_value_target_faith_dominant_gender_adjusted_female_chance

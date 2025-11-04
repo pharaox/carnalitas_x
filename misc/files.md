@@ -17,9 +17,15 @@
   * `offer_eunuch_interaction`
 * `common/council_positions/00_council_positions.txt`
   * Entire file
+* `common/council_positions/01_ministry_positions.txt`
+  * Entire file
 * `common/court_positions/types/00_admin_court_position.txt`
   * Entire file
+* `common/court_positions/types/00_celestial_court_position.txt`
+  * Entire file
 * `common/court_positions/types/00_court_positions.txt`
+  * Entire file
+* `common/court_positions/types/00_mandala_court_position.txt`
   * Entire file
 * `common/court_positions/types/00_mpo_court_positions.txt`
   * Entire file

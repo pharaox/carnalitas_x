@@ -32,7 +32,7 @@ carnx_ransom_slave_interaction = {
 
 	is_shown = {
 		NOT = { has_game_rule = carn_slavery_content_disabled }
-		NOT = { scope:actor = scope:recipient }
+		scope:actor != scope:recipient
 		scope:recipient = {
 			is_ruler = yes
 		}
@@ -215,7 +215,7 @@ carnx_ransom_slave_interaction = {
 		}
 		modifier = {
 			scope:favor = yes
-			NOT = { scope:recipient.top_liege = scope:actor.top_liege }
+			scope:recipient.top_liege != scope:actor.top_liege
 			add = -50
 			desc = GAIN_HOOK_NEGATIVE_REASON
 		}
@@ -230,7 +230,7 @@ carnx_ransom_slave_interaction = {
 		# Opinion of slave (-25 to 25 depending on opinion)
 		opinion_modifier = {
 			trigger = {
-				NOT = { scope:recipient = scope:secondary_recipient }
+				scope:recipient != scope:secondary_recipient
 			}
 			who = scope:recipient
 			opinion_target = scope:secondary_recipient
@@ -314,7 +314,7 @@ carnx_ransom_slave_interaction = {
 		# Opinion of actor
 		opinion_modifier = {
 			trigger = {
-				NOT = { scope:actor = scope:recipient }
+				scope:actor != scope:recipient
 			}
 			who = scope:recipient
 			opinion_target = scope:actor
@@ -371,7 +371,14 @@ carnx_ransom_slave_interaction = {
 		max = 10
 	}
 
-	ai_frequency = 24
+	ai_frequency_by_tier = {
+		barony = 0
+		county = 48
+		duchy = 36
+		kingdom = 24
+		empire = 24
+		hegemony = 24
+	}
 
 	ai_potential = {
 		always = yes
@@ -430,7 +437,7 @@ carnx_ransom_slave_interaction = {
 		}
 		modifier = {
 			scope:favor = yes
-			NOT = { scope:recipient.top_liege = scope:actor.top_liege }
+			scope:recipient.top_liege != scope:actor.top_liege
 			add = 0
 		}
 
@@ -445,7 +452,7 @@ carnx_ransom_slave_interaction = {
 		# Opinion of slave (-25 to 25 depending on opinion)
 		opinion_modifier = {
 			trigger = {
-				NOT = { scope:actor = scope:secondary_recipient }
+				scope:actor != scope:secondary_recipient
 			}
 			who = scope:actor
 			opinion_target = scope:secondary_recipient

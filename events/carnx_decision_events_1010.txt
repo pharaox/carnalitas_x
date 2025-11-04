@@ -666,7 +666,7 @@ carnx_decision_events.1011 = {
 			ordered_in_list = {
 				list = slaves
 				limit = {
-					NOT = { this = scope:first_merchant_slave }
+					this != scope:first_merchant_slave
 				}
 				order_by = carnx_slave_base_price_value
 				save_scope_as = second_merchant_slave

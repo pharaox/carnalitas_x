@@ -104,6 +104,8 @@
  carnx_lacking_cherbi_reason: "[recipient.GetShortUIName|U] 좋은 $cherbi_court_position$: $VALUE|=+0$"
  carnx_lacking_foreign_emissary_reason: "[recipient.GetShortUIName|U] 좋은 $foreign_emissary_court_position$: $VALUE|=+0$"
  carnx_lacking_keeper_of_the_horses_reason: "[recipient.GetShortUIName|U] 좋은 $keeper_of_the_horses_court_position$: $VALUE|=+0$"
+ carnx_lacking_keeper_of_the_harem_reason: "[recipient.GetShortUIName|U] 좋은 $keeper_of_the_harem_court_position$: $VALUE|=+0$"
+ carnx_lacking_khlon_glan_reason: "[recipient.GetShortUIName|U] 좋은 $khlon_glan_court_position$: $VALUE|=+0$"
  carnx_lacking_slave_concubine_reason:0 "[recipient.GetShortUIName|U]에게 좋은 $carnx_slave_concubine_court_position$가 필요할 수 있습니다: $VALUE|=+0$"
  carnx_lacking_slave_captain_reason:0 "[recipient.GetShortUIName|U]에게 좋은 $carnx_slave_captain_court_position$이 필요할 수 있습니다: $VALUE|=+0$"
  carnx_lacking_slave_eunuch_reason:0 "[recipient.GetShortUIName|U]에게 좋은 $carnx_slave_eunuch_court_position$이 필요할 수 있습니다: $VALUE|=+0$"

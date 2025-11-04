@@ -71,6 +71,8 @@ echo "Yurtchi court position received: $(grep -a "Yurtchi court position receive
 echo "Cherbi court position received: $(grep -a "Cherbi court position received" debug.log | wc -l)"
 echo "Foreign Emissary court position received: $(grep -a "Foreign Emissary court position received" debug.log | wc -l)"
 echo "Keeper of the Horses court position received: $(grep -a "Keeper of the Horses court position received" debug.log | wc -l)"
+echo "Keeper of the Harem court position received: $(grep -a "Keeper of the Harem court position received" debug.log | wc -l)"
+echo "Khlon Glan court position received: $(grep -a "Khlon Glan court position received" debug.log | wc -l)"
 echo
 # CSR
 echo "Slave Concubine court position received: $(grep -a "Slave Concubine court position received" debug.log | wc -l)"

@@ -1,6 +1,5 @@
 ﻿carnx_can_interact_with_trigger = {
 	NOT = { this = $PARTY$ }
-	is_busy_in_events_localised = yes
 	in_diplomatic_range = $PARTY$
 	NOT = { is_at_war_with = $PARTY$ }
 	is_imprisoned = no
@@ -34,7 +33,6 @@ carnx_can_demand_free_illegal_slaves_trigger = {
 }
 
 carnx_can_start_interaction_trigger = {
-	is_busy_in_events_localised = yes
 	is_imprisoned = no
 }
 
@@ -567,13 +565,13 @@ carnx_can_serve_as_councillor_trigger = {
 				carnx_can_be_$NAME$_trigger = { COURT_OWNER = $LIEGE$ }
 				NOT = { has_council_position = $TYPE$ }
 				$SKILL$ > carnx_default_skill_threshold
-				NOT = { this = scope:candidate }
+				this != scope:candidate
 			}
 			any_vassal = {
 				carnx_can_be_$NAME$_trigger = { COURT_OWNER = $LIEGE$ }
 				NOT = { has_council_position = $TYPE$ }
 				$SKILL$ > carnx_default_skill_threshold
-				NOT = { this = scope:candidate }
+				this != scope:candidate
 			}
 		}
 	}
@@ -599,13 +597,13 @@ carnx_can_serve_as_knight_trigger = {
 				can_be_knight_trigger = { ARMY_OWNER = $RULER$ }
 				NOT = { is_knight_of = $RULER$ }
 				prowess > carnx_default_skill_threshold
-				NOT = { this = scope:candidate }
+				this != scope:candidate
 			}
 			any_vassal = {
 				can_be_knight_trigger = { ARMY_OWNER = $RULER$ }
 				NOT = { is_knight_of = $RULER$ }
 				prowess > carnx_default_skill_threshold
-				NOT = { this = scope:candidate }
+				this != scope:candidate
 			}
 		}
 	}
@@ -629,7 +627,7 @@ carnx_can_serve_as_commander_trigger = {
 			list = commanders
 			can_be_commander_basic_trigger = { ARMY_OWNER = $RULER$ }
 			carnx_commander_skill_value > carnx_commander_skill_value_threshold
-			NOT = { this = scope:candidate }
+			this != scope:candidate
 			count < 3
 		}
 	}
@@ -829,6 +827,22 @@ carnx_can_serve_as_keeper_of_the_horses_trigger = {
 	}
 }
 
+carnx_can_serve_as_keeper_of_the_harem_trigger = {
+	carnx_can_serve_as_court_position_trigger = {
+		TYPE = keeper_of_the_harem_court_position
+		NAME = keeper_of_the_harem
+		LIEGE = $RULER$
+	}
+}
+
+carnx_can_serve_as_khlon_glan_trigger = {
+	carnx_can_serve_as_court_position_trigger = {
+		TYPE = khlon_glan_court_position
+		NAME = khlon_glan
+		LIEGE = $RULER$
+	}
+}
+
 carnx_can_serve_as_slave_concubine_trigger = {
 	carnx_can_serve_as_multi_court_position_trigger = {
 		TYPE = carnx_slave_concubine_court_position
@@ -879,13 +893,13 @@ carnx_can_serve_as_court_position_trigger = {
 				can_be_employed_as = $TYPE$
 				NOT = { has_court_position = $TYPE$ }
 				aptitude:$TYPE$ > carnx_$NAME$_aptitude_threshold
-				NOT = { this = scope:candidate }
+				this != scope:candidate
 			}
 			any_vassal = {
 				can_be_employed_as = $TYPE$
 				NOT = { has_court_position = $TYPE$ }
 				aptitude:$TYPE$ > carnx_$NAME$_aptitude_threshold
-				NOT = { this = scope:candidate }
+				this != scope:candidate
 			}
 		}
 	}
@@ -920,13 +934,13 @@ carnx_can_serve_as_multi_court_position_trigger = {
 				can_be_employed_as = $TYPE$
 				NOT = { has_court_position = $TYPE$ }
 				aptitude:$TYPE$ > carnx_$NAME$_aptitude_threshold
-				NOT = { this = scope:candidate }
+				this != scope:candidate
 			}
 			any_vassal = {
 				can_be_employed_as = $TYPE$
 				NOT = { has_court_position = $TYPE$ }
 				aptitude:$TYPE$ > carnx_$NAME$_aptitude_threshold
-				NOT = { this = scope:candidate }
+				this != scope:candidate
 			}
 		}
 	}
@@ -990,7 +1004,7 @@ carnx_is_visibly_fertile_female_trigger = {
 
 carnx_is_character_poor_trigger = {
 	trigger_if = {
-		limit = { ai_has_economical_boom_personality = yes }
+		limit = { ai_has_builder_or_pious_builder_personality = yes }
 		gold <= medium_gold_value
 	}
 	trigger_else = {
@@ -1000,7 +1014,7 @@ carnx_is_character_poor_trigger = {
 
 carnx_is_character_rich_trigger = {
 	trigger_if = {
-		limit = { ai_has_economical_boom_personality = yes }
+		limit = { ai_has_builder_or_pious_builder_personality = yes }
 		short_term_gold >= massive_gold_value
 	}
 	trigger_else = {
@@ -1137,6 +1151,7 @@ carnx_slavery_attitude_slaver_government_trigger = {
 		government_has_flag = government_is_tribal
 		government_has_flag = government_is_landless_adventurer
 		government_has_flag = government_is_nomadic
+		government_has_flag = government_is_steppe_admin
 	}
 }
 
@@ -1148,7 +1163,10 @@ carnx_slavery_attitude_liberator_government_trigger = {
 }
 
 carnx_slavery_attitude_trader_government_trigger = {
-	government_has_flag = government_is_republic
+	OR = {
+		government_has_flag = government_is_republic
+		government_has_flag = government_is_mandala
+	}
 }
 
 carnx_slavery_attitude_employer_government_trigger = {
@@ -1156,6 +1174,8 @@ carnx_slavery_attitude_employer_government_trigger = {
 		government_has_flag = government_is_clan
 		government_has_flag = government_is_administrative
 		government_has_flag = government_is_nomadic
+		government_has_flag = government_is_celestial
+		government_has_flag = government_is_meritocratic
 	}
 }
 
@@ -1171,6 +1191,7 @@ carnx_slavery_attitude_liberator_faith_culture_trigger = {
 	faith = {
 		OR = {
 			religion = religion:christianity_religion
+			religion = religion:dualism_religion
 			religion = religion:buddhism_religion
 			religion = religion:jainism_religion
 			religion = religion:taoism_religion

@@ -500,7 +500,7 @@
 						has_treasury = no
 					}
 				}
-				add = court_physician_total_salary_value
+				add = carnx_court_physician_total_salary_value
 			}
 		}
 		treasury = {
@@ -511,7 +511,7 @@
 						has_treasury = yes
 					}
 				}
-				add = court_physician_total_salary_value
+				add = carnx_court_physician_total_salary_value
 			}
 		}
 		round = no
@@ -519,7 +519,7 @@
 
 	received_salary = {
 		gold = {
-			value = court_physician_total_salary_value
+			value = carnx_court_physician_total_salary_value
 		}
 		round = no
 	}
@@ -1700,7 +1700,7 @@ antiquarian_court_position = {
 						has_treasury = no
 					}
 				}
-				add = antiquarian_total_salary_value
+				add = carnx_antiquarian_total_salary_value
 			}
 		}
 		treasury = {
@@ -1711,7 +1711,7 @@ antiquarian_court_position = {
 						has_treasury = yes
 					}
 				}
-				add = antiquarian_total_salary_value
+				add = carnx_antiquarian_total_salary_value
 			}
 		}
 		round = no
@@ -1719,7 +1719,7 @@ antiquarian_court_position = {
 
 	received_salary = {
 		gold = {
-			value = antiquarian_total_salary_value
+			value = carnx_antiquarian_total_salary_value
 		}
 		round = no
 	}
@@ -2009,7 +2009,7 @@ seneschal_court_position = {
 						has_treasury = no
 					}
 				}
-				add = seneschal_total_salary_value
+				add = carnx_seneschal_total_salary_value
 			}
 		}
 		treasury = {
@@ -2020,7 +2020,7 @@ seneschal_court_position = {
 						has_treasury = yes
 					}
 				}
-				add = seneschal_total_salary_value
+				add = carnx_seneschal_total_salary_value
 			}
 		}
 		prestige = seneschal_prestige_salary_value
@@ -2029,7 +2029,7 @@ seneschal_court_position = {
 
 	received_salary = {
 		gold = {
-			value = seneschal_total_salary_value
+			value = carnx_seneschal_total_salary_value
 		}
 		prestige = {
 			value = seneschal_prestige_salary_value
@@ -2588,7 +2588,7 @@ court_tutor_court_position = {
 						has_treasury = no
 					}
 				}
-				add = court_tutor_total_salary_value
+				add = carnx_court_tutor_total_salary_value
 			}
 		}
 		treasury = {
@@ -2599,7 +2599,7 @@ court_tutor_court_position = {
 						has_treasury = yes
 					}
 				}
-				add = court_tutor_total_salary_value
+				add = carnx_court_tutor_total_salary_value
 			}
 		}
 		prestige = court_tutor_prestige_salary_value
@@ -2608,7 +2608,7 @@ court_tutor_court_position = {
 
 	received_salary = {
 		gold = {
-			value = court_tutor_total_salary_value
+			value = carnx_court_tutor_total_salary_value
 		}
 		prestige = {
 			value = court_tutor_prestige_salary_value
@@ -3006,7 +3006,7 @@ wet_nurse_court_position = { # BP2
 						has_treasury = no
 					}
 				}
-				add = wet_nurse_total_salary_value
+				add = carnx_wet_nurse_total_salary_value
 			}
 		}
 		treasury = {
@@ -3017,7 +3017,7 @@ wet_nurse_court_position = { # BP2
 						has_treasury = yes
 					}
 				}
-				add = wet_nurse_total_salary_value
+				add = carnx_wet_nurse_total_salary_value
 			}
 		}
 		prestige = wet_nurse_prestige_salary_value
@@ -3026,7 +3026,7 @@ wet_nurse_court_position = { # BP2
 
 	received_salary = {
 		gold = {
-			value = wet_nurse_total_salary_value
+			value = carnx_wet_nurse_total_salary_value
 		}
 		prestige = {
 			value = wet_nurse_prestige_salary_value
@@ -4565,7 +4565,7 @@ chief_eunuch_court_position = {
 						has_treasury = no
 					}
 				}
-				add = chief_eunuch_total_salary_value
+				add = carnx_chief_eunuch_total_salary_value
 			}
 		}
 		treasury = {
@@ -4576,7 +4576,7 @@ chief_eunuch_court_position = {
 						has_treasury = yes
 					}
 				}
-				add = chief_eunuch_total_salary_value
+				add = carnx_chief_eunuch_total_salary_value
 			}
 		}
 		prestige = {
@@ -4587,7 +4587,7 @@ chief_eunuch_court_position = {
 
 	received_salary = {
 		gold = {
-			value = chief_eunuch_total_salary_value
+			value = carnx_chief_eunuch_total_salary_value
 		}
 		prestige = {
 			value = chief_eunuch_prestige_salary_value
@@ -5712,7 +5712,7 @@ master_assassin_court_position = {
 						has_treasury = no
 					}
 				}
-				add = master_assassin_total_salary_value
+				add = carnx_master_assassin_total_salary_value
 			}
 		}
 		treasury = {
@@ -5723,7 +5723,7 @@ master_assassin_court_position = {
 						has_treasury = yes
 					}
 				}
-				add = master_assassin_total_salary_value
+				add = carnx_master_assassin_total_salary_value
 			}
 		}
 		prestige = {
@@ -5734,7 +5734,7 @@ master_assassin_court_position = {
 
 	received_salary = {
 		gold = {
-			value = master_assassin_total_salary_value
+			value = carnx_master_assassin_total_salary_value
 		}
 		prestige = {
 			value = master_assassin_prestige_salary_value
@@ -7076,7 +7076,7 @@ court_gardener_court_position = {
 						has_treasury = no
 					}
 				}
-				add = court_gardener_total_salary_value
+				add = carnx_court_gardener_total_salary_value
 			}
 		}
 		treasury = {
@@ -7087,7 +7087,7 @@ court_gardener_court_position = {
 						has_treasury = yes
 					}
 				}
-				add = court_gardener_total_salary_value
+				add = carnx_court_gardener_total_salary_value
 			}
 		}
 		prestige = {
@@ -7098,7 +7098,7 @@ court_gardener_court_position = {
 
 	received_salary = {
 		gold = {
-			value = court_gardener_total_salary_value
+			value = carnx_court_gardener_total_salary_value
 		}
 		prestige = {
 			value = court_gardener_prestige_salary_value
@@ -7848,7 +7848,7 @@ chronicler_court_position = { # CE1
 						has_treasury = no
 					}
 				}
-				add = chronicler_total_salary_value
+				add = carnx_chronicler_total_salary_value
 			}
 		}
 		treasury = {
@@ -7859,7 +7859,7 @@ chronicler_court_position = { # CE1
 						has_treasury = yes
 					}
 				}
-				add = chronicler_total_salary_value
+				add = carnx_chronicler_total_salary_value
 			}
 		}
 		prestige = {
@@ -7870,7 +7870,7 @@ chronicler_court_position = { # CE1
 
 	received_salary = {
 		gold = {
-			value = chronicler_total_salary_value
+			value = carnx_chronicler_total_salary_value
 		}
 		prestige = {
 			value = chronicler_prestige_salary_value
@@ -8319,7 +8319,7 @@ champion_court_position = { # EP1
 						has_treasury = no
 					}
 				}
-				add = champion_total_salary_value
+				add = carnx_champion_total_salary_value
 			}
 		}
 		treasury = {
@@ -8330,7 +8330,7 @@ champion_court_position = { # EP1
 						has_treasury = yes
 					}
 				}
-				add = champion_total_salary_value
+				add = carnx_champion_total_salary_value
 			}
 		}
 		round = no
@@ -8338,7 +8338,7 @@ champion_court_position = { # EP1
 
 	received_salary = {
 		gold = {
-			value = champion_total_salary_value
+			value = carnx_champion_total_salary_value
 		}
 		round = no
 	}
@@ -8664,7 +8664,7 @@ court_brewmaster_court_position = {
 						has_treasury = no
 					}
 				}
-				add = court_brewmaster_total_salary_value
+				add = carnx_court_brewmaster_total_salary_value
 			}
 		}
 		treasury = {
@@ -8675,7 +8675,7 @@ court_brewmaster_court_position = {
 						has_treasury = yes
 					}
 				}
-				add = court_brewmaster_total_salary_value
+				add = carnx_court_brewmaster_total_salary_value
 			}
 		}
 		prestige = {
@@ -8686,7 +8686,7 @@ court_brewmaster_court_position = {
 
 	received_salary = {
 		gold = {
-			value = court_brewmaster_total_salary_value
+			value = carnx_court_brewmaster_total_salary_value
 		}
 		prestige = {
 			value = court_brewmaster_prestige_salary_value
@@ -10165,7 +10165,7 @@ court_poet_court_position = { # EP1
 						has_treasury = no
 					}
 				}
-				add = court_poet_total_salary_value
+				add = carnx_court_poet_total_salary_value
 			}
 		}
 		treasury = {
@@ -10176,7 +10176,7 @@ court_poet_court_position = { # EP1
 						has_treasury = yes
 					}
 				}
-				add = court_poet_total_salary_value
+				add = carnx_court_poet_total_salary_value
 			}
 		}
 		prestige = {
@@ -10187,7 +10187,7 @@ court_poet_court_position = { # EP1
 
 	received_salary = {
 		gold = {
-			value = court_poet_total_salary_value
+			value = carnx_court_poet_total_salary_value
 		}
 		prestige = {
 			value = court_poet_prestige_salary_value
@@ -10638,7 +10638,7 @@ court_musician_court_position = {
 						has_treasury = no
 					}
 				}
-				add = court_musician_total_salary_value
+				add = carnx_court_musician_total_salary_value
 			}
 		}
 		treasury = {
@@ -10649,7 +10649,7 @@ court_musician_court_position = {
 						has_treasury = yes
 					}
 				}
-				add = court_musician_total_salary_value
+				add = carnx_court_musician_total_salary_value
 			}
 		}
 		prestige = {
@@ -10660,7 +10660,7 @@ court_musician_court_position = {
 
 	received_salary = {
 		gold = {
-			value = court_musician_total_salary_value
+			value = carnx_court_musician_total_salary_value
 		}
 		prestige = {
 			value = court_musician_prestige_salary_value
@@ -11278,7 +11278,7 @@ food_taster_court_position = { # EP1
 						has_treasury = no
 					}
 				}
-				add = food_taster_total_salary_value
+				add = carnx_food_taster_total_salary_value
 			}
 		}
 		treasury = {
@@ -11289,7 +11289,7 @@ food_taster_court_position = { # EP1
 						has_treasury = yes
 					}
 				}
-				add = food_taster_total_salary_value
+				add = carnx_food_taster_total_salary_value
 			}
 		}
 		prestige = {
@@ -11300,7 +11300,7 @@ food_taster_court_position = { # EP1
 
 	received_salary = {
 		gold = {
-			value = food_taster_total_salary_value
+			value = carnx_food_taster_total_salary_value
 		}
 		prestige = {
 			value = food_taster_prestige_salary_value
@@ -11943,7 +11943,7 @@ court_jester_court_position = {
 						has_treasury = no
 					}
 				}
-				add = court_jester_total_salary_value
+				add = carnx_court_jester_total_salary_value
 			}
 		}
 		treasury = {
@@ -11954,7 +11954,7 @@ court_jester_court_position = {
 						has_treasury = yes
 					}
 				}
-				add = court_jester_total_salary_value
+				add = carnx_court_jester_total_salary_value
 			}
 		}
 		prestige = {
@@ -11965,7 +11965,7 @@ court_jester_court_position = {
 
 	received_salary = {
 		gold = {
-			value = court_jester_total_salary_value
+			value = carnx_court_jester_total_salary_value
 		}
 		prestige = {
 			value = court_jester_prestige_salary_value
@@ -12960,7 +12960,7 @@ bodyguard_court_position = { # EP1
 						has_treasury = no
 					}
 				}
-				add = bodyguard_total_salary_value
+				add = carnx_bodyguard_total_salary_value
 			}
 		}
 		treasury = {
@@ -12971,7 +12971,7 @@ bodyguard_court_position = { # EP1
 						has_treasury = yes
 					}
 				}
-				add = bodyguard_total_salary_value
+				add = carnx_bodyguard_total_salary_value
 			}
 		}
 		prestige = {
@@ -12982,7 +12982,7 @@ bodyguard_court_position = { # EP1
 
 	received_salary = {
 		gold = {
-			value = bodyguard_total_salary_value
+			value = carnx_bodyguard_total_salary_value
 		}
 		prestige = {
 			value = major_court_position_prestige_salary

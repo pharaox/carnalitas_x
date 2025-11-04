@@ -45,7 +45,7 @@ carnx_vanilla_child_birth_house_effect = {
 			if = {
 				limit = {
 					is_alive = yes
-					NOT = { this = scope:child } # If the house dies out, a posthumous child can revive it
+					this != scope:child # If the house dies out, a posthumous child can revive it
 				}
 				add_hook_no_toast = {
 					type = house_head_hook

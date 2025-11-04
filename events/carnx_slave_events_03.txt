@@ -205,7 +205,7 @@ carnx_slave.0003 = {
 		random_knight = {
 			limit = {
 				carnx_slave_0003_valid_scapegoat_trigger = yes
-				NOT = { this = scope:slave }
+				this != scope:slave
 			}
 
 			weight = {

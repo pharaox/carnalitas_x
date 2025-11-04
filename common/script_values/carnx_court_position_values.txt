@@ -1,5 +1,5 @@
-﻿carnx_court_position_court_physician_salary = {
-	value = court_position_physician_salary
+﻿carnx_court_physician_total_salary_value = {
+	value = court_physician_total_salary_value
 	if = {
 		limit = {
 			scope:liege = {
@@ -10,8 +10,8 @@
 	}
 }
 
-carnx_court_position_court_gardener_salary = {
-	value = medium_court_position_salary
+carnx_court_gardener_total_salary_value = {
+	value = court_gardener_total_salary_value
 	if = {
 		limit = {
 			scope:liege = {
@@ -22,8 +22,8 @@ carnx_court_position_court_gardener_salary = {
 	}
 }
 
-carnx_court_position_antiquarian_salary = {
-	value = court_position_antiquarian_salary
+carnx_antiquarian_total_salary_value = {
+	value = antiquarian_total_salary_value
 	if = {
 		limit = {
 			scope:liege = {
@@ -34,8 +34,8 @@ carnx_court_position_antiquarian_salary = {
 	}
 }
 
-carnx_court_position_wet_nurse_salary = {
-	value = minor_court_position_salary
+carnx_wet_nurse_total_salary_value = {
+	value = wet_nurse_total_salary_value
 	if = {
 		limit = {
 			scope:liege = {
@@ -46,8 +46,8 @@ carnx_court_position_wet_nurse_salary = {
 	}
 }
 
-carnx_court_position_court_tutor_salary = {
-	value = medium_court_position_salary
+carnx_court_tutor_total_salary_value = {
+	value = court_tutor_total_salary_value
 	if = {
 		limit = {
 			scope:liege = {
@@ -58,8 +58,8 @@ carnx_court_position_court_tutor_salary = {
 	}
 }
 
-carnx_court_position_food_taster_salary = {
-	value = minor_court_position_salary
+carnx_food_taster_total_salary_value = {
+	value = food_taster_total_salary_value
 	if = {
 		limit = {
 			scope:liege = {
@@ -70,8 +70,8 @@ carnx_court_position_food_taster_salary = {
 	}
 }
 
-carnx_court_position_seneschal_salary = {
-	value = medium_court_position_salary
+carnx_seneschal_total_salary_value = {
+	value = seneschal_total_salary_value
 	if = {
 		limit = {
 			scope:liege = {
@@ -82,20 +82,8 @@ carnx_court_position_seneschal_salary = {
 	}
 }
 
-carnx_court_position_cupbearer_salary = {
-	value = minor_court_position_salary
-	if = {
-		limit = {
-			scope:liege = {
-				carnx_employs_slave_as_court_position_trigger = { TYPE = cupbearer_court_position }
-			}
-		}
-		multiply = carnx_court_position_salary_slave_multiplier
-	}
-}
-
-carnx_court_position_chief_eunuch_salary = {
-	value = minor_court_position_salary
+carnx_chief_eunuch_total_salary_value = {
+	value = chief_eunuch_total_salary_value
 	if = {
 		limit = {
 			scope:liege = {
@@ -106,8 +94,8 @@ carnx_court_position_chief_eunuch_salary = {
 	}
 }
 
-carnx_court_position_court_jester_salary = {
-	value = minor_court_position_salary
+carnx_court_jester_total_salary_value = {
+	value = court_jester_total_salary_value
 	if = {
 		limit = {
 			scope:liege = {
@@ -118,8 +106,8 @@ carnx_court_position_court_jester_salary = {
 	}
 }
 
-carnx_court_position_court_poet_salary = {
-	value = minor_court_position_salary
+carnx_court_poet_total_salary_value = {
+	value = court_poet_total_salary_value
 	if = {
 		limit = {
 			scope:liege = {
@@ -130,8 +118,8 @@ carnx_court_position_court_poet_salary = {
 	}
 }
 
-carnx_court_position_court_musician_salary = {
-	value = minor_court_position_salary
+carnx_court_musician_total_salary_value = {
+	value = court_musician_total_salary_value
 	if = {
 		limit = {
 			scope:liege = {
@@ -142,8 +130,8 @@ carnx_court_position_court_musician_salary = {
 	}
 }
 
-carnx_court_position_bodyguard_salary = {
-	value = medium_court_position_salary
+carnx_bodyguard_total_salary_value = {
+	value = bodyguard_total_salary_value
 	if = {
 		limit = {
 			scope:liege = {
@@ -154,8 +142,8 @@ carnx_court_position_bodyguard_salary = {
 	}
 }
 
-carnx_court_position_champion_salary = {
-	value = minor_court_position_salary
+carnx_champion_total_salary_value = {
+	value = champion_total_salary_value
 	if = {
 		limit = {
 			scope:liege = {
@@ -166,20 +154,8 @@ carnx_court_position_champion_salary = {
 	}
 }
 
-carnx_court_position_executioner_salary = {
-	value = minor_court_position_salary
-	if = {
-		limit = {
-			scope:liege = {
-				carnx_employs_slave_as_court_position_trigger = { TYPE = executioner_court_position }
-			}
-		}
-		multiply = carnx_court_position_salary_slave_multiplier
-	}
-}
-
-carnx_court_position_master_assassin_salary = {
-	value = medium_court_position_salary
+carnx_master_assassin_total_salary_value = {
+	value = master_assassin_total_salary_value
 	if = {
 		limit = {
 			scope:liege = {
@@ -190,8 +166,8 @@ carnx_court_position_master_assassin_salary = {
 	}
 }
 
-carnx_court_position_chronicler_salary = {
-	value = minor_court_position_salary
+carnx_chronicler_total_salary_value = {
+	value = chronicler_total_salary_value
 	if = {
 		limit = {
 			scope:liege = {
@@ -202,8 +178,8 @@ carnx_court_position_chronicler_salary = {
 	}
 }
 
-carnx_court_position_court_brewmaster_salary = {
-	value = minor_court_position_salary
+carnx_court_brewmaster_total_salary_value = {
+	value = court_brewmaster_total_salary_value
 	if = {
 		limit = {
 			scope:liege = {
@@ -214,7 +190,103 @@ carnx_court_position_court_brewmaster_salary = {
 	}
 }
 
-carnx_court_position_slave_concubine_salary = {
+carnx_boyan_total_salary_value = {
+	value = boyan_total_salary_value
+	if = {
+		limit = {
+			scope:liege = {
+				carnx_employs_slave_as_court_position_trigger = { TYPE = boyan_court_position }
+			}
+		}
+		multiply = carnx_court_position_salary_slave_multiplier
+	}
+}
+
+carnx_siege_engineer_total_salary_value = {
+	value = siege_engineer_total_salary_value
+	if = {
+		limit = {
+			scope:liege = {
+				carnx_employs_slave_as_court_position_trigger = { TYPE = siege_engineer_court_position }
+			}
+		}
+		multiply = carnx_court_position_salary_slave_multiplier
+	}
+}
+
+carnx_yurtchi_total_salary_value = {
+	value = yurtchi_total_salary_value
+	if = {
+		limit = {
+			scope:liege = {
+				carnx_employs_slave_as_court_position_trigger = { TYPE = yurtchi_court_position }
+			}
+		}
+		multiply = carnx_court_position_salary_slave_multiplier
+	}
+}
+
+carnx_cherbi_total_salary_value = {
+	value = cherbi_total_salary_value
+	if = {
+		limit = {
+			scope:liege = {
+				carnx_employs_slave_as_court_position_trigger = { TYPE = cherbi_court_position }
+			}
+		}
+		multiply = carnx_court_position_salary_slave_multiplier
+	}
+}
+
+carnx_foreign_emissary_total_salary_value = {
+	value = foreign_emissary_total_salary_value
+	if = {
+		limit = {
+			scope:liege = {
+				carnx_employs_slave_as_court_position_trigger = { TYPE = foreign_emissary_court_position }
+			}
+		}
+		multiply = carnx_court_position_salary_slave_multiplier
+	}
+}
+
+carnx_keeper_of_the_horses_total_salary_value = {
+	value = keeper_of_the_horses_total_salary_value
+	if = {
+		limit = {
+			scope:liege = {
+				carnx_employs_slave_as_court_position_trigger = { TYPE = keeper_of_the_horses_court_position }
+			}
+		}
+		multiply = carnx_court_position_salary_slave_multiplier
+	}
+}
+
+carnx_keeper_of_the_harem_total_salary_value = {
+	value = keeper_of_the_harem_total_salary_value
+	if = {
+		limit = {
+			scope:liege = {
+				carnx_employs_slave_as_court_position_trigger = { TYPE = keeper_of_the_harem_court_position }
+			}
+		}
+		multiply = carnx_court_position_salary_slave_multiplier
+	}
+}
+
+carnx_khlon_glan_total_salary_value = {
+	value = khlon_glan_total_salary_value
+	if = {
+		limit = {
+			scope:liege = {
+				carnx_employs_slave_as_court_position_trigger = { TYPE = khlon_glan_court_position }
+			}
+		}
+		multiply = carnx_court_position_salary_slave_multiplier
+	}
+}
+
+carnx_slave_concubine_total_salary_value = {
 	add = {
 		value = 0.1
 		desc = COURT_POSITION_SALARY_BREAKDOWN_BASE
@@ -222,9 +294,66 @@ carnx_court_position_slave_concubine_salary = {
 	}
 	multiply = carnx_court_position_salary_liege_multiplier
 	multiply = carnx_court_position_salary_slave_multiplier
+
+	# Set to 0 with Dynasty Perk Inner Circle
+	if = {
+		limit = { court_position_inner_circle_salary_trigger = { POS = carnx_slave_concubine } }
+		multiply = {
+			value = 0
+			desc = inner_circle_salary_mod
+			format = "BASE_VALUE_FORMAT_DECIMALS_MINUS_POSITIVE"
+		}
+	}
+	# Halved with obligation hook
+	else_if = {
+		limit = {
+			court_position_obligation_hook_salary_trigger = {
+				POS = carnx_slave_concubine
+				LIEGE = scope:liege
+			}
+		}
+		multiply = {
+			value = 0.5
+			desc = obligation_hook_salary
+			format = "BASE_VALUE_FORMAT_DECIMALS_MINUS_POSITIVE"
+		}
+	}
+	# Halved salary
+	if = {
+		limit = {
+			court_position_halved_salary_trigger = { POS = carnx_slave_concubine }
+		}
+		multiply = {
+			value = 0.5
+			desc = court_position_halved_salary
+			format = "BASE_VALUE_FORMAT_DECIMALS_MINUS_POSITIVE"
+		}
+	}
+	# Increased salary
+	if = {
+		limit = {
+			court_position_increased_salary_trigger = { POS = carnx_slave_concubine }
+		}
+		multiply = {
+			value = 1.5
+			desc = court_position_increased_salary
+			format = "BASE_VALUE_FORMAT_DECIMALS_MINUS_POSITIVE"
+		}
+	}
+	#You're working with LAAMPS now
+	if = {
+		limit = { 
+			scope:liege ?= { government_has_flag = government_is_landless_adventurer }
+		}
+		multiply = {
+			value = 0
+			desc = court_position_laamps_free
+			format = "BASE_VALUE_FORMAT_DECIMALS_MINUS_POSITIVE"
+		}
+	}
 }
 
-carnx_court_position_slave_captain_salary = {
+carnx_slave_captain_total_salary_value = {
 	add = {
 		value = 0.3
 		desc = COURT_POSITION_SALARY_BREAKDOWN_BASE
@@ -232,9 +361,66 @@ carnx_court_position_slave_captain_salary = {
 	}
 	multiply = carnx_court_position_salary_liege_multiplier
 	multiply = carnx_court_position_salary_slave_multiplier
+
+	# Set to 0 with Dynasty Perk Inner Circle
+	if = {
+		limit = { court_position_inner_circle_salary_trigger = { POS = carnx_slave_captain } }
+		multiply = {
+			value = 0
+			desc = inner_circle_salary_mod
+			format = "BASE_VALUE_FORMAT_DECIMALS_MINUS_POSITIVE"
+		}
+	}
+	# Halved with obligation hook
+	else_if = {
+		limit = {
+			court_position_obligation_hook_salary_trigger = {
+				POS = carnx_slave_captain
+				LIEGE = scope:liege
+			}
+		}
+		multiply = {
+			value = 0.5
+			desc = obligation_hook_salary
+			format = "BASE_VALUE_FORMAT_DECIMALS_MINUS_POSITIVE"
+		}
+	}
+	# Halved salary
+	if = {
+		limit = {
+			court_position_halved_salary_trigger = { POS = carnx_slave_captain }
+		}
+		multiply = {
+			value = 0.5
+			desc = court_position_halved_salary
+			format = "BASE_VALUE_FORMAT_DECIMALS_MINUS_POSITIVE"
+		}
+	}
+	# Increased salary
+	if = {
+		limit = {
+			court_position_increased_salary_trigger = { POS = carnx_slave_captain }
+		}
+		multiply = {
+			value = 1.5
+			desc = court_position_increased_salary
+			format = "BASE_VALUE_FORMAT_DECIMALS_MINUS_POSITIVE"
+		}
+	}
+	#You're working with LAAMPS now
+	if = {
+		limit = { 
+			scope:liege ?= { government_has_flag = government_is_landless_adventurer }
+		}
+		multiply = {
+			value = 0
+			desc = court_position_laamps_free
+			format = "BASE_VALUE_FORMAT_DECIMALS_MINUS_POSITIVE"
+		}
+	}
 }
 
-carnx_court_position_slave_eunuch_salary = {
+carnx_slave_eunuch_total_salary_value = {
 	add = {
 		value = 0.3
 		desc = COURT_POSITION_SALARY_BREAKDOWN_BASE
@@ -242,6 +428,246 @@ carnx_court_position_slave_eunuch_salary = {
 	}
 	multiply = carnx_court_position_salary_liege_multiplier
 	multiply = carnx_court_position_salary_slave_multiplier
+
+	# Set to 0 with Dynasty Perk Inner Circle
+	if = {
+		limit = { court_position_inner_circle_salary_trigger = { POS = carnx_slave_eunuch } }
+		multiply = {
+			value = 0
+			desc = inner_circle_salary_mod
+			format = "BASE_VALUE_FORMAT_DECIMALS_MINUS_POSITIVE"
+		}
+	}
+	# Halved with obligation hook
+	else_if = {
+		limit = {
+			court_position_obligation_hook_salary_trigger = {
+				POS = carnx_slave_eunuch
+				LIEGE = scope:liege
+			}
+		}
+		multiply = {
+			value = 0.5
+			desc = obligation_hook_salary
+			format = "BASE_VALUE_FORMAT_DECIMALS_MINUS_POSITIVE"
+		}
+	}
+	# Halved salary
+	if = {
+		limit = {
+			court_position_halved_salary_trigger = { POS = carnx_slave_eunuch }
+		}
+		multiply = {
+			value = 0.5
+			desc = court_position_halved_salary
+			format = "BASE_VALUE_FORMAT_DECIMALS_MINUS_POSITIVE"
+		}
+	}
+	# Increased salary
+	if = {
+		limit = {
+			court_position_increased_salary_trigger = { POS = carnx_slave_eunuch }
+		}
+		multiply = {
+			value = 1.5
+			desc = court_position_increased_salary
+			format = "BASE_VALUE_FORMAT_DECIMALS_MINUS_POSITIVE"
+		}
+	}
+	#You're working with LAAMPS now
+	if = {
+		limit = { 
+			scope:liege ?= { government_has_flag = government_is_landless_adventurer }
+		}
+		multiply = {
+			value = 0
+			desc = court_position_laamps_free
+			format = "BASE_VALUE_FORMAT_DECIMALS_MINUS_POSITIVE"
+		}
+	}
+}
+
+carnx_slave_concubine_prestige_salary_value = {
+	value = minor_court_position_prestige_salary
+
+	# Set to 0 with Dynasty Perk Inner Circle
+	if = {
+		limit = { court_position_inner_circle_salary_trigger = { POS = carnx_slave_concubine } }
+		multiply = {
+			value = 0
+			desc = inner_circle_salary_mod
+			format = "BASE_VALUE_FORMAT_DECIMALS_MINUS_POSITIVE"
+		}
+	}
+	# Halved with obligation hook
+	else_if = {
+		limit = {
+			court_position_obligation_hook_salary_trigger = {
+				POS = carnx_slave_concubine
+				LIEGE = scope:liege
+			}
+		}
+		multiply = {
+			value = 0.5
+			desc = obligation_hook_salary
+			format = "BASE_VALUE_FORMAT_DECIMALS_MINUS_POSITIVE"
+		}
+	}
+	# Halved salary
+	if = {
+		limit = {
+			court_position_halved_salary_trigger = { POS = carnx_slave_concubine }
+		}
+		multiply = {
+			value = 0.5
+			desc = court_position_halved_salary
+			format = "BASE_VALUE_FORMAT_DECIMALS_MINUS_POSITIVE"
+		}
+	}
+	# Increased salary
+	if = {
+		limit = {
+			court_position_increased_salary_trigger = { POS = carnx_slave_concubine }
+		}
+		multiply = {
+			value = 1.5
+			desc = court_position_increased_salary
+			format = "BASE_VALUE_FORMAT_DECIMALS_MINUS_POSITIVE"
+		}
+	}
+	#You're working with LAAMPS now
+	if = {
+		limit = { 
+			scope:liege ?= { government_has_flag = government_is_landless_adventurer }
+		}
+		multiply = {
+			value = 0
+			desc = court_position_laamps_free
+			format = "BASE_VALUE_FORMAT_DECIMALS_MINUS_POSITIVE"
+		}
+	}
+}
+
+carnx_slave_captain_prestige_salary_value = {
+	value = minor_court_position_prestige_salary
+
+	# Set to 0 with Dynasty Perk Inner Circle
+	if = {
+		limit = { court_position_inner_circle_salary_trigger = { POS = carnx_slave_captain } }
+		multiply = {
+			value = 0
+			desc = inner_circle_salary_mod
+			format = "BASE_VALUE_FORMAT_DECIMALS_MINUS_POSITIVE"
+		}
+	}
+	# Halved with obligation hook
+	else_if = {
+		limit = {
+			court_position_obligation_hook_salary_trigger = {
+				POS = carnx_slave_captain
+				LIEGE = scope:liege
+			}
+		}
+		multiply = {
+			value = 0.5
+			desc = obligation_hook_salary
+			format = "BASE_VALUE_FORMAT_DECIMALS_MINUS_POSITIVE"
+		}
+	}
+	# Halved salary
+	if = {
+		limit = {
+			court_position_halved_salary_trigger = { POS = carnx_slave_captain }
+		}
+		multiply = {
+			value = 0.5
+			desc = court_position_halved_salary
+			format = "BASE_VALUE_FORMAT_DECIMALS_MINUS_POSITIVE"
+		}
+	}
+	# Increased salary
+	if = {
+		limit = {
+			court_position_increased_salary_trigger = { POS = carnx_slave_captain }
+		}
+		multiply = {
+			value = 1.5
+			desc = court_position_increased_salary
+			format = "BASE_VALUE_FORMAT_DECIMALS_MINUS_POSITIVE"
+		}
+	}
+	#You're working with LAAMPS now
+	if = {
+		limit = { 
+			scope:liege ?= { government_has_flag = government_is_landless_adventurer }
+		}
+		multiply = {
+			value = 0
+			desc = court_position_laamps_free
+			format = "BASE_VALUE_FORMAT_DECIMALS_MINUS_POSITIVE"
+		}
+	}
+}
+
+carnx_slave_eunuch_prestige_salary_value = {
+	value = minor_court_position_prestige_salary
+
+	# Set to 0 with Dynasty Perk Inner Circle
+	if = {
+		limit = { court_position_inner_circle_salary_trigger = { POS = carnx_slave_eunuch } }
+		multiply = {
+			value = 0
+			desc = inner_circle_salary_mod
+			format = "BASE_VALUE_FORMAT_DECIMALS_MINUS_POSITIVE"
+		}
+	}
+	# Halved with obligation hook
+	else_if = {
+		limit = {
+			court_position_obligation_hook_salary_trigger = {
+				POS = carnx_slave_eunuch
+				LIEGE = scope:liege
+			}
+		}
+		multiply = {
+			value = 0.5
+			desc = obligation_hook_salary
+			format = "BASE_VALUE_FORMAT_DECIMALS_MINUS_POSITIVE"
+		}
+	}
+	# Halved salary
+	if = {
+		limit = {
+			court_position_halved_salary_trigger = { POS = carnx_slave_eunuch }
+		}
+		multiply = {
+			value = 0.5
+			desc = court_position_halved_salary
+			format = "BASE_VALUE_FORMAT_DECIMALS_MINUS_POSITIVE"
+		}
+	}
+	# Increased salary
+	if = {
+		limit = {
+			court_position_increased_salary_trigger = { POS = carnx_slave_eunuch }
+		}
+		multiply = {
+			value = 1.5
+			desc = court_position_increased_salary
+			format = "BASE_VALUE_FORMAT_DECIMALS_MINUS_POSITIVE"
+		}
+	}
+	#You're working with LAAMPS now
+	if = {
+		limit = { 
+			scope:liege ?= { government_has_flag = government_is_landless_adventurer }
+		}
+		multiply = {
+			value = 0
+			desc = court_position_laamps_free
+			format = "BASE_VALUE_FORMAT_DECIMALS_MINUS_POSITIVE"
+		}
+	}
 }
 
 carnx_court_position_salary_slave_multiplier = {
@@ -388,6 +814,35 @@ carnx_court_position_salary_liege_multiplier = {
 			desc = esteemed_hospitality_salary_mod
 			format = "BASE_VALUE_FORMAT_DECIMALS_MINUS_POSITIVE"
 		}
+	}
+	# TGP parameters
+	if = {
+		limit = {
+			scope:liege = {
+				has_title = title:h_china
+				top_participant_group:dynastic_cycle ?= { has_participant_group_parameter = dynastic_cycle_hegemony_higher_court_position_salaries }
+			}
+		}
+		multiply = {
+			value = {
+				value = 1
+				add = dynastic_cycle_hegemony_higher_court_position_salaries_value
+			}
+			desc = dynastic_cycle_hegemony_higher_court_position_salaries_desc
+			format = "BASE_VALUE_FORMAT_DECIMALS_PLUS_NEGATIVE"
+		} 
+	}
+	if = {
+		limit = {
+			OR = {
+				has_game_rule = hard_difficulty
+				has_game_rule = very_hard_difficulty
+			}
+			scope:liege = {
+				is_ai = yes
+			}
+		}
+		multiply = 0
 	}
 }
 
@@ -777,6 +1232,28 @@ carnx_keeper_of_the_horses_aptitude_difference_value = {
 	}
 }
 
+carnx_keeper_of_the_harem_aptitude_difference_value = {
+	value = 0
+	if = {
+		limit = {
+			carnx_can_serve_as_keeper_of_the_harem_trigger = { RULER = scope:liege }
+		}
+		value = aptitude:keeper_of_the_harem_court_position
+		subtract = carnx_keeper_of_the_harem_aptitude_threshold
+	}
+}
+
+carnx_khlon_glan_aptitude_difference_value = {
+	value = 0
+	if = {
+		limit = {
+			carnx_can_serve_as_khlon_glan_trigger = { RULER = scope:liege }
+		}
+		value = aptitude:khlon_glan_court_position
+		subtract = carnx_khlon_glan_aptitude_threshold
+	}
+}
+
 carnx_slave_concubine_aptitude_difference_value = {
 	value = 0
 	if = {
@@ -861,11 +1338,17 @@ carnx_vanilla_max_aptitude_difference_value = {
 																								min = {
 																									value = carnx_keeper_of_the_horses_aptitude_difference_value
 																									min = {
-																										value = carnx_slave_concubine_aptitude_difference_value
+																										value = carnx_keeper_of_the_harem_aptitude_difference_value
 																										min = {
-																											value = carnx_slave_captain_aptitude_difference_value
+																											value = carnx_khlon_glan_aptitude_difference_value
 																											min = {
-																												value = carnx_slave_eunuch_aptitude_difference_value
+																												value = carnx_slave_concubine_aptitude_difference_value
+																												min = {
+																													value = carnx_slave_captain_aptitude_difference_value
+																													min = {
+																														value = carnx_slave_eunuch_aptitude_difference_value
+																													}
+																												}
 																											}
 																										}
 																									}
@@ -930,7 +1413,7 @@ carnx_vanilla_court_position_traits_character_value = {
 		limit = { # 50 (or prerequisite)
 			OR = {
 				is_eunuch_trigger = yes # Chief Eunuch, Court Eunuch
-				has_trait = poet # Court Poet
+				has_trait = lifestyle_poet # Court Poet
 			}
 		}
 		add = 5

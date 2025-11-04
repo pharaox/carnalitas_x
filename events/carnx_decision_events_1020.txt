@@ -454,22 +454,22 @@ carnx_decision_events.1020 = {
 				limit = {
 					any_in_list = {
 						list = slaves_to_sell
-						NOT = { this = scope:first_slave }
+						this != scope:first_slave
 					}
 				}
 				random_in_list = {
 					list = slaves_to_sell
 					limit = {
-						NOT = { this = scope:first_slave }
+						this != scope:first_slave
 						has_variable = carnx_slave_to_sell
 						NOT = { carnx_is_employed_trigger = { RULER = root } }
 					}
 					alternative_limit = {
-						NOT = { this = scope:first_slave }
+						this != scope:first_slave
 						NOT = { carnx_is_employed_trigger = { RULER = root } }
 					}
 					alternative_limit = {
-						NOT = { this = scope:first_slave }
+						this != scope:first_slave
 					}
 					set_variable = {
 						name = carnx_slave_to_sell

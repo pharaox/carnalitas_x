@@ -40,7 +40,7 @@
 		diplomat = { weight = { base = 5 } }
 		august = { weight = { base = 5 } }
 		lifestyle_reveler = { weight = { base = 5 } }
-		poet = { weight = { base = 5 } }
+		lifestyle_poet = { weight = { base = 5 } }
 	}
 	random_traits_list = {
 		count = { 0 1 }
@@ -62,7 +62,7 @@
 		random = {
 			chance = 1
 
-			add_trait = poet
+			add_trait = lifestyle_poet
 
 			modifier = {
 				add = 10
@@ -149,7 +149,7 @@ carnx_soldier_character_template = {
 		random = {
 			chance = 1
 
-			add_trait = poet
+			add_trait = lifestyle_poet
 
 			modifier = {
 				add = 15
@@ -292,7 +292,7 @@ carnx_eunuch_character_template = {
 		diplomat = { weight = { base = 10 } } # Buffed
 		august = { weight = { base = 5 } }
 		lifestyle_reveler = { weight = { base = 5 } }
-		poet = { weight = { base = 5 } }
+		lifestyle_poet = { weight = { base = 5 } }
 	}
 	random_traits_list = {
 		count = 1
@@ -331,7 +331,7 @@ carnx_eunuch_character_template = {
 		random = {
 			chance = 1
 
-			add_trait = poet
+			add_trait = lifestyle_poet
 
 			modifier = {
 				add = 15

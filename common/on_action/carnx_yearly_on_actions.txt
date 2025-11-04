@@ -67,6 +67,8 @@ three_year_playable_pulse = {
 	on_actions = {
 		delay = { days = { 8 188 } }
 		carnx_three_year_market
+		delay = { days = { 8 188 } }
+		carnx_eight_year_market
 	}
 }
 
@@ -77,7 +79,7 @@ carnx_three_year_market = {
 			has_game_rule = carnx_market_event_frequency_player_3y
 		}
 		trigger_else = {
-			highest_held_title_tier >= tier_duchy
+			highest_held_title_tier >= tier_kingdom
 		}
 		basic_is_valid_for_yearly_events_trigger = yes
 	}
@@ -103,13 +105,33 @@ carnx_five_year_market = {
 			has_game_rule = carnx_market_event_frequency_player_5y
 		}
 		trigger_else = {
-			highest_held_title_tier < tier_duchy
+			highest_held_title_tier = tier_duchy
 		}
 		basic_is_valid_for_yearly_events_trigger = yes
 	}
 
 	events = {
 		carnx_slave.0001 # Buy Foreign Slaves
+	}
+}
+
+carnx_eight_year_market = {
+	trigger = {
+		is_ai = yes
+		highest_held_title_tier = tier_county
+		NOT = { has_character_flag = carnx_eight_year_market_cooldown }
+		basic_is_valid_for_yearly_events_trigger = yes
+	}
+
+	events = {
+		carnx_slave.0001 # Buy Foreign Slaves
+	}
+
+	effect = {
+		add_character_flag = {
+			flag = carnx_eight_year_market_cooldown
+			years = 8
+		}
 	}
 }
 

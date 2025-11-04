@@ -31,7 +31,7 @@ carn_demand_free_illegal_slaves_interaction = {
 
 	is_shown = {
 		NOT = { has_game_rule = carn_slavery_content_disabled }
-		NOT = { scope:actor = scope:recipient }
+		scope:actor != scope:recipient
 		scope:recipient = {
 			is_ai = yes
 			is_ruler = yes
@@ -345,7 +345,7 @@ carn_demand_free_illegal_slaves_interaction = {
 		# Opinion of actor
 		opinion_modifier = {
 			trigger = {
-				NOT = { scope:actor = scope:recipient }
+				scope:actor != scope:recipient
 			}
 			who = scope:recipient
 			opinion_target = scope:actor
@@ -398,7 +398,14 @@ carn_demand_free_illegal_slaves_interaction = {
 		adult = yes
 	}
 
-	ai_frequency = 60
+	ai_frequency_by_tier = {
+		barony = 0
+		county = 120
+		duchy = 60
+		kingdom = 60
+		empire = 60
+		hegemony = 60
+	}
 
 	ai_potential = {
 		is_adult = yes

@@ -301,7 +301,14 @@ carnx_liberate_slave_interaction = {
 		ai_recipients = prisoners
 	}
 
-	ai_frequency = 12
+	ai_frequency_by_tier = {
+		barony = 0
+		county = 24
+		duchy = 12
+		kingdom = 12
+		empire = 12
+		hegemony = 12
+	}
 
 	ai_potential = {
 		always = yes
@@ -348,7 +355,7 @@ carnx_liberate_slave_interaction = {
 					}
 				}
 				exists = scope:owner
-				NOT = { scope:actor = scope:owner }
+				scope:actor != scope:owner
 			}
 			opinion_target = scope:owner
 			multiplier = -0.25
@@ -357,7 +364,7 @@ carnx_liberate_slave_interaction = {
 		# Opinion of slave (-25 to 25 depending on opinion)
 		opinion_modifier = {
 			trigger = {
-				NOT = { scope:actor = scope:recipient }
+				scope:actor != scope:recipient
 			}
 			opinion_target = scope:recipient
 			multiplier = 0.25

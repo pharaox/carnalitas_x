@@ -188,127 +188,42 @@ carnx_slave_concubine_court_position = {
 
 	# How much it costs monthly to maintain this poisition.
 	salary = {
-		round = no
 		gold = {
-			value = carnx_court_position_slave_concubine_salary
-
-			# Set to 0 with Dynasty Perk Inner Circle
+			value = 0
 			if = {
-				limit = { court_position_inner_circle_salary_trigger = { POS = carnx_slave_concubine } }
-				multiply = {
-					value = 0
-					desc = inner_circle_salary_mod
-					format = "BASE_VALUE_FORMAT_DECIMALS_MINUS_POSITIVE"
-				}
-			}
-			# Halved with obligation hook
-			else_if = {
 				limit = {
-					court_position_obligation_hook_salary_trigger = {
-						POS = carnx_slave_concubine
-						LIEGE = scope:liege
+					scope:liege = {
+						has_treasury = no
 					}
 				}
-				multiply = {
-					value = 0.5
-					desc = obligation_hook_salary
-					format = "BASE_VALUE_FORMAT_DECIMALS_MINUS_POSITIVE"
-				}
+				add = carnx_slave_concubine_total_salary_value
 			}
-			# Halved salary
+		}
+		treasury = {
+			value = 0
 			if = {
 				limit = {
-					court_position_halved_salary_trigger = { POS = carnx_slave_concubine }
+					scope:liege = {
+						has_treasury = yes
+					}
 				}
-				multiply = {
-					value = 0.5
-					desc = court_position_halved_salary
-					format = "BASE_VALUE_FORMAT_DECIMALS_MINUS_POSITIVE"
-				}
+				add = carnx_slave_concubine_total_salary_value
 			}
-			# Increased salary
-			if = {
-				limit = {
-					court_position_increased_salary_trigger = { POS = carnx_slave_concubine }
-				}
-				multiply = {
-					value = 1.5
-					desc = court_position_increased_salary
-					format = "BASE_VALUE_FORMAT_DECIMALS_MINUS_POSITIVE"
-				}
-			}
-			#You're working with LAAMPS now
-			if = {
-				limit = { 
-					scope:liege ?= { government_has_flag = government_is_landless_adventurer }
-				}
-				multiply = {
-					value = 0
-					desc = court_position_laamps_free
-					format = "BASE_VALUE_FORMAT_DECIMALS_MINUS_POSITIVE"
-				}
-			}
+		}		
+		prestige = {
+			value = carnx_slave_concubine_prestige_salary_value
+		}
+		round = no
+	}
+
+	received_salary = {
+		gold = {
+			value = carnx_slave_concubine_total_salary_value
 		}
 		prestige = {
-			value = minor_court_position_prestige_salary # Update X_salary_tooltip if script_value is changed
-
-			# Set to 0 with Dynasty Perk Inner Circle
-			if = {
-				limit = { court_position_inner_circle_salary_trigger = { POS = carnx_slave_concubine } }
-				multiply = {
-					value = 0
-					desc = inner_circle_salary_mod
-					format = "BASE_VALUE_FORMAT_DECIMALS_MINUS_POSITIVE"
-				}
-			}
-			# Halved via obligation hook
-			else_if = {
-				limit = {
-					court_position_obligation_hook_salary_trigger = {
-						POS = carnx_slave_concubine
-						LIEGE = scope:liege
-					}
-				}
-				multiply = {
-					value = 0.5
-					desc = obligation_hook_salary
-					format = "BASE_VALUE_FORMAT_DECIMALS_MINUS_POSITIVE"
-				}
-			}
-			# Halved salary
-			if = {
-				limit = {
-					court_position_halved_salary_trigger = { POS = carnx_slave_concubine }
-				}
-				multiply = {
-					value = 0.5
-					desc = court_position_halved_salary
-					format = "BASE_VALUE_FORMAT_DECIMALS_MINUS_POSITIVE"
-				}
-			}
-			# Increased salary
-			if = {
-				limit = {
-					court_position_increased_salary_trigger = { POS = carnx_slave_concubine }
-				}
-				multiply = {
-					value = 1.5
-					desc = court_position_increased_salary
-					format = "BASE_VALUE_FORMAT_DECIMALS_MINUS_POSITIVE"
-				}
-			}
-			#You're working with LAAMPS now
-			if = {
-				limit = {
-					scope:liege ?= { government_has_flag = government_is_landless_adventurer }
-				}
-				multiply = {
-					value = 0
-					desc = court_position_laamps_free
-					format = "BASE_VALUE_FORMAT_DECIMALS_MINUS_POSITIVE"
-				}
-			}
+			value = carnx_slave_concubine_prestige_salary_value
 		}
+		round = no
 	}
 
 	is_powerful_agent = yes
@@ -356,11 +271,8 @@ carnx_slave_concubine_court_position = {
 	}
 
 	# Scripted value to determine whether an AI will hire a position or not.
-	candidate_score = {
+	ai_position_score = {
 		value = 100
-		add = scope:base_value
-		add = court_position_candidate_score_base_value
-		add = court_position_candidate_aptitude_value
 		scope:liege = {
 			# More likely if higher rank
 			if = {
@@ -376,6 +288,22 @@ carnx_slave_concubine_court_position = {
 				add = 50
 			}
 
+			# Less likely to hire an additional one if you're already employing one
+			if = {
+				limit = {
+					employs_court_position = carnx_slave_concubine_court_position
+				}
+				add = -50
+			}
+		}
+		add = court_position_debt_considerations_value
+	}
+	ai_candidate_score = {
+		value = 100
+		add = scope:base_value
+		add = court_position_candidate_score_base_value
+		add = court_position_candidate_aptitude_value
+		scope:liege = {
 			# More likely if attracted, less likely if not
 			if = {
 				limit = {
@@ -400,16 +328,7 @@ carnx_slave_concubine_court_position = {
 			else = {
 				add = -50
 			}
-
-			# Less likely to hire an additional one if you're already employing one
-			if = {
-				limit = {
-					employs_court_position = carnx_slave_concubine_court_position
-				}
-				add = -50
-			}
 		}
-		add = court_position_debt_considerations_value
 	}
 }
 
@@ -618,127 +537,42 @@ carnx_slave_captain_court_position = {
 
 	# How much it costs monthly to maintain this poisition.
 	salary = {
-		round = no
 		gold = {
-			value = carnx_court_position_slave_captain_salary
-
-			# Set to 0 with Dynasty Perk Inner Circle
+			value = 0
 			if = {
-				limit = { court_position_inner_circle_salary_trigger = { POS = carnx_slave_captain } }
-				multiply = {
-					value = 0
-					desc = inner_circle_salary_mod
-					format = "BASE_VALUE_FORMAT_DECIMALS_MINUS_POSITIVE"
-				}
-			}
-			# Halved with obligation hook
-			else_if = {
 				limit = {
-					court_position_obligation_hook_salary_trigger = {
-						POS = carnx_slave_captain
-						LIEGE = scope:liege
+					scope:liege = {
+						has_treasury = no
 					}
 				}
-				multiply = {
-					value = 0.5
-					desc = obligation_hook_salary
-					format = "BASE_VALUE_FORMAT_DECIMALS_MINUS_POSITIVE"
-				}
+				add = carnx_slave_captain_total_salary_value
 			}
-			# Halved salary
+		}
+		treasury = {
+			value = 0
 			if = {
 				limit = {
-					court_position_halved_salary_trigger = { POS = carnx_slave_captain }
+					scope:liege = {
+						has_treasury = yes
+					}
 				}
-				multiply = {
-					value = 0.5
-					desc = court_position_halved_salary
-					format = "BASE_VALUE_FORMAT_DECIMALS_MINUS_POSITIVE"
-				}
+				add = carnx_slave_captain_total_salary_value
 			}
-			# Increased salary
-			if = {
-				limit = {
-					court_position_increased_salary_trigger = { POS = carnx_slave_captain }
-				}
-				multiply = {
-					value = 1.5
-					desc = court_position_increased_salary
-					format = "BASE_VALUE_FORMAT_DECIMALS_MINUS_POSITIVE"
-				}
-			}
-			#You're working with LAAMPS now
-			if = {
-				limit = { 
-					scope:liege ?= { government_has_flag = government_is_landless_adventurer }
-				}
-				multiply = {
-					value = 0
-					desc = court_position_laamps_free
-					format = "BASE_VALUE_FORMAT_DECIMALS_MINUS_POSITIVE"
-				}
-			}
+		}		
+		prestige = {
+			value = carnx_slave_captain_prestige_salary_value
+		}
+		round = no
+	}
+
+	received_salary = {
+		gold = {
+			value = carnx_slave_captain_total_salary_value
 		}
 		prestige = {
-			value = minor_court_position_prestige_salary # Update X_salary_tooltip if script_value is changed
-
-			# Set to 0 with Dynasty Perk Inner Circle
-			if = {
-				limit = { court_position_inner_circle_salary_trigger = { POS = carnx_slave_captain } }
-				multiply = {
-					value = 0
-					desc = inner_circle_salary_mod
-					format = "BASE_VALUE_FORMAT_DECIMALS_MINUS_POSITIVE"
-				}
-			}
-			# Halved via obligation hook
-			else_if = {
-				limit = {
-					court_position_obligation_hook_salary_trigger = {
-						POS = carnx_slave_captain
-						LIEGE = scope:liege
-					}
-				}
-				multiply = {
-					value = 0.5
-					desc = obligation_hook_salary
-					format = "BASE_VALUE_FORMAT_DECIMALS_MINUS_POSITIVE"
-				}
-			}
-			# Halved salary
-			if = {
-				limit = {
-					court_position_halved_salary_trigger = { POS = carnx_slave_captain }
-				}
-				multiply = {
-					value = 0.5
-					desc = court_position_halved_salary
-					format = "BASE_VALUE_FORMAT_DECIMALS_MINUS_POSITIVE"
-				}
-			}
-			# Increased salary
-			if = {
-				limit = {
-					court_position_increased_salary_trigger = { POS = carnx_slave_captain }
-				}
-				multiply = {
-					value = 1.5
-					desc = court_position_increased_salary
-					format = "BASE_VALUE_FORMAT_DECIMALS_MINUS_POSITIVE"
-				}
-			}
-			#You're working with LAAMPS now
-			if = {
-				limit = {
-					scope:liege ?= { government_has_flag = government_is_landless_adventurer }
-				}
-				multiply = {
-					value = 0
-					desc = court_position_laamps_free
-					format = "BASE_VALUE_FORMAT_DECIMALS_MINUS_POSITIVE"
-				}
-			}
+			value = carnx_slave_captain_prestige_salary_value
 		}
+		round = no
 	}
 
 	# Scaling modifiers gained by the employer of the court position as the employee's aptitude level increases.
@@ -781,11 +615,8 @@ carnx_slave_captain_court_position = {
 	}
 
 	# Scripted value to determine whether an AI will hire a position or not.
-	candidate_score = {
+	ai_position_score = {
 		value = 150
-		add = scope:base_value
-		add = court_position_candidate_score_base_value
-		add = court_position_candidate_aptitude_value
 		scope:liege = {
 			# More likely if higher rank
 			if = {
@@ -810,6 +641,12 @@ carnx_slave_captain_court_position = {
 			}
 		}
 		add = court_position_debt_considerations_value
+	}
+	ai_candidate_score = {
+		value = 150
+		add = scope:base_value
+		add = court_position_candidate_score_base_value
+		add = court_position_candidate_aptitude_value
 	}
 }
 
@@ -985,127 +822,42 @@ carnx_slave_eunuch_court_position = {
 
 	# How much it costs monthly to maintain this poisition.
 	salary = {
-		round = no
 		gold = {
-			value = carnx_court_position_slave_eunuch_salary
-
-			# Set to 0 with Dynasty Perk Inner Circle
+			value = 0
 			if = {
-				limit = { court_position_inner_circle_salary_trigger = { POS = carnx_slave_eunuch } }
-				multiply = {
-					value = 0
-					desc = inner_circle_salary_mod
-					format = "BASE_VALUE_FORMAT_DECIMALS_MINUS_POSITIVE"
-				}
-			}
-			# Halved with obligation hook
-			else_if = {
 				limit = {
-					court_position_obligation_hook_salary_trigger = {
-						POS = carnx_slave_eunuch
-						LIEGE = scope:liege
+					scope:liege = {
+						has_treasury = no
 					}
 				}
-				multiply = {
-					value = 0.5
-					desc = obligation_hook_salary
-					format = "BASE_VALUE_FORMAT_DECIMALS_MINUS_POSITIVE"
-				}
+				add = carnx_slave_eunuch_total_salary_value
 			}
-			# Halved salary
+		}
+		treasury = {
+			value = 0
 			if = {
 				limit = {
-					court_position_halved_salary_trigger = { POS = carnx_slave_eunuch }
+					scope:liege = {
+						has_treasury = yes
+					}
 				}
-				multiply = {
-					value = 0.5
-					desc = court_position_halved_salary
-					format = "BASE_VALUE_FORMAT_DECIMALS_MINUS_POSITIVE"
-				}
+				add = carnx_slave_eunuch_total_salary_value
 			}
-			# Increased salary
-			if = {
-				limit = {
-					court_position_increased_salary_trigger = { POS = carnx_slave_eunuch }
-				}
-				multiply = {
-					value = 1.5
-					desc = court_position_increased_salary
-					format = "BASE_VALUE_FORMAT_DECIMALS_MINUS_POSITIVE"
-				}
-			}
-			#You're working with LAAMPS now
-			if = {
-				limit = { 
-					scope:liege ?= { government_has_flag = government_is_landless_adventurer }
-				}
-				multiply = {
-					value = 0
-					desc = court_position_laamps_free
-					format = "BASE_VALUE_FORMAT_DECIMALS_MINUS_POSITIVE"
-				}
-			}
+		}		
+		prestige = {
+			value = carnx_slave_eunuch_prestige_salary_value
+		}
+		round = no
+	}
+
+	received_salary = {
+		gold = {
+			value = carnx_slave_eunuch_total_salary_value
 		}
 		prestige = {
-			value = minor_court_position_prestige_salary # Update X_salary_tooltip if script_value is changed
-
-			# Set to 0 with Dynasty Perk Inner Circle
-			if = {
-				limit = { court_position_inner_circle_salary_trigger = { POS = carnx_slave_eunuch } }
-				multiply = {
-					value = 0
-					desc = inner_circle_salary_mod
-					format = "BASE_VALUE_FORMAT_DECIMALS_MINUS_POSITIVE"
-				}
-			}
-			# Halved via obligation hook
-			else_if = {
-				limit = {
-					court_position_obligation_hook_salary_trigger = {
-						POS = carnx_slave_eunuch
-						LIEGE = scope:liege
-					}
-				}
-				multiply = {
-					value = 0.5
-					desc = obligation_hook_salary
-					format = "BASE_VALUE_FORMAT_DECIMALS_MINUS_POSITIVE"
-				}
-			}
-			# Halved salary
-			if = {
-				limit = {
-					court_position_halved_salary_trigger = { POS = carnx_slave_eunuch }
-				}
-				multiply = {
-					value = 0.5
-					desc = court_position_halved_salary
-					format = "BASE_VALUE_FORMAT_DECIMALS_MINUS_POSITIVE"
-				}
-			}
-			# Increased salary
-			if = {
-				limit = {
-					court_position_increased_salary_trigger = { POS = carnx_slave_eunuch }
-				}
-				multiply = {
-					value = 1.5
-					desc = court_position_increased_salary
-					format = "BASE_VALUE_FORMAT_DECIMALS_MINUS_POSITIVE"
-				}
-			}
-			#You're working with LAAMPS now
-			if = {
-				limit = {
-					scope:liege ?= { government_has_flag = government_is_landless_adventurer }
-				}
-				multiply = {
-					value = 0
-					desc = court_position_laamps_free
-					format = "BASE_VALUE_FORMAT_DECIMALS_MINUS_POSITIVE"
-				}
-			}
+			value = carnx_slave_eunuch_prestige_salary_value
 		}
+		round = no
 	}
 
 	# Scaling modifiers gained by the employer of the court position as the employee's aptitude level increases.
@@ -1153,11 +905,8 @@ carnx_slave_eunuch_court_position = {
 	}
 
 	# Scripted value to determine whether an AI will hire a position or not.
-	candidate_score = {
+	ai_position_score = {
 		value = 150
-		add = scope:base_value
-		add = court_position_candidate_score_base_value
-		add = court_position_candidate_aptitude_value
 		scope:liege = {
 			# More likely if higher rank
 			if = {
@@ -1182,5 +931,11 @@ carnx_slave_eunuch_court_position = {
 			}
 		}
 		add = court_position_debt_considerations_value
+	}
+	ai_candidate_score = {
+		value = 150
+		add = scope:base_value
+		add = court_position_candidate_score_base_value
+		add = court_position_candidate_aptitude_value
 	}
 }

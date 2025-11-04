@@ -255,6 +255,29 @@ carnx_can_be_keeper_of_the_horses_trigger = {
 	}
 }
 
+carnx_can_be_keeper_of_the_harem_trigger = {
+	is_capable_adult = yes
+	trigger_if = {
+		limit = { carnx_is_slave_trigger = yes }
+		$LIEGE$ = {
+			carnx_is_slave_employment_enabled_trigger = yes
+		}
+	}
+}
+
+carnx_can_be_khlon_glan_trigger = {
+	is_capable_adult = yes
+	stewardship >= 10
+	martial >= 10
+	NOT = { is_spouse_of = $LIEGE$ }
+	trigger_if = {
+		limit = { carnx_is_slave_trigger = yes }
+		$LIEGE$ = {
+			carnx_is_slave_employment_enabled_trigger = yes
+		}
+	}
+}
+
 # CSR Court Positions
 
 carnx_can_be_slave_concubine_trigger = {

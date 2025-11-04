@@ -34,7 +34,7 @@ carnx_enslave_effect = {
 
 			# Victim's family & spouse hates slaver
 			every_close_family_member = {
-				limit = { NOT = { this = scope:new_owner } }
+				limit = { this != scope:new_owner }
 				add_to_temporary_list = victim_family_list
 			}
 			every_spouse = {
