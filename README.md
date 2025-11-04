@@ -4,7 +4,9 @@
 
 A comprehensive rework of the Carnalitas slavery system aiming at improved balance and better integration with other aspects of the game.
 
-The latest version is compatible with CK3 1.17.x and Carnalitas 2.11 / 2.10. If you are still on CK3 1.16.x, use [version 0.26.0](https://github.com/pharaox/carnalitas_x/releases/download/0.26.0/carnalitas_slavery_reimagined-0.26.0.zip) instead with Carnalitas 2.10.
+The latest version is compatible with CK3 1.18.x and Carnalitas 2.12. If you are still on CK3 1.17.x, use [version 0.27.0](https://github.com/pharaox/carnalitas_x/releases/download/0.27.0/carnalitas_slavery_reimagined-0.27.0.zip) instead with Carnalitas 2.11.
+
+This mod now includes the "Carnalitas - Historical Slavery Doctrines" mod and its game rule, adapted to the latest CK3 version.
 
 The latest version of the CSR AGOT compatibility mod is compatible with CK3 1.15.x, Carnalitas 2.9, CSR 0.24.x, AGOT 0.3.12+, and LoV 1.02+.. Use it with [Carnalitas AGOT Compatibility](https://www.loverslab.com/files/file/32307-carnalitas-agot-compatibility/).
 
@@ -53,7 +55,6 @@ This mod also supports changing its game rules mid-game with the [Gamerule Gadge
 This mod should be compatible with all mods based on Carnalitas that don't modify the slavery system. Compatibility with the following mods has been explicitly verified, but most others should work as well:
 
 * [Character Body Overhaul](https://www.loverslab.com/files/file/16683-character-body-overhaul/)
-* [Physical Attributes](https://www.loverslab.com/files/file/16927-physical-attributes/)
 
 This mod has been explicitly designed to complement [Carnalitas Love Reimagined](https://www.loverslab.com/files/file/29200-carnalitas-love-reimagined/) and [Carnalitas Prostitution Reimagined](https://www.loverslab.com/files/file/39623-carnalitas-prostitution-reimagined/), so you are encouraged to use all of them. If you do this, put this mod after Carnalitas and CLR, but before CPR in the load order.
 
@@ -256,11 +257,12 @@ In addition, if Carnalitas lactation is enabled, the milk production amount is t
 * The following council positions are available to slaves: *Spymaster*.
 * The following council positions are available to slaves if your government is clan or you have the *Slave Employer* attitude: *Chancellor*, *Steward*, *Marshal*.
 * The remaining council positions are not available to slaves, because they are considered religious, or are otherwise incompatible with slavery.
+* The minister council positions of Celestial governments are never available to slaves.
 
 ##### Court Positions
 
 * The following court positions are available to slaves: *Court Physician*, *Antiquarian*, *Wet Nurse*, *Food Taster*, *Seneschal*, *Chief Eunuch*, *Court Jester*, *Court Poet*, *Court Musician*, *Bodyguard*, *Executioner*, *Master Assassin*, *Chronicler*, *Court Brewmaster*, *Stargazer*, *Siege Engineer*, *Yurtchi*, *Foreign Emissary*.
-* The following court positions are available to slaves if your government is clan or you have the *Slave Employer* attitude: *Court Gardener*, *Tutor*, *Cupbearer*, *Personal Champion*, *Noyan*, *Cherbi*, *Keeper of the Horses*.
+* The following court positions are available to slaves if your government is clan or you have the *Slave Employer* attitude: *Court Gardener*, *Tutor*, *Cupbearer*, *Personal Champion*, *Noyan*, *Cherbi*, *Keeper of the Horses*, *Keeper of the Harem*, *Khlon Glan*.
 * The remaining court positions are not available to slaves, because they are considered religious or ceremonial, are otherwise incompatible with slavery, or are subject to certain game limitations.
 
 ### Capturing Slaves during Raids and Sieges
