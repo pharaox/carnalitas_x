@@ -1,0 +1,9 @@
+﻿carn_slavery_default_religious_doctrine = {
+	default = carn_slavery_default_religious_doctrine_full_historical
+	carn_slavery_default_religious_doctrine_full_historical = {}
+	carn_slavery_default_religious_doctrine_historical = {}
+	carn_slavery_default_religious_doctrine_accepted = {}
+	carn_slavery_default_religious_doctrine_shunned = {}
+	carn_slavery_default_religious_doctrine_criminal = {}
+	carn_slavery_default_religious_doctrine_inverted = {}
+}

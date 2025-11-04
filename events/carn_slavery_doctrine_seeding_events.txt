@@ -1,0 +1,157 @@
+﻿namespace = carn_slavery_doctrine_seeding
+
+# Event chain for seeding default religions with slavery doctrines
+# 0001. Activate the game rule effect for default slavery religious doctrines
+# 0002. Add default slavery religious doctrines to newly created religions if they don't have them
+#
+
+#
+# 0001. Activate the game rule effect for default slavery religious doctrines
+#
+
+carn_slavery_doctrine_seeding.0001 = {
+	scope = none
+	hidden = yes
+
+	immediate = {
+		if = {
+			limit = { has_game_rule = carn_slavery_default_religious_doctrine_full_historical }
+			every_religion_global = {
+				every_faith = {
+
+					# RIGHTEOUS FAITH SLAVERY
+
+					if = {
+						limit = {
+							NOR = {
+								has_doctrine = carn_doctrine_same_slavery_crime
+								has_doctrine = carn_doctrine_same_slavery_shunned
+								has_doctrine = carn_doctrine_same_slavery_accepted
+							}
+						}
+						if = {
+							limit = { religion = { is_in_family = rf_abrahamic } } # Righteous Faith Slavery is Criminal for Abrahamic religions, unless you're adamite or insular
+							# christianity_religion, dualism_religion, islam_religion, judaism_religion, yazidi_religion
+							if = {
+								limit = {
+									OR = {
+										this = faith:adamites
+										this = faith:insular_celtic
+									}
+								}
+								add_doctrine = carn_doctrine_same_slavery_accepted
+							}
+							else = {
+								add_doctrine = carn_doctrine_same_slavery_crime
+							}
+						}
+						else_if = {
+							limit = { religion = { is_in_family = rf_eastern } } # Righteous Faith Slavery is Shunned or Criminal for Eastern religions
+							if = {
+								limit = {
+									OR = {
+										religion = religion:hinduism_religion
+										religion = religion:buddhism_religion
+									}
+								}
+								# hinduism_religion, buddhism_religion
+								add_doctrine = carn_doctrine_same_slavery_shunned
+							}
+							else = {
+								# jainism_religion, zoroastrianism_religion
+								add_doctrine = carn_doctrine_same_slavery_crime
+							}
+						}
+						else_if = {
+							limit = { religion = { is_in_family = rf_sinitic } } # Righteous Faith Slavery is Shunned for Sinitic religions
+							# confucianism_religion, taoism_religion
+							add_doctrine = carn_doctrine_same_slavery_shunned
+						}
+						else = { # Same Religion Slavery is Accepted for pagans, unless you're Norse
+							if = {
+								limit = { this = faith:norse_pagan }
+								add_doctrine = carn_doctrine_same_slavery_shunned
+							}
+							else = {
+								add_doctrine = carn_doctrine_same_slavery_accepted
+							}
+						}
+					}
+
+					# HOSTILE FAITH SLAVERY
+
+					if = {
+						limit = {
+							NOR = {
+								has_doctrine = carn_doctrine_other_slavery_crime
+								has_doctrine = carn_doctrine_other_slavery_shunned
+								has_doctrine = carn_doctrine_other_slavery_accepted
+							}
+						}
+						if = {
+							limit = { religion = { is_in_family = rf_abrahamic } } # Hostile Faith Slavery is Accepted in Abrahamic religions, unless you're waldensian or bogomilist
+							# christianity_religion, dualism_religion, islam_religion, judaism_religion, yazidi_religion
+							if = {
+								limit = { this = faith:waldensian }
+								add_doctrine = carn_doctrine_other_slavery_shunned
+							}
+							else_if = {
+								limit = { this = faith:bogomilist }
+								add_doctrine = carn_doctrine_other_slavery_crime
+							}
+							else = {
+								add_doctrine = carn_doctrine_other_slavery_accepted
+							}
+						}
+						else_if = {
+							limit = { religion = { is_in_family = rf_eastern } } # Hostile Faith Slavery is Shunned or Accepted in Eastern religions
+							if = {
+								limit = {
+									OR = {
+										religion = religion:buddhism_religion
+										religion = religion:jainism_religion
+									}
+								}
+								# buddhism_religion, jainism_religion
+								add_doctrine = carn_doctrine_other_slavery_shunned
+							}
+							else = {
+								# hinduism_religion, zoroastrianism_religion
+								add_doctrine = carn_doctrine_other_slavery_accepted
+							}
+						}
+						else_if = {
+							limit = { religion = { is_in_family = rf_sinitic } } # Righteous Faith Slavery is Shunned for Sinitic religions
+							# confucianism_religion, taoism_religion
+							add_doctrine = carn_doctrine_other_slavery_shunned
+						}
+						else = { # Hostile Faith Slavery is Accepted in pagan religions
+							add_doctrine = carn_doctrine_other_slavery_accepted
+						}
+					}
+				}
+			}
+		}
+		else = {
+			every_religion_global = {
+				every_faith = {
+					carn_seed_slavery_doctrines_effect = yes
+				}
+			}
+		}
+	}
+}
+
+#
+# 0002. Add default slavery religious doctrines to newly created religions if they don't have them
+#
+
+carn_slavery_doctrine_seeding.0002 = {
+	hidden = yes
+
+	immediate = {
+		root.faith = {
+			carn_seed_slavery_doctrines_effect = yes
+		}
+	}
+}
