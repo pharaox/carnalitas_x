@@ -2,10 +2,6 @@
 
 ## Version 0.28.0
 
-### Balance
-
-* Included the "Carnalitas - Historical Slavery Doctrines" mod and adapted it to CK3 1.18.
-
 ### Compatibility
 
 * Adapted to CK3 1.18.0.1 and Carnalitas 2.12.
