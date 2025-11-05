@@ -2153,7 +2153,7 @@ carnx_sell_off_or_free_slave_effect = {
 				ai_greed = 0.5
 				ai_compassion = -0.5
 			}
-			carnx_debug_log_effect = { MSG = carnx_debug_msg_selling_off_slave }
+			#carnx_debug_log_effect = { MSG = carnx_debug_msg_selling_off_slave }
 			carnx_sell_off_slave_effect = yes
 		}
 		50 = {

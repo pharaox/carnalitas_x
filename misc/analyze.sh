@@ -9,7 +9,7 @@ echo "Slave freed: $(grep -a "Slave freed" debug.log | wc -l)"
 echo "- Freeing slave: $(grep -a "Freeing slave" debug.log | wc -l)"
 echo "- Freeing illegal slave: $(grep -a "Freeing illegal slave" debug.log | wc -l)"
 echo "Slave sold off: $(grep -a "Slave sold off" debug.log | wc -l)"
-echo "- Selling off slave: $(grep -a "Selling off slave" debug.log | wc -l)"
+#echo "- Selling off slave: $(grep -a "Selling off slave" debug.log | wc -l)"
 echo "Slave ransomed: $(grep -a "Slave ransomed" debug.log | wc -l)"
 echo "Slave bought: $(grep -a "Slave bought" debug.log | wc -l)"
 echo "- slave_merchant: $(grep -a "Slave bought,.*slave_merchant" $LOGFILE | wc -l)"
@@ -22,11 +22,11 @@ echo
 
 # Slave flavor events
 echo "Buy Foreign Slaves event fired: $(grep -a "Buy Foreign Slaves event fired" debug.log | wc -l)"
-echo "- Buy Foreign Slaves option a chosen: $(grep -a "Buy Foreign Slaves option a chosen" debug.log | wc -l)"
-echo "- Buy Foreign Slaves option b chosen: $(grep -a "Buy Foreign Slaves option b chosen" debug.log | wc -l)"
-echo "- Buy Foreign Slaves option c chosen: $(grep -a "Buy Foreign Slaves option c chosen" debug.log | wc -l)"
-echo "- Buy Foreign Slaves option d chosen: $(grep -a "Buy Foreign Slaves option d chosen" debug.log | wc -l)"
-echo "- Buy Foreign Slaves option e chosen: $(grep -a "Buy Foreign Slaves option e chosen" debug.log | wc -l)"
+#echo "- Buy Foreign Slaves option a chosen: $(grep -a "Buy Foreign Slaves option a chosen" debug.log | wc -l)"
+#echo "- Buy Foreign Slaves option b chosen: $(grep -a "Buy Foreign Slaves option b chosen" debug.log | wc -l)"
+#echo "- Buy Foreign Slaves option c chosen: $(grep -a "Buy Foreign Slaves option c chosen" debug.log | wc -l)"
+#echo "- Buy Foreign Slaves option d chosen: $(grep -a "Buy Foreign Slaves option d chosen" debug.log | wc -l)"
+#echo "- Buy Foreign Slaves option e chosen: $(grep -a "Buy Foreign Slaves option e chosen" debug.log | wc -l)"
 echo "Runaway Slave event fired: $(grep -a "Runaway Slave event fired" debug.log | wc -l)"
 echo "- Runaway Slave option a chosen: $(grep -a "Runaway Slave option a chosen" debug.log | wc -l)"
 echo "- Runaway Slave option b chosen: $(grep -a "Runaway Slave option b chosen" debug.log | wc -l)"
@@ -88,9 +88,9 @@ echo "Inheriting slave: $(grep -a "Inheriting slave" debug.log | wc -l)"
 echo
 
 # Prison events
-echo "Non-slave character imprisoned: $(grep -a "Non-slave character imprisoned" debug.log | wc -l)"
-echo "Non-slave character released from prison: $(grep -a "Non-slave character released from prison" debug.log | wc -l)"
-echo
+#echo "Non-slave character imprisoned: $(grep -a "Non-slave character imprisoned" debug.log | wc -l)"
+#echo "Non-slave character released from prison: $(grep -a "Non-slave character released from prison" debug.log | wc -l)"
+#echo
 
 # Slavery religion events
 echo "Slave converted to owner's faith: $(grep -a "Slave converted to owner's faith" debug.log | wc -l)"

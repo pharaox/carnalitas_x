@@ -193,9 +193,9 @@ carnx_slave.0001 = {
 			SLAVE_PRICE = scope:valuable_option_price
 		}
 
-		hidden_effect = {
-			carnx_debug_log_effect = { MSG = carnx_debug_msg_slave_0001_option_a_chosen }
-		}
+		#hidden_effect = {
+		#	carnx_debug_log_effect = { MSG = carnx_debug_msg_slave_0001_option_a_chosen }
+		#}
 
 		ai_chance = {
 			base = 0
@@ -221,9 +221,9 @@ carnx_slave.0001 = {
 			SLAVE_PRICE = scope:common_option_price
 		}
 
-		hidden_effect = {
-			carnx_debug_log_effect = { MSG = carnx_debug_msg_slave_0001_option_b_chosen }
-		}
+		#hidden_effect = {
+		#	carnx_debug_log_effect = { MSG = carnx_debug_msg_slave_0001_option_b_chosen }
+		#}
 
 		ai_chance = {
 			base = 0
@@ -258,9 +258,9 @@ carnx_slave.0001 = {
 			SLAVE_PRICE = scope:common_option_price
 		}
 
-		hidden_effect = {
-			carnx_debug_log_effect = { MSG = carnx_debug_msg_slave_0001_option_c_chosen }
-		}
+		#hidden_effect = {
+		#	carnx_debug_log_effect = { MSG = carnx_debug_msg_slave_0001_option_c_chosen }
+		#}
 
 		ai_chance = {
 			base = 0
@@ -271,9 +271,9 @@ carnx_slave.0001 = {
 	option = {
 		name = carnx_slave.0001.d
 
-		hidden_effect = {
-			carnx_debug_log_effect = { MSG = carnx_debug_msg_slave_0001_option_d_chosen }
-		}
+		#hidden_effect = {
+		#	carnx_debug_log_effect = { MSG = carnx_debug_msg_slave_0001_option_d_chosen }
+		#}
 
 		ai_chance = {
 			base = 1
@@ -316,9 +316,9 @@ carnx_slave.0001 = {
 			days = 365
 		}
 
-		hidden_effect = {
-			carnx_debug_log_effect = { MSG = carnx_debug_msg_slave_0001_option_e_chosen }
-		}
+		#hidden_effect = {
+		#	carnx_debug_log_effect = { MSG = carnx_debug_msg_slave_0001_option_e_chosen }
+		#}
 
 		ai_chance = {
 			base = 0
@@ -354,7 +354,7 @@ carnx_slave.0001 = {
 					type = slave
 					random = {
 						chance = 50
-						carnx_debug_log_effect = { MSG = carnx_debug_msg_selling_off_slave }
+						#carnx_debug_log_effect = { MSG = carnx_debug_msg_selling_off_slave }
 						carnx_sell_off_slave_effect = yes
 					}
 				}

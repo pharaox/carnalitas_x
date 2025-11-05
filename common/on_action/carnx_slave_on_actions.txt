@@ -244,12 +244,12 @@ on_imprison = {
 
 carnx_on_imprison = {
 	effect = {
-		if = {
-			limit = {
-				NOT = { has_trait = slave }
-			}
-			carnx_debug_log_effect = { MSG = carnx_debug_msg_non_slave_imprisoned }
-		}
+		#if = {
+		#	limit = {
+		#		NOT = { has_trait = slave }
+		#	}
+		#	carnx_debug_log_effect = { MSG = carnx_debug_msg_non_slave_imprisoned }
+		#}
 
 		# Return slaves to their owners
 		if = {
@@ -274,12 +274,12 @@ on_release_from_prison = {
 
 carnx_on_release_from_prison = {
 	effect = {
-		if = {
-			limit = {
-				NOT = { has_trait = slave }
-			}
-			carnx_debug_log_effect = { MSG = carnx_debug_msg_non_slave_released_from_prison }
-		}
+		#if = {
+		#	limit = {
+		#		NOT = { has_trait = slave }
+		#	}
+		#	carnx_debug_log_effect = { MSG = carnx_debug_msg_non_slave_released_from_prison }
+		#}
 
 		# Return slaves to their owners
 		if = {
@@ -329,7 +329,7 @@ carnx_random_yearly_everyone_pulse = {
 				type = slave
 				random = {
 					chance = 50
-					carnx_debug_log_effect = { MSG = carnx_debug_msg_selling_off_slave }
+					#carnx_debug_log_effect = { MSG = carnx_debug_msg_selling_off_slave }
 					carnx_sell_off_slave_effect = yes
 				}
 			}
