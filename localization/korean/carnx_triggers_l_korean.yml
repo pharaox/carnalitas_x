@@ -1,11 +1,14 @@
 ﻿l_korean:
- carnx_slavery_is_always_accepted: "당신의 신앙에서 $carn_doctrine_same_slavery_name$나 $carn_doctrine_other_slavery_name$ 중 하나라도 수용되지 않는 경우에만 해방자를 선택할 수 있습니다"
- carnx_slavery_is_never_accepted: "당신의 신앙에서 $carn_doctrine_same_slavery_name$나 $carn_doctrine_other_slavery_name$ 중 하나라도 수용되는 경우에만 노예상, 노예 상인, 또는 노예 고용주를 선택할 수 있습니다"
- carnx_is_slave_trigger: "[CHARACTER.GetShortUIName|U]은(는) [slave|E]입니다"
- NOT_carnx_is_slave_trigger: "[CHARACTER.GetShortUIName|U]은(는) [slave|El]가 아닙니다"
- carnx_has_relation_slave: "[TARGET_CHARACTER.GetShortUIName]은(는) [CHARACTER.GetShortUINamePossessive] 노예입니다"
- carnx_has_relation_slave_owner: "[TARGET_CHARACTER.GetShortUIName]은(는) [CHARACTER.GetShortUINamePossessive] 주인입니다"
+ carnx_slavery_is_always_accepted: "당신의 신앙에서 $carn_doctrine_same_slavery_name$나 $carn_doctrine_other_slavery_name$ 중 하나라도 용인되지 않는 경우에만 해방자를 선택할 수 있음"
+ carnx_slavery_is_never_accepted: "당신의 신앙에서 $carn_doctrine_same_slavery_name$나 $carn_doctrine_other_slavery_name$ 중 하나라도 용인되는 경우에만 노예주, 노예 상인, 또는 노예 고용주를 선택할 수 있음"
+
+ carnx_is_slave_trigger: "[CHARACTER.GetShortUIName|U](은)는 [slave|E]임"
+ NOT_carnx_is_slave_trigger: "[CHARACTER.GetShortUIName|U](은)는 [slave|El]가 아님"
+
+ carnx_has_relation_slave: "[TARGET_CHARACTER.GetShortUIName](은)는 [CHARACTER.GetShortUINamePossessive] 노예임"
+ carnx_has_relation_slave_owner: "[TARGET_CHARACTER.GetShortUIName](은)는 [CHARACTER.GetShortUINamePossessive] 주인임"
  carnx_num_of_relation_slave: "노예의 수가 $NUM|V0$보다 $COMPARATOR$"
  carnx_num_of_relation_slave_owner: "주인의 수가 $NUM|V0$보다 $COMPARATOR$"
- carnx_valid_buyer_or_seller: "[CHARACTER.GetShortUIName|U]은(는) 노예를 사거나 팔기에는 너무 멀리 있습니다"
- carnx_valid_payer_or_owner: "[CHARACTER.GetShortUIName|U]은(는) 노예에 대한 몸값을 제안하거나 요구하기에는 너무 멀리 있습니다"
+
+ carnx_valid_buyer_or_seller: "[CHARACTER.GetShortUIName|U](은)는 노예를 사거나 팔기에는 너무 멀리 있음"
+ carnx_valid_payer_or_owner: "[CHARACTER.GetShortUIName|U](은)는 노예의 몸값을 제안하거나 요구하기에는 너무 멀리 있음"

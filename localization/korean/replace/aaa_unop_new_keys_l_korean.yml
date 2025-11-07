@@ -1,7 +1,7 @@
 ﻿l_korean:
- ALREADY_OFFERED_COURTIER_WARNING:0 "@warning_icon! #X You have already offered a [courtier|E] to [recipient.GetShortUIName], sending another one will #underline override#! the existing [opinion|E] modifier!#!"
+ ALREADY_OFFERED_COURTIER_WARNING: "@warning_icon! #X 당신은 이미 [recipient.GetShortUIName]에게 [courtier|E]를 제안했으며, 다시 제안하면 기존의 [opinion|E] 변화 요소는 #underline 무효화#!될 것입니다!#!"
  
- unop_msg_offer_courtier_accepted_tt: "[secondary_actor.GetTitledFirstName] is now [recipient.GetTitledFirstNamePossessive] courtier"
- unop_msg_demand_courtier_accepted_tt: "[secondary_actor.GetTitledFirstName] is now your courtier"
+ unop_msg_offer_courtier_accepted_tt: "[secondary_actor.GetTitledFirstName](은)는 이제 [recipient.GetTitledFirstNamePossessive] 궁정 신하임"
+ unop_msg_demand_courtier_accepted_tt: "[secondary_actor.GetTitledFirstName](은)는 이제 당신의 궁정 신하임"
 
- has_court_tutor_domicile_building: "Has [GetDomicileBuilding('family_yurt_03').GetName]"
+ has_court_tutor_domicile_building: "[GetDomicileBuilding('family_yurt_03').GetName]를 보유함"

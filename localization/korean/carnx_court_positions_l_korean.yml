@@ -1,36 +1,36 @@
 ﻿l_korean:
- carnx_slave_salary_mod:0 "[slave|E]"
- carnx_slave_salary_employer_mod:0 "$carnx_slavery_attitude_employer_modifier$에 고용된 [slave|E]"
+ carnx_slave_salary_mod: "[slave|E]"
+ carnx_slave_salary_employer_mod: "$carnx_slavery_attitude_employer_modifier$에게 고용된 [slave|E]"
 
- carnx_court_position_skill_attraction:0 "[attraction|E]"
- carnx_court_position_beauty_good_3_trait:0 "[GetTrait('beauty_good_3').GetName( ROOT.Char )]"
- carnx_court_position_beauty_good_2_trait:0 "[GetTrait('beauty_good_2').GetName( ROOT.Char )]"
- carnx_court_position_beauty_good_1_trait:0 "[GetTrait('beauty_good_1').GetName( ROOT.Char )]"
- carnx_court_position_schemer_trait:0 "[GetTrait('schemer').GetName( ROOT.Char )]"
- carnx_court_position_milk_production:0 "[milk_production|E]"
+ carnx_court_position_skill_attraction: "[attraction|E]"
+ carnx_court_position_beauty_good_3_trait: "[GetTrait('beauty_good_3').GetName( ROOT.Char )]"
+ carnx_court_position_beauty_good_2_trait: "[GetTrait('beauty_good_2').GetName( ROOT.Char )]"
+ carnx_court_position_beauty_good_1_trait: "[GetTrait('beauty_good_1').GetName( ROOT.Char )]"
+ carnx_court_position_schemer_trait: "[GetTrait('schemer').GetName( ROOT.Char )]"
+ carnx_court_position_milk_production: "[milk_production|E]"
 
- carnx_slave_concubine_court_position:0 "노예 후궁"
- carnx_slave_concubine_court_position_desc:0 "$carnx_slave_concubine_court_position$은(는) 노예 또는 전 노예 신분의 하급 후궁이다."
- carnx_slave_concubine_employer_custom_effect_description:0 "당신이 남성이라면 모든 자녀의 아버지가 될 것이며, 여성이라면 보유자가 될 것이다. 또한 자녀들은 당신의 왕조, 신앙, 문화를 따를 것이다."
+ carnx_slave_concubine_court_position: "노예 후궁"
+ carnx_slave_concubine_court_position_desc: "$carnx_slave_concubine_court_position$은 노예 또는 전 노예 신분의 하급 첩입니다."
+ carnx_slave_concubine_employer_custom_effect_description: "당신이 남성이라면 당신이 자녀들의 아버지가 될 것이고, 당신이 여성이라면 노예 후궁이 자녀들의 아버지가 될 것입니다. 또한 자녀들은 당신의 집안, 신앙, 문화를 따를 것입니다."
 
- carnx_slave_captain_court_position:0 "맘루크 대장"
- carnx_slave_captain_court_position_desc:0 "$carnx_slave_captain_court_position$은(는) 노예 또는 전 노예 신분의 고위 군인이다."
+ carnx_slave_captain_court_position: "노예 대장"
+ carnx_slave_captain_court_position_desc: "$carnx_slave_captain_court_position$은 노예 또는 전 노예 신분의 고위 군인입니다."
 
- carnx_slave_eunuch_court_position:0 "노예 내시"
- carnx_slave_eunuch_court_position_desc:0 "$carnx_slave_eunuch_court_position$는 노예 또는 전 노예 신분의 영향력 있는 궁정 관리이다."
+ carnx_slave_eunuch_court_position: "노예 환관"
+ carnx_slave_eunuch_court_position_desc: "$carnx_slave_eunuch_court_position$은 노예 또는 전 노예 신분의 영향력 있는 궁정 관리입니다."
 
- hunt_can_hunt_parameter_tt:0 "[culture|E]가 사냥을 할 수 있다"
+ hunt_can_hunt_parameter_tt: "[culture|E]가 사냥을 할 수 있음"
 
- faith_or_culture_allows_polygamy_or_concubines_tt: "당신의 [faith|E] 또는 [culture|E]은(는) 일부다처제 또는 [concubines|E]를 허용함." # 해라체 (툴팁)
- faith_allows_slave_soldiers_tt: "당신의 [faith|E]은(는) [slave|E] 병사 모집을 허용함." # 해라체 (툴팁)
+ faith_or_culture_allows_polygamy_or_concubines_tt: "당신의 [faith|E] 또는 [culture|E]는 일부다처제 또는 [concubines|E]을 허용함" # 해라체 (툴팁)
+ faith_allows_slave_soldiers_tt: "당신의 [faith|E]은 [slave|E] 병사 모집을 허용함" # 해라체 (툴팁)
 
- none_is_not_a_slave: "그들은 #bold 노예#!(가) 아님." # 해라체 (상태)
- none_liege_can_employ_slaves: "그들의 [liege|E]은(는) 추가적인 궁정 직위에 [slaves|E]를 고용할 수 있음." # 해라체 (조건)
- none_is_their_lieges_slave: "그들은 자신의 [liege|E]의 [slave|E]임." # 해라체 (상태)
- none_is_employed_as_slave_concubine: "그들은 이미 $carnx_slave_concubine_court_position$(으)로 고용되어 있음." # 해라체 (상태)
- none_is_employed_as_slave_captain: "그들은 이미 $carnx_slave_captain_court_position$(으)로 고용되어 있음." # 해라체 (상태)
- none_is_employed_as_slave_eunuch: "그들은 이미 $carnx_slave_eunuch_court_position$(으)로 고용되어 있음." # 해라체 (상태)
- none_is_capable_adult: "그들은 유능한 [adult|E]임." # 해라체 (상태)
- none_has_positive_attraction: "그들은 0보다 큰 [attraction|E] 수치를 가짐." # 해라체 (조건)
- none_liege_is_allowed_to_marry: "그들의 [liege|E]은(는) 그들과 결혼할 수 있음." # 해라체 (조건)
- none_has_at_least_one_commander_trait: "그들은 [commander_trait|E]을(를) 최소 하나 가지고 있음." # 해라체 (조건)
+ none_is_not_a_slave: "저들은 노예가 #bold 아님#!" # 해라체 (상태)
+ none_liege_can_employ_slaves: "저들의 [liege|E]은 추가적인 궁정 직위에 [slaves|E]를 고용할 수 있음" # 해라체 (조건)
+ none_is_their_lieges_slave: "저들은 자신의 [liege|E]의 [slave|E]임" # 해라체 (상태)
+ none_is_employed_as_slave_concubine: "저들은 이미 $carnx_slave_concubine_court_position$(으)로 고용되어 있음" # 해라체 (상태)
+ none_is_employed_as_slave_captain: "저들은 이미 $carnx_slave_captain_court_position$(으)로 고용되어 있음" # 해라체 (상태)
+ none_is_employed_as_slave_eunuch: "저들은 이미 $carnx_slave_eunuch_court_position$(으)로 고용되어 있음" # 해라체 (상태)
+ none_is_capable_adult: "저들은 유능한 [adult|E]임." # 해라체 (상태)
+ none_has_positive_attraction: "저들은 0보다 큰 [attraction|E] 수치를 가짐" # 해라체 (조건)
+ none_liege_is_allowed_to_marry: "저들의 [liege|E]은 저들과 결혼할 수 있음" # 해라체 (조건)
+ none_has_at_least_one_commander_trait: "저들은 [commander_trait|E]을 최소 하나 가지고 있음" # 해라체 (조건)

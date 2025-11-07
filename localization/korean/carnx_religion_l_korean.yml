@@ -1,10 +1,12 @@
 ﻿l_korean:
  carnx_special_doctrine_slave_employment_name: "노예 고용"
- carnx_special_doctrine_slave_employment_desc: "우리는 노예들이 다른 신하들보다 더 충성스럽다고 여기기에 가장 높은 직위까지도 그들에게 맡깁니다."
+ carnx_special_doctrine_slave_employment_desc: "노예들은 다른 신하들보다 더 충성스럽기에, 우리는 가장 높은 직위까지도 그들에게 맡깁니다."
  carnx_doctrine_slave_employment_name: "$carnx_special_doctrine_slave_employment_name$"
- doctrine_parameter_carnx_slave_employment_active: "대부분의 [council|E]과 [court_positions|E]에 [slaves|E]를 임명할 수 있습니다"
- doctrine_parameter_carnx_employed_slaves_more_loyal_active: "[court_positions|E]에 임명된 [slaves|E]의 고용에 대한 [opinion|E]이 두 배가 됩니다"
- doctrine_parameter_carnx_slave_soldiers_active: "$carnx_slave_captain_court_position$ [court_position|E]을 임명할 수 있습니다"
+
+ doctrine_parameter_carnx_slave_employment_active: "대부분의 [council|E]과 [court_positions|E]에 [slaves|E]를 임명할 수 있음"
+ doctrine_parameter_carnx_employed_slaves_more_loyal_active: "[court_positions|E]에 임명된 [slaves|E]의 고용에 대한 [opinion|E]이 두 배가 됨"
+ doctrine_parameter_carnx_slave_soldiers_active: "$carnx_slave_captain_court_position$ [court_position|E]를 임명할 수 있음"
+
  carnx_special_doctrine_placeholder_name: "임시 교리"
- carnx_special_doctrine_placeholder_desc: "이는 error.log에서 오류를 방지하기 위한 임시 교리입니다."
+ carnx_special_doctrine_placeholder_desc: "error.log에서 오류를 방지하기 위한 임시 교리입니다."
  carnx_doctrine_placeholder_name: "$carnx_special_doctrine_placeholder_name$"
