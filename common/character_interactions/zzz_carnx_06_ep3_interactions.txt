@@ -69,6 +69,12 @@
 	can_be_picked = {
 		# We don't want baby eunuchs, we want eunuchs who can actually do something
 		is_adult = yes
+		custom_tooltip = {
+			text = eunuch_offered_to_someone_else_tt
+			NOT = {
+				has_character_flag = under_offer_as_eunuch_flag
+			}
+		}
 	}
 
 	can_send = {

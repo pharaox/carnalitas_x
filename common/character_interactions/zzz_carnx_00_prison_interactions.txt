@@ -1381,6 +1381,10 @@
 		scope:gain_hook = no
 		scope:take_vows = no
 		scope:recruit = no
+		scope:disfigure = no
+		scope:blind = no
+		scope:castrate = no
+		scope:demand_admin = no
 	}
 
 	ai_accept = {
@@ -1389,6 +1393,16 @@
 			add = 100
 			desc = "WANTS_FREEDOM_REASON"
 		}
+		# Basic modifiers
+		modifier = {
+			trigger = {
+				has_trait = ambitious
+			}
+			add = -20
+			desc = "RECIPIENT_IS_AMBITIOUS"
+		}
+		
+		# Demand conversion
 		modifier = {
 			trigger = {
 				scope:recipient = { ai_zeal <= 20 }
@@ -1421,6 +1435,7 @@
 			}
 			desc = "CONVERSION_NEGATIVE_REASON"
 		}
+		# Renounce claims
 		modifier = {
 			add = -25
 			trigger = {
@@ -1439,18 +1454,6 @@
 			desc = "RENOUNCE_CLAIMS_REASON"
 		}
 		modifier = {
-			add = -50
-			trigger = {
-				scope:become_executioner = yes
-				# Sadists don't care about becoming an executioner
-				NOR = {
-					has_trait = sadistic
-					has_trait = callous
-				}
-			}
-			desc = "BECOME_EXECUTIONER_REASON"
-		}
-		modifier = {
 			add = -75
 			trigger = {
 				scope:renounce_claims = yes
@@ -1467,6 +1470,20 @@
 			}
 			desc = "RENOUNCE_CLAIMS_REASON"
 		}
+		# Employ executioner
+		modifier = {
+			add = -50
+			trigger = {
+				scope:become_executioner = yes
+				# Sadists don't care about becoming an executioner
+				NOR = {
+					has_trait = sadistic
+					has_trait = callous
+				}
+			}
+			desc = "BECOME_EXECUTIONER_REASON"
+		}
+		# Banish
 		modifier = {
 			add = -50
 			trigger = {
@@ -1491,6 +1508,7 @@
 			}
 			desc = tradition_legalistic_name
 		}
+		# Gain hook
 		modifier = {
 			add = {
 				value = -50
@@ -1508,6 +1526,7 @@
 			}
 			desc = "GAIN_HOOK_NEGATIVE_REASON"
 		}
+		# Take vows
 		modifier = {
 			add = -30
 			trigger = {
@@ -1574,6 +1593,7 @@
 			}
 			desc = "TAKE_VOWS_CYNICAL_REASON"
 		}
+		# Recruitment
 		modifier = {
 			add = -10
 			trigger = {
@@ -1587,6 +1607,194 @@
 				}
 			}
 			desc = "RECRUITMET_NEGATIVE_REASON"
+		}
+		# Disfigure
+		modifier = {
+			add = {
+				value = -100
+				if = {
+					limit = {
+						has_trait = beauty_good
+					}
+					multiply = 2
+				}
+			}
+			trigger = {
+				scope:disfigure = yes
+				OR = {
+					NOR = {
+						has_trait = maimed
+						has_trait = beauty_bad
+						ai_sociability < -75
+					}
+					has_trait = beauty_good
+				}
+			}
+			desc = "DISFIGURE_NEGATIVE_REASON"
+		}
+		modifier = {
+			add = -75
+			trigger = {
+				scope:disfigure = yes
+				OR = {
+					has_trait = maimed
+					has_trait = beauty_bad
+					ai_sociability < -75
+				}
+				NOT = { has_trait = beauty_good }
+			}
+			desc = "DISFIGURE_NEGATIVE_REASON"
+		}
+		# Blind
+		modifier = {
+			add = -100
+			trigger = {
+				scope:blind = yes
+				NOR = {
+					has_trait = one_eyed
+					has_trait = infirm
+					age > 60 # I.e. they have poor eyesight already
+				}
+			}
+			desc = "BLIND_NEGATIVE_REASON"
+		}
+		modifier = {
+			add = -75
+			trigger = {
+				scope:blind = yes
+				OR = {
+					has_trait = one_eyed
+					has_trait = infirm
+					age > 60 # I.e. they have poor eyesight already
+				}
+			}
+			desc = "BLIND_NEGATIVE_REASON"
+		}
+		# Castrate
+		modifier = {
+			add = -75
+			trigger = {
+				scope:castrate = yes
+				any_child = { count > 0 }
+				ai_boldness < -50
+			}
+			desc = "CASTRATE_NEGATIVE_REASON"
+		}
+		modifier = {
+			add = -100
+			trigger = {
+				scope:castrate = yes
+				any_child = { count > 0 }
+				ai_boldness >= -50
+			}
+			desc = "CASTRATE_NEGATIVE_REASON"
+		}
+		modifier = {
+			add = -100
+			trigger = {
+				scope:castrate = yes
+				any_child = { count <= 0 }
+			}
+			desc = "CASTRATE_NO_CHILDREN_NEGATIVE_REASON"
+		}
+		modifier = {
+			add = -100
+			trigger = {
+				scope:castrate = yes
+				has_trait = lustful
+			}
+			desc = "TAKE_VOWS_LUSTFUL_REASON"
+		}
+		# Demand admin
+		modifier = {
+			add = -20
+			trigger = {
+				scope:demand_admin = yes
+				OR = {
+					culture = {
+						OR = {
+							# Historical cultures
+							this = culture:greek
+							any_parent_culture_or_above = {
+								this = culture:greek
+							}
+							this = culture:han
+							any_parent_culture_or_above = {
+								this = culture:han
+							}
+							# Bureaucratic culture
+							has_cultural_pillar = ethos_bureaucratic
+						}
+					}
+					# Another admin government
+					government_allows = administrative
+				}
+			}
+			desc = "DEMAND_ADMIN_NEGATIVE_REASON"
+		}
+		modifier = {
+			add = -50
+			trigger = {
+				scope:demand_admin = yes
+				NOR = {
+					culture = {
+						OR = {
+							# Historical cultures
+							this = culture:greek
+							any_parent_culture_or_above = {
+								this = culture:greek
+							}
+							this = culture:han
+							any_parent_culture_or_above = {
+								this = culture:han
+							}
+							# Bureaucratic culture
+							has_cultural_pillar = ethos_bureaucratic
+						}
+					}
+					# Another admin government
+					government_allows = administrative
+				}
+				culture = {
+					NOR = {
+						has_cultural_tradition = tradition_hereditary_hierarchy
+						has_cultural_tradition = tradition_staunch_traditionalists
+					}
+				}
+			}
+			desc = "DEMAND_ADMIN_NEGATIVE_REASON"
+		}
+		modifier = {
+			add = -100
+			trigger = {
+				scope:demand_admin = yes
+				NOR = {
+					culture = {
+						OR = {
+							# Historical cultures
+							this = culture:greek
+							any_parent_culture_or_above = {
+								this = culture:greek
+							}
+							this = culture:han
+							any_parent_culture_or_above = {
+								this = culture:han
+							}
+							# Bureaucratic culture
+							has_cultural_pillar = ethos_bureaucratic
+						}
+					}
+					# Another admin government
+					government_allows = administrative
+				}
+				culture = {
+					OR = {
+						has_cultural_tradition = tradition_hereditary_hierarchy
+						has_cultural_tradition = tradition_staunch_traditionalists
+					}
+				}
+			}
+			desc = "DEMAND_ADMIN_NEGATIVE_REASON"
 		}
 		# Struggle
 		modifier = {

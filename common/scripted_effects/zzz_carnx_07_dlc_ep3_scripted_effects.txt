@@ -81,9 +81,15 @@
 				NOR = {
 					government_has_flag = government_is_administrative
 					government_has_flag = government_is_nomadic
+					government_has_flag = government_is_steppe_admin
+					government_has_flag = government_is_wanua
+					government_has_flag = government_is_mandala
+					government_has_flag = government_is_celestial
+					government_has_flag = government_is_meritocratic
+					government_has_flag = japan_feudal_government
 				}
 			}
-			admin_government_reset_effect = yes
+			admin_government_reset_effect = yes #this only contains Clan, Tribal, Nomadic and Feudal
 		}
 		# Clean up story no-movement flags.
 		remove_character_flag = laamp_stay_same_kingdom
