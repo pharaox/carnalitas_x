@@ -538,20 +538,20 @@
 								}
 							}
 						}
-						house ?= {
-							change_house_relation_effect = {
-								HOUSE = scope:recipient.house
-								VALUE = house_relation_improve_medium_value
-								REASON = prison_released
-								CHAR = scope:actor
-								TARGET_CHAR = scope:recipient
-								TITLE = scope:dummy_gender
-							}
-						}
 						# CSR: Disable dread and stress impact for slaves
 						if = {
 							limit = {
 								NOT = { has_relation_slave = scope:recipient }
+							}
+							house ?= {
+								change_house_relation_effect = {
+									HOUSE = scope:recipient.house
+									VALUE = house_relation_improve_medium_value
+									REASON = prison_released
+									CHAR = scope:actor
+									TARGET_CHAR = scope:recipient
+									TITLE = scope:dummy_gender
+								}
 							}
 							add_dread = minor_dread_loss
 							stress_impact = {
