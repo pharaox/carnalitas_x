@@ -1,4 +1,4 @@
-﻿l_english:
+﻿l_korean:
  vls_debug_prefix: "[GetCurrentDate.GetStringShort]: [THIS.Char.GetFullNameNoTooltip] ([THIS.Char.GetID])"
 
  vls_debug_msg_visiting_holding: "$vls_debug_prefix$: 봉토 방문 중, 위치: [THIS.Char.GetCurrentLocation.GetNameNoTooltip], 봉토 유형: [THIS.Char.Custom('LocalHoldingType')]"
