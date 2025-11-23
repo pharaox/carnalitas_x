@@ -1,5 +1,11 @@
 # Changelog
 
+## Version 0.28.2
+
+### Localization
+
+* Updated Korean translation by **@songkhla**.
+
 ## Version 0.28.1
 
 ### Compatibility
