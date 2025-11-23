@@ -8,4 +8,4 @@
  visit_local_settlement_effect_buy_slaves: "\n$EFFECT_LIST_BULLET$[THIS.Char.GetCurrentLocation.GetBaronyNameExplicitlyNoTooltip]의 노예 시장에서 [slaves|E] 구매" # 명사형/간결체
  visit_local_settlement_effect_sell_slaves: "\n$EFFECT_LIST_BULLET$노예 상인에게 [slaves|E] 판매" # 명사형/간결체
 
- carnx_no_slave_market: "이 영지에는 노예 시장이 없음" # 명사형 종결
+ carnx_no_slave_market: "이 봉토에는 노예 시장이 없음" # 명사형 종결

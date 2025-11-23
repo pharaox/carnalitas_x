@@ -1,18 +1,18 @@
 ﻿l_korean:
  # Visiting Location: the Main Square
- carnx_decision_events.1000.desc_intro_returned_from_slave_market: "노예 시장 방문 후, 중앙 광장에서는 작은 곡예사 무리가 공연을 펼치고 있어 적당한 수의 구경꾼이 모여 있다." # 1인칭 '나' 시점, 해라체
- carnx_decision_events.1000.desc_intro_returned_from_slave_trader: "우리가 노예 상인에게서 돌아오자, 다른 사람들도 [ROOT.Char.Custom('SettlementCity')|l]의 여러 곳에서 돌아오는 듯하며, [ROOT.Char.Custom('GetMainsquareCommons')]를 오가는 방문객들의 발길이 잦아진다." # 1인칭 '나'/'우리' 시점, 해라체
+ carnx_decision_events.1000.desc_intro_returned_from_slave_market: "노예 시장 방문 후, 중앙 광장에서는 작은 곡예사 무리가 공연을 펼치고 있어 적당한 수의 구경꾼이 모여 있다."
+ carnx_decision_events.1000.desc_intro_returned_from_slave_trader: "우리가 노예 상인에게서 돌아오자, 다른 사람들도 [ROOT.Char.Custom('SettlementCity')|l]의 여러 곳에서 돌아오는 듯하며, [ROOT.Char.Custom('GetMainsquareCommons')](을)를 오가는 방문객들의 발길이 잦아진다."
 
  carnx_decision_events.1000.a: "노예 시장을 방문해야겠다." # 구어체 (결심)
  carnx_decision_events.1000.a_second: "노예 시장에 아직 볼일이 남았다." # 구어체 (결심)
- carnx_decision_events.1000.a.tt: "현지 노예 시장에서 노예를 구매한다." # 해라체 (툴팁)
+ carnx_decision_events.1000.a.tt: "현지 노예 시장에서 노예를 구매함" # 해라체 (툴팁)
  carnx_decision_events.1000.b: "노예를 좀 팔 수 있을지도 모르겠다." # 구어체 (생각)
- carnx_decision_events.1000.b_second: "사실, 노예 상인들에게 돌아가야 한다." # 구어체 (결심)
- carnx_decision_events.1000.b.tt: "현지 노예 상인에게 노예를 판매한다." # 해라체 (툴팁)
+ carnx_decision_events.1000.b_second: "사실, 노예 상인들에게 돌아가는 게 좋겠다." # 구어체 (결심)
+ carnx_decision_events.1000.b.tt: "현지 노예 상인에게 노예를 판매함" # 해라체 (툴팁)
 
- already_sold_slave.tt: "이번 방문 중에 이미 [slave|E]를 팔았다." # 해라체 (툴팁)
+ already_sold_slave.tt: "이번 방문 중에 이미 [slave|E]를 팔았음" # 해라체 (툴팁)
 
- carnx_decision_events.1000.refused.tt: "최근에 노예 거래 참여를 거부했으므로, [GetCurrentDateWithDiff(GetVarTimeRemaining(THIS.Char.MakeScope, 'carnx_1000_refused_recently'))]에 다시 시도하라." # 해라체 (툴팁, 명령형)
+ carnx_decision_events.1000.refused.tt: "최근에 노예 거래 참여를 거부했습니다. [GetCurrentDateWithDiff(GetVarTimeRemaining(THIS.Char.MakeScope, 'carnx_1000_refused_recently'))]에 다시 시도하십시오."
 
  # Visiting Location: the Slave Market
  carnx_decision_events.1010.t: "[visiting_location.GetBaronyNameExplicitlyNoTooltip]: 노예 시장" # 제목
@@ -25,29 +25,29 @@
  carnx_decision_events.1010.desc_02: "[visiting_location.GetBaronyNameExplicitly]의 노예 시장에는 방문할 가치가 있는 상인이 몇 명 있다. 그중에는 유곽 옆 큰 천막의 [first_slave_merchant.GetFirstName]과 경비가 삼엄한 울타리 안의 [second_slave_merchant.GetFirstName]이 있다. 몇몇 경매인들은 모인 군중에게 판매 중인 노예들의 장점을 큰 소리로 칭찬한다." # 1인칭 '나' 시점, 해라체
  carnx_decision_events.1010.desc_03: "[visiting_location.GetBaronyNameExplicitly]의 노예 시장에는 방문할 가치가 있는 상인이 많이 있다. 그중에는 호화로운 천막의 [first_slave_merchant.GetFirstName], 삼엄한 경비가 둘러싼 울타리 안의 [second_slave_merchant.GetFirstName], 그리고 저 앞쪽의 [third_slave_merchant.GetFirstName]이 있다. 광장은 온갖 종류의 노예를 두고 흥정하는 사람들로 북적인다." # 1인칭 '나' 시점, 해라체
  carnx_decision_events.1010.desc_outro_outraged_partner: "\n\n갑자기, 나의 [ROOT.Char.Custom2('RelationToMe', SCOPE.sC('visiting_partner'))]인 [visiting_partner.GetFirstNamePossessive] 격분한 목소리가 귓가에 들린다: \"정말로 이 역겨운 거래에 손을 대야겠소? #EMP 여길 벗어납시다!# \"" # 구어체 (동행인 대사)
- carnx_decision_events.1010.desc_outro_partner: "\n\n[visiting_partner.GetFirstName]은(는) 나를 따라 거리를 한가로이 거닐며 판매 중인 노예들에 대해 논평한다. 내가 잠시 멈춰 다음에 어디로 갈지 결정하려 하자 [visiting_partner.GetSheHe|U]가 나를 본다." # 1인칭 '나' 시점, 해라체
+ carnx_decision_events.1010.desc_outro_partner: "\n\n[visiting_partner.GetFirstName](은)는 나를 따라 거리를 한가로이 거닐며 판매 중인 노예들에 대해 논평한다. 내가 잠시 멈춰 다음에 어디로 갈지 결정하려 하자 [visiting_partner.GetSheHe|U]가 나를 바라본다." # 1인칭 '나' 시점, 해라체
  carnx_decision_events.1010.desc_outro: "$ep3_laamp_decision_event.1040.desc_outro$" # 변수 유지
- carnx_decision_events.1010.desc_outro_return_outraged_partner_finished: "\n\n약간 지친 기색이 역력한 [visiting_partner.GetFirstName]이(가) 화난 목소리로 말한다: \"이제 여기 볼일은 정말로 끝난 거겠죠, [visiting_partner.Custom2('RelationToMe', ROOT.Char)]?\"" # 구어체 (동행인 대사)
+ carnx_decision_events.1010.desc_outro_return_outraged_partner_finished: "\n\n다소 지친 기색이 역력한 [visiting_partner.GetFirstName](이)가 화난 목소리로 말한다: \"이제 여기 볼일은 정말로 끝난 거겠죠, [visiting_partner.Custom2('RelationToMe', ROOT.Char)]?\"" # 구어체 (동행인 대사)
  carnx_decision_events.1010.desc_outro_return_partner_finished: "$ep3_laamp_decision_event.1040.desc_outro_return_partner_finished$" # 변수 유지
  carnx_decision_events.1010.desc_outro_return_finished: "\n\n발은 쑤시고 배는 꼬르륵거리는 가운데, 나는 중앙 광장으로 가장 빨리 돌아갈 길을 찾고 있는 자신을 발견한다." # 1인칭 '나' 시점, 해라체
- carnx_decision_events.1010.desc_outro_return_outraged_partner_01: "\n\n여전히 격분한 [visiting_partner.GetFirstName]은(는) 나와 보조를 맞추려 애쓰며 광장을 빠르게 가로지른다. 내가 다음에 무엇을 할지 잠시 고민하며 멈추자 [visiting_partner.GetSheHe|U]가 나를 따라잡는다." # 1인칭 '나' 시점, 해라체
- carnx_decision_events.1010.desc_outro_return_outraged_partner_02: "\n\n[visiting_partner.GetFirstName]은(는) 발이 족쇄에 채워진 노예 무리를 몰고 광장을 가로지르는 남자에게 일부러 부딪힌다. 그들을 무심코 바라보며, 나는 다음에 무엇을 할지 숙고한다." # 1인칭 '나' 시점, 해라체
+ carnx_decision_events.1010.desc_outro_return_outraged_partner_01: "\n\n여전히 격분한 [visiting_partner.GetFirstName](은)는 나와 보조를 맞추려 애쓰며 광장을 빠르게 가로지른다. 내가 다음에 무엇을 할지 잠시 고민하며 멈추자 [visiting_partner.GetSheHe|U]가 나를 따라잡는다." # 1인칭 '나' 시점, 해라체
+ carnx_decision_events.1010.desc_outro_return_outraged_partner_02: "\n\n[visiting_partner.GetFirstName](은)는 발이 족쇄에 채워진 노예 무리를 몰고 광장을 가로지르는 남자에게 일부러 부딪힌다. 그들을 무심코 바라보며, 나는 다음에 무엇을 할지 숙고한다." # 1인칭 '나' 시점, 해라체
  carnx_decision_events.1010.desc_outro_return_partner_01: "$ep3_laamp_decision_event.1060.desc_outro_return_partner_01$" # 변수 유지
- carnx_decision_events.1010.desc_outro_return_partner_02: "\n\n[visiting_partner.GetFirstName]은(는) 발이 족쇄에 채워진 노예 무리를 몰고 광장을 가로지르는 남자와 부딪히지 않으려 옆으로 비켜선다. 그들을 무심코 바라보며, 나는 다음에 무엇을 할지 숙고한다." # 1인칭 '나' 시점, 해라체
+ carnx_decision_events.1010.desc_outro_return_partner_02: "\n\n[visiting_partner.GetFirstName](은)는 발이 족쇄에 채워진 노예 무리를 몰고 광장을 가로지르는 남자와 부딪히지 않으려 옆으로 비켜선다. 그들을 무심코 바라보며, 나는 다음에 무엇을 할지 숙고한다." # 1인칭 '나' 시점, 해라체
  carnx_decision_events.1010.desc_outro_return_01: "$ep3_laamp_decision_event.1060.desc_outro_return_01$" # 변수 유지
  carnx_decision_events.1010.desc_outro_return_02: "\n\n판매될 노예 행렬이 주인에게 인솔되고 무장 경비원들과 함께 시장을 통과하고 있다. 나는 다음 행동을 고려하며 그들을 무심하게 관찰한다." # 1인칭 '나' 시점, 해라체
 
  carnx_decision_events.1010.a: "[first_slave_merchant.GetFirstNamePossessive] 노예들을 보자." # 구어체 (결정)
  carnx_decision_events.1010.a_second: "[first_slave_merchant.GetFirstNamePossessive] 노예들이 흥미로워 보였다." # 구어체 (생각)
- carnx_decision_events.1010.a.tt: "[first_slave_merchant.GetFirstNamePossessive] 가판대로 간다." # 해라체 (툴팁)
- carnx_decision_events.1010.a.cooldown.tt: "이번 방문 중에 이 상인에게서 이미 [slave|E]를 구매했다." # 해라체 (툴팁)
- carnx_decision_events.1010.b: "[second_slave_merchant.GetFirstName]이(가) 뭘 내놓을지 궁금하다." # 구어체 (생각)
+ carnx_decision_events.1010.a.tt: "[first_slave_merchant.GetFirstNamePossessive] 가판대로 감" # 해라체 (툴팁)
+ carnx_decision_events.1010.a.cooldown.tt: "이번 방문 중에 이 상인에게서 이미 [slave|E]를 구매함" # 해라체 (툴팁)
+ carnx_decision_events.1010.b: "[second_slave_merchant.GetFirstName](이)가 뭘 내놓을지 궁금하다." # 구어체 (생각)
  carnx_decision_events.1010.b_second: "[second_slave_merchant.GetFirstName]에게 쓸만한 노예들이 있었다." # 구어체 (생각)
- carnx_decision_events.1010.b.tt: "[second_slave_merchant.GetFirstNamePossessive] 가판대로 간다." # 해라체 (툴팁)
+ carnx_decision_events.1010.b.tt: "[second_slave_merchant.GetFirstNamePossessive] 가판대로 감" # 해라체 (툴팁)
  carnx_decision_events.1010.b.cooldown.tt: "$carnx_decision_events.1010.a.cooldown.tt$" # 변수 유지
- carnx_decision_events.1010.c: "아마 [third_slave_merchant.GetFirstName]을(를) 방문해야겠다." # 구어체 (생각)
- carnx_decision_events.1010.c_second: "[third_slave_merchant.GetFirstName]을(를) 다시 방문해야겠다." # 구어체 (결심)
- carnx_decision_events.1010.c.tt: "[third_slave_merchant.GetFirstNamePossessive] 가판대로 간다." # 해라체 (툴팁)
+ carnx_decision_events.1010.c: "아마 [third_slave_merchant.GetFirstName](을)를 방문해야겠다." # 구어체 (생각)
+ carnx_decision_events.1010.c_second: "[third_slave_merchant.GetFirstName](을)를 다시 방문해야겠다." # 구어체 (결심)
+ carnx_decision_events.1010.c.tt: "[third_slave_merchant.GetFirstNamePossessive] 가판대로 감" # 해라체 (툴팁)
  carnx_decision_events.1010.c.cooldown.tt: "$carnx_decision_events.1010.a.cooldown.tt$" # 변수 유지
  carnx_decision_events.1010.d: "나는 이 혐오스러운 거래에 참여하기를 거부한다!" # 구어체 (선언)
  carnx_decision_events.1010.e: "$ep3_laamp_decision_event.1010.e$" # 변수 유지
@@ -56,50 +56,50 @@
  # Visiting Location: the Slave Merchant
  carnx_decision_events.1011.t: "[visiting_location.GetBaronyNameExplicitlyNoTooltip]: 노예 상인" # 제목
 
- carnx_decision_events.1011.desc_intro: "안으로 들어서자, 화려하게 옷을 입고 보석으로 치장한 노예들이 성별과 나이에 따라 정렬된 줄이 보인다. 노예 상인 [slave_merchant.GetFirstName]은(는) 그들 앞에 서서 근처 하인과 한가롭게 잡담을 나누고 있다. 검과 창으로 무장한 몇몇 하인들이 양옆에서 경비를 선다." # 1인칭 '나' 시점, 해라체
+ carnx_decision_events.1011.desc_intro: "안으로 들어서자, 화려하게 옷을 입고 보석으로 치장한 노예들이 성별과 나이에 따라 정렬된 줄이 보인다. 노예 상인 [slave_merchant.GetFirstName](은)는 그들 앞에 서서 근처 하인과 한가롭게 잡담을 나누고 있다. 검과 창으로 무장한 몇몇 하인들이 양옆에서 경비를 선다." # 1인칭 '나' 시점, 해라체
  carnx_decision_events.1011.desc: "$carnx_decision_events.1011.desc_intro$\n\n[slave_merchant.GetSheHe|U]는 나를 힐끗 쳐다보더니, 즉시 대화를 끝내고 돌아서서 [slave_merchant.GetHerHis] 뒤의 줄을 가리키며 내게 말한다: \"이들이 제가 판매하는 노예들입니다.\"\n\n\"모두 완벽한 상태지요!\" [slave_merchant.GetSheHe]는 덧붙이고는 내게 직접 살펴보라고 권한다." # 서술부는 해라체, 대사는 구어체
  carnx_decision_events.1011.desc_reused_slave_merchant: "$carnx_decision_events.1011.desc_intro$\n\n[slave_merchant.GetSheHe|U]는 나를 알아보는 눈빛으로 쳐다보고, 눈썹을 치켜올리더니 내 쪽으로 몇 걸음 다가온다: \"이런, 다시 찾아오는 손님을 매일 보는 건 아니지요!\"\n\n\"부디, 제 상품들을 살펴보십시오.\" [slave_merchant.GetSheHe]는 말하며 미소를 지으려 애쓴다." # 서술부는 해라체, 대사는 구어체
- carnx_decision_events.1011.desc_returned_01: "[slave_merchant.GetHerHis] 가판대에서, [slave_merchant.GetFirstName]은(는) 여전히 상품 앞에 서서, 이제는 노예 중 한 명에게 무례하게 소리치고 있다.\n\n[slave_merchant.GetSheHe|U]는 마치 때리려는 듯 손을 들어 올리지만, 내가 도착하자 즉시 멈춘다. \"결국, 누구를 사고 싶으신 겁니까?\" [slave_merchant.GetSheHe]는 거만한 어조로 말한다." # 서술부는 해라체, 대사는 구어체
- carnx_decision_events.1011.desc_returned_02: "내가 돌아오자, [ROOT.Char.Custom('WritingInstrument')]를 든 [slave_merchant.GetFirstName]은(는) 현재 정렬된 노예들을 살펴보며 찢어진 장부에 재빨리 무언가를 적고 있다.\n\n나를 잠시 쳐다보며, [slave_merchant.GetSheHe]는 \"다시 오셨군, 그럼? 어떤 놈을 원하시오?\"라고 말하고는 줄의 나머지를 검사하러 이동한다." # 서술부는 해라체, 대사는 구어체
- carnx_decision_events.1011.desc_returned_03: "[slave_merchant.GetFirstName]은(는) 다른 고객을 응대하고 있는데, 그 고객은 여성 노예 중 한 명을 면밀히 검사하고 있다. 입과 이빨에서 시작하여 몸의 모든 부분을 차례로 살핀다.\n\n나를 발견하자, [slave_merchant.GetSheHe]는 재빨리 돌아서서 외친다: \"또 오셨군! 맙소사 — 마음이 바뀌셨소?\"" # 서술부는 해라체, 대사는 구어체
+ carnx_decision_events.1011.desc_returned_01: "[slave_merchant.GetHerHis] 가판대에서, [slave_merchant.GetFirstName](은)는 여전히 상품 앞에 서서, 이제는 노예 중 한 명에게 무례하게 소리치고 있다.\n\n[slave_merchant.GetSheHe|U]는 마치 때리려는 듯 손을 들어 올리지만, 내가 도착하자 즉시 멈춘다. \"결국, 누구를 사고 싶으신 겁니까?\" [slave_merchant.GetSheHe]는 거만한 어조로 말한다." # 서술부는 해라체, 대사는 구어체
+ carnx_decision_events.1011.desc_returned_02: "내가 돌아오자, [ROOT.Char.Custom('WritingInstrument')]를 든 [slave_merchant.GetFirstName](은)는 현재 정렬된 노예들을 살펴보며 찢어진 장부에 재빨리 무언가를 적고 있다.\n\n나를 잠시 쳐다보며, [slave_merchant.GetSheHe]는 \"다시 오셨군, 그럼? 어떤 놈을 원하시오?\"라고 말하고는 줄의 나머지를 검사하러 이동한다." # 서술부는 해라체, 대사는 구어체
+ carnx_decision_events.1011.desc_returned_03: "[slave_merchant.GetFirstName](은)는 다른 고객을 응대하고 있는데, 그 고객은 여성 노예 중 한 명을 면밀히 검사하고 있다. 입과 이빨에서 시작하여 몸의 모든 부분을 차례로 살핀다.\n\n나를 발견하자, [slave_merchant.GetSheHe]는 재빨리 돌아서서 외친다: \"또 오셨군! 맙소사 — 마음이 바뀌셨소?\"" # 서술부는 해라체, 대사는 구어체
 
- carnx_decision_events.1011.a: "\"말해보시오, [first_merchant_slave.GetFirstNameNoTooltip]은(는) 좋은 선택 같소.\"" # 구어체 (대사)
- carnx_decision_events.1011.b: "\"차라리 [second_merchant_slave.GetFirstNameNoTooltip]을(를) 선호하오.\"" # 구어체 (대사)
+ carnx_decision_events.1011.a: "\"보아하니, [first_merchant_slave.GetFirstNameNoTooltip](은)는 좋은 선택 같소.\"" # 구어체 (대사)
+ carnx_decision_events.1011.b: "\"차라리 [second_merchant_slave.GetFirstNameNoTooltip](이)가 더 낫겠소.\"" # 구어체 (대사)
  carnx_decision_events.1011.c: "$carnx_decision_events.1021.d$" # 변수 유지
 
- carnx_decision_events.1011.return.tt: "노예 시장으로 돌아간다." # 해라체 (툴팁)
+ carnx_decision_events.1011.return.tt: "노예 시장으로 돌아감" # 해라체 (툴팁)
 
  # Visiting Location: No Questions Asked
  carnx_decision_events.1020.t: "[visiting_location.GetBaronyNameExplicitlyNoTooltip]: 묻지 마시오" # 제목 (장소 이름인듯)
 
- carnx_decision_events.1020.desc_intro_reused_slave_trader: "노예 시장의 소란 속에서 목소리가 들려온다: \"다시 찾아주시는 고객은 언제나 환영이지요!\" [slave_trader.GetFirstName]은(는) 외치며, 내가 데려온 노예들을 살피러 가까이 다가온다." # 서술부는 해라체, 대사는 구어체
- carnx_decision_events.1020.desc_intro_many_merchants: "[visiting_location.GetBaronyNameExplicitly]의 노예 시장은 노예 판매상과 조달자로 가득하며, 나는 잘 알려진 노예 상인 [slave_trader.GetFirstName]을(를) 찾는 데 어려움이 없다." # 1인칭 '나' 시점, 해라체
- carnx_decision_events.1020.desc_intro_new_01: "내 손에서 노예 몇 명을 넘겨받을 사람을 둘러보던 중, 노예 상인 [slave_trader.GetFirstName]이(가) 나타나 내가 데려온 자들을 살핀다." # 1인칭 '나' 시점, 해라체
- carnx_decision_events.1020.desc_intro_new_02: "사람들로 붐비는 골목에서 내 어깨가 뒤에서 누군가와 우연히 부딪힌다. 노예 상인 [slave_trader.GetFirstName]이(가) 나를 마주보려 돌아서다가, 내가 데려온 노예들을 발견하고 더 자세히 살피기 시작한다." # 1인칭 '나' 시점, 해라체
- carnx_decision_events.1020.desc_intro_returned_01: "노예 상인에게 돌아가자, [slave_trader.GetFirstName]은(는) 내가 돌아온 것을 보고 호기심 어린 눈으로 바라본다: \"제 제안은 아직 유효합니다.\"\n\n그러고 나서 [slave_trader.GetSheHe]는 [slave_trader.GetHerHis] 하인들에게 돌아서서 명령을 내리기 시작한다." # 서술부는 해라체, 대사는 구어체
+ carnx_decision_events.1020.desc_intro_reused_slave_trader: "노예 시장의 소란 속에서 목소리가 들려온다: \"다시 찾아주시는 고객은 언제나 환영이지요!\" [slave_trader.GetFirstName](은)는 외치며, 내가 데려온 노예들을 살피러 가까이 다가온다." # 서술부는 해라체, 대사는 구어체
+ carnx_decision_events.1020.desc_intro_many_merchants: "[visiting_location.GetBaronyNameExplicitly]의 노예 시장은 노예 판매상과 조달자로 가득하며, 나는 잘 알려진 노예 상인 [slave_trader.GetFirstName](을)를 찾는 데 어려움이 없다." # 1인칭 '나' 시점, 해라체
+ carnx_decision_events.1020.desc_intro_new_01: "내 손에서 노예 몇 명을 넘겨받을 사람을 둘러보던 중, 노예 상인 [slave_trader.GetFirstName](이)가 나타나 내가 데려온 자들을 살핀다." # 1인칭 '나' 시점, 해라체
+ carnx_decision_events.1020.desc_intro_new_02: "사람들로 붐비는 골목에서 내 어깨가 뒤에서 누군가와 우연히 부딪힌다. 노예 상인 [slave_trader.GetFirstName](이)가 나를 마주보려 돌아서다가, 내가 데려온 노예들을 발견하고 더 자세히 살피기 시작한다." # 1인칭 '나' 시점, 해라체
+ carnx_decision_events.1020.desc_intro_returned_01: "노예 상인에게 돌아가자, [slave_trader.GetFirstName](은)는 내가 돌아온 것을 보고 호기심 어린 눈으로 바라본다: \"제 제안은 아직 유효합니다.\"\n\n그러고 나서 [slave_trader.GetSheHe]는 [slave_trader.GetHerHis] 하인들에게 돌아서서 명령을 내리기 시작한다." # 서술부는 해라체, 대사는 구어체
  carnx_decision_events.1020.desc_intro_returned_02: "노예 상인에게 돌아오니, [slave_trader.GetFirstNamePossessive] 가판대는 여전히 다른 곳들 사이에서 눈에 띈다.\n\n[slave_trader.GetSheHe|U]는 나를 알아보고 잠시 멈추더니 말한다: \"그럼, 거래하는 겁니까?\"" # 서술부는 해라체, 대사는 구어체
- carnx_decision_events.1020.desc_intro_intermediate_returned_01: "여전히 내 선택지를 고민하는 동안, [slave_trader.GetFirstName]은(는) 나를 무심한 표정으로 쳐다보고 단조로운 목소리로 내뱉는다: \"제 제안은 아직 유효합니다.\"\n\n그러고 나서 [slave_trader.GetSheHe]는 태연하게 [slave_trader.GetHerHis] 하인들에게 돌아서서 명령을 내리기 시작한다." # 서술부는 해라체, 대사는 구어체
- carnx_decision_events.1020.desc_intro_intermediate_returned_02: "내가 약간 망설이자, [slave_trader.GetFirstName]은(는) 나의 우유부단함에 약간 기분이 상한 듯 보인다.\n\n[slave_trader.GetSheHe|U]는 \"원하시는 만큼 시간을 가지시지요, 아마.\"라며 어깨를 으쓱하고는 다른 고객을 응대하러 휑하니 가버린다." # 서술부는 해라체, 대사는 구어체
- carnx_decision_events.1020.desc_one_slave_new_01: "\n\n숙련된 태도로, [slave_trader.GetSheHe]는 [first_slave.GetFirstName]을(를) 살피고 [first_slave.GetHerHis] 배경에 대해 묻고는, 고개를 끄덕이며 혼잣말로 무언가를 중얼거린다." # 해라체
- carnx_decision_events.1020.desc_one_slave_new_02: "\n\n[slave_trader.GetSheHe|U]는 [first_slave.GetFirstName]을(를) 검사하고는 고개를 젓고, 상상 속의 결점에 대해 불평한다. 마침내, [slave_trader.GetSheHe]는 동의하며 고개를 끄덕인다." # 해라체
- carnx_decision_events.1020.desc_two_slaves_new_01: "\n\n[slave_trader.GetSheHe|U]는 [first_slave.GetFirstName]을(를) 검사하기 시작하고, [second_slave.GetFirstName]을(를) 발견했을 때 [slave_trader.GetHerHis] 눈에는 흥미로운 빛이 떠오른다." # 해라체
- carnx_decision_events.1020.desc_two_slaves_new_02: "\n\n[slave_trader.GetSheHe|U]는 [first_slave.GetFirstName]에게 다가가, 그 [first_slave.GetWomanMan]을(를) 주의 깊게 살피고 [first_slave.GetHerHis] 기술에 대해 묻는다. 그러고 나서 [slave_trader.GetSheHe]는 [second_slave.GetFirstName]을(를) 면밀히 검사하는데, 무언가 마음에 들지 않는 듯하다." # 해라체
+ carnx_decision_events.1020.desc_intro_intermediate_returned_01: "여전히 내 선택지를 고민하는 동안, [slave_trader.GetFirstName](은)는 나를 무심한 표정으로 쳐다보고 단조로운 목소리로 내뱉는다: \"제 제안은 아직 유효합니다.\"\n\n그러고 나서 [slave_trader.GetSheHe]는 태연하게 [slave_trader.GetHerHis] 하인들에게 돌아서서 명령을 내리기 시작한다." # 서술부는 해라체, 대사는 구어체
+ carnx_decision_events.1020.desc_intro_intermediate_returned_02: "내가 약간 망설이자, [slave_trader.GetFirstName](은)는 나의 우유부단함에 약간 기분이 상한 듯 보인다.\n\n[slave_trader.GetSheHe|U]는 \"원하시는 만큼 시간을 가지시지요, 아마.\"라며 어깨를 으쓱하고는 다른 고객을 응대하러 휑하니 가버린다." # 서술부는 해라체, 대사는 구어체
+ carnx_decision_events.1020.desc_one_slave_new_01: "\n\n숙련된 태도로, [slave_trader.GetSheHe]는 [first_slave.GetFirstName](을)를 살피고 [first_slave.GetHerHis] 배경에 대해 묻고는, 고개를 끄덕이며 혼잣말로 무언가를 중얼거린다." # 해라체
+ carnx_decision_events.1020.desc_one_slave_new_02: "\n\n[slave_trader.GetSheHe|U]는 [first_slave.GetFirstName](을)를 검사하고는 고개를 젓고, 상상 속의 결점에 대해 불평한다. 마침내, [slave_trader.GetSheHe]는 동의하며 고개를 끄덕인다." # 해라체
+ carnx_decision_events.1020.desc_two_slaves_new_01: "\n\n[slave_trader.GetSheHe|U]는 [first_slave.GetFirstName](을)를 검사하기 시작하고, [second_slave.GetFirstName](을)를 발견했을 때 [slave_trader.GetHerHis] 눈에는 흥미로운 빛이 떠오른다." # 해라체
+ carnx_decision_events.1020.desc_two_slaves_new_02: "\n\n[slave_trader.GetSheHe|U]는 [first_slave.GetFirstName]에게 다가가, 그 [first_slave.GetWomanMan](을)를 주의 깊게 살피고 [first_slave.GetHerHis] 기술에 대해 묻는다. 그러고 나서 [slave_trader.GetSheHe]는 [second_slave.GetFirstName](을)를 면밀히 검사하는데, 무언가 마음에 들지 않는 듯하다." # 해라체
  carnx_decision_events.1020.desc_three_slaves_new_01: "\n\n나의 노예들을 살피며, [slave_trader.GetSheHe]는 모든 세부 사항을 면밀히 조사한다 — [first_slave.GetFirstName]의 이빨이든, [second_slave.GetFirstName]의 근육이든, 또는 [third_slave.GetFirstName]의 기술이든 말이다." # 해라체
- carnx_decision_events.1020.desc_three_slaves_new_02: "\n\n내가 알기도 전에, [slave_trader.GetSheHe|U]는 [first_slave.GetFirstName]과 [second_slave.GetFirstName]을(를) 철저히 검사했다. [slave_trader.GetSheHe|U]는 결점을 찾으려는 듯 [third_slave.GetFirstName]의 성격에 대해 묻는다." # 해라체
+ carnx_decision_events.1020.desc_three_slaves_new_02: "\n\n내가 알기도 전에, [slave_trader.GetSheHe|U]는 [first_slave.GetFirstName]과 [second_slave.GetFirstName](을)를 철저히 검사했다. [slave_trader.GetSheHe|U]는 결점을 찾으려는 듯 [third_slave.GetFirstName]의 성격에 대해 묻는다." # 해라체
  carnx_decision_events.1020.desc_outraged_partner_new: "\n\n갑자기, 나의 [ROOT.Char.Custom2('RelationToMe', SCOPE.sC('visiting_partner'))]인 [visiting_partner.GetFirstNamePossessive] 격분한 목소리가 귓가에 들린다: \"정말로 우리 동료들을 이 불한당에게 팔고 싶으시오? #EMP 여길 벗어납시다!# \"" # 구어체 (동행인 대사)
- carnx_decision_events.1020.desc_outraged_partner_returned: "\n\n곁눈질로 보니, [visiting_partner.GetFirstName]은(는) 여전히 나의 냉담함에 분노하고 있다." # 1인칭 '나' 시점, 해라체
+ carnx_decision_events.1020.desc_outraged_partner_returned: "\n\n곁눈질로 보니, [visiting_partner.GetFirstName](은)는 여전히 나의 냉담함에 분노하고 있다." # 1인칭 '나' 시점, 해라체
 
  carnx_decision_events.1020.a: "$ep3_laamp_decision_event.1020.a$" # 변수 유지
- carnx_decision_events.1020.a.tt: "어떤 노예를 팔지 선택한다." # 해라체 (툴팁)
+ carnx_decision_events.1020.a.tt: "어떤 노예를 팔지 선택함" # 해라체 (툴팁)
  carnx_decision_events.1020.a.first_slave.tt: "[first_slave.GetFirstName]의 #V 현재#! 제시 가격: [gold_i] [first_slave.MakeScope.Var('1020_slave_price').GetValue|0]" # 툴팁
  carnx_decision_events.1020.a.second_slave.tt: "[second_slave.GetFirstName]의 #V 현재#! 제시 가격: [gold_i] [second_slave.MakeScope.Var('1020_slave_price').GetValue|0]" # 툴팁
  carnx_decision_events.1020.a.third_slave.tt: "[third_slave.GetFirstName]의 #V 현재#! 제시 가격: [gold_i] [third_slave.MakeScope.Var('1020_slave_price').GetValue|0]" # 툴팁
- carnx_decision_events.1020.b: "\"[slave_trader.GetFirstNameNoTooltip], 저기 저 상인이 사실 더 높은 가격을 제시했소.\"" # 구어체 (대사/흥정)
- carnx_decision_events.1020.b.success: "[slave_trader.GetShortUIName]을(를) 설득하는 데 성공했다." # 해라체 (결과)
+ carnx_decision_events.1020.b: "\"[slave_trader.GetFirstNameNoTooltip], 실은 저기 저 상인이 더 높은 가격을 제시했소만.\"" # 구어체 (대사/흥정)
+ carnx_decision_events.1020.b.success: "[slave_trader.GetShortUIName](을)를 설득하는 데 성공함" # 해라체 (결과)
  carnx_decision_events.1020.b.success.first_slave.tt: "[first_slave.GetFirstName]의 #P 인상된#! 제시 가격: [gold_i] [first_slave.MakeScope.Var('1020_increased_slave_price').GetValue|0]" # 툴팁
  carnx_decision_events.1020.b.success.second_slave.tt: "[second_slave.GetFirstName]의 #P 인상된#! 제시 가격: [gold_i] [second_slave.MakeScope.Var('1020_increased_slave_price').GetValue|0]" # 툴팁
  carnx_decision_events.1020.b.success.third_slave.tt: "[third_slave.GetFirstName]의 #P 인상된#! 제시 가격: [gold_i] [third_slave.MakeScope.Var('1020_increased_slave_price').GetValue|0]" # 툴팁
- carnx_decision_events.1020.b.failure: "[slave_trader.GetShortUIName]이(가) 당신의 허세를 간파했다." # 해라체 (결과)
+ carnx_decision_events.1020.b.failure: "[slave_trader.GetShortUIName](이)가 당신의 허세를 간파함" # 해라체 (결과)
  carnx_decision_events.1020.b.failure.first_slave.tt: "[first_slave.GetFirstName]의 #N 인하된#! 제시 가격: [gold_i] [first_slave.MakeScope.Var('1020_decreased_slave_price').GetValue|0]" # 툴팁
  carnx_decision_events.1020.b.failure.second_slave.tt: "[second_slave.GetFirstName]의 #N 인하된#! 제시 가격: [gold_i] [second_slave.MakeScope.Var('1020_decreased_slave_price').GetValue|0]" # 툴팁
  carnx_decision_events.1020.b.failure.third_slave.tt: "[third_slave.GetFirstName]의 #N 인하된#! 제시 가격: [gold_i] [third_slave.MakeScope.Var('1020_decreased_slave_price').GetValue|0]" # 툴팁
@@ -112,12 +112,12 @@
  carnx_decision_events.1021.t_success: "$ep3_laamp_decision_event.1021.t_success$" # 변수 유지
  carnx_decision_events.1021.t_failure: "$ep3_laamp_decision_event.1021.t_failure$" # 변수 유지
 
- carnx_decision_events.1021.desc_moment_of_purchase_01: "[slave_trader.GetFirstName]은(는) 나의 결정에 만족한 듯 기대에 찬 눈빛으로 나를 본다: \"어떤 노예와 작별하고 싶으시오?\"" # 서술부는 해라체, 대사는 구어체
- carnx_decision_events.1021.desc_moment_of_purchase_02: "[slave_trader.GetFirstName]은(는) 격려하듯 고개를 끄덕인다: \"동전은 준비되었소. 어떤 노예를 파시겠소?\"" # 서술부는 해라체, 대사는 구어체
- carnx_decision_events.1021.desc_success: "[slave_trader.GetFirstName]은(는) 숙고하는 시선으로 나를 본다: \"...그러시오? 음, 그럼. 그런 가치 있는 노예라면, 동전 한두 닢 정도는 더 내놓을 수 있을지도 모르지.\"" # 서술부는 해라체, 대사는 구어체
- carnx_decision_events.1021.desc_failure: "[slave_trader.GetFirstName]은(는) 비웃으며 입가에 경멸적인 미소를 짓는다: \"말도 안 되는 소리 마시오. 내 제안은 그대로요.\"" # 서술부는 해라체, 대사는 구어체
+ carnx_decision_events.1021.desc_moment_of_purchase_01: "[slave_trader.GetFirstName](은)는 나의 결정에 만족한 듯 기대에 찬 눈빛으로 나를 본다: \"어떤 노예와 작별하고 싶으시오?\"" # 서술부는 해라체, 대사는 구어체
+ carnx_decision_events.1021.desc_moment_of_purchase_02: "[slave_trader.GetFirstName](은)는 격려하듯 고개를 끄덕인다: \"동전은 준비되었소. 어떤 노예를 파시겠소?\"" # 서술부는 해라체, 대사는 구어체
+ carnx_decision_events.1021.desc_success: "[slave_trader.GetFirstName](은)는 숙고하는 시선으로 나를 본다: \"...그러시오? 음, 그럼. 그런 가치 있는 노예라면, 동전 한두 닢 정도는 더 내놓을 수 있을지도 모르지.\"" # 서술부는 해라체, 대사는 구어체
+ carnx_decision_events.1021.desc_failure: "[slave_trader.GetFirstName](은)는 비웃으며 입가에 경멸적인 미소를 짓는다: \"말도 안 되는 소리 마시오. 내 제안은 그대로요.\"" # 서술부는 해라체, 대사는 구어체
 
- carnx_decision_events.1021.a: "\"[first_slave.GetFirstNameNoTooltip]은(는) 결코 나를 기쁘게 하지 못했소.\"" # 구어체 (대사)
- carnx_decision_events.1021.b: "\"금화가 더 쓸모 있소. [second_slave.GetFirstNameNoTooltip]을(를) 데려가시오.\"" # 구어체 (대사)
- carnx_decision_events.1021.c: "\"[third_slave.GetFirstNameNoTooltip]을(를) 당신에게 주겠소.\"" # 구어체 (대사)
+ carnx_decision_events.1021.a: "\"[first_slave.GetFirstNameNoTooltip](은)는 결코 나를 기쁘게 하지 못했소.\"" # 구어체 (대사)
+ carnx_decision_events.1021.b: "\"금화가 더 쓸모 있소. [second_slave.GetFirstNameNoTooltip](을)를 데려가시오.\"" # 구어체 (대사)
+ carnx_decision_events.1021.c: "\"[third_slave.GetFirstNameNoTooltip](을)를 당신에게 주겠소.\"" # 구어체 (대사)
  carnx_decision_events.1021.d: "$ep3_laamp_decision_event.1021.d$" # 변수 유지
