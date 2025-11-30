@@ -41,7 +41,7 @@ carnx_slave.0001 = {
 		hidden_effect = {
 			# Find slave merchant
 			carnx_get_merchant_effect = {
-				TYPE = slave_merchant
+				TYPE = slave_trader
 				LOCATION = root.capital_province
 				CHARACTER = root
 				BLACKLIST = none

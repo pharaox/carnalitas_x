@@ -361,6 +361,7 @@ carn_sell_slave_interaction = {
 
 		# Slave traders are more willing to buy
 		modifier = {
+			is_pool_character = yes
 			var:at_merchant_type ?= flag:slave_trader
 			add = carnx_ai_positive_merchant_impact_value
 			desc = carnx_recipient_merchant_reason
