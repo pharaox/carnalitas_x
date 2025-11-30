@@ -109,6 +109,7 @@
 			court_position_generator_effect = {
 				VAR = target
 				EMPLOYER = scope:recipient
+				ONLY_EMPTY = no
 			}
 		}
 		if = {

@@ -82,7 +82,6 @@
 							is_male = yes
 							matrilinear_marriage = yes
 						}
-						#Unop Match conditions in populate_actor_list
 						is_diarch = yes
 						is_designated_diarch = yes
 						has_character_flag = has_been_offered_as_concubine
@@ -92,14 +91,13 @@
 				}
 			}
 		}
-		#Unop Limit range for landless adventurers
-		trigger_if = {
+
+		trigger_if = { #For adventurers we check range
 			limit = {
 				scope:actor = {
 					is_landless_adventurer = yes
 				}
 			}
-			#Has to be used instead of diplo range checks in laamp to landed interactions
 			ep3_laamp_diplo_range_trigger = {
 				TARGET = scope:recipient
 				LAAMP = scope:actor
@@ -130,7 +128,18 @@
 		}
 	}
 
-	auto_accept = no
+	auto_accept = {
+		scope:actor = {
+			has_title = title:e_minister_of_personnel
+			custom_tooltip = {
+				text = same_realm_tt
+				top_liege = scope:recipient.top_liege
+			}
+		}
+		scope:recipient = {
+			is_ai = yes
+		}
+	}
 
 	ai_accept = {
 		base = -10
@@ -362,6 +371,12 @@
 				}
 			}
 		}
+		modifier = {
+			factor = 0
+			scope:actor = {
+				has_title = title:e_minister_of_personnel
+			}
+		}
 	}
 
 	on_send = {
@@ -388,46 +403,80 @@
 			custom_tooltip = ALREADY_OFFERED_COURTIER_WARNING
 		}
 
-		scope:secondary_actor = {
-			add_opinion = {
-				#Unop Make consistent with demand_courtier interaction
-				target = scope:actor
-				modifier = annoyed_opinion
-				opinion = -10
-			}
-		}
-		scope:actor = {
-			#Unop Add a proper notification
-			send_interface_toast = {
-				type = event_toast_effect_neutral
-				title = unop_msg_offer_courtier_accepted_tt
-				right_icon = scope:recipient
-				left_icon = scope:secondary_actor
+		if = {
+			limit = {
+				scope:actor = {
+					has_title = title:e_minister_of_personnel
+				}
 				scope:recipient = {
-					add_courtier = scope:secondary_actor
-					scope:secondary_actor = {
-						every_consort = {
-							limit = {
-								is_courtier_of = scope:actor
-							}
-							scope:recipient = {
-								add_courtier = prev
-							}
+					top_liege = scope:actor.top_liege
+				}
+			}
+			scope:recipient = {
+				add_courtier = scope:secondary_actor
+				scope:secondary_actor = {
+					every_consort = {
+						limit = {
+							is_courtier_of = scope:actor
 						}
-						every_child = {
-							limit = {
-								is_adult = no
-								is_courtier_of = scope:recipient
-							}
-							scope:actor = {
-								add_courtier = prev
-							}
+						scope:recipient = {
+							add_courtier = prev
 						}
 					}
-					add_opinion = {
-						target = scope:actor
-						modifier = unop_offer_courtier_opinion #Unop Use custom non-stacking opinion, as for other gifts
-						opinion = 10
+					every_child = {
+						limit = {
+							is_adult = no
+							is_courtier_of = scope:recipient
+						}
+						scope:actor = {
+							add_courtier = prev
+						}
+					}
+				}
+			}
+		}
+		else = {
+			scope:secondary_actor = {
+				add_opinion = {
+					#Unop Make consistent with demand_courtier interaction
+					target = scope:actor
+					modifier = annoyed_opinion
+					opinion = -10
+				}
+			}
+			scope:actor = {
+				#Unop Add a proper notification
+				send_interface_toast = {
+					type = event_toast_effect_neutral
+					title = unop_msg_offer_courtier_accepted_tt
+					right_icon = scope:recipient
+					left_icon = scope:secondary_actor
+					scope:recipient = {
+						add_courtier = scope:secondary_actor
+						scope:secondary_actor = {
+							every_consort = {
+								limit = {
+									is_courtier_of = scope:actor
+								}
+								scope:recipient = {
+									add_courtier = prev
+								}
+							}
+							every_child = {
+								limit = {
+									is_adult = no
+									is_courtier_of = scope:recipient
+								}
+								scope:actor = {
+									add_courtier = prev
+								}
+							}
+						}
+						add_opinion = {
+							target = scope:actor
+							modifier = unop_offer_courtier_opinion #Unop Use custom non-stacking opinion, as for other gifts
+							opinion = 10
+						}
 					}
 				}
 			}
@@ -610,7 +659,6 @@ demand_courtier_interaction = {
 							is_male = yes
 							matrilinear_marriage = yes
 						}
-						#Unop Match conditions in populate_actor_list
 						is_diarch = yes
 						is_designated_diarch = yes
 						has_character_flag = has_been_offered_as_concubine
@@ -629,7 +677,18 @@ demand_courtier_interaction = {
 	can_send = {
 	}
 
-	auto_accept = no
+	auto_accept = {
+		scope:actor = {
+			has_title = title:e_minister_of_personnel
+			custom_tooltip = {
+				text = same_realm_tt
+				top_liege = scope:recipient.top_liege
+			}
+		}
+		scope:recipient = {
+			is_ai = yes
+		}
+	}
 	
 	send_options_exclusive = no
 	
@@ -823,6 +882,12 @@ demand_courtier_interaction = {
 				}
 			}
 		}
+		modifier = {
+			factor = 0
+			scope:actor = {
+				has_title = title:e_minister_of_personnel
+			}
+		}
 	}
 
 	on_send = {
@@ -835,20 +900,16 @@ demand_courtier_interaction = {
 	}
 
 	on_accept = {
-		scope:secondary_actor = {
-			add_opinion = {
-				target = scope:recipient
-				modifier = annoyed_opinion
-				opinion = -10
+		if = {
+			limit = {
+				scope:actor = {
+					has_title = title:e_minister_of_personnel
+				}
+				scope:recipient = {
+					top_liege = scope:actor.top_liege
+				}
 			}
-		}
-		scope:actor = {
-			#Unop Add a proper notification
-			send_interface_toast = {
-				type = event_toast_effect_neutral
-				title = unop_msg_demand_courtier_accepted_tt
-				right_icon = scope:recipient
-				left_icon = scope:secondary_actor
+			scope:actor = {
 				add_courtier = scope:secondary_actor
 				scope:secondary_actor = {
 					every_consort = {
@@ -869,23 +930,61 @@ demand_courtier_interaction = {
 						}
 					}
 				}
-				add_opinion = {
-					target = scope:recipient
-					modifier = pleased_opinion
-					opinion = 20
-				}
-			}
-			# Use Hook
-			if = {
-				limit = { scope:hook = yes }
-				use_hook = scope:recipient
 			}
 		}
-		scope:recipient = {
-			add_opinion = {
-				target = scope:actor
-				modifier = upset_opinion
-				opinion = -15
+		else = {
+			scope:secondary_actor = {
+				add_opinion = {
+					target = scope:recipient
+					modifier = annoyed_opinion
+					opinion = -10
+				}
+			}
+			scope:actor = {
+				#Unop Add a proper notification
+				send_interface_toast = {
+					type = event_toast_effect_neutral
+					title = unop_msg_demand_courtier_accepted_tt
+					right_icon = scope:recipient
+					left_icon = scope:secondary_actor
+					add_courtier = scope:secondary_actor
+					scope:secondary_actor = {
+						every_consort = {
+							limit = {
+								is_courtier_of = scope:recipient
+							}
+							scope:actor = {
+								add_courtier = prev
+							}
+						}
+						every_child = {
+							limit = {
+								is_adult = no
+								is_courtier_of = scope:recipient
+							}
+							scope:actor = {
+								add_courtier = prev
+							}
+						}
+					}
+					add_opinion = {
+						target = scope:recipient
+						modifier = pleased_opinion
+						opinion = 20
+					}
+					# Use Hook
+					if = {
+						limit = { scope:hook = yes }
+						use_hook = scope:recipient
+					}
+				}
+			}
+			scope:recipient = {
+				add_opinion = {
+					target = scope:actor
+					modifier = upset_opinion
+					opinion = -15
+				}
 			}
 		}
 	}

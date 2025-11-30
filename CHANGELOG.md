@@ -1,5 +1,19 @@
 # Changelog
 
+## Version 0.28.3
+
+### Balance
+
+* AI characters of faiths having the *Shunned* slavery doctrine are now more willing to trade slaves
+* It is now possible to trade slaves with slave traders spawned by events
+* The *Slave Concubine* court position is now enabled for monogamous unreformed faiths if adultery is accepted
+* Gifting slaves now gives piety if your faith has the *Communal Possessions" tenet
+
+### Compatibility
+
+* Adapted to CK3 1.18.2.
+* Adapted to latest Unofficial Patch changes.
+
 ## Version 0.28.2
 
 ### Localization

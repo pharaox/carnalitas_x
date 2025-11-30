@@ -86,7 +86,7 @@
 					government_has_flag = government_is_mandala
 					government_has_flag = government_is_celestial
 					government_has_flag = government_is_meritocratic
-					government_has_flag = japan_feudal_government
+					government_has_flag = government_is_japan_feudal
 				}
 			}
 			admin_government_reset_effect = yes #this only contains Clan, Tribal, Nomadic and Feudal

@@ -43,6 +43,14 @@
 			PRISONER = scope:recipient
 			REGENT = scope:recipient.var:imprisoned_by_diarch
 		}
+		custom_tooltip = {
+			text = is_currently_being_purged_tt
+			scope:recipient = {
+				NOT = {
+					has_character_flag = is_currently_being_purged
+				}
+			}
+		}
 	}
 
 	on_accept = {
@@ -1172,7 +1180,7 @@
 		}
 		is_valid = {
 			scope:actor = {
-				can_employ_court_position_type = executioner_court_position #Unop: Check that the actor can employ an executioner
+				can_employ_court_position_type = executioner_court_position
 				NOT = { employs_court_position = executioner_court_position }
 			}
 			scope:recipient = {
