@@ -792,12 +792,24 @@ carnx_court_position_salary_liege_multiplier = {
 	if = {
 		limit = {
 			scope:liege = {
-				has_government = tribal_government
+				government_has_flag = government_is_tribal
 			}
 		}
 		multiply = {
 			value = 0.25
 			desc = tribal_salary_mod
+			format = "BASE_VALUE_FORMAT_DECIMALS_MINUS_POSITIVE"
+		}
+	}
+	if = {
+		limit = {
+			scope:liege = {
+				government_has_flag = government_is_nomadic
+			}
+		}
+		multiply = {
+			value = 0.5
+			desc = nomad_salary_mod
 			format = "BASE_VALUE_FORMAT_DECIMALS_MINUS_POSITIVE"
 		}
 	}
