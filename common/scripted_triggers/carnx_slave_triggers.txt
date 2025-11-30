@@ -1053,6 +1053,7 @@ carnx_was_enslaved_by_character_trigger = {
 carnx_is_lower_prices_government_trigger = {
 	OR = {
 		government_has_flag = government_is_tribal
+		government_has_flag = government_is_wanua
 		government_has_flag = government_is_nomadic
 		government_has_flag = government_is_herder
 	}
@@ -1088,7 +1089,10 @@ carnx_is_employed_slaves_more_loyal_enabled_trigger = {
 carnx_is_slave_concubines_enabled_trigger = {
 	custom_tooltip = {
 		text = faith_or_culture_allows_polygamy_or_concubines_tt
-		carnx_is_polygamous_faith_or_culture_trigger = yes
+		OR = {
+			carnx_is_polygamous_faith_or_culture_trigger = yes
+			carnx_is_unreformed_faith_with_adultery_accepted_trigger = yes
+		}
 	}
 }
 
@@ -1138,6 +1142,17 @@ carnx_is_polygamous_faith_or_culture_trigger = {
 	}
 }
 
+carnx_is_unreformed_faith_with_adultery_accepted_trigger = {
+	faith = { has_doctrine = unreformed_faith_doctrine }
+	trigger_if = {
+		limit = { is_male = yes }
+		faith = { has_doctrine = doctrine_adultery_men_accepted }
+	}
+	trigger_else = {
+		faith = { has_doctrine = doctrine_adultery_women_accepted }
+	}
+}
+
 carnx_is_playable_or_family_trigger = {
 	OR = {
 		is_playable_character = yes
@@ -1165,6 +1180,7 @@ carnx_slavery_attitude_liberator_government_trigger = {
 carnx_slavery_attitude_trader_government_trigger = {
 	OR = {
 		government_has_flag = government_is_republic
+		government_has_flag = government_is_wanua
 		government_has_flag = government_is_mandala
 	}
 }
@@ -1183,6 +1199,10 @@ carnx_slavery_attitude_slaver_faith_culture_trigger = {
 	has_game_rule = carnx_universe_historical
 	faith = {
 		religion = { is_in_family = rf_pagan }
+		NOR = {
+			has_doctrine = tenet_pacifism
+			has_doctrine = tenet_dharmic_pacifism
+		}
 	}
 }
 
@@ -1206,6 +1226,7 @@ carnx_slavery_attitude_trader_faith_culture_trigger = {
 			religion = religion:christianity_religion
 			religion = religion:islam_religion
 			religion = religion:judaism_religion
+			religion = religion:hinduism_religion
 		}
 	}
 }

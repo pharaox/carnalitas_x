@@ -1452,6 +1452,16 @@ carnx_gift_slave_effect = {
 			carnx_slavery_doctrines_minor_stress_impact_effect = yes
 		}
 
+		# Gain piety from Communal Possessions tenet
+		if = {
+			limit = {
+				faith = {
+					has_doctrine_parameter = piety_from_gifts_active
+				}
+			}
+			add_piety = minor_piety_gain
+		}
+
 		# Other consequences
 		carnx_apply_slavery_consequences_effect = {
 			CHARACTER = scope:slave
