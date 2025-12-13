@@ -1,4 +1,4 @@
-version="0.28.2"
+version="0.28.3"
 tags={
 	"Gameplay"
 	"Character Interactions"
