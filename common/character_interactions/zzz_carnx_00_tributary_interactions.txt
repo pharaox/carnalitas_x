@@ -434,6 +434,25 @@
 					}
 				}
 			}
+			scope:actor = {
+				if = {
+					limit = {
+						government_has_flag = government_has_influence
+					}
+					change_influence = {
+						value = scope:secondary_actor.average_of_all_skills_and_prowess
+						multiply = 5
+						if = {
+							limit = {
+								scope:secondary_actor = {
+									is_close_or_extended_family_of = scope:actor
+								}
+							}
+							add = 100
+						}
+					}
+				}
+			}
 		}
 		else = {
 			scope:secondary_actor = {
