@@ -5,6 +5,7 @@
  carnx_slave.0001.b:0 "[common_option.GetFirstNameNoTooltip]似乎更便宜"
  carnx_slave.0001.c:0 "他们两我都要了！"
  carnx_slave.0001.d:0 "他们两个都没能打动我。"
+ carnx_slave.0001.e:0 "我拒绝参与这种可憎的交易！"
  carnx_slave.0002.t:0 "和奴隶做爱"
  carnx_slave.0002.desc:0 "我强迫[slave.GetFirstNameNoTooltip]和我做爱。"
  carnx_slave.0002.a:0 "好的"
@@ -44,4 +45,3 @@
  carnx_slave.0008.c:0 "$carnx_slavery_attitude_trader_modifier$"
  carnx_slave.0008.d:0 "$carnx_slavery_attitude_employer_modifier$"
  carnx_slave.0008.e:0 "无"
- carnx_slave.0001.e:0 "我拒绝参与这种可憎的交易！"
