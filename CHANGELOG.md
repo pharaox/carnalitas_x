@@ -1,5 +1,11 @@
 # Changelog
 
+## Version 0.28.4
+
+### Localization
+
+* Updated Chinese translation by **@jengus**.
+
 ## Version 0.28.3
 
 ### Balance
