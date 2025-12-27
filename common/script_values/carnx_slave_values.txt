@@ -696,6 +696,9 @@ carnx_slave_ransom_cost_value = {
 		limit = { exists = scope:recipient }
 		scope:recipient = { save_temporary_scope_as = party }
 	}
+	else = {
+		save_temporary_scope_as = party
+	}
 
 	value = 0
 
@@ -727,6 +730,10 @@ carnx_slave_ransom_cost_value = {
 	}
 
 	if = {
+		limit = { this = scope:party }
+		multiply = 1.0
+	}
+	else_if = {
 		limit = { is_primary_heir_of = scope:party }
 		multiply = define:NImprisonment|RANSOM_MULTIPLIER_PRIMARY_HEIR
 	}

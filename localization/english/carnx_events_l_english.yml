@@ -52,3 +52,8 @@
  carnx_slave.0008.c:0 "$carnx_slavery_attitude_trader_modifier$"
  carnx_slave.0008.d:0 "$carnx_slavery_attitude_employer_modifier$"
  carnx_slave.0008.e:0 "None"
+
+ carnx_slave.0009.t:0 "The Price of Freedom"
+ carnx_slave.0009.desc:0 "[slave.GetFirstNameNoTooltip] approaches me with a respectful but hopeful expression. [slave.GetSheHe|U] has been saving [slave.GetHerHis] meager earnings and now offers [gold_i][slave.MakeScope.Var('carnx_slave_0009_freedom_price').GetValue|P0] in exchange for [slave.GetHerHis] freedom. It is a sizeable sum, more than what many would pay to ransom [slave.GetHerHim]."
+ carnx_slave.0009.a:0 "Very well, I accept your offer."
+ carnx_slave.0009.b:0 "No, you are more valuable to me as a slave."

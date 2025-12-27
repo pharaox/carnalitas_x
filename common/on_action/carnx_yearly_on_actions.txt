@@ -41,6 +41,7 @@ carnx_yearly_playable_pulse = {
 
 		20 = carnx_slave.0003 # Runaway Slave
 		100 = carnx_slave.0005 # Freedom for a Slave
+		100 = carnx_slave.0009 # The Price of Freedom
 	}
 }
 

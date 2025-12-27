@@ -1,0 +1,227 @@
+﻿namespace = carnx_slave
+
+scripted_trigger carnx_slave_0009_valid_liege_trigger = {
+	is_available_adult = yes
+	carnx_is_slave_owner_trigger = yes
+}
+
+scripted_trigger carnx_slave_0009_valid_slave_trigger = {
+	is_available_ai_adult = yes
+	opinion = {
+		target = root
+		value >= medium_negative_opinion
+	}
+	NOR = {
+		root = { has_execute_reason = prev }
+		has_relation_rival = root
+	}
+}
+
+# The Price of Freedom
+carnx_slave.0009 = {
+	type = character_event
+	title = carnx_slave.0009.t
+	desc = carnx_slave.0009.desc
+
+	theme = realm
+	left_portrait = {
+		character = scope:slave
+		animation = personality_rational
+	}
+	override_background = {
+		reference = throne_room
+	}
+
+	trigger = {
+		NOT = { has_game_rule = carn_slavery_content_disabled }
+		NOT = { has_character_flag = had_event_carnx_slave_0009 }
+		carnx_slave_0009_valid_liege_trigger = yes
+		any_relation = {
+			type = slave
+			carnx_slave_0009_valid_slave_trigger = yes
+			gold >= {
+				value = carnx_slave_ransom_cost_value
+				multiply = 1.2
+			}
+		}
+	}
+
+	weight_multiplier = {
+		base = 1
+
+		# Weight up for greedy rulers
+		modifier = {
+			has_trait = greedy
+			add = 0.5
+		}
+		# Weight up for trader attitude
+		modifier = {
+			has_character_modifier = carnx_slavery_attitude_trader_modifier
+			add = 0.25
+		}
+	}
+
+	immediate = {
+		hidden_effect = {
+			carnx_debug_log_effect = { MSG = carnx_debug_msg_slave_0009_fired }
+		}
+		add_character_flag = {
+			flag = had_event_carnx_slave_0009
+			years = 3
+		}
+
+		# Find a valid slave who can afford their freedom
+		random_relation = {
+			type = slave
+			limit = {
+				carnx_slave_0009_valid_slave_trigger = yes
+				gold >= {
+					value = carnx_slave_ransom_cost_value
+					multiply = 1.2
+				}
+			}
+
+			weight = {
+				base = 50
+
+				# Owner's opinion of slave
+				opinion_modifier = {
+					who = root
+					opinion_target = this
+					multiplier = 0.5
+				}
+
+				# Relations
+				modifier = {
+					OR = {
+						is_close_family_of = root
+						has_relation_friend = root
+						has_relation_lover = root
+					}
+					add = 50
+				}
+
+				# Prefer wealthier slaves
+				compare_modifier = {
+					value = gold
+					multiplier = 0.5
+				}
+			}
+
+			save_scope_as = slave
+		}
+
+		# Calculate the freedom price (1.2x ransom cost)
+		scope:slave = {
+			set_variable = {
+				name = carnx_slave_0009_freedom_price
+				value = {
+					value = carnx_slave_ransom_cost_value
+					multiply = 1.2
+				}
+				days = 2
+			}
+		}
+	}
+
+	# Accept the gold and grant freedom
+	option = {
+		name = carnx_slave.0009.a
+
+		# Free the slave
+		send_interface_message = {
+			type = event_generic_neutral
+			title = carn_msg_slave_freed
+			right_icon = scope:slave
+
+			scope:slave = {
+				carn_free_slave_effect = yes
+				pay_short_term_gold = {
+					gold = var:carnx_slave_0009_freedom_price
+					target = root
+				}
+				add_opinion = {
+					modifier = grateful_opinion
+					target = root
+					opinion = 20
+				}
+			}
+		}
+
+		stress_impact = {
+			greedy = minor_stress_impact_loss
+		}
+
+		hidden_effect = {
+			carnx_debug_log_effect = { MSG = carnx_debug_msg_slave_0009_option_a_chosen }
+		}
+
+		ai_chance = {
+			base = 50
+
+			opinion_modifier = {
+				opinion_target = scope:slave
+				multiplier = 0.5
+			}
+
+			ai_value_modifier = {
+				ai_greed = 0.5
+			}
+
+			# Trader attitude favors profit
+			modifier = {
+				has_character_modifier = carnx_slavery_attitude_trader_modifier
+				add = 25
+			}
+		}
+	}
+
+	# Refuse the offer
+	option = {
+		name = carnx_slave.0009.b
+
+		scope:slave = {
+			add_opinion = {
+				modifier = disappointed_opinion
+				target = root
+				opinion = -20
+			}
+		}
+
+		stress_impact = {
+			greedy = minor_stress_impact_gain
+		}
+
+		hidden_effect = {
+			carnx_debug_log_effect = { MSG = carnx_debug_msg_slave_0009_option_b_chosen }
+		}
+
+		ai_chance = {
+			base = 50
+
+			opinion_modifier = {
+				opinion_target = scope:slave
+				multiplier = -0.5
+			}
+
+			ai_value_modifier = {
+				ai_greed = -0.5
+			}
+
+			# Employer attitude favors keeping skilled workers
+			modifier = {
+				has_character_modifier = carnx_slavery_attitude_employer_modifier
+				scope:slave = {
+					OR = {
+						diplomacy >= high_skill_rating
+						martial >= high_skill_rating
+						stewardship >= high_skill_rating
+						intrigue >= high_skill_rating
+						learning >= high_skill_rating
+					}
+				}
+				add = 25
+			}
+		}
+	}
+}
