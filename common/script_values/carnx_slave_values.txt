@@ -725,7 +725,7 @@ carnx_slave_ransom_cost_value = {
 			add = 30
 		}
 		else = {
-			add = 20
+			add = 10 # Align with what it was previously
 		}
 	}
 

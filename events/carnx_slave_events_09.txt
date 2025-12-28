@@ -7,9 +7,9 @@ scripted_trigger carnx_slave_0009_valid_liege_trigger = {
 
 scripted_trigger carnx_slave_0009_valid_slave_trigger = {
 	is_available_ai_adult = yes
-	opinion = {
+	reverse_opinion = {
 		target = root
-		value >= medium_negative_opinion
+		value > medium_negative_opinion
 	}
 	NOR = {
 		root = { has_execute_reason = prev }
@@ -26,7 +26,7 @@ carnx_slave.0009 = {
 	theme = realm
 	left_portrait = {
 		character = scope:slave
-		animation = personality_rational
+		animation = beg
 	}
 	override_background = {
 		reference = throne_room
@@ -39,25 +39,25 @@ carnx_slave.0009 = {
 		any_relation = {
 			type = slave
 			carnx_slave_0009_valid_slave_trigger = yes
-			gold >= {
-				value = carnx_slave_ransom_cost_value
-				multiply = 1.2
-			}
+			gold >= carnx_slave_ransom_cost_value
 		}
 	}
 
 	weight_multiplier = {
 		base = 1
 
-		# Weight up for greedy rulers
+		# Weight up for compassionate rulers, weight down for sadistic and callous ones
 		modifier = {
-			has_trait = greedy
+			has_trait = compassionate
 			add = 0.5
 		}
-		# Weight up for trader attitude
 		modifier = {
-			has_character_modifier = carnx_slavery_attitude_trader_modifier
-			add = 0.25
+			has_trait = sadistic
+			add = -0.5
+		}
+		modifier = {
+			has_trait = callous
+			add = -0.25
 		}
 	}
 
@@ -75,10 +75,7 @@ carnx_slave.0009 = {
 			type = slave
 			limit = {
 				carnx_slave_0009_valid_slave_trigger = yes
-				gold >= {
-					value = carnx_slave_ransom_cost_value
-					multiply = 1.2
-				}
+				gold >= carnx_slave_ransom_cost_value
 			}
 
 			weight = {
@@ -91,34 +88,20 @@ carnx_slave.0009 = {
 					multiplier = 0.5
 				}
 
-				# Relations
-				modifier = {
-					OR = {
-						is_close_family_of = root
-						has_relation_friend = root
-						has_relation_lover = root
-					}
-					add = 50
-				}
-
-				# Prefer wealthier slaves
-				compare_modifier = {
-					value = gold
-					multiplier = 0.5
+				# Greed
+				ai_value_modifier = {
+					ai_greed = -0.5
 				}
 			}
 
 			save_scope_as = slave
 		}
 
-		# Calculate the freedom price (1.2x ransom cost)
+		# Save ransom cost
 		scope:slave = {
 			set_variable = {
-				name = carnx_slave_0009_freedom_price
-				value = {
-					value = carnx_slave_ransom_cost_value
-					multiply = 1.2
-				}
+				name = carnx_slave_0009_ransom_cost
+				value = carnx_slave_ransom_cost_value
 				days = 2
 			}
 		}
@@ -137,7 +120,7 @@ carnx_slave.0009 = {
 			scope:slave = {
 				carn_free_slave_effect = yes
 				pay_short_term_gold = {
-					gold = var:carnx_slave_0009_freedom_price
+					gold = var:carnx_slave_0009_ransom_cost
 					target = root
 				}
 				add_opinion = {
@@ -149,7 +132,9 @@ carnx_slave.0009 = {
 		}
 
 		stress_impact = {
-			greedy = minor_stress_impact_loss
+			compassionate = minor_stress_impact_loss
+			sadistic = minor_stress_impact_gain
+			callous = miniscule_stress_impact_gain
 		}
 
 		hidden_effect = {
@@ -159,19 +144,45 @@ carnx_slave.0009 = {
 		ai_chance = {
 			base = 50
 
+			# Opinion of slave
 			opinion_modifier = {
 				opinion_target = scope:slave
-				multiplier = 0.5
+				multiplier = 0.25
 			}
 
 			ai_value_modifier = {
-				ai_greed = 0.5
+				ai_compassion = 0.25
+				ai_greed = -0.10
 			}
 
-			# Trader attitude favors profit
+			# Slavery crime or shunned by faith
 			modifier = {
-				has_character_modifier = carnx_slavery_attitude_trader_modifier
+				carnx_is_slavery_crime_trigger = { CHARACTER = scope:slave }
+				add = carnx_ai_positive_crime_impact_reduced_value # 0-50 depending on zeal
+			}
+			modifier = {
+				carnx_is_slavery_shunned_trigger = { CHARACTER = scope:slave }
+				add = carnx_ai_positive_shunned_impact_reduced_value # 0-12 depending on zeal
+			}
+
+			# Liberators more likely to free
+			modifier = {
+				has_character_modifier = carnx_slavery_attitude_liberator_modifier
 				add = 25
+			}
+
+			# Weight up or down for stress
+			modifier = {
+				has_trait = compassionate
+				add = 10
+			}
+			modifier = {
+				has_trait = sadistic
+				add = -10
+			}
+			modifier = {
+				has_trait = callous
+				add = -5
 			}
 		}
 	}
@@ -188,8 +199,22 @@ carnx_slave.0009 = {
 			}
 		}
 
+		# Remove piety
+		if = {
+			limit = { carnx_is_slavery_crime_trigger = { CHARACTER = scope:slave } }
+			add_piety = carnx_slavery_major_piety_loss
+			carnx_slavery_doctrines_stress_impact_effect = yes
+		}
+		else_if = {
+			limit = { carnx_is_slavery_shunned_trigger = { CHARACTER = scope:slave } }
+			add_piety = carnx_slavery_piety_loss
+			carnx_slavery_doctrines_minor_stress_impact_effect = yes
+		}
+
 		stress_impact = {
-			greedy = minor_stress_impact_gain
+			compassionate = medium_stress_impact_gain
+			sadistic = medium_stress_impact_loss
+			callous = minor_stress_impact_loss
 		}
 
 		hidden_effect = {
@@ -201,26 +226,36 @@ carnx_slave.0009 = {
 
 			opinion_modifier = {
 				opinion_target = scope:slave
-				multiplier = -0.5
+				multiplier = -0.25
 			}
 
 			ai_value_modifier = {
-				ai_greed = -0.5
+				ai_compassion = -0.25
+				ai_greed = 0.10
 			}
 
-			# Employer attitude favors keeping skilled workers
+			# Slavers, traders, and employers less likely to free
 			modifier = {
-				has_character_modifier = carnx_slavery_attitude_employer_modifier
-				scope:slave = {
-					OR = {
-						diplomacy >= high_skill_rating
-						martial >= high_skill_rating
-						stewardship >= high_skill_rating
-						intrigue >= high_skill_rating
-						learning >= high_skill_rating
-					}
+				OR = {
+					has_character_modifier = carnx_slavery_attitude_slaver_modifier
+					has_character_modifier = carnx_slavery_attitude_trader_modifier
+					has_character_modifier = carnx_slavery_attitude_employer_modifier
 				}
 				add = 25
+			}
+
+			# Weight up or down for stress
+			modifier = {
+				has_trait = compassionate
+				add = -20
+			}
+			modifier = {
+				has_trait = sadistic
+				add = 20
+			}
+			modifier = {
+				has_trait = callous
+				add = 10
 			}
 		}
 	}

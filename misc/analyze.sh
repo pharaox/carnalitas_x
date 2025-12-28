@@ -37,6 +37,9 @@ echo "Freedom for a Slave event fired: $(grep -a "Freedom for a Slave event fire
 echo "- Freedom for a Slave option a chosen: $(grep -a "Freedom for a Slave option a chosen" debug.log | wc -l)"
 echo "- Freedom for a Slave option b chosen: $(grep -a "Freedom for a Slave option b chosen" debug.log | wc -l)"
 echo "- Freedom for a Slave option c chosen: $(grep -a "Freedom for a Slave option c chosen" debug.log | wc -l)"
+echo "The Price of Freedom event fired: $(grep -a "The Price of Freedom event fired" debug.log | wc -l)"
+echo "- The Price of Freedom option a chosen: $(grep -a "The Price of Freedom option a chosen" debug.log | wc -l)"
+echo "- The Price of Freedom option b chosen: $(grep -a "The Price of Freedom option b chosen" debug.log | wc -l)"
 echo
 
 # Council position events
