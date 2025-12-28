@@ -40,6 +40,9 @@ echo "- Freedom for a Slave option c chosen: $(grep -a "Freedom for a Slave opti
 echo "The Price of Freedom event fired: $(grep -a "The Price of Freedom event fired" debug.log | wc -l)"
 echo "- The Price of Freedom option a chosen: $(grep -a "The Price of Freedom option a chosen" debug.log | wc -l)"
 echo "- The Price of Freedom option b chosen: $(grep -a "The Price of Freedom option b chosen" debug.log | wc -l)"
+echo "The Informant's Bargain event fired: $(grep -a "The Informant's Bargain event fired" debug.log | wc -l)"
+echo "- The Informant's Bargain option a chosen: $(grep -a "The Informant's Bargain option a chosen" debug.log | wc -l)"
+echo "- The Informant's Bargain option b chosen: $(grep -a "The Informant's Bargain option b chosen" debug.log | wc -l)"
 echo
 
 # Council position events

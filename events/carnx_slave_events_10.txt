@@ -1,0 +1,80 @@
+﻿namespace = carnx_slave
+
+scripted_trigger carnx_slave_0010_valid_slave_trigger = {
+	is_available_ai_adult = yes
+	NOT = { faith = root.faith }
+	NOT = { has_trait = zealous }
+	opinion = {
+		target = root
+		value > medium_negative_opinion
+	}
+	root = {
+		NOT = { carnx_is_slavery_crime_trigger = { CHARACTER = prev } }
+	}
+}
+
+# Slave Converts to Your Faith
+carnx_slave.0010 = {
+	type = character_event
+	title = carnx_slave.0010.t
+	desc = carnx_slave.0010.desc
+	hidden = yes
+
+	theme = faith
+
+	trigger = {
+		NOT = { has_game_rule = carn_slavery_content_disabled }
+		faith = {
+			has_doctrine = carn_doctrine_same_slavery_crime
+		}
+		any_relation = {
+			type = slave
+			carnx_slave_0010_valid_slave_trigger = yes
+		}
+	}
+
+	immediate = {
+		# Find a valid slave who would convert
+		random_relation = {
+			type = slave
+			limit = { carnx_slave_0010_valid_slave_trigger = yes }
+
+			weight = {
+				base = 50
+
+				# Slave's opinion of owner
+				opinion_modifier = {
+					who = this
+					opinion_target = root
+					multiplier = 0.25
+				}
+
+				# AI Values
+				ai_value_modifier = {
+					ai_zeal = -0.5
+					ai_rationality = 0.25
+				}
+			}
+
+			save_scope_as = slave
+		}
+
+		send_interface_message = {
+			type = event_generic_neutral
+			title = carnx_slave.0010.tt
+			custom_tooltip = carnx_slave.0010.message
+
+			scope:slave = {
+				set_character_faith = root.faith
+			}
+		}
+
+		hidden_effect = {
+			carnx_debug_log_effect = { MSG = carnx_debug_msg_slave_converted }
+		}
+	}
+
+	option = {
+		name = carnx_slave.0010.a
+	}
+}

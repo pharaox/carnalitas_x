@@ -1,0 +1,400 @@
+﻿namespace = carnx_slave
+
+scripted_trigger carnx_slave_0011_valid_liege_trigger = {
+	is_available_adult = yes
+	carnx_is_slave_owner_trigger = yes
+}
+
+scripted_trigger carnx_slave_0011_valid_slave_trigger = {
+	is_available_ai_adult = yes
+	opinion = {
+		target = root
+		value > medium_negative_opinion
+	}
+	reverse_opinion = {
+		target = root
+		value > medium_negative_opinion
+	}
+	NOR = {
+		root = { has_execute_reason = prev }
+		has_relation_rival = root
+	}
+}
+
+scripted_trigger carnx_slave_0011_valid_known_secret_trigger = {
+	NOR = {
+		secret_owner = prev
+		any_secret_knower = { this = root }
+	}
+}
+
+scripted_trigger carnx_slave_0011_valid_subject_secret_trigger = {
+	NOR = {
+		secret_owner = root
+		any_secret_knower = { this = root }
+	}
+}
+
+scripted_trigger carnx_slave_0011_knows_secret_trigger = {
+	any_known_secret = {
+		carnx_slave_0011_valid_known_secret_trigger = yes
+	}
+}
+
+scripted_trigger carnx_slave_0011_subject_has_secret_trigger = {
+	OR = {
+		any_courtier_or_guest = {
+			any_secret = {
+				carnx_slave_0011_valid_subject_secret_trigger = yes
+			}
+		}
+		any_vassal_or_below = {
+			any_secret = {
+				carnx_slave_0011_valid_subject_secret_trigger = yes
+			}
+		}
+	}
+}
+
+scripted_effect carnx_slave_0011_get_known_secret_effect = {
+	random_known_secret = {
+		limit = {
+			carnx_slave_0011_valid_known_secret_trigger = yes
+		}
+		weight = {
+			base = 10
+			modifier = {
+				is_shunned_or_criminal_for = secret_owner
+				add = 10
+			}
+			modifier = {
+				is_criminal_for = secret_owner
+				add = 10
+			}
+		}
+		save_scope_as = secret
+	}
+}
+
+scripted_effect carnx_slave_0011_get_subject_secret_effect = {
+	every_courtier_or_guest = {
+		every_secret = {
+			limit = {
+				carnx_slave_0011_valid_subject_secret_trigger = yes
+			}
+			add_to_list = secrets
+		}
+	}
+	every_vassal_or_below = {
+		every_secret = {
+			limit = {
+				carnx_slave_0011_valid_subject_secret_trigger = yes
+			}
+			add_to_list = secrets
+		}
+	}
+	random_in_list = {
+		list = secrets
+		weight = {
+			base = 10
+			modifier = {
+				is_shunned_or_criminal_for = secret_owner
+				add = 10
+			}
+			modifier = {
+				is_criminal_for = secret_owner
+				add = 10
+			}
+		}
+		save_scope_as = secret
+	}
+}
+
+# The Informant's Bargain
+carnx_slave.0011 = {
+	type = character_event
+	title = carnx_slave.0011.t
+	desc = carnx_slave.0011.desc
+
+	theme = intrigue
+	left_portrait = {
+		character = scope:slave
+		animation = scheme
+	}
+	right_portrait = {
+		character = scope:secret_owner
+		animation = worry
+	}
+	override_background = {
+		reference = corridor_night
+	}
+
+	trigger = {
+		NOT = { has_game_rule = carn_slavery_content_disabled }
+		NOT = { has_character_flag = had_event_carnx_slave_0011 }
+		carnx_slave_0011_valid_liege_trigger = yes
+		any_relation = {
+			type = slave
+			carnx_slave_0011_valid_slave_trigger = yes
+			OR = {
+				carnx_slave_0011_knows_secret_trigger = yes
+				root = {
+					carnx_slave_0011_subject_has_secret_trigger = yes
+				}
+			}
+		}
+	}
+
+	weight_multiplier = {
+		base = 1
+
+		# Weight up for paranoid rulers, weight down for trusting ones
+		modifier = {
+			has_trait = paranoid
+			add = 0.5
+		}
+		modifier = {
+			has_trait = trusting
+			add = -0.5
+		}
+		modifier = {
+			has_trait = schemer
+			add = 0.5
+		}
+	}
+
+	immediate = {
+		hidden_effect = {
+			carnx_debug_log_effect = { MSG = carnx_debug_msg_slave_0011_fired }
+		}
+		add_character_flag = {
+			flag = had_event_carnx_slave_0011
+			years = 3
+		}
+
+		# Find a valid slave
+		random_relation = {
+			type = slave
+			limit = {
+				carnx_slave_0011_valid_slave_trigger = yes
+				OR = {
+					carnx_slave_0011_knows_secret_trigger = yes
+					root = {
+						carnx_slave_0011_subject_has_secret_trigger = yes
+					}
+				}
+			}
+
+			weight = {
+				base = 50
+
+				# Owner's opinion of slave
+				opinion_modifier = {
+					who = root
+					opinion_target = this
+					multiplier = 0.5
+				}
+
+				# AI values
+				ai_value_modifier = {
+					ai_honor = -0.5
+				}
+
+				# Prefer slaves who know secrets
+				modifier = {
+					carnx_slave_0011_knows_secret_trigger = yes
+					add = 50
+				}
+
+				# Prefer slaves with high intrigue
+				compare_modifier = {
+					value = intrigue
+					multiplier = 2.0
+				}
+			}
+
+			save_scope_as = slave
+		}
+
+		# Get a valid secret to reveal
+		scope:slave = {
+			if = {
+				limit = { carnx_slave_0011_knows_secret_trigger = yes }
+				carnx_slave_0011_get_known_secret_effect = yes
+			}
+			else = {
+				root = {
+					carnx_slave_0011_get_subject_secret_effect = yes
+				}
+				hidden_effect = {
+					scope:secret = {
+						reveal_to = scope:slave
+					}
+				}
+			}
+		}
+
+		# Save secret owner scope
+		scope:secret.secret_owner = { save_scope_as = secret_owner }
+	}
+
+	# Accept the secret and grant freedom
+	option = {
+		name = carnx_slave.0011.a
+
+		# Free the slave and learn the secret
+		send_interface_message = {
+			type = event_generic_neutral
+			title = carn_msg_slave_freed
+			right_icon = scope:slave
+
+			scope:slave = {
+				carn_free_slave_effect = yes
+			}
+
+			scope:secret = {
+				reveal_to = root
+			}
+		}
+
+		stress_impact = {
+			paranoid = minor_stress_impact_loss
+			trusting = minor_stress_impact_gain
+			schemer = minor_stress_impact_loss
+		}
+
+		hidden_effect = {
+			carnx_debug_log_effect = { MSG = carnx_debug_msg_slave_0011_option_a_chosen }
+		}
+
+		ai_chance = {
+			base = 50
+
+			# Opinion of slave
+			opinion_modifier = {
+				opinion_target = scope:slave
+				multiplier = 0.25
+			}
+
+			ai_value_modifier = {
+				ai_honor = -0.25
+				ai_compassion = 0.10
+				ai_greed = -0.10
+			}
+
+			# More likely for dangerous secrets
+			modifier = {
+				scope:secret = { is_shunned_or_criminal_for = secret_owner }
+				add = 20
+			}
+			modifier = {
+				scope:secret = { is_criminal_for = secret_owner }
+				add = 20
+			}
+
+			# Slavery crime or shunned by faith
+			modifier = {
+				carnx_is_slavery_crime_trigger = { CHARACTER = scope:slave }
+				add = carnx_ai_positive_crime_impact_reduced_value
+			}
+			modifier = {
+				carnx_is_slavery_shunned_trigger = { CHARACTER = scope:slave }
+				add = carnx_ai_positive_shunned_impact_reduced_value
+			}
+
+			# Liberators more likely to free
+			modifier = {
+				has_character_modifier = carnx_slavery_attitude_liberator_modifier
+				add = 25
+			}
+
+			# Weight up or down for stress
+			modifier = {
+				has_trait = paranoid
+				add = 10
+			}
+			modifier = {
+				has_trait = trusting
+				add = -10
+			}
+			modifier = {
+				has_trait = schemer
+				add = 10
+			}
+		}
+	}
+
+	# Refuse the offer
+	option = {
+		name = carnx_slave.0011.b
+
+		scope:slave = {
+			add_opinion = {
+				modifier = disappointed_opinion
+				target = root
+				opinion = -20
+			}
+		}
+
+		# Remove piety if slavery crime/shunned
+		if = {
+			limit = { carnx_is_slavery_crime_trigger = { CHARACTER = scope:slave } }
+			add_piety = carnx_slavery_major_piety_loss
+			carnx_slavery_doctrines_stress_impact_effect = yes
+		}
+		else_if = {
+			limit = { carnx_is_slavery_shunned_trigger = { CHARACTER = scope:slave } }
+			add_piety = carnx_slavery_piety_loss
+			carnx_slavery_doctrines_minor_stress_impact_effect = yes
+		}
+
+		stress_impact = {
+			paranoid = medium_stress_impact_gain
+			trusting = medium_stress_impact_loss
+			schemer = medium_stress_impact_gain
+		}
+
+		hidden_effect = {
+			carnx_debug_log_effect = { MSG = carnx_debug_msg_slave_0011_option_b_chosen }
+		}
+
+		ai_chance = {
+			base = 50
+
+			opinion_modifier = {
+				opinion_target = scope:slave
+				multiplier = -0.25
+			}
+
+			ai_value_modifier = {
+				ai_honor = 0.25
+				ai_compassion = -0.10
+				ai_greed = 0.10
+			}
+
+			# Slavers, traders, and employers less likely to free
+			modifier = {
+				OR = {
+					has_character_modifier = carnx_slavery_attitude_slaver_modifier
+					has_character_modifier = carnx_slavery_attitude_trader_modifier
+					has_character_modifier = carnx_slavery_attitude_employer_modifier
+				}
+				add = 25
+			}
+
+			# Weight up or down for stress
+			modifier = {
+				has_trait = paranoid
+				add = -20
+			}
+			modifier = {
+				has_trait = trusting
+				add = 20
+			}
+			modifier = {
+				has_trait = schemer
+				add = -20
+			}
+		}
+	}
+}

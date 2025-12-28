@@ -7,6 +7,10 @@ scripted_trigger carnx_slave_0009_valid_liege_trigger = {
 
 scripted_trigger carnx_slave_0009_valid_slave_trigger = {
 	is_available_ai_adult = yes
+	opinion = {
+		target = root
+		value > medium_negative_opinion
+	}
 	reverse_opinion = {
 		target = root
 		value > medium_negative_opinion
@@ -21,7 +25,21 @@ scripted_trigger carnx_slave_0009_valid_slave_trigger = {
 carnx_slave.0009 = {
 	type = character_event
 	title = carnx_slave.0009.t
-	desc = carnx_slave.0009.desc
+
+	desc = {
+		desc = carnx_slave.0009.desc_intro
+		first_valid = {
+			triggered_desc = {
+				trigger = {
+					scope:slave = {
+						has_variable = carnx_slave_0009_ransom_cost
+					}
+				}
+				desc = carnx_slave.0009.desc_gold
+			}
+			desc = carnx_slave.0009.desc_hook
+		}
+	}
 
 	theme = realm
 	left_portrait = {
@@ -39,7 +57,6 @@ carnx_slave.0009 = {
 		any_relation = {
 			type = slave
 			carnx_slave_0009_valid_slave_trigger = yes
-			gold >= carnx_slave_ransom_cost_value
 		}
 	}
 
@@ -73,10 +90,7 @@ carnx_slave.0009 = {
 		# Find a valid slave who can afford their freedom
 		random_relation = {
 			type = slave
-			limit = {
-				carnx_slave_0009_valid_slave_trigger = yes
-				gold >= carnx_slave_ransom_cost_value
-			}
+			limit = { carnx_slave_0009_valid_slave_trigger = yes }
 
 			weight = {
 				base = 50
@@ -88,21 +102,31 @@ carnx_slave.0009 = {
 					multiplier = 0.5
 				}
 
-				# Greed
+				# AI Values
 				ai_value_modifier = {
 					ai_greed = -0.5
+					ai_vengefulness = -0.5
+				}
+
+				# Prefer wealthier slaves
+				compare_modifier = {
+					value = gold
+					multiplier = 1.0
 				}
 			}
 
 			save_scope_as = slave
 		}
 
-		# Save ransom cost
 		scope:slave = {
-			set_variable = {
-				name = carnx_slave_0009_ransom_cost
-				value = carnx_slave_ransom_cost_value
-				days = 2
+			if = {
+				limit = { gold >= carnx_slave_ransom_cost_value }
+				# Save ransom cost
+				set_variable = {
+					name = carnx_slave_0009_ransom_cost
+					value = carnx_slave_ransom_cost_value
+					days = 2
+				}
 			}
 		}
 	}
@@ -119,14 +143,25 @@ carnx_slave.0009 = {
 
 			scope:slave = {
 				carn_free_slave_effect = yes
-				pay_short_term_gold = {
-					gold = var:carnx_slave_0009_ransom_cost
-					target = root
+				if = {
+					limit = { has_variable = carnx_slave_0009_ransom_cost }
+					pay_short_term_gold = {
+						gold = var:carnx_slave_0009_ransom_cost
+						target = root
+					}
+					add_opinion = {
+						modifier = grateful_opinion
+						target = root
+						opinion = 20
+					}
 				}
-				add_opinion = {
-					modifier = grateful_opinion
-					target = root
-					opinion = 20
+				else = {
+					root = {
+						add_hook = {
+							target = scope:slave
+							type = favor_hook
+						}
+					}
 				}
 			}
 		}

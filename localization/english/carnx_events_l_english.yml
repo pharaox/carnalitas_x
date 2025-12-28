@@ -54,6 +54,20 @@
  carnx_slave.0008.e:0 "None"
 
  carnx_slave.0009.t:0 "The Price of Freedom"
- carnx_slave.0009.desc:0 "[slave.GetFirstNameNoTooltip] approaches me with a respectful but hopeful expression. [slave.GetSheHe|U] has been saving [slave.GetHerHis] earnings and now offers [gold_i][slave.MakeScope.Var('carnx_slave_0009_ransom_cost').GetValue|P0] in exchange for [slave.GetHerHis] freedom. It is a fair price, equal to what I could demand as [slave.GetHerHis] ransom."
+ carnx_slave.0009.desc_intro:0 "My slave [slave.GetFirstNameNoTooltip] approaches me with a respectful but hopeful expression, kneeling before me with [slave.GetHerHis] hands clasped."
+ carnx_slave.0009.desc_gold:0 "[slave.GetSheHe|U] has been saving every coin [slave.GetSheHe] could earn, and now offers [gold_i][slave.MakeScope.Var('carnx_slave_0009_ransom_cost').GetValue|P0] in exchange for [slave.GetHerHis] freedom. It is a fair price, equal to what I could demand as [slave.GetHerHis] ransom."
+ carnx_slave.0009.desc_hook:0 "Though [slave.GetSheHe] has not managed to save enough gold, [slave.GetSheHe] swears a solemn oath — if I grant [slave.GetHerHis] freedom now, [slave.GetSheHe] will be in my debt, bound to serve my interests whenever I have need of [slave.GetHerHim]."
  carnx_slave.0009.a:0 "Very well, I accept your offer."
  carnx_slave.0009.b:0 "No, you are more valuable to me as a slave."
+
+ carnx_slave.0010.t:0 "Slave Converts to Your Faith"
+ carnx_slave.0010.desc:0 "[slave.GetFirstNameNoTooltip] has converted to [ROOT.Char.GetFaith.GetName]."
+ carnx_slave.0010.a:0 "OK"
+ carnx_slave.0010.tt:0 "Slave Converts to Your Faith"
+ carnx_slave.0010.message:0 "My slave [slave.GetFirstNameNoTooltip] has renounced [slave.GetHerHis] former faith and embraced the teachings of [ROOT.Char.GetFaith.GetName]."
+
+ carnx_slave.0011.t:0 "The Informant's Bargain"
+ carnx_slave.0011.desc:0 "My slave [slave.GetFirstNameNoTooltip] approaches me in private, glancing over [slave.GetHerHis] shoulder to ensure we are not overheard. In a hushed voice, [slave.GetSheHe] offers to share [slave.GetHerHis] knowledge of [secret_owner.GetTitledFirstName]'s secret with me in exchange for [slave.GetHerHis] freedom."
+ carnx_slave.0011.a:0 "Very well, tell me what you know."
+ carnx_slave.0011.b:0 "Your secrets are worthless to me."
+ 

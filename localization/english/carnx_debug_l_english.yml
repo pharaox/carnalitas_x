@@ -200,6 +200,10 @@
  carnx_debug_msg_slave_0009_option_a_chosen: "$carnx_debug_prefix$: $carnx_slave.0009.t$ option a chosen"
  carnx_debug_msg_slave_0009_option_b_chosen: "$carnx_debug_prefix$: $carnx_slave.0009.t$ option b chosen"
 
+ carnx_debug_msg_slave_0011_fired: "$carnx_debug_prefix$: $carnx_slave.0011.t$ event fired"
+ carnx_debug_msg_slave_0011_option_a_chosen: "$carnx_debug_prefix$: $carnx_slave.0011.t$ option a chosen"
+ carnx_debug_msg_slave_0011_option_b_chosen: "$carnx_debug_prefix$: $carnx_slave.0011.t$ option b chosen"
+
  carnx_debug_msg_debug_character: "$carnx_debug_prefix$: Debug character"
 
  carnx_debug_msg_checking_slaves: "[GetCurrentDate.GetStringShort]: Checking slaves"
