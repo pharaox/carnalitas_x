@@ -268,6 +268,9 @@ carnx_slave_concubine_court_position = {
 		carnx_slave_court_position_vacated_event_effect = {
 			COURT_POSITION_TYPE = carnx_slave_concubine_court_position
 		}
+		scope:employee = {
+			remove_trait = carnx_slave_concubine
+		}
 	}
 
 	# Scripted value to determine whether an AI will hire a position or not.
@@ -866,19 +869,15 @@ carnx_slave_eunuch_court_position = {
 			enemy_hostile_scheme_phase_duration_add = 0.5
 		}
 		poor = {
-			character_capital_county_monthly_development_growth_add = 0.05
 			enemy_hostile_scheme_phase_duration_add = 1
 		}
 		average = {
-			character_capital_county_monthly_development_growth_add = 0.1
 			enemy_hostile_scheme_phase_duration_add = 2
 		}
 		good = {
-			character_capital_county_monthly_development_growth_add = 0.15
 			enemy_hostile_scheme_phase_duration_add = 4
 		}
 		excellent = {
-			character_capital_county_monthly_development_growth_add = 0.2
 			enemy_hostile_scheme_phase_duration_add = 8
 		}
 	}

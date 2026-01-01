@@ -158,6 +158,15 @@
  carnx_debug_msg_slave_captain_court_position_vacated: "$carnx_debug_prefix$: Slave Captain court position vacated"
  carnx_debug_msg_slave_eunuch_court_position_vacated: "$carnx_debug_prefix$: Slave Eunuch court position vacated"
 
+ carnx_debug_msg_slave_concubine_attend_to_comfort_started: "$carnx_debug_prefix$: Slave Concubine task 'Attend to Comfort' started"
+ carnx_debug_msg_slave_concubine_attend_to_comfort_ended: "$carnx_debug_prefix$: Slave Concubine task 'Attend to Comfort' ended"
+ carnx_debug_msg_slave_concubine_gather_court_gossip_started: "$carnx_debug_prefix$: Slave Concubine task 'Gather Court Gossip' started"
+ carnx_debug_msg_slave_concubine_gather_court_gossip_ended: "$carnx_debug_prefix$: Slave Concubine task 'Gather Court Gossip' ended"
+ carnx_debug_msg_slave_captain_train_elite_warriors_started: "$carnx_debug_prefix$: Mameluke Captain task 'Train Elite Warriors' started"
+ carnx_debug_msg_slave_captain_train_elite_warriors_ended: "$carnx_debug_prefix$: Mameluke Captain task 'Train Elite Warriors' ended"
+ carnx_debug_msg_slave_eunuch_manage_palace_affairs_started: "$carnx_debug_prefix$: Slave Eunuch task 'Manage Palace Affairs' started"
+ carnx_debug_msg_slave_eunuch_manage_palace_affairs_ended: "$carnx_debug_prefix$: Slave Eunuch task 'Manage Palace Affairs' ended"
+
  carnx_debug_msg_character_had_sex: "$carnx_debug_prefix$: Character had sex"
  carnx_debug_msg_character_had_sex_with_slave: "$carnx_debug_prefix$: Character had sex with one of their slaves"
  carnx_debug_msg_child_of_slave_concubine_born: "$carnx_debug_prefix$: Child of slave concubine was born"

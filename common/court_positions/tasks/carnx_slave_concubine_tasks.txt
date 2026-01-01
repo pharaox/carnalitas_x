@@ -1,0 +1,157 @@
+﻿### Slave Concubine Tasks ###
+
+carnx_slave_concubine_court_position_task_attend_to_comfort = {
+	court_position_types = { carnx_slave_concubine_court_position }
+
+	cost = {
+		round = no
+		gold = {
+			value = 0
+			if = {
+				limit = {
+					scope:liege = {
+						has_treasury = no
+					}
+				}
+				add = {
+					value = monthly_court_position_task_cost
+					desc = COURT_POSITION_TASK_COST_BREAKDOWN_BASE
+					format = "BASE_VALUE_FORMAT_DECIMALS_PLUS_NEGATIVE"
+				}
+			}
+		}
+		treasury = {
+			value = 0
+			if = {
+				limit = {
+					scope:liege = {
+						has_treasury = yes
+					}
+				}
+				add = {
+					value = monthly_court_position_task_cost
+					desc = COURT_POSITION_TASK_COST_BREAKDOWN_BASE
+					format = "BASE_VALUE_FORMAT_DECIMALS_PLUS_NEGATIVE"
+				}
+			}
+		}
+	}
+
+	scaling_employer_modifiers = {
+		terrible = {
+			stress_loss_mult = 0.02
+		}
+		poor = {
+			stress_loss_mult = 0.04
+			stress_gain_mult = -0.01
+		}
+		average = {
+			stress_loss_mult = 0.06
+			stress_gain_mult = -0.02
+		}
+		good = {
+			stress_loss_mult = 0.08
+			stress_gain_mult = -0.03
+		}
+		excellent = {
+			stress_loss_mult = 0.10
+			stress_gain_mult = -0.04
+		}
+	}
+
+	on_start = {
+		custom_tooltip = carnx_slave_concubine_attend_to_comfort.tt
+		#carnx_debug_log_effect = { MSG = carnx_debug_msg_slave_concubine_attend_to_comfort_started }
+	}
+
+	on_end = {
+		#carnx_debug_log_effect = { MSG = carnx_debug_msg_slave_concubine_attend_to_comfort_ended }
+	}
+
+	ai_will_do = {
+		value = {
+			add = ai_greed
+			multiply = -0.5
+		}
+		if = {
+			limit = { stress > 50 }
+			add = 50
+		}
+		if = {
+			limit = { short_term_gold < 50 }
+			add = -100
+		}
+		if = {
+			limit = {
+				has_treasury = no
+				monthly_character_income < monthly_court_position_task_cost_double
+			}
+			add = -1000
+		}
+		else_if = {
+			limit = {
+				has_treasury = yes
+				monthly_character_treasury_income < monthly_court_position_task_cost_double
+			}
+			add = -1000
+		}
+	}
+}
+
+carnx_slave_concubine_court_position_task_gather_court_gossip = {
+	court_position_types = { carnx_slave_concubine_court_position }
+
+	cost = {
+		round = no
+		prestige = {
+			add = {
+				value = monthly_court_position_task_cost
+				desc = COURT_POSITION_TASK_COST_BREAKDOWN_BASE
+				format = "BASE_VALUE_FORMAT_DECIMALS_PLUS_NEGATIVE"
+			}
+		}
+	}
+
+	scaling_employer_modifiers = {
+		terrible = {
+			scheme_discovery_chance_mult = 0.01
+		}
+		poor = {
+			scheme_discovery_chance_mult = 0.03
+		}
+		average = {
+			scheme_discovery_chance_mult = 0.05
+		}
+		good = {
+			scheme_discovery_chance_mult = 0.07
+		}
+		excellent = {
+			scheme_discovery_chance_mult = 0.1
+		}
+	}
+
+	on_start = {
+		custom_tooltip = carnx_slave_concubine_gather_court_gossip.tt
+		#carnx_debug_log_effect = { MSG = carnx_debug_msg_slave_concubine_gather_court_gossip_started }
+	}
+
+	on_end = {
+		#carnx_debug_log_effect = { MSG = carnx_debug_msg_slave_concubine_gather_court_gossip_ended }
+	}
+
+	ai_will_do = {
+		value = 0
+		if = {
+			limit = { has_trait = paranoid }
+			add = 50
+		}
+		else_if = {
+			limit = { has_trait = trusting }
+			add = -50
+		}
+		if = {
+			limit = { has_lifestyle = intrigue_lifestyle }
+			add = 25
+		}
+	}
+}

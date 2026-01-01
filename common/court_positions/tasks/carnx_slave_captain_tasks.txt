@@ -1,0 +1,83 @@
+﻿### Mameluke Captain Tasks ###
+
+carnx_slave_captain_court_position_task_train_elite_warriors = {
+	court_position_types = { carnx_slave_captain_court_position }
+
+	cost = {
+		round = no
+		gold = {
+			value = 0
+			if = {
+				limit = {
+					scope:liege = {
+						has_treasury = no
+					}
+				}
+				add = {
+					value = monthly_court_position_task_cost
+					desc = COURT_POSITION_TASK_COST_BREAKDOWN_BASE
+					format = "BASE_VALUE_FORMAT_DECIMALS_PLUS_NEGATIVE"
+				}
+			}
+		}
+		treasury = {
+			value = 0
+			if = {
+				limit = {
+					scope:liege = {
+						has_treasury = yes
+					}
+				}
+				add = {
+					value = monthly_court_position_task_cost
+					desc = COURT_POSITION_TASK_COST_BREAKDOWN_BASE
+					format = "BASE_VALUE_FORMAT_DECIMALS_PLUS_NEGATIVE"
+				}
+			}
+		}
+	}
+
+	scaling_employer_modifiers = {
+		terrible = {
+			heavy_cavalry_damage_mult = 0.02
+			heavy_infantry_damage_mult = 0.02
+		}
+		poor = {
+			heavy_cavalry_damage_mult = 0.04
+			heavy_infantry_damage_mult = 0.04
+		}
+		average = {
+			heavy_cavalry_damage_mult = 0.06
+			heavy_infantry_damage_mult = 0.06
+		}
+		good = {
+			heavy_cavalry_damage_mult = 0.08
+			heavy_infantry_damage_mult = 0.08
+		}
+		excellent = {
+			heavy_cavalry_damage_mult = 0.1
+			heavy_infantry_damage_mult = 0.1
+		}
+	}
+
+	on_start = {
+		custom_tooltip = carnx_slave_captain_train_elite_warriors.tt
+		#carnx_debug_log_effect = { MSG = carnx_debug_msg_slave_captain_train_elite_warriors_started }
+	}
+
+	on_end = {
+		#carnx_debug_log_effect = { MSG = carnx_debug_msg_slave_captain_train_elite_warriors_ended }
+	}
+
+	ai_will_do = {
+		value = 0
+		if = {
+			limit = { is_at_war = yes }
+			add = 50
+		}
+		if = {
+			limit = { has_lifestyle = martial_lifestyle }
+			add = 25
+		}
+	}
+}

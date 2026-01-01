@@ -7,6 +7,12 @@
 * Added *Buy Foreign Slaves* decision to trigger the *Buy Foreign Slaves* event, with a fixed cooldown of 3 years.
 * Deprecated the *Buy Foreign Slaves Event Frequency for Players* game rule and removed the automatic triggering of the above event.
 
+### Court Positions
+
+* Added *Attend to the Liege's Comfort* and *Gather Court Gossip* tasks to *Slave Concubine* court position.
+* Added *Train Elite Warriors* task to *Mameluke Captain* court position.
+* Added *Manage Palace Affairs* task to *Slave Eunuch" court position.
+
 ### Events
 
 TODO

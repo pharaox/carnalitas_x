@@ -86,6 +86,13 @@ echo "Slave Captain court position received: $(grep -a "Slave Captain court posi
 echo "Slave Eunuch court position received: $(grep -a "Slave Eunuch court position received" debug.log | wc -l)"
 echo
 
+# Court position tasks
+#echo "Slave Concubine task 'Attend to Comfort' started: $(grep -a "Slave Concubine task 'Attend to Comfort' started" debug.log | wc -l)"
+#echo "Slave Concubine task 'Gather Court Gossip' started: $(grep -a "Slave Concubine task 'Gather Court Gossip' started" debug.log | wc -l)"
+#echo "Mameluke Captain task 'Train Elite Warriors' started: $(grep -a "Mameluke Captain task 'Train Elite Warriors' started" debug.log | wc -l)"
+#echo "Slave Eunuch task 'Manage Palace Affairs' started: $(grep -a "Slave Eunuch task 'Manage Palace Affairs' started" debug.log | wc -l)"
+#echo
+
 # Maintenance events
 echo "Moving slave to owner's court: $(grep -a "Moving slave to owner's court" debug.log | wc -l)"
 echo "Moving slave to pool: $(grep -a "Moving slave to pool" debug.log | wc -l)"

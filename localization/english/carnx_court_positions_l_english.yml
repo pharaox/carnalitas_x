@@ -34,3 +34,22 @@
  none_has_positive_attraction: "They have a positive [attraction|E]"
  none_liege_is_allowed_to_marry: "Their [liege|E] is allowed to marry them"
  none_has_at_least_one_commander_trait: "They have at least one [commander_trait|E]"
+
+ # Slave Concubine Tasks
+ carnx_slave_concubine_court_position_task_attend_to_comfort:0 "Attend to the Liege's Comfort"
+ carnx_slave_concubine_court_position_task_attend_to_comfort_desc:0 "The $carnx_slave_concubine_court_position$ will dedicate themselves to easing their liege's burdens through pleasant company and devoted attention."
+ carnx_slave_concubine_attend_to_comfort.tt:0 "The $carnx_slave_concubine_court_position$ will help reduce their liege's [stress|E]."
+
+ carnx_slave_concubine_court_position_task_gather_court_gossip:0 "Gather Court Gossip"
+ carnx_slave_concubine_court_position_task_gather_court_gossip_desc:0 "The $carnx_slave_concubine_court_position$ will listen for rumors and whispers, alerting their liege to potential schemes and intrigues."
+ carnx_slave_concubine_gather_court_gossip.tt:0 "The $carnx_slave_concubine_court_position$ will improve their liege's ability to discover [schemes|E] targeting them."
+
+ # Mameluke Captain Tasks
+ carnx_slave_captain_court_position_task_train_elite_warriors:0 "Train Elite Warriors"
+ carnx_slave_captain_court_position_task_train_elite_warriors_desc:0 "The $carnx_slave_captain_court_position$ will focus on training and drilling the army's most formidable fighters in advanced combat techniques."
+ carnx_slave_captain_train_elite_warriors.tt:0 "The $carnx_slave_captain_court_position$ will improve the effectiveness of [heavy_cavalry|E] and [heavy_infantry|E] forces."
+
+ # Slave Eunuch Tasks
+ carnx_slave_eunuch_court_position_task_manage_palace_affairs:0 "Manage Palace Affairs"
+ carnx_slave_eunuch_court_position_task_manage_palace_affairs_desc:0 "The $carnx_slave_eunuch_court_position$ will oversee the day-to-day administration of the palace, ensuring efficiency."
+ carnx_slave_eunuch_manage_palace_affairs.tt:0 "The $carnx_slave_eunuch_court_position$ will improve capital [county|E] [development_growth|E]."

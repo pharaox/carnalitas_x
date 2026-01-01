@@ -238,6 +238,12 @@ Note that only slaves, but not former slaves, can be appointed to slave court po
 
 Starting with version 0.26.0, *Slave Concubine* position holders also get the *Slave Concubine* trait to ensure they can't marry, leave court, or inherit titles while they are still slave concubines. They lose this trait automatically if the position is revoked or invalidated.
 
+Starting with version 0.29.0, these court positions have associated tasks as well:
+
+* For *Slave Concubine*, these are *Attend to the Liege's Comfort* and *Gather Court Gossip*. They grant stress relief and scheme discovery bonuses.
+* For *Mameluke Captain*, this is *Train Elite Warriors*. It grants heavy cavalry and infantry damage bonuses.
+* for *Slave Eunuch*, this is *Manage Palace Affairs*. It grants capital county development bonuses.
+
 #### Changes to Existing Council and Court Positions
 
 This mod divides the existing council and court positions into ones that are available to slaves, and ones that are not. Some positions are only available to slaves if your government is clan or you have the [*Slave Employer* attitude](#slavery-attitudes), to reflect the fact that historically such important roles were held by slaves only if they were considered more loyal than other available options, which was the case in certain Muslim societies.
