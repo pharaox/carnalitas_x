@@ -39,19 +39,7 @@ carnx_market_event_frequency_player = {
 		carnx_carnalitas_x
 	}
 
-	default = carnx_market_event_frequency_player_3y
-
-	carnx_market_event_frequency_player_1y = {
-		flag = GG_can_change_rule
-	}
-
-	carnx_market_event_frequency_player_3y = {
-		flag = GG_can_change_rule
-	}
-
-	carnx_market_event_frequency_player_5y = {
-		flag = GG_can_change_rule
-	}
+	default = carnx_market_event_frequency_player_never
 
 	carnx_market_event_frequency_player_never = {
 		flag = GG_can_change_rule

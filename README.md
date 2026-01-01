@@ -314,9 +314,11 @@ Starting with version 0.18.0, this mod adds a leveled *Slaver* fame trait. The 2
 
 #### Buy Foreign Slaves
 
-Slave traders bring two slaves for sale and you can buy one of them. The slaves are of faith and culture that is different from yours, and never of faith that falls under the *Slavery Crime* doctrine.
+Starting with version 0.29.0, this event can be triggered via the *Buy Foreign Slaves* decision. It has a fixed cooldown of 3 years and is only available to landed or landed administrative rulers. Landless adventurers can use the [*Visit Holding* decision](#buying-and-selling-slaves-while-visiting-holdings) instead.
 
-Besides adding flavor, this event also spawns more slaves than would normally exist if the only way to create them was to enslave prisoners. For players, it fires approximately every 3 years by default, and its frequency can be adjusted via the *Buy Foreign Slaves Event Frequency for Players* game rule. For AI, it fires every 1 to 5 years depending on rank. The AI will mostly not buy, unless it considers one of the slaves really useful according to the factors described in [AI Willingness to Buy or Sell](#ai-willingness-to-buy-or-sell).
+In the event, slave traders bring two slaves for sale and you can buy one of them. The slaves are of faith and culture that is different from yours, and never of faith that falls under the *Slavery Crime* doctrine.
+
+Besides adding flavor, this event also spawns more slaves than would normally exist if the only way to create them was to enslave prisoners. The AI will check the decision every 3 to 8 years depending on rank. They will mostly not buy, unless they consider one of the slaves really useful according to the factors described in [AI Willingness to Buy or Sell](#ai-willingness-to-buy-or-sell).
 
 #### Runaway Slave
 
@@ -330,6 +332,14 @@ Your Court Chaplain demands the freedom of one of your slaves because your faith
 
 This event fires approximately every 2 years for every ruler that owns eligible slaves.
 
+#### The Price of Freedom
+
+TODO
+
+#### The Informant's Bargain
+
+TODO
+
 #### AI Rulers Having Sex with Their Slaves
 
 AI rulers may have sex with one of their slaves (or former slaves who are also *Slave Concubines*) once a year if they are attracted to them, via a hidden event. The chance of pregnancy is dynamic with an average of 20%.
@@ -342,6 +352,10 @@ Once a year rulers may lose piety for any slaves owned against religious doctrin
 
 * 25 if owning slaves of their faith is shunned by your faith.
 * 50 if owning slaves of their faith is considered a crime by your faith.
+
+#### Slave Converts to Your Faith
+
+TODO
 
 #### Trait Events
 

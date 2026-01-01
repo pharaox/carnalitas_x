@@ -13,8 +13,6 @@ yearly_playable_pulse = {
 	on_actions = {
 		delay = { days = { 8 288 } }
 		carnx_yearly_playable_pulse
-		delay = { days = { 8 188 } }
-		carnx_yearly_market
 	}
 }
 
@@ -49,97 +47,6 @@ carnx_yearly_playable_pulse = {
 		100 = carnx_slave.0005 # Freedom for a Slave
 		100 = carnx_slave.0009 # The Price of Freedom
 		100 = carnx_slave.0011 # The Informant's Bargain
-	}
-}
-
-carnx_yearly_market = {
-	trigger = {
-		trigger_if = {
-			limit = { is_ai = no }
-			has_game_rule = carnx_market_event_frequency_player_1y
-		}
-		trigger_else = {
-			always = no
-		}
-		basic_is_valid_for_yearly_events_trigger = yes
-	}
-
-	events = {
-		carnx_slave.0001 # Buy Foreign Slaves
-	}
-}
-
-# Called from code once every three years for "playable" (count+) characters.
-# Root is the character
-three_year_playable_pulse = {
-	on_actions = {
-		delay = { days = { 8 188 } }
-		carnx_three_year_market
-		delay = { days = { 8 188 } }
-		carnx_eight_year_market
-	}
-}
-
-carnx_three_year_market = {
-	trigger = {
-		trigger_if = {
-			limit = { is_ai = no }
-			has_game_rule = carnx_market_event_frequency_player_3y
-		}
-		trigger_else = {
-			highest_held_title_tier >= tier_kingdom
-		}
-		basic_is_valid_for_yearly_events_trigger = yes
-	}
-
-	events = {
-		carnx_slave.0001 # Buy Foreign Slaves
-	}
-}
-
-# Called from code once every five years for "playable" (count+) characters.
-# Root is the character
-five_year_playable_pulse = {
-	on_actions = {
-		delay = { days = { 8 188 } }
-		carnx_five_year_market
-	}
-}
-
-carnx_five_year_market = {
-	trigger = {
-		trigger_if = {
-			limit = { is_ai = no }
-			has_game_rule = carnx_market_event_frequency_player_5y
-		}
-		trigger_else = {
-			highest_held_title_tier = tier_duchy
-		}
-		basic_is_valid_for_yearly_events_trigger = yes
-	}
-
-	events = {
-		carnx_slave.0001 # Buy Foreign Slaves
-	}
-}
-
-carnx_eight_year_market = {
-	trigger = {
-		is_ai = yes
-		highest_held_title_tier = tier_county
-		NOT = { has_character_flag = carnx_eight_year_market_cooldown }
-		basic_is_valid_for_yearly_events_trigger = yes
-	}
-
-	events = {
-		carnx_slave.0001 # Buy Foreign Slaves
-	}
-
-	effect = {
-		add_character_flag = {
-			flag = carnx_eight_year_market_cooldown
-			years = 8
-		}
 	}
 }
 

@@ -12,3 +12,7 @@
 
  carnx_valid_buyer_or_seller: "[CHARACTER.GetShortUIName|U] is too far away to buy or sell slaves"
  carnx_valid_payer_or_owner: "[CHARACTER.GetShortUIName|U] is too far away to offer or demand ransom for slaves"
+
+ carnx_slavery_is_always_crime: "Both $carn_doctrine_same_slavery_name$ or $carn_doctrine_other_slavery_name$ are [criminal|E] in your faith"
+ carnx_buying_slaves_is_always_forbidden: "Buying [slaves|E] is always forbidden by your realm laws"
+ carnx_no_valid_template_character: "There must exist at least one ruler such that owning slaves of their faith is not [criminal|E] in your faith"

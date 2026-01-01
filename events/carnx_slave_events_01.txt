@@ -32,7 +32,8 @@ carnx_slave.0001 = {
 	trigger = {
 		NOT = { has_game_rule = carn_slavery_content_disabled }
 		carnx_slave_0001_valid_liege_trigger = yes
-		any_independent_ruler = {
+		any_ruler = {
+			is_landed_or_landless_administrative = yes
 			carnx_is_valid_template_character_trigger = { CHARACTER = root }
 		}
 	}

@@ -1,4 +1,117 @@
-﻿carnx_choose_slavery_attitude_decision = {
+﻿carnx_buy_foreign_slaves_decision = {
+	desc = carnx_buy_foreign_slaves_decision_desc
+
+	# See market event background
+	picture = {
+		trigger = {
+			government_has_flag = government_is_nomadic
+		}
+		reference = "gfx/interface/illustrations/event_scenes/mpo_hunt_steppe.dds"
+	}
+	picture = {
+		trigger = {
+			culture = { has_graphical_japanese_culture_group_trigger = yes }
+		}
+		reference = "gfx/interface/illustrations/event_scenes/tgp_japanese_city.dds"
+	}
+	picture = {
+		trigger = {
+			culture = { has_graphical_east_asia_culture_group_trigger = yes }
+		}
+		reference = "gfx/interface/illustrations/event_scenes/tgp_market_asia.dds"
+	}
+	picture = {
+		trigger = {
+			culture = { has_graphical_mediterranean_culture_group_trigger = yes }
+		}
+		reference = "gfx/interface/illustrations/event_scenes/ep3_medi_market.dds"
+	}
+	picture = {
+		trigger = {
+			culture = { 
+				OR = {
+					has_graphical_mena_culture_group_trigger = yes
+					has_graphical_india_culture_group_trigger = yes
+				}
+			}
+		}
+		reference = "gfx/interface/illustrations/event_scenes/market_east.dds"
+	}
+	picture = {
+		trigger = {
+			OR = {
+				government_has_flag = government_is_clan
+				government_has_flag = government_is_tribal
+			}
+		}
+		reference = "gfx/interface/illustrations/event_scenes/market_tribal.dds"
+	}
+	picture = {
+		reference = "gfx/interface/illustrations/event_scenes/market_west.dds"
+	}
+
+	cooldown = { years = carnx_buy_foreign_slaves_decision_cooldown_value }
+
+	is_shown = {
+		NOT = { has_game_rule = carn_slavery_content_disabled }
+		is_landed_or_landless_administrative = yes
+		highest_held_title_tier >= tier_county
+		carnx_can_be_slave_owner_trigger = yes
+		exists = capital_province
+	}
+
+	is_valid_showing_failures_only = {
+		is_available_adult = yes
+		custom_tooltip = {
+			text = carnx_slavery_is_always_crime
+			NOT = { carnx_is_slavery_always_crime_trigger = yes }
+		}
+		custom_tooltip = {
+			text = carnx_buying_slaves_is_always_forbidden
+			NOT = { carnx_is_slavery_always_forbidden_trigger = { ACTION = flag:buy } }
+		}
+		custom_tooltip = {
+			text = carnx_decision_events.1000.refused.tt
+			NOT = { has_variable = carnx_1000_refused_recently }
+		}
+		custom_tooltip = {
+			text = carnx_no_valid_template_character
+			any_ruler = {
+				is_landed_or_landless_administrative = yes
+				carnx_is_valid_template_character_trigger = { CHARACTER = root }
+			}
+		}
+	}
+
+	effect = {
+		custom_tooltip = carnx_buy_foreign_slaves_decision.tt
+		trigger_event = carnx_slave.0001
+	}
+
+	ai_check_interval_by_tier = {
+		barony = 0
+		county = 96
+		duchy = 60
+		kingdom = 36
+		empire = 36
+		hegemony = 36
+	}
+
+	ai_potential = {
+		NOR = {
+			carnx_is_slavery_always_crime_trigger = yes
+			carnx_is_slavery_always_forbidden_trigger = { ACTION = flag:buy }
+		}
+		is_at_war = no
+		short_term_gold > minor_gold_value
+	}
+
+	ai_will_do = {
+		base = 100
+	}
+}
+
+carnx_choose_slavery_attitude_decision = {
 	desc = carnx_choose_slavery_attitude_decision_desc
 	picture = {
 		reference = "gfx/interface/illustrations/decisions/decision_misc.dds"

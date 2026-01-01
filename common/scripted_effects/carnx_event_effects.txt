@@ -1,10 +1,12 @@
 ﻿carnx_get_template_character_effect = {
-	random_independent_ruler = {
+	random_ruler = {
 		limit = {
+			is_landed_or_landless_administrative = yes
 			carnx_is_valid_template_character_trigger = { CHARACTER = $CHARACTER$ }
 			carnx_is_valid_template_character_trigger = { CHARACTER = $CHARACTER2$ }
 		}
 		alternative_limit = {
+			is_landed_or_landless_administrative = yes
 			carnx_is_valid_template_character_trigger = { CHARACTER = $CHARACTER$ }
 		}
 		weight = {

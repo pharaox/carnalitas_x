@@ -1,5 +1,16 @@
 # Changelog
 
+## Version 0.29.0
+
+### Decisions
+
+* Added *Buy Foreign Slaves* decision to trigger the *Buy Foreign Slaves* event, with a fixed cooldown of 3 years.
+* Deprecated the *Buy Foreign Slaves Event Frequency for Players* game rule and removed the automatic triggering of the above event.
+
+### Events
+
+TODO
+
 ## Version 0.28.4
 
 ### Localization

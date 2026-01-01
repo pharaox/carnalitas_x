@@ -47,7 +47,8 @@
 			carnx_is_slavery_always_forbidden_trigger = { ACTION = flag:buy }
 		}
 	}
-	any_independent_ruler = {
+	any_ruler = {
+		is_landed_or_landless_administrative = yes
 		carnx_is_valid_template_character_trigger = { CHARACTER = scope:county_holder }
 	}
 }

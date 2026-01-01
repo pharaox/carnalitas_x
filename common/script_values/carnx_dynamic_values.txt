@@ -57,3 +57,13 @@ carnx_ai_honor_impact_multiplier = {
 	multiply = 0.01
 	add = 1
 }
+
+carnx_buy_foreign_slaves_decision_cooldown_value = {
+	if = {
+		limit = { is_ai = no }
+		value = 3
+	}
+	else = {
+		value = 1
+	}
+}
