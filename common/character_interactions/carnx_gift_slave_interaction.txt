@@ -372,17 +372,20 @@ carnx_gift_slave_interaction = {
 		hegemony = 60
 	}
 
-	ai_potential = {
-		is_adult = yes
-		is_at_war = no
-		ai_greed < medium_positive_ai_value
-		NOT = {
-			has_trait = greedy
-		}
-		# Performance: AI should not consider unlikely interactions
-		NOR = {
-			carnx_is_slavery_always_crime_trigger = yes
-			carnx_is_slavery_always_forbidden_trigger = { ACTION = flag:offer_gift }
+	is_available = {
+		trigger_if = {
+			limit = { is_ai = yes }
+			is_adult = yes
+			is_at_war = no
+			ai_greed < medium_positive_ai_value
+			NOT = {
+				has_trait = greedy
+			}
+			# Performance: AI should not consider unlikely interactions
+			NOR = {
+				carnx_is_slavery_always_crime_trigger = yes
+				carnx_is_slavery_always_forbidden_trigger = { ACTION = flag:offer_gift }
+			}
 		}
 	}
 

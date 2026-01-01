@@ -380,7 +380,7 @@ carnx_ransom_slave_interaction = {
 		hegemony = 24
 	}
 
-	ai_potential = {
+	is_available = {
 		always = yes
 	}
 

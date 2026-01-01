@@ -74,11 +74,14 @@ carn_seize_slave_interaction = {
 		hegemony = 12
 	}
 
-	ai_potential = {
-		# Performance: AI should not consider unlikely interactions
-		NOR = {
-			carnx_is_slavery_always_crime_trigger = yes
-			carnx_is_slavery_always_forbidden_trigger = { ACTION = flag:seize }
+	is_available = {
+		trigger_if = {
+			limit = { is_ai = yes }
+			# Performance: AI should not consider unlikely interactions
+			NOR = {
+				carnx_is_slavery_always_crime_trigger = yes
+				carnx_is_slavery_always_forbidden_trigger = { ACTION = flag:seize }
+			}
 		}
 	}
 
