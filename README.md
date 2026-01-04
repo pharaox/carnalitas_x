@@ -330,21 +330,19 @@ Besides adding flavor, this event also spawns more slaves than would normally ex
 
 One of your slaves flees, taking some of your valuables with them, and a knight is chosen as a scapegoat. You can try to catch the slave via intrigue or martial challenges, fine or forgive the scapegoat, or do nothing, for a loss or gain of prestige or stress.
 
-This event is based on the *Escaped Thrall* event from FP1, but is somewhat more sophisticated as it involves a real character. It fires approximately every 10 years for every ruler who is a slave owner.
+This event is based on the *Escaped Thrall* event from FP1, but is somewhat more sophisticated as it involves a real character.
 
 #### Freedom for a Slave
 
 Your Court Chaplain demands the freedom of one of your slaves because your faith does not permit owning slaves of their faith. You can free the slave, make a money donation, or ignore the demand for a loss of piety.
 
-This event fires approximately every 2 years for every ruler that owns eligible slaves.
-
 #### The Price of Freedom
 
-TODO
+Your slave requests to be freed in exchange for gold or a hook. You can accept of decline the request.
 
 #### The Informant's Bargain
 
-TODO
+Your slave requests to be freed in exchange for sharing a secret they know with you. You can accept of decline the request.
 
 #### AI Rulers Having Sex with Their Slaves
 
@@ -361,7 +359,7 @@ Once a year rulers may lose piety for any slaves owned against religious doctrin
 
 #### Slave Converts to Your Faith
 
-TODO
+Once a year there is a chance for a slave to convert to their owner's faith on their own.
 
 #### Trait Events
 

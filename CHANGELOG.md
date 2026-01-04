@@ -15,7 +15,12 @@
 
 ### Events
 
-TODO
+* Added new slavery flavor events: *The Price of Freedom*, *The Informant's Bargain*.
+* Added a hidden event for a slave to convert to their owner's faith on their own.
+
+### Localization
+
+* Updated / improved the French and Russian translations.
 
 ## Version 0.28.4
 
