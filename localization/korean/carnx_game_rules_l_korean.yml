@@ -16,14 +16,8 @@
  setting_carnx_slave_market_holdings_all_20_desc: "노예 시장은 개발도가 20 이상이거나 특정 건물이 있는 비사원 봉토에서 이용 가능합니다."
 
  rule_carnx_market_event_frequency_player: "#X CSR:#! 플레이어 대상 해외 노예 구매 이벤트 빈도"
- setting_carnx_market_event_frequency_player_1y: "#high 매년#!"
- setting_carnx_market_event_frequency_player_1y_desc: "플레이어에게 매년 무작위로 이벤트가 발생합니다."
- setting_carnx_market_event_frequency_player_3y: "3년마다"
- setting_carnx_market_event_frequency_player_3y_desc: "플레이어에게 3년마다 무작위로 이벤트가 발생합니다."
- setting_carnx_market_event_frequency_player_5y: "#high 5년마다#!"
- setting_carnx_market_event_frequency_player_5y_desc: "플레이어에게 5년마다 무작위로 이벤트가 발생합니다."
- setting_carnx_market_event_frequency_player_never: "#high 발생 안 함#!"
- setting_carnx_market_event_frequency_player_never_desc: "플레이어에게 이벤트가 발생하지 않습니다."
+ setting_carnx_market_event_frequency_player_never: "발생 안 함"
+ setting_carnx_market_event_frequency_player_never_desc: "이벤트가 발생하지 않지만, 대신 결정을 통해 트리거할 수 있습니다."
 
  rule_carnx_valid_trading_partners: "#X CSR:#! 유효한 구매자 또는 판매자"
  setting_carnx_valid_trading_partners_within_trading_range: "교역 범위 내"

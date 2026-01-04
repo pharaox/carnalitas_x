@@ -45,3 +45,21 @@
  carnx_slave.0008.c:0 "$carnx_slavery_attitude_trader_modifier$"
  carnx_slave.0008.d:0 "$carnx_slavery_attitude_employer_modifier$"
  carnx_slave.0008.e:0 "无"
+
+ carnx_slave.0009.t:0 "自由的代价"
+ carnx_slave.0009.desc_intro:0 "我的奴隶[slave.GetFirstNameNoTooltip]带着恭敬而又充满希望的表情向我走来，双手合十跪在我面前。"
+ carnx_slave.0009.desc_gold:0 "[slave.GetSheHe|U]一直在攒[slave.GetSheHe]能赚到的每一枚硬币，现在提供[gold_i][slave.MakeScope.Var('carnx_slave_0009_ransom_cost').GetValue|P0]以换取[slave.GetHerHis]自由。这是一个公平的价格，等于我可以要求的[slave.GetHerHis]赎金。"
+ carnx_slave.0009.desc_hook:0 "虽然[slave.GetSheHe]没能存够黄金，但[slave.GetSheHe]发下庄严的誓言——如果我现在给予[slave.GetHerHis]自由，[slave.GetSheHe]将欠我一份人情，在我需要[slave.GetHerHim]时必须为我的利益服务。"
+ carnx_slave.0009.a:0 "很好，我接受你的提议。"
+ carnx_slave.0009.b:0 "不，作为奴隶你对我更有价值。"
+
+ carnx_slave.0010.t:0 "奴隶皈依你的信仰"
+ carnx_slave.0010.desc:0 "[slave.GetFirstNameNoTooltip]已皈依[ROOT.Char.GetFaith.GetName]。"
+ carnx_slave.0010.a:0 "好的"
+ carnx_slave.0010.tt:0 "奴隶皈依你的信仰"
+ carnx_slave.0010.message:0 "我的奴隶[slave.GetFirstNameNoTooltip]已放弃[slave.GetHerHis]先前的信仰，接受了[ROOT.Char.GetFaith.GetName]的教义。"
+
+ carnx_slave.0011.t:0 "线人的交易"
+ carnx_slave.0011.desc:0 "我的奴隶[slave.GetFirstNameNoTooltip]私下走近我，越过[slave.GetHerHis]肩膀向后看，以确保我们没有被偷听。[slave.GetSheHe]压低声音提议，愿意以[slave.GetHerHis]自由为代价，与我分享[slave.GetHerHis]所知的[secret_owner.GetTitledFirstName]的秘密。"
+ carnx_slave.0011.a:0 "很好，告诉我你知道什么。"
+ carnx_slave.0011.b:0 "你的秘密对我毫无价值。"

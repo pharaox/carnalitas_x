@@ -52,3 +52,21 @@
  carnx_slave.0008.c: "$carnx_slavery_attitude_trader_modifier$"
  carnx_slave.0008.d: "$carnx_slavery_attitude_employer_modifier$"
  carnx_slave.0008.e: "없음"
+
+ carnx_slave.0009.t: "자유의 대가"
+ carnx_slave.0009.desc_intro: "내 노예 [slave.GetFirstNameNoTooltip](이)가 공손하지만 희망에 찬 표정으로 다가와, [slave.GetHerHis] 손을 모으고 내 앞에 무릎을 꿇었다."
+ carnx_slave.0009.desc_gold: "[slave.GetSheHe|U](은)는 벌 수 있었던 모든 동전을 모았고, 이제 [slave.GetHerHis] 자유를 대가로 [gold_i][slave.MakeScope.Var('carnx_slave_0009_ransom_cost').GetValue|P0](을)를 제안한다. 내가 [slave.GetHerHis] 몸값으로 요구할 수 있는 금액과 동일한 공정한 가격이다."
+ carnx_slave.0009.desc_hook: "비록 [slave.GetSheHe](은)는 충분한 금화를 모으지 못했지만, [slave.GetSheHe](은)는 엄숙한 맹세를 한다 — 지금 [slave.GetHerHis] 자유를 주면, [slave.GetSheHe](은)는 내게 빚을 지게 되어, 내가 [slave.GetHerHim](이)가 필요할 때마다 내 이익을 위해 봉사하겠다고 말이다."
+ carnx_slave.0009.a: "좋다, 네 제안을 받아들이겠다."
+ carnx_slave.0009.b: "아니다, 너는 노예로서 나에게 더 가치 있다."
+
+ carnx_slave.0010.t: "노예가 당신의 신앙으로 개종함"
+ carnx_slave.0010.desc: "[slave.GetFirstNameNoTooltip](이)가 [ROOT.Char.GetFaith.GetName](으)로 개종했다."
+ carnx_slave.0010.a: "확인"
+ carnx_slave.0010.tt: "노예가 당신의 신앙으로 개종함"
+ carnx_slave.0010.message: "내 노예 [slave.GetFirstNameNoTooltip](이)가 [slave.GetHerHis] 옛 신앙을 버리고 [ROOT.Char.GetFaith.GetName]의 가르침을 받아들였다."
+
+ carnx_slave.0011.t: "정보원의 거래"
+ carnx_slave.0011.desc: "내 노예 [slave.GetFirstNameNoTooltip](이)가 은밀히 다가와, [slave.GetHerHis] 어깨 너머로 우리의 대화가 들리지 않는지 확인한다. 작은 목소리로, [slave.GetSheHe](은)는 [slave.GetHerHis] 자유를 대가로 [secret_owner.GetTitledFirstName]의 비밀에 대한 [slave.GetHerHis] 지식을 나와 나누겠다고 제안한다."
+ carnx_slave.0011.a: "좋다, 네가 아는 것을 말해라."
+ carnx_slave.0011.b: "네 비밀은 내게 가치가 없다."

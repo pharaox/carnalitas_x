@@ -12,3 +12,7 @@
 
  carnx_valid_buyer_or_seller: "[CHARACTER.GetShortUIName|U](은)는 노예를 사거나 팔기에는 너무 멀리 있음"
  carnx_valid_payer_or_owner: "[CHARACTER.GetShortUIName|U](은)는 노예의 몸값을 제안하거나 요구하기에는 너무 멀리 있음"
+
+ carnx_slavery_is_always_crime: "$carn_doctrine_same_slavery_name$와 $carn_doctrine_other_slavery_name$ 모두 당신의 신앙에서 [criminal|E]임"
+ carnx_buying_slaves_is_always_forbidden: "[slaves|E] 구매는 당신의 영지 법률에 의해 항상 금지됨"
+ carnx_no_valid_template_character: "당신의 신앙에서 해당 신앙의 노예를 소유하는 것이 [criminal|E]가 아닌 통치자가 최소 한 명은 존재해야 함"

@@ -12,3 +12,7 @@
 
  carnx_valid_buyer_or_seller: "[CHARACTER.GetShortUIName|U] слишком далеко, чтобы покупать или продавать рабов"
  carnx_valid_payer_or_owner: "[CHARACTER.GetShortUIName|U] слишком далеко, чтобы предлагать или требовать выкуп за рабов"
+
+ carnx_slavery_is_always_crime: "И $carn_doctrine_same_slavery_name$, и $carn_doctrine_other_slavery_name$ являются [criminal|E] в вашей вере"
+ carnx_buying_slaves_is_always_forbidden: "Покупка [slaves|E] всегда запрещена законами вашего королевства"
+ carnx_no_valid_template_character: "Должен существовать хотя бы один правитель, владение рабами чьей веры не является [criminal|E] в вашей вере"

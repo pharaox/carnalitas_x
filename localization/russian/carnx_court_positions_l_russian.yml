@@ -34,3 +34,22 @@
  none_has_positive_attraction: "They have a positive [attraction|E]"
  none_liege_is_allowed_to_marry: "Their [liege|E] is allowed to marry them"
  none_has_at_least_one_commander_trait: "They have at least one [commander_trait|E]"
+
+ # Slave Concubine Tasks
+ carnx_slave_concubine_court_position_task_attend_to_comfort:0 "Заботиться об удобстве сюзерена"
+ carnx_slave_concubine_court_position_task_attend_to_comfort_desc:0 "$carnx_slave_concubine_court_position$ будет посвящать себя облегчению бремени своего сюзерена через приятное общество и преданное внимание."
+ carnx_slave_concubine_attend_to_comfort.tt:0 "$carnx_slave_concubine_court_position$ поможет снизить [stress|E] своего сюзерена."
+
+ carnx_slave_concubine_court_position_task_gather_court_gossip:0 "Собирать придворные слухи"
+ carnx_slave_concubine_court_position_task_gather_court_gossip_desc:0 "$carnx_slave_concubine_court_position$ будет прислушиваться к слухам и шёпоту, предупреждая своего сюзерена о потенциальных заговорах и интригах."
+ carnx_slave_concubine_gather_court_gossip.tt:0 "$carnx_slave_concubine_court_position$ улучшит способность своего сюзерена обнаруживать [schemes|E], направленные против него."
+
+ # Mameluke Captain Tasks
+ carnx_slave_captain_court_position_task_train_elite_warriors:0 "Тренировать элитных воинов"
+ carnx_slave_captain_court_position_task_train_elite_warriors_desc:0 "$carnx_slave_captain_court_position$ сосредоточится на обучении и тренировке самых грозных бойцов армии передовым боевым техникам."
+ carnx_slave_captain_train_elite_warriors.tt:0 "$carnx_slave_captain_court_position$ повысит эффективность сил [heavy_cavalry|E] и [heavy_infantry|E]."
+
+ # Slave Eunuch Tasks
+ carnx_slave_eunuch_court_position_task_manage_palace_affairs:0 "Управлять дворцовыми делами"
+ carnx_slave_eunuch_court_position_task_manage_palace_affairs_desc:0 "$carnx_slave_eunuch_court_position$ будет надзирать за повседневным управлением дворца, обеспечивая его эффективность."
+ carnx_slave_eunuch_manage_palace_affairs.tt:0 "$carnx_slave_eunuch_court_position$ улучшит [development_growth|E] столичного [county|E]."

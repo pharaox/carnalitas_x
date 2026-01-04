@@ -52,3 +52,21 @@
  carnx_slave.0008.c:0 "$carnx_slavery_attitude_trader_modifier$"
  carnx_slave.0008.d:0 "$carnx_slavery_attitude_employer_modifier$"
  carnx_slave.0008.e:0 "Ничто"
+
+ carnx_slave.0009.t:0 "Цена свободы"
+ carnx_slave.0009.desc_intro:0 "Мой раб [slave.GetFirstNameNoTooltip] подходит ко мне с почтительным, но полным надежды выражением лица, становясь передо мной на колени со сложенными [slave.GetHerHis] руками."
+ carnx_slave.0009.desc_gold:0 "[slave.GetSheHe|U] копил каждую монету, которую [slave.GetSheHe] мог заработать, и теперь предлагает [gold_i][slave.MakeScope.Var('carnx_slave_0009_ransom_cost').GetValue|P0] в обмен на [slave.GetHerHis] свободу. Это справедливая цена, равная той, что я мог бы потребовать в качестве [slave.GetHerHis] выкупа."
+ carnx_slave.0009.desc_hook:0 "Хотя [slave.GetSheHe] не смог накопить достаточно золота, [slave.GetSheHe] дает торжественную клятву — если я даю [slave.GetHerHis] свободу сейчас, [slave.GetSheHe] будет в долгу передо мной, обязанный служить моим интересам всякий раз, когда мне понадобится [slave.GetHerHim]."
+ carnx_slave.0009.a:0 "Хорошо, я принимаю ваше предложение."
+ carnx_slave.0009.b:0 "Нет, вы более ценны для меня как раб."
+
+ carnx_slave.0010.t:0 "Раб обращается в вашу веру"
+ carnx_slave.0010.desc:0 "[slave.GetFirstNameNoTooltip] обратился в [ROOT.Char.GetFaith.GetName]."
+ carnx_slave.0010.a:0 "OK"
+ carnx_slave.0010.tt:0 "Раб обращается в вашу веру"
+ carnx_slave.0010.message:0 "Мой раб [slave.GetFirstNameNoTooltip] отрекся от [slave.GetHerHis] прежней веры и принял учение [ROOT.Char.GetFaith.GetName]."
+
+ carnx_slave.0011.t:0 "Сделка информатора"
+ carnx_slave.0011.desc:0 "Мой раб [slave.GetFirstNameNoTooltip] подходит ко мне наедине, оглядываясь через [slave.GetHerHis] плечо, чтобы убедиться, что нас не подслушивают. Приглушенным голосом [slave.GetSheHe] предлагает поделиться [slave.GetHerHis] знанием о тайне [secret_owner.GetTitledFirstName] со мной в обмен на [slave.GetHerHis] свободу."
+ carnx_slave.0011.a:0 "Хорошо, расскажи мне, что ты знаешь."
+ carnx_slave.0011.b:0 "Твои секреты мне не нужны."

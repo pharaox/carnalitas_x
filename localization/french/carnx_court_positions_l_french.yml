@@ -34,3 +34,22 @@
  none_has_positive_attraction: "They have a positive [attraction|E]"
  none_liege_is_allowed_to_marry: "Their [liege|E] is allowed to marry them"
  none_has_at_least_one_commander_trait: "They have at least one [commander_trait|E]"
+
+ # Slave Concubine Tasks
+ carnx_slave_concubine_court_position_task_attend_to_comfort:0 "Veiller au confort du suzerain"
+ carnx_slave_concubine_court_position_task_attend_to_comfort_desc:0 "La $carnx_slave_concubine_court_position$ se consacrera à alléger les fardeaux de son suzerain par une compagnie agréable et une attention dévouée."
+ carnx_slave_concubine_attend_to_comfort.tt:0 "La $carnx_slave_concubine_court_position$ aidera à réduire le [stress|E] de son suzerain."
+
+ carnx_slave_concubine_court_position_task_gather_court_gossip:0 "Recueillir les ragots de la cour"
+ carnx_slave_concubine_court_position_task_gather_court_gossip_desc:0 "La $carnx_slave_concubine_court_position$ écoutera les rumeurs et les murmures, alertant son suzerain des complots et intrigues potentiels."
+ carnx_slave_concubine_gather_court_gossip.tt:0 "La $carnx_slave_concubine_court_position$ améliorera la capacité de son suzerain à découvrir les [schemes|E] le visant."
+
+ # Mameluke Captain Tasks
+ carnx_slave_captain_court_position_task_train_elite_warriors:0 "Entraîner des guerriers d'élite"
+ carnx_slave_captain_court_position_task_train_elite_warriors_desc:0 "Le $carnx_slave_captain_court_position$ se concentrera sur la formation et l'entraînement des combattants les plus redoutables de l'armée aux techniques de combat avancées."
+ carnx_slave_captain_train_elite_warriors.tt:0 "Le $carnx_slave_captain_court_position$ améliorera l'efficacité des forces de [heavy_cavalry|E] et d'[heavy_infantry|E]."
+
+ # Slave Eunuch Tasks
+ carnx_slave_eunuch_court_position_task_manage_palace_affairs:0 "Gérer les affaires du palais"
+ carnx_slave_eunuch_court_position_task_manage_palace_affairs_desc:0 "L'$carnx_slave_eunuch_court_position$ supervisera l'administration quotidienne du palais, assurant son efficacité."
+ carnx_slave_eunuch_manage_palace_affairs.tt:0 "L'$carnx_slave_eunuch_court_position$ améliorera la [development_growth|E] du [county|E] de la capitale."

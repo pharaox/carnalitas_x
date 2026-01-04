@@ -4,3 +4,9 @@
  carnx_choose_slavery_attitude_decision_tooltip:0 "Вы сможете выбрать свое отношение к [slavery|E], одно из $carnx_slavery_attitude_slaver_modifier$, $carnx_slavery_attitude_liberator_modifier$, $carnx_slavery_attitude_trader_modifier$ или $carnx_slavery_attitude_employer_modifier$. Каждое отношение дает вам небольшой модификатор и уникальный бонус, связанный с рабством."
  carnx_choose_slavery_attitude_decision.tt:0 "$carnx_choose_slavery_attitude_decision_tooltip$"
  carnx_choose_slavery_attitude_decision_confirm:0 "Выберите отношение к рабству"
+
+ carnx_buy_foreign_slaves_decision:0 "Купить иностранных рабов"
+ carnx_buy_foreign_slaves_decision_desc:0 "Я могу пригласить торговцев [slave|E] в свою столицу для покупки иностранных рабов для своего двора."
+ carnx_buy_foreign_slaves_decision_tooltip:0 "Работорговцы из чужих земель прибудут с рабами на продажу."
+ carnx_buy_foreign_slaves_decision.tt:0 "$carnx_buy_foreign_slaves_decision_tooltip$"
+ carnx_buy_foreign_slaves_decision_confirm:0 "Купить иностранных рабов"

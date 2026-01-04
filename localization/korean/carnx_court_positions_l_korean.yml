@@ -34,3 +34,22 @@
  none_has_positive_attraction: "저들은 0보다 큰 [attraction|E] 수치를 가짐" # 해라체 (조건)
  none_liege_is_allowed_to_marry: "저들의 [liege|E]은 저들과 결혼할 수 있음" # 해라체 (조건)
  none_has_at_least_one_commander_trait: "저들은 [commander_trait|E]을 최소 하나 가지고 있음" # 해라체 (조건)
+
+ # Slave Concubine Tasks
+ carnx_slave_concubine_court_position_task_attend_to_comfort: "군주의 안락을 돌봄"
+ carnx_slave_concubine_court_position_task_attend_to_comfort_desc: "$carnx_slave_concubine_court_position$은(는) 즐거운 동행과 헌신적인 관심으로 군주의 짐을 덜어주는 데 전념할 것입니다."
+ carnx_slave_concubine_attend_to_comfort.tt: "$carnx_slave_concubine_court_position$은(는) 군주의 [stress|E]를 줄이는 데 도움을 줄 것입니다."
+
+ carnx_slave_concubine_court_position_task_gather_court_gossip: "궁정 소문 수집"
+ carnx_slave_concubine_court_position_task_gather_court_gossip_desc: "$carnx_slave_concubine_court_position$은(는) 소문과 속삭임에 귀 기울이며, 잠재적인 음모와 책략을 군주에게 알릴 것입니다."
+ carnx_slave_concubine_gather_court_gossip.tt: "$carnx_slave_concubine_court_position$은(는) 군주를 대상으로 하는 [schemes|E]를 발견하는 능력을 향상시킬 것입니다."
+
+ # Mameluke Captain Tasks
+ carnx_slave_captain_court_position_task_train_elite_warriors: "정예 전사 훈련"
+ carnx_slave_captain_court_position_task_train_elite_warriors_desc: "$carnx_slave_captain_court_position$은(는) 군대의 가장 강력한 전사들을 고급 전투 기술로 훈련하고 단련하는 데 집중할 것입니다."
+ carnx_slave_captain_train_elite_warriors.tt: "$carnx_slave_captain_court_position$은(는) [heavy_cavalry|E]와 [heavy_infantry|E] 부대의 효율성을 향상시킬 것입니다."
+
+ # Slave Eunuch Tasks
+ carnx_slave_eunuch_court_position_task_manage_palace_affairs: "궁전 업무 관리"
+ carnx_slave_eunuch_court_position_task_manage_palace_affairs_desc: "$carnx_slave_eunuch_court_position$은(는) 궁전의 일상적인 관리를 감독하여 효율성을 보장할 것입니다."
+ carnx_slave_eunuch_manage_palace_affairs.tt: "$carnx_slave_eunuch_court_position$은(는) 수도 [county|E]의 [development_growth|E]를 향상시킬 것입니다."

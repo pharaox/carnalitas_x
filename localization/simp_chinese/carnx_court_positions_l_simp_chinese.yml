@@ -29,3 +29,22 @@
  none_has_positive_attraction: "其有正向[attraction|E]"
  none_liege_is_allowed_to_marry: "其[liege|E]被允许与其结婚"
  none_has_at_least_one_commander_trait: "其有至少一个[commander_trait|E]"
+
+ # Slave Concubine Tasks
+ carnx_slave_concubine_court_position_task_attend_to_comfort:0 "照顾君主的舒适"
+ carnx_slave_concubine_court_position_task_attend_to_comfort_desc:0 "$carnx_slave_concubine_court_position$将致力于通过愉悦的陪伴和全心的关注来减轻君主的负担。"
+ carnx_slave_concubine_attend_to_comfort.tt:0 "$carnx_slave_concubine_court_position$将帮助降低君主的[stress|E]。"
+
+ carnx_slave_concubine_court_position_task_gather_court_gossip:0 "收集宫廷流言"
+ carnx_slave_concubine_court_position_task_gather_court_gossip_desc:0 "$carnx_slave_concubine_court_position$将倾听谣言和窃窃私语，向君主通报潜在的阴谋和诡计。"
+ carnx_slave_concubine_gather_court_gossip.tt:0 "$carnx_slave_concubine_court_position$将提升君主发现针对其的[schemes|E]的能力。"
+
+ # Mameluke Captain Tasks
+ carnx_slave_captain_court_position_task_train_elite_warriors:0 "训练精锐战士"
+ carnx_slave_captain_court_position_task_train_elite_warriors_desc:0 "$carnx_slave_captain_court_position$将专注于用先进的战斗技术训练和操练军队中最强大的战士。"
+ carnx_slave_captain_train_elite_warriors.tt:0 "$carnx_slave_captain_court_position$将提升[heavy_cavalry|E]和[heavy_infantry|E]部队的效能。"
+
+ # Slave Eunuch Tasks
+ carnx_slave_eunuch_court_position_task_manage_palace_affairs:0 "管理宫廷事务"
+ carnx_slave_eunuch_court_position_task_manage_palace_affairs_desc:0 "$carnx_slave_eunuch_court_position$将监督宫殿的日常管理，确保效率。"
+ carnx_slave_eunuch_manage_palace_affairs.tt:0 "$carnx_slave_eunuch_court_position$将提升首都[county|E]的[development_growth|E]。"

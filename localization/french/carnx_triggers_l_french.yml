@@ -12,3 +12,7 @@
 
  carnx_valid_buyer_or_seller: "[CHARACTER.GetShortUIName|U] est trop loin pour acheter ou vendre des esclaves"
  carnx_valid_payer_or_owner: "[CHARACTER.GetShortUIName|U] est trop loin pour offrir ou demander une rançon pour les esclaves"
+
+ carnx_slavery_is_always_crime: "$carn_doctrine_same_slavery_name$ et $carn_doctrine_other_slavery_name$ sont tous deux [criminal|E] dans votre foi"
+ carnx_buying_slaves_is_always_forbidden: "L'achat d'[slaves|E] est toujours interdit par les lois de votre royaume"
+ carnx_no_valid_template_character: "Il doit exister au moins un dirigeant tel que posséder des esclaves de sa foi n'est pas [criminal|E] dans votre foi"

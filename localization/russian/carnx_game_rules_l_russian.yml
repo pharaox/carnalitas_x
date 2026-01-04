@@ -16,14 +16,8 @@
  setting_carnx_slave_market_holdings_all_20_desc: "Slave markets are available in non-temple holdings with at least 20 development or certain buildings."
 
  rule_carnx_market_event_frequency_player: "#X CSR:#! Buy Foreign Slaves Event Frequency for Players"
- setting_carnx_market_event_frequency_player_1y: "#high Every year#!"
- setting_carnx_market_event_frequency_player_1y_desc: "Events fire randomly every year for players."
- setting_carnx_market_event_frequency_player_3y: "Every 3 years"
- setting_carnx_market_event_frequency_player_3y_desc: "Events fire randomly every 3 years for players."
- setting_carnx_market_event_frequency_player_5y: "#high Every 5 years#!"
- setting_carnx_market_event_frequency_player_5y_desc: "Events fire randomly every 5 years for players."
- setting_carnx_market_event_frequency_player_never: "#high Never#!"
- setting_carnx_market_event_frequency_player_never_desc: "Events never fire for players."
+ setting_carnx_market_event_frequency_player_never: "Никогда"
+ setting_carnx_market_event_frequency_player_never_desc: "События никогда не срабатывают, но могут быть запущены через решение."
 
  rule_carnx_valid_trading_partners: "#X CSR:#! Актуальные покупатели или продавцы"
  setting_carnx_valid_trading_partners_within_trading_range: "В пределах торгового радиуса"
