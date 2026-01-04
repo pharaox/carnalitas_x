@@ -7,12 +7,12 @@
  carnx_slave.0001.d:0 "Они оба не производят на меня впечатления."
  carnx_slave.0001.e:0 "Я отказываюсь участвовать в этой отвратительной торговле!"
 
- carnx_slave.0002.t:0 "Sex With a Slave"
- carnx_slave.0002.desc:0 "I just had sex with [slave.GetFirstNameNoTooltip]."
+ carnx_slave.0002.t:0 "Секс с рабом"
+ carnx_slave.0002.desc:0 "Я только что занимался сексом с [slave.GetFirstNameNoTooltip]."
  carnx_slave.0002.a:0 "OK"
 
  carnx_slave.0003.t:0 "Сбежавший раб"
- carnx_slave.0003.scapegoat.desc:1 "Прошлой ночью, мой раб [slave.GetFirstNameNoTooltip] решил [slave.GetSheHe] что с него достаточно и сбежал, прихватив с собой кое-что из моих ценностей. [slave.GetHerHim]! Что еще хуже, [scapegoat.Custom2('MyCharacterIntroduction',ROOT.Char)] #EMP saw#! [slave.GetHerHim] бросился в темноту и не подумал никому рассказать до утра."
+ carnx_slave.0003.scapegoat.desc:1 "Прошлой ночью мой раб [slave.GetFirstNameNoTooltip] решил, что [slave.GetSheHe] с него достаточно, и сбежал, прихватив с собой кое-что из моих ценностей! Что еще хуже, [scapegoat.Custom2('MyCharacterIntroduction',ROOT.Char)] #EMP видел#!, как [slave.GetHerHim] бросился в темноту, и не подумал никому рассказать до утра."
  carnx_slave.0003.desc:1 "Прошлой ночью, мой раб [slave.GetFirstNameNoTooltip] решил [slave.GetSheHe] что с него достаточно и сбежал, прихватив с собой кое-что из моих ценностей. [slave.GetHerHim]!"
  carnx_slave.0003.gold_stays_lost.tt:0 "Ваше золото остается не найденным"
  carnx_slave.0003.a:0 "Разошлите описание в каждый город, деревню и хутор!"
@@ -25,8 +25,8 @@
  carnx_slave.0003.d:0 "Ты прощен, [scapegoat.GetFirstNameNoTooltip]. Такие вещи случаются."
  carnx_slave.0003.e:0 "У меня есть более важные дела, которыми я должен заняться."
 
- carnx_slave.0004.t:0 "Piety Loss From Slaves"
- carnx_slave.0004.desc:0 "I lost piety from slaves owned against religious doctrines."
+ carnx_slave.0004.t:0 "Потеря благочестия из-за рабов"
+ carnx_slave.0004.desc:0 "Я потерял благочестие из-за владения рабами вопреки религиозным доктринам."
  carnx_slave.0004.a:0 "OK"
  carnx_slave.0004.tt:0 "Потеря благочестия от рабов"
  carnx_slave.0004.piety_loss.tt:0 "Утраченно благочестие из-за рабов, принадлежавших вам вопреки религиозным доктринам"

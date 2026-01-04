@@ -1,7 +1,7 @@
 ﻿l_russian:
- ALREADY_OFFERED_COURTIER_WARNING:0 "@warning_icon! #X You have already offered a [courtier|E] to [recipient.GetShortUIName], sending another one will #underline override#! the existing [opinion|E] modifier!#!"
+ ALREADY_OFFERED_COURTIER_WARNING:0 "@warning_icon! #X Вы уже предложили [courtier|E] для [recipient.GetShortUIName], отправка другого #underline переопределит#! существующий модификатор [opinion|E]!#!"
 
- unop_msg_offer_courtier_accepted_tt: "[secondary_actor.GetTitledFirstName] is now [recipient.GetTitledFirstNamePossessive] courtier"
- unop_msg_demand_courtier_accepted_tt: "[secondary_actor.GetTitledFirstName] is now your courtier"
+ unop_msg_offer_courtier_accepted_tt: "[secondary_actor.GetTitledFirstName] теперь придворный [recipient.GetTitledFirstNamePossessive]"
+ unop_msg_demand_courtier_accepted_tt: "[secondary_actor.GetTitledFirstName] теперь ваш придворный"
 
- has_court_tutor_domicile_building: "Has [GetDomicileBuilding('family_yurt_03').GetName]"
+ has_court_tutor_domicile_building: "Имеет [GetDomicileBuilding('family_yurt_03').GetName]"
