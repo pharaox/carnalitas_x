@@ -8,22 +8,24 @@
  trait_carnx_liberator_character_desc:0 "[ROOT.GetCharacter.GetFirstNameNoTooltip]  libéré de nombreuses personnes de l’esclavage."
 
  trait_track_carnx_slaver: "$trait_carnx_slaver$"
- trait_track_carnx_slaver_desc: "#help You gain experience in this track by enslaving characters.#!"
+ trait_track_carnx_slaver_desc: "#help Vous gagnez de l'expérience dans cette voie en asservissant des personnages.#!"
 
  trait_track_carnx_liberator: "$trait_carnx_liberator$"
- trait_track_carnx_liberator_desc: "#help You gain experience in this track by freeing, liberating, or ransoming slaves you haven't enslaved yourself.#!"
+ trait_track_carnx_liberator_desc: "#help Vous gagnez de l'expérience dans cette voie en libérant ou en rançonnant des esclaves que vous n'avez pas asservis vous-même.#!"
 
- trait_carnx_faith_slaver_1: "Slaver (Hostile Faith)"
- trait_carnx_faith_slaver_1_desc: "This character has enslaved adherents of [faith_hostile|E] or [faith_evil|E] faiths against the doctrines of their faith."
- trait_carnx_faith_slaver_1_character_desc: "[ROOT.GetCharacter.GetFirstNameNoTooltip] has enslaved adherents of [faith_hostile|E] or [faith_evil|E] faiths against the doctrines of [ROOT.GetCharacter.GetHerHis] faith."
+ trait_carnx_faith_slaver_1: "Esclavagiste (Foi hostile)"
+ trait_carnx_faith_slaver_1_desc: "Ce personnage a asservi des adeptes de fois [faith_hostile|E] ou [faith_evil|E] contre les doctrines de sa foi."
+ trait_carnx_faith_slaver_1_character_desc: "[ROOT.GetCharacter.GetFirstNameNoTooltip] a asservi des adeptes de fois [faith_hostile|E] ou [faith_evil|E] contre les doctrines de [ROOT.GetCharacter.GetHerHis] foi."
 
- trait_carnx_faith_slaver_2: "Slaver (Righteous Faith)"
- trait_carnx_faith_slaver_2_desc: "This character has enslaved adherents of [faith_righteous|E] or [faith_astray|E] faiths against the doctrines of their faith."
- trait_carnx_faith_slaver_2_character_desc: "[ROOT.GetCharacter.GetFirstNameNoTooltip] has enslaved adherents of [faith_righteous|E] or [faith_astray|E] faiths against the doctrines of [ROOT.GetCharacter.GetHerHis] faith."
+ trait_carnx_faith_slaver_2: "Esclavagiste (Foi vertueuse)"
+ trait_carnx_faith_slaver_2_desc: "Ce personnage a asservi des adeptes de fois [faith_righteous|E] ou [faith_astray|E] contre les doctrines de sa foi."
+ trait_carnx_faith_slaver_2_character_desc: "[ROOT.GetCharacter.GetFirstNameNoTooltip] a asservi des adeptes de fois [faith_righteous|E] ou [faith_astray|E] contre les doctrines de [ROOT.GetCharacter.GetHerHis] foi."
 
- trait_carnx_slave_concubine: "Slave Concubine"
- trait_carnx_slave_concubine_desc: "This character is a lower-rank concubine who is also a slave or former slave."
- trait_carnx_slave_concubine_character_desc: "[ROOT.GetCharacter.GetFirstNameNoTooltip] is a lower-rank concubine who is also a slave or former slave."
+ trait_carnx_slave_concubine: "Concubine esclave"
+ trait_carnx_slave_concubine_desc: "Ce personnage est une concubine de rang inférieur qui est aussi une esclave ou une ancienne esclave."
+ trait_carnx_slave_concubine_character_desc: "[ROOT.GetCharacter.GetFirstNameNoTooltip] est une concubine de rang inférieur qui est aussi une esclave ou une ancienne esclave."
 
  carnx_slavery_crime_opinion:0 "[GetTrait('carnx_slaver').GetName( GetNullCharacter )|U] notoire"
  carnx_slavery_intolerant_opinion:0 "[GetTrait('carnx_slaver').GetName( GetNullCharacter )|U] notoire"
+
+ trait_slaver: "Esclavagiste"

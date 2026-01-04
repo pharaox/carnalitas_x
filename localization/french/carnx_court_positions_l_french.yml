@@ -21,19 +21,19 @@
 
  hunt_can_hunt_parameter_tt:0 "[culture|E] est capable de Chasser"
 
- faith_or_culture_allows_polygamy_or_concubines_tt: "Your [faith|E] or [culture|E] allows polygamy or [concubines|E]"
- faith_allows_slave_soldiers_tt: "Your [faith|E] allows recruitment of [slave|E] soldiers"
+ faith_or_culture_allows_polygamy_or_concubines_tt: "Votre [faith|E] ou [culture|E] autorise la polygamie ou les [concubines|E]"
+ faith_allows_slave_soldiers_tt: "Votre [faith|E] autorise le recrutement de soldats [slave|E]"
 
- none_is_not_a_slave: "They are #bold not#! a [slave|E]"
- none_liege_can_employ_slaves: "Their [liege|E] can employ [slaves|E] in additional court positions"
- none_is_their_lieges_slave: "They are their [liege|E]'s [slave|E]"
- none_is_employed_as_slave_concubine: "They are already employed as $carnx_slave_concubine_court_position$"
- none_is_employed_as_slave_captain: "They are already employed as $carnx_slave_captain_court_position$"
- none_is_employed_as_slave_eunuch: "They are already employed as $carnx_slave_eunuch_court_position$"
- none_is_capable_adult: "They are a capable [adult|E]"
- none_has_positive_attraction: "They have a positive [attraction|E]"
- none_liege_is_allowed_to_marry: "Their [liege|E] is allowed to marry them"
- none_has_at_least_one_commander_trait: "They have at least one [commander_trait|E]"
+ none_is_not_a_slave: "Ce personnage n'est #bold pas#! un(e) [slave|E]"
+ none_liege_can_employ_slaves: "Leur [liege|E] peut employer des [slaves|E] dans des postes de cour supplémentaires"
+ none_is_their_lieges_slave: "Ce personnage est l'[slave|E] de son [liege|E]"
+ none_is_employed_as_slave_concubine: "Ce personnage est déjà employé(e) comme $carnx_slave_concubine_court_position$"
+ none_is_employed_as_slave_captain: "Ce personnage est déjà employé comme $carnx_slave_captain_court_position$"
+ none_is_employed_as_slave_eunuch: "Ce personnage est déjà employé comme $carnx_slave_eunuch_court_position$"
+ none_is_capable_adult: "Ce personnage est un(e) [adult|E] capable"
+ none_has_positive_attraction: "Ce personnage a une [attraction|E] positive"
+ none_liege_is_allowed_to_marry: "Leur [liege|E] est autorisé à les épouser"
+ none_has_at_least_one_commander_trait: "Ce personnage a au moins un [commander_trait|E]"
 
  # Slave Concubine Tasks
  carnx_slave_concubine_court_position_task_attend_to_comfort:0 "Veiller au confort du suzerain"
