@@ -1,0 +1,5 @@
+﻿l_simp_chinese:
+ house_relation_reason_enslaved_desc: "[char.GetShortUIName|U]奴役了[target_char.GetShortUIName]"
+ house_relation_reason_freed_slave_desc: "[char.GetShortUIName|U]将[target_char.GetShortUIName]从奴隶制中解放"
+ house_relation_reason_ransomed_slave_desc: "[char.GetShortUIName|U]从奴隶制中赎回了[target_char.GetShortUIName]"
+ house_relation_reason_gifted_slave_desc: "[char.GetShortUIName|U]向[target_char.GetShortUIName]赠送了一名奴隶"

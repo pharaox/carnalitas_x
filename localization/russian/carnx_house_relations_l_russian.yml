@@ -1,0 +1,5 @@
+﻿l_russian:
+ house_relation_reason_enslaved_desc: "[char.GetShortUIName|U] [Select_CString(char.IsFemale, 'поработила', 'поработил')] [target_char.GetShortUIName]"
+ house_relation_reason_freed_slave_desc: "[char.GetShortUIName|U] [Select_CString(char.IsFemale, 'освободила', 'освободил')] [target_char.GetShortUIName] от рабства"
+ house_relation_reason_ransomed_slave_desc: "[char.GetShortUIName|U] [Select_CString(char.IsFemale, 'выкупила', 'выкупил')] [target_char.GetShortUIName] из рабства"
+ house_relation_reason_gifted_slave_desc: "[char.GetShortUIName|U] [Select_CString(char.IsFemale, 'подарила', 'подарил')] раба [target_char.GetShortUIName]"

@@ -1,0 +1,5 @@
+﻿l_korean:
+ house_relation_reason_enslaved_desc: "[char.GetShortUIName|U]이(가) [target_char.GetShortUIName]을(를) 노예로 만들었습니다"
+ house_relation_reason_freed_slave_desc: "[char.GetShortUIName|U]이(가) [target_char.GetShortUIName]을(를) 노예 신분에서 해방시켰습니다"
+ house_relation_reason_ransomed_slave_desc: "[char.GetShortUIName|U]이(가) [target_char.GetShortUIName]을(를) 노예 신분에서 몸값을 주고 구했습니다"
+ house_relation_reason_gifted_slave_desc: "[char.GetShortUIName|U]이(가) [target_char.GetShortUIName]에게 노예를 선물했습니다"

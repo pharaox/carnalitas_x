@@ -1,0 +1,5 @@
+﻿l_french:
+ house_relation_reason_enslaved_desc: "[char.GetShortUIName|U] a réduit [target_char.GetShortUIName] en esclavage"
+ house_relation_reason_freed_slave_desc: "[char.GetShortUIName|U] a libéré [target_char.GetShortUIName] de l'esclavage"
+ house_relation_reason_ransomed_slave_desc: "[char.GetShortUIName|U] a rançonné [target_char.GetShortUIName] de l'esclavage"
+ house_relation_reason_gifted_slave_desc: "[char.GetShortUIName|U] a offert un esclave à [target_char.GetShortUIName]"
