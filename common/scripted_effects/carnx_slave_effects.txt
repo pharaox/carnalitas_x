@@ -295,6 +295,7 @@ carnx_enslave_effect = {
 						NOR = {
 							has_trait = sadistic
 							has_trait = callous
+							has_trait = vengeful
 							has_trait = compassionate
 							has_trait = forgiving
 						}
@@ -305,6 +306,7 @@ carnx_enslave_effect = {
 					stress_impact = {
 						sadistic = medium_stress_impact_loss
 						callous = minor_stress_impact_loss
+						vengeful = minor_stress_impact_loss
 						compassionate = miniscule_stress_impact_gain
 						forgiving = miniscule_stress_impact_gain
 					}
@@ -313,7 +315,7 @@ carnx_enslave_effect = {
 			else_if = { # Execute reason and child / grandchild
 				limit = {
 					has_execute_reason = scope:slave
-					NOT = {
+					NOR = {
 						has_trait = sadistic
 						has_trait = callous
 					}
@@ -327,13 +329,13 @@ carnx_enslave_effect = {
 				}
 				stress_impact = {
 					base = miniscule_stress_impact_gain
-					compassionate = major_stress_impact_gain
-					forgiving = medium_stress_impact_gain
+					compassionate = medium_stress_impact_gain
+					forgiving = minor_stress_impact_gain
 				}
 			}
 			else_if = { # No execute reason and child / grandchild
 				limit = {
-					NOT = {
+					NOR = {
 						has_trait = sadistic
 						has_trait = callous
 					}
@@ -353,7 +355,7 @@ carnx_enslave_effect = {
 			}
 			else_if = { # Friend or lover
 				limit = {
-					NOT = {
+					NOR = {
 						has_trait = sadistic
 						has_trait = callous
 					}
@@ -375,8 +377,8 @@ carnx_enslave_effect = {
 					has_execute_reason = scope:slave
 				}
 				stress_impact = {
-					sadistic = minor_stress_impact_loss
-					callous = miniscule_stress_impact_loss
+					sadistic = medium_stress_impact_loss
+					callous = minor_stress_impact_loss
 					compassionate = minor_stress_impact_gain
 					forgiving = miniscule_stress_impact_gain
 				}
