@@ -1,0 +1,5 @@
+﻿l_english:
+ house_relation_reason_enslaved_desc: "[char.GetShortUIName|U] enslaved [target_char.GetShortUIName]"
+ house_relation_reason_freed_slave_desc: "[char.GetShortUIName|U] freed [target_char.GetShortUIName] from slavery"
+ house_relation_reason_ransomed_slave_desc: "[char.GetShortUIName|U] ransomed [target_char.GetShortUIName] from slavery"
+ house_relation_reason_gifted_slave_desc: "[char.GetShortUIName|U] gifted [target_char.GetShortUIName] a slave"

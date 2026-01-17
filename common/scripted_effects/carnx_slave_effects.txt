@@ -151,6 +151,18 @@ carnx_enslave_effect = {
 					}
 				}
 			}
+
+			# House relations
+			house ?= {
+				change_house_relation_effect = {
+					HOUSE = scope:new_owner.house
+					VALUE = house_relation_damage_medium_value
+					REASON = enslaved
+					CHAR = scope:new_owner
+					TARGET_CHAR = scope:slave
+					TITLE = scope:dummy_gender
+				}
+			}
 		}
 
 		scope:new_owner = {
@@ -830,6 +842,18 @@ carnx_free_slave_actual_effect = {
 				modifier = carn_freed_me_from_slavery_opinion
 				target = $EMANCIPATOR$
 			}
+
+			# House relations
+			house ?= {
+				change_house_relation_effect = {
+					HOUSE = $EMANCIPATOR$.house
+					VALUE = house_relation_improve_medium_value
+					REASON = freed_slave
+					CHAR = $EMANCIPATOR$
+					TARGET_CHAR = scope:slave
+					TITLE = scope:dummy_gender
+				}
+			}
 		}
 	}
 
@@ -993,6 +1017,18 @@ carnx_ransom_slave_actual_effect = {
 					target = scope:payer
 					years = 10
 				}
+			}
+		}
+
+		# House relations
+		house ?= {
+			change_house_relation_effect = {
+				HOUSE = scope:payer.house
+				VALUE = house_relation_improve_minor_value
+				REASON = ransomed_slave
+				CHAR = scope:payer
+				TARGET_CHAR = scope:slave
+				TITLE = scope:dummy_gender
 			}
 		}
 	}
@@ -1480,6 +1516,18 @@ carnx_gift_slave_effect = {
 			target = scope:former_owner
 			modifier = gift_opinion
 			opinion = scope:gift_slave_opinion
+		}
+
+		# House relations
+		house ?= {
+			change_house_relation_effect = {
+				HOUSE = scope:former_owner.house
+				VALUE = house_relation_improve_minor_value
+				REASON = gifted_slave
+				CHAR = scope:former_owner
+				TARGET_CHAR = scope:new_owner
+				TITLE = scope:dummy_gender
+			}
 		}
 
 		# Remove piety
