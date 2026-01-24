@@ -1,5 +1,12 @@
 # Changelog
 
+## Version 0.29.1
+
+### Interactions
+
+* Added house relation impact to most slavery interactions. Enslaving damages relations, while freeing, liberating, or ransoming improves them.
+* Tweaked / fixed stress impact from enslaving for characters with certain traits.
+
 ## Version 0.29.0
 
 ### Decisions
