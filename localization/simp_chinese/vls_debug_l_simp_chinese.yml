@@ -1,4 +1,5 @@
 ﻿l_simp_chinese:
- vls_debug_prefix: "[GetCurrentDate.GetStringShort]：[THIS.Char.GetFullNameNoTooltip]([THIS.Char.GetID])"
- vls_debug_msg_visiting_holding: "$vls_debug_prefix$：造访地产，地点：[THIS.Char.GetCurrentLocation.GetNameNoTooltip]，地产类型：[THIS.Char.Custom('LocalHoldingType')]"
- vls_debug_msg_cleaning_up_after_ep3_laamp_decision_1000: "$vls_debug_prefix$： ep3_laamp_decision_event.1000后清理事件"
+ vls_debug_prefix: "[GetCurrentDate.GetStringShort]：[THIS.Char.GetFullNameNoTooltip]（[THIS.Char.GetID]）"
+ 
+ vls_debug_msg_visiting_holding: "$vls_debug_prefix$：访问领地，地点：[THIS.Char.GetCurrentLocation.GetNameNoTooltip]，领地类型：[THIS.Char.Custom('LocalHoldingType')]"
+ vls_debug_msg_cleaning_up_after_ep3_laamp_decision_1000: "$vls_debug_prefix$：清理ep3_laamp_decision_event.1000后的残留"

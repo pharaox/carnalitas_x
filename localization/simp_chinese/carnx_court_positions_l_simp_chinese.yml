@@ -1,50 +1,56 @@
 ﻿l_simp_chinese:
  carnx_slave_salary_mod:0 "[slave|E]"
- carnx_slave_salary_employer_mod:0 "被$carnx_slavery_attitude_employer_modifier$雇佣的[slave|E]"
+ carnx_slave_salary_employer_mod:0 "[slave|E]（受$carnx_slavery_attitude_employer_modifier$影响）"
+ 
  carnx_court_position_skill_attraction:0 "[attraction|E]"
  carnx_court_position_beauty_good_3_trait:0 "[GetTrait('beauty_good_3').GetName( ROOT.Char )]"
  carnx_court_position_beauty_good_2_trait:0 "[GetTrait('beauty_good_2').GetName( ROOT.Char )]"
  carnx_court_position_beauty_good_1_trait:0 "[GetTrait('beauty_good_1').GetName( ROOT.Char )]"
  carnx_court_position_schemer_trait:0 "[GetTrait('schemer').GetName( ROOT.Char )]"
  carnx_court_position_milk_production:0 "[milk_production|E]"
+ 
  carnx_slave_concubine_court_position:0 "奴隶侍妾"
- carnx_slave_concubine_court_position_desc:0 "$carnx_slave_concubine_court_position$是一个低贱的小妾，同时是一个奴隶或者曾是奴隶。"
- carnx_slave_concubine_employer_custom_effect_description:0 "如果你是男性，任何孩子都会把你当作父亲，如果你是女性，就会是他们的持有人。他们也将归入你的宗族、信仰和文化。"
- carnx_slave_captain_court_position:0 "马穆鲁克总管"
- carnx_slave_captain_court_position_desc:0 "$carnx_slave_captain_court_position$是一个高级的士兵，同时是一个奴隶或者曾是奴隶。"
- carnx_slave_eunuch_court_position:0 "奴隶太监"
- carnx_slave_eunuch_court_position_desc:0 "$carnx_slave_eunuch_court_position$是一个有影响力的宫廷宦官，同时是一个奴隶或者曾是奴隶。"
- hunt_can_hunt_parameter_tt:0 "[culture|E]能够狩猎"
-
- faith_or_culture_allows_polygamy_or_concubines_tt: "你的[faith|E]或[culture|E]允许多配偶或[concubines|E]"
+ carnx_slave_concubine_court_position_desc:0 "$carnx_slave_concubine_court_position$是地位较低的妾，同时也是奴隶或前奴隶。"
+ carnx_slave_concubine_employer_custom_effect_description:0 "若你为男性，生下的孩子将以你为父；若你为女性，则以持有者为父。孩子将继承你的王朝、信仰与文化。"
+ 
+ carnx_slave_captain_court_position:0 "马穆鲁克军官"
+ carnx_slave_captain_court_position_desc:0 "$carnx_slave_captain_court_position$是地位较高的军人，同时也是奴隶或前奴隶。"
+ 
+ carnx_slave_eunuch_court_position:0 "奴隶宦官"
+ carnx_slave_eunuch_court_position_desc:0 "$carnx_slave_eunuch_court_position$是在宫廷中颇具影响力的官员，同时也是奴隶或前奴隶。"
+ 
+ hunt_can_hunt_parameter_tt:0 "[culture|E]允许狩猎"
+ 
+ faith_or_culture_allows_polygamy_or_concubines_tt: "你的[faith|E]或[culture|E]允许一夫多妻或纳[concubines|E]"
  faith_allows_slave_soldiers_tt: "你的[faith|E]允许招募[slave|E]士兵"
-
- none_is_not_a_slave: "其#bold 不是#![slave|E]"
- none_liege_can_employ_slaves: "其[liege|E]可以雇佣[slaves|E]为额外宫廷职位"
- none_is_their_lieges_slave: "其为[liege|E]的[slave|E]"
- none_is_employed_as_slave_concubine: "其已受雇为$carnx_slave_concubine_court_position$"
- none_is_employed_as_slave_captain: "其已受雇为$carnx_slave_captain_court_position$"
- none_is_employed_as_slave_eunuch: "其已受雇为$carnx_slave_eunuch_court_position$"
- none_is_capable_adult: "其为有能的[adult|E]"
- none_has_positive_attraction: "其有正向[attraction|E]"
- none_liege_is_allowed_to_marry: "其[liege|E]被允许与其结婚"
- none_has_at_least_one_commander_trait: "其有至少一个[commander_trait|E]"
+ 
+ none_is_not_a_slave: "对方#bold 不是#! [slave|E]"
+ none_liege_can_employ_slaves: "其[liege|E]可将[slaves|E]安置于额外宫廷职位"
+ none_is_their_lieges_slave: "对方是其[liege|E]的[slave|E]"
+ none_is_employed_as_slave_concubine: "对方已被任命为$carnx_slave_concubine_court_position$"
+ none_is_employed_as_slave_captain: "对方已被任命为$carnx_slave_captain_court_position$"
+ none_is_employed_as_slave_eunuch: "对方已被任命为$carnx_slave_eunuch_court_position$"
+ none_is_capable_adult: "对方是具备能力的[adult|E]"
+ none_has_positive_attraction: "对方拥有正向[attraction|E]"
+ none_liege_is_allowed_to_marry: "其[liege|E]获准与其结婚"
+ none_has_at_least_one_commander_trait: "对方至少拥有一个[commander_trait|E]"
 
  # Slave Concubine Tasks
- carnx_slave_concubine_court_position_task_attend_to_comfort:0 "照顾君主的舒适"
- carnx_slave_concubine_court_position_task_attend_to_comfort_desc:0 "$carnx_slave_concubine_court_position$将致力于通过愉悦的陪伴和全心的关注来减轻君主的负担。"
- carnx_slave_concubine_attend_to_comfort.tt:0 "$carnx_slave_concubine_court_position$将帮助降低君主的[stress|E]。"
+ carnx_slave_concubine_court_position_task_attend_to_comfort:0 "侍奉主君舒适"
+ carnx_slave_concubine_court_position_task_attend_to_comfort_desc:0 "$carnx_slave_concubine_court_position$ 将全身心投入，用温柔陪伴与无微不至的服侍，缓解主君的一切负担。"
+ carnx_slave_concubine_attend_to_comfort.tt:0 "$carnx_slave_concubine_court_position$ 将帮助主君大幅减轻 [stress|E]。"
 
- carnx_slave_concubine_court_position_task_gather_court_gossip:0 "收集宫廷流言"
- carnx_slave_concubine_court_position_task_gather_court_gossip_desc:0 "$carnx_slave_concubine_court_position$将倾听谣言和窃窃私语，向君主通报潜在的阴谋和诡计。"
- carnx_slave_concubine_gather_court_gossip.tt:0 "$carnx_slave_concubine_court_position$将提升君主发现针对其的[schemes|E]的能力。"
-
- # Mameluke Captain Tasks
+ carnx_slave_concubine_court_position_task_gather_court_gossip:0 "搜集宫廷流言"
+ carnx_slave_concubine_court_position_task_gather_court_gossip_desc:0 "$carnx_slave_concubine_court_position$ 将耳听八方，捕捉宫中每一丝风声与耳语，及时向主君汇报潜在阴谋与暗流。"
+ carnx_slave_concubine_gather_court_gossip.tt:0 "$carnx_slave_concubine_court_position$ 将显著提升主君发现针对自身的 [schemes|E] 的能力。"
+  
+  # Mameluke Captain Tasks
  carnx_slave_captain_court_position_task_train_elite_warriors:0 "训练精锐战士"
- carnx_slave_captain_court_position_task_train_elite_warriors_desc:0 "$carnx_slave_captain_court_position$将专注于用先进的战斗技术训练和操练军队中最强大的战士。"
- carnx_slave_captain_train_elite_warriors.tt:0 "$carnx_slave_captain_court_position$将提升[heavy_cavalry|E]和[heavy_infantry|E]部队的效能。"
-
- # Slave Eunuch Tasks
- carnx_slave_eunuch_court_position_task_manage_palace_affairs:0 "管理宫廷事务"
- carnx_slave_eunuch_court_position_task_manage_palace_affairs_desc:0 "$carnx_slave_eunuch_court_position$将监督宫殿的日常管理，确保效率。"
- carnx_slave_eunuch_manage_palace_affairs.tt:0 "$carnx_slave_eunuch_court_position$将提升首都[county|E]的[development_growth|E]。"
+ carnx_slave_captain_court_position_task_train_elite_warriors_desc:0 "$carnx_slave_captain_court_position$ 将专注于调教军队中最凶猛的战士，传授最先进的格斗与杀戮技巧。"
+ carnx_slave_captain_train_elite_warriors.tt:0 "$carnx_slave_captain_court_position$ 将大幅提升 [heavy_cavalry|E] 与 [heavy_infantry|E] 战斗力."
+  
+  # Slave Eunuch Tasks
+ carnx_slave_eunuch_court_position_task_manage_palace_affairs:0 "掌管宫廷事务"
+ carnx_slave_eunuch_court_position_task_manage_palace_affairs_desc:0 "$carnx_slave_eunuch_court_position$ 将全面负责宫廷日常运转，确保一切高效有序、无可挑剔。"
+ carnx_slave_eunuch_manage_palace_affairs.tt:0 "$carnx_slave_eunuch_court_position$ 将显著提升首都 [county|E] 的 [development_growth|E]."
+ 

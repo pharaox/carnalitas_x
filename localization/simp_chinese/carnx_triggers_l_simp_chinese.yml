@@ -1,15 +1,18 @@
 ﻿l_simp_chinese:
- carnx_slavery_is_always_accepted: "只有当你的信仰不接受$carn_doctrine_same_slavery_name$或$carn_doctrine_other_slavery_name$时，你才能选择 \"解放者\"特质。"
- carnx_slavery_is_never_accepted: "只有当你的信仰接受$carn_doctrine_same_slavery_name$或$carn_doctrine_other_slavery_name$时，你才能选择奴隶主、奴隶贩子或奴隶雇主特质。"
+ carnx_slavery_is_always_accepted: "只有当你的信仰将$carn_doctrine_same_slavery_name$或$carn_doctrine_other_slavery_name$设为「不可接受」时，才可选择解放者态度"
+ carnx_slavery_is_never_accepted: "只有当你的信仰将$carn_doctrine_same_slavery_name$或$carn_doctrine_other_slavery_name$设为「可接受」时，才可选择奴隶主、奴隶贩子或奴隶雇主态度"
+ 
  carnx_is_slave_trigger: "[CHARACTER.GetShortUIName|U]是[slave|E]"
+ NOT_carnx_is_slave_trigger: "[CHARACTER.GetShortUIName|U]不是[slave|El]"
+ 
  carnx_has_relation_slave: "[TARGET_CHARACTER.GetShortUIName]是[CHARACTER.GetShortUINamePossessive]的奴隶"
  carnx_has_relation_slave_owner: "[TARGET_CHARACTER.GetShortUIName]是[CHARACTER.GetShortUINamePossessive]的主人"
- carnx_num_of_relation_slave: "奴隶数量为$COMPARATOR$$NUM|V0$"
- carnx_num_of_relation_slave_owner: "奴隶主数量为$COMPARATOR$$NUM|V0$"
- NOT_carnx_is_slave_trigger: "[CHARACTER.GetShortUIName|U]不是[slave|El]"
- carnx_valid_buyer_or_seller: "[CHARACTER.GetShortUIName|U]距离太远，无法交易奴隶"
- carnx_valid_payer_or_owner: "[CHARACTER.GetShortUIName|U]距离太远，无法为奴隶提供或要求赎金"
-
- carnx_slavery_is_always_crime: "$carn_doctrine_same_slavery_name$和$carn_doctrine_other_slavery_name$在你的信仰中都是[criminal|E]"
- carnx_buying_slaves_is_always_forbidden: "购买[slaves|E]在你的领地法律中总是被禁止的"
- carnx_no_valid_template_character: "必须至少存在一位统治者，使得拥有其信仰的奴隶在你的信仰中不是[criminal|E]"
+ carnx_num_of_relation_slave: "奴隶数量$COMPARATOR$$NUM|V0$"
+ carnx_num_of_relation_slave_owner: "主人数量$COMPARATOR$$NUM|V0$"
+ 
+ carnx_valid_buyer_or_seller: "[CHARACTER.GetShortUIName|U]距离太远，无法买卖奴隶"
+ carnx_valid_payer_or_owner: "[CHARACTER.GetShortUIName|U]距离太远，无法索要或支付奴隶赎金"
+ 
+ carnx_slavery_is_always_crime: "你的信仰视$carn_doctrine_same_slavery_name$与$carn_doctrine_other_slavery_name$均为[criminal|E]。"
+ carnx_buying_slaves_is_always_forbidden: "购买[slaves|E]始终被你的国家的法律所禁止。"
+ carnx_no_valid_template_character: "必须至少存在一位统治者，其信仰拥有奴隶在你的信仰中不构成[criminal|E]。"

@@ -1,12 +1,12 @@
 ﻿l_simp_chinese:
- carnx_choose_slavery_attitude_decision:0 "选择对待奴隶态度"
- carnx_choose_slavery_attitude_decision_desc:0 "我可以选择对奴隶制的态度以从中获利"
- carnx_choose_slavery_attitude_decision_tooltip:0 "你将能够选择你对[slavery|E]的态度，$carnx_slavery_attitude_slaver_modifier$，$carnx_slavery_attitude_liberator_modifier$，$carnx_slavery_attitude_trader_modifier$，或者$carnx_slavery_attitude_employer_modifier$其中之一。每种态度都会给你一个修正和独特的奴隶技能。"
+ carnx_choose_slavery_attitude_decision:0 "选择奴隶制态度"
+ carnx_choose_slavery_attitude_decision_desc:0 "我可以选择自己对奴隶制的态度，从而更好地从中获利。"
+ carnx_choose_slavery_attitude_decision_tooltip:0 "你可以选择对[slavery|E]的态度：$carnx_slavery_attitude_slaver_modifier$、$carnx_slavery_attitude_liberator_modifier$、$carnx_slavery_attitude_trader_modifier$或$carnx_slavery_attitude_employer_modifier$。每种态度都会给予一个小型修正以及一项独特的奴隶制相关特权。"
  carnx_choose_slavery_attitude_decision.tt:0 "$carnx_choose_slavery_attitude_decision_tooltip$"
- carnx_choose_slavery_attitude_decision_confirm:0 "选择对待奴隶态度"
-
+ carnx_choose_slavery_attitude_decision_confirm:0 "选择奴隶制态度"
+ 
  carnx_buy_foreign_slaves_decision:0 "购买外国奴隶"
- carnx_buy_foreign_slaves_decision_desc:0 "我可以邀请[slave|E]商人来到我的首都,为我的宫廷购买外国奴隶。"
- carnx_buy_foreign_slaves_decision_tooltip:0 "来自外国的奴隶贩子将带着待售的奴隶前来。"
+ carnx_buy_foreign_slaves_decision_desc:0 "我可以邀请 [slave|E] 贩子来到首都，从异邦购买新奴隶充实我的宫廷。"
+ carnx_buy_foreign_slaves_decision_tooltip:0 "来自异国的奴隶贩子将带着一批奴隶前来出售。"
  carnx_buy_foreign_slaves_decision.tt:0 "$carnx_buy_foreign_slaves_decision_tooltip$"
  carnx_buy_foreign_slaves_decision_confirm:0 "购买外国奴隶"
