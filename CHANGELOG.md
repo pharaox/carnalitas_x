@@ -1,5 +1,11 @@
 # Changelog
 
+## Version 0.29.2
+
+### Localization
+
+* Updated Chinese translation by **@AloneTraveler**.
+
 ## Version 0.29.1
 
 ### Interactions

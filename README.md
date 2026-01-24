@@ -73,7 +73,7 @@ If you still want to try using CSR with a different conversion mod, be prepared 
 
 ## Localization
 
-This mod is currently available in English, Russian (translated by [@Undertalk](https://www.loverslab.com/profile/9955238-undertalk/)), Chinese (translated by [@Dark_Crow](https://www.loverslab.com/profile/10396935-dark_crow/) and **@jengus**), French (translated by [@don-vip](https://github.com/don-vip)), and Korean (translated by [@ipni20](https://www.loverslab.com/profile/4890252-ipni20/) and [@Xelren](https://www.loverslab.com/profile/4890252-xelren/)).
+This mod is currently available in English, Russian (translated by [@Undertalk](https://www.loverslab.com/profile/9955238-undertalk/)), Chinese (translated by [@Dark_Crow](https://www.loverslab.com/profile/10396935-dark_crow/), **@jengus**, and [@AloneTraveler](https://www.loverslab.com/profile/4963610-alonetraveler/)), French (translated by [@don-vip](https://github.com/don-vip)), and Korean (translated by [@ipni20](https://www.loverslab.com/profile/4890252-ipni20/) and [@Xelren](https://www.loverslab.com/profile/4890252-xelren/)).
 
 ## Links
 
