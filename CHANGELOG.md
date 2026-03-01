@@ -1,5 +1,11 @@
 # Changelog
 
+## Version 0.29.3
+
+### Bug Fixes
+
+* Fixed a rare issue where slaves owned by rulers who were once wandering merchants could be sold off.
+
 ## Version 0.29.2
 
 ### Localization
