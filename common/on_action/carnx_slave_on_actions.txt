@@ -324,6 +324,7 @@ carnx_random_yearly_everyone_pulse = {
 			limit = {
 				is_alive = yes
 				has_variable = at_merchant_type
+				is_pool_character = yes # Sanity check
 			}
 			random_relation = {
 				type = slave
