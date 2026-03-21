@@ -96,6 +96,7 @@ echo
 # Maintenance events
 echo "Moving slave to owner's court: $(grep -a "Moving slave to owner's court" debug.log | wc -l)"
 echo "Moving slave to pool: $(grep -a "Moving slave to pool" debug.log | wc -l)"
+echo "Moving slave to owner's capital: $(grep -a "Moving slave to owner's capital" debug.log | wc -l)"
 echo "Moving slave to owner's location: $(grep -a "Moving slave to owner's location" debug.log | wc -l)"
 echo "Inheriting slave: $(grep -a "Inheriting slave" debug.log | wc -l)"
 echo

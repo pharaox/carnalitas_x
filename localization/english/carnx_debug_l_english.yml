@@ -15,6 +15,7 @@
 
  carnx_debug_msg_moving_slave_to_court: "$carnx_debug_prefix$: Moving slave to owner's court"
  carnx_debug_msg_moving_slave_to_pool: "$carnx_debug_prefix$: Moving slave to pool"
+ carnx_debug_msg_moving_slave_to_capital: "$carnx_debug_prefix$: Moving slave to owner's capital"
  carnx_debug_msg_moving_slave_to_location: "$carnx_debug_prefix$: Moving slave to owner's location"
  carnx_debug_msg_inheriting_slave: "$carnx_debug_prefix$: Inheriting slave"
  carnx_debug_msg_freeing_slave: "$carnx_debug_prefix$: Freeing slave"

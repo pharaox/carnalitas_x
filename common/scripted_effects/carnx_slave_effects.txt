@@ -2160,6 +2160,17 @@ carnx_return_slave_to_owner_effect = {
 				carnx_add_courtier_effect = { SLAVE = scope:slave }
 			}
 		}
+		if = {
+			limit = {
+				NOT = { location = scope:owner.capital_province }
+				is_imprisoned = no
+				is_travelling = no
+				is_in_army = no
+			}
+			# If the slave is at a different location, move slave to owner's capital
+			carnx_debug_log_effect = { MSG = carnx_debug_msg_moving_slave_to_capital }
+			set_location = scope:owner.capital_province
+		}
 	}
 	else_if = {
 		limit = {
@@ -2184,7 +2195,7 @@ carnx_return_slave_to_owner_effect = {
 					is_travelling = no
 				}
 			}
-			# If both are pool characters but slave is at a different location, move slave to owner's location
+			# If the slave is at a different location, move slave to owner's location
 			carnx_debug_log_effect = { MSG = carnx_debug_msg_moving_slave_to_location }
 			set_location = scope:owner.location
 		}
