@@ -23,6 +23,10 @@
  carnx_gifted_desc_second_perspective_1:0 "Вы были подарены [new_owner.GetTitledFirstName]"
  carnx_gifted_desc_third_perspective_1:0 "[owner.GetName] был подарен [new_owner.GetTitledFirstName]"
 
+ carnx_transferred_desc_1:0 "Я был передан [new_owner.GetTitledFirstName]"
+ carnx_transferred_desc_second_perspective_1:0 "Вы были переданы [new_owner.GetTitledFirstName]"
+ carnx_transferred_desc_third_perspective_1:0 "[owner.GetName] был передан [new_owner.GetTitledFirstName]"
+
  carnx_escaped_desc_1:0 "Я сбежал от того, чтобы быть рабом [former_owner.GetTitledFirstName]"
  carnx_escaped_desc_second_perspective_1:0 "Ты сбежал от того, чтобы быть рабом [former_owner.GetTitledFirstName]"
  carnx_escaped_desc_third_perspective_1:0 "[owner.GetName] сбежал от того, чтобы быть рабом [former_owner.GetTitledFirstName]"
@@ -37,5 +41,6 @@
  carnx_seized_memory:0 "схваченный"
  carnx_ransomed_memory:0 "выкупленный"
  carnx_gifted_memory:0 "подаренный"
+ carnx_transferred_memory:0 "переданный"
  carnx_escaped_memory:0 "сбежавший"
  carnx_liberated_memory:0 "освобожденный"

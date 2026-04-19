@@ -83,6 +83,18 @@ carnx_on_slave_gifted = {
 	}
 }
 
+carnx_on_slave_transferred = {
+	effect = {
+		create_character_memory = {
+			type = carnx_transferred_memory
+			participants = {
+				new_owner = scope:new_owner
+			}
+		}
+		carnx_debug_log_effect = { MSG = carnx_debug_msg_slave_transferred }
+	}
+}
+
 carnx_on_slave_escaped = {
 	effect = {
 		create_character_memory = {

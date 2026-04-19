@@ -166,6 +166,34 @@ carnx_gifted_memory = {
 	}
 }
 
+carnx_transferred_memory = {
+	categories = { prison }
+	icon = "prison.dds"
+	description = {
+		random_valid = {
+			desc = carnx_transferred_desc_1
+		}
+	}
+
+	second_perspective_description = {
+		random_valid = {
+			desc = carnx_transferred_desc_second_perspective_1
+		}
+	}
+
+	third_perspective_description = {
+		random_valid = {
+			desc = carnx_transferred_desc_third_perspective_1
+		}
+	}
+
+	participants = { new_owner }
+
+	duration = {
+		years = memory_default_duration
+	}
+}
+
 carnx_escaped_memory = {
 	categories = { positive prison }
 	icon = "prison.dds"

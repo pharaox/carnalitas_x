@@ -23,6 +23,10 @@
  carnx_gifted_desc_second_perspective_1: "당신은 [new_owner.GetTitledFirstName]에게 선물로 주어짐."
  carnx_gifted_desc_third_perspective_1: "[owner.GetName](은)는 [new_owner.GetTitledFirstName]에게 선물로 주어짐."
 
+ carnx_transferred_desc_1: "[new_owner.GetTitledFirstName]에게 이전됨."
+ carnx_transferred_desc_second_perspective_1: "당신은 [new_owner.GetTitledFirstName]에게 이전됨."
+ carnx_transferred_desc_third_perspective_1: "[owner.GetName](은)는 [new_owner.GetTitledFirstName]에게 이전됨."
+
  carnx_escaped_desc_1: "[former_owner.GetTitledFirstName]의 노예 신분에서 탈출함."
  carnx_escaped_desc_second_perspective_1: "당신은 [former_owner.GetTitledFirstName]의 노예 신분에서 탈출함."
  carnx_escaped_desc_third_perspective_1: "[owner.GetName](은)는 [former_owner.GetTitledFirstName]의 노예 신분에서 탈출함."
@@ -37,5 +41,6 @@
  carnx_seized_memory: "탈취됨"
  carnx_ransomed_memory: "몸값으로 풀려남"
  carnx_gifted_memory: "선물로 주어짐"
+ carnx_transferred_memory: "이전됨"
  carnx_escaped_memory: "탈출함"
  carnx_liberated_memory: "해방됨"

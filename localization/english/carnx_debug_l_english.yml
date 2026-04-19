@@ -9,6 +9,7 @@
  carnx_debug_msg_slave_seized: "$carnx_debug_prefix$: Slave seized"
  carnx_debug_msg_slave_ransomed: "$carnx_debug_prefix$: Slave ransomed"
  carnx_debug_msg_slave_gifted: "$carnx_debug_prefix$: Slave gifted"
+ carnx_debug_msg_slave_transferred: "$carnx_debug_prefix$: Slave transferred"
  carnx_debug_msg_slave_escaped: "$carnx_debug_prefix$: Slave escaped"
  carnx_debug_msg_slave_liberated: "$carnx_debug_prefix$: Slave liberated"
  carnx_debug_msg_slave_sold_off: "$carnx_debug_prefix$: Slave sold off"

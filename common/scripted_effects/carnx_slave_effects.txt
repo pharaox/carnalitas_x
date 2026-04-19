@@ -639,7 +639,7 @@ carn_enslave_effect = {
 }
 
 # Frees the scoped character from slavery if they are a slave.
-# Does not have any additional effects. Overriden from Carnalitas.
+# Does not have any additional effects. Overridden from Carnalitas.
 carn_free_slave_effect = {
 	random_relation = {
 		type = slave_owner
@@ -698,6 +698,84 @@ carn_free_slave_effect = {
 		else = {
 			trigger_event = {
 				on_action = carn_on_slave_freed
+			}
+		}
+	}
+}
+
+# Transfers the scoped slave character from scope:former_owner to $NEW_OWNER$.
+# Does not have any additional effects.
+carnx_transfer_slave_effect = {
+	random_relation = {
+		type = slave_owner
+		save_scope_as = former_owner
+	}
+
+	# Remove former owner
+	scope:former_owner = {
+		hidden_effect = {
+			remove_relation_slave = prev
+			carnx_add_mutual_former_slave_or_slave_owner_opinion_effect = { CHARACTER = prev }
+		}
+	}
+
+	# Release from prison if imprisoned by former owner
+	if = {
+		limit = { is_imprisoned_by = scope:former_owner }
+		release_from_prison = yes
+	}
+
+	$NEW_OWNER$ = {
+		# Set new owner
+		set_relation_slave = scope:slave
+
+		hidden_effect = {
+			# Add slave to new owner's court
+			carnx_add_courtier_effect = { SLAVE = scope:slave }
+		}
+	}
+
+	scope:former_owner = {
+		hidden_effect = {
+			# Remove slave from former owner's court
+			carnx_remove_courtier_effect = { SLAVE = scope:slave }
+		}
+	}
+
+	hidden_effect = {
+		# Add / remove modifiers and flags
+		if = {
+			limit = { has_character_modifier = carnx_marked_for_enslavement_modifier }
+			remove_character_modifier = carnx_marked_for_enslavement_modifier
+		}
+		if = {
+			limit = { has_character_flag = carnx_slave_recently_bought }
+			remove_character_flag = carnx_slave_recently_bought
+		}
+
+		# Trigger event
+		if = {
+			limit = { exists = scope:buyer }
+			trigger_event = {
+				on_action = carnx_on_slave_bought
+			}
+		}
+		else_if = {
+			limit = { exists = scope:gift_slave_opinion }
+			trigger_event = {
+				on_action = carnx_on_slave_gifted
+			}
+		}
+		else_if = {
+			limit = { exists = scope:new_owner }
+			trigger_event = {
+				on_action = carnx_on_slave_seized
+			}
+		}
+		else = {
+			$NEW_OWNER$ = { save_scope_as = new_owner }
+			trigger_event = {
+				on_action = carnx_on_slave_transferred
 			}
 		}
 	}
@@ -1164,26 +1242,17 @@ carnx_ransom_slave_interaction_effect = {
 	}
 }
 
-# Transfers the ownership of scope:slave from scope:seller to scope:buyer
-# and pays scope:slave_price to scope:seller.
+# Buys scope:slave by scope:buyer from scope:seller.
 carnx_buy_slave_effect = {
 	scope:slave = {
-		hidden_effect = {
-			# Remove former owner
-			every_relation = {
-				type = slave_owner
-				remove_relation_slave = prev
-				carnx_add_mutual_former_slave_or_slave_owner_opinion_effect = { CHARACTER = prev }
-			}
-		}
-
-		# Release from prison
-		if = {
-			limit = { is_imprisoned_by = scope:seller }
-			release_from_prison = yes
-		}
+		carnx_transfer_slave_effect = { NEW_OWNER = scope:buyer }
 	}
+	carnx_apply_buy_slave_consequences_effect = yes
+}
 
+# Applies all consequences of scope:slave being bought by scope:buyer from scope:seller,
+# except the actual transfer of ownership.
+carnx_apply_buy_slave_consequences_effect = {
 	scope:buyer = {
 		# Pay price to seller
 		if = {
@@ -1207,9 +1276,6 @@ carnx_buy_slave_effect = {
 
 		custom_tooltip = carnx_slave_price_breakdown_tooltip
 
-		# Set buyer as new owner
-		set_relation_slave = scope:slave
-
 		# Remove piety
 		if = {
 			limit = { carnx_is_slavery_crime_trigger = { CHARACTER = scope:slave } }
@@ -1226,11 +1292,6 @@ carnx_buy_slave_effect = {
 		carnx_apply_slavery_consequences_effect = {
 			CHARACTER = scope:slave
 			ACTION = flag:buy
-		}
-
-		hidden_effect = {
-			# Add slave to buyer's court
-			carnx_add_courtier_effect = { SLAVE = scope:slave }
 		}
 	}
 
@@ -1252,35 +1313,10 @@ carnx_buy_slave_effect = {
 			CHARACTER = scope:slave
 			ACTION = flag:sell
 		}
-
-		hidden_effect = {
-			# Remove slave from seller's court
-			carnx_remove_courtier_effect = { SLAVE = scope:slave }
-		}
-	}
-
-	scope:slave = {
-		hidden_effect = {
-			# Add / remove modifiers and flags
-			if = {
-				limit = { has_character_flag = carnx_slave_recently_bought }
-				remove_character_flag = carnx_slave_recently_bought
-			}
-			add_character_flag = {
-				flag = carnx_slave_recently_bought
-				years = 2
-			}
-
-			# Trigger event
-			trigger_event = {
-				on_action = carnx_on_slave_bought
-			}
-		}
 	}
 }
 
-# Transfers the ownership of scope:slave from scope:seller to scope:buyer
-# and pays SLAVE_PRICE to scope:seller. Sends interface messages.
+# Buys scope:slave by scope:buyer from scope:seller. Sends interface messages.
 # Overridden from Carnalitas.
 carn_buy_slave_effect = {
 	scope:slave = {
@@ -1341,16 +1377,15 @@ carn_buy_slave_effect = {
 # Seizes scope:slave by scope:new_owner, also incurs opinion effects.
 carnx_seize_slave_effect = {
 	scope:slave = {
-		hidden_effect = {
-			# Remove former owner
-			every_relation = {
-				type = slave_owner
-				remove_relation_slave = prev
-				carnx_add_mutual_former_slave_or_slave_owner_opinion_effect = { CHARACTER = prev }
-				save_scope_as = former_owner
-			}
-		}
+		carnx_transfer_slave_effect = { NEW_OWNER = scope:new_owner }
+	}
+	carnx_apply_seize_slave_consequences_effect = yes
+}
 
+# Applies all consequences of scope:slave being seized by scope:new_owner,
+# except the actual transfer of ownership.
+carnx_apply_seize_slave_consequences_effect = {
+	scope:slave = {
 		# Release from prison
 		if = {
 			limit = { is_imprisoned_by = scope:new_owner }
@@ -1359,9 +1394,6 @@ carnx_seize_slave_effect = {
 	}
 
 	scope:new_owner = {
-		# Set new owner
-		set_relation_slave = scope:slave
-
 		# Add opinion from former owner
 		reverse_add_opinion = {
 			target = scope:former_owner
@@ -1384,37 +1416,6 @@ carnx_seize_slave_effect = {
 		carnx_apply_slavery_consequences_effect = {
 			CHARACTER = scope:slave
 			ACTION = flag:seize
-		}
-
-		hidden_effect = {
-			# Add slave to new owner's court
-			carnx_add_courtier_effect = { SLAVE = scope:slave }
-		}
-	}
-
-	scope:former_owner = {
-		hidden_effect = {
-			# Remove slave from former owner's court
-			carnx_remove_courtier_effect = { SLAVE = scope:slave }
-		}
-	}
-
-	scope:slave = {
-		hidden_effect = {
-			# Add / remove modifiers and flags
-			if = {
-				limit = { has_character_modifier = carnx_marked_for_enslavement_modifier }
-				remove_character_modifier = carnx_marked_for_enslavement_modifier
-			}
-			if = {
-				limit = { has_character_flag = carnx_slave_recently_bought }
-				remove_character_flag = carnx_slave_recently_bought
-			}
-
-			# Trigger event
-			trigger_event = {
-				on_action = carnx_on_slave_seized
-			}
 		}
 	}
 }
@@ -1449,22 +1450,14 @@ carnx_seize_slave_interaction_effect = {
 # Gifts scope:slave by scope:former_owner to scope:new_owner, also incurs opinion and stress effects.
 carnx_gift_slave_effect = {
 	scope:slave = {
-		hidden_effect = {
-			# Remove former owner
-			every_relation = {
-				type = slave_owner
-				remove_relation_slave = prev
-				carnx_add_mutual_former_slave_or_slave_owner_opinion_effect = { CHARACTER = prev }
-			}
-		}
-
-		# Release from prison
-		if = {
-			limit = { is_imprisoned_by = scope:former_owner }
-			release_from_prison = yes
-		}
+		carnx_transfer_slave_effect = { NEW_OWNER = scope:new_owner }
 	}
+	carnx_apply_gift_slave_consequences_effect = yes
+}
 
+# Applies all consequences of scope:slave being gifted by scope:former_owner to scope:new_owner,
+# except the actual transfer of ownership.
+carnx_apply_gift_slave_consequences_effect = {
 	scope:former_owner = {
 		# Add / remove stress
 		stress_impact = {
@@ -1508,9 +1501,6 @@ carnx_gift_slave_effect = {
 	}
 
 	scope:new_owner = {
-		# Set new owner
-		set_relation_slave = scope:slave
-
 		# Add opinion to former owner
 		add_opinion = {
 			target = scope:former_owner
@@ -1546,33 +1536,6 @@ carnx_gift_slave_effect = {
 		carnx_apply_slavery_consequences_effect = {
 			CHARACTER = scope:slave
 			ACTION = flag:accept_gift
-		}
-
-		hidden_effect = {
-			# Add slave to new owner's court
-			carnx_add_courtier_effect = { SLAVE = scope:slave }
-		}
-	}
-
-	scope:former_owner = {
-		hidden_effect = {
-			# Remove slave from former owner's court
-			carnx_remove_courtier_effect = { SLAVE = scope:slave }
-		}
-	}
-
-	scope:slave = {
-		hidden_effect = {
-			# Add / remove modifiers and flags
-			if = {
-				limit = { has_character_flag = carnx_slave_recently_bought }
-				remove_character_flag = carnx_slave_recently_bought
-			}
-
-			# Trigger event
-			trigger_event = {
-				on_action = carnx_on_slave_gifted
-			}
 		}
 	}
 }
@@ -1680,6 +1643,20 @@ carnx_get_valid_payers_or_owners_effect = {
 				is_pool_character = yes
 			}
 			carnx_valid_payer_or_owner_trigger = { PARTY = scope:party }
+		}
+		add_to_list = $LIST$
+	}
+}
+
+carnx_get_sellable_slaves_effect = {
+	every_relation = {
+		type = slave
+		limit = {
+			carnx_slave_can_be_sold_trigger = yes
+			save_temporary_scope_as = slave_temp
+			$RECIPIENT$ = {
+				NOT = { carnx_is_slavery_crime_trigger = { CHARACTER = scope:slave_temp } }
+			}
 		}
 		add_to_list = $LIST$
 	}

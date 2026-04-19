@@ -77,6 +77,17 @@ carnx_slave_can_be_freed_trigger = {
 	}
 }
 
+carnx_has_sellable_slaves_trigger = {
+	any_relation = {
+		type = slave
+		carnx_slave_can_be_sold_trigger = yes
+		save_temporary_scope_as = slave_temp
+		$RECIPIENT$ = {
+			NOT = { carnx_is_slavery_crime_trigger = { CHARACTER = scope:slave_temp } }
+		}
+	}
+}
+
 carnx_character_can_ransom_slave_trigger = {
 	OR = {
 		AND = {
@@ -1030,10 +1041,25 @@ carnx_is_slave_trigger = {
 	}
 }
 
+carnx_is_slave_of_trigger = {
+	has_trait = slave
+	any_relation = {
+		type = slave_owner
+		this = $OWNER$
+	}
+}
+
 carnx_is_slave_owner_trigger = {
 	any_relation = {
 		type = slave
 		exists = this
+	}
+}
+
+carnx_is_slave_owner_of_trigger = {
+	any_relation = {
+		type = slave
+		this = $SLAVE$
 	}
 }
 

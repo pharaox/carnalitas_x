@@ -23,6 +23,10 @@
  carnx_gifted_desc_second_perspective_1:0 "你被赠予[new_owner.GetTitledFirstName]"
  carnx_gifted_desc_third_perspective_1:0 "[owner.GetName]被赠予[new_owner.GetTitledFirstName]"
  
+ carnx_transferred_desc_1:0 "我被转让给[new_owner.GetTitledFirstName]"
+ carnx_transferred_desc_second_perspective_1:0 "你被转让给[new_owner.GetTitledFirstName]"
+ carnx_transferred_desc_third_perspective_1:0 "[owner.GetName]被转让给[new_owner.GetTitledFirstName]"
+
  carnx_escaped_desc_1:0 "我从[former_owner.GetTitledFirstName]的奴役下逃脱"
  carnx_escaped_desc_second_perspective_1:0 "你从[former_owner.GetTitledFirstName]的奴役下逃脱"
  carnx_escaped_desc_third_perspective_1:0 "[owner.GetName]从[former_owner.GetTitledFirstName]的奴役下逃脱"
@@ -37,5 +41,6 @@
  carnx_seized_memory:0 "被捕获"
  carnx_ransomed_memory:0 "被赎买"
  carnx_gifted_memory:0 "被赠予"
+ carnx_transferred_memory:0 "被转让"
  carnx_escaped_memory:0 "逃脱"
  carnx_liberated_memory:0 "被解放"

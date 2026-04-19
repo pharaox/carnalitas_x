@@ -23,6 +23,10 @@
  carnx_gifted_desc_second_perspective_1:0 "vous avez été offert[owner.Custom('FR_E')] à [new_owner.GetTitledFirstName]"
  carnx_gifted_desc_third_perspective_1:0 "[owner.GetName] a été offert[owner.Custom('FR_E')] à [new_owner.GetTitledFirstName]"
 
+ carnx_transferred_desc_1:0 "J’ai été transféré[owner.Custom('FR_E')] à [new_owner.GetTitledFirstName]"
+ carnx_transferred_desc_second_perspective_1:0 "vous avez été transféré[owner.Custom('FR_E')] à [new_owner.GetTitledFirstName]"
+ carnx_transferred_desc_third_perspective_1:0 "[owner.GetName] a été transféré[owner.Custom('FR_E')] à [new_owner.GetTitledFirstName]"
+
  carnx_escaped_desc_1:0 "Je me suis enfui[owner.Custom('FR_E')] de l’esclavage de [former_owner.GetTitledFirstName]"
  carnx_escaped_desc_second_perspective_1:0 "vous vous êtes enfui[owner.Custom('FR_E')] de l’esclavage de [former_owner.GetTitledFirstName]"
  carnx_escaped_desc_third_perspective_1:0 "[owner.GetName] s’est enfui[owner.Custom('FR_E')] de l’esclavage de [former_owner.GetTitledFirstName]"
@@ -37,5 +41,6 @@
  carnx_seized_memory:0 "saisi"
  carnx_ransomed_memory:0 "rançonné"
  carnx_gifted_memory:0 "offert"
+ carnx_transferred_memory:0 "transféré"
  carnx_escaped_memory:0 "enfui"
  carnx_liberated_memory:0 "libéré"
