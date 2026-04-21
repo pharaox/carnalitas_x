@@ -31,7 +31,7 @@ carnx_can_be_wet_nurse_trigger = {
 	is_capable_adult = yes
 	is_playable_character = no
 	is_female = yes
-	age <= 45
+	effective_age < 46
 	NOT = { is_close_family_of = $LIEGE$ }
 	has_no_particular_noble_roots_trigger = yes
 	# Nuns cannot be wet nurses

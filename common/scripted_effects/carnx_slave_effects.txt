@@ -2125,6 +2125,7 @@ carnx_return_slave_to_owner_effect = {
 			scope:owner = {
 				is_ruler = yes
 				carnx_can_be_slave_owner_trigger = yes
+				exists = capital_province
 			}
 		}
 		if = {

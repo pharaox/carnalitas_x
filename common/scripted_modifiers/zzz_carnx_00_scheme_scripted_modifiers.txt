@@ -54,7 +54,7 @@
 			}
 			trait_is_shunned_in_faith_trigger = { #Unop shunned, not criminal
 				FAITH = faith
-				TRAIT = adulterer
+				TRAIT = trait:adulterer
 				GENDER_CHARACTER = scope:owner
 			}
 		}
@@ -78,7 +78,7 @@
 			}
 			trait_is_criminal_in_faith_trigger = {
 				FAITH = faith
-				TRAIT = adulterer
+				TRAIT = trait:adulterer
 				GENDER_CHARACTER = scope:owner
 			}
 		}
@@ -103,7 +103,7 @@
 			}
 			trait_is_shunned_in_faith_trigger = { #Unop shunned, not criminal
 				FAITH = faith
-				TRAIT = adulterer
+				TRAIT = trait:adulterer
 				GENDER_CHARACTER = scope:target #Unop "their" adultery
 			}
 		}
@@ -127,7 +127,7 @@
 			}
 			trait_is_criminal_in_faith_trigger = {
 				FAITH = faith
-				TRAIT = adulterer
+				TRAIT = trait:adulterer
 				GENDER_CHARACTER = scope:target #Unop "their" adultery
 			}
 		}
@@ -333,6 +333,14 @@
 					AND = {
 						exists = scope:gift_significant
 						always = scope:gift_significant
+					}
+					AND = {
+						exists = scope:treasury
+						always = scope:treasury
+					}
+					AND = {
+						exists = scope:treasury_significant
+						always = scope:treasury_significant
 					}
 				}
 				ai_greed > 0
@@ -755,6 +763,14 @@ ai_agent_join_chance_hostile_grievous_modifier = {
 					AND = {
 						exists = scope:gift_significant
 						always = scope:gift_significant
+					}
+					AND = {
+						exists = scope:treasury
+						always = scope:treasury
+					}
+					AND = {
+						exists = scope:treasury_significant
+						always = scope:treasury_significant
 					}
 				}
 				ai_greed > 0

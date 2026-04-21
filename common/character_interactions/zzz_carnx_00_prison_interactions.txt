@@ -19,6 +19,8 @@
 					scope:disfigure = no
 					scope:blind = no
 					scope:castrate = no
+					scope:demand_admin = no
+					scope:gain_hook = no
 				}
 				desc = RELEASE_PRISONER_OFFER
 			}
@@ -66,6 +68,16 @@
 			limit = { scope:recipient = { is_imprisoned_by = scope:actor } }
 
 			scope:recipient = {
+				if = {
+					limit = {
+						is_imprisoned = yes
+						# Release is handled in follow-up events
+						scope:disfigure = no
+						scope:blind = no
+						scope:castrate = no
+					}
+					release_from_prison = yes
+				}
 				# Demand Conversion
 				if = {
 					limit = { scope:demand_conversion = yes }
@@ -154,6 +166,7 @@
 							has_any_artifact = yes
 						}
 						every_character_artifact = {
+							limit = { NOT = { has_variable = artifact_prevent_transfer } }
 							set_owner = {
 								target = scope:actor
 								history = {
@@ -545,6 +558,68 @@
 									}
 								}
 							}
+							hidden_effect = {
+								random = { # chance of inspiring a knight to become eligible for idealist accolade
+									chance = 2
+									modifier = {
+										factor = accolade_progress # scales with accolade progress
+									}
+									modifier = { # must have an eligible knight
+										NOT = {
+											any_knight = {
+												can_unlock_accolade_attribute_trigger = {
+													ATTRIBUTE = idealist
+												}
+											}
+										}
+										factor = 0
+									}
+									set_variable = {
+										name = accolade_progress
+										value = 0
+									}
+									random_knight = {
+										limit = {
+											can_unlock_accolade_attribute_trigger = {
+												ATTRIBUTE = idealist
+											}
+										}
+										weight = {
+											base = 1
+											modifier = {
+												add = 50
+												is_acclaimed = yes
+											}
+											modifier = {
+												add = 50
+												has_trait = compassionate
+											}
+											modifier = {
+												add = 30
+												has_trait = just
+											}
+											modifier = {
+												add = 30
+												has_trait = zealous
+											}
+										}
+										save_scope_as = idealist
+									}
+									send_interface_message = {
+										type = msg_accolade_eligibility
+										title = accolade_idealist_unlock.t
+										left_icon = scope:idealist
+										right_icon = scope:recipient
+										custom_tooltip = accolade_idealist_unlock.tt
+										scope:idealist = {
+											set_variable = {
+												name = idealist_attribute_unlock
+												value = yes
+											}
+										}
+									}
+								}
+							}
 						}
 						# CSR: Disable dread and stress impact for slaves
 						if = {
@@ -617,17 +692,15 @@
 									SECOND = scope:recipient
 								}
 								any_character_struggle = {
-									involvement = involved
-									activate_struggle_catalyst_secondary_character_involvement_involved_trigger = {
+									activate_struggle_catalyst_secondary_character_involvement_either_trigger = {
 										CATALYST = catalyst_release_supporter_detractor
 										CHAR = scope:recipient
 									}
 								}
 							}
 							every_character_struggle = {
-								involvement = involved
 								limit = {
-									activate_struggle_catalyst_secondary_character_involvement_involved_trigger = {
+									activate_struggle_catalyst_secondary_character_involvement_either_trigger = {
 										CATALYST = catalyst_release_supporter_detractor
 										CHAR = scope:recipient
 									}
@@ -680,10 +753,17 @@
 						}
 					}
 				}
-				else = {
+				else_if = {
+					limit = {
+						scope:disfigure = no
+						scope:blind = no
+						scope:castrate = no
+					}
 					scope:actor = {
 						trigger_event = char_interaction.0160
 					}
+				}
+				else = { #do nothing as rest is handled in follow-up events
 				}
 
 				# If a child was imprisoned due to yearly_4021 they'll come back to say hi
@@ -719,17 +799,6 @@
 						}
 						remove_variable = marked_for_revenge_in_event_yearly_4021
 					}
-				}
-
-				if = {
-					limit = {
-						is_imprisoned = yes
-						# Release is handled in follow-up events
-						scope:disfigure = no
-						scope:blind = no
-						scope:castrate = no
-					}
-					release_from_prison = yes
 				}
 			}
 
@@ -1409,7 +1478,7 @@
 			add = -20
 			desc = "RECIPIENT_IS_AMBITIOUS"
 		}
-		
+
 		# Demand conversion
 		modifier = {
 			trigger = {
@@ -1661,7 +1730,7 @@
 				NOR = {
 					has_trait = one_eyed
 					has_trait = infirm
-					age > 60 # I.e. they have poor eyesight already
+					has_trait = clouded_eyes
 				}
 			}
 			desc = "BLIND_NEGATIVE_REASON"
@@ -1673,7 +1742,7 @@
 				OR = {
 					has_trait = one_eyed
 					has_trait = infirm
-					age > 60 # I.e. they have poor eyesight already
+					has_trait = clouded_eyes
 				}
 			}
 			desc = "BLIND_NEGATIVE_REASON"

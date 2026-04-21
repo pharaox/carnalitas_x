@@ -1,0 +1,21 @@
+﻿carnx_doctrine_slave_employment = {
+	category = "special"
+
+	is_available_on_create = {
+		always = yes
+	}
+
+	doctrine_types = {
+		carnx_special_doctrine_slave_employment
+	}
+}
+
+carnx_doctrine_placeholder = {
+	category = "special"
+
+	is_available_on_create = { always = no }
+
+	doctrine_types = {
+		carnx_special_doctrine_placeholder
+	}
+}

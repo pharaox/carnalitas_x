@@ -1,4 +1,14 @@
-﻿court_astrologer_court_position = { ### MPO
+﻿#court_astrologer_court_position
+#boyan_court_position
+#siege_engineer_court_position
+#yurtchi_court_position
+#cherbi_court_position
+#yeke_jarquchi_court_position
+#foreign_emissary_court_position
+#keeper_of_the_horses_court_position
+
+
+court_astrologer_court_position = { ### MPO
 	sort_order = {
 		value = 100
 		if = {
@@ -137,25 +147,10 @@
 				desc = education_learning
 			}
 		}
-		# Yeke Jarquchi
-		if = {
-			limit = {
-				liege.court_position:yeke_jarquchi_court_position ?= {
-					has_variable = performing_improve_court
-				}
-			}
-			add = {
-				value = liege.court_position:yeke_jarquchi_court_position.yeke_jarquchi_improve_court_value
-				desc = yeke_jarquchi_improve_court_aptitude_desc
-			}
-		}
-
+		
 		add = kurultai_task_value
-		add = court_position_aptitude_traveling_friends_value
-		add = court_position_aptitude_family_business_value
 		add = court_position_aptitude_low_penalty_value
-		add = court_position_aptitude_boon_voyager_trait #Unop: This one was missing ?
-
+		add = general_aptitude_bonus
 	}
 
 	is_shown = {
@@ -472,25 +467,10 @@ boyan_court_position = { ### MPO
 				desc = court_position_lazy_trait
 			}
 		}
-		# Yeke Jarquchi
-		if = {
-			limit = {
-				liege.court_position:yeke_jarquchi_court_position ?= {
-					has_variable = performing_improve_court
-				}
-			}
-			add = {
-				value = liege.court_position:yeke_jarquchi_court_position.yeke_jarquchi_improve_court_value
-				desc = yeke_jarquchi_improve_court_aptitude_desc
-			}
-		}
 
-		add = court_position_aptitude_boon_voyager_trait
 		add = aptitude_commander_trait_value
-		add = court_position_aptitude_traveling_friends_value
-		add = court_position_aptitude_family_business_value
 		add = court_position_aptitude_low_penalty_value
-
+		add = general_aptitude_bonus
 	}
 
 	is_shown = {
@@ -812,29 +792,14 @@ siege_engineer_court_position = { ### MPO
 				desc = court_position_impatient_trait
 			}
 		}
-		# Yeke Jarquchi
-		if = {
-			limit = {
-				liege.court_position:yeke_jarquchi_court_position ?= {
-					has_variable = performing_improve_court
-				}
-			}
-			add = {
-				value = liege.court_position:yeke_jarquchi_court_position.yeke_jarquchi_improve_court_value
-				desc = yeke_jarquchi_improve_court_aptitude_desc
-			}
-		}
-
+		
 		add = {
 			value = aptitude_military_engineer_value
 			multiply = 2
 			desc = court_position_military_engineer_trait
 		}
-		add = court_position_aptitude_boon_voyager_trait
-		add = court_position_aptitude_traveling_friends_value
-		add = court_position_aptitude_family_business_value
 		add = court_position_aptitude_low_penalty_value
-
+		add = general_aptitude_bonus
 	}
 
 	is_shown = {
@@ -1137,24 +1102,9 @@ yurtchi_court_position = { ### MPO
 				desc = court_position_generous_trait
 			}
 		}
-		# Yeke Jarquchi
-		if = {
-			limit = {
-				liege.court_position:yeke_jarquchi_court_position ?= {
-					has_variable = performing_improve_court
-				}
-			}
-			add = {
-				value = liege.court_position:yeke_jarquchi_court_position.yeke_jarquchi_improve_court_value
-				desc = yeke_jarquchi_improve_court_aptitude_desc
-			}
-		}
-
-		add = court_position_aptitude_boon_voyager_trait
-		add = court_position_aptitude_traveling_friends_value
-		add = court_position_aptitude_family_business_value
+		
 		add = court_position_aptitude_low_penalty_value
-
+		add = general_aptitude_bonus
 	}
 
 	is_shown = {
@@ -1539,24 +1489,9 @@ cherbi_court_position = { ### MPO
 				desc = court_position_craven_trait
 			}
 		}
-		# Yeke Jarquchi
-		if = {
-			limit = {
-				liege.court_position:yeke_jarquchi_court_position ?= {
-					has_variable = performing_improve_court
-				}
-			}
-			add = {
-				value = liege.court_position:yeke_jarquchi_court_position.yeke_jarquchi_improve_court_value
-				desc = yeke_jarquchi_improve_court_aptitude_desc
-			}
-		}
-
-		add = court_position_aptitude_boon_voyager_trait
-		add = court_position_aptitude_traveling_friends_value
-		add = court_position_aptitude_family_business_value
+		
 		add = court_position_aptitude_low_penalty_value
-
+		add = general_aptitude_bonus
 	}
 
 	is_shown = {
@@ -1930,10 +1865,8 @@ yeke_jarquchi_court_position = { ### MPO
 			}
 		}
 		
-		add = court_position_aptitude_boon_voyager_trait
-		add = court_position_aptitude_traveling_friends_value
-		add = court_position_aptitude_family_business_value
 		add = court_position_aptitude_low_penalty_value
+		add = general_aptitude_bonus_exclude_other_court_position
 	}
 
 	is_shown = {
@@ -2261,24 +2194,9 @@ foreign_emissary_court_position = { ### MPO
 				desc = court_position_fickle_trait
 			}
 		}
-		# Yeke Jarquchi
-		if = {
-			limit = {
-				liege.court_position:yeke_jarquchi_court_position ?= {
-					has_variable = performing_improve_court
-				}
-			}
-			add = {
-				value = liege.court_position:yeke_jarquchi_court_position.yeke_jarquchi_improve_court_value
-				desc = yeke_jarquchi_improve_court_aptitude_desc
-			}
-		}
-
-		add = court_position_aptitude_boon_voyager_trait
-		add = court_position_aptitude_traveling_friends_value
-		add = court_position_aptitude_family_business_value
+		
 		add = court_position_aptitude_low_penalty_value
-
+		add = general_aptitude_bonus
 	}
 
 	is_shown = {
@@ -2611,24 +2529,9 @@ keeper_of_the_horses_court_position = { ### MPO
 				desc = court_position_sadistic_trait
 			}
 		}
-		# Yeke Jarquchi
-		if = {
-			limit = {
-				liege.court_position:yeke_jarquchi_court_position ?= {
-					has_variable = performing_improve_court
-				}
-			}
-			add = {
-				value = liege.court_position:yeke_jarquchi_court_position.yeke_jarquchi_improve_court_value
-				desc = yeke_jarquchi_improve_court_aptitude_desc
-			}
-		}
-
-		add = court_position_aptitude_boon_voyager_trait
-		add = court_position_aptitude_traveling_friends_value
-		add = court_position_aptitude_family_business_value
+		
 		add = court_position_aptitude_low_penalty_value
-
+		add = general_aptitude_bonus
 	}
 
 	is_shown = {
