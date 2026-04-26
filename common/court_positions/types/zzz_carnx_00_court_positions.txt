@@ -35,7 +35,7 @@
 # charioteer_court_position
 # bookmaker_court_position
 # akolouthos_court_position
-# court_astrologer_court_position
+# court_brewmaster_court_position Unop: Was: court_astrologer_court_position
 
 ### Important Court Positions ### ( Sort order 399 - 300 )
 court_physician_court_position = {
@@ -1533,6 +1533,7 @@ antiquarian_court_position = {
 	}
 }
 
+### Regular Court Positions ### ( Sort order 299 - 200 )
 seneschal_court_position = {
 	sort_order = 299
 	max_available_positions = 1
@@ -6176,14 +6177,6 @@ court_gardener_court_position = {
 				desc = court_position_architect_trait
 			}
 		}
-		#Unop Bonus from court.8311
-		if = {
-			limit = { var:bonus_aptitude_role ?= flag:court_gardener }
-			add = {
-				value = cp_bonus_aptitude_value
-				desc = cp_bonus_aptitude
-			}
-		}
 		# Estate building bonus
 		if = {
 			limit = {
@@ -6232,6 +6225,14 @@ court_gardener_court_position = {
 						desc = estate_garden_building
 					}
 				}
+			}
+		}
+		#Unop Bonus from court.8311
+		if = {
+			limit = { var:bonus_aptitude_role ?= flag:court_gardener }
+			add = {
+				value = cp_bonus_aptitude_value
+				desc = cp_bonus_aptitude
 			}
 		}
 		# Japan
@@ -9071,7 +9072,7 @@ court_poet_court_position = { # EP1
 					limit = { employer.domicile ?= { has_domicile_parameter = increased_poet_aptitude_2 } }
 					add = estate_increase_gardener_aptitude_value_2
 				}
-				else_if = {
+				else_if = { #Unop Add missing check
 					limit = { employer.domicile ?= { has_domicile_parameter = increased_poet_aptitude_1 } }
 					add = estate_increase_gardener_aptitude_value_1
 				}
@@ -9529,7 +9530,7 @@ court_musician_court_position = {
 					limit = { employer.domicile ?= { has_domicile_parameter = increased_musician_aptitude_2 } }
 					add = estate_increase_gardener_aptitude_value_2
 				}
-				else_if = {
+				else_if = { #Unop Add missing check
 					limit = { employer.domicile ?= { has_domicile_parameter = increased_musician_aptitude_1 } }
 					add = estate_increase_gardener_aptitude_value_1
 				}

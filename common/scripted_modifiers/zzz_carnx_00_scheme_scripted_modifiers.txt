@@ -104,7 +104,7 @@
 			trait_is_shunned_in_faith_trigger = { #Unop shunned, not criminal
 				FAITH = faith
 				TRAIT = trait:adulterer
-				GENDER_CHARACTER = scope:target #Unop "their" adultery
+				GENDER_CHARACTER = scope:owner
 			}
 		}
 		add = -5
@@ -128,7 +128,7 @@
 			trait_is_criminal_in_faith_trigger = {
 				FAITH = faith
 				TRAIT = trait:adulterer
-				GENDER_CHARACTER = scope:target #Unop "their" adultery
+				GENDER_CHARACTER = scope:owner
 			}
 		}
 		add = -15
