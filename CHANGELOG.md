@@ -1,5 +1,11 @@
 # Changelog
 
+## Version 0.30.1
+
+### Compatibility
+
+* Adapted to latest Unofficial Patch changes to prevent a crash if used with the upcoming Unofficial Patch version.
+
 ## Version 0.30.0
 
 ### Compatibility
