@@ -1,5 +1,47 @@
 ﻿# Slave base price. Based on individual_recruit_guest_interaction_cost.
+# Logic duplicated in carnx_slave_ask_price_value and carnx_slave_bid_price_value to avoid a tooltip bug
 carnx_slave_base_price_value = {
+	# Base (reduced compared to guests 20 -> 10)
+	value = 10
+
+	# Claims (10 to 40 depending on tier, reduced compared to guests)
+	add = carnx_slave_price_claims_value
+
+	# Dynasty (5 for each dynasty prestige level, reduced compared to guests 15 -> 5)
+	if = {
+		limit = { exists = dynasty }
+		add = carnx_slave_price_dynasty_value
+	}
+
+	# Traits (trait character values multiplied by 5)
+	add = carnx_slave_price_traits_value
+
+	# Skills (5 for each skill point above 12, same as guests)
+	add = carnx_slave_price_skills_value
+
+	# Attraction (-30 to 30 depending on attraction, new compared to guests)
+	add = attraction
+
+	# Female (15 if a visibly fertile female, new compared to guests)
+	if = {
+		limit = {
+			is_female = yes
+			is_visibly_fertile = yes
+		}
+		add = 15
+	}
+
+	# Age (up to -10 depending on age, new compared to guests)
+	add = carnx_slave_price_age_value
+
+	# Apply a correction factor to get the final price
+	multiply = carnx_slave_base_price_multiplier
+
+	floor = yes
+	min = 5
+}
+
+carnx_slave_ask_price_value = {
 	# Base (reduced compared to guests 20 -> 10)
 	add = {
 		value = 10
@@ -8,140 +50,28 @@ carnx_slave_base_price_value = {
 
 	# Claims (10 to 40 depending on tier, reduced compared to guests)
 	add = {
-		value = {
-			if = {
-				limit = {
-					any_claim = { tier = tier_empire }
-				}
-				add = 40
-			}
-			else_if = {
-				limit = {
-					any_claim = { tier = tier_kingdom }
-				}
-				add = 30
-			}
-			else_if = {
-				limit = {
-					any_claim = { tier = tier_duchy }
-				}
-				add = 20
-			}
-			else_if = {
-				limit = {
-					any_claim = { tier = tier_county }
-				}
-				add = 10
-			}
-		}
+		value = carnx_slave_price_claims_value
 		desc = carnx_slave_price_claims_desc
 	}
 
 	# Dynasty (5 for each dynasty prestige level, reduced compared to guests 15 -> 5)
 	if = {
-		limit = {
-			exists = dynasty
-		}
+		limit = { exists = dynasty }
 		add = {
-			value = dynasty.dynasty_prestige_level # 0-10
-			multiply = 5 # Max 50
+			value = carnx_slave_price_dynasty_value
 			desc = carnx_slave_price_dynasty_desc
 		}
 	}
 
+	# Traits (trait character values multiplied by 5)
 	add = {
-		value = {
-			# Genetic traits (genetic character value multiplied by 5, same as guests)
-			add = {
-				value = carnx_genetic_character_value
-				multiply = 5
-			}
-
-			# Commander traits (5 for each commander trait, reduced compared to guests 15 -> 5)
-			if = {
-				limit = {
-					number_of_commander_traits >= 1
-				}
-				add = {
-					value = number_of_commander_traits
-					multiply = 5
-				}
-			}
-
-			# Court Position traits (court position traits character value multiplied by 5,
-			# reduced compared to guests but covering all relevant court positions)
-			add = {
-				value = carnx_court_position_traits_character_value
-				multiply = 5
-			}
-		}
+		value = carnx_slave_price_traits_value
 		desc = carnx_slave_price_traits_desc
 	}
 
 	# Skills (5 for each skill point above 12, same as guests)
 	add = {
-		value = {
-			if = {
-				limit = {
-					diplomacy >= decent_skill_rating
-				}
-				add = {
-					value = diplomacy
-					subtract = decent_skill_rating
-					multiply = 5
-				}
-			}
-			if = {
-				limit = {
-					martial >= decent_skill_rating
-				}
-				add = {
-					value = martial
-					subtract = decent_skill_rating
-					multiply = 5
-				}
-			}
-			if = {
-				limit = {
-					stewardship >= decent_skill_rating
-				}
-				add = {
-					value = stewardship
-					subtract = decent_skill_rating
-					multiply = 5
-				}
-			}
-			if = {
-				limit = {
-					intrigue >= decent_skill_rating
-				}
-				add = {
-					value = intrigue
-					subtract = decent_skill_rating
-					multiply = 5
-				}
-			}
-			if = {
-				limit = {
-					learning >= decent_skill_rating
-				}
-				add = {
-					value = learning
-					subtract = decent_skill_rating
-					multiply = 5
-				}
-			}
-			if = {
-				limit = {
-					prowess >= decent_skill_rating
-				}
-				add = {
-					value = prowess
-					subtract = decent_skill_rating
-					multiply = 3 # Reduced compared to guests
-				}
-			}
-		}
+		value = carnx_slave_price_skills_value
 		desc = carnx_slave_price_skills_desc
 	}
 
@@ -151,7 +81,7 @@ carnx_slave_base_price_value = {
 		desc = carnx_slave_price_attraction_desc
 	}
 
-	# Female (20 if a visibly fertile female, new compared to guests)
+	# Female (15 if a visibly fertile female, new compared to guests)
 	if = {
 		limit = {
 			is_female = yes
@@ -165,33 +95,7 @@ carnx_slave_base_price_value = {
 
 	# Age (up to -10 depending on age, new compared to guests)
 	add = {
-		value = {
-			if = {
-				limit = { age < carnx_prime_age_min_value }
-				add = {
-					value = carnx_prime_age_min_value
-					subtract = age
-					divide = {
-						value = carnx_prime_age_min_value
-						subtract = carnx_young_zero_age_value
-					}
-					multiply = -10
-				}
-			}
-			else_if = {
-				limit = { age > carnx_prime_age_max_value }
-				add = {
-					value = age
-					subtract = carnx_prime_age_max_value
-					divide = {
-						value = carnx_old_zero_age_value
-						subtract = carnx_prime_age_max_value
-					}
-					multiply = -10
-				}
-			}
-			max = 0
-		}
+		value = carnx_slave_price_age_value
 		desc = carnx_slave_price_age_desc
 	}
 
@@ -206,10 +110,6 @@ carnx_slave_base_price_value = {
 		value = 5
 		desc = carnx_slave_price_min_desc
 	}
-}
-
-carnx_slave_ask_price_value = {
-	value = carnx_slave_base_price_value
 
 	# Make it higher for the player
 	if = {
@@ -271,7 +171,74 @@ carnx_slave_ask_price_value = {
 }
 
 carnx_slave_bid_price_value = {
-	value = carnx_slave_base_price_value
+	# Base (reduced compared to guests 20 -> 10)
+	add = {
+		value = 10
+		desc = carnx_slave_price_base_desc
+	}
+
+	# Claims (10 to 40 depending on tier, reduced compared to guests)
+	add = {
+		value = carnx_slave_price_claims_value
+		desc = carnx_slave_price_claims_desc
+	}
+
+	# Dynasty (5 for each dynasty prestige level, reduced compared to guests 15 -> 5)
+	if = {
+		limit = { exists = dynasty }
+		add = {
+			value = carnx_slave_price_dynasty_value
+			desc = carnx_slave_price_dynasty_desc
+		}
+	}
+
+	# Traits (trait character values multiplied by 5)
+	add = {
+		value = carnx_slave_price_traits_value
+		desc = carnx_slave_price_traits_desc
+	}
+
+	# Skills (5 for each skill point above 12, same as guests)
+	add = {
+		value = carnx_slave_price_skills_value
+		desc = carnx_slave_price_skills_desc
+	}
+
+	# Attraction (-30 to 30 depending on attraction, new compared to guests)
+	add = {
+		value = attraction
+		desc = carnx_slave_price_attraction_desc
+	}
+
+	# Female (15 if a visibly fertile female, new compared to guests)
+	if = {
+		limit = {
+			is_female = yes
+			is_visibly_fertile = yes
+		}
+		add = {
+			value = 15
+			desc = carnx_slave_price_visibly_fertile_female_desc
+		}
+	}
+
+	# Age (up to -10 depending on age, new compared to guests)
+	add = {
+		value = carnx_slave_price_age_value
+		desc = carnx_slave_price_age_desc
+	}
+
+	# Apply a correction factor to get the final price
+	multiply = {
+		value = carnx_slave_base_price_multiplier
+		desc = carnx_slave_price_multiplier_desc
+	}
+
+	floor = yes
+	min = {
+		value = 5
+		desc = carnx_slave_price_min_desc
+	}
 
 	# Make it lower for the player
 	if = {
@@ -338,6 +305,141 @@ carnx_slave_bid_price_value = {
 		value = 5
 		desc = carnx_slave_price_min_desc
 	}
+}
+
+carnx_slave_price_claims_value = {
+	if = {
+		limit = {
+			any_claim = { tier = tier_empire }
+		}
+		add = 40
+	}
+	else_if = {
+		limit = {
+			any_claim = { tier = tier_kingdom }
+		}
+		add = 30
+	}
+	else_if = {
+		limit = {
+			any_claim = { tier = tier_duchy }
+		}
+		add = 20
+	}
+	else_if = {
+		limit = {
+			any_claim = { tier = tier_county }
+		}
+		add = 10
+	}
+}
+
+carnx_slave_price_dynasty_value = {
+	value = dynasty.dynasty_prestige_level # 0-10
+	multiply = 5 # Max 50
+}
+
+carnx_slave_price_traits_value = {
+	# Genetic traits (genetic character value multiplied by 5, same as guests)
+	add = {
+		value = carnx_genetic_character_value
+		multiply = 5
+	}
+
+	# Commander traits (5 for each commander trait, reduced compared to guests 15 -> 5)
+	if = {
+		limit = { number_of_commander_traits >= 1 }
+		add = {
+			value = number_of_commander_traits
+			multiply = 5
+		}
+	}
+
+	# Court Position traits (court position traits character value multiplied by 5,
+	# reduced compared to guests but covering all relevant court positions)
+	add = {
+		value = carnx_court_position_traits_character_value
+		multiply = 5
+	}
+}
+
+carnx_slave_price_skills_value = {
+	if = {
+		limit = { diplomacy >= decent_skill_rating }
+		add = {
+			value = diplomacy
+			subtract = decent_skill_rating
+			multiply = 5
+		}
+	}
+	if = {
+		limit = { martial >= decent_skill_rating }
+		add = {
+			value = martial
+			subtract = decent_skill_rating
+			multiply = 5
+		}
+	}
+	if = {
+		limit = { stewardship >= decent_skill_rating }
+		add = {
+			value = stewardship
+			subtract = decent_skill_rating
+			multiply = 5
+		}
+	}
+	if = {
+		limit = { intrigue >= decent_skill_rating }
+		add = {
+			value = intrigue
+			subtract = decent_skill_rating
+			multiply = 5
+		}
+	}
+	if = {
+		limit = { learning >= decent_skill_rating }
+		add = {
+			value = learning
+			subtract = decent_skill_rating
+			multiply = 5
+		}
+	}
+	if = {
+		limit = { prowess >= decent_skill_rating }
+		add = {
+			value = prowess
+			subtract = decent_skill_rating
+			multiply = 3 # Reduced compared to guests
+		}
+	}
+}
+
+carnx_slave_price_age_value = {
+	if = {
+		limit = { age < carnx_prime_age_min_value }
+		add = {
+			value = carnx_prime_age_min_value
+			subtract = age
+			divide = {
+				value = carnx_prime_age_min_value
+				subtract = carnx_young_zero_age_value
+			}
+			multiply = -10
+		}
+	}
+	else_if = {
+		limit = { age > carnx_prime_age_max_value }
+		add = {
+			value = age
+			subtract = carnx_prime_age_max_value
+			divide = {
+				value = carnx_old_zero_age_value
+				subtract = carnx_prime_age_max_value
+			}
+			multiply = -10
+		}
+	}
+	max = 0
 }
 
 # Opinion gain from gifting a slave. Calculated by multiplying the slave base price (carnx_slave_base_price_value)
