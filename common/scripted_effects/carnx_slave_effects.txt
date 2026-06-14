@@ -1651,13 +1651,7 @@ carnx_get_valid_payers_or_owners_effect = {
 carnx_get_sellable_slaves_effect = {
 	every_relation = {
 		type = slave
-		limit = {
-			carnx_slave_can_be_sold_trigger = yes
-			save_temporary_scope_as = slave_temp
-			$RECIPIENT$ = {
-				NOT = { carnx_is_slavery_crime_trigger = { CHARACTER = scope:slave_temp } }
-			}
-		}
+		limit = { carnx_slave_can_be_sold_trigger = yes }
 		add_to_list = $LIST$
 	}
 }

@@ -81,10 +81,6 @@ carnx_has_sellable_slaves_trigger = {
 	any_relation = {
 		type = slave
 		carnx_slave_can_be_sold_trigger = yes
-		save_temporary_scope_as = slave_temp
-		$RECIPIENT$ = {
-			NOT = { carnx_is_slavery_crime_trigger = { CHARACTER = scope:slave_temp } }
-		}
 	}
 }
 
