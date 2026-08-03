@@ -1,10 +1,11 @@
 ﻿carnx_province_has_slave_market_trigger = {
-	# Has tribal, castle, city, or nomadd holding
+	# Has tribal, castle, city, or nomad holding
 	OR = {
 		vls_has_tribal_like_holding_trigger = yes
 		vls_has_castle_like_holding_trigger = yes
 		vls_has_city_like_holding_trigger = yes
 		vls_has_nomad_like_holding_trigger = yes
+		has_holding_type = temple_citadel_holding
 	}
 
 	# Has the minimum development level, or a relevant building,
