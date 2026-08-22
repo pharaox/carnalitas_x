@@ -1,7 +1,7 @@
 ﻿l_french:
- ALREADY_OFFERED_COURTIER_WARNING:0 "@warning_icon! #X You have already offered a [courtier|E] to [recipient.GetShortUIName], sending another one will #underline override#! the existing [opinion|E] modifier!#!"
+ ALREADY_OFFERED_COURTIER_WARNING:0 "@warning_icon! #X Vous avez déjà offert [Select_CString(secondary_actor.IsFemale, 'une', 'un')] [courtier|E] à [recipient.GetShortUIName], en envoyer [Select_CString(secondary_actor.IsFemale, 'une', 'un')] autre #underline remplacera#! le modificateur d’[opinion|E] existant !#!"
 
- unop_msg_offer_courtier_accepted_tt: "[secondary_actor.GetTitledFirstName] is now [recipient.GetTitledFirstNamePossessive] courtier"
- unop_msg_demand_courtier_accepted_tt: "[secondary_actor.GetTitledFirstName] is now your courtier"
+ unop_msg_offer_courtier_accepted_tt: "[secondary_actor.GetTitledFirstName] est désormais [Select_CString(secondary_actor.IsFemale, 'la courtisane', 'le courtisan')] [recipient.Custom('FR_du_Char_Pi')][recipient.GetTitledFirstNamePossessive]"
+ unop_msg_demand_courtier_accepted_tt: "[secondary_actor.GetTitledFirstName] est désormais [Select_CString(secondary_actor.IsFemale, 'votre courtisane', 'votre courtisan')]"
 
- has_court_tutor_domicile_building: "Has [GetDomicileBuilding('family_yurt_03').GetName]"
+ has_court_tutor_domicile_building: "Possède [GetDomicileBuilding('family_yurt_03').GetName]"
