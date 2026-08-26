@@ -17,20 +17,20 @@
  carnx_slave_captain_court_position_desc:0 "Le $carnx_slave_captain_court_position$ est un militaire de haut rang qui est également esclave ou ancien esclave."
 
  carnx_slave_eunuch_court_position:0 "Eunuque esclave"
- carnx_slave_eunuch_court_position_desc:0 "L'$carnx_slave_eunuch_court_position$ est un fonctionnaire judiciaire influent qui est également un esclave ou un ancien esclave."
+ carnx_slave_eunuch_court_position_desc:0 "L’$carnx_slave_eunuch_court_position$ est un fonctionnaire judiciaire influent qui est également un esclave ou un ancien esclave."
 
  hunt_can_hunt_parameter_tt:0 "[culture|E] est capable de Chasser"
 
  faith_or_culture_allows_polygamy_or_concubines_tt: "Votre [faith|E] ou [culture|E] autorise la polygamie ou les [concubines|E]"
  faith_allows_slave_soldiers_tt: "Votre [faith|E] autorise le recrutement de soldats [slave|E]"
 
- none_is_not_a_slave: "Ce personnage n'est #bold pas#! un(e) [slave|E]"
+ none_is_not_a_slave: "Ce personnage n’est #bold pas#! [Select_CString(ROOT.Char.IsFemale, 'une', 'un')] [slave|E]"
  none_liege_can_employ_slaves: "Leur [liege|E] peut employer des [slaves|E] dans des postes de cour supplémentaires"
- none_is_their_lieges_slave: "Ce personnage est l'[slave|E] de son [liege|E]"
- none_is_employed_as_slave_concubine: "Ce personnage est déjà employé(e) comme $carnx_slave_concubine_court_position$"
+ none_is_their_lieges_slave: "Ce personnage est l’[slave|E] de son [liege|E]"
+ none_is_employed_as_slave_concubine: "Ce personnage est déjà [Select_CString(ROOT.Char.IsFemale, 'employée', 'employé')] comme $carnx_slave_concubine_court_position$"
  none_is_employed_as_slave_captain: "Ce personnage est déjà employé comme $carnx_slave_captain_court_position$"
  none_is_employed_as_slave_eunuch: "Ce personnage est déjà employé comme $carnx_slave_eunuch_court_position$"
- none_is_capable_adult: "Ce personnage est un(e) [adult|E] capable"
+ none_is_capable_adult: "Ce personnage est [Select_CString(ROOT.Char.IsFemale, 'une', 'un')] [adult|E] capable"
  none_has_positive_attraction: "Ce personnage a une [attraction|E] positive"
  none_liege_is_allowed_to_marry: "Leur [liege|E] est autorisé à les épouser"
  none_has_at_least_one_commander_trait: "Ce personnage a au moins un [commander_trait|E]"
@@ -45,11 +45,11 @@
  carnx_slave_concubine_gather_court_gossip.tt:0 "La $carnx_slave_concubine_court_position$ améliorera la capacité de son suzerain à découvrir les [schemes|E] le visant."
 
  # Mameluke Captain Tasks
- carnx_slave_captain_court_position_task_train_elite_warriors:0 "Entraîner des guerriers d'élite"
- carnx_slave_captain_court_position_task_train_elite_warriors_desc:0 "Le $carnx_slave_captain_court_position$ se concentrera sur la formation et l'entraînement des combattants les plus redoutables de l'armée aux techniques de combat avancées."
- carnx_slave_captain_train_elite_warriors.tt:0 "Le $carnx_slave_captain_court_position$ améliorera l'efficacité des forces de [heavy_cavalry|E] et d'[heavy_infantry|E]."
+ carnx_slave_captain_court_position_task_train_elite_warriors:0 "Entraîner des guerriers d’élite"
+ carnx_slave_captain_court_position_task_train_elite_warriors_desc:0 "Le $carnx_slave_captain_court_position$ se concentrera sur la formation et l’entraînement des combattants les plus redoutables de l’armée aux techniques de combat avancées."
+ carnx_slave_captain_train_elite_warriors.tt:0 "Le $carnx_slave_captain_court_position$ améliorera l’efficacité des forces de [heavy_cavalry|E] et d’[heavy_infantry|E]."
 
  # Slave Eunuch Tasks
  carnx_slave_eunuch_court_position_task_manage_palace_affairs:0 "Gérer les affaires du palais"
- carnx_slave_eunuch_court_position_task_manage_palace_affairs_desc:0 "L'$carnx_slave_eunuch_court_position$ supervisera l'administration quotidienne du palais, assurant son efficacité."
- carnx_slave_eunuch_manage_palace_affairs.tt:0 "L'$carnx_slave_eunuch_court_position$ améliorera la [development_growth|E] du [county|E] de la capitale."
+ carnx_slave_eunuch_court_position_task_manage_palace_affairs_desc:0 "L’$carnx_slave_eunuch_court_position$ supervisera l’administration quotidienne du palais, assurant son efficacité."
+ carnx_slave_eunuch_manage_palace_affairs.tt:0 "L’$carnx_slave_eunuch_court_position$ améliorera la [development_growth|E] du [county|E] de la capitale."

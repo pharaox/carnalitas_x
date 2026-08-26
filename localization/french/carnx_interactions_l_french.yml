@@ -38,7 +38,7 @@
  carnx_ransom_slaves_interaction: "Demande de rançon pour des esclaves"
  carnx_ransom_slaves_interaction_desc: "Demander une rançon pour des [slaves|El] à des dirigeants désireux et capables de les rançonner"
  actor_secondary_carnx_ransom_slaves_interaction: "Esclave"
- recipient_secondary_carnx_ransom_slaves_interaction: "Payer"
+ recipient_secondary_carnx_ransom_slaves_interaction: "Payeur"
 
  # carnx_pay_ransom_slaves_interaction (new)
  carnx_pay_ransom_slaves_interaction: "Offrir une rançon pour des esclaves"
@@ -64,7 +64,7 @@
  carnx_demand_free_illegal_slaves_refused: "[recipient.GetShortUIName|U] ne libère pas ses esclaves illégaux"
  carn_demand_free_illegal_slaves_interaction_extra_icon: "$hook_extra_icon$"
 
- carnx_warning_reduced_range_desc: "\n@warning_icon! #X Since you are traveling, your trading range is reduced and centered on your location#!"
+ carnx_warning_reduced_range_desc: "\n@warning_icon! #X Comme vous voyagez, votre rayon d’action commercial est réduit et centré sur votre position actuelle#!"
 
  # Modifier reasons
  carnx_secondary_recipient_has_court_position_reason: "[secondary_recipient.GetShortUIName|U] occupe un position de la [court|El] : $VALUE|=+0$"
@@ -133,8 +133,8 @@
 
  carnx_slave_price_breakdown_tooltip: "Détail des prix:\n[GuiScope.SetRoot(slave.MakeScope).AddScope('actor', actor.MakeScope).AddScope('buyer', buyer.MakeScope).AddScope('seller', seller.MakeScope).GetScriptValueDesc('carnx_slave_actual_price_value')]"
 
- carnx_may_acquire_slaver_trait_tooltip: "May acquire [GetTrait('carnx_slaver').GetName(GetNullCharacter)] trait"
- carnx_may_acquire_liberator_trait_tooltip: "May acquire [GetTrait('carnx_liberator').GetName(GetNullCharacter)] trait"
+ carnx_may_acquire_slaver_trait_tooltip: "Peut acquérir le trait [GetTrait('carnx_slaver').GetName(GetNullCharacter)]"
+ carnx_may_acquire_liberator_trait_tooltip: "Peut acquérir le trait [GetTrait('carnx_liberator').GetName(GetNullCharacter)]"
 
  # Message titles
  carnx_msg_slave_bought: "Esclave acheté"
