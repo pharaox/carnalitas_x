@@ -8,13 +8,15 @@ The latest version is compatible with CK3 1.19.x and Carnalitas 2.16. If you are
 
 The latest version of the CSR AGOT compatibility mod is compatible with CK3 1.18.x, Carnalitas 2.15, CSR 0.29.x, and AGOT 0.4.26+. Use it with [Carnalitas AGOT Compatibility](https://www.loverslab.com/files/file/32307-carnalitas-agot-compatibility/).
 
+**Check out my new mod [Pyrates](https://steamcommunity.com/sharedfiles/filedetails/?id=3797518189) - take landless adventure to the seas with new buildings, contracts, and events.**
+
 ## Overview
 
 [Carnalitas](https://www.loverslab.com/files/file/14207-carnalitas-unified-sex-mod-framework-for-ck3/) added a much-needed slavery system to CK3. While this is great in itself and the basics of the original system are solid, there are certain things that could be improved, perhaps due to Carnalitas ambition to be a "unified sex mod framework" rather than a well-balanced mod in its own right.
 
 In particular:
 
-* Slave prices don't correspond well to other aspects of the game, they are way to high with claims and way to low otherwise.
+* Slave prices don't correspond well to other aspects of the game. They are way too high with claims and way too low otherwise.
 * The reasons behind the AI accepting or initiating slavery interactions are not convincing, and the AI never initiates some of them.
 * It's not exactly easy for the player to find rulers willing to buy or sell slaves, and there are rather few slaves owned by the AI to begin with.
 * *Enslave* is possible on free courtiers, which doesn't make much sense.
@@ -87,6 +89,7 @@ If you like this mod, you may also consider my other mods:
 * [Search & Trade Artifacts](https://steamcommunity.com/sharedfiles/filedetails/?id=2962238514), search for artifacts, buy them from other characters, and sell them to other characters.
 * [Travelers](https://steamcommunity.com/sharedfiles/filedetails/?id=3082182371), characters always travel to their home when it changes instead of teleporting.
 * [Active Courtiers](https://steamcommunity.com/sharedfiles/filedetails/?id=3157170996), courtiers search for spouses themselves for less micromanagement, stronger AI, and immersion.
+* [Pyrates](https://steamcommunity.com/sharedfiles/filedetails/?id=3797518189), take landless adventure to the seas with new buildings, contracts, and events.
 
 Thumbnail Source: [*The Slave Market* by José Navarro y Llorens](https://artvee.com/dl/the-slave-market-2/)
 
@@ -297,7 +300,7 @@ Starting with version 0.13.0, this mod introduces *slavery attitudes*. You can c
 
 Slavery attitudes are mainly intended to enable additional roleplaying options for the player, but can also be chosen by the AI. Only about 10% to 20% of AI rulers will ever choose an attitude, the rest will remain "neutral". The likelihood of AI choosing a certain attitude is heavily influenced by their religion and government form, as well as their personality. Tribal and pagan rulers tend to choose *Slaver*, feudal and Christian rulers prefer *Liberator* or *Slave Trader*, clan and Muslim rulers tend to choose *Slave Employer*, and republics usually opt for *Slave Trader*.
 
-One intended and historically accurate outcome of this is that it results in actual "human trafficking" of slaves from realms where they are more easily created (tribal realms with a pagan religion) to realms where they are more in demand (clan and feudal realms with an abrahamic religion).
+One intended and historically accurate outcome of this is that it results in actual "human trafficking" of slaves from realms where they are more easily created (tribal realms with a pagan religion) to realms where they are more in demand (clan and feudal realms with an Abrahamic religion).
 
 ### Traits
 
