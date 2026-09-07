@@ -1,5 +1,16 @@
 # Changelog
 
+## Version 0.30.2
+
+### Compatibility
+
+* Adapted to latest Unofficial Patch changes.
+
+### Bug Fixes
+
+* Fixed the slave price breakdown tooltip.
+* Relaxed the conditions for selling slaves.
+
 ## Version 0.30.1
 
 ### Compatibility
