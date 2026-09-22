@@ -1,5 +1,16 @@
 # Changelog
 
+## Version 0.30.3
+
+### Events
+
+* Generated slaves are now much less likely to come from far away in slave trading events.
+
+### Bug Fixes
+
+* Fixed pool slaves being inappropriately selected by events in some cases.
+* Fixed courtier slaves being inappropriately selected by some events such as "A Courtier Between Friends".
+
 ## Version 0.30.2
 
 ### Compatibility
