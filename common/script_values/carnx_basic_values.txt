@@ -162,3 +162,15 @@ carnx_squared_distance_medium = 90000 # 300 map-pixels
 carnx_squared_distance_large = 202500 # 450 map-pixels
 carnx_squared_distance_huge = 360000 # 600 map-pixels
 carnx_squared_distance_massive = 562500 # 750 map-pixels
+
+# Slave template character distance values
+carnx_squared_distance_200 = 40000 # 200 map-pixels
+carnx_squared_distance_400 = 160000 # 400 map-pixels
+carnx_squared_distance_600 = 360000 # 600 map-pixels
+carnx_squared_distance_800 = 640000 # 800 map-pixels
+carnx_squared_distance_1000 = 1000000 # 1000 map-pixels
+carnx_squared_distance_1200 = 1440000 # 1200 map-pixels
+carnx_squared_distance_1400 = 1960000 # 1400 map-pixels
+carnx_squared_distance_1600 = 2560000 # 1600 map-pixels
+carnx_squared_distance_1800 = 3240000 # 1800 map-pixels
+carnx_squared_distance_2400 = 5760000 # 2400 map-pixels

@@ -2,8 +2,14 @@
 	random_ruler = {
 		limit = {
 			is_landed_or_landless_administrative = yes
+			capital_province = { squared_distance = { target = $CHARACTER$.capital_province value <= carnx_squared_distance_1800 } }
 			carnx_is_valid_template_character_trigger = { CHARACTER = $CHARACTER$ }
 			carnx_is_valid_template_character_trigger = { CHARACTER = $CHARACTER2$ }
+		}
+		alternative_limit = {
+			is_landed_or_landless_administrative = yes
+			capital_province = { squared_distance = { target = $CHARACTER$.capital_province value <= carnx_squared_distance_2400 } }
+			carnx_is_valid_template_character_trigger = { CHARACTER = $CHARACTER$ }
 		}
 		alternative_limit = {
 			is_landed_or_landless_administrative = yes
@@ -13,31 +19,39 @@
 			# Nearby rulers more likely
 			base = 1
 			modifier = {
-				capital_province = { squared_distance = { target = $CHARACTER$.capital_province value <= squared_distance_small } }
+				capital_province = { squared_distance = { target = $CHARACTER$.capital_province value <= carnx_squared_distance_200 } }
 				factor = 2
 			}
 			modifier = {
-				capital_province = { squared_distance = { target = $CHARACTER$.capital_province value <= squared_distance_medium } }
+				capital_province = { squared_distance = { target = $CHARACTER$.capital_province value <= carnx_squared_distance_400 } }
 				factor = 2
 			}
 			modifier = {
-				capital_province = { squared_distance = { target = $CHARACTER$.capital_province value <= squared_distance_large } }
+				capital_province = { squared_distance = { target = $CHARACTER$.capital_province value <= carnx_squared_distance_600 } }
 				factor = 2
 			}
 			modifier = {
-				capital_province = { squared_distance = { target = $CHARACTER$.capital_province value <= squared_distance_huge } }
+				capital_province = { squared_distance = { target = $CHARACTER$.capital_province value <= carnx_squared_distance_800 } }
 				factor = 2
 			}
 			modifier = {
-				capital_province = { squared_distance = { target = $CHARACTER$.capital_province value <= squared_distance_almost_massive } }
+				capital_province = { squared_distance = { target = $CHARACTER$.capital_province value <= carnx_squared_distance_1000 } }
 				factor = 2
 			}
 			modifier = {
-				capital_province = { squared_distance = { target = $CHARACTER$.capital_province value <= squared_distance_massive } }
+				capital_province = { squared_distance = { target = $CHARACTER$.capital_province value <= carnx_squared_distance_1200 } }
 				factor = 2
 			}
 			modifier = {
-				capital_province = { squared_distance = { target = $CHARACTER$.capital_province value <= squared_distance_monstrous } }
+				capital_province = { squared_distance = { target = $CHARACTER$.capital_province value <= carnx_squared_distance_1400 } }
+				factor = 2
+			}
+			modifier = {
+				carnx_are_slaves_more_likely_government_trigger = yes
+				factor = 2
+			}
+			modifier = {
+				carnx_are_slaves_more_likely_culture_trigger = yes
 				factor = 2
 			}
 		}

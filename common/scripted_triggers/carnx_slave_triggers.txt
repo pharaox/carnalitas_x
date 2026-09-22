@@ -1185,7 +1185,7 @@ carnx_is_playable_or_family_trigger = {
 
 carnx_slavery_attitude_slaver_government_trigger = {
 	OR = {
-		government_has_flag = government_is_tribal
+		government_has_flag = government_is_tribal # includes wanua
 		government_has_flag = government_is_landless_adventurer
 		government_has_flag = government_is_nomadic
 		government_has_flag = government_is_steppe_admin
@@ -1261,6 +1261,49 @@ carnx_slavery_attitude_employer_faith_culture_trigger = {
 			religion = religion:islam_religion
 			religion = religion:judaism_religion
 			religion = religion:zoroastrianism_religion
+		}
+	}
+}
+
+carnx_are_slaves_more_likely_government_trigger = {
+	has_game_rule = carnx_universe_historical
+	OR = {
+		government_has_flag = government_is_tribal # includes wanua
+		government_has_flag = government_is_nomadic
+		government_has_flag = government_is_herder
+		government_has_flag = government_is_steppe_admin
+	}
+}
+
+carnx_are_slaves_more_likely_culture_trigger = {
+	has_game_rule = carnx_universe_historical
+	culture = {
+		OR = {
+			# Steppe
+			has_cultural_pillar = heritage_turkic
+			has_cultural_pillar = heritage_mongolic
+			has_cultural_pillar = heritage_hunnic
+			has_cultural_pillar = heritage_tungusic
+			# African
+			has_cultural_pillar = heritage_east_african
+			has_cultural_pillar = heritage_west_african
+			has_cultural_pillar = heritage_central_african
+			has_cultural_pillar = heritage_sahelian
+			has_cultural_pillar = heritage_senegambian
+			has_cultural_pillar = heritage_bantu
+			has_cultural_pillar = heritage_akan
+			has_cultural_pillar = heritage_yoruba
+			has_cultural_pillar = heritage_somalian
+			# Slavic
+			has_cultural_pillar = heritage_east_slavic
+			has_cultural_pillar = heritage_west_slavic
+			has_cultural_pillar = heritage_south_slavic
+			# Tribal northern Europe
+			has_cultural_pillar = heritage_north_germanic
+			has_cultural_pillar = heritage_baltic
+			has_cultural_pillar = heritage_balto_finnic
+			has_cultural_pillar = heritage_volga_finnic
+			has_cultural_pillar = heritage_ugro_permian
 		}
 	}
 }
