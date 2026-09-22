@@ -1,0 +1,148 @@
+CK3: 1.19.0.6, main: 0.30.2
+
+Slave enslaved: 6244
+- Creating slave: 5713
+Slave freed: 580
+- Freeing slave: 491
+- Freeing illegal slave: 1
+Slave sold off: 4796
+Slave ransomed: 7
+Slave bought: 209
+- slave_merchant: 1
+- slave_trader: 204
+Slave seized: 34
+Slave liberated: 3
+Slave gifted: 5
+Slave escaped: 65
+
+Buy Foreign Slaves event fired: 3137
+Runaway Slave event fired: 96
+- Runaway Slave option a chosen: 31
+- Runaway Slave option b chosen: 28
+- Runaway Slave option c chosen: 23
+- Runaway Slave option d chosen: 8
+- Runaway Slave option e chosen: 6
+Freedom for a Slave event fired: 18
+- Freedom for a Slave option a chosen: 6
+- Freedom for a Slave option b chosen: 5
+- Freedom for a Slave option c chosen: 7
+The Price of Freedom event fired: 70
+- The Price of Freedom option a chosen: 33
+- The Price of Freedom option b chosen: 37
+The Informant's Bargain event fired: 13
+- The Informant's Bargain option a chosen: 8
+- The Informant's Bargain option b chosen: 5
+
+Chancellor council position received: 2
+Steward council position received: 5
+Marshal council position received: 10
+Spymaster council position received: 63
+
+Court Physician court position received: 34
+Antiquarian court position received: 32
+Court Gardener court position received: 0
+Wet Nurse court position received: 6
+Court Tutor court position received: 5
+Food Taster court position received: 6
+Cupbearer court position received: 0
+Seneschal court position received: 94
+Chief Eunuch court position received: 1
+Court Jester court position received: 35
+Court Poet court position received: 2
+Court Musician court position received: 17
+Bodyguard court position received: 31
+Champion court position received: 1
+Executioner court position received: 7
+Master Assassin court position received: 0
+Chronicler court position received: 22
+Court Brewmaster court position received: 0
+Boyan court position received: 1
+Siege Engineer court position received: 2
+Yurtchi court position received: 11
+Cherbi court position received: 0
+Foreign Emissary court position received: 25
+Keeper of the Horses court position received: 0
+Keeper of the Harem court position received: 0
+Khlon Glan court position received: 0
+
+Slave Concubine court position received: 86
+Slave Captain court position received: 4
+Slave Eunuch court position received: 2
+
+Moving slave to owner's court: 592
+Moving slave to pool: 68
+Moving slave to owner's capital: 67
+Moving slave to owner's location: 1353
+Inheriting slave: 155
+
+Slave converted to owner's faith: 132
+
+Character had sex with one of their slaves: 1002
+Child of slave concubine was born: 28
+
+Character marked for enslavement: 205
+Character captured as potential slave: 0
+Character lost piety from slaves: 888
+Character became their enslaver's rival: 0
+
+Character acquired slaver modifier: 117
+Character acquired liberator modifier: 138
+Character acquired trader modifier: 210
+Character acquired employer modifier: 143
+
+Character acquired Slaver 1 trait: 19
+Character acquired Slaver 2 trait: 47
+Character acquired Infamous Slaver trait: 0
+Character acquired Famous Liberator trait: 0
+
+Visiting holding: 345
+Visiting holding to trade slaves: 34
+Attempting slave haggle: 0
+Selling slave via outraged partner: 0
+
+Invalid slave detected: 6
+Slave owning slaves detected: 0
+
+Statistics
+Year,Slaves,Pool Slaves,Former Slaves,Female Slaves,Slave Owners,Pool Slave Owners
+1067,60,56,1,40,46,42
+1067,60,56,1,40,46,42
+1068,137,114,48,86,106,84
+1068,137,114,48,86,106,84
+1069,185,138,104,115,149,105
+1069,185,138,104,115,149,105
+1070,256,182,135,170,206,141
+1070,256,182,135,170,206,141
+1071,296,189,153,184,245,152
+1071,296,189,153,184,245,152
+1072,343,202,170,216,281,163
+1072,343,202,170,216,281,163
+1073,351,185,186,216,281,148
+1073,351,185,186,216,281,148
+1074,409,206,205,246,311,158
+1074,409,206,205,246,311,158
+1075,422,184,192,246,319,149
+1075,422,184,192,246,319,149
+1076,448,181,192,272,337,147
+1076,448,181,192,272,337,147
+1077,518,213,198,311,380,168
+1077,518,213,198,311,380,168
+1078,519,188,205,308,379,148
+1078,519,188,205,308,379,148
+1079,526,164,240,312,383,137
+1079,526,164,240,312,383,137
+1080,564,165,252,319,403,132
+1080,564,165,252,319,403,132
+1081,610,188,272,352,430,150
+1081,610,188,272,352,430,150
+1082,643,196,303,374,448,158
+1082,643,196,303,374,448,158
+1083,625,156,325,364,433,132
+1083,625,156,325,364,433,132
+1084,650,175,339,377,445,144
+1084,650,175,339,377,445,144
+1085,691,199,352,406,466,162
+1085,691,199,352,406,466,162
+1086,709,195,361,412,469,160
+1086,709,195,361,412,469,160
+

@@ -1,0 +1,128 @@
+CK3: 1.19.0.6, main: 0.30.2
+
+Slave enslaved: 3188
+- Creating slave: 2934
+Slave freed: 276
+- Freeing slave: 249
+- Freeing illegal slave: 0
+Slave sold off: 2361
+Slave ransomed: 0
+Slave bought: 100
+- slave_merchant: 0
+- slave_trader: 100
+Slave seized: 6
+Slave liberated: 0
+Slave gifted: 1
+Slave escaped: 16
+
+Buy Foreign Slaves event fired: 1612
+Runaway Slave event fired: 28
+- Runaway Slave option a chosen: 10
+- Runaway Slave option b chosen: 9
+- Runaway Slave option c chosen: 7
+- Runaway Slave option d chosen: 1
+- Runaway Slave option e chosen: 1
+Freedom for a Slave event fired: 5
+- Freedom for a Slave option a chosen: 2
+- Freedom for a Slave option b chosen: 1
+- Freedom for a Slave option c chosen: 2
+The Price of Freedom event fired: 24
+- The Price of Freedom option a chosen: 16
+- The Price of Freedom option b chosen: 8
+The Informant's Bargain event fired: 3
+- The Informant's Bargain option a chosen: 1
+- The Informant's Bargain option b chosen: 2
+
+Chancellor council position received: 0
+Steward council position received: 3
+Marshal council position received: 4
+Spymaster council position received: 16
+
+Court Physician court position received: 12
+Antiquarian court position received: 11
+Court Gardener court position received: 0
+Wet Nurse court position received: 1
+Court Tutor court position received: 0
+Food Taster court position received: 1
+Cupbearer court position received: 0
+Seneschal court position received: 51
+Chief Eunuch court position received: 1
+Court Jester court position received: 13
+Court Poet court position received: 1
+Court Musician court position received: 8
+Bodyguard court position received: 9
+Champion court position received: 0
+Executioner court position received: 3
+Master Assassin court position received: 0
+Chronicler court position received: 10
+Court Brewmaster court position received: 0
+Boyan court position received: 0
+Siege Engineer court position received: 0
+Yurtchi court position received: 5
+Cherbi court position received: 0
+Foreign Emissary court position received: 7
+Keeper of the Horses court position received: 0
+Keeper of the Harem court position received: 0
+Khlon Glan court position received: 0
+
+Slave Concubine court position received: 36
+Slave Captain court position received: 1
+Slave Eunuch court position received: 1
+
+Moving slave to owner's court: 261
+Moving slave to pool: 25
+Moving slave to owner's capital: 13
+Moving slave to owner's location: 726
+Inheriting slave: 22
+
+Slave converted to owner's faith: 35
+
+Character had sex with one of their slaves: 363
+Child of slave concubine was born: 9
+
+Character marked for enslavement: 110
+Character captured as potential slave: 0
+Character lost piety from slaves: 185
+Character became their enslaver's rival: 0
+
+Character acquired slaver modifier: 71
+Character acquired liberator modifier: 68
+Character acquired trader modifier: 102
+Character acquired employer modifier: 75
+
+Character acquired Slaver 1 trait: 5
+Character acquired Slaver 2 trait: 20
+Character acquired Infamous Slaver trait: 0
+Character acquired Famous Liberator trait: 0
+
+Visiting holding: 119
+Visiting holding to trade slaves: 11
+Attempting slave haggle: 0
+Selling slave via outraged partner: 0
+
+Invalid slave detected: 4
+Slave owning slaves detected: 0
+
+Statistics
+Year,Slaves,Pool Slaves,Former Slaves,Female Slaves,Slave Owners,Pool Slave Owners
+1067,60,56,1,40,46,42
+1067,60,56,1,40,46,42
+1068,137,114,48,86,106,84
+1068,137,114,48,86,106,84
+1069,185,138,104,115,149,105
+1069,185,138,104,115,149,105
+1070,256,182,135,170,206,141
+1070,256,182,135,170,206,141
+1071,296,189,153,184,245,152
+1071,296,189,153,184,245,152
+1072,343,202,170,216,281,163
+1072,343,202,170,216,281,163
+1073,351,185,186,216,281,148
+1073,351,185,186,216,281,148
+1074,409,206,205,246,311,158
+1074,409,206,205,246,311,158
+1075,422,184,192,246,319,149
+1075,422,184,192,246,319,149
+1076,448,181,192,272,337,147
+1076,448,181,192,272,337,147
+
