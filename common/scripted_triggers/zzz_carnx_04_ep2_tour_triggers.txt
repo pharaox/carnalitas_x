@@ -1,0 +1,15 @@
+﻿is_being_visited_on_tour_strict = {
+	OR = {
+		AND = {
+			has_character_flag = being_visited_on_tour
+			# Extra sanity check to verify that our liege is actually still on a tour
+			liege ?= {
+				involved_activity ?= { has_activity_type = activity_tour }
+			}
+		}
+		# CSR: Prevent slaves from being selected in events
+		# This trigger is called by most availability triggers inside NOR
+		# so returning `yes` here makes the enclosing availability trigger return `no`
+		carnx_is_unavailable_slave_trigger = yes
+	}
+}

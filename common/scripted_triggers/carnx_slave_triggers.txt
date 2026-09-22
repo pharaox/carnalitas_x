@@ -1059,6 +1059,24 @@ carnx_is_slave_owner_of_trigger = {
 	}
 }
 
+# Slaves must not be selected by events using the vanilla availability triggers.
+# Excludes pool slaves always, and courtier slaves when root is not their owner,
+# to prevent them from being transferred to root by events.
+carnx_is_unavailable_slave_trigger = {
+	carnx_is_slave_trigger = yes
+	trigger_if = {
+		limit = { is_pool_character = yes }
+		# Pool slaves are always unavailable
+		always = yes
+	}
+	trigger_else = {
+		# Courtier slaves are unavailable to anyone but their owner
+		exists = root
+		exists = root.location
+		NOT = { carnx_is_slave_of_trigger = { OWNER = root } }
+	}
+}
+
 carnx_was_enslaved_by_character_trigger = {
 	OR = {
 		has_opinion_modifier = {

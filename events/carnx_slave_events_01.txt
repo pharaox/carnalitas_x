@@ -39,7 +39,7 @@ carnx_slave.0001 = {
 	}
 
 	immediate = {
-		hidden_effect = {
+		hidden_effect_new_object = {
 			# Find slave merchant
 			carnx_get_merchant_effect = {
 				TYPE = slave_trader
