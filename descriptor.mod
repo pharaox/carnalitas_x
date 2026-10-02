@@ -1,8 +1,8 @@
-version="0.30.3"
+version="0.31.0"
 tags={
 	"Gameplay"
 	"Character Interactions"
 	"Events"
 }
 name="Carnalitas Slavery Reimagined"
-supported_version="1.19.*"
+supported_version="1.20.*"
