@@ -57,6 +57,21 @@
 		}
 	}
 
+	is_available = {
+		trigger_if = {
+			limit = { is_ai = yes }
+			OR = {
+				is_tributary = yes
+				num_of_relation_friend > 0
+				num_of_relation_lover > 0
+			}
+			OR = {
+				ai_greed <= 25
+				is_obedient = yes
+			}
+		}
+	}
+
 	is_shown = {
 		scope:actor != scope:recipient
 		scope:recipient = {
@@ -260,18 +275,6 @@
 		}
 	}
 
-	ai_potential = {
-		OR = {
-			ai_greed <= 25
-			is_obedient = yes
-		}
-		OR = {
-			is_tributary = yes
-			num_of_relation_friend > 0
-			num_of_relation_lover > 0
-		}
-	}
-
 	ai_will_do = {
 		base = 0
 
@@ -313,9 +316,8 @@
 		modifier = {
 			factor = 0
 			scope:actor = {
-				NOR = {
-					government_has_flag = government_is_nomadic
-					government_has_flag = government_is_herder
+				NOT = {
+					government_has_flag = government_is_in_steppe
 				}
 			}
 			scope:secondary_actor = {
@@ -389,13 +391,12 @@
 	}
 
 	on_accept = {
-		#Unop Warning for multiple courtier offers
 		if = {
 			limit = {
 				scope:recipient = {
 					has_opinion_modifier = {
 						target = scope:actor
-						modifier = unop_offer_courtier_opinion
+						modifier = offer_courtier_opinion
 					}
 				}
 				scope:actor = { is_ai = no }
@@ -403,73 +404,64 @@
 			custom_tooltip = ALREADY_OFFERED_COURTIER_WARNING
 		}
 
-		if = {
-			limit = {
-				scope:actor = {
-					has_title = title:e_minister_of_personnel
-				}
-				scope:recipient = {
-					top_liege = scope:actor.top_liege
-				}
-			}
-			scope:recipient = {
-				add_courtier = scope:secondary_actor
-				scope:secondary_actor = {
-					every_consort = {
-						limit = {
-							is_courtier_of = scope:actor
-						}
-						scope:recipient = {
-							add_courtier = prev
-						}
-					}
-					every_child = {
-						limit = {
-							is_adult = no
-							is_courtier_of = scope:recipient
-						}
-						scope:actor = {
-							add_courtier = prev
-						}
-					}
-				}
-			}
-			scope:actor = {
+		scope:actor = {
+			send_interface_toast = {
+				type = event_toast_effect_good
+				title = msg_courtier_offer_accepted_title
+				right_icon = scope:recipient
+				left_icon = scope:secondary_actor
 				if = {
 					limit = {
-						government_has_flag = government_has_influence
+						scope:actor = {
+							has_title = title:e_minister_of_personnel
+						}
+						scope:recipient = {
+							top_liege = scope:actor.top_liege
+						}
 					}
-					change_influence = {
-						value = scope:secondary_actor.average_of_all_skills_and_prowess
-						multiply = 5
-						if = {
-							limit = {
-								scope:secondary_actor = {
-									is_close_or_extended_family_of = scope:actor
+					scope:recipient = {
+						add_courtier = scope:secondary_actor
+						scope:secondary_actor = {
+							every_consort = {
+								limit = {
+									is_courtier_of = scope:actor
+								}
+								scope:recipient = {
+									add_courtier = prev
 								}
 							}
-							add = 100
+							every_child = {
+								limit = {
+									is_adult = no
+									is_courtier_of = scope:recipient
+								}
+								scope:actor = {
+									add_courtier = prev
+								}
+							}
+						}
+					}
+					scope:actor = {
+						if = {
+							limit = {
+								government_has_flag = government_has_influence
+							}
+							change_influence = {
+								value = scope:secondary_actor.average_of_all_skills_and_prowess
+								multiply = 5
+								if = {
+									limit = {
+										scope:secondary_actor = {
+											is_close_or_extended_family_of = scope:actor
+										}
+									}
+									add = 100
+								}
+							}
 						}
 					}
 				}
-			}
-		}
-		else = {
-			scope:secondary_actor = {
-				add_opinion = {
-					#Unop Make consistent with demand_courtier interaction
-					target = scope:actor
-					modifier = annoyed_opinion
-					opinion = -10
-				}
-			}
-			scope:actor = {
-				#Unop Add a proper notification
-				send_interface_toast = {
-					type = event_toast_effect_neutral
-					title = unop_msg_offer_courtier_accepted_tt
-					right_icon = scope:recipient
-					left_icon = scope:secondary_actor
+				else = {
 					scope:recipient = {
 						add_courtier = scope:secondary_actor
 						scope:secondary_actor = {
@@ -493,7 +485,7 @@
 						}
 						add_opinion = {
 							target = scope:actor
-							modifier = unop_offer_courtier_opinion #Unop Use custom non-stacking opinion, as for other gifts
+							modifier = offer_courtier_opinion
 							opinion = 10
 						}
 					}
@@ -633,6 +625,14 @@ demand_courtier_interaction = {
 		}
 	}
 
+	is_available = {
+		trigger_if = {
+			limit = { is_ai = yes }
+			any_tributary = { }
+			ai_greed >= 0
+		}
+	}
+
 	is_shown = {
 		scope:actor != scope:recipient
 		scope:recipient = {
@@ -648,12 +648,12 @@ demand_courtier_interaction = {
 				is_tributary_of = scope:actor
 				AND = { # Celestial has this available towards vassals
 					scope:actor = { government_has_flag = government_is_celestial }
-					liege = scope:actor
+					liege ?= scope:actor
 				}
 				AND = { # The minister of personnel can use it against every ruler in the realm
 					scope:actor = { has_title = title:e_minister_of_personnel }
 					is_ruler = yes
-					top_liege = scope:actor.top_liege
+					top_liege ?= scope:actor.top_liege
 					# Except the top liege
 					top_liege != this
 				}
@@ -708,9 +708,9 @@ demand_courtier_interaction = {
 			is_ai = yes
 		}
 	}
-	
+
 	send_options_exclusive = no
-	
+
 	# Use hook
 	send_option = {
 		is_shown = { # Not available towards tributaries
@@ -816,7 +816,7 @@ demand_courtier_interaction = {
 			}
 			desc = AI_FRIEND_REASON
 		}
-		
+
 		# Used a hook
 		modifier = {
 			add = 100
@@ -831,11 +831,6 @@ demand_courtier_interaction = {
 			}
 			desc = AI_RIVAL_REASON
 		}
-	}
-
-	ai_potential = {
-		ai_greed >= 0
-		any_tributary = { }
 	}
 
 	ai_will_do = {
@@ -919,90 +914,92 @@ demand_courtier_interaction = {
 	}
 
 	on_accept = {
-		if = {
-			limit = {
-				scope:actor = {
-					has_title = title:e_minister_of_personnel
-				}
-				scope:recipient = {
-					top_liege = scope:actor.top_liege
-				}
-			}
-			scope:actor = {
-				add_courtier = scope:secondary_actor
-				scope:secondary_actor = {
-					every_consort = {
-						limit = {
-							is_courtier_of = scope:recipient
-						}
+		scope:actor = {
+			send_interface_toast = {
+				type = event_toast_effect_good
+				title = msg_courtier_demand_accepted_title
+				right_icon = scope:recipient
+				left_icon = scope:secondary_actor
+
+				if = {
+					limit = {
 						scope:actor = {
-							add_courtier = prev
+							has_title = title:e_minister_of_personnel
+						}
+						scope:recipient = {
+							top_liege = scope:actor.top_liege
 						}
 					}
-					every_child = {
-						limit = {
-							is_adult = no
-							is_courtier_of = scope:recipient
-						}
-						scope:actor = {
-							add_courtier = prev
+					scope:actor = {
+						add_courtier = scope:secondary_actor
+						scope:secondary_actor = {
+							every_consort = {
+								limit = {
+									is_courtier_of = scope:recipient
+								}
+								scope:actor = {
+									add_courtier = prev
+								}
+							}
+							every_child = {
+								limit = {
+									is_adult = no
+									is_courtier_of = scope:recipient
+								}
+								scope:actor = {
+									add_courtier = prev
+								}
+							}
 						}
 					}
 				}
-			}
-		}
-		else = {
-			scope:secondary_actor = {
-				add_opinion = {
-					target = scope:recipient
-					modifier = annoyed_opinion
-					opinion = -10
-				}
-			}
-			scope:actor = {
-				#Unop Add a proper notification
-				send_interface_toast = {
-					type = event_toast_effect_neutral
-					title = unop_msg_demand_courtier_accepted_tt
-					right_icon = scope:recipient
-					left_icon = scope:secondary_actor
-					add_courtier = scope:secondary_actor
+				else = {
 					scope:secondary_actor = {
-						every_consort = {
-							limit = {
-								is_courtier_of = scope:recipient
-							}
-							scope:actor = {
-								add_courtier = prev
-							}
-						}
-						every_child = {
-							limit = {
-								is_adult = no
-								is_courtier_of = scope:recipient
-							}
-							scope:actor = {
-								add_courtier = prev
-							}
+						add_opinion = {
+							target = scope:recipient
+							modifier = annoyed_opinion
+							opinion = -10
 						}
 					}
-					add_opinion = {
-						target = scope:recipient
-						modifier = pleased_opinion
-						opinion = 20
+					scope:actor = {
+						add_courtier = scope:secondary_actor
+						scope:secondary_actor = {
+							every_consort = {
+								limit = {
+									is_courtier_of = scope:recipient
+								}
+								scope:actor = {
+									add_courtier = prev
+								}
+							}
+							every_child = {
+								limit = {
+									is_adult = no
+									is_courtier_of = scope:recipient
+								}
+								scope:actor = {
+									add_courtier = prev
+								}
+							}
+						}
+						add_opinion = {
+							target = scope:recipient
+							modifier = offer_courtier_opinion
+							opinion = 20
+						}
+						# Use Hook
+						if = {
+							limit = { scope:hook = yes }
+							use_hook = scope:recipient
+						}
 					}
-					# Use Hook
-					if = {
-						limit = { scope:hook = yes }
-						use_hook = scope:recipient
+					scope:recipient = {
+						add_opinion = {
+							target = scope:actor
+							modifier = upset_opinion
+							opinion = -15
+						}
 					}
-				}
-			}
-			scope:recipient = {
-				add_opinion = {
-					target = scope:actor
-					modifier = upset_opinion
-					opinion = -15
 				}
 			}
 		}

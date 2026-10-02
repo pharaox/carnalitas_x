@@ -431,7 +431,7 @@ carnx_slave_captain_court_position = {
 	# Is this position even visible for usage? Root scope is the liege character.
 	is_shown = {
 		NOT = { has_game_rule = carn_slavery_content_disabled }
-		is_landed_or_landless_administrative = yes
+		is_landed_or_landless_administrative_or_theocratic = yes
 		trigger_if = {
 			limit = {
 				is_ai = yes
@@ -443,7 +443,7 @@ carnx_slave_captain_court_position = {
 
 	# Is this a valid position for this character to employ? Root scope is the liege character.
 	valid_position = {
-		is_landed_or_landless_administrative = yes
+		is_landed_or_landless_administrative_or_theocratic = yes
 		carnx_slave_captain_court_position_enabled_trigger = yes
 	}
 
@@ -723,7 +723,7 @@ carnx_slave_eunuch_court_position = {
 	# Is this position even visible for usage? Root scope is the liege character.
 	is_shown = {
 		NOT = { has_game_rule = carn_slavery_content_disabled }
-		is_landed_or_landless_administrative = yes
+		is_landed_or_landless_administrative_or_theocratic = yes
 		trigger_if = {
 			limit = {
 				is_ai = yes
@@ -735,7 +735,7 @@ carnx_slave_eunuch_court_position = {
 
 	# Is this a valid position for this character to employ? Root scope is the liege character.
 	valid_position = {
-		is_landed_or_landless_administrative = yes
+		is_landed_or_landless_administrative_or_theocratic = yes
 		carnx_slave_eunuch_court_position_enabled_trigger = yes
 	}
 

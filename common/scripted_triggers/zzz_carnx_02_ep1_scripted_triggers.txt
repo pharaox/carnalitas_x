@@ -14,6 +14,8 @@
 		any_traveling_family_member = {
 			count = 1
 		}
+		# Prevent paiza merchants from becoming inspired
+		NOT = { has_variable = merchant_var }
 	}
 
 	#Unop Prevent paiza merchants from becoming inspired

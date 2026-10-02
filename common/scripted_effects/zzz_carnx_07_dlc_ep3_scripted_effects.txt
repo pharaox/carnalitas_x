@@ -78,15 +78,10 @@
 		# Ironically, we only want to use this effect if you're _not_ admin — it'll reset you nicely to the best government for you, but if you're admin, you should stay admin.
 		if = {
 			limit = {
-				NOR = {
-					government_has_flag = government_is_administrative
-					government_has_flag = government_is_nomadic
-					government_has_flag = government_is_steppe_admin
-					government_has_flag = government_is_wanua
-					government_has_flag = government_is_mandala
-					government_has_flag = government_is_celestial
-					government_has_flag = government_is_meritocratic
-					government_has_flag = government_is_japan_feudal
+				OR = {
+					government_has_flag = government_is_clan
+					government_has_flag = government_is_tribal_excluding_wanua
+					government_has_flag = government_is_feudal
 				}
 			}
 			admin_government_reset_effect = yes #this only contains Clan, Tribal, Nomadic and Feudal

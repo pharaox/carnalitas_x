@@ -24,8 +24,8 @@ carnx_slave.0010 = {
 
 	trigger = {
 		NOT = { has_game_rule = carn_slavery_content_disabled }
-		faith = {
-			has_doctrine = carn_doctrine_same_slavery_crime
+		rite = {
+			rite_has_doctrine = carn_doctrine_same_slavery_crime
 		}
 		any_relation = {
 			type = slave
@@ -65,7 +65,7 @@ carnx_slave.0010 = {
 			custom_tooltip = carnx_slave.0010.message
 
 			scope:slave = {
-				set_character_faith = root.faith
+				set_character_rite = root.rite
 			}
 		}
 

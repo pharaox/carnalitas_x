@@ -67,7 +67,7 @@ carnx_on_birth_child = {
 				}
 				set_father = scope:mother.liege
 				set_house = father.house
-				set_character_faith = father.faith
+				set_character_rite = father.rite
 				set_culture = father.culture
 				add_trait = child_of_concubine_female
 			}
@@ -75,7 +75,7 @@ carnx_on_birth_child = {
 				# Child of male slave concubine and his owner / liege
 				set_father = scope:real_father
 				set_house = mother.house
-				set_character_faith = mother.faith
+				set_character_rite = mother.rite
 				set_culture = mother.culture
 				add_trait = child_of_concubine_male
 			}

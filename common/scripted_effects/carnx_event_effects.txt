@@ -1,18 +1,18 @@
 ﻿carnx_get_template_character_effect = {
 	random_ruler = {
 		limit = {
-			is_landed_or_landless_administrative = yes
+			is_landed_or_landless_administrative_or_theocratic = yes
 			capital_province = { squared_distance = { target = $CHARACTER$.capital_province value <= carnx_squared_distance_1800 } }
 			carnx_is_valid_template_character_trigger = { CHARACTER = $CHARACTER$ }
 			carnx_is_valid_template_character_trigger = { CHARACTER = $CHARACTER2$ }
 		}
 		alternative_limit = {
-			is_landed_or_landless_administrative = yes
+			is_landed_or_landless_administrative_or_theocratic = yes
 			capital_province = { squared_distance = { target = $CHARACTER$.capital_province value <= carnx_squared_distance_2400 } }
 			carnx_is_valid_template_character_trigger = { CHARACTER = $CHARACTER$ }
 		}
 		alternative_limit = {
-			is_landed_or_landless_administrative = yes
+			is_landed_or_landless_administrative_or_theocratic = yes
 			carnx_is_valid_template_character_trigger = { CHARACTER = $CHARACTER$ }
 		}
 		weight = {
@@ -84,7 +84,7 @@ carnx_get_merchant_effect = {
 				NOR = {
 					has_variable = at_merchant_type
 					vls_is_saved_vanilla_merchant_trigger = { CHARACTER = $CHARACTER$ }
-					is_wrong_gender_in_faith_trigger = { FAITH = $LOCATION$.faith }
+					is_wrong_gender_in_rite_trigger = { RITE = $LOCATION$.rite }
 				}
 				stewardship >= low_skill_rating
 			}
@@ -286,6 +286,7 @@ carnx_create_diplomacy_character_effect = {
 		template = pool_repopulate_diplomacy
 		culture = $TEMPLATE_CHARACTER$.culture
 		faith = $TEMPLATE_CHARACTER$.faith
+		rite = $TEMPLATE_CHARACTER$.rite
 		diplomacy = { min_template_average_skill max_template_decent_skill }
 		random_traits_list = {
 			count = { 0 1 }
@@ -313,6 +314,7 @@ carnx_create_martial_character_effect = {
 		template = pool_repopulate_martial
 		culture = $TEMPLATE_CHARACTER$.culture
 		faith = $TEMPLATE_CHARACTER$.faith
+		rite = $TEMPLATE_CHARACTER$.rite
 		martial = { min_template_average_skill max_template_decent_skill }
 		random_traits_list = {
 			count = { 0 1 }
@@ -344,6 +346,7 @@ carnx_create_stewardship_character_effect = {
 		template = pool_repopulate_stewardship
 		culture = $TEMPLATE_CHARACTER$.culture
 		faith = $TEMPLATE_CHARACTER$.faith
+		rite = $TEMPLATE_CHARACTER$.rite
 		stewardship = { min_template_average_skill max_template_decent_skill }
 		random_traits_list = {
 			count = { 0 1 }
@@ -370,6 +373,7 @@ carnx_create_intrigue_character_effect = {
 		template = pool_repopulate_intrigue
 		culture = $TEMPLATE_CHARACTER$.culture
 		faith = $TEMPLATE_CHARACTER$.faith
+		rite = $TEMPLATE_CHARACTER$.rite
 		intrigue = { min_template_average_skill max_template_decent_skill }
 		random_traits_list = {
 			count = { 0 1 }
@@ -395,6 +399,7 @@ carnx_create_learning_character_effect = {
 		template = pool_repopulate_learning
 		culture = $TEMPLATE_CHARACTER$.culture
 		faith = $TEMPLATE_CHARACTER$.faith
+		rite = $TEMPLATE_CHARACTER$.rite
 		learning = { min_template_average_skill max_template_decent_skill }
 		random_traits_list = {
 			count = { 0 1 }
@@ -427,6 +432,7 @@ carnx_create_prowess_character_effect = {
 		template = pool_repopulate_prowess
 		culture = $TEMPLATE_CHARACTER$.culture
 		faith = $TEMPLATE_CHARACTER$.faith
+		rite = $TEMPLATE_CHARACTER$.rite
 		prowess = { min_template_average_skill max_template_decent_skill }
 		gender_female_chance = scope_value_target_soldier_female_chance
 		dynasty = none
@@ -442,6 +448,7 @@ carnx_create_eunuch_character_effect = {
 		template = carnx_eunuch_character_template
 		culture = $TEMPLATE_CHARACTER$.culture
 		faith = $TEMPLATE_CHARACTER$.faith
+		rite = $TEMPLATE_CHARACTER$.rite
 		dynasty = none
 		save_temporary_scope_as = new_character
 	}
@@ -455,6 +462,7 @@ carnx_create_concubine_character_effect = {
 		gender_female_chance = $CHARACTER$.marriage_gender_adjusted_female_chance
 		culture = $TEMPLATE_CHARACTER$.culture
 		faith = $TEMPLATE_CHARACTER$.faith
+		rite = $TEMPLATE_CHARACTER$.rite
 		dynasty = none
 		save_temporary_scope_as = new_character
 	}
@@ -469,6 +477,7 @@ carnx_create_captain_character_effect = {
 		gender_female_chance = scope_value_target_soldier_female_chance
 		culture = $TEMPLATE_CHARACTER$.culture
 		faith = $TEMPLATE_CHARACTER$.faith
+		rite = $TEMPLATE_CHARACTER$.rite
 		dynasty = none
 		save_temporary_scope_as = new_character
 	}
@@ -482,6 +491,7 @@ carnx_create_merchant_character_effect = {
 		dynasty = none
 		culture = $LOCATION$.culture
 		faith = $LOCATION$.faith
+		rite = $LOCATION$.rite
 		save_temporary_scope_as = new_character
 	}
 }

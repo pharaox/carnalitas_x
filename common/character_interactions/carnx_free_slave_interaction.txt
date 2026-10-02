@@ -29,8 +29,11 @@ carn_free_slave_interaction = {
 		}
 	}
 
-	is_shown = {
+	is_available = {
 		NOT = { has_game_rule = carn_slavery_content_disabled }
+	}
+
+	is_shown = {
 		scope:actor = {
 			has_relation_slave = scope:recipient
 		}
@@ -300,10 +303,6 @@ carn_free_slave_interaction = {
 		kingdom = 24
 		empire = 24
 		hegemony = 24
-	}
-
-	is_available = {
-		always = yes
 	}
 
 	ai_will_do = {

@@ -7,9 +7,10 @@
 		travel = yes
 	}
 	has_contagious_deadly_disease_trigger = no
-	NOR = {
-		has_character_flag = is_in_task_contract_event_chain
-		has_variable = gone_adventuring
+	has_none_of_variables = {
+		name = is_in_task_contract_event_chain
+		name = gone_adventuring
+		name = merchant_var
 	}
 
 	# CSR: Prevent slaves from being selected in events
@@ -26,9 +27,10 @@ is_available_travelling_adult = {
 		incapable = no
 	}
 	has_contagious_deadly_disease_trigger = no
-	NOR = {
-		has_character_flag = is_in_task_contract_event_chain
-		has_variable = gone_adventuring
+	has_none_of_variables = {
+		name = is_in_task_contract_event_chain
+		name = gone_adventuring
+		name = merchant_var
 	}
 
 	# CSR: Prevent slaves from being selected in events
@@ -46,9 +48,10 @@ is_available_travelling_ai_adult = {
 		incapable = no
 	}
 	has_contagious_deadly_disease_trigger = no
-	NOR = {
-		has_character_flag = is_in_task_contract_event_chain
-		has_variable = gone_adventuring
+	has_none_of_variables = {
+		name = is_in_task_contract_event_chain
+		name = gone_adventuring
+		name = merchant_var
 	}
 
 	# CSR: Prevent slaves from being selected in events

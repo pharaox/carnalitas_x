@@ -166,7 +166,7 @@ carnx_slave.0009 = {
 			}
 		}
 
-		stress_impact = {
+		stress_and_fulfillment_impact = {
 			compassionate = minor_stress_impact_loss
 			sadistic = minor_stress_impact_gain
 			callous = miniscule_stress_impact_gain
@@ -246,7 +246,7 @@ carnx_slave.0009 = {
 			carnx_slavery_doctrines_minor_stress_impact_effect = yes
 		}
 
-		stress_impact = {
+		stress_and_fulfillment_impact = {
 			compassionate = medium_stress_impact_gain
 			sadistic = medium_stress_impact_loss
 			callous = minor_stress_impact_loss

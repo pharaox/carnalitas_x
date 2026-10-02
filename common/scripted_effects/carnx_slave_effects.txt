@@ -288,7 +288,7 @@ carnx_enslave_effect = {
 					add_stress = minor_stress_loss
 				}
 				else = {
-					stress_impact = {
+					stress_and_fulfillment_impact = {
 						sadistic = medium_stress_impact_loss
 						callous = minor_stress_impact_loss
 						vengeful = major_stress_impact_loss
@@ -315,7 +315,7 @@ carnx_enslave_effect = {
 					add_stress = minor_stress_loss
 				}
 				else = {
-					stress_impact = {
+					stress_and_fulfillment_impact = {
 						sadistic = medium_stress_impact_loss
 						callous = minor_stress_impact_loss
 						vengeful = minor_stress_impact_loss
@@ -339,7 +339,7 @@ carnx_enslave_effect = {
 						}
 					}
 				}
-				stress_impact = {
+				stress_and_fulfillment_impact = {
 					base = miniscule_stress_impact_gain
 					compassionate = medium_stress_impact_gain
 					forgiving = minor_stress_impact_gain
@@ -359,7 +359,7 @@ carnx_enslave_effect = {
 						}
 					}
 				}
-				stress_impact = {
+				stress_and_fulfillment_impact = {
 					base = minor_stress_impact_gain
 					compassionate = major_stress_impact_gain
 					forgiving = medium_stress_impact_gain
@@ -378,7 +378,7 @@ carnx_enslave_effect = {
 						}
 					}
 				}
-				stress_impact = {
+				stress_and_fulfillment_impact = {
 					base = minor_stress_impact_gain
 					compassionate = major_stress_impact_gain
 					forgiving = medium_stress_impact_gain
@@ -388,7 +388,7 @@ carnx_enslave_effect = {
 				limit = {
 					has_execute_reason = scope:slave
 				}
-				stress_impact = {
+				stress_and_fulfillment_impact = {
 					sadistic = medium_stress_impact_loss
 					callous = minor_stress_impact_loss
 					compassionate = minor_stress_impact_gain
@@ -396,7 +396,7 @@ carnx_enslave_effect = {
 				}
 			}
 			else = {
-				stress_impact = {
+				stress_and_fulfillment_impact = {
 					sadistic = minor_stress_impact_loss
 					callous = miniscule_stress_impact_loss
 					compassionate = medium_stress_impact_gain
@@ -859,7 +859,7 @@ carnx_free_slave_actual_effect = {
 			}
 
 			# Set faith
-			set_character_faith = $EMANCIPATOR$.faith
+			set_character_rite = $EMANCIPATOR$.rite
 
 			# Add opinion to emancipator
 			add_opinion = {
@@ -981,7 +981,7 @@ carnx_free_slave_actual_effect = {
 			}
 
 			# Add / remove stress
-			stress_impact = {
+			stress_and_fulfillment_impact = {
 				compassionate = medium_stress_impact_loss
 				sadistic = medium_stress_impact_gain
 				callous = minor_stress_impact_gain
@@ -1136,7 +1136,7 @@ carnx_ransom_slave_actual_effect = {
 		}
 
 		# Add / remove stress
-		stress_impact = {
+		stress_and_fulfillment_impact = {
 			compassionate = minor_stress_impact_loss
 			sadistic = minor_stress_impact_gain
 			callous = miniscule_stress_impact_gain
@@ -1460,7 +1460,7 @@ carnx_gift_slave_effect = {
 carnx_apply_gift_slave_consequences_effect = {
 	scope:former_owner = {
 		# Add / remove stress
-		stress_impact = {
+		stress_and_fulfillment_impact = {
 			greedy = medium_stress_impact_gain
 			generous = medium_stress_impact_loss
 		}
@@ -1486,8 +1486,8 @@ carnx_apply_gift_slave_consequences_effect = {
 		# Gain piety from Communal Possessions tenet
 		if = {
 			limit = {
-				faith = {
-					has_doctrine_parameter = piety_from_gifts_active
+				rite = {
+					rite_has_parameter = piety_from_gifts_active
 				}
 			}
 			add_piety = minor_piety_gain
@@ -2054,28 +2054,28 @@ carnx_apply_slavery_consequences_effect = {
 }
 
 carnx_slavery_doctrines_stress_impact_effect = {
-	stress_impact = {
+	stress_and_fulfillment_impact = {
 		zealous = medium_stress_impact_gain # 40
 		cynical = minor_stress_impact_loss # -15
 	}
 }
 
 carnx_slavery_doctrines_minor_stress_impact_effect = {
-	stress_impact = {
+	stress_and_fulfillment_impact = {
 		zealous = minor_stress_impact_gain # 20
 		cynical = miniscule_stress_impact_loss # -5
 	}
 }
 
 carnx_slavery_doctrines_reverse_stress_impact_effect = {
-	stress_impact = {
+	stress_and_fulfillment_impact = {
 		zealous = medium_stress_impact_loss # -30
 		cynical = minor_stress_impact_gain # 20
 	}
 }
 
 carnx_slavery_doctrines_reverse_minor_stress_impact_effect = {
-	stress_impact = {
+	stress_and_fulfillment_impact = {
 		zealous = minor_stress_impact_loss # -15
 		cynical = miniscule_stress_impact_gain # 10
 	}

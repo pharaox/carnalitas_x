@@ -39,6 +39,13 @@
 		hegemony = 12
 	}
 
+	is_available = {
+		trigger_if = {
+			limit = { is_ai = yes }
+			is_adult = yes
+		}
+	}
+
 	is_shown = {
 		scope:actor.faith != scope:recipient.faith
 		scope:recipient = { is_courtier_of = scope:actor }
@@ -54,12 +61,19 @@
 
 	ai_accept = {
 		base = 0
+
+		celestial_hierarchy_acceptance_modifier = {
+			ACTOR = scope:actor
+			RECIPIENT = scope:recipient
+		}
+
 		# Increase base chance
 		modifier = {
 			add = 50
 			desc = EDUCATE_CHILD_ACTOR_IS_MY_LIEGE
 		}
 		religion_demand_conversion_default_modifier = yes
+		religion_demand_conversion_christian_situation_modifier = yes
 	}
 
 	auto_accept = {
@@ -101,20 +115,6 @@
 				}
 			}
 			scope:recipient = {
-				# trigger_event = char_interaction.0180
-				trigger_event = false_conversion.0900
-				save_scope_value_as = {
-					name = forcibly_converted
-					value = yes
-				}
-			}
-		}
-		if = {
-			limit = { scope:recipient = { is_imprisoned_by = scope:actor } }
-			scope:recipient = { release_from_prison = yes }
-			scope:recipient = {
-				# trigger_event = char_interaction.0180
-				trigger_event = false_conversion.0900
 				save_scope_value_as = {
 					name = forcibly_converted
 					value = yes
@@ -142,6 +142,11 @@
 				add_piety = medium_piety_gain
 			}
 		}
+
+		conversion_tenet_acts_of_the_apostles_effect = yes
+
+		# If you have the Mendicant Preaching personal tenet we give you SP
+		conversion_tenet_mendicant_preachers_effect = yes
 	}
 
 	on_decline = {
@@ -236,10 +241,6 @@
 	send_options_exclusive = no
 
 
-	ai_potential = {
-		is_adult = yes
-	}
-
 	ai_will_do = {
 		base = 100
 
@@ -270,10 +271,9 @@
 			factor = 0
 			scope:actor = {
 				ai_zeal < 100
-				ai_rationality > -50
-				faith = {
-					faith_hostility_level = {
-						target = scope:recipient.faith
+				rite = {
+					rite_hostility_level = {
+						target = scope:recipient.rite
 						value <= faith_fully_accepted_level
 					}
 				}
@@ -285,9 +285,9 @@
 			scope:actor = {
 				has_tolerant_faith_or_culture_trigger = yes
 				ai_zeal < 100
-				faith = {
-					faith_hostility_level = {
-						target = scope:recipient.faith
+				rite = {
+					rite_hostility_level = {
+						target = scope:recipient.rite
 						value <= faith_astray_level
 					}
 				}
@@ -302,11 +302,11 @@
 		modifier = { # Astray faiths require specific circumstances to demand conversion of
 			factor = 0
 			scope:actor = {
-				faith = { has_doctrine = doctrine_pluralism_fundamentalist }
+				rite = { rite_has_doctrine = doctrine_pluralism_fundamentalist }
 				ai_zeal < -10
-				faith = {
-					faith_hostility_level = {
-						target = scope:recipient.faith
+				rite = {
+					rite_hostility_level = {
+						target = scope:recipient.rite
 						value <= faith_astray_level
 					}
 				}
@@ -322,13 +322,13 @@
 			factor = 0
 			scope:actor = {
 				NOR = {
-					faith = { has_doctrine = doctrine_pluralism_fundamentalist }
+					rite = { rite_has_doctrine = doctrine_pluralism_fundamentalist }
 					has_tolerant_faith_or_culture_trigger = yes
 				}
 				ai_zeal < 25
-				faith = {
-					faith_hostility_level = {
-						target = scope:recipient.faith
+				rite = {
+					rite_hostility_level = {
+						target = scope:recipient.rite
 						value <= faith_astray_level
 					}
 				}
@@ -340,13 +340,13 @@
 			}
 		}
 
-		modifier = { # Rulers with State Faith won't try to convert people with faiths that are astray or better
+		modifier = { # Rulers with State Faith won't try to convert people with rites that are astray or better
 			factor = 0
 			scope:actor = {
 				government_allows = state_faith
-				primary_title.state_faith ?= {
-					faith_hostility_level = {
-						target = scope:recipient.faith
+				primary_title.state_rite ?= {
+					rite_hostility_level = {
+						target = scope:recipient.rite
 						value <= faith_astray_level
 					}
 				}

@@ -23,6 +23,47 @@
 			has_court_position = grand_mentor_court_position
 			has_court_position = fire_dragon_engineer_court_position
 			has_court_position = keeper_of_the_harem_court_position
+			has_court_position = court_artificer_court_position
+			has_court_position = cave_hermit_court_position
+			has_court_position = master_assassin_court_position
+			has_court_position = court_scholar_court_position
+			has_court_position = charioteer_court_position
+			has_court_position = bookmaker_court_position
+			has_court_position = court_brewmaster_court_position
+			has_court_position = khlon_glan_court_position
+			has_court_position = eparch_court_position
+
+			has_court_position = second_camp_officer
+			has_court_position = quartermaster_camp_officer
+			has_court_position = armorer_camp_officer
+			has_court_position = chief_forager_camp_officer
+			has_court_position = master_thief_camp_officer
+			has_court_position = head_porter_camp_officer
+			has_court_position = head_groom_camp_officer
+			has_court_position = huntperson_camp_officer
+			has_court_position = kennelperson_camp_officer
+			has_court_position = chief_engineer_camp_officer
+			has_court_position = witness_camp_officer
+			has_court_position = person_haggler_camp_officer
+			has_court_position = camp_cook_camp_officer
+			has_court_position = master_bard_camp_officer
+			has_court_position = stooge_camp_officer
+			has_court_position = master_of_arms_camp_officer
+			has_court_position = light_cavalry_captain_camp_officer
+			has_court_position = camelry_captain_camp_officer
+			has_court_position = elephantry_captain_camp_officer
+			has_court_position = heavy_cavalry_captain_camp_officer
+			has_court_position = horse_archer_captain_camp_officer
+			has_court_position = archer_captain_camp_officer
+			has_court_position = heavy_infantry_captain_camp_officer
+			has_court_position = light_infantry_captain_camp_officer
+			has_court_position = pike_captain_camp_officer
+			has_court_position = master_of_spoils_camp_officer
+			has_court_position = camp_priest_camp_officer
+			has_court_position = laureate_camp_officer
+
+			is_tax_collector = yes
+			# is_head_of_faith = yes
 			is_councillor = yes
 
 			#Unop: Missing entries for court positions:

@@ -145,7 +145,7 @@ carnx_slave.0005 = {
 		add_dread = carnx_free_slave_dread_loss
 		add_piety = carnx_slavery_piety_gain
 
-		stress_impact = {
+		stress_and_fulfillment_impact = {
 			zealous = medium_stress_impact_loss
 			cynical = medium_stress_impact_gain
 			compassionate = medium_stress_impact_loss
@@ -213,7 +213,7 @@ carnx_slave.0005 = {
 
 		remove_short_term_gold = medium_gold_value
 
-		stress_impact = {
+		stress_and_fulfillment_impact = {
 			generous = medium_stress_impact_loss
 			greedy = medium_stress_impact_gain
 		}
@@ -269,7 +269,7 @@ carnx_slave.0005 = {
 
 		add_piety = carnx_slavery_major_piety_loss
 
-		stress_impact = {
+		stress_and_fulfillment_impact = {
 			zealous = medium_stress_impact_gain
 			cynical = medium_stress_impact_loss
 		}

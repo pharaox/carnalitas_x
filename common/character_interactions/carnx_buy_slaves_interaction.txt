@@ -64,12 +64,13 @@ carnx_buy_slaves_interaction = {
 		}
 	}
 
-	is_shown = {
+	is_available = {
 		NOT = { has_game_rule = carn_slavery_content_disabled }
+		carnx_can_be_slave_owner_trigger = yes
+	}
+
+	is_shown = {
 		scope:actor = scope:recipient
-		scope:actor = {
-			carnx_can_be_slave_owner_trigger = yes
-		}
 	}
 
 	is_valid_showing_failures_only = {

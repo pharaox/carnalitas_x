@@ -279,7 +279,7 @@ carnx_slave.0003 = {
 			}
 		}
 
-		stress_impact = {
+		stress_and_fulfillment_impact = {
 			diligent = medium_stress_impact_loss
 			lazy = medium_stress_impact_gain
 		}
@@ -357,7 +357,7 @@ carnx_slave.0003 = {
 			}
 		}
 
-		stress_impact = {
+		stress_and_fulfillment_impact = {
 			diligent = medium_stress_impact_loss
 			lazy = medium_stress_impact_gain
 		}
@@ -423,7 +423,7 @@ carnx_slave.0003 = {
 			}
 		}
 
-		stress_impact = {
+		stress_and_fulfillment_impact = {
 			calm = minor_stress_impact_gain
 			generous = medium_stress_impact_gain
 			forgiving = major_stress_impact_gain
@@ -505,7 +505,7 @@ carnx_slave.0003 = {
 			}
 		}
 
-		stress_impact = {
+		stress_and_fulfillment_impact = {
 			calm = minor_stress_impact_loss
 			generous = medium_stress_impact_loss
 			forgiving = major_stress_impact_loss
@@ -566,7 +566,7 @@ carnx_slave.0003 = {
 		add_prestige = minor_prestige_loss
 		carnx_slave_0003_slave_escapes_effect = yes
 
-		stress_impact = {
+		stress_and_fulfillment_impact = {
 			diligent = medium_stress_impact_gain
 			lazy = medium_stress_impact_loss
 		}

@@ -492,7 +492,7 @@ carnx_decision_events.1010 = {
 		}
 
 		# Stress
-		stress_impact = {
+		stress_and_fulfillment_impact = {
 			compassionate = miniscule_stress_impact_loss
 			callous = miniscule_stress_impact_gain
 			sadistic = miniscule_stress_impact_gain

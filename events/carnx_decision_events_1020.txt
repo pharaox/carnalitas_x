@@ -630,7 +630,7 @@ carnx_decision_events.1020 = {
 						limit = { has_lifestyle = stewardship_lifestyle }
 						add_stewardship_lifestyle_xp = medium_lifestyle_xp
 					}
-					stress_impact = {
+					stress_and_fulfillment_impact = {
 						greedy = minor_stress_impact_loss
 						ambitious = minor_stress_impact_loss
 					}
@@ -663,7 +663,7 @@ carnx_decision_events.1020 = {
 					}
 
 					save_scope_value_as = { name = attempted_slave_haggle value = flag:failure }
-					stress_impact = {
+					stress_and_fulfillment_impact = {
 						base = minor_stress_impact_gain
 						greedy = minor_stress_impact_gain
 					}
@@ -709,7 +709,7 @@ carnx_decision_events.1020 = {
 		}
 
 		# Stress
-		stress_impact = {
+		stress_and_fulfillment_impact = {
 			compassionate = miniscule_stress_impact_loss
 			callous = miniscule_stress_impact_gain
 			sadistic = miniscule_stress_impact_gain

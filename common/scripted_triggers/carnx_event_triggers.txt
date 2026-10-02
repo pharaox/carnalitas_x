@@ -49,7 +49,7 @@
 		}
 	}
 	any_ruler = {
-		is_landed_or_landless_administrative = yes
+		is_landed_or_landless_administrative_or_theocratic = yes
 		carnx_is_valid_template_character_trigger = { CHARACTER = scope:county_holder }
 	}
 }

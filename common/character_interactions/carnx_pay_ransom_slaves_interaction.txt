@@ -53,8 +53,11 @@ carnx_pay_ransom_slaves_interaction = {
 		}
 	}
 
-	is_shown = {
+	is_available = {
 		NOT = { has_game_rule = carn_slavery_content_disabled }
+	}
+
+	is_shown = {
 		scope:actor = scope:recipient
 	}
 

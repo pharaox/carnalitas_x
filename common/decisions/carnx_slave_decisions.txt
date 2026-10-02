@@ -54,7 +54,7 @@
 
 	is_shown = {
 		NOT = { has_game_rule = carn_slavery_content_disabled }
-		is_landed_or_landless_administrative = yes
+		is_landed_or_landless_administrative_or_theocratic = yes
 		highest_held_title_tier >= tier_county
 		carnx_can_be_slave_owner_trigger = yes
 		exists = capital_province
@@ -77,7 +77,7 @@
 		custom_tooltip = {
 			text = carnx_no_valid_template_character
 			any_ruler = {
-				is_landed_or_landless_administrative = yes
+				is_landed_or_landless_administrative_or_theocratic = yes
 				carnx_is_valid_template_character_trigger = { CHARACTER = root }
 			}
 		}

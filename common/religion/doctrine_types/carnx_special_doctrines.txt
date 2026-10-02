@@ -1,10 +1,12 @@
 ﻿carnx_special_doctrine_slave_employment = {
+	doctrine_group_type = carnx_doctrine_slave_employment
+
 	piety_cost = {
 		value = faith_tenet_cost_mid
 
 		# Multiplier for keeping same tenet
 		if = {
-			limit = { has_doctrine = carnx_special_doctrine_slave_employment }
+			limit = { rite_has_doctrine = carnx_special_doctrine_slave_employment }
 			multiply = faith_unchanged_doctrine_cost_mult
 		}
 	}
@@ -19,18 +21,20 @@
 	}
 
 	parameters = {
-		carnx_slave_employment_active = yes
-		carnx_employed_slaves_more_loyal_active = yes
-		carnx_slave_soldiers_active = yes
+		carnx_slave_employment_active
+		carnx_employed_slaves_more_loyal_active
+		carnx_slave_soldiers_active
 	}
 }
 
 carnx_special_doctrine_placeholder = {
+	doctrine_group_type = carnx_doctrine_placeholder
+
 	is_shown = { always = no }
 	can_pick = { always = no }
 
 	parameters = {
-		allows_polygamy = yes
-		allows_concubinage = yes
+		allows_polygamy
+		allows_concubinage
 	}
 }

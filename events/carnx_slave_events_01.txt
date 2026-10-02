@@ -33,7 +33,7 @@ carnx_slave.0001 = {
 		NOT = { has_game_rule = carn_slavery_content_disabled }
 		carnx_slave_0001_valid_liege_trigger = yes
 		any_ruler = {
-			is_landed_or_landless_administrative = yes
+			is_landed_or_landless_administrative_or_theocratic = yes
 			carnx_is_valid_template_character_trigger = { CHARACTER = root }
 		}
 	}
@@ -306,7 +306,7 @@ carnx_slave.0001 = {
 		}
 
 		# Stress
-		stress_impact = {
+		stress_and_fulfillment_impact = {
 			compassionate = miniscule_stress_impact_loss
 			callous = miniscule_stress_impact_gain
 			sadistic = miniscule_stress_impact_gain

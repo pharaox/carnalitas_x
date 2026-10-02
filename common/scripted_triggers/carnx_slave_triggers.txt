@@ -386,7 +386,7 @@ carnx_gift_slave_recipient_trigger = {
 		# Realm Priests should be considered
 		AND = {
 			scope:actor = {
-				faith = { has_doctrine = doctrine_theocracy_temporal }
+				rite = { rite_has_doctrine = doctrine_theocracy_temporal }
 				exists = cp:councillor_court_chaplain
 				cp:councillor_court_chaplain = scope:recipient
 			}
@@ -415,18 +415,22 @@ carnx_gift_slave_recipient_trigger = {
 carnx_is_slavery_accepted_trigger = {
 	$CHARACTER$ = { save_temporary_scope_as = other }
 	OR = {
-		faith = {
-			has_doctrine = carn_doctrine_same_slavery_accepted
-			faith_hostility_level = {
-				target = scope:other.faith
-				value < faith_hostile_level
+		rite = {
+			rite_has_doctrine = carn_doctrine_same_slavery_accepted
+			faith = {
+				faith_hostility_level = {
+					target = scope:other.faith
+					value < faith_hostile_level
+				}
 			}
 		}
-		faith = {
-			has_doctrine = carn_doctrine_other_slavery_accepted
-			faith_hostility_level = {
-				target = scope:other.faith
-				value >= faith_hostile_level
+		rite = {
+			rite_has_doctrine = carn_doctrine_other_slavery_accepted
+			faith = {
+				faith_hostility_level = {
+					target = scope:other.faith
+					value >= faith_hostile_level
+				}
 			}
 		}
 	}
@@ -436,18 +440,22 @@ carnx_is_slavery_accepted_trigger = {
 carnx_is_slavery_shunned_trigger = {
 	$CHARACTER$ = { save_temporary_scope_as = other }
 	OR = {
-		faith = {
-			has_doctrine = carn_doctrine_same_slavery_shunned
-			faith_hostility_level = {
-				target = scope:other.faith
-				value < faith_hostile_level
+		rite = {
+			rite_has_doctrine = carn_doctrine_same_slavery_shunned
+			faith = {
+				faith_hostility_level = {
+					target = scope:other.faith
+					value < faith_hostile_level
+				}
 			}
 		}
-		faith = {
-			has_doctrine = carn_doctrine_other_slavery_shunned
-			faith_hostility_level = {
-				target = scope:other.faith
-				value >= faith_hostile_level
+		rite = {
+			rite_has_doctrine = carn_doctrine_other_slavery_shunned
+			faith = {
+				faith_hostility_level = {
+					target = scope:other.faith
+					value >= faith_hostile_level
+				}
 			}
 		}
 	}
@@ -457,55 +465,59 @@ carnx_is_slavery_shunned_trigger = {
 carnx_is_slavery_crime_trigger = {
 	$CHARACTER$ = { save_temporary_scope_as = other }
 	OR = {
-		faith = {
-			has_doctrine = carn_doctrine_same_slavery_crime
-			faith_hostility_level = {
-				target = scope:other.faith
-				value < faith_hostile_level
+		rite = {
+			rite_has_doctrine = carn_doctrine_same_slavery_crime
+			faith = {
+				faith_hostility_level = {
+					target = scope:other.faith
+					value < faith_hostile_level
+				}
 			}
 		}
-		faith = {
-			has_doctrine = carn_doctrine_other_slavery_crime
-			faith_hostility_level = {
-				target = scope:other.faith
-				value >= faith_hostile_level
+		rite = {
+			rite_has_doctrine = carn_doctrine_other_slavery_crime
+			faith = {
+				faith_hostility_level = {
+					target = scope:other.faith
+					value >= faith_hostile_level
+				}
 			}
 		}
 	}
 }
 
 carnx_is_slavery_always_accepted_trigger = {
-	faith = {
+	rite = {
 		AND = {
-			has_doctrine = carn_doctrine_same_slavery_accepted
-			has_doctrine = carn_doctrine_other_slavery_accepted
+			rite_has_doctrine = carn_doctrine_same_slavery_accepted
+			rite_has_doctrine = carn_doctrine_other_slavery_accepted
 		}
 	}
 }
 
 carnx_is_slavery_never_accepted_trigger = {
-	faith = {
+	rite = {
 		NOR = {
-			has_doctrine = carn_doctrine_same_slavery_accepted
-			has_doctrine = carn_doctrine_other_slavery_accepted
+			rite_has_doctrine = carn_doctrine_same_slavery_accepted
+			rite_has_doctrine = carn_doctrine_other_slavery_accepted
 		}
 	}
 }
 
 carnx_is_slavery_always_crime_trigger = {
-	faith = {
+	rite = {
 		AND = {
-			has_doctrine = carn_doctrine_same_slavery_crime
-			has_doctrine = carn_doctrine_other_slavery_crime
+			rite_has_doctrine = carn_doctrine_same_slavery_crime
+			rite_has_doctrine = carn_doctrine_other_slavery_crime
 		}
 	}
 }
 
 carnx_is_slavery_never_crime_trigger = {
-	faith = {
+	rite = {
 		NOR = {
-			has_doctrine = carn_doctrine_same_slavery_crime
-			has_doctrine = carn_doctrine_other_slavery_crime
+			rite_has_doctrine = carn_doctrine_same_slavery_crime
+			rite_has_doctrine = carn_doctrine_other_slavery_crime
 		}
 	}
 }
@@ -1110,7 +1122,7 @@ carnx_employs_slave_as_court_position_trigger = {
 
 carnx_is_slave_employment_enabled_trigger = {
 	OR = {
-		faith = { has_doctrine_parameter = carnx_slave_employment_active }
+		rite = { rite_has_parameter = carnx_slave_employment_active }
 		government_has_flag = government_is_clan
 		has_character_modifier = carnx_slavery_attitude_employer_modifier
 	}
@@ -1118,7 +1130,7 @@ carnx_is_slave_employment_enabled_trigger = {
 
 carnx_is_employed_slaves_more_loyal_enabled_trigger = {
 	OR = {
-		faith = { has_doctrine_parameter = carnx_employed_slaves_more_loyal_active }
+		rite = { rite_has_parameter = carnx_employed_slaves_more_loyal_active }
 		government_has_flag = government_is_clan
 		government_has_flag = government_is_administrative
 		government_has_flag = government_is_nomadic
@@ -1140,7 +1152,7 @@ carnx_is_slave_soldiers_enabled_trigger = {
 	OR = {
 		custom_tooltip = {
 			text = faith_allows_slave_soldiers_tt
-			faith = { has_doctrine_parameter = carnx_slave_soldiers_active }
+			rite = { rite_has_parameter = carnx_slave_soldiers_active }
 		}
 		government_has_flag = government_is_clan
 		government_has_flag = government_is_administrative
@@ -1170,13 +1182,13 @@ carnx_is_slave_eunuchs_enabled_trigger = {
 
 carnx_is_polygamous_faith_or_culture_trigger = {
 	OR = {
-		faith = { has_doctrine = doctrine_polygamy }
-		faith = { has_doctrine = doctrine_concubines }
+		rite = { rite_has_doctrine = doctrine_polygamy }
+		rite = { rite_has_doctrine = doctrine_concubines }
 		culture = { has_cultural_tradition = tradition_polygamous }
 		culture = { has_cultural_tradition = tradition_concubines }
 		# Faith and culture parameters from Extended Marriage Doctrines
-		faith = { has_doctrine_parameter = allows_polygamy }
-		faith = { has_doctrine_parameter = allows_concubinage }
+		rite = { rite_has_parameter = allows_polygamy }
+		rite = { rite_has_parameter = allows_concubinage }
 		culture = { has_cultural_parameter = allows_polygamy }
 		culture = { has_cultural_parameter = allows_concubinage }
 	}
@@ -1186,10 +1198,10 @@ carnx_is_unreformed_faith_with_adultery_accepted_trigger = {
 	faith = { has_doctrine = unreformed_faith_doctrine }
 	trigger_if = {
 		limit = { is_male = yes }
-		faith = { has_doctrine = doctrine_adultery_men_accepted }
+		rite = { rite_has_doctrine = doctrine_adultery_men_accepted }
 	}
 	trigger_else = {
-		faith = { has_doctrine = doctrine_adultery_women_accepted }
+		rite = { rite_has_doctrine = doctrine_adultery_women_accepted }
 	}
 }
 
@@ -1237,11 +1249,13 @@ carnx_slavery_attitude_employer_government_trigger = {
 
 carnx_slavery_attitude_slaver_faith_culture_trigger = {
 	has_game_rule = carnx_universe_historical
-	faith = {
-		religion = { is_in_family = rf_pagan }
+	rite = {
 		NOR = {
-			has_doctrine = tenet_pacifism
-			has_doctrine = tenet_dharmic_pacifism
+			rite_has_tenet = tenet_pacifism
+			rite_has_tenet = tenet_dharmic_pacifism
+		}
+		faith = {
+			religion = { is_in_family = rf_pagan }
 		}
 	}
 }
@@ -1273,12 +1287,14 @@ carnx_slavery_attitude_trader_faith_culture_trigger = {
 
 carnx_slavery_attitude_employer_faith_culture_trigger = {
 	has_game_rule = carnx_universe_historical
-	faith = {
-		OR = {
-			has_doctrine_parameter = carnx_slave_employment_active
-			religion = religion:islam_religion
-			religion = religion:judaism_religion
-			religion = religion:zoroastrianism_religion
+	OR = {
+		rite = { rite_has_parameter = carnx_slave_employment_active }
+		faith = {
+			OR = {
+				religion = religion:islam_religion
+				religion = religion:judaism_religion
+				religion = religion:zoroastrianism_religion
+			}
 		}
 	}
 }

@@ -1,10 +1,10 @@
 ﻿scope_value_target_faith_dominant_gender_female_chance = {
 	if = {
-		limit = { scope:value_target.faith = { has_doctrine = doctrine_gender_male_dominated } }
+		limit = { scope:value_target.rite = { rite_has_doctrine = doctrine_gender_male_dominated } }
 		add = 0
 	}
 	else_if = {
-		limit = { scope:value_target.faith = { has_doctrine = doctrine_gender_female_dominated } }
+		limit = { scope:value_target.rite = { rite_has_doctrine = doctrine_gender_female_dominated } }
 		add = 100
 	}
 	else = {
@@ -14,11 +14,11 @@
 
 scope_value_target_faith_dominant_gender_adjusted_female_chance = {
 	if = {
-		limit = { scope:value_target.faith = { has_doctrine = doctrine_gender_male_dominated } }
+		limit = { scope:value_target.rite = { rite_has_doctrine = doctrine_gender_male_dominated } }
 		add = 20
 	}
 	else_if = {
-		limit = { scope:value_target.faith = { has_doctrine = doctrine_gender_female_dominated } }
+		limit = { scope:value_target.rite = { rite_has_doctrine = doctrine_gender_female_dominated } }
 		add = 80
 	}
 	else = {
