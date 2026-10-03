@@ -144,35 +144,8 @@ carnx_slave_concubine_court_position = {
 		prestige =  {
 			value = minor_court_position_prestige_revoke_cost
 
-			if = { #Unop: Inner circle legacy allows revoking without cost
-				limit = { unop_court_position_inner_circle_revoke_trigger = { LIEGE = root  POS = carnx_slave_concubine } }
-				desc = inner_circle_salary_mod
-				multiply = 0
-			}
-			# Set to 0 via obligation hook
 			if = {
-				limit = {
-					court_position_obligation_hook_salary_trigger = {
-						POS = carnx_slave_concubine
-						LIEGE = root
-					}
-				}
-				multiply = 0
-			}
-			# Avoid AI prestige issues
-			if = {
-				limit = {
-					exists = this
-					is_ai = yes
-				}
-				multiply = 0
-			}
-			# Special case for events
-			if = {
-				limit = {
-					exists = this
-					has_character_flag = free_revoke_cost
-				}
+				limit = { free_court_position_revoke_trigger = { POS = carnx_slave_concubine } }
 				multiply = 0
 			}
 			#Lowering for LAAMPS, to match Camp Officer revoke cost
@@ -496,35 +469,8 @@ carnx_slave_captain_court_position = {
 		prestige =  {
 			value = minor_court_position_prestige_revoke_cost
 
-			if = { #Unop: Inner circle legacy allows revoking without cost
-				limit = { unop_court_position_inner_circle_revoke_trigger = { LIEGE = root  POS = carnx_slave_captain } }
-				desc = inner_circle_salary_mod
-				multiply = 0
-			}
-			# Set to 0 via obligation hook
 			if = {
-				limit = {
-					court_position_obligation_hook_salary_trigger = {
-						POS = carnx_slave_captain
-						LIEGE = root
-					}
-				}
-				multiply = 0
-			}
-			# Avoid AI prestige issues
-			if = {
-				limit = {
-					exists = this
-					is_ai = yes
-				}
-				multiply = 0
-			}
-			# Special case for events
-			if = {
-				limit = {
-					exists = this
-					has_character_flag = free_revoke_cost
-				}
+				limit = { free_court_position_revoke_trigger = { POS = carnx_slave_captain } }
 				multiply = 0
 			}
 			#Lowering for LAAMPS, to match Camp Officer revoke cost
@@ -781,35 +727,8 @@ carnx_slave_eunuch_court_position = {
 		prestige =  {
 			value = minor_court_position_prestige_revoke_cost
 
-			if = { #Unop: Inner circle legacy allows revoking without cost
-				limit = { unop_court_position_inner_circle_revoke_trigger = { LIEGE = root  POS = carnx_slave_eunuch } }
-				desc = inner_circle_salary_mod
-				multiply = 0
-			}
-			# Set to 0 via obligation hook
 			if = {
-				limit = {
-					court_position_obligation_hook_salary_trigger = {
-						POS = carnx_slave_eunuch
-						LIEGE = root
-					}
-				}
-				multiply = 0
-			}
-			# Avoid AI prestige issues
-			if = {
-				limit = {
-					exists = this
-					is_ai = yes
-				}
-				multiply = 0
-			}
-			# Special case for events
-			if = {
-				limit = {
-					exists = this
-					has_character_flag = free_revoke_cost
-				}
+				limit = { free_court_position_revoke_trigger = { POS = carnx_slave_eunuch } }
 				multiply = 0
 			}
 			#Lowering for LAAMPS, to match Camp Officer revoke cost
