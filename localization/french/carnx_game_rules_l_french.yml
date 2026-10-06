@@ -1,5 +1,5 @@
 ﻿l_french:
- game_rule_category_carnx_carnalitas_x: "Carnalitas Slavery Reimagined"
+ game_rule_category_carnx_carnalitas_x: "Carnalitas Esclavage Revisité"
 
  rule_carnx_improved_vls_decision: "#X CSR:#! Améliorations de visite de domaine"
  setting_carnx_improved_vls_decision_disabled: "#high Désactivé#!"
@@ -15,7 +15,7 @@
  setting_carnx_slave_market_holdings_all_20: "#high Tous sauf temples, Dév. min. 20#!"
  setting_carnx_slave_market_holdings_all_20_desc: "Les marchés aux esclaves sont disponibles dans les domaines non-temple avec au moins 20 de développement ou certains bâtiments."
 
- rule_carnx_market_event_frequency_player: "#X CSR:#! Buy Foreign Slaves Event Frequency for Players"
+ rule_carnx_market_event_frequency_player: "#X CSR:#! Fréquence de l’événement Acheter des esclaves étrangers pour les joueurs"
  setting_carnx_market_event_frequency_player_never: "Jamais"
  setting_carnx_market_event_frequency_player_never_desc: "Les événements ne se déclenchent jamais, mais peuvent être déclenchés via une décision à la place."
 
