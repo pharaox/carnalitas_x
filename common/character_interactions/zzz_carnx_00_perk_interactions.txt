@@ -91,23 +91,9 @@
 					use_hook = scope:recipient
 				}
 				scope:recipient = {
-					if = {
-						pay_short_term_gold = {
-							target = scope:puppet_or_actor
-							gold = golden_obligation_value
-						}
-						limit = {
-							gold > golden_obligation_value
-						}
-					}
-					else = {
-						pay_short_term_gold = {
-							target = scope:puppet_or_actor
-							gold = {
-								value = scope:recipient.gold
-								floor = yes
-							}
-						}
+					pay_short_term_gold = {
+						target = scope:puppet_or_actor
+						gold = golden_obligation_value_check_current_situation
 					}
 				}
 			}
