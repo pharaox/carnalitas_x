@@ -148,6 +148,7 @@ court_astrologer_court_position = { ### MPO
 			}
 		}
 		
+		employer ?= { save_temporary_scope_as = councillor_liege } #Unop Kurultai values need scope:councillor_liege for the liege bonuses
 		add = kurultai_task_value
 		add = court_position_aptitude_low_penalty_value
 		add = general_aptitude_bonus
@@ -245,6 +246,11 @@ court_astrologer_court_position = { ### MPO
 	}
 	on_court_position_invalidated = {
 		basic_invalidated_court_position_effect = yes
+	}
+	on_court_position_vacated = { #Unop: Missing block that is needed for automation to work properly
+		court_position_vacated_event_effect = {
+			COURT_POSITION_TYPE = court_astrologer_court_position
+		}
 	}
 
 	# Scripted value to determine whether an AI will hire/fire a position or not. Hires over 0, fires under -50. Look in _court_positions.info for more extensive documentation!
@@ -577,6 +583,11 @@ boyan_court_position = { ### MPO
 	on_court_position_invalidated = {
 		carnx_boyan_title_invalidated_effect = yes
 	}
+	on_court_position_vacated = { #Unop: Missing block that is needed for automation to work properly
+		court_position_vacated_event_effect = {
+			COURT_POSITION_TYPE = boyan_court_position
+		}
+	}
 
 	# Scripted value to determine whether an AI will hire/fire a position or not. Hires over 0, fires under -50. Look in _court_positions.info for more extensive documentation!
 	ai_position_score = {
@@ -820,6 +831,11 @@ siege_engineer_court_position = { ### MPO
 	}
 	on_court_position_invalidated = {
 		carnx_siege_engineer_title_invalidated_effect = yes
+	}
+	on_court_position_vacated = { #Unop: Missing block that is needed for automation to work properly
+		court_position_vacated_event_effect = {
+			COURT_POSITION_TYPE = siege_engineer_court_position
+		}
 	}
 
 	# Scripted value to determine whether an AI will hire/fire a position or not. Hires over 0, fires under -50. Look in _court_positions.info for more extensive documentation!
@@ -1077,6 +1093,11 @@ yurtchi_court_position = { ### MPO
 	}
 	on_court_position_invalidated = {
 		carnx_yurtchi_title_invalidated_effect = yes
+	}
+	on_court_position_vacated = { #Unop: Missing block that is needed for automation to work properly
+		court_position_vacated_event_effect = {
+			COURT_POSITION_TYPE = yurtchi_court_position
+		}
 	}
 
 	# Scripted value to determine whether an AI will hire/fire a position or not. Hires over 0, fires under -50. Look in _court_positions.info for more extensive documentation!
@@ -1422,6 +1443,11 @@ cherbi_court_position = { ### MPO
 	on_court_position_invalidated = {
 		carnx_cherbi_title_invalidated_effect = yes
 	}
+	on_court_position_vacated = { #Unop: Missing block that is needed for automation to work properly
+		court_position_vacated_event_effect = {
+			COURT_POSITION_TYPE = cherbi_court_position
+		}
+	}
 
 	# Scripted value to determine whether an AI will hire/fire a position or not. Hires over 0, fires under -50. Look in _court_positions.info for more extensive documentation!
 	ai_position_score = {
@@ -1725,6 +1751,11 @@ yeke_jarquchi_court_position = { ### MPO
 	on_court_position_invalidated = {
 		basic_invalidated_court_position_effect = yes
 	}
+	on_court_position_vacated = { #Unop: Missing block that is needed for automation to work properly
+		court_position_vacated_event_effect = {
+			COURT_POSITION_TYPE = yeke_jarquchi_court_position
+		}
+	}
 
 	# Scripted value to determine whether an AI will hire/fire a position or not. Hires over 0, fires under -50. Look in _court_positions.info for more extensive documentation!
 	ai_position_score = {
@@ -1980,6 +2011,11 @@ foreign_emissary_court_position = { ### MPO
 	}
 	on_court_position_invalidated = {
 		carnx_foreign_emissary_title_invalidated_effect = yes
+	}
+	on_court_position_vacated = { #Unop: Missing block that is needed for automation to work properly
+		court_position_vacated_event_effect = {
+			COURT_POSITION_TYPE = foreign_emissary_court_position
+		}
 	}
 
 	# Scripted value to determine whether an AI will hire/fire a position or not. Hires over 0, fires under -50. Look in _court_positions.info for more extensive documentation!
@@ -2272,6 +2308,11 @@ keeper_of_the_horses_court_position = { ### MPO
 	}
 	on_court_position_invalidated = {
 		carnx_keeper_of_the_horses_title_invalidated_effect = yes
+	}
+	on_court_position_vacated = { #Unop: Missing block that is needed for automation to work properly
+		court_position_vacated_event_effect = {
+			COURT_POSITION_TYPE = keeper_of_the_horses_court_position
+		}
 	}
 
 	# Scripted value to determine whether an AI will hire/fire a position or not. Hires over 0, fires under -50. Look in _court_positions.info for more extensive documentation!
