@@ -17,12 +17,12 @@ carnx_slavery_attitude_liberator_modifier = {
 
 carnx_slavery_attitude_trader_modifier = {
 	icon = stewardship_positive
-	development_growth_factor = 0.05
+	prosperity_growth_factor = 0.05
 	stress_gain_mult = 0.1
 }
 
 carnx_slavery_attitude_employer_modifier = {
 	icon = stewardship_positive
-	tax_mult = 0.05
-	county_opinion_add = -5
+	all_tax_mult = 0.05
+	popular_opinion_add = -5
 }

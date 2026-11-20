@@ -56,10 +56,14 @@ imprison_tyranny_effect = {
 			exists = scope:imprisoner
 			NOT = { exists = scope:actor }
 		}
-		scope:imprisoner = {
-			save_scope_as = actor
-			save_scope_as = puppet_or_actor
+		scope:imprisoner = { save_scope_as = actor }
+	}
+	if = {
+		limit = {
+			exists = scope:imprisoner
+			NOT = { exists = scope:puppet_or_actor }
 		}
+		scope:imprisoner = { save_scope_as = puppet_or_actor }
 	}
 	if = {
 		limit = {
@@ -100,7 +104,13 @@ imprison_tyranny_effect = {
 			has_imprisonment_reason = scope:recipient
 		}
 		custom_tooltip = IS_ALLOWED_TO_IMPRISON_DESC
-
+		#HRE should not imprison North Italians
+		if = {
+			limit = {
+				gg_hre_causes_additional_tyranny_trigger = { TARGET = scope:imprisonment_target }
+			}
+			add_tyranny = imprisonment_tyranny_gain
+		}
 	}
 	# CSR: Allowed to imprison your own slaves without tyranny
 	else_if = {
@@ -118,10 +128,26 @@ imprison_tyranny_effect = {
 			}
 		}
 		custom_tooltip = IS_ALLOWED_TO_IMPRISON_NO_RECIPIENT_DESC
+		#HRE should not imprison North Italians
+		if = {
+			limit = {
+				gg_hre_causes_additional_tyranny_trigger = { TARGET = scope:imprisonment_target }
+			}
+			add_tyranny = imprisonment_tyranny_gain
+		}
 	}
 
 	else = {
-		add_tyranny = imprisonment_tyranny_gain
+		add_tyranny = {
+			value = imprisonment_tyranny_gain
+			#HRE should not revoke titles from North Italians
+			if = {
+				limit = {
+					gg_hre_causes_additional_tyranny_trigger = { TARGET = scope:imprisonment_target }
+				}
+				multiply = 2
+			}
+		}
 		if = {
 			limit = {
 				scope:recipient = {

@@ -3,9 +3,7 @@
 		save_scope_as = the_adventurer
 		# If we weren't an adventurer before, make us one.
 		if = {
-			limit = {
-				NOT = { has_trait = adventurer }
-			}
+			limit = { NOT = { has_trait = adventurer } }
 			add_trait = adventurer
 		}
 		hidden_effect = {
@@ -17,9 +15,10 @@
 				add_trait = adventurer_follower
 			}
 		}
+		# Liquidate camp
 		custom_tooltip = {
 			text = destroy_laamp_effect.tt.domicile_liquidated
-			laamp_clear_domicile_buildings_effect = yes
+			laamp_clear_domicile_buildings_liquidator_effect = yes
 		}
 		# Contacts have opinions™ about you.
 		## Be they good.

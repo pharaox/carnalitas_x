@@ -52,5 +52,5 @@
   # Slave Eunuch Tasks
  carnx_slave_eunuch_court_position_task_manage_palace_affairs:0 "掌管宫廷事务"
  carnx_slave_eunuch_court_position_task_manage_palace_affairs_desc:0 "$carnx_slave_eunuch_court_position$ 将全面负责宫廷日常运转，确保一切高效有序、无可挑剔。"
- carnx_slave_eunuch_manage_palace_affairs.tt:0 "$carnx_slave_eunuch_court_position$ 将显著提升首都 [county|E] 的 [development_growth|E]."
+ carnx_slave_eunuch_manage_palace_affairs.tt:0 "$carnx_slave_eunuch_court_position$ 将显著提升首都 [county|E] 的 [prosperity_growth|E]."
  

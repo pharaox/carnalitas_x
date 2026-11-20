@@ -66,6 +66,15 @@ court_physician_court_position = {
 	}
 
 	court_position_asset = {
+		trigger = {
+			government_has_flag = government_is_merchant
+		}
+		animation = physician
+		background = "gfx/interface/illustrations/event_scenes/study_physician.dds"
+		localization_key = court_physician_merchant
+	}
+
+	court_position_asset = {
 		trigger = {		
 			root ?= { #Unop: We want to check the culture of the court_owner (most likely the player) not the culture of the employee
 				is_independent_ruler = yes
@@ -146,74 +155,77 @@ court_physician_court_position = {
 			max = 50
 			desc = court_position_skill_learning
 		}
-		# Physician
 		if = {
-			limit = { has_trait = lifestyle_physician }
+			limit = { number_of_lifestyle_traits >= 1 }
+			# Physician
 			if = {
-				limit = {
-					has_trait_xp = { trait = lifestyle_physician value >= 100 }
+				limit = { has_trait = lifestyle_physician }
+				if = {
+					limit = {
+						has_trait_xp = { trait = lifestyle_physician value >= 100 }
+					}
+					add = {
+						value = 45
+						desc = court_position_physician_3_trait
+					}
 				}
-				add = {
-					value = 45
-					desc = court_position_physician_3_trait
+				else_if = {
+					limit = {
+						has_trait_xp = { trait = lifestyle_physician value >= 50 }
+					}
+					add = {
+						value = 30
+						desc = court_position_physician_2_trait
+					}
+				}
+				else = {
+					add = {
+						value = 15
+						desc = court_position_physician_1_trait
+					}
 				}
 			}
-			else_if = {
-				limit = {
-					has_trait_xp = { trait = lifestyle_physician value >= 50 }
+			# Mystic
+			if = {
+				limit = { has_trait = lifestyle_mystic }
+				if = {
+					limit = {
+						has_trait_xp = {
+							trait = lifestyle_mystic
+							value >= 100
+						}
+					}
+					add = {
+						value = 20
+						desc = court_position_mystic_3_trait
+					}
 				}
-				add = {
-					value = 30
-					desc = court_position_physician_2_trait
+				else_if = {
+					limit = {
+						has_trait_xp = {
+							trait = lifestyle_mystic
+							value >= 50
+						}
+					}
+					add = {
+						value = 10
+						desc = court_position_mystic_2_trait
+					}
+				}
+				else = {
+					add = {
+						value = 5
+						desc = court_position_mystic_1_trait
+					}
 				}
 			}
-			else = {
+			# Herbalist
+			if = {
+				limit = { has_trait = lifestyle_herbalist }
 				add = {
 					value = 15
-					desc = court_position_physician_1_trait
+					desc = court_position_herbalist_trait
 				}
-			}
-		}
-		# Mystic
-		if = {
-			limit = { has_trait = lifestyle_mystic }
-			if = {
-				limit = {
-					has_trait_xp = {
-						trait = lifestyle_mystic
-						value >= 100
-					}
-				}
-				add = {
-					value = 20
-					desc = court_position_mystic_3_trait
-				}
-			}
-			else_if = {
-				limit = {
-					has_trait_xp = {
-						trait = lifestyle_mystic
-						value >= 50
-					}
-				}
-				add = {
-					value = 10
-					desc = court_position_mystic_2_trait
-				}
-			}
-			else = {
-				add = {
-					value = 5
-					desc = court_position_mystic_1_trait
-				}
-			}
-		}
-		# Herbalist
-		if = {
-			limit = { has_trait = lifestyle_herbalist }
-			add = {
-				value = 15
-				desc = court_position_herbalist_trait
 			}
 		}
 		# Education
@@ -264,74 +276,151 @@ court_physician_court_position = {
 			limit = {
 				exists = employer.domicile
 			}
-			# Camp has different way
+			employer.domicile = {
+				# Camp has different way
+				if = {
+					limit = {
+						is_domicile_type = camp
+						has_domicile_parameter = camp_improved_court_physician_aptitude
+					}
+					add = {
+						value = camp_improved_court_physician_aptitude_value
+						desc = camp_improved_court_physician_aptitude_desc
+					}
+				}
+				else_if = {
+					limit = { is_domicile_type = merchant_company }
+					if = {
+						limit = { has_domicile_parameter = company_increase_physician_aptitude_05 }
+						add = {
+							value = company_infirmary_physician_aptitude_05_value
+							desc = domicile_building_parameter_company_increase_physician_aptitude_05
+						}
+					}
+					else_if = {
+						limit = { has_domicile_parameter = company_increase_physician_aptitude_04 }
+						add = {
+							value = company_infirmary_physician_aptitude_04_value
+							desc = domicile_building_parameter_company_increase_physician_aptitude_04
+						}
+					}
+					else_if = {
+						limit = { has_domicile_parameter = company_increase_physician_aptitude_03 }
+						add = {
+							value = company_infirmary_physician_aptitude_03_value
+							desc = domicile_building_parameter_company_increase_physician_aptitude_03
+						}
+					}
+					else_if = {
+						limit = { has_domicile_parameter = company_increase_physician_aptitude_02 }
+						add = {
+							value = company_infirmary_physician_aptitude_02_value
+							desc = domicile_building_parameter_company_increase_physician_aptitude_02
+						}
+					}
+					else_if = {
+						limit = { has_domicile_parameter = company_increase_physician_aptitude_01 }
+						add = {
+							value = company_infirmary_physician_aptitude_01_value
+							desc = domicile_building_parameter_company_increase_physician_aptitude_01
+						}
+					}
+				}
+			}
+			# All others are level-scaled; camps and merchant companies have no buildings with these parameters
 			if = {
 				limit = {
-					employer.domicile ?= { has_domicile_parameter = camp_improved_court_physician_aptitude }
+					liege.domicile ?= {
+						NOR = {
+							is_domicile_type = camp
+							is_domicile_type = merchant_company
+						}
+					}
 				}
-				add = {
-					value = camp_improved_court_physician_aptitude_value
-					desc = camp_improved_court_physician_aptitude_desc
-				}
-			}
-			# All others are level-scaled
-			if = {
-				limit = {
-					liege.domicile ?= { has_domicile_parameter = estate_increase_physician_aptitude_1 }
-				}
-				add = {
-					value = estate_increase_physician_aptitude_1_value
-					desc = estate_increase_physician_aptitude_desc
-				}
-			}
-			else_if = {
-				limit = {
-					liege.domicile ?= { has_domicile_parameter = estate_increase_physician_aptitude_2 }
-				}
-				add = {
-					value = estate_increase_physician_aptitude_2_value
-					desc = estate_increase_physician_aptitude_desc
-				}
-			}
-			else_if = {
-				limit = {
-					liege.domicile ?= { has_domicile_parameter = estate_increase_physician_aptitude_3 }
-				}
-				add = {
-					value = estate_increase_physician_aptitude_3_value
-					desc = estate_increase_physician_aptitude_desc
-				}
-			}
-			else_if = {
-				limit = {
-					liege.domicile ?= { has_domicile_parameter = estate_increase_physician_aptitude_4 }
-				}
-				add = {
-					value = estate_increase_physician_aptitude_4_value
-					desc = estate_increase_physician_aptitude_desc
-				}
-			}
-			else_if = {
-				limit = {
-					liege.domicile ?= { has_domicile_parameter = estate_increase_physician_aptitude_5 }
-				}
-				add = {
-					value = estate_increase_physician_aptitude_5_value
-					desc = estate_increase_physician_aptitude_desc
-				}
-			}
-			else_if = {
-				limit = {
-					liege.domicile ?= { has_domicile_parameter = estate_increase_physician_aptitude_6 }
-				}
-				add = {
-					value = estate_increase_physician_aptitude_6_value
-					desc = estate_increase_physician_aptitude_desc
+				liege.domicile = {
+					if = {
+						limit = { has_domicile_parameter = estate_increase_physician_aptitude_1 }
+						add = {
+							value = estate_increase_physician_aptitude_1_value
+							desc = estate_increase_physician_aptitude_desc
+						}
+					}
+					else_if = {
+						limit = { has_domicile_parameter = estate_increase_physician_aptitude_2 }
+						add = {
+							value = estate_increase_physician_aptitude_2_value
+							desc = estate_increase_physician_aptitude_desc
+						}
+					}
+					else_if = {
+						limit = { has_domicile_parameter = estate_increase_physician_aptitude_3 }
+						add = {
+							value = estate_increase_physician_aptitude_3_value
+							desc = estate_increase_physician_aptitude_desc
+						}
+					}
+					else_if = {
+						limit = { has_domicile_parameter = estate_increase_physician_aptitude_4 }
+						add = {
+							value = estate_increase_physician_aptitude_4_value
+							desc = estate_increase_physician_aptitude_desc
+						}
+					}
+					else_if = {
+						limit = { has_domicile_parameter = estate_increase_physician_aptitude_5 }
+						add = {
+							value = estate_increase_physician_aptitude_5_value
+							desc = estate_increase_physician_aptitude_desc
+						}
+					}
+					else_if = {
+						limit = { has_domicile_parameter = estate_increase_physician_aptitude_6 }
+						add = {
+							value = estate_increase_physician_aptitude_6_value
+							desc = estate_increase_physician_aptitude_desc
+						}
+					}
 				}
 			}
 		}
 
 		# general values
+		# Household district
+		if = {
+			limit = {
+				liege ?= {
+					capital_province ?= { has_building_or_higher = royal_palace_library_1 }
+				}
+			}
+			add = {
+				value = 0
+				liege ?= {
+					capital_province = {
+						if = {
+							limit = { has_building_or_higher = royal_palace_library_5 }
+							add = household_aptitude_tier_5
+						}
+						else_if = {
+							limit = { has_building_or_higher = royal_palace_library_4 }
+							add = household_aptitude_tier_4
+						}
+						else_if = {
+							limit = { has_building_or_higher = royal_palace_library_3 }
+							add = household_aptitude_tier_3
+						}
+						else_if = {
+							limit = { has_building_or_higher = royal_palace_library_2 }
+							add = household_aptitude_tier_2
+						}
+						else = {
+							add = household_aptitude_tier_1
+						}
+					}
+				}
+				desc = household_palace_library_aptitude_desc
+			}
+		}
+
 		# Bonus from court.8311
 		if = {
 			limit = { var:bonus_aptitude_role ?= flag:court_physician }
@@ -349,9 +438,10 @@ court_physician_court_position = {
 		trigger_if = {
 			limit = {
 				is_ai = yes
-				highest_held_title_tier <= tier_barony
 			}
-			always = no
+			NOT = {
+				highest_held_title_tier = tier_barony
+			}
 		}
 	}
 
@@ -470,17 +560,21 @@ court_physician_court_position = {
 
 	on_court_position_received = {
 		carnx_court_physician_title_accepted_effect = yes
+		scope:liege = { update_merchant_learn_on_the_job_effect = yes }
 	}
 	on_court_position_revoked = {
 		carnx_court_physician_title_revoked_effect = yes
+		scope:liege = { update_merchant_learn_on_the_job_effect = yes }
 	}
 	on_court_position_invalidated = {
 		carnx_court_physician_title_invalidated_effect = yes
+		scope:liege = { update_merchant_learn_on_the_job_effect = yes }
 	}
 	on_court_position_vacated = {
 		carnx_court_position_vacated_event_effect = {
 			COURT_POSITION_TYPE = court_physician_court_position
 		}
+		scope:liege = { update_merchant_learn_on_the_job_effect = yes }
 	}
 
 	search_for_courtier = {
@@ -510,31 +604,40 @@ court_physician_court_position = {
 			limit = {
 				scope:liege = {
 					any_held_county = {
-						has_province_with_epidemic = { intensity = minor }
+						has_province_with_epidemic = { intensity = any }
 					}
 				}
 			}
-			add = 50
-		}
-		if = {
-			limit = {
-				scope:liege = {
-					any_held_county = {
-						has_province_with_epidemic = { intensity = major }
+			if = {
+				limit = {
+					scope:liege = {
+						any_held_county = {
+							has_province_with_epidemic = { intensity = minor }
+						}
 					}
 				}
+				add = 50
 			}
-			add = 100
-		}
-		if = {
-			limit = {
-				scope:liege = {
-					any_held_county = {
-						has_province_with_epidemic = { intensity = apocalyptic }
+			if = {
+				limit = {
+					scope:liege = {
+						any_held_county = {
+							has_province_with_epidemic = { intensity = major }
+						}
 					}
 				}
+				add = 100
 			}
-			add = 150
+			if = {
+				limit = {
+					scope:liege = {
+						any_held_county = {
+							has_province_with_epidemic = { intensity = apocalyptic }
+						}
+					}
+				}
+				add = 150
+			}
 		}
 	}
 	ai_candidate_score = {
@@ -578,6 +681,15 @@ travel_leader_court_position = {
 	max_available_positions = 1
 	is_travel_related = yes
 	skill = stewardship
+
+	court_position_asset = {
+		trigger = {
+			government_has_flag = government_is_merchant
+		}
+		animation = holding_staff
+		background = "gfx/interface/illustrations/event_scenes/ep2_travel_mountains.dds"
+		localization_key = travel_leader_merchant
+	}
 
 	court_position_asset = {
 		trigger = {		
@@ -710,66 +822,69 @@ travel_leader_court_position = {
 			}
 		}
 		if = {
-			limit = {
-				has_trait = flexible_leader
+			limit = { number_of_commander_traits >= 1 }
+			if = {
+				limit = {
+					has_trait = flexible_leader
+				}
+				add = {
+					value = 10
+					desc = court_position_flexible_leader_trait
+				}
 			}
-			add = {
-				value = 10
-				desc = court_position_flexible_leader_trait
+			if = {
+				limit = {
+					has_trait = forest_fighter
+				}
+				add = {
+					value = 10
+					desc = court_position_forest_fighter_trait
+				}
 			}
-		}
-		if = {
-			limit = {
-				has_trait = forest_fighter
+			if = {
+				limit = {
+					has_trait = open_terrain_expert
+				}
+				add = {
+					value = 10
+					desc = court_position_open_terrain_expert_trait
+				}
 			}
-			add = {
-				value = 10
-				desc = court_position_forest_fighter_trait
+			if = {
+				limit = {
+					has_trait = rough_terrain_expert
+				}
+				add = {
+					value = 10
+					desc = court_position_rough_terrain_expert_trait
+				}
 			}
-		}
-		if = {
-			limit = {
-				has_trait = open_terrain_expert
+			if = {
+				limit = {
+					has_trait = desert_warrior
+				}
+				add = {
+					value = 10
+					desc = court_position_desert_warrior_trait
+				}
 			}
-			add = {
-				value = 10
-				desc = court_position_open_terrain_expert_trait
+			if = {
+				limit = {
+					has_trait = jungle_stalker
+				}
+				add = {
+					value = 10
+					desc = court_position_jungle_stalker_trait
+				}
 			}
-		}
-		if = {
-			limit = {
-				has_trait = rough_terrain_expert
-			}
-			add = {
-				value = 10
-				desc = court_position_rough_terrain_expert_trait
-			}
-		}
-		if = {
-			limit = {
-				has_trait = desert_warrior
-			}
-			add = {
-				value = 10
-				desc = court_position_desert_warrior_trait
-			}
-		}
-		if = {
-			limit = {
-				has_trait = jungle_stalker
-			}
-			add = {
-				value = 10
-				desc = court_position_jungle_stalker_trait
-			}
-		}
-		if = {
-			limit = {
-				has_trait = winter_soldier
-			}
-			add = {
-				value = 10
-				desc = court_position_winter_soldier_trait
+			if = {
+				limit = {
+					has_trait = winter_soldier
+				}
+				add = {
+					value = 10
+					desc = court_position_winter_soldier_trait
+				}
 			}
 		}
 		if = {
@@ -1094,17 +1209,21 @@ travel_leader_court_position = {
 
 	on_court_position_received = {
 		court_travel_leader_title_accepted_effect = yes
+		scope:liege = { update_merchant_learn_on_the_job_effect = yes }
 	}
 	on_court_position_revoked = {
 		court_travel_leader_title_revoked_effect = yes
+		scope:liege = { update_merchant_learn_on_the_job_effect = yes }
 	}
 	on_court_position_invalidated = {
 		court_travel_leader_title_invalidated_effect = yes
+		scope:liege = { update_merchant_learn_on_the_job_effect = yes }
 	}
 	on_court_position_vacated = {
 		court_position_vacated_event_effect = {
 			COURT_POSITION_TYPE = travel_leader_court_position
 		}
+		scope:liege = { update_merchant_learn_on_the_job_effect = yes }
 	}
 
 	search_for_courtier = {
@@ -1161,6 +1280,15 @@ antiquarian_court_position = {
 	sort_order = 350
 	max_available_positions = 1
 	skill = learning
+
+	court_position_asset = {
+		trigger = {
+			government_has_flag = government_is_merchant
+		}
+		animation = throne_room_one_handed_passive_3
+		background = "gfx/interface/illustrations/event_scenes/armory.dds"
+		localization_key = antiquarian_merchant
+	}
 
 	court_position_asset = {
 		trigger = {
@@ -1258,6 +1386,18 @@ antiquarian_court_position = {
 			}
 		}
 		add = court_position_aptitude_low_penalty_value
+		if = {
+			limit = {
+				liege_or_court_owner ?= {
+					has_perk = chains_of_loyalty_perk
+					government_has_flag = government_is_settled_non_tribal
+				}
+			}
+			add = {
+				value = 10
+				desc = chains_of_loyalty_perk_name
+			}
+		}
 		add = general_aptitude_bonus
 	}
 
@@ -1265,6 +1405,7 @@ antiquarian_court_position = {
 		OR = {
 			is_landed_or_landless_administrative_or_theocratic = yes
 			government_has_flag = government_is_nomadic
+			government_has_flag = government_is_merchant
 		}
 		trigger_if = {
 			limit = {
@@ -1280,12 +1421,22 @@ antiquarian_court_position = {
 		OR = {
 			is_landed_or_landless_administrative_or_theocratic = yes
 			government_has_flag = government_is_nomadic
+			government_has_flag = government_is_merchant
 		}
 		trigger_if = {
 			limit = {
 				is_ai = yes
 			}
 			has_any_artifact = yes
+		}
+		trigger_if = {
+			limit = {
+				government_has_flag = government_is_merchant
+			}
+			custom_tooltip = {
+				text = antiquarian_court_position_parameter_tt
+				has_realm_law = company_purpose_artisan
+			}
 		}
 	}
 
@@ -1380,17 +1531,21 @@ antiquarian_court_position = {
 
 	on_court_position_received = {
 		carnx_antiquarian_title_accepted_effect = yes
+		scope:liege = { update_merchant_learn_on_the_job_effect = yes }
 	}
 	on_court_position_revoked = {
 		carnx_antiquarian_title_revoked_effect = yes
+		scope:liege = { update_merchant_learn_on_the_job_effect = yes }
 	}
 	on_court_position_invalidated = {
 		carnx_antiquarian_title_invalidated_effect = yes
+		scope:liege = { update_merchant_learn_on_the_job_effect = yes }
 	}
 	on_court_position_vacated = {
 		carnx_court_position_vacated_event_effect = {
 			COURT_POSITION_TYPE = antiquarian_court_position
 		}
+		scope:liege = { update_merchant_learn_on_the_job_effect = yes }
 	}
 
 	# Scripted value to determine whether an AI will hire/fire a position or not. Hires over 0, fires under -50. Look in _court_positions.info for more extensive documentation!
@@ -1555,6 +1710,7 @@ seneschal_court_position = {
 		NOR = {
 			government_has_flag = government_is_nomadic
 			government_has_flag = government_is_mandala
+			government_has_flag = government_is_merchant
 		}
 		trigger_if = {
 			limit = {
@@ -1640,27 +1796,27 @@ seneschal_court_position = {
 	# These modifiers are employed based on what level the aptitude reaches (levels are defined as breakpoints)
 	scaling_employer_modifiers = {
 		terrible = {
-		  	character_capital_county_monthly_control_add = 0.1
+		  	monthly_control_change_when_below_baseline_add = 0.1
 		  	courtier_and_guest_opinion = 1
 		  	monthly_legitimacy_add = 0.1
 		}
 		poor = {
-		  	character_capital_county_monthly_control_add = 0.15
+		  	monthly_control_change_when_below_baseline_add = 0.15
 		  	courtier_and_guest_opinion = 3
 		  	monthly_legitimacy_add = 0.2
 		}
 		average = {
-		  	character_capital_county_monthly_control_add = 0.2
+		  	monthly_control_change_when_below_baseline_add = 0.2
 		  	courtier_and_guest_opinion = 5
 		  	monthly_legitimacy_add = 0.3
 		}
 		good = {
-		  	character_capital_county_monthly_control_add = 0.25
+		  	monthly_control_change_when_below_baseline_add = 0.25
 		  	courtier_and_guest_opinion = 7
 		  	monthly_legitimacy_add = 0.5
 		}
 		excellent = {
-		  	character_capital_county_monthly_control_add = 0.3
+		  	monthly_control_change_when_below_baseline_add = 0.3
 		  	courtier_and_guest_opinion = 10
 		  	monthly_legitimacy_add = 0.7
 		}
@@ -1717,6 +1873,15 @@ court_tutor_court_position = {
 	sort_order = 290
 	max_available_positions = 1
 	skill = learning
+
+	court_position_asset = {
+		trigger = {
+			government_has_flag = government_is_merchant
+		}
+		animation = happy_teacher
+		background = "gfx/interface/illustrations/event_scenes/bp2_university.dds"
+		localization_key = court_tutor_merchant
+	}
 
 	court_position_asset = {
 		trigger = {
@@ -1922,6 +2087,42 @@ court_tutor_court_position = {
 			}
 		}
 
+		# Household district
+		if = {
+			limit = {
+				liege ?= {
+					capital_province ?= { has_building_or_higher = royal_inner_court_1 }
+				}
+			}
+			add = {
+				value = 0
+				liege ?= {
+					capital_province = {
+						if = {
+							limit = { has_building_or_higher = royal_inner_court_5 }
+							add = household_aptitude_tier_5
+						}
+						else_if = {
+							limit = { has_building_or_higher = royal_inner_court_4 }
+							add = household_aptitude_tier_4
+						}
+						else_if = {
+							limit = { has_building_or_higher = royal_inner_court_3 }
+							add = household_aptitude_tier_3
+						}
+						else_if = {
+							limit = { has_building_or_higher = royal_inner_court_2 }
+							add = household_aptitude_tier_2
+						}
+						else = {
+							add = household_aptitude_tier_1
+						}
+					}
+				}
+				desc = household_inner_court_aptitude_desc
+			}
+		}
+
 		# Bonus from court.8311
 		if = {
 			limit = { var:bonus_aptitude_role ?= flag:court_tutor }
@@ -1941,6 +2142,7 @@ court_tutor_court_position = {
 			domicile ?= {
 				has_domicile_parameter = nomad_unlock_court_tutor
 			}
+			government_has_flag = government_is_merchant
 		}
 		has_ep1_court_positions_dlc_trigger = yes
 		trigger_if = {
@@ -1964,6 +2166,12 @@ court_tutor_court_position = {
 					has_domicile_parameter = nomad_unlock_court_tutor
 				}
 			}
+		}
+		trigger_else_if = {
+			limit = {
+				government_has_flag = government_is_merchant
+			}
+			always = yes
 		}
 		trigger_else = {
 			is_landed_or_landless_administrative_or_theocratic = yes
@@ -2082,17 +2290,21 @@ court_tutor_court_position = {
 
 	on_court_position_received = {
 		carnx_court_tutor_title_accepted_effect = yes
+		scope:liege = { update_merchant_learn_on_the_job_effect = yes }
 	}
 	on_court_position_revoked = {
 		carnx_court_tutor_title_revoked_effect = yes
+		scope:liege = { update_merchant_learn_on_the_job_effect = yes }
 	}
 	on_court_position_invalidated = {
 		carnx_court_tutor_title_invalidated_effect = yes
+		scope:liege = { update_merchant_learn_on_the_job_effect = yes }
 	}
 	on_court_position_vacated = {
 		carnx_court_position_vacated_event_effect = {
 			COURT_POSITION_TYPE = court_tutor_court_position
 		}
+		scope:liege = { update_merchant_learn_on_the_job_effect = yes }
 	}
 	# Scripted value to determine whether an AI will hire/fire a position or not. Hires over 0, fires under -50. Look in _court_positions.info for more extensive documentation!
 	ai_position_score = {
@@ -2328,7 +2540,6 @@ wet_nurse_court_position = { # BP2
 				desc = cp_bonus_aptitude
 			}
 		}
-
 		add = court_position_aptitude_high_penalty_value
 		add = general_aptitude_bonus
 	}
@@ -2339,6 +2550,7 @@ wet_nurse_court_position = { # BP2
 			domicile ?= {
 				has_domicile_parameter = nomad_unlock_wet_nurse
 			}
+			government_has_flag = government_is_merchant
 		}
 		wet_nurse_court_position_unlocked_trigger = yes
 		trigger_if = {
@@ -2435,17 +2647,21 @@ wet_nurse_court_position = { # BP2
 
 	on_court_position_received = {
 		carnx_wet_nurse_title_accepted_effect = yes
+		scope:liege = { update_merchant_learn_on_the_job_effect = yes }
 	}
 	on_court_position_revoked = {
 		carnx_wet_nurse_title_revoked_effect = yes
+		scope:liege = { update_merchant_learn_on_the_job_effect = yes }
 	}
 	on_court_position_invalidated = {
 		carnx_wet_nurse_title_invalidated_effect = yes
+		scope:liege = { update_merchant_learn_on_the_job_effect = yes }
 	}
 	on_court_position_vacated = {
 		carnx_court_position_vacated_event_effect = {
 			COURT_POSITION_TYPE = wet_nurse_court_position
 		}
+		scope:liege = { update_merchant_learn_on_the_job_effect = yes }
 	}
 
 	# Scripted value to determine whether an AI will hire/fire a position or not. Hires over 0, fires under -50. Look in _court_positions.info for more extensive documentation!
@@ -3052,7 +3268,10 @@ bookmaker_court_position = { # EP3
 	}
 
 	valid_position = {
-		is_landed_or_landless_administrative_or_theocratic = yes
+		OR = {
+			government_has_flag = government_is_merchant
+			is_landed_or_landless_administrative_or_theocratic = yes
+		}
 		culture = { has_cultural_parameter = hosts_chariot_races }
 	}
 
@@ -3141,17 +3360,21 @@ bookmaker_court_position = { # EP3
 		scope:employee = { add_character_flag = was_bookmaker }
 		basic_gained_court_position_effect = yes
 		pam_celestial_hierarchy_hire_fulfillment_effect = { COURT_POSITION = bookmaker_court_position }
+		scope:liege = { update_merchant_learn_on_the_job_effect = yes }
 	}
 	on_court_position_revoked = {
 		basic_revoked_court_position_effect = yes
+		scope:liege = { update_merchant_learn_on_the_job_effect = yes }
 	}
 	on_court_position_invalidated = {
 		basic_invalidated_court_position_effect = yes
+		scope:liege = { update_merchant_learn_on_the_job_effect = yes }
 	}
 	on_court_position_vacated = {
 		court_position_vacated_event_effect = {
 			COURT_POSITION_TYPE = bookmaker_court_position
 		}
+		scope:liege = { update_merchant_learn_on_the_job_effect = yes }
 	}
 	# Scripted value to determine whether an AI will hire/fire a position or not. Hires over 0, fires under -50. Look in _court_positions.info for more extensive documentation!
 	ai_position_score = {
@@ -4154,6 +4377,15 @@ master_of_hunt_court_position = {
 
 	court_position_asset = {
 		trigger = {
+			government_has_flag = government_is_merchant
+		}
+		animation = hunting_shortbow_aim_arrow_default
+		background = "gfx/interface/illustrations/event_scenes/ep2_hunt_poachers_camp.dds"
+		localization_key = master_of_hunt_merchant
+	}
+
+	court_position_asset = {
+		trigger = {
 			root ?= { #Unop: We want to check the culture of the court_owner (most likely the player) not the culture of the employee
 				government_has_flag = government_is_nomadic
 			}
@@ -4212,28 +4444,30 @@ master_of_hunt_court_position = {
 			desc = court_position_skill_learning
 		}
 		if = {
-			limit = {
-				hunt_lifestyle_track_greater_equal_trigger = { TRACK = hunter GREATER_EQUAL = 100 }
-			}
-			add = {
-				value = 40
-				desc = court_position_hunter_3_trait
-			}
-		}
-		else_if = {
-			limit = {
-				hunt_lifestyle_track_greater_equal_trigger = { TRACK = hunter GREATER_EQUAL = 50 }
-			}
-			add = {
-				value = 30
-				desc = court_position_hunter_2_trait
-			}
-		}
-		else_if = {
 			limit = { has_trait = lifestyle_hunter }
-			add = {
-				value = 20
-				desc = court_position_hunter_1_trait
+			if = {
+				limit = {
+					hunt_lifestyle_track_greater_equal_trigger = { TRACK = hunter GREATER_EQUAL = 100 }
+				}
+				add = {
+					value = 40
+					desc = court_position_hunter_3_trait
+				}
+			}
+			else_if = {
+				limit = {
+					hunt_lifestyle_track_greater_equal_trigger = { TRACK = hunter GREATER_EQUAL = 50 }
+				}
+				add = {
+					value = 30
+					desc = court_position_hunter_2_trait
+				}
+			}
+			else = {
+				add = {
+					value = 20
+					desc = court_position_hunter_1_trait
+				}
 			}
 		}
 		if = {
@@ -4281,6 +4515,24 @@ master_of_hunt_court_position = {
 				desc = estate_increase_master_of_hunt_aptitude_desc
 			}
 		}
+		if = {
+			limit = {
+				employer.domicile ?= { has_domicile_parameter = company_increase_master_of_hunt_aptitude_05 }
+			}
+			add = {
+				value = company_study_capstone_court_position_aptitude_05_value
+				desc = domicile_building_parameter_company_increase_master_of_hunt_aptitude_05
+			}
+		}
+		else_if = {
+			limit = {
+				employer.domicile ?= { has_domicile_parameter = company_increase_master_of_hunt_aptitude_04 }
+			}
+			add = {
+				value = company_study_capstone_court_position_aptitude_04_value
+				desc = domicile_building_parameter_company_increase_master_of_hunt_aptitude_04
+			}
+		}
 
 		# Bonus from court.8311
 		if = {
@@ -4299,6 +4551,7 @@ master_of_hunt_court_position = {
 		OR = {
 			is_landed_or_landless_administrative_or_theocratic = yes
 			government_has_flag = government_is_nomadic
+			government_has_flag = government_is_merchant
 		}
 		trigger_if = {
 			limit = {
@@ -4314,6 +4567,7 @@ master_of_hunt_court_position = {
 		OR = {
 			is_landed_or_landless_administrative_or_theocratic = yes
 			government_has_flag = government_is_nomadic
+			government_has_flag = government_is_merchant
 		}
 		custom_tooltip = { #Unop Add tooltip for the cannot_hunt parameter
 			text = hunt_can_hunt_parameter_tt
@@ -4432,17 +4686,21 @@ master_of_hunt_court_position = {
 
 	on_court_position_received = {
 		master_of_hunt_title_accepted_effect = yes
+		scope:liege = { update_merchant_learn_on_the_job_effect = yes }
 	}
 	on_court_position_revoked = {
 		master_of_hunt_title_revoked_effect = yes
+		scope:liege = { update_merchant_learn_on_the_job_effect = yes }
 	}
 	on_court_position_invalidated = {
 		master_of_hunt_title_invalidated_effect = yes
+		scope:liege = { update_merchant_learn_on_the_job_effect = yes }
 	}
 	on_court_position_vacated = {
 		court_position_vacated_event_effect = {
 			COURT_POSITION_TYPE = master_of_hunt_court_position
 		}
+		scope:liege = { update_merchant_learn_on_the_job_effect = yes }
 	}
 	# Scripted value to determine whether an AI will hire/fire a position or not. Hires over 0, fires under -50. Look in _court_positions.info for more extensive documentation!
 	ai_position_score = {
@@ -4653,13 +4911,20 @@ master_assassin_court_position = {
 		OR = {
 			is_landed_or_landless_administrative_or_theocratic = yes
 			government_has_flag = government_is_nomadic
+			government_has_flag = government_is_merchant
 		}
 		trigger_if = {
 			limit = {
 				is_ai = yes
-				highest_held_title_tier <= tier_county
+				NOR = {
+					highest_held_title_tier > tier_county
+					government_has_flag = government_is_merchant
+				}
 			}
 			always = no
+		}
+		faith = {
+			has_tenet = tenet_fp3_fedayeen
 		}
 	}
 
@@ -4667,6 +4932,7 @@ master_assassin_court_position = {
 		OR = {
 			is_landed_or_landless_administrative_or_theocratic = yes
 			government_has_flag = government_is_nomadic
+			government_has_flag = government_is_merchant
 		}
 		rite = {
 			rite_has_parameter = master_assassin_court_position_unlocked
@@ -4775,6 +5041,7 @@ master_assassin_court_position = {
 	on_court_position_received = {
 		carnx_master_assassin_title_accepted_effect = yes
 		pam_celestial_hierarchy_hire_fulfillment_effect = { COURT_POSITION = master_assassin_court_position }
+		scope:liege = { update_merchant_learn_on_the_job_effect = yes }
 	}
 	on_court_position_revoked = {
 		carnx_master_assassin_title_revoked_effect = yes
@@ -4786,14 +5053,17 @@ master_assassin_court_position = {
 				days = 1
 			}
 		}
+		scope:liege = { update_merchant_learn_on_the_job_effect = yes }
 	}
 	on_court_position_invalidated = {
 		carnx_master_assassin_title_invalidated_effect = yes
+		scope:liege = { update_merchant_learn_on_the_job_effect = yes }
 	}
 	on_court_position_vacated = {
 		carnx_court_position_vacated_event_effect = {
 			COURT_POSITION_TYPE = master_assassin_court_position
 		}
+		scope:liege = { update_merchant_learn_on_the_job_effect = yes }
 	}
 	# Scripted value to determine whether an AI will hire/fire a position or not. Hires over 0, fires under -50. Look in _court_positions.info for more extensive documentation!
 	ai_position_score = {
@@ -5021,34 +5291,34 @@ cultural_emissary_court_position = {
 		terrible = {
 			different_culture_opinion = 2
 			different_faith_opinion = 2
-			different_faith_county_opinion_mult = -0.05
+			different_faith_popular_opinion_mult = -0.05
 		}
 		poor = {
 			different_culture_opinion = 5
 			different_faith_opinion = 5
-			different_faith_county_opinion_mult = -0.1
+			different_faith_popular_opinion_mult = -0.1
 		}
 		average = {
 			different_culture_opinion = 10
 			different_faith_opinion = 10
-			different_faith_county_opinion_mult = -0.15
+			different_faith_popular_opinion_mult = -0.15
 		}
 		good = {
 			different_culture_opinion = 15
 			different_faith_opinion = 15
-			different_faith_county_opinion_mult = -0.2
+			different_faith_popular_opinion_mult = -0.2
 		}
 		excellent = {
 			different_culture_opinion = 20
 			different_faith_opinion = 20
-			different_faith_county_opinion_mult = -0.25
+			different_faith_popular_opinion_mult = -0.25
 		}
 	}
 
 	modifier = {
 		different_culture_opinion = 10
 		different_faith_opinion = 10
-		different_faith_county_opinion_mult = -0.2
+		different_faith_popular_opinion_mult = -0.2
 	}
 
 	on_court_position_received = {
@@ -5198,7 +5468,10 @@ cave_hermit_court_position = {
 
 	is_shown = {
 		is_landed_or_landless_administrative_or_theocratic = yes
-		NOT = { government_has_flag = government_is_nomadic }
+		NOT = { 
+			government_has_flag = government_is_nomadic 
+			government_has_flag = government_is_merchant
+		}
 		trigger_if = {
 			limit = {
 				is_ai = yes
@@ -5494,7 +5767,10 @@ chief_qadi_court_position = {
 	is_shown = {
 		has_game_rule = carnx_universe_historical
 		is_landed_or_landless_administrative_or_theocratic = yes
-		NOT = { government_has_flag = government_is_nomadic }
+		NOT = { 
+			government_has_flag = government_is_nomadic 
+			government_has_flag = government_is_merchant
+		}
 		trigger_if = {
 			limit = {
 				is_ai = yes
@@ -5928,25 +6204,25 @@ court_gardener_court_position = {
 
 	scaling_employer_modifiers = {
 		terrible = {
-			character_capital_county_monthly_development_growth_add = 0.05
+			character_capital_county_monthly_prosperity_growth_add = 0.05
 		}
 		poor = {
-			character_capital_county_monthly_development_growth_add = 0.1
+			character_capital_county_monthly_prosperity_growth_add = 0.1
 		}
 		average = {
-			character_capital_county_monthly_development_growth_add = 0.2
+			character_capital_county_monthly_prosperity_growth_add = 0.2
 		}
 		good = {
-			character_capital_county_monthly_development_growth_add = 0.35
+			character_capital_county_monthly_prosperity_growth_add = 0.35
 		}
 		excellent = {
-			character_capital_county_monthly_development_growth_add = 0.5
+			character_capital_county_monthly_prosperity_growth_add = 0.5
 		}
 	}
 
 	modifier = {
 		monthly_stewardship_lifestyle_xp_gain_mult = 0.1
-		character_capital_county_monthly_development_growth_add = 0.02
+		character_capital_county_monthly_prosperity_growth_add = 0.02
 		stress_gain_mult = -0.25
 	}
 
@@ -6531,6 +6807,42 @@ chronicler_court_position = { # CE1
 				}
 			}
 		}
+		# Household district
+		if = {
+			limit = {
+				liege ?= {
+					capital_province ?= { has_building_or_higher = royal_palace_library_1 }
+				}
+			}
+			add = {
+				value = 0
+				liege ?= {
+					capital_province = {
+						if = {
+							limit = { has_building_or_higher = royal_palace_library_5 }
+							add = household_aptitude_tier_5
+						}
+						else_if = {
+							limit = { has_building_or_higher = royal_palace_library_4 }
+							add = household_aptitude_tier_4
+						}
+						else_if = {
+							limit = { has_building_or_higher = royal_palace_library_3 }
+							add = household_aptitude_tier_3
+						}
+						else_if = {
+							limit = { has_building_or_higher = royal_palace_library_2 }
+							add = household_aptitude_tier_2
+						}
+						else = {
+							add = household_aptitude_tier_1
+						}
+					}
+				}
+				desc = household_palace_library_aptitude_desc
+			}
+		}
+
 		# Bonus from court.8311
 		if = {
 			limit = { var:bonus_aptitude_role ?= flag:chronicler }
@@ -6554,7 +6866,10 @@ chronicler_court_position = { # CE1
 			}
 		}
 		trigger_else = {
-			is_landed_or_landless_administrative_or_theocratic = yes
+			OR = {
+				government_has_flag = government_is_merchant
+				is_landed_or_landless_administrative_or_theocratic = yes
+			}
 		}
 	}
 
@@ -6661,17 +6976,21 @@ chronicler_court_position = { # CE1
 	on_court_position_received = {
 		carnx_chronicler_title_accepted_effect = yes
 		pam_celestial_hierarchy_hire_fulfillment_effect = { COURT_POSITION = chronicler_court_position }
+		scope:liege = { update_merchant_learn_on_the_job_effect = yes }
 	}
 	on_court_position_revoked = {
 		carnx_chronicler_title_revoked_effect = yes
+		scope:liege = { update_merchant_learn_on_the_job_effect = yes }
 	}
 	on_court_position_invalidated = {
 		carnx_chronicler_title_invalidated_effect = yes
+		scope:liege = { update_merchant_learn_on_the_job_effect = yes }
 	}
 	on_court_position_vacated = {
 		carnx_court_position_vacated_event_effect = {
 			COURT_POSITION_TYPE = chronicler_court_position
 		}
+		scope:liege = { update_merchant_learn_on_the_job_effect = yes }
 	}
 
 	# Scripted value to determine whether an AI will hire/fire a position or not. Hires over 0, fires under -50. Look in _court_positions.info for more extensive documentation!
@@ -6735,9 +7054,24 @@ champion_court_position = { # EP1
 			}
 			add = 136
 		}
+		if = {
+			limit = {
+				government_has_flag = government_is_merchant
+			}
+			add = -136
+		}
 	}
 	max_available_positions = 1
 	skill = prowess
+
+	court_position_asset = {
+		trigger = {
+			government_has_flag = government_is_merchant
+		}
+		animation = marshal_shield
+		background = "gfx/interface/illustrations/event_scenes/ep3_medi_estate.dds"
+		localization_key = champion_merchant
+	}
 
 	court_position_asset = {
 		trigger = {		
@@ -6948,7 +7282,10 @@ champion_court_position = { # EP1
 	}
 
 	is_shown = {
-		is_landed_or_landless_administrative_or_theocratic = yes
+		OR = {
+			government_has_flag = government_is_merchant
+			is_landed_or_landless_administrative_or_theocratic = yes
+		}
 		has_ep1_court_positions_dlc_trigger = yes
 		NOT = { government_has_flag = government_is_nomadic }
 		trigger_if = {
@@ -6961,7 +7298,10 @@ champion_court_position = { # EP1
 	}
 
 	valid_position = {
-		is_landed_or_landless_administrative_or_theocratic = yes
+		OR = {
+			government_has_flag = government_is_merchant
+			is_landed_or_landless_administrative_or_theocratic = yes
+		}
 	}
 
 	is_shown_character = {
@@ -7074,17 +7414,21 @@ champion_court_position = { # EP1
 
 	on_court_position_received = {
 		carnx_champion_title_accepted_effect = yes
+		scope:liege = { update_merchant_learn_on_the_job_effect = yes }
 	}
 	on_court_position_revoked = {
 		carnx_champion_title_revoked_effect = yes
+		scope:liege = { update_merchant_learn_on_the_job_effect = yes }
 	}
 	on_court_position_invalidated = {
 		carnx_champion_title_invalidated_effect = yes
+		scope:liege = { update_merchant_learn_on_the_job_effect = yes }
 	}
 	on_court_position_vacated = {
 		carnx_court_position_vacated_event_effect = {
 			COURT_POSITION_TYPE = champion_court_position
 		}
+		scope:liege = { update_merchant_learn_on_the_job_effect = yes }
 	}
 	# Scripted value to determine whether an AI will hire/fire a position or not. Hires over 0, fires under -50. Look in _court_positions.info for more extensive documentation!
 	ai_position_score = {
@@ -7134,6 +7478,15 @@ court_brewmaster_court_position = {
 	max_available_positions = 1
 	minimum_rank = county
 	skill = learning
+
+	court_position_asset = {
+		trigger = {
+			government_has_flag = government_is_merchant
+		}
+		animation = wedding_drunk
+		background = "gfx/interface/illustrations/event_scenes/bp1_wine_cellar.dds"
+		localization_key = brewmaster_merchant
+	}
 
 	court_position_asset = {
 		trigger = {
@@ -7242,6 +7595,7 @@ court_brewmaster_court_position = {
 		OR = {
 			is_landed_or_landless_administrative_or_theocratic = yes
 			government_has_flag = government_is_nomadic
+			government_has_flag = government_is_merchant
 		}
 		trigger_if = {
 			limit = {
@@ -7257,12 +7611,13 @@ court_brewmaster_court_position = {
 		OR = {
 			is_landed_or_landless_administrative_or_theocratic = yes
 			government_has_flag = government_is_nomadic
+			government_has_flag = government_is_merchant
 		}
 		custom_tooltip = {
 			text = court_brewmaster_requirement_tt
 			any_sub_realm_barony = {
 				county.holder = root
-				title_province = { has_building_or_higher = breweries_01 }
+				title_province = { has_building_or_higher = beer_brewery_1 }
 			}
 		}
 	}
@@ -7340,19 +7695,19 @@ court_brewmaster_court_position = {
 	# These modifiers are employed based on what level the aptitude reaches (levels are defined as breakpoints)
 	scaling_employer_modifiers = {
 		terrible = {
-			county_opinion_add = 1
+			popular_opinion_add = 2
 		}
 		poor = {
-			county_opinion_add = 2
+			popular_opinion_add = 4
 		}
 		average = {
-			county_opinion_add = 3
+			popular_opinion_add = 6
 		}
 		good = {
-			county_opinion_add = 6
+			popular_opinion_add = 8
 		}
 		excellent = {
-			county_opinion_add = 10
+			popular_opinion_add = 10
 		}
 	}
 
@@ -7366,17 +7721,21 @@ court_brewmaster_court_position = {
 
 	on_court_position_received = {
 		carnx_court_brewmaster_title_accepted_effect = yes
+		scope:liege = { update_merchant_learn_on_the_job_effect = yes }
 	}
 	on_court_position_revoked = {
 		carnx_court_brewmaster_title_revoked_effect = yes
+		scope:liege = { update_merchant_learn_on_the_job_effect = yes }
 	}
 	on_court_position_invalidated = {
 		carnx_court_brewmaster_title_invalidated_effect = yes
+		scope:liege = { update_merchant_learn_on_the_job_effect = yes }
 	}
 	on_court_position_vacated = {
 		carnx_court_position_vacated_event_effect = {
 			COURT_POSITION_TYPE = court_brewmaster_court_position
 		}
+		scope:liege = { update_merchant_learn_on_the_job_effect = yes }
 	}
 
 	# Scripted value to determine whether an AI will hire/fire a position or not. Hires over 0, fires under -50. Look in _court_positions.info for more extensive documentation!
@@ -8141,6 +8500,7 @@ high_almoner_court_position = {
 			government_has_flag = government_is_nomadic
 			government_has_flag = government_is_celestial
 			government_has_flag = government_is_mandala
+			government_has_flag = government_is_merchant
 		}
 		trigger_if = {
 			limit = {
@@ -8470,6 +8830,11 @@ court_poet_court_position = { # EP1
 				desc = possessed_prophetic_visions
 			}
 		}
+		add = court_position_aptitude_traveling_friends_value
+		add = court_position_aptitude_eunuch_tradition_value
+		add = court_position_aptitude_family_business_value
+
+		# Domicile
 		if = {
 			limit = { exists = employer.domicile }
 			add = {
@@ -8501,6 +8866,42 @@ court_poet_court_position = { # EP1
 				desc = estate_poet_building
 			}
 		}
+		# Household district
+		if = {
+			limit = {
+				employer ?= {
+					capital_province ?= { has_building_or_higher = royal_palace_library_1 }
+				}
+			}
+			add = {
+				value = 0
+				employer ?= {
+					capital_province = {
+						if = {
+							limit = { has_building_or_higher = royal_palace_library_5 }
+							add = household_aptitude_tier_5
+						}
+						else_if = {
+							limit = { has_building_or_higher = royal_palace_library_4 }
+							add = household_aptitude_tier_4
+						}
+						else_if = {
+							limit = { has_building_or_higher = royal_palace_library_3 }
+							add = household_aptitude_tier_3
+						}
+						else_if = {
+							limit = { has_building_or_higher = royal_palace_library_2 }
+							add = household_aptitude_tier_2
+						}
+						else = {
+							add = household_aptitude_tier_1
+						}
+					}
+				}
+				desc = household_palace_library_aptitude_desc
+			}
+		}
+
 		# Bonus from court.8311
 		if = {
 			limit = { var:bonus_aptitude_role ?= flag:court_poet }
@@ -8757,7 +9158,7 @@ court_poet_court_position = { # EP1
 court_musician_court_position = {
 	sort_order = 175
 	max_available_positions = 1
-	minimum_rank = duchy # Usually available only to kings++, but at times available to dukes
+	minimum_rank = county # Usually available only to kings++, but at times available to dukes and merchants
 	skill = diplomacy
 
 	court_position_asset = {
@@ -9380,7 +9781,7 @@ cupbearer_court_position = {
 food_taster_court_position = { # EP1
 	sort_order = 165
 	max_available_positions = 1
-	minimum_rank = duchy # Usually available only to kings++, but at times available to dukes
+	minimum_rank = duchy # Usually available only to kings++, but at times available to dukes and merchants
 	skill = intrigue
 
 	court_position_asset = {
@@ -9523,7 +9924,10 @@ food_taster_court_position = { # EP1
 	}
 
 	valid_position = {
-		is_landed_or_landless_administrative_or_theocratic = yes
+		OR = {
+			is_landed_or_landless_administrative_or_theocratic = yes
+			government_has_flag = government_is_merchant
+		}
 		trigger_if = {
 			limit = {
 				root.culture ?= {
@@ -9649,17 +10053,21 @@ food_taster_court_position = { # EP1
 
 	on_court_position_received = {
 		carnx_food_taster_title_accepted_effect = yes
+		scope:liege = { update_merchant_learn_on_the_job_effect = yes }
 	}
 	on_court_position_revoked = {
 		carnx_food_taster_title_revoked_effect = yes
+		scope:liege = { update_merchant_learn_on_the_job_effect = yes }
 	}
 	on_court_position_invalidated = {
 		carnx_food_taster_title_invalidated_effect = yes
+		scope:liege = { update_merchant_learn_on_the_job_effect = yes }
 	}
 	on_court_position_vacated = {
 		carnx_court_position_vacated_event_effect = {
 			COURT_POSITION_TYPE = food_taster_court_position
 		}
+		scope:liege = { update_merchant_learn_on_the_job_effect = yes }
 	}
 	# Scripted value to determine whether an AI will hire/fire a position or not. Hires over 0, fires under -50. Look in _court_positions.info for more extensive documentation!
 	ai_position_score = {
@@ -9782,6 +10190,7 @@ keeper_of_swans_court_position = {
 		NOR = {
 			government_has_flag = government_is_nomadic
 			government_has_flag = government_is_celestial
+			government_has_flag = government_is_merchant
 		}
 		trigger_if = {
 			limit = {
@@ -10093,6 +10502,7 @@ court_jester_court_position = {
 		NOR = {
 			government_has_flag = government_is_nomadic
 			government_has_flag = government_is_celestial
+			government_has_flag = government_is_merchant
 		}
 		trigger_if = {
 			limit = {
@@ -10377,6 +10787,7 @@ executioner_court_position = { # EP1
 		NOR = {
 			government_has_flag = government_is_nomadic
 			government_has_flag = government_is_celestial
+			government_has_flag = government_is_merchant
 		}
 		trigger_if = {
 			limit = {
@@ -10394,7 +10805,7 @@ executioner_court_position = { # EP1
 
 	is_shown_character = {
 		scope:employee = {
-			tgp_is_ceremonial_liege_trigger = no
+			is_ceremonial_liege = no
 		}
 	}
 
@@ -11021,6 +11432,7 @@ bodyguard_court_position = { # EP1
 			OR = {
 				is_landed_or_landless_administrative_or_theocratic = yes
 				government_has_flag = government_is_landless_adventurer
+				government_has_flag = government_is_merchant
 			}
 		}
 	}
@@ -11125,17 +11537,21 @@ bodyguard_court_position = { # EP1
 
 	on_court_position_received = {
 		carnx_bodyguard_title_accepted_effect = yes
+		scope:liege = { update_merchant_learn_on_the_job_effect = yes }
 	}
 	on_court_position_revoked = {
 		carnx_bodyguard_title_revoked_effect = yes
+		scope:liege = { update_merchant_learn_on_the_job_effect = yes }
 	}
 	on_court_position_invalidated = {
 		carnx_bodyguard_title_invalidated_effect = yes
+		scope:liege = { update_merchant_learn_on_the_job_effect = yes }
 	}
 	on_court_position_vacated = {
 		carnx_court_position_vacated_event_effect = {
 			COURT_POSITION_TYPE = bodyguard_court_position
 		}
+		scope:liege = { update_merchant_learn_on_the_job_effect = yes }
 	}
 	# Scripted value to determine whether an AI will hire/fire a position or not. Hires over 0, fires under -50. Look in _court_positions.info for more extensive documentation!
 	ai_position_score = {

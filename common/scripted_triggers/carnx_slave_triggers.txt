@@ -155,13 +155,18 @@ carnx_valid_payer_or_owner_trigger = {
 	NOT = { this = $PARTY$ }
 	trigger_if = {
 		limit = {
-			$PARTY$ = { is_landless_adventurer = yes }
+			$PARTY$ = {
+				OR = {
+					is_landless_adventurer = yes
+					has_government = merchant_government
+				}
+			}
 		}
 		save_temporary_scope_as = character1
-		#Has to be used instead of diplo range checks in laamp to landed interactions
-		ep3_laamp_diplo_range_trigger = {
+		#Has to be used instead of diplo range checks in laamp or merchant to landed interactions
+		exceptional_diplo_range_trigger = {
+			CHARACTER = $PARTY$
 			TARGET = scope:character1
-			LAAMP = $PARTY$
 		}
 	}
 	trigger_else = {
@@ -1232,6 +1237,7 @@ carnx_slavery_attitude_liberator_government_trigger = {
 carnx_slavery_attitude_trader_government_trigger = {
 	OR = {
 		government_has_flag = government_is_republic
+		government_has_flag = government_is_merchant
 		government_has_flag = government_is_wanua
 		government_has_flag = government_is_mandala
 	}

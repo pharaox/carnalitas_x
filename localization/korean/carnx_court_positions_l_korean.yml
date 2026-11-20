@@ -52,4 +52,4 @@
  # Slave Eunuch Tasks
  carnx_slave_eunuch_court_position_task_manage_palace_affairs: "궁전 업무 관리"
  carnx_slave_eunuch_court_position_task_manage_palace_affairs_desc: "$carnx_slave_eunuch_court_position$은(는) 궁전의 일상적인 관리를 감독하여 효율성을 보장할 것입니다."
- carnx_slave_eunuch_manage_palace_affairs.tt: "$carnx_slave_eunuch_court_position$은(는) 수도 [county|E]의 [development_growth|E]를 향상시킬 것입니다."
+ carnx_slave_eunuch_manage_palace_affairs.tt: "$carnx_slave_eunuch_court_position$은(는) 수도 [county|E]의 [prosperity_growth|E]를 향상시킬 것입니다."

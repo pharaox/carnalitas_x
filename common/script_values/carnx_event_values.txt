@@ -15,13 +15,13 @@
 carnx_num_merchants_value = {
 	if = {
 		limit = {
-			county ?= { development_level >= 40 }
+			county ?= { prosperity_level >= 40 }
 		}
 		value = 3
 	}
 	else_if = {
 		limit = { 
-			county ?= { development_level >= 20 }
+			county ?= { prosperity_level >= 20 }
 		}
 		value = 2
 	}

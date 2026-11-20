@@ -52,4 +52,4 @@
  # Slave Eunuch Tasks
  carnx_slave_eunuch_court_position_task_manage_palace_affairs:0 "Manage Palace Affairs"
  carnx_slave_eunuch_court_position_task_manage_palace_affairs_desc:0 "The $carnx_slave_eunuch_court_position$ will oversee the day-to-day administration of the palace, ensuring efficiency."
- carnx_slave_eunuch_manage_palace_affairs.tt:0 "The $carnx_slave_eunuch_court_position$ will improve capital [county|E] [development_growth|E]."
+ carnx_slave_eunuch_manage_palace_affairs.tt:0 "The $carnx_slave_eunuch_court_position$ will improve capital [county|E] [prosperity_growth|E]."

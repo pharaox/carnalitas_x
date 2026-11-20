@@ -498,7 +498,7 @@ carnx_create_merchant_character_effect = {
 
 carnx_add_merchant_gold_effect = {
 	add_gold = {
-		value = $LOCATION$.county.development_level
+		value = $LOCATION$.county.prosperity_level
 		if = {
 			limit = {
 				$LOCATION$ = { vls_has_city_like_holding_trigger = yes }

@@ -54,6 +54,12 @@
 # court_guru - No
 # court_brahmin - No
 # khlon_glan - Yes*
+# partner - No
+# fixer - No
+# translator - No
+# market_agent - No
+# bailiff - No
+# roman_censor - No
 
 # CSR Court Positions
 

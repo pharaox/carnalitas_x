@@ -74,6 +74,9 @@
 
 	is_shown = {
 		scope:actor != scope:recipient
+		scope:actor = {
+			NOT = { government_has_flag = government_is_merchant }
+		}
 		scope:recipient = {
 			is_ruler = yes
 			NOT = { government_has_flag = government_is_herder }
@@ -107,16 +110,10 @@
 			}
 		}
 
-		trigger_if = { #For adventurers we check range
-			limit = {
-				scope:actor = {
-					is_landless_adventurer = yes
-				}
-			}
-			ep3_laamp_diplo_range_trigger = {
-				TARGET = scope:recipient
-				LAAMP = scope:actor
-			}
+		#limit range for landless adventurers/merchants
+		exceptional_diplo_range_trigger = {
+			CHARACTER = scope:actor
+			TARGET = scope:recipient
 		}
 	}
 
@@ -168,15 +165,15 @@
 					prowess >= extremely_high_skill_rating
 					AND = {
 						diplomacy >= monumentally_high_skill_rating
-						scope:actor.cp:councillor_chancellor ?= { diplomacy < monumentally_high_skill_rating }
+						scope:recipient.cp:councillor_chancellor ?= { diplomacy < monumentally_high_skill_rating }
 					}
 					AND = {
-						stewardship >= monumentally_high_skill_rating #Unop: Check stewardship instead of diplomacy
-						scope:actor.cp:councillor_steward ?= { stewardship < monumentally_high_skill_rating }
+						stewardship >= monumentally_high_skill_rating
+						scope:recipient.cp:councillor_steward ?= { stewardship < monumentally_high_skill_rating }
 					}
 					AND = {
-						intrigue >= monumentally_high_skill_rating #Unop: Check intrigue instead of diplomacy
-						scope:actor.cp:councillor_spymaster ?= { intrigue < monumentally_high_skill_rating }
+						intrigue >= monumentally_high_skill_rating
+						scope:recipient.cp:councillor_spymaster ?= { intrigue < monumentally_high_skill_rating }
 					}
 					has_relation_lover = scope:recipient # Shhh, don't tell anyone, of course you're 'skilled'!
 					trigger_if = {
@@ -335,15 +332,15 @@
 					exists = inspiration
 					AND = {
 						diplomacy >= monumentally_high_skill_rating
-						scope:actor.cp:councillor_chancellor ?= { diplomacy < monumentally_high_skill_rating }
+						scope:recipient.cp:councillor_chancellor ?= { diplomacy < monumentally_high_skill_rating }
 					}
 					AND = {
-						stewardship >= monumentally_high_skill_rating #Unop: Check stewardship instead of diplomacy
-						scope:actor.cp:councillor_steward ?= { stewardship < monumentally_high_skill_rating }
+						stewardship >= monumentally_high_skill_rating
+						scope:recipient.cp:councillor_steward ?= { stewardship < monumentally_high_skill_rating }
 					}
 					AND = {
-						intrigue >= monumentally_high_skill_rating #Unop: Check intrigue instead of diplomacy
-						scope:actor.cp:councillor_spymaster ?= { intrigue < monumentally_high_skill_rating }
+						intrigue >= monumentally_high_skill_rating
+						scope:recipient.cp:councillor_spymaster ?= { intrigue < monumentally_high_skill_rating }
 					}
 					trigger_if = {
 						limit = {
@@ -566,11 +563,11 @@ demand_courtier_interaction = {
 						scope:actor.cp:councillor_chancellor ?= { diplomacy < monumentally_high_skill_rating }
 					}
 					AND = {
-						stewardship >= monumentally_high_skill_rating #Unop: Check stewardship instead of diplomacy
+						stewardship >= monumentally_high_skill_rating
 						scope:actor.cp:councillor_steward ?= { stewardship < monumentally_high_skill_rating }
 					}
 					AND = {
-						intrigue >= monumentally_high_skill_rating #Unop: Check intrigue instead of diplomacy
+						intrigue >= monumentally_high_skill_rating
 						scope:actor.cp:councillor_spymaster ?= { intrigue < monumentally_high_skill_rating }
 					}
 					trigger_if = {
@@ -636,6 +633,7 @@ demand_courtier_interaction = {
 	is_shown = {
 		scope:actor != scope:recipient
 		scope:recipient = {
+			NOT = { government_has_flag = government_is_merchant }
 			OR = {
 				trigger_if = {
 					limit = {
@@ -851,11 +849,11 @@ demand_courtier_interaction = {
 						scope:actor.cp:councillor_chancellor ?= { diplomacy < monumentally_high_skill_rating }
 					}
 					AND = {
-						stewardship >= monumentally_high_skill_rating #Unop: Check stewardship instead of diplomacy
+						stewardship >= monumentally_high_skill_rating
 						scope:actor.cp:councillor_steward ?= { stewardship < monumentally_high_skill_rating }
 					}
 					AND = {
-						intrigue >= monumentally_high_skill_rating #Unop: Check intrigue instead of diplomacy
+						intrigue >= monumentally_high_skill_rating
 						scope:actor.cp:councillor_spymaster ?= { intrigue < monumentally_high_skill_rating }
 					}
 					trigger_if = {
@@ -989,7 +987,10 @@ demand_courtier_interaction = {
 						}
 						# Use Hook
 						if = {
-							limit = { scope:hook = yes }
+							limit = {
+								scope:hook = yes
+								has_usable_hook = scope:recipient
+							}
 							use_hook = scope:recipient
 						}
 					}
